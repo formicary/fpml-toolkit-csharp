@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE calendars [
+<!ELEMENT calendars (calendar+)>
+
+<!ELEMENT calendar (fixed | offset | easter)+>
+<!ATTLIST calendar
+		name		CDATA		#REQUIRED
+		weekend	CDATA		'SAT/SUN'>
+<!ELEMENT fixed EMPTY>
+<!ATTLIST fixed
+		name		CDATA		#REQUIRED
+		from		CDATA		'1901'
+		until		CDATA		'2099'
+		month		(JAN|FEB|MAR|APR|MAY|JUN|
+					 JUL|AUG|SEP|OCT|NOV|DEC)	#REQUIRED
+		date		( 1| 2| 3| 4| 5| 6| 7| 8| 9|10|
+					 11|12|13|14|15|16|17|18|19|20|
+					 21|22|23|24|25|26|27|28|29|30|31)	#REQUIRED
+		roll		CDATA		'NONE'>
+		
+<!ELEMENT offset EMPTY>
+<!ATTLIST offset
+		name		CDATA		#REQUIRED
+		from		CDATA		'1901'
+		until		CDATA		'2099'
+		when		(FIRST|SECOND|THIRD|FOURTH|FIFTH|LAST)	#REQUIRED
+		weekday		(MON|TUE|WED|THU|FRI|SAT|SUN)	#REQUIRED
+		month		(JAN|FEB|MAR|APR|MAY|JUN|
+					 JUL|AUG|SEP|OCT|NOV|DEC)	#REQUIRED>
+		
+<!ELEMENT easter EMPTY>
+<!ATTLIST easter
+		name		CDATA		#REQUIRED
+		from		CDATA		'1901'
+		until		CDATA  		'2099'
+		offset		CDATA		#REQUIRED>
+]>
+<calendars>
+	<!-- UK, London -->
+	<calendar name="GBLO" weekend="SAT/SUN">
+		<fixed name="New Years Day" month="JAN" date="1" roll="FOLLOWING"/>
+		<easter name="Good Friday" offset="-3"/>
+		<easter name="Easter Monday" offset="0"/>
+		<offset name="Early May Bank Holiday" when="FIRST" weekday="MON" month="MAY"/>
+		<offset name="Spring Bank Holiday" when="LAST" weekday="MON" month="MAY"/>
+		<offset name="Summer Bank Holiday" when="LAST" weekday="MON" month="AUG"/>
+		<fixed name="Christmas Day" month="DEC" date="25" roll="FOLLOWING"/>
+		<fixed name="Boxing Day" month="DEC" date="26" roll="FOLLOWING"/>
+		<!-- Special Holidays -->
+		<fixed name="Millenium Eve" month="DEC" date="31" from="1999" until="1999" roll="NONE"/>
+		<fixed name="Golden Jubilee Bank Holiday" month="JUN" date="3" from="2002" until="2002" roll="NONE"/>
+		<fixed name="Special Spring Bank Holiday" month="JUN" date="4" from="2002" until="2002" roll="NONE"/>
+	</calendar>
+	<!-- US, New York -->
+	<calendar name="USNY" weekend="SAT/SUN">
+		<!-- National Holidays -->
+		<fixed name="New Year's Day" month="JAN" date="1" roll="WEEKEND"/>
+		<offset name="Martin Luther King's Day" month="JAN" when="THIRD" weekday="MON"/>
+		<offset name="Washington's Birthday" month="FEB" when="THIRD" weekday="MON"/>
+		<easter name="Good Friday" offset="-3"/>
+		<offset name="Memorial Day" month="MAY" when="LAST" weekday="MON"/>
+		<fixed name="Independence Day" month="JUL" date="4" roll="WEEKEND"/>
+		<offset name="Labor Day" month="SEP" when="FIRST" weekday="MON"/>
+		<offset name="Columbus Day" month="OCT" when="SECOND" weekday="MON"/>
+		<!-- <fixed name="Veteran's Day" month="NOV" date="11" roll="WEEKEND"/> -->
+		<offset name="Thanksgiving" month="NOV" when="FOURTH" weekday="THU"/>
+		<fixed name="Christmas Day" month="DEC" date="25" roll="WEEKEND"/>
+	</calendar>
+</calendars>

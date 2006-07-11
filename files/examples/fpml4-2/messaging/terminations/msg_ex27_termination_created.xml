@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  == Copyright (c) 2002-2005. All rights reserved.
+  == Financial Products Markup Language is subject to the FpML public license.
+  == A copy of this license is available at http://www.fpml.org/documents/license
+  -->
+<FpML xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="TerminationCreated" version="4-2" xsi:schemaLocation="http://www.fpml.org/2005/FpML-4-2 ../../fpml-main-4-2.xsd">
+	<header>
+		<messageId messageIdScheme="http://www.hedgefund.com/message-id">40368460</messageId>
+		<sentBy>FUND</sentBy>
+		<creationTimestamp>2005-09-29T09:36:09-05:00</creationTimestamp>
+	</header>
+	<termination>
+		<eventId eventIdScheme="http://www.hedgefund.com/event-id">9860017</eventId>
+		<trade>
+			<tradeHeader>
+				<partyTradeIdentifier>
+					<partyReference href="fund"/>
+					<tradeId tradeIdScheme="http://www.hedgefund.com/trade-id">9860016</tradeId>
+				</partyTradeIdentifier>
+				<tradeDate>2005-03-24</tradeDate>
+			</tradeHeader>
+			<swap>
+				<productType>InterestRateSwap</productType>
+				<swapStream>
+					<payerPartyReference href="fund"/>
+					<receiverPartyReference href="dealer"/>
+					<calculationPeriodDates id="floatCalculationDates">
+						<effectiveDate>
+							<unadjustedDate>2005-03-30</unadjustedDate>
+							<dateAdjustments>
+								<businessDayConvention>NONE</businessDayConvention>
+							</dateAdjustments>
+						</effectiveDate>
+						<terminationDate>
+							<unadjustedDate>2013-08-15</unadjustedDate>
+							<dateAdjustments>
+								<businessDayConvention>MODFOLLOWING</businessDayConvention>
+								<businessCenters id="floatBusinessCenters">
+									<businessCenter>USNY</businessCenter>
+								</businessCenters>
+							</dateAdjustments>
+						</terminationDate>
+						<calculationPeriodDatesAdjustments>
+							<businessDayConvention>MODFOLLOWING</businessDayConvention>
+							<businessCentersReference href="floatBusinessCenters"/>
+						</calculationPeriodDatesAdjustments>
+						<calculationPeriodFrequency>
+							<periodMultiplier>3</periodMultiplier>
+							<period>M</period>
+							<rollConvention>15</rollConvention>
+						</calculationPeriodFrequency>
+					</calculationPeriodDates>
+					<paymentDates>
+						<calculationPeriodDatesReference href="floatCalculationDates"/>
+						<paymentFrequency>
+							<periodMultiplier>3</periodMultiplier>
+							<period>M</period>
+						</paymentFrequency>
+						<firstPaymentDate>2005-05-16</firstPaymentDate>
+						<payRelativeTo>CalculationPeriodEndDate</payRelativeTo>
+						<paymentDatesAdjustments>
+							<businessDayConvention>MODFOLLOWING</businessDayConvention>
+							<businessCentersReference href="floatBusinessCenters"/>
+						</paymentDatesAdjustments>
+					</paymentDates>
+					<resetDates id="floatResetDates">
+						<calculationPeriodDatesReference href="floatCalculationDates"/>
+						<resetRelativeTo>CalculationPeriodStartDate</resetRelativeTo>
+						<fixingDates>
+							<periodMultiplier>-2</periodMultiplier>
+							<period>D</period>
+							<dayType>Business</dayType>
+							<businessDayConvention>NONE</businessDayConvention>
+							<dateRelativeTo href="floatResetDates"/>
+						</fixingDates>
+						<resetFrequency>
+							<periodMultiplier>3</periodMultiplier>
+							<period>M</period>
+						</resetFrequency>
+						<resetDatesAdjustments>
+							<businessDayConvention>MODFOLLOWING</businessDayConvention>
+							<businessCentersReference href="floatBusinessCenters"/>
+						</resetDatesAdjustments>
+					</resetDates>
+					<calculationPeriodAmount>
+						<calculation>
+							<notionalSchedule>
+								<notionalStepSchedule>
+									<initialValue>75000000.000000</initialValue>
+									<currency>USD</currency>
+								</notionalStepSchedule>
+							</notionalSchedule>
+							<floatingRateCalculation>
+								<floatingRateIndex>US0003M</floatingRateIndex>
+								<initialRate>0.0292975</initialRate>
+							</floatingRateCalculation>
+							<dayCountFraction>ACT/360</dayCountFraction>
+						</calculation>
+					</calculationPeriodAmount>
+				</swapStream>
+				<swapStream>
+					<payerPartyReference href="dealer"/>
+					<receiverPartyReference href="fund"/>
+					<calculationPeriodDates id="fixedCalculationDates">
+						<effectiveDate>
+							<unadjustedDate>2005-03-30</unadjustedDate>
+							<dateAdjustments>
+								<businessDayConvention>NONE</businessDayConvention>
+							</dateAdjustments>
+						</effectiveDate>
+						<terminationDate>
+							<unadjustedDate>2013-08-15</unadjustedDate>
+							<dateAdjustments>
+								<businessDayConvention>MODFOLLOWING</businessDayConvention>
+								<businessCenters id="fixedBusinessCenters">
+									<businessCenter>USNY</businessCenter>
+								</businessCenters>
+							</dateAdjustments>
+						</terminationDate>
+						<calculationPeriodDatesAdjustments>
+							<businessDayConvention>MODFOLLOWING</businessDayConvention>
+							<businessCentersReference href="fixedBusinessCenters"/>
+						</calculationPeriodDatesAdjustments>
+						<calculationPeriodFrequency>
+							<periodMultiplier>6</periodMultiplier>
+							<period>M</period>
+							<rollConvention>15</rollConvention>
+						</calculationPeriodFrequency>
+					</calculationPeriodDates>
+					<paymentDates>
+						<calculationPeriodDatesReference href="fixedCalculationDates"/>
+						<paymentFrequency>
+							<periodMultiplier>6</periodMultiplier>
+							<period>M</period>
+						</paymentFrequency>
+						<firstPaymentDate>2005-08-15</firstPaymentDate>
+						<payRelativeTo>CalculationPeriodEndDate</payRelativeTo>
+						<paymentDatesAdjustments>
+							<businessDayConvention>MODFOLLOWING</businessDayConvention>
+							<businessCentersReference href="fixedBusinessCenters"/>
+						</paymentDatesAdjustments>
+					</paymentDates>
+					<calculationPeriodAmount>
+						<calculation>
+							<notionalSchedule>
+								<notionalStepSchedule>
+									<initialValue>75000000.000000</initialValue>
+									<currency>USD</currency>
+								</notionalStepSchedule>
+							</notionalSchedule>
+							<fixedRateSchedule>
+								<initialValue>0.0493975</initialValue>
+							</fixedRateSchedule>
+							<dayCountFraction>30/360</dayCountFraction>
+						</calculation>
+					</calculationPeriodAmount>
+				</swapStream>
+			</swap>
+		</trade>
+		<terminationTradeDate>2005-08-16</terminationTradeDate>
+		<terminationEffectiveDate>2005-08-18</terminationEffectiveDate>
+		<partial>
+			<decreaseInNotionalAmount>
+				<currency>USD</currency>
+				<amount>6000000.000000</amount>
+			</decreaseInNotionalAmount>
+			<outstandingNotionalAmount>
+				<currency>USD</currency>
+				<amount>5000000.00</amount>
+			</outstandingNotionalAmount>
+		</partial>
+		<payment>
+			<payerPartyReference href="fund"/>
+			<receiverPartyReference href="dealer"/>
+			<paymentAmount>
+				<currency>USD</currency>
+				<amount>78000.000000</amount>
+			</paymentAmount>
+			<paymentDate>
+				<unadjustedDate>2005-08-18</unadjustedDate>
+				<dateAdjustments>
+					<businessDayConvention>NONE</businessDayConvention>
+				</dateAdjustments>
+			</paymentDate>
+		</payment>
+	</termination>
+	<party id="fund">
+		<partyId>FUNDBIC</partyId>
+		<partyName>Fund Name</partyName>
+	</party>
+	<party id="dealer">
+		<partyId>DEALERBIC</partyId>
+	</party>
+</FpML>

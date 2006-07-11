@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemeDefinitions>
+	<!-- FpML 4.0 -->
+	<scheme name="additionalTermScheme" uri="http://www.fpml.org/spec/2003/additional-term-1-0">
+		<schemeValues>
+			<schemeValue name="ISDA2003Credit60BusinessDaySettlementCap" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="businessCenterScheme" uri="http://www.fpml.org/spec/2000/business-center-1-0">
+		<schemeValues>
+			<schemeValue name="ARBA" schemeValueSource="FpML">
+				<paragraph>Buenos Aires</paragraph>
+			</schemeValue>
+			<schemeValue name="ATVI" schemeValueSource="FpML">
+				<paragraph>Vienna</paragraph>
+			</schemeValue>
+			<schemeValue name="AUME" schemeValueSource="FpML">
+				<paragraph>Melbourne</paragraph>
+			</schemeValue>
+			<schemeValue name="AUSY" schemeValueSource="FpML">
+				<paragraph>Sydney</paragraph>
+			</schemeValue>
+			<schemeValue name="BEBR" schemeValueSource="FpML">
+				<paragraph>Brussels</paragraph>
+			</schemeValue>
+			<schemeValue name="BRSP" schemeValueSource="FpML">
+				<paragraph>Sao Paulo</paragraph>
+			</schemeValue>
+			<schemeValue name="CAMO" schemeValueSource="FpML">
+				<paragraph>Montreal</paragraph>
+			</schemeValue>
+			<schemeValue name="CATO" schemeValueSource="FpML">
+				<paragraph>Toronto</paragraph>
+			</schemeValue>
+			<schemeValue name="CHGE" schemeValueSource="FpML">
+				<paragraph>Geneva</paragraph>
+			</schemeValue>
+			<schemeValue name="CHZU" schemeValueSource="FpML">
+				<paragraph>Zurich</paragraph>
+			</schemeValue>
+			<schemeValue name="CLSA" schemeValueSource="FpML">
+				<paragraph>Santiago</paragraph>
+			</schemeValue>
+			<schemeValue name="CNBE" schemeValueSource="FpML">
+				<paragraph>Beijing</paragraph>
+			</schemeValue>
+			<schemeValue name="CZPR" schemeValueSource="FpML">
+				<paragraph>Prague</paragraph>
+			</schemeValue>
+			<schemeValue name="DEFR" schemeValueSource="FpML">
+				<paragraph>Frankfurt</paragraph>
+			</schemeValue>
+			<schemeValue name="DKCO" schemeValueSource="FpML">
+				<paragraph>Copenhagen</paragraph>
+			</schemeValue>
+			<schemeValue name="EETA" schemeValueSource="FpML">
+				<paragraph>Tallinn</paragraph>
+			</schemeValue>
+			<schemeValue name="ESMA" schemeValueSource="FpML">
+				<paragraph>Madrid</paragraph>
+			</schemeValue>
+			<schemeValue name="EUTA" schemeValueSource="FpML">
+				<paragraph>TARGET (euro 'Business Center')</paragraph>
+			</schemeValue>
+			<schemeValue name="FIHE" schemeValueSource="FpML">
+				<paragraph>Helsinki</paragraph>
+			</schemeValue>
+			<schemeValue name="FRPA" schemeValueSource="FpML">
+				<paragraph>Paris</paragraph>
+			</schemeValue>
+			<schemeValue name="GBLO" schemeValueSource="FpML">
+				<paragraph>London</paragraph>
+			</schemeValue>
+			<schemeValue name="GRAT" schemeValueSource="FpML">
+				<paragraph>Athens</paragraph>
+			</schemeValue>
+			<schemeValue name="HKHK" schemeValueSource="FpML">
+				<paragraph>Hong Kong</paragraph>
+			</schemeValue>
+			<schemeValue name="IDJA" schemeValueSource="FpML">
+				<paragraph>Jakarta</paragraph>
+			</schemeValue>
+			<schemeValue name="ILTA" schemeValueSource="FpML">
+				<paragraph>Tel Aviv</paragraph>
+			</schemeValue>
+			<schemeValue name="INMU" schemeValueSource="FpML">
+				<paragraph>Mumbai, India</paragraph>
+			</schemeValue>
+			<schemeValue name="ITMI" schemeValueSource="FpML">
+				<paragraph>Milan</paragraph>
+			</schemeValue>
+			<schemeValue name="ITRO" schemeValueSource="FpML">
+				<paragraph>Rome</paragraph>
+			</schemeValue>
+			<schemeValue name="JPTO" schemeValueSource="FpML">
+				<paragraph>Tokyo</paragraph>
+			</schemeValue>
+			<schemeValue name="KRSE" schemeValueSource="FpML">
+				<paragraph>Seoul</paragraph>
+			</schemeValue>
+			<schemeValue name="LBBE" schemeValueSource="FpML">
+				<paragraph>Beirut</paragraph>
+			</schemeValue>
+			<schemeValue name="LULU" schemeValueSource="FpML">
+				<paragraph>Luxembourg</paragraph>
+			</schemeValue>
+			<schemeValue name="MXMC" schemeValueSource="FpML">
+				<paragraph>Mexico City</paragraph>
+			</schemeValue>
+			<schemeValue name="MYKL" schemeValueSource="FpML">
+				<paragraph>Kuala Lumpur</paragraph>
+			</schemeValue>
+			<schemeValue name="NLAM" schemeValueSource="FpML">
+				<paragraph>Amsterdam</paragraph>
+			</schemeValue>
+			<schemeValue name="NOOS" schemeValueSource="FpML">
+				<paragraph>Oslo</paragraph>
+			</schemeValue>
+			<schemeValue name="NZAU" schemeValueSource="FpML">
+				<paragraph>Auckland</paragraph>
+			</schemeValue>
+			<schemeValue name="NZWE" schemeValueSource="FpML">
+				<paragraph>Wellington</paragraph>
+			</schemeValue>
+			<schemeValue name="PAPC" schemeValueSource="FpML">
+				<paragraph>Panama City</paragraph>
+			</schemeValue>
+			<schemeValue name="PHMA" schemeValueSource="FpML">
+				<paragraph>Manila</paragraph>
+			</schemeValue>
+			<schemeValue name="PLWA" schemeValueSource="FpML">
+				<paragraph>Warsaw</paragraph>
+			</schemeValue>
+			<schemeValue name="RUMO" schemeValueSource="FpML">
+				<paragraph>Moscow</paragraph>
+			</schemeValue>
+			<schemeValue name="SARI" schemeValueSource="FpML">
+				<paragraph>Riyadh</paragraph>
+			</schemeValue>
+			<schemeValue name="SEST" schemeValueSource="FpML">
+				<paragraph>Stockholm</paragraph>
+			</schemeValue>
+			<schemeValue name="SGSI" schemeValueSource="FpML">
+				<paragraph>Singapore</paragraph>
+			</schemeValue>
+			<schemeValue name="SKBR" schemeValueSource="FpML">
+				<paragraph>Bratislava</paragraph>
+			</schemeValue>
+			<schemeValue name="THBA" schemeValueSource="FpML">
+				<paragraph>Bangkok</paragraph>
+			</schemeValue>
+			<schemeValue name="TRAN" schemeValueSource="FpML">
+				<paragraph>Ankara</paragraph>
+			</schemeValue>
+			<schemeValue name="TWTA" schemeValueSource="FpML">
+				<paragraph>Taipei</paragraph>
+			</schemeValue>
+			<schemeValue name="USCH" schemeValueSource="FpML">
+				<paragraph>Chicago</paragraph>
+			</schemeValue>
+			<schemeValue name="USLA" schemeValueSource="FpML">
+				<paragraph>Los Angeles</paragraph>
+			</schemeValue>
+			<schemeValue name="USNY" schemeValueSource="FpML">
+				<paragraph>New York</paragraph>
+			</schemeValue>
+			<schemeValue name="VECA" schemeValueSource="FpML">
+				<paragraph>Caracas, Venezuela</paragraph>
+			</schemeValue>
+			<schemeValue name="ZAJO" schemeValueSource="FpML">
+				<paragraph>Johannesburg</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="clearanceSystemScheme" uri="http://www.fpml.org/spec/2002/clearance-system-1-0">
+		<schemeDefinition>A clearance system</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="Clearstream" schemeValueSource="FpML">
+				<paragraph>Clearstream International</paragraph>
+			</schemeValue>
+			<schemeValue name="CREST" schemeValueSource="FpML">
+				<paragraph>CREST</paragraph>
+			</schemeValue>
+			<schemeValue name="DTCC" schemeValueSource="FpML">
+				<paragraph>The Depository Trust and Clearing Corporation</paragraph>
+			</schemeValue>
+			<schemeValue name="Euroclear" schemeValueSource="FpML">
+				<paragraph>Euroclear</paragraph>
+			</schemeValue>
+			<schemeValue name="MonteTitoli" schemeValueSource="FpML">
+				<paragraph>Monte Titoli SPA</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="contractualDefinitionsScheme" uri="http://www.fpml.org/spec/2003/contractual-definitions-2-0">
+		<schemeDefinition>Specifies a set of standard contract definitions relevant to the transaction</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="ISDA1991" schemeValueSource="FpML">
+				<paragraph>ISDA 1991 Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1996Equity" schemeValueSource="FpML">
+				<paragraph>ISDA 1996 Equity Derivatives Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1997GovernmentBond" schemeValueSource="FpML">
+				<paragraph>ISDA 1997 Government Bond Option Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1998FX" schemeValueSource="FpML">
+				<paragraph>ISDA 1998 FX and Currency Option Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1999Credit" schemeValueSource="FpML">
+				<paragraph>ISDA 1999 Credit Derivatives Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2000" schemeValueSource="FpML">
+				<paragraph>ISDA 2000 Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2002Equity" schemeValueSource="FpML">
+				<paragraph>ISDA 2002 Equity Derivatives Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003Credit" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Credit Derivatives Definitions</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="contractualSupplementScheme" uri="http://www.fpml.org/spec/2003/contractual-supplement-1-0">
+		<schemeDefinition>Defines the supplements to a base set of ISDA Definitions that are applicable to the transaction.</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="ISDA1999CreditRestructuring" schemeValueSource="FpML">
+				<paragraph>Restructuring Supplement to the 1999 ISDA Credit Derivatives Definitions dated May 11, 2001.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1999CreditConvertibleExchangeableAccretingObligations" schemeValueSource="FpML">
+				<paragraph>Supplement to the 1999 ISDA Credit Derivatives Definitions Relating to Convertible, Exchangeable or Accreting Obligations dated November 9, 2001.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1999CreditSuccessorAndCreditEvents" schemeValueSource="FpML">
+				<paragraph>Supplement Relating to Successor and Credit Events to the 1999 ISDA Credit Derivatives Definitions dated November 28, 2001.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditMay2003" schemeValueSource="FpML">
+				<paragraph>May 2003 Supplement to the 2003 ISDA Credit Derivatives Definitions.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditMonolineInsurers" schemeValueSource="FpML">
+				<paragraph>Additional Provisions for Physically Settled Default
+Swaps Monoline Insurer as Reference Entity dated May 9, 2003.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="cutNameScheme" uri="http://www.fpml.org/spec/2002/cut-name-1-0">
+		<schemeDefinition>The specification of the cut name, or expiry date and time, for an FX OTC option.</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="Comex" schemeValueSource="FpML">
+				<paragraph>2:30 p.m. New York time.</paragraph>
+			</schemeValue>
+			<schemeValue name="ECB" schemeValueSource="FpML">
+				<paragraph>1:30 p.m. London time.</paragraph>
+			</schemeValue>
+			<schemeValue name="LondonMorningGold" schemeValueSource="FpML">
+				<paragraph>10:30 a.m. London time.</paragraph>
+			</schemeValue>
+			<schemeValue name="LondonEveningPgm" schemeValueSource="FpML">
+				<paragraph>2:00 p.m. London time.</paragraph>
+			</schemeValue>
+			<schemeValue name="LondonMorningPgm" schemeValueSource="FpML">
+				<paragraph>9:45 a.m. London time.</paragraph>
+			</schemeValue>
+			<schemeValue name="LondonEveningGold" schemeValueSource="FpML">
+				<paragraph>3:00 p.m. London time.</paragraph>
+			</schemeValue>
+			<schemeValue name="Mexico" schemeValueSource="FpML">
+				<paragraph>12:30 p.m. New York time.</paragraph>
+			</schemeValue>
+			<schemeValue name="NewYork" schemeValueSource="FpML">
+				<paragraph>10:00 a.m. New York time.</paragraph>
+			</schemeValue>
+			<schemeValue name="NewYorkPgm" schemeValueSource="FpML">
+				<paragraph>9:30 a.m. New York time.</paragraph>
+			</schemeValue>
+			<schemeValue name="SilverLondon" schemeValueSource="FpML">
+				<paragraph>12:15 p.m. London time.</paragraph>
+			</schemeValue>
+		</schemeValues>
+		<scheme name="contractualDefinitionsScheme" uri="http://www.fpml.org/spec/2003/contractual-definitions-2-0">
+			<schemeDefinition>Specifies a set of standard contract definitions relevant to the transaction</schemeDefinition>
+			<schemeValues>
+				<schemeValue name="ISDA1991" schemeValueSource="FpML">
+					<paragraph>ISDA 1991 Definitions</paragraph>
+				</schemeValue>
+				<schemeValue name="ISDA1996Equity" schemeValueSource="FpML">
+					<paragraph>ISDA 1996 Equity Derivatives Definitions</paragraph>
+				</schemeValue>
+				<schemeValue name="ISDA1997GovernmentBond" schemeValueSource="FpML">
+					<paragraph>ISDA 1997 Government Bond Option Definitions</paragraph>
+				</schemeValue>
+				<schemeValue name="ISDA1998FX" schemeValueSource="FpML">
+					<paragraph>ISDA 1998 FX and Currency Option Definitions</paragraph>
+				</schemeValue>
+				<schemeValue name="ISDA2000" schemeValueSource="FpML">
+					<paragraph>ISDA 2000 Definitions</paragraph>
+				</schemeValue>
+				<schemeValue name="ISDA2002Equity" schemeValueSource="FpML">
+					<paragraph>ISDA 2002 Equity Derivatives Definitions</paragraph>
+				</schemeValue>
+				<schemeValue name="ISDA1999Credit" schemeValueSource="FpML">
+					<paragraph>ISDA 1999 Credit Derivatives Definitions</paragraph>
+				</schemeValue>
+				<schemeValue name="ISDA2003Credit" schemeValueSource="FpML">
+					<paragraph>ISDA 2003 Credit Derivatives Definitions</paragraph>
+				</schemeValue>
+			</schemeValues>
+		</scheme>
+	</scheme>
+	<scheme name="fxFeatureTypeScheme" uri="http://www.fpml.org/spec/2003/fxFeatureType-1-0">
+		<schemeDefinition>Specifies handling of FX translation.</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="Composite" schemeValueSource="FpML">
+				<paragraph>FX rate is based on a composite of observed rates.</paragraph>
+			</schemeValue>
+			<schemeValue name="Quanto" schemeValueSource="FpML">
+				<paragraph>FX rate is fixed at trade time.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="governingLawScheme" uri="http://www.fpml.org/spec/2002/governing-law-1-0">
+		<schemeDefinition>Identification of the law governing the transaction.</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="CAAB" schemeValueSource="FpML">
+				<paragraph>Alberta law</paragraph>
+			</schemeValue>
+			<schemeValue name="CABC" schemeValueSource="FpML">
+				<paragraph>British Columbia Law</paragraph>
+			</schemeValue>
+			<schemeValue name="CAMN" schemeValueSource="FpML">
+				<paragraph>Manitoba law</paragraph>
+			</schemeValue>
+			<schemeValue name="CAON" schemeValueSource="FpML">
+				<paragraph>Ontario law</paragraph>
+			</schemeValue>
+			<schemeValue name="CAQC" schemeValueSource="FpML">
+				<paragraph>Quebec law</paragraph>
+			</schemeValue>
+			<schemeValue name="DE" schemeValueSource="FpML">
+				<paragraph>German law</paragraph>
+			</schemeValue>
+			<schemeValue name="FR" schemeValueSource="FpML">
+				<paragraph>French law</paragraph>
+			</schemeValue>
+			<schemeValue name="GBEN" schemeValueSource="FpML">
+				<paragraph>English law</paragraph>
+			</schemeValue>
+			<schemeValue name="GBGY" schemeValueSource="FpML">
+				<paragraph>The law of the island of Guernsey</paragraph>
+			</schemeValue>
+			<schemeValue name="GBIM" schemeValueSource="FpML">
+				<paragraph>The law of the Isle of Man</paragraph>
+			</schemeValue>
+			<schemeValue name="GBJY" schemeValueSource="FpML">
+				<paragraph>The law of the island of Jersey</paragraph>
+			</schemeValue>
+			<schemeValue name="GBSC" schemeValueSource="FpML">
+				<paragraph>Scottish law</paragraph>
+			</schemeValue>
+			<schemeValue name="JP" schemeValueSource="FpML">
+				<paragraph>Japanese law</paragraph>
+			</schemeValue>
+			<schemeValue name="USCA" schemeValueSource="FpML">
+				<paragraph>Californian law</paragraph>
+			</schemeValue>
+			<schemeValue name="USIL" schemeValueSource="FpML">
+				<paragraph>Illinois law</paragraph>
+			</schemeValue>
+			<schemeValue name="USNY" schemeValueSource="FpML">
+				<paragraph>New York law</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="informationProviderScheme" uri="http://www.fpml.org/spec/2003/information-provider-2-0">
+		<schemeDefinition>The specification of a list of information providers and vendors who publish financial markets information.  Their information sources will typically be used to determine a relevant market rate, price or index.</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="BankOfCanada" schemeValueSource="ISDA">
+				<paragraph>The central bank of Canada.</paragraph>
+			</schemeValue>
+			<schemeValue name="BankOfJapan" schemeValueSource="ISDA">
+				<paragraph>The central bank of Japan.</paragraph>
+			</schemeValue>
+			<schemeValue name="Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Bloomberg LP.</paragraph>
+			</schemeValue>
+			<schemeValue name="FederalReserve" schemeValueSource="ISDA">
+				<paragraph>The Federal Reserve, the central bank of the United States.</paragraph>
+			</schemeValue>
+			<schemeValue name="FHLBSF" schemeValueSource="ISDA">
+				<paragraph>The Federal Home Loan Bank of San Francisco, or its successor.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA" schemeValueSource="ISDA">
+				<paragraph>International Swaps and Derivatives Association, Inc.</paragraph>
+			</schemeValue>
+			<schemeValue name="Reuters" schemeValueSource="ISDA">
+				<paragraph>Reuters Group Plc.</paragraph>
+			</schemeValue>
+			<schemeValue name="SAFEX" schemeValueSource="ISDA">
+				<paragraph>South African Futures Exchange, or its successor.</paragraph>
+			</schemeValue>
+			<schemeValue name="Telerate" schemeValueSource="ISDA">
+				<paragraph>Telerate, Inc.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="marketDisruptionScheme" uri="http://www.fpml.org/spec/2003/marketDisruption-1-0">
+		<schemeDefinition>Defines the handling of a averaging date market disruption for an equity derivative transaction.</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="Omission" schemeValueSource="FpML">
+				<paragraph>As defined in section 6.7 para (c) subpara (i) of the ISDA 2002 Equity Derivative definitions.</paragraph>
+			</schemeValue>
+			<schemeValue name="Postponement" schemeValueSource="FpML">
+				<paragraph>As defined in section 6.7 para (c) subpara (ii) of the ISDA 2002 Equity Derivative definitions.</paragraph>
+			</schemeValue>
+			<schemeValue name="ModifiedPostponement" schemeValueSource="FpML">
+				<paragraph>As defined in section 6.7 para (c) subpara (iii) of the ISDA 2002 Equity Derivative definitions.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="masterAgreementTypeScheme" uri="http://www.fpml.org/spec/2002/master-agreement-type-1-0">
+		<schemeDefinition>Defines the type of the master agreement governing the transaction.</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="AFB" schemeValueSource="FpML">
+				<paragraph>AFB Master Agreement for Foreign Exchange and Derivatives Transactions</paragraph>
+			</schemeValue>
+			<schemeValue name="German" schemeValueSource="FpML">
+				<paragraph>German Master Agreement for Financial derivatives and Addendum for Options on Stock Exchange Indices or Securities</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1987" schemeValueSource="FpML">
+				<paragraph>ISDA 1987 Master Agreement</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1992" schemeValueSource="FpML">
+				<paragraph>ISDA 1992 Master Agreement</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2002" schemeValueSource="FpML">
+				<paragraph>ISDA 2002 Master Agreement</paragraph>
+			</schemeValue>
+			<schemeValue name="Swiss" schemeValueSource="FpML">
+				<paragraph>Swiss Master Agreement for OTC Derivatives Instruments</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="masterConfirmationTypeScheme" uri="http://www.fpml.org/spec/2003/master-confirmation-type-1-0">
+		<schemeDefinition>Defines the type of master confirmation agreement governing the transaction.</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="ISDA1999Credit" schemeValueSource="FpML">
+				<paragraph>ISDA 1999 Master Credit Derivatives Confirmation Agreement</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditAsia" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Asia had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditAustraliaNewZealand" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Australia and New Zealand had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditEuropean" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if European had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditJapan" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Japan had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditNorthAmerican" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if North American had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSingapore" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Singapore had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSovereignAsia" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Asia had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSovereignCentralAndEasternEurope" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Central and Eastern Europe had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSovereignJapan" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Japan had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSovereignLatinAmerica" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Latin America had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSovereignMiddleEast" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Middle East had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSovereignWesternEurope" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Western Europe had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="2003CreditIndex" schemeValueSource="FpML">
+				<paragraph>Used for CDS Index trades. Relevant Master Confirmation determined by the contents of the creditDefaultSwap element.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="restructuringScheme" uri="http://www.fpml.org/spec/2003/restructuring-1-0">
+		<schemeDefinition>Specifies the form of the restructuring credit event that is applicable to the credit default swap.</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="R" schemeValueSource="FpML">
+				<paragraph>Restructuring as defined in the applicable ISDA Credit Derivatives Definitions. (1999 or 2003). Note that the 1999 Restructuring definition can be altered on a bilateral basis with the November 2001 Successor Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ModR" schemeValueSource="FpML">
+				<paragraph>1999 Definitions: Restructuring definition and May 2001 Restructuring supplement apply.Note that the 1999 Restructuring definition can be altered on a bilateral basis with the November 2001 Successor Supplement. 2003 Definitions: Restructuring (Section 4.7) and Restructuring Maturity Limitation and Fully Transferable Obligation (Section 2.32) apply.</paragraph>
+			</schemeValue>
+			<schemeValue name="ModModR" schemeValueSource="FpML">
+				<paragraph>2003 Definitions: Restructuring (Section 4.7) and Modified Restructuring Maturity Limitation and Conditionally Transferable Obligation (Section 2.33) apply.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="routingIdCodeScheme" uri="http://www.fpml.org/spec/2002/routing-id-code-1-0">
+		<schemeDefinition>The specification of the routing id code, which can be used to determine the coding convention for the settlement.</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="ABA" schemeValueSource="FpML">
+				<paragraph>ABA number.</paragraph>
+			</schemeValue>
+			<schemeValue name="BIC" schemeValueSource="FpML">
+				<paragraph>SWIFT-assigned BIC code.</paragraph>
+			</schemeValue>
+			<schemeValue name="ChapsNumber" schemeValueSource="FpML">
+				<paragraph>Chaps account number.</paragraph>
+			</schemeValue>
+			<schemeValue name="ChipsUID" schemeValueSource="FpML">
+				<paragraph>Chips UID code.</paragraph>
+			</schemeValue>
+			<schemeValue name="IBAN" schemeValueSource="FpML">
+				<paragraph>European Banking Federation number.</paragraph>
+			</schemeValue>
+			<schemeValue name="NatBankId" schemeValueSource="FpML">
+				<paragraph>National Bank id code.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="settlementMethodScheme" uri="http://www.fpml.org/spec/2002/settlement-method-1-0">
+		<schemeDefinition>The specification of the method for settling a particular trade.</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="Chaps" schemeValueSource="FpML">
+				<paragraph>To be settled via Chaps network.</paragraph>
+			</schemeValue>
+			<schemeValue name="ChipsABA" schemeValueSource="FpML">
+				<paragraph>To be settled via Chips ABA.</paragraph>
+			</schemeValue>
+			<schemeValue name="ChipsUID" schemeValueSource="FpML">
+				<paragraph>To be settled via Chips UID.</paragraph>
+			</schemeValue>
+			<schemeValue name="CLS" schemeValueSource="FpML">
+				<paragraph>To be settled via CLS Bank.</paragraph>
+			</schemeValue>
+			<schemeValue name="Fedwire" schemeValueSource="FpML">
+				<paragraph>To be settled via U.S. Fedwire.</paragraph>
+			</schemeValue>
+			<schemeValue name="SWIFT" schemeValueSource="FpML">
+				<paragraph>To be settled via SWIFT network.</paragraph>
+			</schemeValue>
+			<schemeValue name="DDA" schemeValueSource="FpML">
+				<paragraph>To be settled over DDA account.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="settlementPriceSourceScheme" uri="http://www.fpml.org/spec/2002/settlement-price-source-1-0">
+		<schemeDefinition>The source from which the settlement price is to be obtained.</schemeDefinition>
+		<schemeValues>
+			<schemeValue name="Bid" schemeValueSource="FpML">
+				<paragraph>The bid price per share on the exchange at the valuation time on the valuation date</paragraph>
+			</schemeValue>
+			<schemeValue name="Offer" schemeValueSource="FpML">
+				<paragraph>The offer price per share on the exchange at the valuation time on the valuation date</paragraph>
+			</schemeValue>
+			<schemeValue name="Mid" schemeValueSource="FpML">
+				<paragraph>The mid-market price per share on the exchange at the valuation time on the valuation date</paragraph>
+			</schemeValue>
+			<schemeValue name="NASDAQ" schemeValueSource="FpML">
+				<paragraph>An amount equal to the arithmetic average of the two prices constituting the Bid/Offer Spread.  "Bid/Offer Spread" means the highest bid price per share and the corresponding lowest offer price per share last published prior to or at the expiration time on the expiration date.</paragraph>
+			</schemeValue>
+			<schemeValue name="OfficialClose" schemeValueSource="FpML">
+				<paragraph>(i) The published official closing price of the shares on the exchange on the valuation date, or (ii) the official closing level of the index, as published by the index sponsor, on the valuation date</paragraph>
+			</schemeValue>
+			<schemeValue name="OfficialSettlement" schemeValueSource="FpML">
+				<paragraph>The official settlement price (however described under the rules of the relevant exchange or its clearing house) on maturity of any of the relevant exchange-traded contracts published by the exchange or its clearing house.  For this purpose, exchange-traded contract shall mean a future or listed option contract on the Index whose delivery date is expected to be on the valuation date</paragraph>
+			</schemeValue>
+			<schemeValue name="PrezzoDiRiferimento" schemeValueSource="FpML">
+				<paragraph>The official reference price per share quoted by the exchange on the exchange business day immediately prior to the expiration date equal to the weighted average of the last 10% traded volume on the share</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+</schemeDefinitions>

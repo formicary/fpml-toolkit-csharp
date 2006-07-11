@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemeDefinitions>
+	<!-- FpML 1.0 Schemes -->
+	<scheme name="averagingMethodScheme" uri="http://www.fpml.org/spec/2000/averaging-method-1-0">
+		<schemeValues>
+			<schemeValue name="Unweighted" schemeValueSource="FpML"/>
+			<schemeValue name="Weighted" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="businessCenterScheme" uri="http://www.fpml.org/spec/2000/business-center-1-0">
+		<schemeValues>
+			<schemeValue name="ARBA" schemeValueSource="FpML">
+				<paragraph>Buenos Aires</paragraph>
+			</schemeValue>
+			<schemeValue name="ATVI" schemeValueSource="FpML">
+				<paragraph>Vienna</paragraph>
+			</schemeValue>
+			<schemeValue name="AUME" schemeValueSource="FpML">
+				<paragraph>Melbourne</paragraph>
+			</schemeValue>
+			<schemeValue name="AUSY" schemeValueSource="FpML">
+				<paragraph>Sydney</paragraph>
+			</schemeValue>
+			<schemeValue name="BEBR" schemeValueSource="FpML">
+				<paragraph>Brussels</paragraph>
+			</schemeValue>
+			<schemeValue name="BRSP" schemeValueSource="FpML">
+				<paragraph>Sao Paulo</paragraph>
+			</schemeValue>
+			<schemeValue name="CAMO" schemeValueSource="FpML">
+				<paragraph>Montreal</paragraph>
+			</schemeValue>
+			<schemeValue name="CATO" schemeValueSource="FpML">
+				<paragraph>Toronto</paragraph>
+			</schemeValue>
+			<schemeValue name="CHGE" schemeValueSource="FpML">
+				<paragraph>Geneva</paragraph>
+			</schemeValue>
+			<schemeValue name="CHZU" schemeValueSource="FpML">
+				<paragraph>Zurich</paragraph>
+			</schemeValue>
+			<schemeValue name="CLSA" schemeValueSource="FpML">
+				<paragraph>Santiago</paragraph>
+			</schemeValue>
+			<schemeValue name="CNBE" schemeValueSource="FpML">
+				<paragraph>Beijing</paragraph>
+			</schemeValue>
+			<schemeValue name="CZPR" schemeValueSource="FpML">
+				<paragraph>Prague</paragraph>
+			</schemeValue>
+			<schemeValue name="DEFR" schemeValueSource="FpML">
+				<paragraph>Frankfurt</paragraph>
+			</schemeValue>
+			<schemeValue name="DKCO" schemeValueSource="FpML">
+				<paragraph>Copenhagen</paragraph>
+			</schemeValue>
+			<schemeValue name="EETA" schemeValueSource="FpML">
+				<paragraph>Tallinn</paragraph>
+			</schemeValue>
+			<schemeValue name="ESMA" schemeValueSource="FpML">
+				<paragraph>Madrid</paragraph>
+			</schemeValue>
+			<schemeValue name="EUTA" schemeValueSource="FpML">
+				<paragraph>TARGET (euro 'Business Center')</paragraph>
+			</schemeValue>
+			<schemeValue name="FIHE" schemeValueSource="FpML">
+				<paragraph>Helsinki</paragraph>
+			</schemeValue>
+			<schemeValue name="FRPA" schemeValueSource="FpML">
+				<paragraph>Paris</paragraph>
+			</schemeValue>
+			<schemeValue name="GBLO" schemeValueSource="FpML">
+				<paragraph>London</paragraph>
+			</schemeValue>
+			<schemeValue name="GRAT" schemeValueSource="FpML">
+				<paragraph>Athens</paragraph>
+			</schemeValue>
+			<schemeValue name="HKHK" schemeValueSource="FpML">
+				<paragraph>Hong Kong</paragraph>
+			</schemeValue>
+			<schemeValue name="IDJA" schemeValueSource="FpML">
+				<paragraph>Jakarta</paragraph>
+			</schemeValue>
+			<schemeValue name="ILTA" schemeValueSource="FpML">
+				<paragraph>Tel Aviv</paragraph>
+			</schemeValue>
+			<schemeValue name="INMU" schemeValueSource="FpML">
+				<paragraph>Mumbai, India</paragraph>
+			</schemeValue>
+			<schemeValue name="ITMI" schemeValueSource="FpML">
+				<paragraph>Milan</paragraph>
+			</schemeValue>
+			<schemeValue name="ITRO" schemeValueSource="FpML">
+				<paragraph>Rome</paragraph>
+			</schemeValue>
+			<schemeValue name="JPTO" schemeValueSource="FpML">
+				<paragraph>Tokyo</paragraph>
+			</schemeValue>
+			<schemeValue name="KRSE" schemeValueSource="FpML">
+				<paragraph>Seoul</paragraph>
+			</schemeValue>
+			<schemeValue name="LBBE" schemeValueSource="FpML">
+				<paragraph>Beirut</paragraph>
+			</schemeValue>
+			<schemeValue name="LULU" schemeValueSource="FpML">
+				<paragraph>Luxembourg</paragraph>
+			</schemeValue>
+			<schemeValue name="MXMC" schemeValueSource="FpML">
+				<paragraph>Mexico City</paragraph>
+			</schemeValue>
+			<schemeValue name="MYKL" schemeValueSource="FpML">
+				<paragraph>Kuala Lumpur</paragraph>
+			</schemeValue>
+			<schemeValue name="NLAM" schemeValueSource="FpML">
+				<paragraph>Amsterdam</paragraph>
+			</schemeValue>
+			<schemeValue name="NOOS" schemeValueSource="FpML">
+				<paragraph>Oslo</paragraph>
+			</schemeValue>
+			<schemeValue name="NZAU" schemeValueSource="FpML">
+				<paragraph>Auckland</paragraph>
+			</schemeValue>
+			<schemeValue name="NZWE" schemeValueSource="FpML">
+				<paragraph>Wellington</paragraph>
+			</schemeValue>
+			<schemeValue name="PAPC" schemeValueSource="FpML">
+				<paragraph>Panama City</paragraph>
+			</schemeValue>
+			<schemeValue name="PHMA" schemeValueSource="FpML">
+				<paragraph>Manila</paragraph>
+			</schemeValue>
+			<schemeValue name="PLWA" schemeValueSource="FpML">
+				<paragraph>Warsaw</paragraph>
+			</schemeValue>
+			<schemeValue name="RUMO" schemeValueSource="FpML">
+				<paragraph>Moscow</paragraph>
+			</schemeValue>
+			<schemeValue name="SARI" schemeValueSource="FpML">
+				<paragraph>Riyadh</paragraph>
+			</schemeValue>
+			<schemeValue name="SEST" schemeValueSource="FpML">
+				<paragraph>Stockholm</paragraph>
+			</schemeValue>
+			<schemeValue name="SGSI" schemeValueSource="FpML">
+				<paragraph>Singapore</paragraph>
+			</schemeValue>
+			<schemeValue name="SKBR" schemeValueSource="FpML">
+				<paragraph>Bratislava</paragraph>
+			</schemeValue>
+			<schemeValue name="THBA" schemeValueSource="FpML">
+				<paragraph>Bangkok</paragraph>
+			</schemeValue>
+			<schemeValue name="TRAN" schemeValueSource="FpML">
+				<paragraph>Ankara</paragraph>
+			</schemeValue>
+			<schemeValue name="TWTA" schemeValueSource="FpML">
+				<paragraph>Taipei</paragraph>
+			</schemeValue>
+			<schemeValue name="USCH" schemeValueSource="FpML">
+				<paragraph>Chicago</paragraph>
+			</schemeValue>
+			<schemeValue name="USLA" schemeValueSource="FpML">
+				<paragraph>Los Angeles</paragraph>
+			</schemeValue>
+			<schemeValue name="USNY" schemeValueSource="FpML">
+				<paragraph>New York</paragraph>
+			</schemeValue>
+			<schemeValue name="VECA" schemeValueSource="FpML">
+				<paragraph>Caracas, Venezuela</paragraph>
+			</schemeValue>
+			<schemeValue name="ZAJO" schemeValueSource="FpML">
+				<paragraph>Johannesburg</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme name="businessDayConventionScheme" uri="http://www.fpml.org/spec/2000/business-day-convention-1-0">
+		<schemeValues>
+			<schemeValue name="FOLLOWING" schemeValueSource="FpML"/>
+			<schemeValue name="FRN" schemeValueSource="FpML"/>
+			<schemeValue name="MODFOLLOWING" schemeValueSource="FpML"/>
+			<schemeValue name="PRECEDING" schemeValueSource="FpML"/>
+			<schemeValue name="MODPRECEDING" schemeValueSource="FpML"/>
+			<schemeValue name="NONE" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="compoundindMethodScheme" uri="http://www.fpml.org/spec/2000/compounding-method-1-0">
+		<schemeValues>
+			<schemeValue name="Flat" schemeValueSource="FpML"/>
+			<schemeValue name="None" schemeValueSource="FpML"/>
+			<schemeValue name="Straight" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="dateRelativeToScheme" uri="http://www.fpml.org/spec/2001/date-relative-to-1-0">
+		<schemeValues>
+			<schemeValue name="ResetDate" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="dayCountFractionScheme" uri="http://www.fpml.org/spec/2000/day-count-fraction-1-0">
+		<schemeValues>
+			<schemeValue name="1/1" schemeValueSource="FpML"/>
+			<schemeValue name="ACT/365.ISDA" schemeValueSource="FpML"/>
+			<schemeValue name="ACT/ACT.ISMA" schemeValueSource="FpML"/>
+			<schemeValue name="ACT/ACT.AFB" schemeValueSource="FpML"/>
+			<schemeValue name="ACT/365.FIXED" schemeValueSource="FpML"/>
+			<schemeValue name="ACT/360" schemeValueSource="FpML"/>
+			<schemeValue name="30/360" schemeValueSource="FpML"/>
+			<schemeValue name="30E/360" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="dayTypeScheme" uri="http://www.fpml.org/spec/2000/day-type-1-0">
+		<schemeValues>
+			<schemeValue name="Business" schemeValueSource="FpML"/>
+			<schemeValue name="Calendar" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="discountingTypeScheme" uri="http://www.fpml.org/spec/2000/discounting-type-1-0">
+		<schemeValues>
+			<schemeValue name="Standard" schemeValueSource="FpML"/>
+			<schemeValue name="FRA" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="negativeInterestRateTreatmentScheme" uri="http://www.fpml.org/spec/2001/negative-interest-rate-treatment-1-0">
+		<!-- FpML spec contains an inconsistent URI name for this -->
+		<schemeValues>
+			<schemeValue name="NegativeInterestRateMethod" schemeValueSource="FpML"/>
+			<schemeValue name="ZeroInterestRateMethod" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="payRelativeToScheme" uri="http://www.fpml.org/spec/2000/pay-relative-to-1-0">
+		<schemeValues>
+			<schemeValue name="CalculationPeriodStartDate" schemeValueSource="FpML"/>
+			<schemeValue name="CalculationPeriodEndDate" schemeValueSource="FpML"/>
+			<schemeValue name="ResetDate" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="periodScheme" uri="http://www.fpml.org/spec/2000/period-1-0">
+		<schemeValues>
+			<schemeValue name="D" schemeValueSource="FpML"/>
+			<schemeValue name="W" schemeValueSource="FpML"/>
+			<schemeValue name="M" schemeValueSource="FpML"/>
+			<schemeValue name="Y" schemeValueSource="FpML"/>
+			<schemeValue name="T" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="rateTreatmentScheme" uri="http://www.fpml.org/spec/2000/rate-treatment-1-0">
+		<schemeValues>
+			<schemeValue name="BondEquivalentYield" schemeValueSource="FpML"/>
+			<schemeValue name="MoneyMarketYield" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="resetRelativeToScheme" uri="http://www.fpml.org/spec/2000/reset-relative-to-1-0">
+		<schemeValues>
+			<schemeValue name="CalculationPeriodStartDate" schemeValueSource="FpML"/>
+			<schemeValue name="CalculationPeriodEndDate" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="rollConventionScheme" uri="http://www.fpml.org/spec/2000/roll-convention-1-0">
+		<schemeValues>
+			<schemeValue name="EOM" schemeValueSource="FpML"/>
+			<schemeValue name="FRN" schemeValueSource="FpML"/>
+			<schemeValue name="IMM" schemeValueSource="FpML"/>
+			<schemeValue name="IMMCAD" schemeValueSource="FpML"/>
+			<schemeValue name="SFE" schemeValueSource="FpML"/>
+			<schemeValue name="NONE" schemeValueSource="FpML"/>
+			<schemeValue name="TBILL" schemeValueSource="FpML"/>
+			<schemeValue name="1" schemeValueSource="FpML"/>
+			<schemeValue name="2" schemeValueSource="FpML"/>
+			<schemeValue name="3" schemeValueSource="FpML"/>
+			<schemeValue name="4" schemeValueSource="FpML"/>
+			<schemeValue name="5" schemeValueSource="FpML"/>
+			<schemeValue name="6" schemeValueSource="FpML"/>
+			<schemeValue name="7" schemeValueSource="FpML"/>
+			<schemeValue name="8" schemeValueSource="FpML"/>
+			<schemeValue name="9" schemeValueSource="FpML"/>
+			<schemeValue name="10" schemeValueSource="FpML"/>
+			<schemeValue name="11" schemeValueSource="FpML"/>
+			<schemeValue name="12" schemeValueSource="FpML"/>
+			<schemeValue name="13" schemeValueSource="FpML"/>
+			<schemeValue name="14" schemeValueSource="FpML"/>
+			<schemeValue name="15" schemeValueSource="FpML"/>
+			<schemeValue name="16" schemeValueSource="FpML"/>
+			<schemeValue name="17" schemeValueSource="FpML"/>
+			<schemeValue name="18" schemeValueSource="FpML"/>
+			<schemeValue name="19" schemeValueSource="FpML"/>
+			<schemeValue name="20" schemeValueSource="FpML"/>
+			<schemeValue name="21" schemeValueSource="FpML"/>
+			<schemeValue name="22" schemeValueSource="FpML"/>
+			<schemeValue name="23" schemeValueSource="FpML"/>
+			<schemeValue name="24" schemeValueSource="FpML"/>
+			<schemeValue name="25" schemeValueSource="FpML"/>
+			<schemeValue name="26" schemeValueSource="FpML"/>
+			<schemeValue name="27" schemeValueSource="FpML"/>
+			<schemeValue name="28" schemeValueSource="FpML"/>
+			<schemeValue name="29" schemeValueSource="FpML"/>
+			<schemeValue name="30" schemeValueSource="FpML"/>
+			<schemeValue name="MON" schemeValueSource="FpML"/>
+			<schemeValue name="TUE" schemeValueSource="FpML"/>
+			<schemeValue name="WED" schemeValueSource="FpML"/>
+			<schemeValue name="THU" schemeValueSource="FpML"/>
+			<schemeValue name="FRI" schemeValueSource="FpML"/>
+			<schemeValue name="SAT" schemeValueSource="FpML"/>
+			<schemeValue name="SUN" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="roundingDirectionScheme" uri="http://www.fpml.org/spec/2000/rounding-direction-1-0">
+		<schemeValues>
+			<schemeValue name="Up" schemeValueSource="FpML"/>
+			<schemeValue name="Down" schemeValueSource="FpML"/>
+			<schemeValue name="Nearest" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="stepRelativeToScheme" uri="http://www.fpml.org/spec/2000/step-relative-to-1-0">
+		<schemeValues>
+			<schemeValue name="Initial" schemeValueSource="FpML"/>
+			<schemeValue name="Previous" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+	<scheme name="weeklyRollConventionScheme" uri="http://www.fpml.org/spec/2000/weekly-roll-convention-1-0">
+		<schemeValues>
+			<schemeValue name="MON" schemeValueSource="FpML"/>
+			<schemeValue name="TUE" schemeValueSource="FpML"/>
+			<schemeValue name="WED" schemeValueSource="FpML"/>
+			<schemeValue name="THU" schemeValueSource="FpML"/>
+			<schemeValue name="FRI" schemeValueSource="FpML"/>
+			<schemeValue name="SAT" schemeValueSource="FpML"/>
+			<schemeValue name="SUN" schemeValueSource="FpML"/>
+		</schemeValues>
+	</scheme>
+</schemeDefinitions>
