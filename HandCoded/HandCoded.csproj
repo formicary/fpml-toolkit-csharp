@@ -183,6 +183,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "FpML\Conversions.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FpML\DefaultHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "FpML\FpMLUtility.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -323,7 +333,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Framework\Application.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Framework\Option.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Meta\Conversion.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Meta\ConversionException.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
