@@ -147,6 +147,29 @@
 						</businessCenters>
 					</paymentDatesAdjustments>
 				</paymentDates>
+				<resetDates id="resetDates">
+					<calculationPeriodDatesReference href="N10277"/>
+					<fixingDates>
+						<periodMultiplier>-2</periodMultiplier>
+						<period>D</period>
+						<dayType>Business</dayType>
+						<businessDayConvention>NONE</businessDayConvention>
+						<businessCenters>
+							<businessCenter>EUTA</businessCenter>
+						</businessCenters>
+						<dateRelativeTo href="resetDates"/>
+					</fixingDates>
+					<resetFrequency>
+						<periodMultiplier>3</periodMultiplier>
+						<period>M</period>
+					</resetFrequency>
+					<resetDatesAdjustments>
+						<businessDayConvention>MODFOLLOWING</businessDayConvention>
+						<businessCenters>
+							<businessCenter>EUTA</businessCenter>
+						</businessCenters>
+					</resetDatesAdjustments>
+				</resetDates>
 				<calculationPeriodAmount>
 					<calculation>
 						<notionalSchedule>
@@ -168,7 +191,7 @@
 							</inflationLag>
 							<indexSource rateSourcePageScheme="http://www.fpml.org/coding-scheme/inflation-index-source-1-0">UKRPI</indexSource>
 							<mainPublication mainPublicationScheme="http://www.fpml.org/coding-scheme/inflation-main-publication-1-0">ONS</mainPublication>
-							<interpolationMethod interpolationMethodScheme="http://www.fpml.org/coding-scheme/interpolation-method-1-0">Linear</interpolationMethod>
+							<interpolationMethod>LinearZeroYield</interpolationMethod>
 						</inflationRateCalculation>
 						<dayCountFraction>1/1</dayCountFraction>
 						<compoundingMethod>None</compoundingMethod>
