@@ -11,21 +11,6 @@
 	<xsd:complexType name="AffectedTransactions">
 		<xsd:group ref="TradeOrTradeReference.model" maxOccurs="unbounded"/>
 	</xsd:complexType>
-	<xsd:complexType name="AllegedNovationAgreement">
-		<xsd:complexContent>
-			<xsd:restriction base="Novation">
-				<xsd:sequence>
-					<xsd:sequence>
-						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-					<xsd:sequence>
-						<xsd:group ref="NovationDetails.model"/>
-						<xsd:element name="payment" type="Payment" minOccurs="0"/>
-					</xsd:sequence>
-				</xsd:sequence>
-			</xsd:restriction>
-		</xsd:complexContent>
-	</xsd:complexType>
 	<!-- A2A Generic Allocation Notifications -->
 	<xsd:complexType name="AllocationCreated">
 		<xsd:annotation>
@@ -107,64 +92,6 @@
 	<xsd:complexType name="BankruptcyEvent">
 		<xsd:complexContent>
 			<xsd:extension base="CreditEvent"/>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="ConfirmedNovationAgreement">
-		<xsd:complexContent>
-			<xsd:restriction base="Novation">
-				<xsd:sequence>
-					<xsd:sequence>
-						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-					<xsd:sequence>
-						<xsd:group ref="NovationDetails.model"/>
-						<xsd:element name="payment" type="Payment" minOccurs="0"/>
-					</xsd:sequence>
-				</xsd:sequence>
-			</xsd:restriction>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="ConsentGrantedNovationAgreement">
-		<xsd:complexContent>
-			<xsd:restriction base="Novation">
-				<xsd:sequence>
-					<xsd:sequence>
-						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-					<xsd:sequence>
-						<xsd:group ref="NovationDetails.model"/>
-						<xsd:element name="payment" type="Payment" minOccurs="0"/>
-					</xsd:sequence>
-				</xsd:sequence>
-			</xsd:restriction>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="ConsentRefusedNovationAgreement">
-		<xsd:complexContent>
-			<xsd:restriction base="Novation">
-				<xsd:sequence>
-					<xsd:sequence>
-						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-					<xsd:sequence>
-						<xsd:group ref="NovationDetails.model"/>
-					</xsd:sequence>
-				</xsd:sequence>
-			</xsd:restriction>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="ConsentRequestNovationAgreement">
-		<xsd:complexContent>
-			<xsd:restriction base="Novation">
-				<xsd:sequence>
-					<xsd:sequence>
-						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-					<xsd:sequence>
-						<xsd:group ref="NovationDetails.model"/>
-					</xsd:sequence>
-				</xsd:sequence>
-			</xsd:restriction>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="CreditDerivativesNotices">
@@ -281,21 +208,6 @@
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
-	<xsd:complexType name="MatchedNovationAgreement">
-		<xsd:complexContent>
-			<xsd:restriction base="Novation">
-				<xsd:sequence>
-					<xsd:sequence>
-						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-					<xsd:sequence>
-						<xsd:group ref="NovationDetails.model"/>
-						<xsd:element name="payment" type="Payment" minOccurs="0"/>
-					</xsd:sequence>
-				</xsd:sequence>
-			</xsd:restriction>
-		</xsd:complexContent>
-	</xsd:complexType>
 	<xsd:complexType name="MimeType">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">The type that indicates the type of media used to store the content. MimeType is used to determine the software product(s) that can read the content. MIME types are described in RFC 2046.</xsd:documentation>
@@ -308,27 +220,7 @@
 	</xsd:complexType>
 	<xsd:complexType name="NovateTrade">
 		<xsd:complexContent>
-			<xsd:extension base="RequestMessage">
-				<xsd:sequence>
-					<xsd:element name="novation" type="NovateTradeNovationAgreement"/>
-					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="NovateTradeNovationAgreement">
-		<xsd:complexContent>
-			<xsd:restriction base="Novation">
-				<xsd:sequence>
-					<xsd:sequence>
-						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-					<xsd:sequence>
-						<xsd:group ref="NovationDetails.model"/>
-						<xsd:element name="payment" type="Payment" minOccurs="0"/>
-					</xsd:sequence>
-				</xsd:sequence>
-			</xsd:restriction>
+			<xsd:extension base="NovationRequestMessage"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="Novation">
@@ -346,38 +238,28 @@
 	</xsd:complexType>
 	<xsd:complexType name="NovationAlleged">
 		<xsd:complexContent>
-			<xsd:extension base="NotificationMessage">
-				<xsd:sequence>
-					<xsd:element name="novation" type="AllegedNovationAgreement"/>
-					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
-				</xsd:sequence>
-			</xsd:extension>
+			<xsd:extension base="NovationNotificationMessage"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="NovationAmended">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">A notification to inform downstream systems when a system that acts as source of novation event information detects that a novation has been modified.</xsd:documentation>
-		</xsd:annotation>	
+		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="NovationCreated"/>
+			<xsd:extension base="NovationNotificationMessage"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="NovationCancelled">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">A notification to inform downstream systems when a system that acts as source of novation event information detects that a novation has been cancelled.</xsd:documentation>
-		</xsd:annotation>	
+		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="NovationCreated"/>
+			<xsd:extension base="NovationNotificationMessage"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="NovationConfirmed">
 		<xsd:complexContent>
-			<xsd:extension base="NotificationMessage">
-				<xsd:sequence>
-					<xsd:element name="novation" type="ConfirmedNovationAgreement"/>
-					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
-				</xsd:sequence>
-			</xsd:extension>
+			<xsd:extension base="NovationNotificationMessage"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="NovationConsentGranted">
@@ -385,12 +267,7 @@
 			<xsd:documentation xml:lang="en">Response message that should be sent by the receiving parties if they agree with the novation. The transferee or transferor party may include the details of a payment representing the market value of the transaction.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="ResponseMessage">
-				<xsd:sequence>
-					<xsd:element name="novation" type="ConsentGrantedNovationAgreement"/>
-					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
-				</xsd:sequence>
-			</xsd:extension>
+			<xsd:extension base="NovationResponseMessage"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="NovationConsentRefused">
@@ -400,7 +277,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="ResponseMessage">
 				<xsd:sequence>
-					<xsd:element name="novation" type="ConsentRefusedNovationAgreement"/>
+					<xsd:element name="novation" type="Novation"/>
 					<xsd:element name="reason" type="xsd:string" minOccurs="0"/>
 					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
 				</xsd:sequence>
@@ -412,45 +289,61 @@
 			<xsd:documentation xml:lang="en">A request message that passes details of the previously negotiated transaction that the transferor wishes to novate as well as describing the identity and roles of each party. As the same message is sent to both the transferee and remaining party it must contain the complete description of the underlying transaction (rather than just a reference) as the transferee will not have record of it.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="RequestMessage">
-				<xsd:sequence>
-					<xsd:element name="novation" type="ConsentRequestNovationAgreement"/>
-					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
-				</xsd:sequence>
-			</xsd:extension>
+			<xsd:extension base="NovationRequestMessage"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="NovationCreated">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">A notification to inform downstream systems when a system that acts as source of novation event information detects the creation of a new novation event. No representation is being made whether this novation was confirmed, matched, etc.</xsd:documentation>
-		</xsd:annotation>	
+		</xsd:annotation>
 		<xsd:complexContent>
-			<xsd:extension base="NotificationMessage">
-				<xsd:sequence>
-					<xsd:element name="novation" type="AllegedNovationAgreement"/>
-					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
-				</xsd:sequence>
-			</xsd:extension>
+			<xsd:extension base="NovationNotificationMessage"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="NovationMatched">
 		<xsd:complexContent>
+			<xsd:extension base="NovationNotificationMessage"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NovationNotificationMessage" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Abstract base class for all Novation Notification Messages.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
 			<xsd:extension base="NotificationMessage">
 				<xsd:sequence>
-					<xsd:element name="novation" type="MatchedNovationAgreement"/>
-					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
+					<xsd:group ref="NovationMessage.model"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NovationRequestMessage" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Abstract base class for all Novation Request Messages.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="RequestMessage">
+				<xsd:sequence>
+					<xsd:group ref="NovationMessage.model"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NovationResponseMessage" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Abstract base class for all Novation Response Messages.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ResponseMessage">
+				<xsd:sequence>
+					<xsd:group ref="NovationMessage.model" minOccurs="0"/>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="NovationStatusNotification">
 		<xsd:complexContent>
-			<xsd:extension base="NotificationMessage">
-				<xsd:sequence>
-					<xsd:element name="novation" type="StatusNotificationNovationAgreement"/>
-					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
-				</xsd:sequence>
-			</xsd:extension>
+			<xsd:extension base="NovationNotificationMessage"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="ObligationAccelerationEvent">
@@ -527,21 +420,6 @@
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
-	<xsd:complexType name="RequestConfirmationNovationAgreement">
-		<xsd:complexContent>
-			<xsd:restriction base="Novation">
-				<xsd:sequence>
-					<xsd:sequence>
-						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-					<xsd:sequence>
-						<xsd:group ref="NovationDetails.model"/>
-						<xsd:element name="payment" type="Payment" minOccurs="0"/>
-					</xsd:sequence>
-				</xsd:sequence>
-			</xsd:restriction>
-		</xsd:complexContent>
-	</xsd:complexType>
 	<xsd:complexType name="RequestIncreaseConfirmation">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">A message for requesting that the contained increase be put forward for matching and confirmation.</xsd:documentation>
@@ -561,12 +439,7 @@
 	</xsd:complexType>
 	<xsd:complexType name="RequestNovationConfirmation">
 		<xsd:complexContent>
-			<xsd:extension base="RequestMessage">
-				<xsd:sequence>
-					<xsd:element name="novation" type="RequestConfirmationNovationAgreement"/>
-					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
-				</xsd:sequence>
-			</xsd:extension>
+			<xsd:extension base="NovationRequestMessage"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="RequestTerminationConfirmation">
@@ -669,21 +542,6 @@
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
-	<xsd:complexType name="StatusNotificationNovationAgreement">
-		<xsd:complexContent>
-			<xsd:restriction base="Novation">
-				<xsd:sequence>
-					<xsd:sequence>
-						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-					<xsd:sequence>
-						<xsd:group ref="NovationDetails.model"/>
-						<xsd:element name="payment" type="Payment" minOccurs="0"/>
-					</xsd:sequence>
-				</xsd:sequence>
-			</xsd:restriction>
-		</xsd:complexContent>
-	</xsd:complexType>
 	<xsd:complexType name="Termination">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">An event type that defines the content of a Termination transaction.</xsd:documentation>
@@ -726,8 +584,7 @@
 			<xsd:extension base="NotificationMessage">
 				<xsd:sequence>
 					<xsd:element name="termination" type="Termination"/>
-					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
-					</xsd:element>
+					<xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded"> </xsd:element>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -885,26 +742,7 @@
 	</xsd:complexType>
 	<xsd:complexType name="TradeNovated">
 		<xsd:complexContent>
-			<xsd:extension base="NotificationMessage">
-				<xsd:sequence>
-					<xsd:element name="novation" type="TradeNovatedNovationAgreement"/>
-					<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="TradeNovatedNovationAgreement">
-		<xsd:complexContent>
-			<xsd:restriction base="Novation">
-				<xsd:sequence>
-					<xsd:sequence>
-						<xsd:element name="eventId" type="EventId" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-					<xsd:sequence>
-						<xsd:group ref="NovationDetails.model"/>
-					</xsd:sequence>
-				</xsd:sequence>
-			</xsd:restriction>
+			<xsd:extension base="NovationNotificationMessage"/>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="TradeTerminationRequest">
@@ -1120,6 +958,12 @@
 					</xsd:annotation>
 				</xsd:element>
 			</xsd:choice>
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="NovationMessage.model">
+		<xsd:sequence>
+			<xsd:element name="novation" type="Novation"/>
+			<xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:group>
 	<xsd:group name="TerminationDetails.model">

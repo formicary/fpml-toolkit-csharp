@@ -1079,12 +1079,12 @@
 		<xsd:sequence>
 			<xsd:element name="attachmentPoint" type="xsd:decimal">
 				<xsd:annotation>
-					<xsd:documentation xml:lang="en">Lower bound percentage of the loss that the Tranche can endure. The difference between Attachment and Exhaustion points is call the width of the Tranche.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Lower bound percentage of the loss that the Tranche can endure, expressed as a decimal. An attachment point of 5% would be represented as 0.05. The difference between Attachment and Exhaustion points is call the width of the Tranche. A schema facet to constraint the value between 0 to 1 will be introduced in FpML 4.3.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="exhaustionPoint" type="xsd:decimal">
 				<xsd:annotation>
-					<xsd:documentation xml:lang="en">Upper bound percentage of the loss that the Tranche can endure. The difference between Attachment and Exhaustion points is call the width of the Tranche.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Upper bound percentage of the loss that the Tranche can endure, expressed as a decimal. An exhaustion point of 5% would be represented as 0.05. The difference between Attachment and Exhaustion points is call the width of the Tranche. A schema facet to constraint the value between 0 to 1 will be introduced in FpML 4.3.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="incurredRecoveryApplicable" type="xsd:boolean" minOccurs="0">

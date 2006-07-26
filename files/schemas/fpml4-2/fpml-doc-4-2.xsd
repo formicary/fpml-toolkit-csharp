@@ -387,6 +387,11 @@
 					<xsd:documentation xml:lang="en">Identifies the person or persons who assumed the role of trader for this trade.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
+			<xsd:element name="tradeInformation" type="xsd:normalizedString" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Description of the trade.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="PaymentDetail">
