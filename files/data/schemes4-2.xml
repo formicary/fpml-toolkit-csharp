@@ -754,7 +754,7 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/contractual-supplement-5-0" name="contractualSupplementScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/contractual-supplement-6-0" name="contractualSupplementScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="CDXEmergingMarketsDiversifiedTranche">
 				<paragraph>Standard Terms Supplement for Dow Jones CDX Emerging Markets Diversified Tranche Transactions.</paragraph>
@@ -773,6 +773,9 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ISDA2003Credit2005MatrixSupplement">
 				<paragraph>2005 Matrix Supplement to the 2003 ISDA Credit Derivatives.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ISDA2003CreditArgentineRepublic">
+				<paragraph>Additional Provisions for the Argentine Republic: Excluded Obligations and Excluded Deliverable Obligations dated December 21, 2005.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ISDA2003CreditMay2003">
 				<paragraph>May 2003 Supplement to the 2003 ISDA Credit Derivatives Definitions.</paragraph>
