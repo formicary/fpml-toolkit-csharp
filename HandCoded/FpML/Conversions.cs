@@ -42,6 +42,13 @@ namespace HandCoded.FpML
 				: base (Releases.R1_0, Releases.R2_0)
 			{ }
 
+			/// <summary>
+			/// Applies the <b>Conversion</b> to a <see cref="XmlDocument"/> instance
+			/// to create a new <see cref="XmlDocument"/>.
+			/// </summary>
+			/// <param name="source">The <see cref="XmlDocument"/> to be converted.</param>
+			/// <param name="helper">A <see cref="IHelper"/> used to guide conversion.</param>
+			/// <returns>A new <see cref="XmlDocument"/> containing the transformed data.</returns>
 			public override XmlDocument Convert (XmlDocument source, HandCoded.Meta.IHelper helper)
 			{
 				XmlDocument		target 	= TargetRelease.NewInstance ("FpML");
@@ -148,10 +155,20 @@ namespace HandCoded.FpML
 		/// </summary>
 		public class R2_0__TR3_0 : HandCoded.Meta.DirectConversion
 		{
+			/// <summary>
+			/// Constructs a <b>R2_0__TR3_0</b> instance.
+			/// </summary>
 			public R2_0__TR3_0 ()
 				: base (Releases.R2_0, Releases.TR3_0)
 			{ }
 
+			/// <summary>
+			/// Applies the <b>Conversion</b> to a <see cref="XmlDocument"/> instance
+			/// to create a new <see cref="XmlDocument"/>.
+			/// </summary>
+			/// <param name="source">The <see cref="XmlDocument"/> to be converted.</param>
+			/// <param name="helper">A <see cref="IHelper"/> used to guide conversion.</param>
+			/// <returns>A new <see cref="XmlDocument"/> containing the transformed data.</returns>
 			public override XmlDocument Convert(XmlDocument source, HandCoded.Meta.IHelper helper)
 			{
 				XmlDocument		target 	= TargetRelease.NewInstance ("FpML");
@@ -266,11 +283,21 @@ namespace HandCoded.FpML
 		/// </summary>
 		public class TR3_0__R4_0 : HandCoded.Meta.DirectConversion
 		{
+			/// <summary>
+			/// Constructs a <b>TR3_0__R4_0</b> instance.
+			/// </summary>
 			public TR3_0__R4_0 ()
 				: base (Releases.TR3_0, Releases.R4_0)
 			{ }
 
-			public override XmlDocument Convert(XmlDocument source, HandCoded.Meta.IHelper helper)
+			/// <summary>
+			/// Applies the <b>Conversion</b> to a <see cref="XmlDocument"/> instance
+			/// to create a new <see cref="XmlDocument"/>.
+			/// </summary>
+			/// <param name="source">The <see cref="XmlDocument"/> to be converted.</param>
+			/// <param name="helper">A <see cref="IHelper"/> used to guide conversion.</param>
+			/// <returns>A new <see cref="XmlDocument"/> containing the transformed data.</returns>
+			public override XmlDocument Convert (XmlDocument source, HandCoded.Meta.IHelper helper)
 			{
 				XmlDocument		target 	= TargetRelease.NewInstance ("FpML");
 				XmlElement		oldRoot = source.DocumentElement;
@@ -577,18 +604,46 @@ namespace HandCoded.FpML
 			/// </summary>
 			public interface IHelper : HandCoded.Meta.IHelper
 			{
+				/// <summary>
+				/// Uses the context information provided to determine the reference
+				/// currency of the trade or throws a <see cref="ConversionException"/>.
+				/// </summary>
+				/// <param name="context">The <see cref="XmlElement"/> of the fxFeature</param>
+				/// <returns>The reference currency code value (e.g. GBP).</returns>
 				string GetReferenceCurrency (XmlElement context);
 
+				/// <summary>
+				/// Uses the context information provided to determine the first quanto
+				/// currency of the trade or throws a <see cref="ConversionException"/>.
+				/// </summary>
+				/// <param name="context">The <see cref="XmlElement"/> of the fxFeature</param>
+				/// <returns>The reference currency code value (e.g. GBP).</returns>
 				string GetQuantoCurrency1 (XmlElement context);
 
+				/// <summary>
+				/// Uses the context information provided to determine the second quanto
+				/// currency of the trade or throws a <see cref="ConversionException"/>.
+				/// </summary>
+				/// <param name="context">The <see cref="XmlElement"/> of the fxFeature</param>
+				/// <returns>The reference currency code value (e.g. GBP).</returns>
 				string GetQuantoCurrency2 (XmlElement context);
 			}
 
+			/// <summary>
+			/// Constructs a <b>R4_0__R4_1</b> instance.
+			/// </summary>
 			public R4_0__R4_1 ()
 				: base (Releases.R4_0, Releases.R4_1)
 			{ }
 
-			public override XmlDocument Convert(XmlDocument source, HandCoded.Meta.IHelper helper)
+			/// <summary>
+			/// Applies the <b>Conversion</b> to a <see cref="XmlDocument"/> instance
+			/// to create a new <see cref="XmlDocument"/>.
+			/// </summary>
+			/// <param name="source">The <see cref="XmlDocument"/> to be converted.</param>
+			/// <param name="helper">A <see cref="IHelper"/> used to guide conversion.</param>
+			/// <returns>A new <see cref="XmlDocument"/> containing the transformed data.</returns>
+			public override XmlDocument Convert (XmlDocument source, HandCoded.Meta.IHelper helper)
 			{
 				XmlDocument		target 	= TargetRelease.NewInstance ("FpML");
 				XmlElement		oldRoot = source.DocumentElement;
@@ -1018,10 +1073,20 @@ namespace HandCoded.FpML
 		/// </summary>
 		public class R4_1__TR4_2 : HandCoded.Meta.DirectConversion
 		{
+			/// <summary>
+			/// Constructs a <b>R4_1__TR4_2</b> instance.
+			/// </summary>
 			public R4_1__TR4_2 ()
 				: base (Releases.R4_1, Releases.TR4_2)
 			{ }
 
+			/// <summary>
+			/// Applies the <b>Conversion</b> to a <see cref="XmlDocument"/> instance
+			/// to create a new <see cref="XmlDocument"/>.
+			/// </summary>
+			/// <param name="source">The <see cref="XmlDocument"/> to be converted.</param>
+			/// <param name="helper">A <see cref="IHelper"/> used to guide conversion.</param>
+			/// <returns>A new <see cref="XmlDocument"/> containing the transformed data.</returns>
 			public override XmlDocument Convert(XmlDocument source, HandCoded.Meta.IHelper helper)
 			{
 				XmlDocument		target 	= TargetRelease.NewInstance ("FpML");
