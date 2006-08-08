@@ -12,8 +12,16 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
+using System.Collections;
+using System.IO;
+using System.Xml;
+using System.Xml.Schema;
 
+using HandCoded.FpML;
+using HandCoded.FpML.Validation;
 using HandCoded.Framework;
+using HandCoded.Validation;
+using HandCoded.Xml;
 
 using log4net;
 using log4net.Config;
@@ -34,13 +42,19 @@ namespace Validate
 		[STAThread]
 		static void Main(string[] arguments)
 		{
-			log4net.Config.BasicConfigurator.Configure ();
+			log4net.Config.DOMConfigurator.Configure();
 
 			new Validate ().Run (arguments);
 		}
 
+		/// <summary>
+		/// Processes the command line options and gets ready to start file
+		/// processing.
+		/// </summary>
 		protected override void StartUp ()
 		{
+			base.StartUp ();
+
 			if (repeatOption.Present) {
 				repeat = Int32.Parse (repeatOption.Value);
 				if (repeat <= 0) {
@@ -56,8 +70,69 @@ namespace Validate
 			}
 		}
 
+		/// <summary>
+		/// Perform the file processing while timing the operation.
+		/// </summary>
 		protected override void Execute ()
 		{
+			DirectoryInfo	directory = new DirectoryInfo (Environment.CurrentDirectory);
+			ArrayList		files	= new ArrayList ();
+
+			try {
+				for (int index = 0; index < Arguments.Length; ++index) {
+					DirectoryInfo	location = directory;
+					string			target	 = Arguments [index];
+
+					while (target.StartsWith (@"..\")) {
+						location = location.Parent;
+						target = target.Substring (3);
+					}
+					FileInfo []		info = location.GetFiles (target);
+
+					foreach (FileInfo file in info) files.Add (file); 
+				}
+			}
+			catch (Exception error) {
+				log.Fatal ("Invalid command line argument");
+
+				Finished = true;
+				return;
+			}
+
+			Random			rng		= new Random ();
+			DateTime		start	= DateTime.Now;
+			int				count	= 0;
+
+			try {
+				while (repeat-- > 0) {
+					for (int index = 0; index < files.Count; ++index) {
+						int		which = random ? rng.Next (files.Count) : index;
+
+						Console.WriteLine (">> " + (files [which] as FileInfo).Name);
+
+						FileStream	stream	= File.OpenRead ((files [which] as FileInfo).FullName);
+
+						FpMLUtility.ParseAndValidate (stream,
+								new ValidationEventHandler (SyntaxError),
+								new ValidationErrorHandler (SemanticError));
+				
+						stream.Close ();
+						++count;
+					}
+				}
+
+				DateTime		end		= DateTime.Now;
+				TimeSpan		span	= end.Subtract (start);
+
+				Console.WriteLine ("== Processed " + count + " files in "
+					+ span.TotalMilliseconds + " milliseconds");
+				Console.WriteLine ("== " + ((1000.0 * count) / span.TotalMilliseconds)
+					+ " files/sec checking " + AllRules.Rules.Size + " rules");
+			}
+			catch (Exception error) {
+				log.Fatal ("Unexpected exception during processing", error);
+			}
+
 			Finished = true;
 		}
 
@@ -98,7 +173,36 @@ namespace Validate
 		/// </summary>
 		private bool			random = false;
 
+		/// <summary>
+		/// Constructs a <b>Validate</b> instance.
+		/// </summary>
 		private Validate ()
 		{ }
+
+		/// <summary>
+		/// Report XML parser errors.
+		/// </summary>
+		/// <param name="sender">The object raising the error.</param>
+		/// <param name="args">A description of the parser error.</param>
+		private void SyntaxError (object sender, ValidationEventArgs args)
+		{
+			Console.WriteLine (args.Message);
+		}
+
+		/// <summary>
+		/// Report FpML semantic errors.
+		/// </summary>
+		/// <param name="code">The error code.</param>
+		/// <param name="context">The context element.</param>
+		/// <param name="description">A dxescription of the problem.</param>
+		/// <param name="rule">The rule identifier.</param>
+		/// <param name="data">Any additional data.</param>
+		private void SemanticError (string code, XmlNode context, string description, string rule, string data)
+		{
+			if (data != null)
+				Console.WriteLine (rule + " " + XPath.ForNode(context) + " " + description + " [" + data + "]");
+			else
+				Console.WriteLine (rule + " " + XPath.ForNode(context) + " " + description);
+		}
 	}
 }

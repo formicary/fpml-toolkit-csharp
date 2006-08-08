@@ -7,7 +7,7 @@
     >
         <Build>
             <Settings
-                ApplicationIcon = "App.ico"
+                ApplicationIcon = "icons/checks.ico"
                 AssemblyKeyContainerName = ""
                 AssemblyName = "Validate"
                 AssemblyOriginatorKeyFile = ""
@@ -20,7 +20,7 @@
                 PostBuildEvent = ""
                 RootNamespace = "Validate"
                 RunPostBuildEvent = "OnBuildSuccess"
-                StartupObject = ""
+                StartupObject = "Validate.Validate"
             >
                 <Config
                     Name = "Debug"
@@ -76,7 +76,7 @@
                 />
                 <Reference
                     Name = "System.XML"
-                    AssemblyName = "System.XML"
+                    AssemblyName = "System.Xml"
                     HintPath = "..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
@@ -94,8 +94,8 @@
         <Files>
             <Include>
                 <File
-                    RelPath = "App.ico"
-                    BuildAction = "Content"
+                    RelPath = "App.config"
+                    BuildAction = "None"
                 />
                 <File
                     RelPath = "AssemblyInfo.cs"
@@ -107,6 +107,11 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
+                <File
+                    RelPath = "icons\checks.ico"
+                    BuildAction = "Content"
+                />
+                <Folder RelPath = "test-cases\" />
             </Include>
         </Files>
     </CSHARP>

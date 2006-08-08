@@ -24,7 +24,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("Open Source Version")]
 [assembly: AssemblyCompany("HandCoded Software Ltd")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("(C)2005-2006 HandCoded Software Ltd.")]
+[assembly: AssemblyCopyright("(C)2006 HandCoded Software Ltd.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 

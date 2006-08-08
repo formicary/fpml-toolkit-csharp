@@ -11,7 +11,7 @@
                     RemoteDebugEnabled = "false"
                     RemoteDebugMachine = ""
                     StartAction = "Project"
-                    StartArguments = ""
+                    StartArguments = "..\..\..\files\test-cases\fpml4-0\ird\*.xml"
                     StartPage = ""
                     StartProgram = ""
                     StartURL = ""
