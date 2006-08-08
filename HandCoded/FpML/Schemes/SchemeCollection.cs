@@ -54,7 +54,7 @@ namespace HandCoded.FpML.Schemes
 						if (reader.LocalName.Equals ("scheme")) {
 							if (reader ["uri"] != null) {
 								Add (scheme = new ClosedScheme (reader ["uri"]));
-								log.Info ("Added scheme " + reader ["uri"]);
+								log.Debug ("Added scheme " + reader ["uri"]);
 							}
 							else {
 								log.Warn ("uri attribute missing from scheme in bootstrap definitions");
