@@ -68,6 +68,8 @@ namespace Validate
 				log.Error ("No files are present on the command line");
 				Environment.Exit (1);
 			}
+
+			FpMLUtility.GetSchemaCollection ();
 		}
 
 		/// <summary>
@@ -99,6 +101,7 @@ namespace Validate
 				return;
 			}
 
+			RuleSet			rules	= strictOption.Present ? FpMLRules.Rules : AllRules.Rules;
 			Random			rng		= new Random ();
 			DateTime		start	= DateTime.Now;
 			int				count	= 0;
@@ -112,7 +115,7 @@ namespace Validate
 
 						FileStream	stream	= File.OpenRead ((files [which] as FileInfo).FullName);
 
-						FpMLUtility.ParseAndValidate (stream,
+						FpMLUtility.ParseAndValidate (stream, rules,
 								new ValidationEventHandler (SyntaxError),
 								new ValidationErrorHandler (SemanticError));
 				
@@ -127,7 +130,7 @@ namespace Validate
 				Console.WriteLine ("== Processed " + count + " files in "
 					+ span.TotalMilliseconds + " milliseconds");
 				Console.WriteLine ("== " + ((1000.0 * count) / span.TotalMilliseconds)
-					+ " files/sec checking " + AllRules.Rules.Size + " rules");
+					+ " files/sec checking " + rules.Size + " rules");
 			}
 			catch (Exception error) {
 				log.Fatal ("Unexpected exception during processing", error);
@@ -152,16 +155,22 @@ namespace Validate
 			= LogManager.GetLogger (typeof (Validate));
 
 		/// <summary>
-		/// The <see cref="Option"/> instance use to detect <b>-repeat count</b>
+		/// The <see cref="Option"/> instance used to detect <b>-repeat count</b>.
 		/// </summary>
 		private Option			repeatOption
 			= new Option ("-repeat", "Number of times to processes the files", "count");
 		
 		/// <summary>
-		/// The <see cref="Option"/> instance use to detect <b>-random</b>
+		/// The <see cref="Option"/> instance used to detect <b>-random</b>.
 		/// </summary>
 		private Option			randomOption
 			= new Option ("-random", "Pick files at random for processing");
+
+		/// <summary>
+		/// The <see cref="Option"/> instance used to detct <b>-strict</b>.
+		/// </summary>
+		private Option			strictOption
+			= new Option ("-strict", "Use only FpML defined rules (no extensions)");
 		
 		/// <summary>
 		/// A counter for the number of time to reprocess the files. 
