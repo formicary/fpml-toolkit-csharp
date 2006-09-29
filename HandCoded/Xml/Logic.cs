@@ -127,6 +127,22 @@ namespace HandCoded.Xml
 		}
 
 		/// <summary>
+		/// Returns the value of the given <see cref="XmlNode"/> as a boolean.
+		/// </summary>
+		/// <param name="node">The <see cref="XmlNode"/> containing the value.</param>
+		/// <returns>The value of the node as a C# datatype.</returns>
+		public static bool Bool (XmlNode node)
+		{
+			try {
+				return (bool.Parse (node.InnerText));
+			}
+			catch (Exception) {
+				;
+			}
+			return (false);
+		}
+
+		/// <summary>
 		/// Returns the value of the given <see cref="XmlNode"/> as an integer.
 		/// </summary>
 		/// <param name="node">The <see cref="XmlNode"/> containing the value.</param>
