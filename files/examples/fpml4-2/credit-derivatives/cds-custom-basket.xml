@@ -170,6 +170,7 @@
 							<gracePeriod>
 								<periodMultiplier>1</periodMultiplier>
 								<period>D</period>
+								<dayType>Business</dayType>
 							</gracePeriod>
 						</gracePeriodExtension>
 						<paymentRequirement>
