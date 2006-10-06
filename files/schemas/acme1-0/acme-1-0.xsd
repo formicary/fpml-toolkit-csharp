@@ -19,33 +19,4 @@
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
-	<!-- Simple Chat Server Messages -->
-	<xsd:complexType name = "UserSignOnNotification">
-		<xsd:complexContent>
-			<xsd:extension base = "fpml:NotificationMessage"/>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name = "UserSignOffNotification">
-		<xsd:complexContent>
-			<xsd:extension base = "fpml:NotificationMessage"/>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name = "ChatMessageNotification">
-		<xsd:complexContent>
-			<xsd:extension base = "fpml:NotificationMessage">
-				<xsd:sequence>
-					<xsd:element name = "text" type = "xsd:string"/>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name = "ChatStateNotification">
-		<xsd:complexContent>
-			<xsd:extension base = "fpml:NotificationMessage">
-				<xsd:sequence>
-					<xsd:element name = "userName" type = "xsd:string" minOccurs = "0" maxOccurs = "unbounded"/>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
 </xsd:schema>
