@@ -125,8 +125,12 @@ namespace HandCoded.Finance
 		private static void ParseCalendars (string uri)
 		{
 			RuleBasedCalendar calendar	= null;
+#if DOTNET2_0
+			XmlReader		reader		= XmlReader.Create (uri);
+#else
 			XmlReader		reader		= new XmlValidatingReader (new XmlTextReader (uri));
-		
+#endif
+
 			while (reader.Read ()) {
 				switch (reader.NodeType) {
 				case XmlNodeType.Element:
@@ -226,16 +230,20 @@ namespace HandCoded.Finance
 		/// </summary>
 		static Calendar ()
 		{
-			log.Info ("Bootstrapping");
+			log.Debug ("Bootstrapping");
 
 			try {
+#if DOTNET2_0
+				ParseCalendars (ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.StandardCalendars"]);
+#else
 				ParseCalendars (ConfigurationSettings.AppSettings ["HandCoded.FpML Toolkit.StandardCalendars"]);
+#endif
 			}
 			catch (Exception error) {
 				log.Fatal ("Unable to load standard calendar definitions", error);
 			}
 
-			log.Info ("Completed");
+			log.Debug ("Completed");
 		}
 	}
 }

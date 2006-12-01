@@ -23,7 +23,7 @@ namespace HandCoded.Xml
 	/// executed.
 	/// </summary>
 	/// <remarks>A typical DOM document instance performs an expensive in-order
-	/// traversal of the DOM tree every time the <see cref="GetElementsByName"/>
+	/// traversal of the DOM tree every time the <b>GetElementsByName</b>
 	/// method is called. This class does a one off traversal on construction and
 	/// then uses the cached results to return <see cref="XmlNodeList"/> instances.
 	/// </remarks>

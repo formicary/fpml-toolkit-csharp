@@ -87,7 +87,7 @@ namespace HandCoded.Xml.Writer
 				}
 				writer.Write ('>');
 			}
-			Write (document.DocumentElement);
+			WriteNode (document.DocumentElement);
 			writer.Flush ();
 		}
 
@@ -96,7 +96,7 @@ namespace HandCoded.Xml.Writer
 		/// output stream using the style implemented by the class instance.
 		/// </summary>
 		/// <param name="node">The <see cref="XmlNode"/> to be formatted.</param>
-		private void Write (XmlNode node)
+		private void WriteNode (XmlNode node)
 		{
 			switch (node.NodeType) {
 			case XmlNodeType.Element:
@@ -120,7 +120,7 @@ namespace HandCoded.Xml.Writer
 						writer.Write ('>');
 
 						foreach (XmlNode child in element.ChildNodes)
-							Write (child);
+							WriteNode (child);
 
 						writer.Write ("</");
 						writer.Write (element.Name);

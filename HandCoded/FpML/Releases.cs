@@ -713,15 +713,23 @@ namespace HandCoded.FpML
 
 			try {
 				schemes.Parse (Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
+#if DOTNET2_0
+					ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit." + suffix]));
+#else
 					ConfigurationSettings.AppSettings ["HandCoded.FpML Toolkit." + suffix]));
-			}
+#endif
+            }
 			catch (Exception error) {
 				log.Fatal ("Unable to load standard FpML schemes", error);
 			}
 
 			try {
 				schemes.Parse (Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
+#if DOTNET2_0
+					ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.AdditionalSchemes"]));
+#else
 					ConfigurationSettings.AppSettings ["HandCoded.FpML Toolkit.AdditionalSchemes"]));
+#endif
 			}
 			catch (Exception error) {
 				log.Fatal ("Unable to load additional FpML schemes", error);
