@@ -15,6 +15,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Xml;
+using System.Xml.Schema;
 
 using HandCoded.Xml.Writer;
 
@@ -27,6 +28,232 @@ namespace HandCoded.Xml
 	/// </summary>
 	public sealed class XmlUtility
 	{
+		/// <summary>
+		/// A constant value indicating that only DTD based documents are
+		/// expected.
+		/// </summary>
+		public const int	DTD_ONLY		= 1;
+	
+		/// <summary>
+		/// A constant value indicating that only schema based documents are
+		/// expected.
+		/// </summary>
+		public const int	SCHEMA_ONLY		= 2;
+	
+		/// <summary>
+		/// A constant value indicating that either a DTD or schema based
+		/// documents could be provided.
+		/// </summary>
+		public const int	DTD_OR_SCHEMA	= 3;
+
+		/// <summary>
+		/// Performs a non-validating parse of the indicated XML <see cref="String"/>
+		/// discarding any errors generated.
+		/// </summary>
+		/// <param name="xml">The XML <see cref="string"/> to be processed.</param>
+		/// <returns>A <see cref="XmlDocument"/> instance if the parse succeeded
+		/// or <b>null</b> if it failed.</returns>
+		public static XmlDocument NonValidatingParse (string xml)
+		{
+			XmlDocument			document	= new XmlDocument ();
+
+			try {
+				document.LoadXml (xml);
+				return (document);
+			}
+			catch (XmlException) {
+				return (null);
+			}
+		}
+
+		/// <summary>
+		/// Performs a non-validating parse of the indicated XML <see cref="Stream"/>
+		/// discarding any errors generated.
+		/// </summary>
+		/// <param name="stream">The XML <see cref="Stream"/> to be processed.</param>
+		/// <returns>A <see cref="XmlDocument"/> instance if the parse succeeded
+		/// or <b>null</b> if it failed.</returns>
+		public static XmlDocument NonValidatingParse (Stream stream)
+		{
+			XmlDocument			document	= new XmlDocument ();
+			XmlReader			reader		= new XmlTextReader (stream);
+
+			try {
+				document.Load (reader);
+				return (document);
+			}
+			catch (XmlException) {
+				return (null);
+			}
+		}
+
+		/// <summary>
+		/// Performs a validating parse of the indicated XML <see cref="string"/>
+		/// using the most optimal technique given the mode. If the type of
+		/// grammar is unknown then a non-validating parse is done first and
+		/// the document inspected to see if it references a DOCTYPE.
+		/// </summary>
+		/// <param name="grammer">Indicates only schema based documents to be processed.</param>
+		/// <param name="xml">The XML <see cref="string"/> to be processed.</param>
+		/// <param name="schemas">The collection of cached schemas for validation</param>
+		/// <param name="resolver">The <see cref="XmlResolver"/> used to locate DTDs.</param>
+		/// <param name="eventHandler">The <see cref="ValidationEventHandler"/> used to report parse errors</param>
+		/// <returns>A <see cref="XmlDocument"/> instance if the parse succeeded
+		/// or <b>null</b> if it failed.</returns>
+#if DOTNET2_0
+		public static XmlDocument ValidatingParse (int grammer, string xml,
+			XmlSchemaSet schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
+		{
+			XmlDocument			document	= new XmlDocument ();
+			XmlReaderSettings	settings	= new XmlReaderSettings ();
+			XmlReader			reader;
+
+			if (grammer == DTD_OR_SCHEMA) {
+				if ((document = NonValidatingParse (xml)) == null) return (null);
+
+				grammer = (document.DocumentType != null) ? DTD_ONLY : SCHEMA_ONLY;
+			}
+
+			if (grammer == DTD_ONLY) {
+				settings.ProhibitDtd	= false;
+				settings.ValidationType = ValidationType.DTD;
+				settings.XmlResolver	= resolver;
+			}
+
+			if (grammer == SCHEMA_ONLY) {
+				settings.ValidationType = ValidationType.Schema;
+				settings.Schemas		= schemas;
+			}
+
+			reader = XmlReader.Create (new XmlTextReader (xml), settings);
+
+			try {
+				document.Load (reader);
+				return (document);
+			}
+			catch (XmlException) {
+				return (null);
+			}
+		}
+#else
+		public static XmlDocument ValidatingParse (int grammer, string xml,
+			XmlSchemaCollection schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
+		{
+			XmlDocument			document	= new XmlDocument ();
+			XmlParserContext	context		= null;
+			XmlValidatingReader	reader		= new XmlValidatingReader (xml, XmlNodeType.Document, context);
+
+			reader.Schemas.Add (schemas);
+			reader.XmlResolver = resolver;
+
+			if (grammer == DTD_ONLY)
+				reader.ValidationType = ValidationType.DTD;
+			else if (grammer == SCHEMA_ONLY)
+				reader.ValidationType = ValidationType.Schema;
+			else
+				reader.ValidationType = ValidationType.Auto;
+
+			if (eventHandler != null)
+				reader.ValidationEventHandler += eventHandler;
+
+			try {
+				document.Load (reader);
+				return (document);
+			}
+			catch (XmlException) {
+				return (null);
+			}
+		}
+#endif
+
+		/// <summary>
+		/// Performs a validating parse of the indicated XML <see cref="string"/>
+		/// using the most optimal technique given the mode. If the type of
+		/// grammar is unknown then a non-validating parse is done first and
+		/// the document inspected to see if it references a DOCTYPE.
+		/// </summary>
+		/// <param name="grammer">Indicates only schema based documents to be processed.</param>
+		/// <param name="stream">The XML <see cref="Stream"/> to be processed.</param>
+		/// <param name="schemas">The collection of cached schemas for validation</param>
+		/// <param name="resolver">The <see cref="XmlResolver"/> used to locate DTDs.</param>
+		/// <param name="eventHandler">The <see cref="ValidationEventHandler"/> used to report parse errors</param>
+		/// <returns>A <see cref="XmlDocument"/> instance if the parse succeeded
+		/// or <b>null</b> if it failed.</returns>
+#if DOTNET2_0
+		public static XmlDocument ValidatingParse (int grammer, Stream stream,
+			XmlSchemaSet schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
+		{
+			XmlDocument			document	= new XmlDocument ();
+			XmlReaderSettings	settings	= new XmlReaderSettings ();
+			XmlReader reader;
+
+			if (grammer == DTD_OR_SCHEMA)
+			{
+				if (!stream.CanSeek)
+					throw new Exception ("The XML Stream must be capable of supporting seek");
+
+				if ((document = NonValidatingParse (stream)) == null) return (null);
+
+				grammer = (document.DocumentType != null) ? DTD_ONLY : SCHEMA_ONLY;
+				stream.Seek (0, SeekOrigin.Begin);
+			}
+
+			if (grammer == DTD_ONLY)
+			{
+				settings.ProhibitDtd = false;
+				settings.ValidationType = ValidationType.DTD;
+				settings.XmlResolver = resolver;
+			}
+
+			if (grammer == SCHEMA_ONLY)
+			{
+				settings.ValidationType = ValidationType.Schema;
+				settings.Schemas = schemas;
+			}
+
+			reader = XmlReader.Create (stream, settings);
+
+			try
+			{
+				document.Load (reader);
+				return (document);
+			}
+			catch (XmlException)
+			{
+				return (null);
+			}
+		}
+#else
+		public static XmlDocument ValidatingParse (int grammer, Stream stream,
+			XmlSchemaCollection schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
+		{
+			XmlDocument			document	= new XmlDocument ();
+			XmlParserContext	context		= null;
+			XmlValidatingReader	reader		= new XmlValidatingReader (stream, XmlNodeType.Document, context);
+
+			reader.Schemas.Add (schemas);
+			reader.XmlResolver = resolver;
+
+			if (grammer == DTD_ONLY)
+				reader.ValidationType = ValidationType.DTD;
+			else if (grammer == SCHEMA_ONLY)
+				reader.ValidationType = ValidationType.Schema;
+			else
+				reader.ValidationType = ValidationType.Auto;
+
+			if (eventHandler != null)
+				reader.ValidationEventHandler += eventHandler;
+
+			try {
+				document.Load (reader);
+				return (document);
+			}
+			catch (XmlException) {
+				return (null);
+			}
+		}
+#endif
+
 		/// <summary>
 		/// Produces a detailed dump of the given <see cref="XmlNode"/> instance
 		/// and its descendents on the console output stream.

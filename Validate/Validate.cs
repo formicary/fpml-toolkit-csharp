@@ -69,7 +69,7 @@ namespace Validate
 				Environment.Exit (1);
 			}
 
-			FpMLUtility.GetSchemaCollection ();
+			FpMLUtility.PreloadSchemas ();
 		}
 
 		/// <summary>
@@ -94,7 +94,7 @@ namespace Validate
 					foreach (FileInfo file in info) files.Add (file); 
 				}
 			}
-			catch (Exception error) {
+			catch (Exception) {
 				log.Fatal ("Invalid command line argument");
 
 				Finished = true;
@@ -209,9 +209,9 @@ namespace Validate
 		private void SemanticError (string code, XmlNode context, string description, string rule, string data)
 		{
 			if (data != null)
-				Console.WriteLine (rule + " " + XPath.ForNode(context) + " " + description + " [" + data + "]");
+				Console.WriteLine (rule + " " + XPath.ForNode (context) + " " + description + " [" + data + "]");
 			else
-				Console.WriteLine (rule + " " + XPath.ForNode(context) + " " + description);
+				Console.WriteLine (rule + " " + XPath.ForNode (context) + " " + description);
 		}
 	}
 }

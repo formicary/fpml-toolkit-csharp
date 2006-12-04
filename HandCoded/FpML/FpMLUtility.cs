@@ -31,24 +31,11 @@ namespace HandCoded.FpML
 	public sealed class FpMLUtility
 	{
 		/// <summary>
-		/// Parses the XML string without performing any validation.
+		/// Forces the cache of standard FpML schemas to be populated.
 		/// </summary>
-		/// <param name="xml">The XML string to be parsed.</param>
-		/// <returns>A <see cref="XmlDocument"/> instance constructed from the XML document.</returns>
-		public static XmlDocument NonValidatingParse (string xml)
+		public static void PreloadSchemas ()
 		{
-			XmlDocument			document	= new XmlDocument ();
-			XmlTextReader		reader		= new XmlTextReader (new StringReader (xml));
-
-			reader.XmlResolver = GetResolver ();
-
-			try {
-				document.Load (reader);
-				return (document);
-			}
-			catch (XmlException) {
-				return (null);
-			}
+			GetSchemas ();
 		}
 
 		/// <summary>
@@ -60,24 +47,7 @@ namespace HandCoded.FpML
 		/// <returns>A <see cref="XmlDocument"/> instance constructed from the XML document.</returns>
 		public static XmlDocument Parse (string xml, ValidationEventHandler eventHandler)
 		{
-			XmlDocument			document	= new XmlDocument ();
-			XmlParserContext	context		= null;
-			XmlValidatingReader	reader		= new XmlValidatingReader (xml, XmlNodeType.Document, context);
-
-			reader.Schemas.Add (GetSchemaCollection ());
-			reader.XmlResolver = GetResolver ();
-			reader.ValidationType = ValidationType.Auto;
-
-			if (eventHandler != null)
-				reader.ValidationEventHandler += eventHandler;
-
-			try {
-				document.Load (reader);
-				return (document);
-			}
-			catch (XmlException) {
-				return (null);
-			}
+			return (Parse (false, xml, eventHandler));
 		}
 
 		/// <summary>
@@ -89,19 +59,37 @@ namespace HandCoded.FpML
 		/// <returns>A <see cref="XmlDocument"/> instance constructed from the XML document.</returns>
 		public static XmlDocument Parse (Stream stream, ValidationEventHandler eventHandler)
 		{
-			XmlDocument			document	= new XmlDocument ();
-			XmlParserContext	context		= null;
-			XmlValidatingReader	reader		= new XmlValidatingReader (stream, XmlNodeType.Document, context);
+			return (Parse (false, stream, eventHandler));
+		}
 
-			reader.Schemas.Add (GetSchemaCollection ());
-			reader.XmlResolver = GetResolver ();
-			reader.ValidationType = ValidationType.Auto;
+		/// <summary>
+		/// Parses the XML string provided passing any validation problems to
+		/// the indicated <see cref="ValidationEventHandler"/>.
+		/// </summary>
+		/// <param name="schemaOnly">Indicates only schema based documents to be processed.</param>
+		/// <param name="xml">The XML string to be parsed.</param>
+		/// <param name="eventHandler">A <see cref="ValidationEventHandler"/> used to report parser errors.</param>
+		/// <returns>A <see cref="XmlDocument"/> instance constructed from the XML document.</returns>
+		public static XmlDocument Parse (bool schemaOnly, string xml, ValidationEventHandler eventHandler)
+		{
+			return (XmlUtility.ValidatingParse (
+				(schemaOnly ? XmlUtility.SCHEMA_ONLY : XmlUtility.DTD_OR_SCHEMA),
+				xml, schemaCollection, resolver, eventHandler));
+		}
 
-			if (eventHandler != null)
-				reader.ValidationEventHandler += eventHandler;
-
-			document.Load (reader);
-			return (document);
+		/// <summary>
+		/// Parses an XML document from the given <see cref="Stream"/> passing
+		/// any reported errors to the <see cref="ValidationEventHandler"/> instance.
+		/// </summary>
+		/// <param name="schemaOnly">Indicates only schema based documents to be processed.</param>
+		/// <param name="stream">The <see cref="Stream"/> to process XML from.</param>
+		/// <param name="eventHandler">A <see cref="ValidationEventHandler"/> used to report parser errors.</param>
+		/// <returns>A <see cref="XmlDocument"/> instance constructed from the XML document.</returns>
+		public static XmlDocument Parse (bool schemaOnly, Stream stream, ValidationEventHandler eventHandler)
+		{
+			return (XmlUtility.ValidatingParse (
+				(schemaOnly ? XmlUtility.SCHEMA_ONLY : XmlUtility.DTD_OR_SCHEMA),
+				stream, schemaCollection, resolver, eventHandler));
 		}
 
 		/// <summary>
@@ -190,6 +178,68 @@ namespace HandCoded.FpML
 		}
 
 		/// <summary>
+		/// Attempts to parse an XML document from a string and then pass it through
+		/// the specified validation rule set.
+		/// </summary>
+		/// <param name="schemaOnly">Indicates only schema based documents to be processed.</param>
+		/// <param name="xml">The XML string to be parsed.</param>
+		/// <param name="rules">The <see cref="RuleSet"/> used for validation.</param>
+		/// <param name="eventHandler">A <see cref="ValidationEventHandler"/> used to report parser errors.</param>
+		/// <param name="errorHandler">An <see cref="ValidationErrorHandler"/> used to report validation errors.</param>
+		/// <returns></returns>
+		public static bool ParseAndValidate (bool schemaOnly, string xml, RuleSet rules, ValidationEventHandler eventHandler, ValidationErrorHandler errorHandler)
+		{
+			XmlDocument		document = Parse (schemaOnly, xml, eventHandler);
+
+			return ((document != null) ? Validate (document, rules, errorHandler) : false);
+		}
+
+		/// <summary>
+		/// Attempts to parse an XML document from a <see cref="Stream"/> and then
+		/// pass it though the specified validation rule set.
+		/// </summary>
+		/// <param name="schemaOnly">Indicates only schema based documents to be processed.</param>
+		/// <param name="stream">The <see cref="Stream"/> to process XML from.</param>
+		/// <param name="rules">The <see cref="RuleSet"/> used for validation.</param>
+		/// <param name="eventHandler">A <see cref="ValidationEventHandler"/> used to report parser errors.</param>
+		/// <param name="errorHandler">An <see cref="ValidationErrorHandler"/> used to report validation errors.</param>
+		/// <returns></returns>
+		public static bool ParseAndValidate (bool schemaOnly, Stream stream, RuleSet rules, ValidationEventHandler eventHandler, ValidationErrorHandler errorHandler)
+		{
+			XmlDocument		document = Parse (schemaOnly, stream, eventHandler);
+
+			return ((document != null) ? Validate (document, errorHandler) : false);
+		}
+
+		/// <summary>
+		/// Attempts to parse an XML document from a string and then pass it through
+		/// the default FpML validation rule set.
+		/// </summary>
+		/// <param name="schemaOnly">Indicates only schema based documents to be processed.</param>
+		/// <param name="xml">The XML string to be parsed.</param>
+		/// <param name="eventHandler">A <see cref="ValidationEventHandler"/> used to report parser errors.</param>
+		/// <param name="errorHandler">An <see cref="ValidationErrorHandler"/> used to report validation errors.</param>
+		/// <returns></returns>
+		public static bool ParseAndValidate (bool schemaOnly, string xml, ValidationEventHandler eventHandler, ValidationErrorHandler errorHandler)
+		{
+			return (ParseAndValidate (schemaOnly, xml, AllRules.Rules, eventHandler, errorHandler));
+		}
+
+		/// <summary>
+		/// Attempts to parse an XML document from a <see cref="Stream"/> and then
+		/// pass it though the default FpML validation rule set.
+		/// </summary>
+		/// <param name="schemaOnly">Indicates only schema based documents to be processed.</param>
+		/// <param name="stream">The <see cref="Stream"/> to process XML from.</param>
+		/// <param name="eventHandler">A <see cref="ValidationEventHandler"/> used to report parser errors.</param>
+		/// <param name="errorHandler">An <see cref="ValidationErrorHandler"/> used to report validation errors.</param>
+		/// <returns></returns>
+		public static bool ParseAndValidate (bool schemaOnly, Stream stream, ValidationEventHandler eventHandler, ValidationErrorHandler errorHandler)
+		{
+			return (ParseAndValidate (schemaOnly, stream, AllRules.Rules, eventHandler, errorHandler));
+		}
+
+		/// <summary>
 		/// Returns a <see cref="XmlResolver"/> instance pre-configured for the FpML
 		/// DTD releases.
 		/// </summary>
@@ -208,13 +258,23 @@ namespace HandCoded.FpML
 		/// </summary>
 		/// <returns>A pre-configured <see cref="XmlSchemaCollection"/> instance.
 		/// </returns>
-		public static XmlSchemaCollection GetSchemaCollection ()
+#if DOTNET2_0
+		public static XmlSchemaSet GetSchemas ()
+		{
+			if (schemaCollection == null) {
+				string baseDirectory = Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
+                    ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.SchemasDirectory"]);
+
+				schemaCollection = new XmlSchemaSet ();
+#else
+		public static XmlSchemaCollection GetSchemas ()
 		{
 			if (schemaCollection == null) {
 				string baseDirectory = Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
                     ConfigurationSettings.AppSettings ["HandCoded.FpML Toolkit.SchemasDirectory"]);
 
 				schemaCollection = new XmlSchemaCollection ();
+#endif
 
 				// Must add DSIG before FpML schemas
 				schemaCollection.Add (HandCoded.DSig.Releases.R1_0.NamespaceUri,
@@ -235,9 +295,22 @@ namespace HandCoded.FpML
 			return (schemaCollection);
 		}
 
+		/// <summary>
+		/// The <see cref="XmlResolver"/> used to locate DTDs.
+		/// </summary>
 		private static XmlResolver			resolver			= null;
 
+#if DOTNET2_0
+		/// <summary>
+		/// The <see cref="XmlSchemaSet"/> used to hold cached schemas.
+		/// </summary>
+		private static XmlSchemaSet			schemaCollection = null;
+#else
+		/// <summary>
+		/// The <see cref="XmlSchemaCollection"/> used to hold cached schemas.
+		/// </summary>
 		private static XmlSchemaCollection	schemaCollection	= null;
+#endif
 
 		/// <summary>
 		/// The <b>Resolver</b> class is a customised <see cref="XmlUrlResolver"/>
@@ -253,7 +326,11 @@ namespace HandCoded.FpML
 			public Resolver ()
 			{
 				string baseDirectory = Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
+#if DOTNET2_0
+					ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.SchemasDirectory"]);
+#else
                     ConfigurationSettings.AppSettings ["HandCoded.FpML Toolkit.SchemasDirectory"]);
+#endif
 
 				uriMap.Add (Releases.R1_0.PublicId, 
 					Path.Combine (baseDirectory, "fpml1-0/" + Releases.R1_0.SystemId));
