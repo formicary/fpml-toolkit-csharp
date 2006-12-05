@@ -499,6 +499,25 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
+		/// <summary>
+		/// Determines if an element of type <c>InterestRateStream</c> contains
+		/// no <c>cashflows</c> element, or <c>cashflows/cashflowsMatchParameters</c>
+		/// contains <c>true</c>.
+		/// </summary>
+		/// <param name="stream">The stream <see cref="XmlElement"/>.</param>
+		/// <returns><c>true</c> if the swap is parametric.</returns>
+		protected static bool IsParametric (XmlElement stream)
+		{
+			XmlElement	cashflows;
+
+			if (Exists (cashflows = XPath.Path (stream, "cashflows")))
+				return (Bool (XPath.Path (cashflows, "cashflowsMatchParameters")));
+
+			return (true);
+		}
+
+		// --------------------------------------------------------------------
+
 		private static bool Rule01 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			return (
@@ -513,7 +532,9 @@ namespace HandCoded.FpML.Validation
 			foreach (XmlElement context in list) {
 				if (Iff (
 						Exists (XPath.Path (context, "resetDates")),
-						Exists (XPath.Path (context, "calculationPeriodAmount", "calculation", "floatingRateCalculation"))))
+						Or (
+							Exists (XPath.Path (context, "calculationPeriodAmount", "calculation", "floatingRateCalculation")),
+							Exists (XPath.Path (context, "calculationPeriodAmount", "calculation", "inflationRateCalculation")))))
 					continue;
 
 				errorHandler ("305", context,
@@ -540,6 +561,8 @@ namespace HandCoded.FpML.Validation
 			bool		result	= true;
 
 			foreach (XmlElement context in list) {
+				if (!IsParametric (context)) continue;
+
 				XmlElement	paymentFreq	= XPath.Path (context, "paymentDates", "paymentFrequency");
 				XmlElement	calcFreq	= XPath.Path (context, "calculationPeriodDates", "calculationPeriodFrequency");
 
@@ -575,6 +598,8 @@ namespace HandCoded.FpML.Validation
 			bool		result	= true;
 
 			foreach (XmlElement context in list) {
+				if (!IsParametric (context)) continue;
+
 				XmlElement paymentDate = XPath.Path (context, "paymentDates", "firstPaymentDate");
 				XmlElement	startDate = XPath.Path (context, "calculationPeriodDates", "firstRegularPeriodStartDate");
 				XmlElement	endDate	  = XPath.Path (context, "calculationPeriodDates", "lastRegularPeriodEndDate");
@@ -618,6 +643,8 @@ namespace HandCoded.FpML.Validation
 			bool		result	= true;
 
 			foreach (XmlElement context in list) {
+				if (!IsParametric (context)) continue;
+
 				XmlElement paymentDate = XPath.Path (context, "paymentDates", "lastRegularPaymentDate");
 				XmlElement	startDate = XPath.Path (context, "calculationPeriodDates", "firstRegularPeriodStartDate", "unadjustedDate");
 				XmlElement	endDate	= XPath.Path (context, "calculationPeriodDates", "lastRegularPeriodStartDate", "unadjustedDate");
@@ -661,6 +688,8 @@ namespace HandCoded.FpML.Validation
 			bool		result	= true;
 
 			foreach (XmlElement context in list) {
+				if (!IsParametric (context)) continue;
+
 				XmlElement	calcFreq	= XPath.Path (context, "calculationPeriodDates", "calculationPeriodFrequency");
 				XmlElement	resetFreq	= XPath.Path (context, "resetDates", "resetFrequency");
 
@@ -697,6 +726,8 @@ namespace HandCoded.FpML.Validation
 			bool		result	= true;
 
 			foreach (XmlElement context in list) {
+				if (!IsParametric (context)) continue;
+
 				XmlElement	payment	  = XPath.Path (context, "paymentDates", "firstPaymentDate");
 				XmlElement	effective = XPath.Path (context, "calculationPeriodDates", "effectiveDate", "unadjustedDate");
 
@@ -727,6 +758,8 @@ namespace HandCoded.FpML.Validation
 			bool		result	= true;
 
 			foreach (XmlElement context in list) {
+				if (!IsParametric (context)) continue;
+
 				XmlElement	compounding	= XPath.Path (context, "calculationPeriodAmount", "calculation", "compoundingMethod");
 				XmlElement	paymentFreq	= XPath.Path (context, "paymentDates", "paymentFrequency");
 				XmlElement	calcFreq	= XPath.Path (context, "calculationPeriodDates", "calculationPeriodFrequency");
@@ -1363,11 +1396,14 @@ namespace HandCoded.FpML.Validation
 
 			foreach (XmlElement context in list) {
 				XmlElement	compounding	= XPath.Path (context, "compoundingMethod");
-				XmlElement	calculation	= XPath.Path (context, "floatingRateCalculation");
+				XmlElement	floating	= XPath.Path (context, "floatingRateCalculation");
+				XmlElement	inflation	= XPath.Path (context, "inflationRateCalculation");
 
 				if (Implies (
 						Exists (compounding),
-						Exists (calculation)))
+						Or (
+							Exists (floating),
+							Exists (inflation))))
 					continue;
 
 				errorHandler ("305", context,
@@ -2372,24 +2408,6 @@ namespace HandCoded.FpML.Validation
 		}
 
 		/// <summary>
-		/// Extracts an <see cref="Interval"/> from the data stored below the
-		/// given context node.
-		/// </summary>
-		/// <param name="context">The context <see cref="XmlElement"/>.</param>
-		/// <returns>An <see cref="Interval"/> constructed from the stored data.</returns>
-		private static Interval Interval (XmlElement context)
-		{
-			try {
-				return (new Interval (
-					Int32.Parse (String (XPath.Path (context, "periodMultiplier"))),
-					Period.ForCode (String (XPath.Path (context, "period")))));
-			}
-			catch (Exception) {
-				return (null);
-			}
-		}
-
-		/// <summary>
 		/// Tests if the payment date falls on a calculated date.
 		/// </summary>
 		/// <param name="paymentDate">The payment date.</param>
@@ -2405,6 +2423,24 @@ namespace HandCoded.FpML.Validation
 				startDate = startDate.Plus (freq);
 			}
 			return (false);
+		}
+
+		/// <summary>
+		/// Extracts an <see cref="Interval"/> from the data stored below the
+		/// given context node.
+		/// </summary>
+		/// <param name="context">The context <see cref="XmlElement"/>.</param>
+		/// <returns>An <see cref="Interval"/> constructed from the stored data.</returns>
+		private static Interval Interval (XmlElement context)
+		{
+			try {
+				return (new Interval (
+					Int32.Parse (String (XPath.Path (context, "periodMultiplier"))),
+					Period.ForCode (String (XPath.Path (context, "period")))));
+			}
+			catch (Exception) {
+				return (null);
+			}
 		}
 
 		/// <summary>
