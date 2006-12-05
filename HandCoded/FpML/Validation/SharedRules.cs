@@ -636,16 +636,18 @@ namespace HandCoded.FpML.Validation
 		private static bool Rule15 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			return (
-				Rule15 (name, nodeIndex.GetElementsByName ("cashSettlementValuationDate"), errorHandler)
-				& Rule15 (name, nodeIndex.GetElementsByName ("feePaymentDate"), errorHandler)
-				& Rule15 (name, nodeIndex.GetElementsByName ("fixingDateOffset"), errorHandler)
-				& Rule15 (name, nodeIndex.GetElementsByName ("fixingDates"), errorHandler)
-				& Rule15 (name, nodeIndex.GetElementsByName ("initialFixingDate"), errorHandler)
+				Rule15 (name, nodeIndex.GetElementsByName ("gracePeriod"), errorHandler)
 				& Rule15 (name, nodeIndex.GetElementsByName ("paymentDaysOffset"), errorHandler)
 				& Rule15 (name, nodeIndex.GetElementsByName ("rateCutOffDaysOffset"), errorHandler)
 				& Rule15 (name, nodeIndex.GetElementsByName ("relativeDate"), errorHandler)
+				& Rule15 (name, nodeIndex.GetElementsByName ("fixingDateOffset"), errorHandler)
+				& Rule15 (name, nodeIndex.GetElementsByName ("initialFixingDate"), errorHandler)
+				& Rule15 (name, nodeIndex.GetElementsByName ("fixingDates"), errorHandler)
+				& Rule15 (name, nodeIndex.GetElementsByName ("cashSettlementValuationDate"), errorHandler)
 				& Rule15 (name, nodeIndex.GetElementsByName ("varyingNotionalInterimExchangePaymentDates"), errorHandler)
-				& Rule15 (name, nodeIndex.GetElementsByName ("varyingNotionalFixingDates"), errorHandler));
+				& Rule15 (name, nodeIndex.GetElementsByName ("varyingNotionalFixingDates"), errorHandler)
+				& Rule15 (name, nodeIndex.GetElementsByName ("feePaymentDate"), errorHandler)
+				& Rule15 (name, nodeIndex.GetElementsByName ("relativeDates"), errorHandler));
 		}
 
 		private static bool Rule15 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
