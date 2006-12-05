@@ -45,7 +45,7 @@ namespace HandCoded.FpML.Xml
 
 		/// <summary>
 		/// Constructs a <b>Builder</b> instance attached the root element of
-		/// a new FpML document.
+		/// a new FpML document of the given <see cref="SchemaRelease"/>.
 		/// </summary>
 		/// <param name="release">The FpML <see cref="SchemaRelease"/> to construct.</param>
 		public Builder (SchemaRelease release)
@@ -54,12 +54,13 @@ namespace HandCoded.FpML.Xml
 
 		/// <summary>
 		/// Constructs a <b>Builder</b> instance attached the root element of
-		/// a new FpML document of the given <see cref="SchemaRelease"/>.
+		/// a new FpML document of the given <see cref="SchemaRelease"/> and
+		/// which has the indicated message type.
 		/// </summary>
 		/// <param name="release">The FpML <see cref="SchemaRelease"/> to construct.</param>
 		/// <param name="type">The document or message type to construct.</param>
 		public Builder (SchemaRelease release, string type)
-			: base (release.NewInstance ("FpML"))
+			: this (release)
 		{
 			SetAttribute ("xsi:type", type);
 		}
