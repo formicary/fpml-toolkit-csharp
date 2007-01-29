@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FpML xmlns="http://www.fpml.org/2005/FpML-4-2" 
+	xmlns:ext="http://www.fpml.org/extensions" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.fpml.org/2005/FpML-4-2 fpml-main-4-2.xsd http://www.fpml.org/extensions fpml-extensions-1-0.xsd" 
+	xsi:type="RequestTradeConfirmation" 
+	version="4-2">
+	
+	<header>
+		<messageId 
+			messageIdScheme="http://www.jpmorgan.com/coding-scheme/message-id">345345</messageId>
+		<sentBy 
+			partyIdScheme="http://www.jpmorgan.com/coding-scheme/party-id">bmf</sentBy>
+		<creationTimestamp>2000-08-01T08:57:00-00:00</creationTimestamp>
+	</header>
+	
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="PartyA"/>
+				<tradeId 
+					tradeIdScheme="http://www.PartyA.com/coding-scheme/trade-id">1234</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate id="TradeDate">2005-07-13</tradeDate>
+		</tradeHeader>
+		
+		<ext:futureContract>
+			<!-- Tipo da operacao. -->
+			<productType>DollarFutureContract</productType>
+			<!-- Codigo do produto na JPM. -->
+			<productId 
+				productIdScheme="http://www.jpmorgan.com/coding-scheme/product-id">DOLF</productId>
+
+			<!-- PARA OPERACOES DE DOLAR A CONTRA-PARTE ## SEMPRE ## SERA A PROPRIA BMF
+				A FORMA COMO FOR PREENCHIDO VAI DEFINIR SE EH COMPRA OU VENDA.
+				- SERA COMPRA QUANDO 1 DOS 3 CLIENTES DO JPMC FOR COMPRADOR
+				- SERA VENDA QUANDO 1 DOS 3 CLIENTES DO JPMC FOR VENDEDOR  -->
+			<!-- Identificador do comprador. Abaixo esta a definicao deste 'LWT'-->
+			<buyerPartyReference href="LWT"/>
+			<!-- Identificacao do vendedor. Abaixo esta a definicao deste 'BMF'-->
+			<sellerPartyReference href="BMF"/>
+			<!-- se estiver sendo vendido, muda a posicao do cliente - um dos 3 que o JPMC trabalha e a BMF
+				  torna-se o buyer (comprador) -->
+		
+			<!-- PU -->
+			<ext:deliveryPrice>3200.00</ext:deliveryPrice>
+			<!-- Quantidade -->
+			<ext:numberOfContracts>200</ext:numberOfContracts>
+			<!-- Tipo da Modalidade: se a liquidacao sera fisica ou origina operacao futura -->
+			<ext:settlementType>Physical</ext:settlementType>
+			<!-- Dados de liquidacao -->
+			<ext:settlementDate>
+				<adjustableDate>
+					<!-- Data de vencimento do contrato -->
+					<unadjustedDate>2006-07-31</unadjustedDate>
+					<dateAdjustments>
+						<!-- Convencao de qual calendario sera utilizado. Manter NONE -->
+						<businessDayConvention>NONE</businessDayConvention>
+					</dateAdjustments>
+				</adjustableDate>
+			</ext:settlementDate>
+			
+			<!-- Dados do contrato -->
+			<ext:future>
+				<!-- Identificacao do instrumento. -->
+				<instrumentId 
+					instrumentIdScheme="http://www.bmf.com/coding-scheme/instrument-id">DOLQ6</instrumentId>
+				<!-- Descricao do instrumento. -->
+				<description>Dolar Comercial Futuro</description>
+				<!-- Moeda do contrato. -->
+				<currency>USD</currency>
+				<!-- Bolsa que esta sendo utilizada. -->
+				<exchangeId>BMF</exchangeId>
+				<!-- tamanho do contrato -->
+				<multiplier>100</multiplier>
+				<!-- data de liquidacao do contrato -->
+				<maturity>2006-08-01</maturity>
+			</ext:future>
+		</ext:futureContract>
+
+	</trade>
+	
+	<party id="PartyA">
+		<partyId>Party A</partyId>
+	</party>
+	<party id="BMF">
+		<partyId>BMF</partyId>
+	</party>
+	<party id="LWT">
+		<partyId>LWT</partyId>
+	</party>
+</FpML>
