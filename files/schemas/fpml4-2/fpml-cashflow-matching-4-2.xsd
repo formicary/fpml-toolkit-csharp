@@ -2,26 +2,16 @@
 <!-- 
 	== Copyright (c) 2002-2006. All rights reserved. 
 	== Financial Products Markup Language is subject to the FpML public license. 
-	== A copy of this license is available at http://www.fpml.org/documents/license
+	== A copy of this license is available at http://www.fpml.org/documents/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 884 $">
 	<xsd:include schemaLocation="fpml-msg-4-2.xsd"/>
 	<xsd:include schemaLocation="fpml-ird-4-2.xsd"/>
 	<xsd:include schemaLocation="fpml-valuation-base-4-2.xsd"/>
 	<xsd:include schemaLocation="fpml-tradeexec-4-2.xsd"/>
 	<xsd:complexType name="AllegedCashflow">
 		<xsd:sequence>
-			<xsd:element name="asOfDate" type="xsd:dateTime" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">The date and time at which the set of cashflows was defined.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="tradeCashflowsId" type="TradeCashflowsId">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">Unique identifier assigned by the party asserting the set of cashflows to be reconciled.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:group ref="TradeCashflows.model" minOccurs="0"/>
+			<xsd:group ref="DefinitionAndCashflows.model"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="AssertedCashflow">
@@ -29,17 +19,7 @@
 			<xsd:documentation xml:lang="en">A type that defines a cashflow (or set of cashflows for cross-currency swap) asserted by one of the parties.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="asOfDate" type="xsd:dateTime" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">The date and time at which the set of cashflows was defined.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="tradeCashflowsId" type="TradeCashflowsId">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">Unique identifier assigned by the party asserting the set of cashflows to be reconciled.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:group ref="TradeCashflows.model" minOccurs="0"/>
+			<xsd:group ref="DefinitionAndCashflows.model"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<!-- Message for cancellation of  payments to be reconciled-->
@@ -50,12 +30,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="NotificationMessage">
 				<xsd:sequence>
-					<xsd:element name="tradeCashflowsId" type="TradeCashflowsId">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">Unique identifier assigned by either party or matching service, as agreed, to a set of payments that need to be cancelled.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:group ref="TradeCashflows.model" minOccurs="0"/>
+					<xsd:group ref="IdAndTradeCashflows.model"/>
 					<xsd:element name="matchId" type="MatchId" minOccurs="0">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">A unique identifier assigned by matching service to each set of matched cashflows.</xsd:documentation>
@@ -96,6 +71,11 @@
 					<xsd:documentation xml:lang="en">Identifies the notional in effect for this calculation period.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
+			<xsd:element name="underlyer" type="TradeUnderlyer" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The underlyer(s) used to calculate the amount of this cashflow component. The underlyer(s) will remain unaltered from the values specified in the underlying transaction (i.e. the Fixed Rate on a Credit Default Swap).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
 			<xsd:element name="calculatedRate" type="CashflowFixing" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">The computed rate(s) or price(s) used to calculate the amount of this cashflow component. These computed rates or prices may include averaging and/or various types of rate treatment rules.</xsd:documentation>
@@ -113,7 +93,7 @@
 			<xsd:documentation xml:lang="en">The period calculation details for a calculation/accrual period. This will include information about the dates and duration of the accrual period, the rate fixing(s), the notional in effect, and the amount of the accrual.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="calculatedRateReference" type="Reference" minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="calculatedRateReference" type="CashflowFixingReference" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Reference to the fixing details defined somewhere in the document.</xsd:documentation>
 				</xsd:annotation>
@@ -133,7 +113,7 @@
 					<xsd:documentation xml:lang="en">The number of days from the adjusted effective / start date to the adjusted termination / end date calculated in accordance with the applicable day count fraction.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="fixedRateStepReference" type="Reference" minOccurs="0">
+			<xsd:element name="fixedRateStepReference" type="StepReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Reference to the fixed rate schedule's step in order to identify the calculation period fixed rate.</xsd:documentation>
 				</xsd:annotation>
@@ -165,7 +145,7 @@
 			<xsd:documentation xml:lang="en">Details of the computation of a computed rate or price used to calculate the amount of a cashflow component. This computed rate or price may include averaging and/or various types of rate treatment rules. The details include all of the observations, the calculation parameters, and the resulting value.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="observationReference" type="Reference" maxOccurs="unbounded">
+			<xsd:element name="observationReference" type="CashflowObservationReference" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Reference to the observation details of a particular rate observation.</xsd:documentation>
 				</xsd:annotation>
@@ -197,6 +177,14 @@
 			</xsd:element>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="CashflowFixingReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining a reference to a cash flow fixing component defined somewhere in the document.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Reference"/>
+		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="CashflowId">
 		<xsd:annotation>
@@ -238,9 +226,9 @@
 			<xsd:documentation xml:lang="en">An observation of a rate or a price of an underlyer used in the computation of a cash flow amount.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="underlyerReference" type="Reference">
+			<xsd:element name="underlyerReference" type="TradeUnderlyerReference">
 				<xsd:annotation>
-					<xsd:documentation xml:lang="en">The underlyer whose rate or price is observed. Reference to an underlyer defined within the tradeDetails structure.</xsd:documentation>
+					<xsd:documentation xml:lang="en">The underlyer whose rate or price is observed. Reference to an underlyer defined within the calculationElements structure.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element ref="underlyingAsset" minOccurs="0">
@@ -265,6 +253,14 @@
 			</xsd:element>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:ID" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="CashflowObservationReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Reference to a cash flow obervation component.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Reference"/>
+		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="GrossCashflow">
 		<xsd:annotation>
@@ -334,6 +330,14 @@
 			</xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
+	<xsd:complexType name="StepReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Reference to a Schedule's Step.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Reference"/>
+		</xsd:complexContent>
+	</xsd:complexType>
 	<!-- Message for assertion of  payments to be reconciled-->
 	<xsd:complexType name="TradeCashflowsAsserted">
 		<xsd:annotation>
@@ -342,16 +346,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="NotificationMessage">
 				<xsd:sequence>
-					<xsd:element name="asOfDate" type="xsd:dateTime" minOccurs="0">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">The date and time at which the set of cashflows was defined.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
-					<xsd:element name="tradeCashflowsId" type="TradeCashflowsId">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">Unique identifier assigned by either party or matching service, as agreed, to a set of cashflows.</xsd:documentation>
-						</xsd:annotation>
-					</xsd:element>
+					<xsd:group ref="TradeCashflowsDefinition.model"/>
 					<xsd:group ref="TradeCashflows.model"/>
 					<xsd:element name="matchId" type="MatchId" minOccurs="0">
 						<xsd:annotation>
@@ -423,17 +418,12 @@
 			<xsd:documentation xml:lang="en">"Other side's" cashflow that meets the minimimum matching criteria and is proposed as match to the cash flow that is being asserted.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="tradeCashflowsId" type="TradeCashflowsId">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">Unique identifier assigned by either party to a set of cashflows.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
+			<xsd:group ref="IdAndTradeCashflows.model"/>
 			<xsd:element name="matchId" type="MatchId">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A unique identifier assigned by the matching service to each set of matched cashflows.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:group ref="TradeCashflows.model" minOccurs="0"/>
 			<xsd:element name="difference" type="TradeDifference" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A type used to record the details of a difference between two sides of a payment.</xsd:documentation>
@@ -533,11 +523,19 @@
 		</xsd:choice>
 		<xsd:attribute name="id" type="xsd:ID"/>
 	</xsd:complexType>
+	<xsd:complexType name="TradeUnderlyerReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Reference to a trade underlyer component.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Reference"/>
+		</xsd:complexContent>
+	</xsd:complexType>
 	<xsd:complexType name="UnderlyerReferenceUnits">
 		<xsd:sequence>
-			<xsd:element name="underlyerReference" type="Reference">
+			<xsd:element name="underlyerReference" type="TradeUnderlyerReference">
 				<xsd:annotation>
-					<xsd:documentation xml:lang="en">Reference to the underlyer defined in the trade details structure.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Reference to the underlyer defined within the calculationElements structure.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="quantity" type="xsd:decimal">
@@ -547,6 +545,22 @@
 			</xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
+	<xsd:group name="DefinitionAndCashflows.model">
+		<xsd:sequence>
+			<xsd:group ref="TradeCashflowsDefinition.model"/>
+			<xsd:group ref="TradeCashflows.model" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="IdAndTradeCashflows.model">
+		<xsd:sequence>
+			<xsd:element name="tradeCashflowsId" type="TradeCashflowsId">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Unique identifier assigned by either party to a set of cashflows.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:group ref="TradeCashflows.model" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:group>
 	<xsd:group name="TradeCashflows.model">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">A group describing the cashflows owing on a particular adjustedPaymentDate for a specific trade.</xsd:documentation>
@@ -565,6 +579,20 @@
 			<xsd:element name="payment" type="PaymentMatching" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Specifies the payment that is exposed to the matching process. Usually there will be a single payment but for cross-currency swaps a different payment per currency shall be provided.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:group>
+	<xsd:group name="TradeCashflowsDefinition.model">
+		<xsd:sequence>
+			<xsd:element name="asOfDate" type="xsd:dateTime" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The date and time at which the set of cashflows was defined.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="tradeCashflowsId" type="TradeCashflowsId">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Unique identifier assigned by the party asserting the set of cashflows to be reconciled.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>

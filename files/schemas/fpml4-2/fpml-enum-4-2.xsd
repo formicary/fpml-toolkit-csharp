@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 
-== Copyright (c) 2002-2005. All rights reserved. 
+== Copyright (c) 2002-2006. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
-== A copy of this license is available at http://www.fpml.org/documents/license
+== A copy of this license is available at http://www.fpml.org/documents/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 884 $">
 	<xsd:simpleType name="AveragingInOutEnum">
 		<xsd:annotation>
 			<xsd:documentation source="http://www.FpML.org" xml:lang="en">The type of averaging used in an Asian option.</xsd:documentation>
@@ -1176,37 +1176,37 @@
 		<xsd:restriction base="xsd:token">
 			<xsd:enumeration value="AlternativeObligation">
 				<xsd:annotation>
-					<xsd:documentation source="http://www.FpML.org" xml:lang="en">The trade continues on the consideration paid out to holders of the original shares.</xsd:documentation>
+					<xsd:documentation source="http://www.FpML.org" xml:lang="en">The trade continues such that the underlying now consists of the New Shares and/or the Other Consideration, if any, and the proceeds of any redemption, if any, that the holder of the underlying Shares would have been entitled to.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="CancellationAndPayment">
 				<xsd:annotation>
-					<xsd:documentation source="http://www.FpML.org" xml:lang="en">The trade is terminated.</xsd:documentation>
+					<xsd:documentation source="http://www.FpML.org" xml:lang="en">The trade is cancelled and a cancellation fee will be paid by one party to the other.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="OptionsExchange">
 				<xsd:annotation>
-					<xsd:documentation source="http://www.FpML.org" xml:lang="en">The trade will be adjusted in accordance with any adjustment made by the exchange on which options on the underlying are listed.</xsd:documentation>
+					<xsd:documentation source="http://www.FpML.org" xml:lang="en">The trade will be adjusted by the Calculation Agent in accordance with the adjustments made by any exchange on which options on the underlying are listed.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="CalculationAgent">
 				<xsd:annotation>
-					<xsd:documentation source="http://www.FpML.org" xml:lang="en">The trade will be adjusted in accordance with any adjustment made by the exchange on which options on the underlying are listed.</xsd:documentation>
+					<xsd:documentation source="http://www.FpML.org" xml:lang="en">The Calculation Agent will determine what adjustment is required to offset any change to the economics of the trade. If the Calculation Agent cannot achieve this, the trade goes to Cancellation and Payment with the Calculation Agent deciding on the value of the cancellation fee. Adjustments may not be made to account solely for changes in volatility, expected dividends, stock loan rate or liquidity.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="ModifiedCalculationAgent">
 				<xsd:annotation>
-					<xsd:documentation source="http://www.FpML.org" xml:lang="en">The trade will be adjusted in accordance with any adjustment made by the exchange on which options on the underlying are listed.</xsd:documentation>
+					<xsd:documentation source="http://www.FpML.org" xml:lang="en">The Calculation Agent will determine what adjustment is required to offset any change to the economics of the trade. If the Calculation Agent cannot achieve this, the trade goes to Cancellation and Payment with the Calculation Agent deciding on the value of the cancellation fee. Adjustments to account for changes in volatility, expected dividends, stock loan rate or liquidity are allowed.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="PartialCancellationAndPayment">
 				<xsd:annotation>
-					<xsd:documentation source="http://www.FpML.org" xml:lang="en">The trade will be adjusted in accordance with any adjustment made by the exchange on which options on the underlying are listed.</xsd:documentation>
+					<xsd:documentation source="http://www.FpML.org" xml:lang="en">Applies to Basket Transactions. The portion of the Basket made up by the affected Share will be cancelled and a cancellation fee will be paid from one party to the other. The remainder of the trade continues.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 			<xsd:enumeration value="Component">
 				<xsd:annotation>
-					<xsd:documentation source="http://www.FpML.org" xml:lang="en">The trade will be adjusted in accordance with any adjustment made by the exchange on which options on the underlying are listed.</xsd:documentation>
+					<xsd:documentation source="http://www.FpML.org" xml:lang="en">If this is a Share-for-Combined merger event (Shares are replaced with New Shares and Other Consideration), then different treatment can be applied to each component if the parties have specified this.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:enumeration>
 		</xsd:restriction>

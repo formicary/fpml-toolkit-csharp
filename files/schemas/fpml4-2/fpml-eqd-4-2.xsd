@@ -2,9 +2,9 @@
 <!-- 
 == Copyright (c) 2002-2006. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
-== A copy of this license is available at http://www.fpml.org/documents/license
+== A copy of this license is available at http://www.fpml.org/documents/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1023 $">
 	<xsd:include schemaLocation="fpml-eq-shared-4-2.xsd"/>
 	<xsd:include schemaLocation="fpml-doc-4-2.xsd"/>
 	<xsd:complexType name="BrokerEquityOption">
@@ -302,7 +302,7 @@
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="settlementMethodElectionDate" type="AdjustableOrRelativeDate" minOccurs="0"/>
-			<xsd:element name="settlementMethodElectingPartyReference" type="Reference" minOccurs="0"/>
+			<xsd:element name="settlementMethodElectingPartyReference" type="PartyReference" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="EquityForward">
@@ -421,78 +421,26 @@
 						</xsd:annotation>
 					</xsd:element>
 					<xsd:element name="methodOfAdjustment" type="MethodOfAdjustmentEnum" minOccurs="0"/>
+					<xsd:element name="localJurisdiction" type="Country" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en"> Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:choice minOccurs="0">
+						<xsd:element name="optionEntitlement" type="xsd:decimal">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="en"> The number of shares per option comprised in the option transaction supplement.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="multiplier" type="xsd:integer">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="en"> Specifies the contract multiplier that can be associated with an index option.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:choice>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
-	</xsd:complexType>
-	<xsd:complexType name="EquityPremium">
-		<xsd:annotation>
-			<xsd:documentation xml:lang="en">A type used to describe the amount paid for an equity option.</xsd:documentation>
-			<xsd:documentation xml:lang="de">Typ zur Beschreibung des für eine Aktienoption gezahlten Betrages.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:group ref="PayerReceiver.model"/>
-			<xsd:element name="premiumType" type="PremiumTypeEnum" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">Forward start Premium type</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="paymentAmount" type="Money" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">The currency amount of the payment.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="paymentDate" type="AdjustableDate" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">The payment date. This date is subject to adjustment in accordance with any applicable business day convention.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="swapPremium" type="xsd:boolean" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">Specifies whether or not the premium is to be paid in the style of payments under an interest rate swap contract.</xsd:documentation>
-					<xsd:documentation xml:lang="de">Gibt die Zahlbarkeit der Prämie in Form von Zinsswap-Zahlungsströmen an.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="pricePerOption" type="Money" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">The amount of premium to be paid expressed as a function of the number of options.</xsd:documentation>
-					<xsd:documentation xml:lang="de">Zahlbare Prämie in Abhängigkeit von der Anzahl der Optionen.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="percentageOfNotional" type="xsd:decimal" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">The amount of premium to be paid expressed as a percentage of the notional value of the transaction. A percentage of 5% would be expressed as 0.05.</xsd:documentation>
-					<xsd:documentation xml:lang="de">Zahlbare Prämie, ausgedrückt als Prozentsatz des Nennwerts der Transaktion. (Ein Prozentsatz von 5 % wird als 0,05 dargestellt.)</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="EquityStrike">
-		<xsd:annotation>
-			<xsd:documentation xml:lang="en">A type for defining the strike price for an equity option. The strike price is either: (i) in respect of an index option transaction, the level of the relevant index specified or otherwise determined in the transaction; or (ii) in respect of a share option transaction, the price per share specified or otherwise determined in the transaction. This can be expressed either as a percentage of notional amount or as an absolute value.</xsd:documentation>
-			<xsd:documentation xml:lang="de">Typ zur Definition des Strike-Preises für eine Aktienoption. Der Strike-Preis ist: (i) bei Indexoptionen der Stand des jeweils spezifizierten oder anderweitig in der Transaktion bestimmten Index oder (ii) bei Aktienoptionen der Preis jeder spezifizierten oder anderweitig in der Transaktion bestimmten Aktie. Der Strike-Preis kann entweder als Prozentsatz des Nennwertes oder als absoluter Wert angegeben werden.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:choice>
-				<xsd:element name="strikePrice" type="xsd:decimal">
-					<xsd:annotation>
-						<xsd:documentation xml:lang="en">The price or level at which the option has been struck.</xsd:documentation>
-						<xsd:documentation xml:lang="de">Preis oder Niveau als Strike-Preis der Option.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:element>
-				<xsd:element name="strikePercentage" type="xsd:decimal">
-					<xsd:annotation>
-						<xsd:documentation xml:lang="en">The price or level expressed as a percentage of the forward starting spot price.</xsd:documentation>
-						<xsd:documentation xml:lang="de">Preis oder Niveau, ausgedrückt als Prozentsatz des für einen künftigen Zeitpunkt ermittelten Spotpreises.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:element>
-			</xsd:choice>
-			<xsd:element name="currency" type="Currency" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="PrePayment">
 		<xsd:annotation>

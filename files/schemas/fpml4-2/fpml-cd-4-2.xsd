@@ -2,9 +2,9 @@
 <!-- 
 == Copyright (c) 2002-2006. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
-== A copy of this license is available at http://www.fpml.org/documents/license
+== A copy of this license is available at http://www.fpml.org/documents/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 884 $">
 	<xsd:include schemaLocation="fpml-asset-4-2.xsd"/>
 	<xsd:complexType name="AdditionalTerm">
 		<xsd:simpleContent>
@@ -118,7 +118,6 @@
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
-				<xsd:attribute name="id" type="xsd:ID" use="optional"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -369,7 +368,7 @@
 		<xsd:sequence>
 			<xsd:element name="initialPayment" type="InitialPayment" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation xml:lang="en">Specifies a single fixed payment that is payable by the payer to the receiver on the initial payment date. The fixed payment to be paid is specified in terms of a known currency amount. This element only should be used for CDS Index trades. Upfront payments on Single Name CDS trades should use the singlePayment element.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Specifies a single fixed payment that is payable by the payer to the receiver on the initial payment date. The fixed payment to be paid is specified in terms of a known currency amount. This element should be used for CDS Index trades and can be used for CDS trades where it is necessary to represent a payment from Seller to Buyer. For CDS trades where a payment is to be made from Buyer to Seller the feeLeg/singlePayment structure must be used.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="singlePayment" type="SinglePayment" minOccurs="0" maxOccurs="unbounded">
@@ -420,12 +419,12 @@
 					<xsd:documentation xml:lang="en">The scheduled date on which the credit protection will lapse. May be specified as an adjusting or non-adjusting date or alternatively as a period offset from the effective date. ISDA 2003 Term: Scheduled Termination Date</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="sellerPartyReference" type="Reference">
+			<xsd:element name="sellerPartyReference" type="PartyOrTradeSideReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">The seller of the credit protection. ISDA 2003 Term: Floating Rate Payer.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="buyerPartyReference" type="Reference">
+			<xsd:element name="buyerPartyReference" type="PartyOrTradeSideReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">The buyer of the credit protection. ISDA 2003 Term: Fixed Rate Payer.</xsd:documentation>
 				</xsd:annotation>
@@ -632,8 +631,8 @@
 	</xsd:complexType>
 	<xsd:complexType name="NotifyingParty">
 		<xsd:sequence>
-			<xsd:element name="buyerPartyReference" type="Reference"/>
-			<xsd:element name="sellerPartyReference" type="Reference" minOccurs="0"/>
+			<xsd:element name="buyerPartyReference" type="PartyReference"/>
+			<xsd:element name="sellerPartyReference" type="PartyReference" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="Obligations">
@@ -716,8 +715,8 @@
 		<xsd:sequence>
 			<xsd:element name="partialCashSettlement" type="Empty" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation xml:lang="en">Specifies whether either 'Partial Cash Settlement of Assignable Loans', 'Partial Cash Settlement of Consent Required Loans' or 'Partial Cash Settlement of Participations' is applicable. If this element is specified and Assignable Loan is a Deliverable Obligation Chracteristic, any Assignable Loan that is deliverable, but where a non-receipt of Consent by the Physical Settlement Date has occurred, the Loan can be cash settled rather than physically delivered. If this element is specified and Consent Required Loan is a Deliverable Obligation Characterisitc, any Consent Required Loan that is deliverable, but where a non-receipt of Consent by the Physical Settlement Date has occurred, the Loan can be cash settled rather than physically delivered. If this element is specified and Direct Loan Participation is a Deliverable Obligation Characterisitic, any Participation that is deliverable, but where this participation has not been effected
-						(has not come into effect) by the Physical Settlement Date, the participation can be cash settled rather than physically delivered.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Specifies whether either 'Partial Cash Settlement of Assignable Loans', 'Partial Cash Settlement of Consent Required Loans' or 'Partial Cash Settlement of Participations' is applicable. If this element is specified and Assignable Loan is a Deliverable Obligation Chracteristic, any Assignable Loan that is deliverable, but where a non-receipt of Consent by the Physical Settlement Date has occurred, the Loan can be cash settled rather than physically delivered. If this element is specified and Consent Required Loan is a Deliverable Obligation Characterisitc, any Consent Required Loan that is deliverable, but where a non-receipt of Consent by the Physical Settlement Date has occurred, the Loan can be cash settled rather than physically delivered. If this element is specified and Direct Loan Participation is a Deliverable Obligation Characterisitic, any Participation that is deliverable, but where this participation
+						has not been effected (has not come into effect) by the Physical Settlement Date, the participation can be cash settled rather than physically delivered.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
@@ -808,8 +807,8 @@
 					</xsd:element>
 					<xsd:element name="sixtyBusinessDaySettlementCap" type="xsd:boolean" minOccurs="0">
 						<xsd:annotation>
-							<xsd:documentation xml:lang="en">If this element is specified, for a transaction documented under the 2003 ISDA Credit Derivatives Definitions, has the effect of incorporating the language set forth below into the confirmation. The section references are to the 2003 ISDA Credit Derivatives Definitions. Notwithstanding Section 1.7 or any provisions of Sections 9.9 or 9.10 to the contrary, but without prejudice to Section 9.3 and (where applicable) Sections 9.4, 9.5 and 9.6, if the Termination Date has not occurred on or prior to the date that is 60 Business Days following the Physical Settlement Date, such 60th Business Day shall be deemed to be the Termination Date with respect to this Transaction except in relation to any portion of the Transaction (an "Affected Portion") in respect of which: (1) a valid notice of Buy-in Price has been delivered that is effective fewer than three Business Days prior to such 60th Business Day, in which case the Termination
-								Date for that Affected Portion shall be the third Business Day following the date on which such notice is effective; or (2) Buyer has purchased but not Delivered Deliverable Obligations validly specified by Seller pursuant to Section 9.10(b), in which case the Termination Date for that Affected Portion shall be the tenth Business Day following the date on which Seller validly specified such Deliverable Obligations to Buyer.</xsd:documentation>
+							<xsd:documentation xml:lang="en">If this element is specified, for a transaction documented under the 2003 ISDA Credit Derivatives Definitions, has the effect of incorporating the language set forth below into the confirmation. The section references are to the 2003 ISDA Credit Derivatives Definitions. Notwithstanding Section 1.7 or any provisions of Sections 9.9 or 9.10 to the contrary, but without prejudice to Section 9.3 and (where applicable) Sections 9.4, 9.5 and 9.6, if the Termination Date has not occurred on or prior to the date that is 60 Business Days following the Physical Settlement Date, such 60th Business Day shall be deemed to be the Termination Date with respect to this Transaction except in relation to any portion of the Transaction (an "Affected Portion") in respect of which: (1) a valid notice of Buy-in Price has been delivered that is effective fewer than three Business Days prior to such 60th Business Day, in
+								which case the Termination Date for that Affected Portion shall be the third Business Day following the date on which such notice is effective; or (2) Buyer has purchased but not Delivered Deliverable Obligations validly specified by Seller pursuant to Section 9.10(b), in which case the Termination Date for that Affected Portion shall be the tenth Business Day following the date on which Seller validly specified such Deliverable Obligations to Buyer.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
@@ -835,6 +834,14 @@
 			</xsd:element>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:ID" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="ProtectionTermsReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Reference to protectionTerms component.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Reference"/>
+		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="PubliclyAvailableInformation">
 		<xsd:sequence>
@@ -903,7 +910,7 @@
 						<xsd:documentation xml:lang="en">The entity primarily responsible for repaying debt to a creditor as a result of borrowing or issuing bonds. ISDA 2003 Term: Primary Obligor</xsd:documentation>
 					</xsd:annotation>
 				</xsd:element>
-				<xsd:element name="primaryObligorReference" type="Reference">
+				<xsd:element name="primaryObligorReference" type="LegalEntityReference">
 					<xsd:annotation>
 						<xsd:documentation xml:lang="en">A pointer style reference to a reference entity defined elsewhere in the document. Used when the reference entity is the primary obligor.</xsd:documentation>
 					</xsd:annotation>
@@ -915,7 +922,7 @@
 						<xsd:documentation xml:lang="en">The party that guarantees by way of a contractual arrangement to pay the debts of an obligor if the obligor is unable to make the required payments itself. ISDA 2003 Term: Guarantor</xsd:documentation>
 					</xsd:annotation>
 				</xsd:element>
-				<xsd:element name="guarantorReference" type="Reference">
+				<xsd:element name="guarantorReference" type="LegalEntityReference">
 					<xsd:annotation>
 						<xsd:documentation xml:lang="en">A pointer style reference to a reference entity defined elsewhere in the document. Used when the reference entity is the guarantor.</xsd:documentation>
 					</xsd:annotation>
@@ -968,12 +975,12 @@
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="referencePair" type="ReferencePair"/>
-			<xsd:element name="protectionTermsReference" type="Reference" minOccurs="0">
+			<xsd:element name="protectionTermsReference" type="ProtectionTermsReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Reference to the documentation terms applicable to this item.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="settlementTermsReference" type="Reference" minOccurs="0">
+			<xsd:element name="settlementTermsReference" type="SettlementTermsReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Reference to the settlement terms applicable to this item.</xsd:documentation>
 				</xsd:annotation>
@@ -1034,6 +1041,15 @@
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="SettlementTermsReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Reference to a settlement terms derived construct (cashSettlementTerms or physicalSettlementTerms).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Reference"/>
+		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="SinglePayment">
 		<xsd:sequence>
@@ -1089,11 +1105,7 @@
 			</xsd:element>
 			<xsd:element name="incurredRecoveryApplicable" type="xsd:boolean" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation xml:lang="en">
-						Outstanding Swap Notional Amount is defined at any time on any day, as the greater of:
-						(a) Zero; If Incurred Recovery Amount Applicable:
-						(b) The Original Swap Notional Amount minus the sum of all Incurred Loss Amounts and all Incurred Recovery Amounts (if any) determined under this Confirmation at or prior to such time.Incurred Recovery Amount not populated:
-						(b) The Original Swap Notional Amount minus the sum of all Incurred Loss Amounts determined under this Confirmation at or prior to such time.</xsd:documentation>
+					<xsd:documentation xml:lang="en"> Outstanding Swap Notional Amount is defined at any time on any day, as the greater of: (a) Zero; If Incurred Recovery Amount Applicable: (b) The Original Swap Notional Amount minus the sum of all Incurred Loss Amounts and all Incurred Recovery Amounts (if any) determined under this Confirmation at or prior to such time.Incurred Recovery Amount not populated: (b) The Original Swap Notional Amount minus the sum of all Incurred Loss Amounts determined under this Confirmation at or prior to such time.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>

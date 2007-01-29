@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 
-== Copyright (c) 2002-2005. All rights reserved. 
+== Copyright (c) 2002-2006. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
-== A copy of this license is available at http://www.fpml.org/documents/license
+== A copy of this license is available at http://www.fpml.org/documents/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 905 $">
 	<xsd:include schemaLocation="fpml-asset-4-2.xsd"/>
 	<xsd:include schemaLocation="fpml-valuation-base-4-2.xsd"/>
 	<xsd:include schemaLocation="fpml-cd-4-2.xsd"/>
 	<xsd:include schemaLocation="fpml-shared-4-2.xsd"/>
-	<xsd:complexType name="AssetReference">
-		<xsd:annotation>
-			<xsd:documentation xml:lang="en">A reference to an asset, e.g. a portfolio, trade, or reference instrument..</xsd:documentation>
-		</xsd:annotation>
-		<xsd:attribute name="href" use="required" type="xsd:IDREF"/>
-	</xsd:complexType>
-               <xsd:complexType name="CompoundingFrequency">
+	<xsd:complexType name="CompoundingFrequency">
 		<xsd:annotation>
 			<xsd:documentation source="http://www.FpML.org" xml:lang="en">The frequency at which a rate is compounded.</xsd:documentation>
 		</xsd:annotation>
@@ -73,7 +67,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="PricingStructureValuation">
 				<xsd:sequence>
-					<xsd:element name="baseYieldCurve" type="Reference">
+					<xsd:element name="baseYieldCurve" type="PricingStructureReference">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">A reference to the yield curve values used as a basis for this credit curve valuation.</xsd:documentation>
 						</xsd:annotation>
@@ -123,8 +117,8 @@
 		<xsd:complexContent>
 			<xsd:extension base="PricingStructureValuation">
 				<xsd:sequence>
-					<xsd:element name="settlementCurrencyYieldCurve" type="Reference" minOccurs="0"/>
-					<xsd:element name="forecastCurrencyYieldCurve" type="Reference" minOccurs="0"/>
+					<xsd:element name="settlementCurrencyYieldCurve" type="PricingStructureReference" minOccurs="0"/>
+					<xsd:element name="forecastCurrencyYieldCurve" type="PricingStructureReference" minOccurs="0"/>
 					<xsd:element name="spotRate" type="FxRateSet" minOccurs="0"/>
 					<xsd:element name="fxForwardCurve" type="TermCurve" minOccurs="0">
 						<xsd:annotation>
@@ -286,6 +280,14 @@
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:ID"/>
 	</xsd:complexType>
+	<xsd:complexType name="PricingDataPointCoordinateReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Reference to a Pricing Data Point Coordinate.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Reference"/>
+		</xsd:complexContent>
+	</xsd:complexType>
 	<xsd:complexType name="PricingInputType">
 		<xsd:annotation>
 			<xsd:documentation source="http://www.FpML.org" xml:lang="en">The type of pricing structure represented.</xsd:documentation>
@@ -301,12 +303,12 @@
 			<xsd:documentation xml:lang="en">For an asset (e.g. a reference/benchmark asset), the pricing structure used to price it. Used, for example, to specify that the rateIndex "USD-LIBOR-Telerate" with term = 6M is priced using the "USD-LIBOR-Close" curve.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="assetReference" type="AssetReference">
+			<xsd:element name="assetReference" type="AnyAssetReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">The asset whose price is required.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="pricingInputReference" type="Reference">
+			<xsd:element name="pricingInputReference" type="PricingStructureReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the pricing input used to value the asset.</xsd:documentation>
 				</xsd:annotation>
@@ -337,6 +339,14 @@
 			</xsd:element>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="PricingStructureReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Reference to a pricing structure or any derived components (i.e. yield curve).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Reference"/>
+		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="PricingStructurePoint">
 		<xsd:annotation>
@@ -445,7 +455,6 @@
 				</xsd:element>
 			</xsd:sequence>
 		</xsd:choice>
-		<xsd:attribute name="href" type="xsd:IDREF"/>
 	</xsd:complexType>
 	<xsd:complexType name="VolatilityMatrix">
 		<xsd:annotation>
@@ -475,7 +484,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="PricingStructure">
 				<xsd:sequence>
-					<xsd:element name="asset" type="AssetReference">
+					<xsd:element name="asset" type="AnyAssetReference">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">A reference to the asset whose volatility is modeled.</xsd:documentation>
 						</xsd:annotation>
@@ -637,7 +646,7 @@
 					<xsd:documentation xml:lang="en">An explicit, filled in data point coordinate. This might specify expiration, strike, etc.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="coordinateReference" type="Reference">
+			<xsd:element name="coordinateReference" type="PricingDataPointCoordinateReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to a pricing data point coordinate within this document.</xsd:documentation>
 				</xsd:annotation>

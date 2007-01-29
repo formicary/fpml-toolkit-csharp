@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 
-== Copyright (c) 2002-2005. All rights reserved. 
+== Copyright (c) 2002-2006. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
-== A copy of this license is available at http://www.fpml.org/documents/license
+== A copy of this license is available at http://www.fpml.org/documents/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 884 $">
 	<xsd:include schemaLocation="fpml-shared-4-2.xsd"/>
 	<xsd:complexType name="CutName">
 		<xsd:annotation>
@@ -426,7 +426,7 @@
 							<xsd:documentation xml:lang="en">Used to describe a particular type of FX forward transaction that is settled in a single currency.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
-					<xsd:element name="confirmationSenderPartyReference" type="Reference" minOccurs="0">
+					<xsd:element name="confirmationSenderPartyReference" type="PartyReference" minOccurs="0">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">A reference to the party that is sending the current document as a confirmation of the trade.</xsd:documentation>
 						</xsd:annotation>
@@ -687,12 +687,12 @@
 		<xsd:complexContent>
 			<xsd:extension base="Product">
 				<xsd:sequence>
-					<xsd:element name="initialPayerReference" type="Reference">
+					<xsd:element name="initialPayerReference" type="PartyReference">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">A pointer style reference to a party identifier defined elsewhere in the document. The party referenced is the payer of the initial principal of the deposit on the start date.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
-					<xsd:element name="initialReceiverReference" type="Reference">
+					<xsd:element name="initialReceiverReference" type="PartyReference">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">A pointer style reference to a party identifier defined elsewhere in the document. The party is the receiver of the initial principal of the deposit on the start date.</xsd:documentation>
 						</xsd:annotation>

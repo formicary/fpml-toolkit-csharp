@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 
-== Copyright (c) 2002-2005. All rights reserved. 
+== Copyright (c) 2002-2006. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
-== A copy of this license is available at http://www.fpml.org/documents/license
+== A copy of this license is available at http://www.fpml.org/documents/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 884 $">
 	<xsd:include schemaLocation="fpml-riskdef-4-2.xsd"/>
 	<xsd:include schemaLocation="fpml-doc-4-2.xsd"/>
 	<xsd:complexType name="AssetValuation">
@@ -38,7 +38,7 @@
 					<xsd:documentation xml:lang="en">The (optional) name for this valuation scenario, used for understandability. For example "EOD Valuations".</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="baseValuationScenario" type="Reference">
+			<xsd:element name="baseValuationScenario" type="ValuationScenarioReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">An (optional) reference to a valuation scenario from which this one is derived.</xsd:documentation>
 				</xsd:annotation>
@@ -48,7 +48,7 @@
 					<xsd:documentation xml:lang="en">The (optional) date for which the assets are valued. If not present, the valuation date will be that of the base valuation scenario. </xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="marketReference" type="Reference" minOccurs="0">
+			<xsd:element name="marketReference" type="MarketReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the market environment used to price the asset. If not present, the market will be that of the base valuation scenario.</xsd:documentation>
 				</xsd:annotation>
@@ -60,6 +60,14 @@
 			</xsd:element>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="MarketReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Reference to a market structure.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Reference"/>
+		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="Position">
 		<xsd:annotation>
@@ -139,12 +147,12 @@
 			<xsd:documentation xml:lang="en">The substitution of a pricing input (e.g. curve) for another, used in generating prices and risks for valuation scenarios.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="originalInputReference" type="Reference">
+			<xsd:element name="originalInputReference" type="PricingStructureReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the original value of the pricing input.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="replacementInputReference" type="Reference">
+			<xsd:element name="replacementInputReference" type="PricingStructureReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the substitution to do.</xsd:documentation>
 				</xsd:annotation>
@@ -169,22 +177,22 @@
 			<xsd:documentation xml:lang="en">The roles of the parties in reporting information such as positions.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="baseParty" type="Reference">
+			<xsd:element name="baseParty" type="PartyReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the party from whose perspective the position is valued, ie. the owner or holder of the position.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="activityProvider" type="Reference" minOccurs="0">
+			<xsd:element name="activityProvider" type="PartyReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the party responsible for reporting trading activities.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="positionProvider" type="Reference" minOccurs="0">
+			<xsd:element name="positionProvider" type="PartyReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the party responsible for reporting the position itself and its constituents.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="valuationProvider" type="Reference" minOccurs="0">
+			<xsd:element name="valuationProvider" type="PartyReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the party responsible for calculating and reporting the valuations of the positions.</xsd:documentation>
 				</xsd:annotation>
@@ -202,7 +210,7 @@
 					<xsd:documentation xml:lang="en">The type of the date, e.g. next or previous payment.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="assetReference" type="Reference" minOccurs="0">
+			<xsd:element name="assetReference" type="AnyAssetReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the leg (or other product component) for which these dates occur.</xsd:documentation>
 				</xsd:annotation>
@@ -257,7 +265,7 @@
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:element name="name" type="xsd:string" minOccurs="0"/>
-			<xsd:element name="definitionReference" type="Reference" minOccurs="0">
+			<xsd:element name="definitionReference" type="SensitivitySetReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to a sensitivity set definition.</xsd:documentation>
 				</xsd:annotation>
@@ -266,9 +274,17 @@
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:ID"/>
 	</xsd:complexType>
+	<xsd:complexType name="SensitivitySetReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Reference to a sensitivity set.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Reference"/>
+		</xsd:complexContent>
+	</xsd:complexType>
 	<xsd:complexType name="Valuations">
 		<xsd:annotation>
-			<xsd:documentation xml:lang="en"></xsd:documentation>
+			<xsd:documentation xml:lang="en">A set of valuation.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:group ref="AssetValuationOrReference.model" maxOccurs="unbounded"/>
@@ -289,7 +305,7 @@
 					<xsd:documentation xml:lang="en">The date for which the assets are valued.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="marketReference" type="Reference" minOccurs="0">
+			<xsd:element name="marketReference" type="MarketReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the market environment used to price the asset.</xsd:documentation>
 				</xsd:annotation>
@@ -322,12 +338,12 @@
 					<xsd:documentation xml:lang="en">Valuation scenerios used (requested/reported) in this valuation set. E.g., the EOD valuation scenario for a particular value date. Used for the first occurrence of a valuation scenario in a document.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="valuationScenarioReference" type="Reference" minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="valuationScenarioReference" type="ValuationScenarioReference" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">References to valuation scenarios used (requested/reported) in this valuation set. E..g, a reference to the EOD valuation scenario for a particular value date. Used for subsequence occurrences of a valuation set in an FpML document.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="baseParty" type="Reference" minOccurs="0">
+			<xsd:element name="baseParty" type="PartyReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Reference to the party from whose point of view the assets are valued.</xsd:documentation>
 				</xsd:annotation>
@@ -388,7 +404,7 @@
 					<xsd:documentation xml:lang="en"></xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="valuationReference" type="Reference">
+			<xsd:element name="valuationReference" type="ValuationReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to a quotation</xsd:documentation>
 				</xsd:annotation>
@@ -405,7 +421,7 @@
 					<xsd:documentation xml:lang="en">The value that is associated with the scheduled date.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="associatedValueReference" type="Reference">
+			<xsd:element name="associatedValueReference" type="ValuationReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the value associated with this scheduled date.</xsd:documentation>
 				</xsd:annotation>

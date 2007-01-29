@@ -2,10 +2,18 @@
 <!-- 
 == Copyright (c) 2002-2005. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
-== A copy of this license is available at http://www.fpml.org/documents/license
+== A copy of this license is available at http://www.fpml.org/documents/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 884 $">
 	<xsd:include schemaLocation="fpml-mktenv-4-2.xsd"/>
+	<xsd:complexType name="AssetOrTermPointOrPricingStructureReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Reference to an underlying asset, term point or pricing structure (yield curve).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Reference"/>
+		</xsd:complexContent>
+	</xsd:complexType>
 	<xsd:complexType name="DenominatorTerm">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">The type defining a denominator term of the formula. Its value is (sum of weighted partials) ^ power. </xsd:documentation>
@@ -73,7 +81,7 @@
 					<xsd:documentation xml:lang="en">The coefficient by which this term is multiplied, typically 1 or -1.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="partialDerivativeReference" type="Reference" maxOccurs="unbounded">
+			<xsd:element name="partialDerivativeReference" type="PricingParameterDerivativeReference" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the partial derivative.</xsd:documentation>
 				</xsd:annotation>
@@ -101,12 +109,12 @@
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:choice>
-				<xsd:element name="parameterReference" type="Reference" minOccurs="0">
+				<xsd:element name="parameterReference" type="AssetOrTermPointOrPricingStructureReference" minOccurs="0">
 					<xsd:annotation>
 						<xsd:documentation xml:lang="en">A reference to the pricing input parameter to which the sensitivity is computed. If it is omitted, the derivative definition is generic, and applies to any input point in the valuation set.</xsd:documentation>
 					</xsd:annotation>
 				</xsd:element>
-				<xsd:element name="inputDateReference" type="Reference" maxOccurs="unbounded">
+				<xsd:element name="inputDateReference" type="ValuationReference" maxOccurs="unbounded">
 					<xsd:annotation>
 						<xsd:documentation xml:lang="en">Reference(s) to the pricing input dates that are shifted when the sensitivity is computed. Depending on the time advance method used, this list could vary. Used for describing time-advance derivatives (theta, carry, etc.)</xsd:documentation>
 					</xsd:annotation>
@@ -120,12 +128,20 @@
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:ID"/>
 	</xsd:complexType>
+	<xsd:complexType name="PricingParameterDerivativeReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Reference to a partial derivative.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="Reference"/>
+		</xsd:complexContent>
+	</xsd:complexType>
 	<xsd:complexType name="PricingParameterShift">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">A definition of a shift with respect to a specific pricing parameter.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="parameterReference" type="Reference"/>
+			<xsd:element name="parameterReference" type="AssetOrTermPointOrPricingStructureReference"/>
 			<xsd:element name="shift" type="xsd:decimal">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">The size of the denominator, e.g. 0.0001 = 1 bp.</xsd:documentation>
@@ -149,7 +165,7 @@
 					<xsd:documentation xml:lang="en">The name of the derivative, e.g. first derivative, Hessian, etc. Typically not required, but may be used to explain more complex derivative calculations.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="valuationScenarioReference" type="Reference" minOccurs="0">
+			<xsd:element name="valuationScenarioReference" type="ValuationScenarioReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Reference to the valuation scenario to which this sensitivity definition applies. If the SensitivityDefinition occurs within a SensitivitySetDefinition, this is not required and normally not used. In this case, if it is supplied it overrides the valuationScenarioReference in the SensitivitySetDefinition.</xsd:documentation>
 				</xsd:annotation>
@@ -176,7 +192,7 @@
 					<xsd:documentation xml:lang="en">The default characteristics of the quotation, e.g. type, units, etc.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="valuationScenarioReference" type="Reference" minOccurs="0">
+			<xsd:element name="valuationScenarioReference" type="ValuationScenarioReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Reference to the valuation scenario to which this sensitivity definition applies, e.g. a reference to the EOD valuation scenario. If not supplied, this sensitivity set definition is generic to a variety of valuation scenarios.</xsd:documentation>
 				</xsd:annotation>
@@ -186,7 +202,7 @@
 					<xsd:documentation xml:lang="en">The type of the pricing input to which the sensitivity is shown, e.g. a yield curve or volatility matrix.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="pricingInputReference" type="Reference" minOccurs="0">
+			<xsd:element name="pricingInputReference" type="PricingStructureReference" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the pricing input to which the sensitivity is shown, e.g. a reference to a USDLIBOR yield curve.</xsd:documentation>
 				</xsd:annotation>
@@ -214,7 +230,7 @@
 			<xsd:documentation xml:lang="en">A partial derivative multiplied by a weighting factor.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="partialDerivativeReference" type="Reference">
+			<xsd:element name="partialDerivativeReference" type="PricingStructureReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to a partial derivative defined in the ComputedDerivative.model, i.e. defined as part of this sensitivity definition.</xsd:documentation>
 				</xsd:annotation>
@@ -309,7 +325,7 @@
 			<xsd:documentation xml:lang="en">Parameters used in the computation of a derivative by substituting a supplied market environment.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="replacementMarketInput" type="Reference">
+			<xsd:element name="replacementMarketInput" type="PricingStructureReference">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">A reference to the replacement version of the market input, e.g. a bumped yield curve.</xsd:documentation>
 				</xsd:annotation>
