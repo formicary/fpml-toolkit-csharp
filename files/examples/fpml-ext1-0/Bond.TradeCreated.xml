@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FpML xmlns="http://www.fpml.org/2005/FpML-4-2" 
+	xmlns:ext="http://www.fpml.org/extensions" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.fpml.org/2005/FpML-4-2 fpml-main-4-2.xsd http://www.fpml.org/extensions fpml-extensions-1-0.xsd" 
+	xsi:type="TradeCreated" 
+	version="4-2">
+	
+	<header>
+		<messageId 
+			messageIdScheme="http://www.SampleClient.com/coding-schemes/message-id">GW:2W81Q117</messageId>
+		<sentBy 
+			partyIdScheme="http://www.SampleClient.com/coding-schemes/party-id">BGIAGB2L</sentBy>
+		<sendTo 
+			partyIdScheme="http://www.SampleClient.com/coding-schemes/party-id">WSSOGB2L</sendTo>
+		<creationTimestamp>2005-03-14T09:55:42-07:00</creationTimestamp>
+	</header>
+	
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="JPM"/>
+				<!-- source system reference number -->
+				<tradeId
+					tradeIdScheme="http://www.SourceSystem.com/coding-schemes/tradeId">IFSGBPBAR14YR377</tradeId>
+			</partyTradeIdentifier>
+			<!-- trade date -->
+			<tradeDate id="TradeDate">2005-03-14</tradeDate>
+		</tradeHeader>
+		<ext:bondContract>
+			<productType>Bond</productType>
+			<!-- counter party code -->
+			<buyerPartyReference href="SampleClient"/>
+			<!-- buy / sell indicator -->
+			<sellerPartyReference href="JPM"/>
+			<ext:notionalAmount>
+				<currency>USD</currency>
+				<amount>10000</amount>
+			</ext:notionalAmount>
+			<!-- clean price -->
+			<ext:cleanPrice>98.45</ext:cleanPrice>
+			<ext:tradedFlatOfAccrued>true</ext:tradedFlatOfAccrued>
+			<!-- settlement date -->
+			<ext:settlementDate>
+				<adjustableDate>
+					<unadjustedDate>2005-03-17</unadjustedDate>
+					<dateAdjustments>
+						<businessDayConvention>NONE</businessDayConvention>
+					</dateAdjustments>
+				</adjustableDate>
+			</ext:settlementDate>
+			<ext:settlementCurrency>USD</ext:settlementCurrency>
+			<ext:bond>
+				<!-- instrument ISIN -->
+				<instrumentId 
+					instrumentIdScheme="uri:ISINs">459200AL5</instrumentId>
+				<!-- face amount -->
+				<faceAmount>1000</faceAmount>
+			</ext:bond>
+		</ext:bondContract>
+	</trade>
+	
+	<party id="SampleClient">
+		<partyId>BARCGB21</partyId>
+	</party>
+	<party id="JPM">
+		<partyId>JPM</partyId>
+		<!-- desk / account portfolio -->
+		<account id="JPMBondDeskAccount">
+			<accountId 
+				accountIdScheme="http//ibml.jpmorgan.com/coding-scheme/account-id">WGR402</accountId>
+		</account>
+	</party>
+	
+</FpML>

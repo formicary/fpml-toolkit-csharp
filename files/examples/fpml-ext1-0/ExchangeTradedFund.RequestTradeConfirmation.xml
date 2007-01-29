@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FpML xmlns="http://www.fpml.org/2005/FpML-4-2" 
+	xmlns:ext="http://www.fpml.org/extensions" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.fpml.org/2005/FpML-4-2 fpml-main-4-2.xsd http://www.fpml.org/extensions fpml-extensions-1-0.xsd" 
+	xsi:type="RequestTradeConfirmation" 
+	version="4-2">
+	
+	<header>
+		<messageId 
+			messageIdScheme="http://www.jpmorgan.com/coding-scheme/message-id">3454353454</messageId>
+		<sentBy 
+			partyIdScheme="http://www.jpmorgan.com/coding-scheme/party-id">msdw</sentBy>
+		<creationTimestamp>2000-08-01T08:57:00-00:00</creationTimestamp>
+	</header>
+	
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="PartyA"/>
+				<tradeId 
+					tradeIdScheme="http://www.PartyA.com/coding-scheme/tradeId">1234</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate id="TradeDate">2005-07-13</tradeDate>
+		</tradeHeader>
+		<ext:exchangeTradedFundContract>
+			<productType>ExchangeTradedFund</productType>
+			<buyerPartyReference href="PartyB"/>
+			<sellerPartyReference href="PartyA"/>
+			<ext:numberOfUnits>10000</ext:numberOfUnits>
+			<ext:unitPrice>
+				<currency>USD</currency>
+				<amount>45.80</amount>
+			</ext:unitPrice>
+			<ext:settlementDate>
+				<relativeDate>
+					<periodMultiplier>3</periodMultiplier>
+					<period>D</period>
+					<dayType>Business</dayType>
+					<businessDayConvention>NONE</businessDayConvention>
+					<businessCenters>
+						<businessCenter>EUTA</businessCenter>
+					</businessCenters>
+					<dateRelativeTo href="TradeDate"/>
+				</relativeDate>
+			</ext:settlementDate>
+			<ext:settlementCurrency>USD</ext:settlementCurrency>
+			<ext:exchangeTradedFund>
+				<instrumentId 
+					instrumentIdScheme="http://www.jpmorgan.com/coding-scheme/instrumentId">SPX</instrumentId>
+				<description>S AND P 500 Index</description>
+				<exchangeId 
+					exchangeIdScheme="http://www.jpmorgan.com/coding-scheme/exchangeId">AMEX</exchangeId>
+			</ext:exchangeTradedFund>
+		</ext:exchangeTradedFundContract>
+	</trade>
+	
+	<party id="PartyA">
+		<partyId>Party A</partyId>
+	</party>
+	<party id="PartyB">
+		<partyId>Party B</partyId>
+	</party>
+</FpML>
