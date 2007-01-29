@@ -96,7 +96,7 @@
 								<period>M</period>
 							</indexTenor>
 						</floatingRateCalculation>
-						<dayCountFraction dayCountFractionScheme="http://www.fpml.org/spec/2004/day-count-fraction-1-0">ACT/360</dayCountFraction>
+						<dayCountFraction>ACT/360</dayCountFraction>
 					</calculation>
 				</calculationPeriodAmount>
 			</swapStream>
@@ -151,7 +151,7 @@
 						<fixedRateSchedule>
 							<initialValue>0.06</initialValue>
 						</fixedRateSchedule>
-						<dayCountFraction dayCountFractionScheme="http://www.fpml.org/spec/2004/day-count-fraction-1-0">30E/360</dayCountFraction>
+						<dayCountFraction>30E/360</dayCountFraction>
 					</calculation>
 				</calculationPeriodAmount>
 			</swapStream>

@@ -1,10 +1,26 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	== Copyright (c) 2002-2006. All rights reserved.
+	== Financial Products Markup Language is subject to the FpML public license.
+	== A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<FpML version="4-2" xsi:type="MessageRejected" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2005/FpML-4-2 ../fpml-main-4-2.xsd">
+	<header>
+		<messageId messageIdScheme="http://www.abcbank.com/message-Id">5765765gt6yg76</messageId>
+		<sentBy partyIdScheme="http://www.abcbank.com/party-Id">ABCBICXXX</sentBy>
+		<creationTimestamp>2002-12-03T04:27:00-00:00</creationTimestamp>
+	</header>
+	<validation validationScheme="http://www.jpmorgan.com"/>
+	<reason>
+		<reasonCode>302</reasonCode>
+	</reason>
+	<additionalData additionalDataScheme="http://www.jpmorgan.com"><![CDATA[<?xml version="1.0"?>
 <!--
   == Copyright (c) 2002-2005. All rights reserved.
   == Financial Products Markup Language is subject to the FpML public license.
   == A copy of this license is available at http://www.fpml.org/documents/license
   -->
-<FpML version="4-2" xsi:type="DataDocument" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2005/FpML-4-2 ../../fpml-main-4-2.xsd" xmlns="http://www.fpml.org/2005/FpML-4-2">
+<FpML version="4-2" xsi:type="DataDocument" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2005/FpML-4-2 ../fpml-main-4-2.xsd" xmlns="http://www.fpml.org/2005/FpML-4-2">
 	<trade>
 		<tradeHeader>
 			<partyTradeIdentifier>
@@ -18,9 +34,11 @@
 			<tradeDate>1994-12-12</tradeDate>
 		</tradeHeader>
 		<swap>
+			<!-- Chase pays the floating rate every 6 months, based on 6M EUR-LIBOR-BBA,
+            on an ACT/360 basis -->
 			<swapStream>
-				<payerPartyReference href="CALPERS_AT_BGI"/>
-				<receiverPartyReference href="LDF_AT_CHASE"/>
+				<payerPartyReference href="CHASE"/>
+				<receiverPartyReference href="BARCLAYS"/>
 				<calculationPeriodDates id="floatingCalcPeriodDates">
 					<effectiveDate>
 						<unadjustedDate>1994-12-14</unadjustedDate>
@@ -86,24 +104,24 @@
 						<notionalSchedule>
 							<notionalStepSchedule>
 								<initialValue>50000000.00</initialValue>
-								<currency currencyScheme="http://www.fpml.org/ext/iso4217">DEM</currency>
+								<currency currencyScheme="http://www.fpml.org/ext/iso4217">EUR</currency>
 							</notionalStepSchedule>
 						</notionalSchedule>
 						<floatingRateCalculation>
-							<floatingRateIndex>DEM-LIBOR-BBA</floatingRateIndex>
+							<floatingRateIndex>EUR-LIBOR-BBA</floatingRateIndex>
 							<indexTenor>
 								<periodMultiplier>6</periodMultiplier>
 								<period>M</period>
 							</indexTenor>
 						</floatingRateCalculation>
-						<dayCountFraction>ACT/360</dayCountFraction>
+						<dayCountFraction dayCountFractionScheme="http://www.fpml.org/spec/2004/day-count-fraction-1-0">ACT/360</dayCountFraction>
 					</calculation>
 				</calculationPeriodAmount>
 			</swapStream>
 			<!-- Barclays pays the 6% fixed rate every year on a 30E/360 basis -->
 			<swapStream>
-				<payerPartyReference href="LDF_AT_CHASE"/>
-				<receiverPartyReference href="CALPERS_AT_BGI"/>
+				<payerPartyReference href="BARCLAYS"/>
+				<receiverPartyReference href="CHASE"/>
 				<calculationPeriodDates id="fixedCalcPeriodDates">
 					<effectiveDate>
 						<unadjustedDate>1994-12-14</unadjustedDate>
@@ -145,107 +163,24 @@
 						<notionalSchedule>
 							<notionalStepSchedule>
 								<initialValue>50000000.00</initialValue>
-								<currency currencyScheme="http://www.fpml.org/ext/iso4217">DEM</currency>
+								<currency currencyScheme="http://www.fpml.org/ext/iso4217">EUR</currency>
 							</notionalStepSchedule>
 						</notionalSchedule>
 						<fixedRateSchedule>
 							<initialValue>0.06</initialValue>
 						</fixedRateSchedule>
-						<dayCountFraction>30E/360</dayCountFraction>
+						<dayCountFraction dayCountFractionScheme="http://www.fpml.org/spec/2004/day-count-fraction-1-0">30E/360</dayCountFraction>
 					</calculation>
 				</calculationPeriodAmount>
 			</swapStream>
 		</swap>
-		<!--This trade side (LDF_AT_CHASE) is the typical arrangement where a hedge fund trades through a prime broker. They basically execute the trade in the prime broker's credit line, and then give up to the prime broker.-->
-		<tradeSide id="LDF_AT_CHASE">
-			<orderer>
-				<party href="LDF"/>
-			</orderer>
-			<introducer>
-				<party href="CHASE"/>
-			</introducer>
-			<executor>
-				<party href="LDF"/>
-			</executor>
-			<confirmer>
-				<party href="CHASE"/>
-			</confirmer>
-			<creditor>
-				<party href="CHASE"/>
-			</creditor>
-			<settler>
-				<party href="CHASE"/>
-			</settler>
-			<beneficiary>
-				<party href="LDF"/>
-			</beneficiary>
-			<accountant>
-				<party href="CHASE"/>
-			</accountant>
-		</tradeSide>
-		<!--This trade side is an example of a Fund Manager acting on behalf of a Pension Fund, with a Foreign settlement agent.-->
-		<tradeSide id="CALPERS_AT_BGI">
-			<orderer>
-				<party href="BGI"/>
-			</orderer>
-			<introducer>
-				<party href="BGI"/>
-			</introducer>
-			<executor>
-				<party href="BARCLAYS"/>
-			</executor>
-			<confirmer>
-				<party href="BGI"/>
-			</confirmer>
-			<creditor>
-				<party href="CALPERS"/>
-			</creditor>
-			<settler>
-				<party href="ANDYUAU1XXX"/>
-			</settler>
-			<beneficiary>
-				<party href="CALPERS"/>
-			</beneficiary>
-			<accountant>
-				<party href="CALPERS"/>
-			</accountant>
-		</tradeSide>
 	</trade>
-	<party id="LDF">
-		<partyId>LDF</partyId>
-		<partyName>London Diversified Fund</partyName>
-		<account id="ACC1">
-			<accountId accountIdScheme="http://www.chase.com/bondifre">5462346</accountId>
-			<accountName>LDF Main Fund</accountName>
-			<accountBeneficiary href="CHASE"/>
-		</account>
-	</party>
 	<party id="CHASE">
-		<partyId partyIdScheme="http://www.fpml.org/ext/iso9362">CHASUS33</partyId>
+		<partyId>CHASUS33</partyId>
 	</party>
 	<party id="BARCLAYS">
-		<partyId partyIdScheme="http://www.fpml.org/ext/iso9362">BARCGB2L</partyId>
+		<partyId>BARCGB2L</partyId>
 	</party>
-	<party id="BGI">
-		<partyId>BGIXUS61XXX</partyId>
-		<partyName>Barclays Global Investors</partyName>
-	</party>
-	<party id="ANDYUAU1XXX">
-		<partyId partyIdScheme="http://www.fpml.org/ext/iso9362">ANDYUAU1XXX</partyId>
-		<partyName>ANDRIYIVSKY BANK</partyName>
-	</party>
-	<party id="CALPERS">
-		<partyId partyIdScheme="http://www.fpml.org/ext/iso9362">CALPERS</partyId>
-		<partyName>California Public Employees' Retirement System</partyName>
-		<account id="ACC2">
-			<accountId accountIdScheme="http://www.barclaysglobal.com">5462346</accountId>
-			<accountName>CALPERS A/C 1</accountName>
-			<accountBeneficiary href="BGI"/>
-		</account>
-		<account id="ACC3">
-			<accountId>cvgh45h</accountId>
-			<accountName>CALPERS Acount 23</accountName>
-			<accountBeneficiary href="ANDYUAU1XXX"/>
-		</account>
-	</party>
+</FpML>
+]]></additionalData>
 </FpML>

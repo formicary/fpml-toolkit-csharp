@@ -191,7 +191,7 @@
 								<initialValue>0.0050</initialValue>
 							</spreadSchedule>
 						</floatingRateCalculation>
-						<dayCountFraction dayCountFractionScheme="http://www.fpml.org/spec/2004/day-count-fraction-1-0">ACT/360</dayCountFraction>
+						<dayCountFraction>ACT/360</dayCountFraction>
 					</interestCalculation>
 				</interestLeg>
 			</equitySwapTransactionSupplement>

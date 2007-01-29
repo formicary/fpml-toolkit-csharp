@@ -188,12 +188,11 @@
 						</notionalSchedule>
 						<!-- This is the inflation substitution group. -->
 						<inflationRateCalculation>
-							<floatingRateIndex floatingRateIndexScheme="http://www.fpml.org/coding-scheme/inflation-index-description-1-0"> USA-CPI-U</floatingRateIndex>
+							<floatingRateIndex floatingRateIndexScheme="http://www.fpml.org/coding-scheme/inflation-index-description-1-0">USA-CPI-U</floatingRateIndex>
 							<indexTenor>
 								<periodMultiplier>1</periodMultiplier>
 								<period>Y</period>
 							</indexTenor>
-							<rateTreatment>MoneyMarketYield</rateTreatment>
 							<inflationLag>
 								<periodMultiplier>3</periodMultiplier>
 								<period>M</period>

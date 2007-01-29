@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  == Copyright (c) 2002-2005. All rights reserved.
+  == Copyright (c) 2002-2006. All rights reserved.
   == Financial Products Markup Language is subject to the FpML public license.
   == A copy of this license is available at http://www.fpml.org/documents/license
 -->
-<FpML version="4-2" 
-	xmlns="http://www.fpml.org/2005/FpML-4-2" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://www.fpml.org/2005/FpML-4-2 ../../fpml-main-4-2.xsd http://www.w3.org/2000/09/xmldsig# xmldsig-core-schema.xsd" 
-	xsi:type="NovationConsentRequest">
+<FpML version="4-2" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2005/FpML-4-2 ../../fpml-main-4-2.xsd http://www.w3.org/2000/09/xmldsig# xmldsig-core-schema.xsd" xsi:type="NovationConsentRequest">
 	<header>
 		<conversationId conversationIdScheme="http://www.xyzbank.com/cd-trade-id/conversationId/OTC">NovationCDS_ABC_XYZ</conversationId>
 		<messageId messageIdScheme="http://www.xyzbank.com/cd-trade-id/messageId/OTC">NovationCDS_ABC_XYZ_msg0001</messageId>
@@ -16,12 +12,11 @@
 		<creationTimestamp>2006-01-01T09:01:00-00:00</creationTimestamp>
 	</header>
 	<novation>
-		<eventId eventIdScheme="http://www.xyzbank.com/eventId/">NOVAT0001-0002RP</eventId>
 		<oldTransaction>
 			<tradeHeader>
 				<partyTradeIdentifier>
 					<partyReference href="xyzBank"/>
-					<tradeId tradeIdScheme="http://www.xyzbank.com/tradeId/OTC">TradeABC0001</tradeId>
+					<tradeId tradeIdScheme="http://www.xyzbank.com/tradeId/OTC">TradeXYZ0001</tradeId>
 				</partyTradeIdentifier>
 				<partyTradeIdentifier>
 					<partyReference href="abcBank"/>
@@ -94,25 +89,28 @@
 			</partyTradeIdentifier>
 		</newTransactionReference>
 		<transferor href="abcBank"/>
-		<transferee href="xyzBank"/>
-		<remainingParty href="firmRP"/>
+		<transferee href="newBank"/>
+		<remainingParty href="xyzBank"/>
 		<novationDate>2006-01-08</novationDate>
-		<novatedNumberOfOptions>0.90</novatedNumberOfOptions>
-		<firstPeriodStartDate href="firmRP">2006-01-15</firstPeriodStartDate>
+		<novatedAmount>
+			<currency>EUR</currency>
+			<amount>5000000</amount>
+		</novatedAmount>
+		<firstPeriodStartDate href="abcBank">2006-01-15</firstPeriodStartDate>
 		<creditDerivativesNotices>
 			<creditEvent>true</creditEvent>
 			<publiclyAvailableInformation>false</publiclyAvailableInformation>
 			<physicalSettlement>true</physicalSettlement>
 		</creditDerivativesNotices>
-		<contractualDefinitions>2003ISDACreditDerivativesDefinitions</contractualDefinitions>	
+		<contractualDefinitions>ISDA2003Credit</contractualDefinitions>
 	</novation>
 	<party id="xyzBank">
-		<partyId>XYZ Bank</partyId>
+		<partyId>XYZBIC345</partyId>
 	</party>
 	<party id="abcBank">
-		<partyId>ABC Bank</partyId>
+		<partyId>ABCBIC123</partyId>
 	</party>
-	<party id="firmRP">
-		<partyId>RemainingParty Firm</partyId>
+	<party id="newBank">
+		<partyId>NBKXXX342</partyId>
 	</party>
 </FpML>

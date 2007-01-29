@@ -21,7 +21,6 @@ Example of a cashflow match result message related to an interest rate swap with
 	</assertedCashflow>
 	<proposedMatch>
 		<tradeCashflowsId tradeCashflowsIdScheme="http://www.def.com/tradeCashflowsId">tradeCashflowsDEF001</tradeCashflowsId>
-		<matchId matchIdScheme="http://www.tyu.com/matchId">34558473</matchId>
 		<tradeIdentifyingItems>
 			<partyTradeIdentifier>
 				<partyReference href="def"/>
@@ -317,6 +316,7 @@ Example of a cashflow match result message related to an interest rate swap with
 				</calculationElements>
 			</calculationDetails>
 		</payment>
+		<matchId matchIdScheme="http://www.tyu.com/matchId">34558473</matchId>
 		<difference>
 			<differenceType>Value</differenceType>
 			<differenceSeverity>Error</differenceSeverity>

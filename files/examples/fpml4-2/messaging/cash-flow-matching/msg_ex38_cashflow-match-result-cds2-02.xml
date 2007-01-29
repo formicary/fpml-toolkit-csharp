@@ -62,7 +62,6 @@
 	</assertedCashflow>
 	<proposedMatch>
 		<tradeCashflowsId tradeCashflowsIdScheme="http://www.def.com/tradeCashflowsId">8574633349</tradeCashflowsId>
-		<matchId matchIdScheme="www.def.com/matchId">345678</matchId>
 		<tradeIdentifyingItems>
 			<partyTradeIdentifier>
 				<partyReference href="def"/>
@@ -102,6 +101,7 @@
 				<amount>21222.22</amount>
 			</paymentAmount>
 		</payment>
+		<matchId matchIdScheme="www.def.com/matchId">345678</matchId>
 		<difference>
 			<differenceType>Value</differenceType>
 			<differenceSeverity>Error</differenceSeverity>

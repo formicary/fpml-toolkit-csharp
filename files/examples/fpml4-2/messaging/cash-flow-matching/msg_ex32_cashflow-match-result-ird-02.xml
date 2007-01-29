@@ -6,10 +6,7 @@
 	
 	Example of a cashflow match result message related to an interest rate swap with vanilla fixed vs. float terms.
 -->
-<FpML version="4-2" xmlns="http://www.fpml.org/2005/FpML-4-2"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.fpml.org/2005/FpML-4-2 ../../fpml-main-4-2.xsd"
-	xsi:type="TradeCashflowsMatchResult">
+<FpML version="4-2" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2005/FpML-4-2 ../../fpml-main-4-2.xsd" xsi:type="TradeCashflowsMatchResult">
 	<header>
 		<messageId messageIdScheme="http://www.example.com/messageId">CEN/2004/01/05/15-39</messageId>
 		<inReplyTo messageIdScheme="http://www.example.com/messageId">CEN/2004/01/05/15-38</inReplyTo>
@@ -34,9 +31,7 @@
 				<terminationDate>
 					<unadjustedDate>2009-05-19</unadjustedDate>
 				</terminationDate>
-				<productType
-					productTypeScheme="http://www.fpml.org/coding-scheme/product-type-simple-1-0"
-					>InterestRateSwap</productType>
+				<productType productTypeScheme="http://www.fpml.org/coding-scheme/product-type-simple-1-0">InterestRateSwap</productType>
 				<underlyer id="SEK-STIBOR-SIDE">
 					<floatingRate>
 						<floatingRateIndex>SEK-STIBOR-SIDE</floatingRateIndex>
@@ -68,42 +63,34 @@
 			</paymentAmount>
 			<calculationDetails>
 				<grossCashflow>
-					<cashflowId cashflowIdScheme="http://www.abc.com/cashflowId"
-						>20050519SEK00680811-1</cashflowId>
+					<cashflowId cashflowIdScheme="http://www.abc.com/cashflowId">20050519SEK00680811-1</cashflowId>
 					<payerPartyReference href="abc"/>
 					<receiverPartyReference href="def"/>
 					<cashflowAmount>
 						<currency>SEK</currency>
 						<amount>6247500.00</amount>
 					</cashflowAmount>
-					<cashflowType
-						cashflowTypeScheme="http://www.fpml.org/coding-scheme/cashflow-type-1-0"
-						>Coupon</cashflowType>
+					<cashflowType cashflowTypeScheme="http://www.fpml.org/coding-scheme/cashflow-type-1-0">Coupon</cashflowType>
 				</grossCashflow>
 				<calculationElements>
 					<calculationPeriod>
 						<adjustedStartDate>2004-05-19</adjustedStartDate>
 						<adjustedEndDate>2005-05-19</adjustedEndDate>
 						<numberOfDays>360</numberOfDays>
-						<dayCountFraction
-							dayCountFractionScheme="http://www.fpml.org/coding-scheme/day-count-fraction-1-0"
-							>30/360</dayCountFraction>
+						<dayCountFraction dayCountFractionScheme="http://www.fpml.org/coding-scheme/day-count-fraction-1-0">30/360</dayCountFraction>
 					</calculationPeriod>
 				</calculationElements>
 			</calculationDetails>
 			<calculationDetails>
 				<grossCashflow>
-					<cashflowId cashflowIdScheme="http://www.abc.com/cashflowId"
-						>20050519SEK00680811-2</cashflowId>
+					<cashflowId cashflowIdScheme="http://www.abc.com/cashflowId">20050519SEK00680811-2</cashflowId>
 					<payerPartyReference href="def"/>
 					<receiverPartyReference href="abc"/>
 					<cashflowAmount>
 						<currency>SEK</currency>
 						<amount>512333.33</amount>
 					</cashflowAmount>
-					<cashflowType
-						cashflowTypeScheme="http://www.fpml.org/coding-scheme/cashflow-type-1-0"
-						>Coupon</cashflowType>
+					<cashflowType cashflowTypeScheme="http://www.fpml.org/coding-scheme/cashflow-type-1-0">Coupon</cashflowType>
 				</grossCashflow>
 				<observationElements id="observation-SEK-STIBOR-SIDE">
 					<underlyerReference href="SEK-STIBOR-SIDE"/>
@@ -122,9 +109,7 @@
 						<adjustedStartDate>2005-02-22</adjustedStartDate>
 						<adjustedEndDate>2005-05-19</adjustedEndDate>
 						<numberOfDays>87</numberOfDays>
-						<dayCountFraction
-							dayCountFractionScheme="http://www.fpml.org/coding-scheme/day-count-fraction-1-0"
-							>ACT/360</dayCountFraction>
+						<dayCountFraction dayCountFractionScheme="http://www.fpml.org/coding-scheme/day-count-fraction-1-0">ACT/360</dayCountFraction>
 						<dayCountYearFraction>0.2417</dayCountYearFraction>
 					</calculationPeriod>
 				</calculationElements>
@@ -133,7 +118,6 @@
 	</assertedCashflow>
 	<proposedMatch>
 		<tradeCashflowsId tradeCashflowsIdScheme="http://www.def.com/tradeCashflowsId">tradeCashflowsDEF001</tradeCashflowsId>
-		<matchId>8479920034</matchId>
 		<tradeIdentifyingItems>
 			<partyTradeIdentifier>
 				<partyReference href="def"/>
@@ -186,18 +170,14 @@
 						<currency>SEK</currency>
 						<amount>6240000.00</amount>
 					</cashflowAmount>
-					<cashflowType
-						cashflowTypeScheme="http://www.fpml.org/coding-scheme/cashflow-type-1-0"
-						>Coupon</cashflowType>
+					<cashflowType cashflowTypeScheme="http://www.fpml.org/coding-scheme/cashflow-type-1-0">Coupon</cashflowType>
 				</grossCashflow>
 				<calculationElements>
 					<calculationPeriod>
 						<adjustedStartDate>2004-05-19</adjustedStartDate>
 						<adjustedEndDate>2005-05-19</adjustedEndDate>
 						<numberOfDays>360</numberOfDays>
-						<dayCountFraction
-							dayCountFractionScheme="http://www.fpml.org/coding-scheme/day-count-fraction-1-0"
-							>30/360</dayCountFraction>
+						<dayCountFraction dayCountFractionScheme="http://www.fpml.org/coding-scheme/day-count-fraction-1-0">30/360</dayCountFraction>
 					</calculationPeriod>
 				</calculationElements>
 			</calculationDetails>
@@ -210,9 +190,7 @@
 						<currency>SEK</currency>
 						<amount>512333.33</amount>
 					</cashflowAmount>
-					<cashflowType
-						cashflowTypeScheme="http://www.fpml.org/coding-scheme/cashflow-type-1-0"
-						>Coupon</cashflowType>
+					<cashflowType cashflowTypeScheme="http://www.fpml.org/coding-scheme/cashflow-type-1-0">Coupon</cashflowType>
 				</grossCashflow>
 				<observationElements id="observation-SEK-STIBOR-SIDE_PROP">
 					<underlyerReference href="SEK-STIBOR-SIDE"/>
@@ -231,14 +209,13 @@
 						<adjustedStartDate>2005-02-22</adjustedStartDate>
 						<adjustedEndDate>2005-05-19</adjustedEndDate>
 						<numberOfDays>87</numberOfDays>
-						<dayCountFraction
-							dayCountFractionScheme="http://www.fpml.org/coding-scheme/day-count-fraction-1-0"
-							>ACT/360</dayCountFraction>
+						<dayCountFraction dayCountFractionScheme="http://www.fpml.org/coding-scheme/day-count-fraction-1-0">ACT/360</dayCountFraction>
 						<dayCountYearFraction>0.2417</dayCountYearFraction>
 					</calculationPeriod>
 				</calculationElements>
 			</calculationDetails>
 		</payment>
+		<matchId>8479920034</matchId>
 		<difference>
 			<differenceType>Value</differenceType>
 			<differenceSeverity>Error</differenceSeverity>
