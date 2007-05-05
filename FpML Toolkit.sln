@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validate", "Validate\Valida
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classify", "Classify\Classify.csproj", "{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -21,6 +25,10 @@ Global
 		{3A76F324-C71C-4EAE-99B5-14350107F011}.Debug.Build.0 = Debug|.NET
 		{3A76F324-C71C-4EAE-99B5-14350107F011}.Release.ActiveCfg = Release|.NET
 		{3A76F324-C71C-4EAE-99B5-14350107F011}.Release.Build.0 = Release|.NET
+		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Debug.ActiveCfg = Debug|.NET
+		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Debug.Build.0 = Debug|.NET
+		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Release.ActiveCfg = Release|.NET
+		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

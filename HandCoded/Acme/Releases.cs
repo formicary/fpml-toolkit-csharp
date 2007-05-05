@@ -37,12 +37,30 @@ namespace HandCoded.Acme
 		public static readonly SchemaRelease R1_0
 			= new SchemaRelease (ACME, "1-0",
 					"http://www.handcoded.com/spec/2005/Acme-1-0", "acme-1-0.xsd",
-					"acme", null, "");
+					"acme", null);
+
+		/// <summary>
+		/// A <see cref="SchemaRelease"/> instance containing the details for the
+		/// Acme 2-0 extension.
+		/// </summary>
+		public static readonly SchemaRelease R2_0
+			= new SchemaRelease (ACME, "2-0",
+					"http://www.handcoded.com/spec/2007/Acme-2-0", "acme-2-0.xsd",
+					"acme", null);
 
 		/// <summary>
 		/// Ensures that no instances can be constructed.
 		/// </summary>
 		private Releases()
 		{ }
+
+		/// <summary>
+		/// Add a schema import link between the Acme extension schemas and the
+		/// version of FpML they relate to.
+		/// </summary>
+		static Releases () {
+			R1_0.AddImport (HandCoded.FpML.Releases.R4_0);
+			R2_0.AddImport (HandCoded.FpML.Releases.TR4_2);
+		}
 	}
 }

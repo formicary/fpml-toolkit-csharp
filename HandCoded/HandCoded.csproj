@@ -109,11 +109,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Classification\DelegatedCategory.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Classification\DelegatedRefinableCategory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

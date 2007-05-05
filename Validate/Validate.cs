@@ -40,9 +40,9 @@ namespace Validate
 		/// </summary>
 		/// <param name="arguments">The command line arguments.</param>
 		[STAThread]
-		static void Main(string[] arguments)
+		static void Main (string[] arguments)
 		{
-			log4net.Config.DOMConfigurator.Configure();
+			log4net.Config.DOMConfigurator.Configure ();
 
 			new Validate ().Run (arguments);
 		}

@@ -22,7 +22,7 @@
             <property name="HtmlHelpName" value="Documentation" />
             <property name="Title" value="HandCoded Toolkit for FpML Processing 1.0" />
             <property name="OutputTarget" value="Web" />
-            <property name="CopyrightText" value="Copyright (C),2006 HandCoded Software Ltd," />
+            <property name="CopyrightText" value="Copyright (C),2006-2007 HandCoded Software Ltd," />
             <property name="CopyrightHref" value="http://www.handcoded.com" />
             <property name="FeedbackEmailAddress" value="information@handcoded.com" />
         </documenter>

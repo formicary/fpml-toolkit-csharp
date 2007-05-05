@@ -53,6 +53,16 @@ namespace HandCoded.Meta
 			}
 		}
 
+		
+		/// <summary>
+		/// Indicates that the schema is a pure extension.
+		/// </summary>
+		public bool IsExtensionOnly {
+			get {
+				return (rootElements == null);
+			}
+		}
+
 		/// <summary>
 		/// Contains a list of conversions for which this <b>Release</b> is the
 		/// source format.

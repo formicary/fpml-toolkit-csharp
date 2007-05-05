@@ -18,7 +18,7 @@ namespace HandCoded.Meta
 	/// An instance implementing the <b>IHelper</b> interface is passed to
 	/// <see cref="Conversion"/> objects during the document conversion process.
 	/// If a conversion needs additional guidenance during processing then it should
-	/// ast the helper instance to a more specific interface and use it to gain
+	/// cast the helper instance to a more specific interface and use it to gain
 	/// the information it needs.
 	/// </summary>
 	public interface IHelper

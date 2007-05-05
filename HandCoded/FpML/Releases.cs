@@ -739,11 +739,16 @@ namespace HandCoded.FpML
 		}
 
 		/// <summary>
-		/// Ensures that a default resolver is in place.
+		/// Ensures that a default resolver is in place and the schema releases are
+		/// linked to the DSIG schema.
 		/// </summary>
 		static Releases ()
 		{
 			DTDRelease.DefaultResolver = FpMLUtility.GetResolver ();
+
+			R4_0.AddImport (HandCoded.DSig.Releases.R1_0);
+			R4_1.AddImport (HandCoded.DSig.Releases.R1_0);
+			TR4_2.AddImport (HandCoded.DSig.Releases.R1_0);
 		}
 	}
 }

@@ -32,6 +32,12 @@ namespace HandCoded.FpML
 			= new AbstractCategory ("(PRODUCT TYPE)");
 
 		/// <summary>
+		/// A <see cref="Category"/> representing all swaps.
+		/// </summary>
+		public static readonly Category	SWAP
+			= new AbstractCategory ("(SWAP)", PRODUCT_TYPE);
+
+		/// <summary>
 		/// A <see cref="Category"/> representing all options.
 		/// </summary>
 		public static readonly Category	OPTION
@@ -44,18 +50,79 @@ namespace HandCoded.FpML
 			= new AbstractCategory ("(FORWARD)", PRODUCT_TYPE);
 		
 		/// <summary>
-		/// A <see cref="Category"/> representing all interest rate derivatives.
+		/// A <see cref="Category"/> representing all foreign exchange products.
 		/// </summary>
-		public static readonly Category	INTEREST_RATE_DERIVATIVE
-			= new AbstractCategory ("(INTEREST RATE DERIVATIVE)", PRODUCT_TYPE);
+		public static readonly Category	FOREIGN_EXCHANGE
+			= new AbstractCategory ("(FOREIGN EXCHANGE)", PRODUCT_TYPE);
 
+		/// <summary>
+		/// A <see cref="Category"/> representing all foreign exchange spot/forward
+		/// deals.
+		/// </summary>
+		public static readonly Category	FX_SPOT_FORWARD
+			= new DelegatedRefinableCategory ("FX SPOT/FORWARD", FOREIGN_EXCHANGE,
+					new ApplicableDelegate (IsFxSpotForward));
+
+		/// <summary>
+		/// A <see cref="Category"/> representing all foreign exchange spot deals.
+		/// </summary>
+		public static readonly Category	FX_SPOT
+			= new DelegatedRefinableCategory ("FX SPOT", FX_SPOT_FORWARD,
+					new ApplicableDelegate (IsFxSpot));
+
+		/// <summary>
+		/// A <see cref="Category"/> representing all foreign exchange forward
+		/// deals.
+		/// </summary>
+		public static readonly Category	FX_FORWARD
+			= new DelegatedRefinableCategory ("FX SPOT/FORWARD",
+					new Category [] { FX_SPOT_FORWARD, FORWARD },
+					new ApplicableDelegate (IsFxForward));
+
+		/// <summary>
+		/// A <see cref="Category"/> representing all foreign exchange options
+		/// </summary>
+		public static readonly Category	FX_OPTION
+			= new DelegatedRefinableCategory ("FX OPTION",
+					new Category [] { FOREIGN_EXCHANGE, OPTION },
+					new ApplicableDelegate (IsFxOption));
+
+		/// <summary>
+		/// A <see cref="Category"/> representing all foreign exchange barrier
+		/// options
+		/// </summary>
+		public static readonly Category	FX_BARRIER_OPTION
+			= new DelegatedRefinableCategory ("FX BARRIER OPTION", FX_OPTION,
+					new ApplicableDelegate (IsFxBarrierOption));
 
 		/// <summary>
 		/// A <see cref="Category"/> representing all bullet payments.
 		/// </summary>
 		public static readonly Category	BULLET_PAYMENT
-			= new DelegatedRefinableCategory ("BULLET PAYMENT", INTEREST_RATE_DERIVATIVE,
+			= new DelegatedRefinableCategory ("BULLET PAYMENT", PRODUCT_TYPE,
 					new ApplicableDelegate (IsBulletPayment));
+
+		/// <summary>
+		/// A <see cref="Category"/> representing all interest rate derivatives.
+		/// </summary>
+		public static readonly Category	INTEREST_RATE_DERIVATIVE
+			= new AbstractCategory ("(INTEREST RATE DERIVATIVE)", PRODUCT_TYPE);
+
+		/// <summary>
+		/// A <see cref="Category"/> representing all interest rate swaps.
+		/// </summary>
+		public static readonly Category	INTEREST_RATE_SWAP
+			= new DelegatedRefinableCategory ("INTEREST RATE SWAP",
+					new Category [] { INTEREST_RATE_DERIVATIVE, SWAP },
+					new ApplicableDelegate (IsInterestRateSwap));
+
+		/// <summary>
+		/// A <see cref="Category"/> representing all cross currency interest
+		/// rate swaps.
+		/// </summary>
+		public static readonly Category	CROSS_CURRENCY_SWAP
+			= new DelegatedRefinableCategory ("CROSS CURRENCY SWAP", INTEREST_RATE_SWAP,
+					new ApplicableDelegate (IsCrossCurrencySwap));
 
 		/// <summary>
 		/// A <see cref="Category"/> representing all bullet payments.
@@ -63,13 +130,6 @@ namespace HandCoded.FpML
 		public static readonly Category	CAP_FLOOR
 			= new DelegatedRefinableCategory ("INTEREST RATE CAP/FLOOR", INTEREST_RATE_DERIVATIVE,
 					new ApplicableDelegate (IsInterestRateCapOrFloor));
-
-		/// <summary>
-		/// A <see cref="Category"/> representing all interest rate swaps.
-		/// </summary>
-		public static readonly Category	INTEREST_RATE_SWAP
-			= new DelegatedRefinableCategory ("INTEREST RATE SWAP", INTEREST_RATE_DERIVATIVE,
-					new ApplicableDelegate (IsInterestRateSwap));
 
 		/// <summary>
 		/// A <see cref="Category"/> representing all interest rate swaptions.
@@ -85,12 +145,6 @@ namespace HandCoded.FpML
 		public static readonly Category	FORWARD_RATE_AGREEMENT
 			= new DelegatedRefinableCategory ("FORWARD RATE AGREEMENT", INTEREST_RATE_DERIVATIVE,
 					new ApplicableDelegate (IsForwardRateAgreement));
-
-		/// <summary>
-		/// A <see cref="Category"/> representing all foreign exchange products.
-		/// </summary>
-		public static readonly Category	FOREIGN_EXCHANGE
-			= new AbstractCategory ("(FOREIGN EXCHANGE)", PRODUCT_TYPE);
 
 		/// <summary>
 		/// A <see cref="Category"/> representing all equity derivatives.
@@ -120,6 +174,33 @@ namespace HandCoded.FpML
 		private ProductType ()
 		{ }
 
+		private static bool IsFxSpotForward (Object value)
+		{
+			return (XPath.Path ((XmlElement) value, "fxSingleLeg") != null);
+		}
+
+		private static bool IsFxSpot (Object value)
+		{
+			return (XPath.Path ((XmlElement) value, "fxSingleLeg", "exchangeRate", "forwardPoints") == null);
+		}
+
+		private static bool IsFxForward (Object value)
+		{
+			return (XPath.Path ((XmlElement) value, "fxSingleLeg", "exchangeRate", "forwardPoints") != null);
+		}
+
+		private static bool IsFxOption (Object value)
+		{
+			return ((XPath.Path ((XmlElement) value, "fxSimpleOption") != null) ||
+					(XPath.Path ((XmlElement) value, "fxBarrierOption") != null));
+		}
+
+		private static bool IsFxBarrierOption (Object value)
+		{
+			return (XPath.Path ((XmlElement) value, "fxBarrierOption") != null);
+		}
+
+
 		/// <summary>
 		/// Test function used to detect bullet payments.
 		/// </summary>
@@ -132,6 +213,49 @@ namespace HandCoded.FpML
 		}
 
 		/// <summary>
+		/// Test function used to detect interest rate swaps.
+		/// </summary>
+		/// <param name="value">The <see cref="Object"/> to be tested.</param>
+		/// <returns>A <see cref="bool"/> value indicating if the test
+		/// succeeded.</returns>
+		private static bool IsInterestRateSwap (Object value)
+		{
+			XmlDocument	document = ((XmlElement) value).OwnerDocument;
+
+			if (Releases.FPML.GetReleaseForDocument (document) == Releases.R1_0)
+				return (XPath.Path (value as XmlElement, "product", "swap") != null);
+			else
+				return (XPath.Path (value as XmlElement, "swap") != null);
+		}
+
+		private static bool IsCrossCurrencySwap (Object value)
+		{
+			XmlDocument	document = ((XmlElement) value).OwnerDocument;
+			XmlNodeList	currencies;
+			bool		different	= false;
+
+			if (Releases.FPML.GetReleaseForDocument (document) == Releases.R1_0)
+				currencies = XPath.Paths (value as XmlElement,
+						"product", "swap", "swapStream", "calculationPeriodAmount", "calculation",
+						"notionalSchedule", "notionalStepSchedule",	"currency");
+			else
+				currencies = XPath.Paths (value as XmlElement,
+						"swap", "swapStream", "calculationPeriodAmount", "calculation",
+						"notionalSchedule", "notionalStepSchedule",	"currency");
+
+			for (int index = 1; index < currencies.Count; ++index) {
+				XmlElement	ccy1	= (XmlElement) currencies.Item (index - 1);
+				XmlElement	ccy2	= (XmlElement) currencies.Item (index);
+
+				if (!ccy1.InnerText.Trim ().Equals (ccy2.InnerText.Trim ())) {
+					different = true;
+					break;
+				}
+			}
+			return (different);
+		}
+
+		/// <summary>
 		/// Test function used to detect caps and floors.
 		/// </summary>
 		/// <param name="value">The <see cref="Object"/> to be tested.</param>
@@ -140,17 +264,6 @@ namespace HandCoded.FpML
 		private static bool IsInterestRateCapOrFloor (Object value)
 		{
 			return (DOM.GetElementByLocalName (value as XmlElement, "capFloor") != null);
-		}
-
-		/// <summary>
-		/// Test function used to detect interest rate swaps.
-		/// </summary>
-		/// <param name="value">The <see cref="Object"/> to be tested.</param>
-		/// <returns>A <see cref="bool"/> value indicating if the test
-		/// succeeded.</returns>
-		private static bool IsInterestRateSwap (Object value)
-		{
-			return (DOM.GetElementByLocalName (value as XmlElement, "swap") != null);
 		}
 
 		/// <summary>

@@ -30,6 +30,13 @@ namespace HandCoded.Meta
 		}
 
 		/// <summary>
+		/// Indicates that the schema is a pure extension.
+		/// </summary>
+		bool IsExtensionOnly {
+			get;
+		}
+
+		/// <summary>
 		/// Determines if the given <see cref="XmlDocument"/> is an instance of the XML
 		/// grammar represented by this instance.
 		/// </summary>

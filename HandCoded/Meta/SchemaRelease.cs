@@ -12,6 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
+using System.Collections;
 using System.Xml;
 
 namespace HandCoded.Meta
@@ -44,6 +45,27 @@ namespace HandCoded.Meta
 		/// Constructs a <b>SchemaRelease</b> instance describing a schema
 		/// based release of a particular <see cref="Specification"/>.
 		/// </summary>
+		/// <remarks>This constructor should be used when creating a description of a
+		/// pure extension schema, i.e. one that contains no useable root elements.</remarks>
+		/// <param name="specification">The owning <see cref="Specification"/>.</param>
+		/// <param name="version">The version identifier for this release.</param>
+		/// <param name="namespaceUri">The namespace used to identify the schema.</param>
+		/// <param name="schemaLocation">The default schema location.</param>
+		/// <param name="preferredPrefix">The preferred prefix for the namespace.</param>
+		/// <param name="alternatePrefix">The alternate prefix for the namespace.</param>
+		public SchemaRelease (Specification specification, string version,
+			string namespaceUri, string schemaLocation,
+			string preferredPrefix, string alternatePrefix)
+			: this (specification, version, namespaceUri, schemaLocation,
+					preferredPrefix, alternatePrefix, (string []) null)
+		{ }
+
+		/// <summary>
+		/// Constructs a <b>SchemaRelease</b> instance describing a schema
+		/// based release of a particular <see cref="Specification"/>.
+		/// </summary>
+		/// <remarks>This constructor should be used when creating a description
+		/// of a schema that has only a single root element.</remarks>
 		/// <param name="specification">The owning <see cref="Specification"/>.</param>
 		/// <param name="version">The version identifier for this release.</param>
 		/// <param name="namespaceUri">The namespace used to identify the schema.</param>
@@ -55,18 +77,16 @@ namespace HandCoded.Meta
 			string namespaceUri, string schemaLocation,
 			string preferredPrefix, string alternatePrefix,
 			string rootElement)
-			: base (specification, version, new string [] { rootElement })
-		{
-			this.namespaceUri    = namespaceUri;
-			this.schemaLocation  = schemaLocation;
-			this.preferredPrefix = preferredPrefix;
-			this.alternatePrefix = alternatePrefix;
-		}
+			: this (specification, version, namespaceUri, schemaLocation,
+					preferredPrefix, alternatePrefix, new string [] { rootElement })
+		{ }
 
 		/// <summary>
 		/// Constructs a <b>SchemaRelease</b> instance describing a schema
 		/// based release of a particular <see cref="Specification"/>.
 		/// </summary>
+		/// <remarks>This constructor should be used when creating a description of a
+		/// schema that has multiple root elements.</remarks>
 		/// <param name="specification">The owning <see cref="Specification"/>.</param>
 		/// <param name="version">The version identifier for this release.</param>
 		/// <param name="namespaceUri">The namespace used to identify the schema.</param>
@@ -165,6 +185,28 @@ namespace HandCoded.Meta
 		}
 
 		/// <summary>
+		/// Creates a bi-directional reference between this <see cref="SchemaRelease"/>
+		/// and the meta data for other instance that it imports.
+		/// </summary>
+		/// <param name="release">The imported <see cref="SchemaRelease"/>.</param>
+		public void AddImport (SchemaRelease release)
+		{
+			this.imports.Add (release);
+			release.importedBy.Add (this);
+		}
+
+		/// <summary>
+		/// Breaks the bi-directional reference between this <see cref="SchemaRelease"/>
+		/// and the indicated one.
+		/// </summary>
+		/// <param name="release">The <see cref="SchemaRelease"/> no longer imported.</param>
+		public void RemoveImport (SchemaRelease release)
+		{
+			this.imports.Remove (release);
+			release.importedBy.Remove (this);
+		}
+
+		/// <summary>
 		/// The namespace URI for the schema.
 		/// </summary>
 		private readonly string		namespaceUri;
@@ -183,5 +225,17 @@ namespace HandCoded.Meta
 		/// The altername namespace prefix.
 		/// </summary>
 		private readonly string		alternatePrefix;
+
+		/// <summary>
+		/// The set of other <see cref="SchemaRelease"/> instances imported into this
+		/// one.
+		/// </summary>
+		private ArrayList			imports		= new ArrayList ();
+
+		/// <summary>
+		/// The set of other <see cref="SchemaRelease"/> instance that import this
+		/// one.
+		/// </summary>
+		private ArrayList			importedBy	= new ArrayList ();
 	}
 }

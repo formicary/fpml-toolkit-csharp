@@ -52,6 +52,24 @@ namespace HandCoded.Classification
 		}
 
 		/// <summary>
+		/// Converts the <b>Specification</b> to a string for debugging.
+		/// </summary>
+		/// <returns>A text description of the instance.</returns>
+		public override string ToString ()
+		{
+			return (name);
+		}
+
+		/// <summary>
+		/// Returns a hash code for this instance based on its name.
+		/// </summary>
+		/// <returns>The instance hash code.</returns>
+		public override int GetHashCode ()
+		{
+			return (name.GetHashCode ());
+		}
+
+		/// <summary>
 		/// Determines if this <b>Category</b> is the same as or is a
 		/// subcategory of another <b>Category</b> (e.g. a Swaption
 		/// is-a Option).
@@ -76,7 +94,10 @@ namespace HandCoded.Classification
 		/// <param name="value">The <see cref="Object"/> to be classified.</param>
 		/// <returns>The matching <b>Category</b> for the <see cref="Object"/> or
 		/// <c>null</c> if none could be determined.</returns>
-		public abstract Category Classify (Object value);
+		public Category Classify (Object value)
+		{
+			return (Classify (value, new Hashtable ()));
+		}
 
 		/// <summary>
 		/// <b>Category</b> instances that reference this instance.
@@ -124,6 +145,16 @@ namespace HandCoded.Classification
 				parent.subCategories.Add (this);
 			}
 		}
+
+		/// <summary>
+		/// Determine if the given <see cref="Object"/> can be classified by the
+		/// graph of <b>Category</b> instances related to this entry point.
+		/// </summary>
+		/// <param name="value">The <see cref="Object"/> to be classified.</param>
+		/// <param name="visited">A <see cref="Hashtable"/> used to track visited nodes.</param>
+		/// <returns>The matching <b>Category</b> for the <see cref="Object"/> or
+		/// <c>null</c> if none could be determined.</returns>
+		protected internal abstract Category Classify (Object value, Hashtable visited);
 
 		/// <summary>
 		/// The name of this <b>Category</b>.

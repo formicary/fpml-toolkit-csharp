@@ -176,6 +176,63 @@ namespace HandCoded.Xml
 			return (Path (Path (Path (Path (Path (context, name1), name2), name3), name4), name5));
 		}
 
+		/// <summary>
+		/// Evaluates a simple single valued path access from the given context
+		/// node to the named great-great-great-grandchild element.
+		/// </summary>
+		/// <param name="context">The context <see cref="XmlElement"/>.</param>
+		/// <param name="name1">The name of the required child.</param>
+		/// <param name="name2">The name of the required grandchild.</param>
+		/// <param name="name3">The name of the required great-grandchild.</param>
+		/// <param name="name4">The name of the required great-great-grandchild.</param>
+		/// <param name="name5">The name of the required great-great-great-grandchild.</param>
+		/// <param name="name6">The name of the required great-great-great-great-grandchild.</param>
+		/// <returns>The child <see cref="XmlElement"/> or <b>null</b> if no
+		/// matching element exists.</returns>
+		public static XmlElement Path (XmlElement context, string name1, string name2, string name3, string name4, string name5, string name6)
+		{
+			return (Path (Path (Path (Path (Path (Path (context, name1), name2), name3), name4), name5), name6));
+		}
+
+		/// <summary>
+		/// Evaluates a simple single valued path access from the given context
+		/// node to the named great-great-great-grandchild element.
+		/// </summary>
+		/// <param name="context">The context <see cref="XmlElement"/>.</param>
+		/// <param name="name1">The name of the required child.</param>
+		/// <param name="name2">The name of the required grandchild.</param>
+		/// <param name="name3">The name of the required great-grandchild.</param>
+		/// <param name="name4">The name of the required great-great-grandchild.</param>
+		/// <param name="name5">The name of the required great-great-great-grandchild.</param>
+		/// <param name="name6">The name of the required great-great-great-great-grandchild.</param>
+		/// <param name="name7">The name of the required great-great-great-great-great-grandchild.</param>
+		/// <returns>The child <see cref="XmlElement"/> or <b>null</b> if no
+		/// matching element exists.</returns>
+		public static XmlElement Path (XmlElement context, string name1, string name2, string name3, string name4, string name5, string name6, string name7)
+		{
+			return (Path (Path (Path (Path (Path (Path (Path (context, name1), name2), name3), name4), name5), name6), name7));
+		}
+
+		/// <summary>
+		/// Evaluates a simple single valued path access from the given context
+		/// node to the named great-great-great-grandchild element.
+		/// </summary>
+		/// <param name="context">The context <see cref="XmlElement"/>.</param>
+		/// <param name="name1">The name of the required child.</param>
+		/// <param name="name2">The name of the required grandchild.</param>
+		/// <param name="name3">The name of the required great-grandchild.</param>
+		/// <param name="name4">The name of the required great-great-grandchild.</param>
+		/// <param name="name5">The name of the required great-great-great-grandchild.</param>
+		/// <param name="name6">The name of the required great-great-great-great-grandchild.</param>
+		/// <param name="name7">The name of the required great-great-great-great-great-grandchild.</param>
+		/// <param name="name8">The name of the required great-great-great-great-great-great-grandchild.</param>
+		/// <returns>The child <see cref="XmlElement"/> or <b>null</b> if no
+		/// matching element exists.</returns>
+		public static XmlElement Path (XmlElement context, string name1, string name2, string name3, string name4, string name5, string name6, string name7, string name8)
+		{
+			return (Path (Path (Path (Path (Path (Path (Path (Path (context, name1), name2), name3), name4), name5), name6), name7), name8));
+		}
+
 		//---------------------------------------------------------------------------
 
 		/// <summary>
@@ -331,6 +388,45 @@ namespace HandCoded.Xml
 		public static XmlNodeList Paths (XmlElement context, string name1, string name2, string name3, string name4, string name5, string name6)
 		{
 			return (Paths (Paths (Paths (Paths (Paths (Paths (context, name1), name2), name3), name4), name5), name6));
+		}
+
+		/// <summary>
+		/// Evaluates a simple multiple valued path access from the given context
+		/// node to the named great-great-great-great-grandchild elements.
+		/// </summary>
+		/// <param name="context">The context <see cref="XmlElement"/>.</param>
+		/// <param name="name1">The name of the required child.</param>
+		/// <param name="name2">The name of the required grandchild.</param>
+		/// <param name="name3">The name of the required great-grandchild.</param>
+		/// <param name="name4">The name of the required great-great-grandchild.</param>
+		/// <param name="name5">The name of the required great-great-great-grandchild.</param>
+		/// <param name="name6">The name of the required great-great-great-great-grandchild.</param>
+		/// <param name="name7">The name of the required great-great-great-great-great-grandchild.</param>
+		/// <returns>A possibly empty <see cref="XmlNodeList"/> of matching
+		/// great-great-great-great-grandchild elements.</returns>
+		public static XmlNodeList Paths (XmlElement context, string name1, string name2, string name3, string name4, string name5, string name6, string name7)
+		{
+			return (Paths (Paths (Paths (Paths (Paths (Paths (Paths (context, name1), name2), name3), name4), name5), name6), name7));
+		}
+
+		/// <summary>
+		/// Evaluates a simple multiple valued path access from the given context
+		/// node to the named great-great-great-great-grandchild elements.
+		/// </summary>
+		/// <param name="context">The context <see cref="XmlElement"/>.</param>
+		/// <param name="name1">The name of the required child.</param>
+		/// <param name="name2">The name of the required grandchild.</param>
+		/// <param name="name3">The name of the required great-grandchild.</param>
+		/// <param name="name4">The name of the required great-great-grandchild.</param>
+		/// <param name="name5">The name of the required great-great-great-grandchild.</param>
+		/// <param name="name6">The name of the required great-great-great-great-grandchild.</param>
+		/// <param name="name7">The name of the required great-great-great-great-great-grandchild.</param>
+		/// <param name="name8">The name of the required great-great-great-great-great-great-grandchild.</param>
+		/// <returns>A possibly empty <see cref="XmlNodeList"/> of matching
+		/// great-great-great-great-grandchild elements.</returns>
+		public static XmlNodeList Paths (XmlElement context, string name1, string name2, string name3, string name4, string name5, string name6, string name7, string name8)
+		{
+			return (Paths (Paths (Paths (Paths (Paths (Paths (Paths (Paths (context, name1), name2), name3), name4), name5), name6), name7), name8));
 		}
 
 		/// <summary>
