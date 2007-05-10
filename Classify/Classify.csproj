@@ -86,11 +86,6 @@
     <Reference Include="System.XML">
       <Name>System.XML</Name>
     </Reference>
-    <ProjectReference Include="..\HandCoded\FpML Toolkit %28Open Source%29.csproj">
-      <Name>HandCoded</Name>
-      <Project>{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -101,6 +96,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Content Include="icons\question_and_answer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FpML Toolkit\FpML Toolkit.csproj">
+      <Project>{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}</Project>
+      <Name>FpML Toolkit</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

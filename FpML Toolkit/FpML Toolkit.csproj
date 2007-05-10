@@ -1,0 +1,347 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>FpML Toolkit %28Open Source%29</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>HandCoded</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>Documentation.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <Name>log4net</Name>
+      <HintPath>..\log4net\1.0\debug\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acme\Releases.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classification\AbstractCategory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classification\Category.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classification\DelegatedCategory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classification\DelegatedRefinableCategory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classification\RefinableCategory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DSig\Releases.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Finance\Calendar.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Finance\CalendarRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Finance\Date.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Finance\DateRoll.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Finance\DelegatedDateRoll.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Finance\DelegatedWeekend.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Finance\Interval.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Finance\Period.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Finance\RuleBasedCalendar.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Finance\Time.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Finance\Weekend.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Conversions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\DefaultHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\FpMLUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Meta\DTDRelease.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Meta\ISchemeAccess.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Meta\SchemaRelease.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Meta\SchemeDefaults.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\ProductType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Releases.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Schemes\CachedScheme.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Schemes\ClosedScheme.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Schemes\IEnumerable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Schemes\IMatchable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Schemes\Scheme.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Schemes\SchemeCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Schemes\Value.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\AllRules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\BrokenSchemeRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\CdsRules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\DataTypeRules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\ElementPrecondition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\EqdRules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\FpMLRules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\IrdRules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\Preconditions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\SchemeRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\SchemeRules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\SharedRules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Validation\VersionPrecondition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FpML\Xml\Builder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\Application.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\Option.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\Conversion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\ConversionException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\DefaultInstanceInitialiser.cs" />
+    <Compile Include="Meta\DefaultSchemaRecogniser.cs" />
+    <Compile Include="Meta\DirectConversion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\DTDRelease.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\IDTD.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\IGrammar.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\IHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\IndirectConversion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\IInstanceInitialiser.cs" />
+    <Compile Include="Meta\ISchema.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\Release.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\ISchemaRecogniser.cs" />
+    <Compile Include="Meta\SchemaRelease.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meta\Specification.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\DelegatedPrecondition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\DelegatedRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\Precondition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\Rule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\RuleSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\ValidationErrorHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\Validator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\Browser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\Builder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\DOM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\Logic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\MutableNodeList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\NodeIndex.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\Writer\CompactWriter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\Writer\NestedWriter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\Writer\XmlWriter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\XmlUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\XPath.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
