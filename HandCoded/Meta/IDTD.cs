@@ -19,7 +19,7 @@ namespace HandCoded.Meta
 	/// The <b>DTD</b> interface provides access to information that
 	/// describes an XML DTD based grammar.
 	/// </summary>
-	public interface IDTD
+	public interface IDTD : IGrammar
 	{
 		/// <summary>
 		/// Contains the Public name for the DTD.

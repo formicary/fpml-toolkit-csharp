@@ -258,7 +258,6 @@ namespace HandCoded.FpML
 		/// </summary>
 		/// <returns>A pre-configured <see cref="XmlSchemaCollection"/> instance.
 		/// </returns>
-#if DOTNET2_0
 		public static XmlSchemaSet GetSchemas ()
 		{
 			if (schemaCollection == null) {
@@ -266,15 +265,6 @@ namespace HandCoded.FpML
                     ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.SchemasDirectory"]);
 
 				schemaCollection = new XmlSchemaSet ();
-#else
-		public static XmlSchemaCollection GetSchemas ()
-		{
-			if (schemaCollection == null) {
-				string baseDirectory = Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
-                    ConfigurationSettings.AppSettings ["HandCoded.FpML Toolkit.SchemasDirectory"]);
-
-				schemaCollection = new XmlSchemaCollection ();
-#endif
 
 				// Must add DSIG before FpML schemas
 				schemaCollection.Add (HandCoded.DSig.Releases.R1_0.NamespaceUri,
@@ -300,17 +290,10 @@ namespace HandCoded.FpML
 		/// </summary>
 		private static XmlResolver			resolver			= null;
 
-#if DOTNET2_0
 		/// <summary>
 		/// The <see cref="XmlSchemaSet"/> used to hold cached schemas.
 		/// </summary>
 		private static XmlSchemaSet			schemaCollection = null;
-#else
-		/// <summary>
-		/// The <see cref="XmlSchemaCollection"/> used to hold cached schemas.
-		/// </summary>
-		private static XmlSchemaCollection	schemaCollection	= null;
-#endif
 
 		/// <summary>
 		/// The <b>Resolver</b> class is a customised <see cref="XmlUrlResolver"/>
@@ -326,11 +309,7 @@ namespace HandCoded.FpML
 			public Resolver ()
 			{
 				string baseDirectory = Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
-#if DOTNET2_0
 					ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.SchemasDirectory"]);
-#else
-                    ConfigurationSettings.AppSettings ["HandCoded.FpML Toolkit.SchemasDirectory"]);
-#endif
 
 				uriMap.Add (Releases.R1_0.PublicId, 
 					Path.Combine (baseDirectory, "fpml1-0/" + Releases.R1_0.SystemId));

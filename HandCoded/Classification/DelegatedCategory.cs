@@ -12,6 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
+using System.Collections;
 
 namespace HandCoded.Classification
 {
@@ -69,10 +70,12 @@ namespace HandCoded.Classification
 		/// </summary>
 		/// <remarks>Uses the delegate provided at construction.</remarks>
 		/// <param name="value">The <see cref="Object"/> to be classified.</param>
-		/// <returns>The matching <b>Category</b> for the <see cref="Object"/> or
+        /// <param name="visited">A <see cref="Hashtable"/> used to track visited nodes.</param>
+        /// <returns>The matching <b>Category</b> for the <see cref="Object"/> or
 		/// <c>null</c> if none could be determined.</returns>
-		public override Category Classify (Object value)
+        protected internal override Category Classify (Object value, Hashtable visited)
 		{
+            visited [this] = true;
 			return (function (value));
 		}
 

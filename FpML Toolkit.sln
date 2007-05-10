@@ -1,37 +1,31 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandCoded", "HandCoded\HandCoded.csproj", "{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FpML Toolkit (Open Source)", "HandCoded\FpML Toolkit (Open Source).csproj", "{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validate", "Validate\Validate.csproj", "{3A76F324-C71C-4EAE-99B5-14350107F011}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classify", "Classify\Classify.csproj", "{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		Debug = Debug
-		Release = Release
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}.Debug.ActiveCfg = Debug|.NET
-		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}.Debug.Build.0 = Debug|.NET
-		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}.Release.ActiveCfg = Release|.NET
-		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}.Release.Build.0 = Release|.NET
-		{3A76F324-C71C-4EAE-99B5-14350107F011}.Debug.ActiveCfg = Debug|.NET
-		{3A76F324-C71C-4EAE-99B5-14350107F011}.Debug.Build.0 = Debug|.NET
-		{3A76F324-C71C-4EAE-99B5-14350107F011}.Release.ActiveCfg = Release|.NET
-		{3A76F324-C71C-4EAE-99B5-14350107F011}.Release.Build.0 = Release|.NET
-		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Debug.ActiveCfg = Debug|.NET
-		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Debug.Build.0 = Debug|.NET
-		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Release.ActiveCfg = Release|.NET
-		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Release.Build.0 = Release|.NET
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A76F324-C71C-4EAE-99B5-14350107F011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A76F324-C71C-4EAE-99B5-14350107F011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A76F324-C71C-4EAE-99B5-14350107F011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A76F324-C71C-4EAE-99B5-14350107F011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

@@ -100,7 +100,6 @@ namespace HandCoded.Xml
 		/// <param name="eventHandler">The <see cref="ValidationEventHandler"/> used to report parse errors</param>
 		/// <returns>A <see cref="XmlDocument"/> instance if the parse succeeded
 		/// or <b>null</b> if it failed.</returns>
-#if DOTNET2_0
 		public static XmlDocument ValidatingParse (int grammer, string xml,
 			XmlSchemaSet schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
 		{
@@ -135,36 +134,6 @@ namespace HandCoded.Xml
 				return (null);
 			}
 		}
-#else
-		public static XmlDocument ValidatingParse (int grammer, string xml,
-			XmlSchemaCollection schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
-		{
-			XmlDocument			document	= new XmlDocument ();
-			XmlParserContext	context		= null;
-			XmlValidatingReader	reader		= new XmlValidatingReader (xml, XmlNodeType.Document, context);
-
-			reader.Schemas.Add (schemas);
-			reader.XmlResolver = resolver;
-
-			if (grammer == DTD_ONLY)
-				reader.ValidationType = ValidationType.DTD;
-			else if (grammer == SCHEMA_ONLY)
-				reader.ValidationType = ValidationType.Schema;
-			else
-				reader.ValidationType = ValidationType.Auto;
-
-			if (eventHandler != null)
-				reader.ValidationEventHandler += eventHandler;
-
-			try {
-				document.Load (reader);
-				return (document);
-			}
-			catch (XmlException) {
-				return (null);
-			}
-		}
-#endif
 
 		/// <summary>
 		/// Performs a validating parse of the indicated XML <see cref="string"/>
@@ -179,7 +148,6 @@ namespace HandCoded.Xml
 		/// <param name="eventHandler">The <see cref="ValidationEventHandler"/> used to report parse errors</param>
 		/// <returns>A <see cref="XmlDocument"/> instance if the parse succeeded
 		/// or <b>null</b> if it failed.</returns>
-#if DOTNET2_0
 		public static XmlDocument ValidatingParse (int grammer, Stream stream,
 			XmlSchemaSet schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
 		{
@@ -223,36 +191,6 @@ namespace HandCoded.Xml
 				return (null);
 			}
 		}
-#else
-		public static XmlDocument ValidatingParse (int grammer, Stream stream,
-			XmlSchemaCollection schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
-		{
-			XmlDocument			document	= new XmlDocument ();
-			XmlParserContext	context		= null;
-			XmlValidatingReader	reader		= new XmlValidatingReader (stream, XmlNodeType.Document, context);
-
-			reader.Schemas.Add (schemas);
-			reader.XmlResolver = resolver;
-
-			if (grammer == DTD_ONLY)
-				reader.ValidationType = ValidationType.DTD;
-			else if (grammer == SCHEMA_ONLY)
-				reader.ValidationType = ValidationType.Schema;
-			else
-				reader.ValidationType = ValidationType.Auto;
-
-			if (eventHandler != null)
-				reader.ValidationEventHandler += eventHandler;
-
-			try {
-				document.Load (reader);
-				return (document);
-			}
-			catch (XmlException) {
-				return (null);
-			}
-		}
-#endif
 
 		/// <summary>
 		/// Produces a detailed dump of the given <see cref="XmlNode"/> instance

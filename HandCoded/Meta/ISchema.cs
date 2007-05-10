@@ -19,7 +19,7 @@ namespace HandCoded.Meta
 	/// The <b>ISchema</b> interface provides access to information that
 	/// describes an XML Schema based grammar.
 	/// </summary>
-	public interface ISchema
+	public interface ISchema : IGrammar
 	{
 		/// <summary>
 		/// Contains the schema's namespace URI.
