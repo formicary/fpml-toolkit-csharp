@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classify", "Classify\Classi
 		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61} = {5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FpML Toolkit", "FpML Toolkit\FpML Toolkit.csproj", "{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FpML Toolkit (Open Source)", "FpML Toolkit (Open Source)\FpML Toolkit (Open Source).csproj", "{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -97,9 +97,9 @@
     <Content Include="icons\checks.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FpML Toolkit\FpML Toolkit.csproj">
+    <ProjectReference Include="..\FpML Toolkit %28Open Source%29\FpML Toolkit %28Open Source%29.csproj">
       <Project>{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}</Project>
-      <Name>FpML Toolkit</Name>
+      <Name>FpML Toolkit %28Open Source%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
