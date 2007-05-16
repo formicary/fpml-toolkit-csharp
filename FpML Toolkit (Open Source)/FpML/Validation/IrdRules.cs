@@ -497,6 +497,15 @@ namespace HandCoded.FpML.Validation
 		public static readonly Rule	RULE58
 			= new DelegatedRule ("ird-58", new RuleDelegate (Rule58));
 
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures the calculation period dates
+		/// reference matches a calculation period dates in same interest
+		/// rate stream.
+		/// </summary>
+		/// <remarks>Applies to all FpML releases.</remarks>
+		public static readonly Rule	RULE59
+			= new DelegatedRule ("ird-59", new RuleDelegate (Rule59));
+
 		// --------------------------------------------------------------------
 
 		/// <summary>
@@ -2363,6 +2372,36 @@ namespace HandCoded.FpML.Validation
 			return (result);
 		}
 
+		// --------------------------------------------------------------------
+
+		private static bool Rule59 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			bool		result	= true;
+
+			foreach (XmlElement context in nodeIndex.GetElementsByName ("resetDates")) {
+				XmlElement	reference	= XPath.Path (context, "calculationPeriodDatesReference");
+				XmlElement	definition	= XPath.Path (context, "..", "calculationPeriodDates");
+
+				if ((reference != null) && (definition != null)) {
+					string		href = reference.GetAttribute ("href");
+					string		id	 = definition.GetAttribute ("id");
+
+					// Remove leading # from XPointer type references
+					if ((href != null) && (href.Length > 0) && (href [0] == '#'))
+						href = href.Substring (1);
+
+					if ((href != null) && (id != null) && Equal (href, id)) continue;
+
+					errorHandler ("305", context,
+						"The calculation period dates reference does not match with dates defined " +
+						"in the same interest rate stream", name, href);
+
+					result = false;
+				}
+			}
+			return (result);
+		}
+
 		/// <summary>
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>
 		/// instances.
@@ -2506,6 +2545,7 @@ namespace HandCoded.FpML.Validation
 			Rules.Add (RULE56);
 			Rules.Add (RULE57);
 			Rules.Add (RULE58);
+			Rules.Add (RULE59);
 		}
 	}
 }
