@@ -21,7 +21,7 @@ namespace HandCoded.Framework
 	/// Derived classes extend its functionality and specialise it to a
 	/// particular task.
 	/// </summary>
-	public abstract class Application
+	public abstract class Application : Process
 	{
 		/// <summary>
 		/// Contains the current <b>Application instance.</b>
@@ -29,18 +29,6 @@ namespace HandCoded.Framework
 		public static Application CurrentApplication {
 			get {
 				return (application);
-			}
-		}
-
-		/// <summary>
-		/// Contains a flag that indicates when execution is finished.
-		/// </summary>
-		public bool Finished {
-			get {
-				return (finished);
-			}
-			set {
-				finished = value;
 			}
 		}
 
@@ -53,10 +41,7 @@ namespace HandCoded.Framework
 		{
 			this.arguments = Option.ProcessArguments (arguments);
 
-			StartUp ();
-			while (!finished)
-				Execute ();
-			CleanUp ();
+			base.Run ();
 		}
 
 		/// <summary>
@@ -92,7 +77,7 @@ namespace HandCoded.Framework
 		/// initialisation. This implementation checks for the -help option.
 		/// Derived classes may extend the functionality.
 		/// </summary>
-		protected virtual void StartUp ()
+		protected override void StartUp ()
 		{
 			if (helpOption.Present) {
 				System.Console.Error.WriteLine ("Usage:\n");
@@ -103,20 +88,6 @@ namespace HandCoded.Framework
 				Environment.Exit (1);
 			}
 		}
-
-		/// <summary>
-		/// The <b>Execute</b> method should perform one program execution
-		/// cycle. The method is called repeatedly until the finished flag is set.
-		/// </summary>
-		protected abstract void Execute ();
-
-		/// <summary>
-		/// Provides an <b>Application</b> with a change to perform any
-		/// closing actions. This implementation does nothing. Derived classes
-		/// may extend the functionality.
-		/// </summary>
-		protected virtual void CleanUp ()
-		{ }
 
 		/// <summary>
 		/// Provides a text description of the arguments expected after the options
@@ -154,7 +125,7 @@ namespace HandCoded.Framework
 			else
 				builder.Append ("null");
 
-			builder.Append (",finished=" + finished);
+			builder.Append (",finished=" + Finished);
 
 			return (builder.ToString ());
 		}
@@ -174,10 +145,5 @@ namespace HandCoded.Framework
 		/// The command line argumenrs after processing.
 		/// </summary>
 		private string []			arguments	= null;
-
-		/// <summary>
-		/// A <b>bool</b> flag to indicate that we are done.
-		/// </summary>
-		private bool				finished	= false;
 	}
 }

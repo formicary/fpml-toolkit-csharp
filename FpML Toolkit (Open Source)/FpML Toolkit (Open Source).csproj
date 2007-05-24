@@ -92,6 +92,7 @@
     <Compile Include="Acme\Releases.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Framework\Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
