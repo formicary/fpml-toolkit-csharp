@@ -298,9 +298,12 @@
     <Compile Include="Validation\RuleSet.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Validation\ValidationError.cs" />
     <Compile Include="Validation\ValidationErrorHandler.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Validation\ValidationErrorSet.cs" />
+    <Compile Include="Validation\ValidationErrorSetAdapter.cs" />
     <Compile Include="Validation\Validator.cs">
       <SubType>Code</SubType>
     </Compile>
