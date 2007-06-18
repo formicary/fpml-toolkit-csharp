@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2007 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -17,6 +17,9 @@ using System.Text;
 using System.Xml;
 using System.Xml.Schema;
 
+using HandCoded.Meta;
+using HandCoded.Validation;
+using HandCoded.Xml.Resolver;
 using HandCoded.Xml.Writer;
 
 namespace HandCoded.Xml
@@ -45,6 +48,27 @@ namespace HandCoded.Xml
 		/// documents could be provided.
 		/// </summary>
 		public const int	DTD_OR_SCHEMA	= 3;
+
+		/// <summary>
+		/// Contains the default <see cref="Catalog"/>.
+		/// </summary>
+		public Catalog DefaultCatalog {
+			get {
+				return (defaultCatalog);
+			}
+			set {
+				defaultCatalog = value;
+			}
+		}
+
+		/// <summary>
+		/// Contains the default <see cref="SchemaSet"/>.
+		/// </summary>
+		public SchemaSet DefaultSchemaSet {
+			get {
+				return (defaultSchemaSet);
+			}
+		}
 
 		/// <summary>
 		/// Performs a non-validating parse of the indicated XML <see cref="String"/>
@@ -101,7 +125,7 @@ namespace HandCoded.Xml
 		/// <returns>A <see cref="XmlDocument"/> instance if the parse succeeded
 		/// or <b>null</b> if it failed.</returns>
 		public static XmlDocument ValidatingParse (int grammer, string xml,
-			XmlSchemaSet schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
+			SchemaSet schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
 		{
 			XmlDocument			document	= new XmlDocument ();
 			XmlReaderSettings	settings	= new XmlReaderSettings ();
@@ -121,7 +145,7 @@ namespace HandCoded.Xml
 
 			if (grammer == SCHEMA_ONLY) {
 				settings.ValidationType = ValidationType.Schema;
-				settings.Schemas		= schemas;
+				settings.Schemas		= schemas.XmlSchemaSet;
 			}
 
 			reader = XmlReader.Create (new XmlTextReader (xml), settings);
@@ -149,7 +173,7 @@ namespace HandCoded.Xml
 		/// <returns>A <see cref="XmlDocument"/> instance if the parse succeeded
 		/// or <b>null</b> if it failed.</returns>
 		public static XmlDocument ValidatingParse (int grammer, Stream stream,
-			XmlSchemaSet schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
+			SchemaSet schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
 		{
 			XmlDocument			document	= new XmlDocument ();
 			XmlReaderSettings	settings	= new XmlReaderSettings ();
@@ -176,7 +200,7 @@ namespace HandCoded.Xml
 			if (grammer == SCHEMA_ONLY)
 			{
 				settings.ValidationType = ValidationType.Schema;
-				settings.Schemas = schemas;
+				settings.Schemas = schemas.SchemaSet;
 			}
 
 			reader = XmlReader.Create (stream, settings);
@@ -212,6 +236,16 @@ namespace HandCoded.Xml
 		{
 			DumpNode (node, writer, 0);
 		}
+
+		/// <summary>
+		/// The default catalog used to resolve XML DTDs & Schemas.
+		/// </summary>
+		private static Catalog		defaultCatalog		= null;
+
+		/// <summary>
+		/// The default schema collection used to validate schema based documents.
+		/// </summary>
+		private static SchemaSet	defaultSchemaSet	= new SchemaSet ();
 
 		/// <summary>
 		/// Ensures no instances can be constructed.

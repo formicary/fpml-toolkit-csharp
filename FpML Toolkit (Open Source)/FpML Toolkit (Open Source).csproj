@@ -325,12 +325,20 @@
     <Compile Include="Xml\NodeIndex.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Xml\Resolver\Catalog.cs" />
+    <Compile Include="Xml\Resolver\CatalogEntry.cs" />
+    <Compile Include="Xml\Resolver\CatalogManager.cs" />
+    <Compile Include="Xml\Resolver\CatalogSet.cs" />
+    <Compile Include="Xml\Resolver\IEntityRule.cs" />
+    <Compile Include="Xml\Resolver\IUriRule.cs" />
+    <Compile Include="Xml\Resolver\RelativeEntry.cs" />
     <Compile Include="Xml\Writer\CompactWriter.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Xml\Writer\NestedWriter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Xml\SchemaSet.cs" />
     <Compile Include="Xml\Writer\XmlWriter.cs">
       <SubType>Code</SubType>
     </Compile>
