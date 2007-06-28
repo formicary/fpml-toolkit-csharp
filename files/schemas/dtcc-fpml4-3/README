@@ -1,0 +1,33 @@
+If you are a DTCC DerivSERV participant and want to try the DTCCValidate
+example then place a copy of the following files in this directory.
+
+fpml-allocation-4-3.xsd
+fpml-asset-4-3.xsd
+fpml-cashflow-matching-4-3.xsd
+fpml-cd-4-3.xsd
+fpml-confirmation-4-3.xsd
+fpml-contract-notification-4-3.xsd
+fpml-credit-event-notification-4-3.xsd
+fpml-doc-4-3.xsd
+fpml-enum-4-3.xsd
+fpml-eq-shared-4-3.xsd
+fpml-eqd-4-3.xsd
+fpml-fx-4-3.xsd
+fpml-ird-4-3.xsd
+fpml-main-4-3.xsd
+fpml-matching-status-4-3.xsd
+fpml-mktenv-4-3.xsd
+fpml-msg-4-3.xsd
+fpml-posttrade-4-3.xsd
+fpml-posttrade-confirmation-4-3.xsd
+fpml-posttrade-execution-4-3.xsd
+fpml-posttrade-negotiation-4-3.xsd
+fpml-pretrade-4-3.xsd
+fpml-reporting-4-3.xsd
+fpml-return-swaps-4-3.xsd
+fpml-riskdef-4-3.xsd
+fpml-shared-4-3.xsd
+fpml-trade-notification-4-3.xsd
+fpml-tradeexec-4-3.xsd
+fpml-valuation-4-3.xsd
+fpml-valuation-base-4-3.xsd
