@@ -629,7 +629,7 @@
 						</xsd:annotation>
 					</xsd:element>
 					<xsd:element name="floatingRateIndex" type="FloatingRateIndex"/>
-					<xsd:element name="indexTenor" type="Interval" minOccurs="0">
+					<xsd:element name="indexTenor" type="Interval" maxOccurs="unbounded">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">The ISDA Designated Maturity, i.e. the tenor of the floating rate.</xsd:documentation>
 						</xsd:annotation>

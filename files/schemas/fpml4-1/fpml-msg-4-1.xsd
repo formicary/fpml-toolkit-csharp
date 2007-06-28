@@ -9,7 +9,7 @@
 	<xsd:include schemaLocation="fpml-doc-4-1.xsd"/>
 	<xsd:complexType name="AdditionalData">
 		<xsd:simpleContent>
-			<xsd:extension base="xsd:normalizedString">
+			<xsd:extension base="xsd:string">
 				<xsd:attribute name="additionalDataScheme" type="xsd:anyURI" use="optional"/>
 			</xsd:extension>
 		</xsd:simpleContent>
