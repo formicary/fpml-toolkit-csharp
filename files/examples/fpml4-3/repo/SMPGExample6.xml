@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- 
+	== Copyright (c) 2002-2007. All rights reserved. 
+	== Financial Products Markup Language is subject to the FpML public license. 
+	== A copy of this license is available at http://www.fpml.org/documents/license.html
+-->
+<FpML xmlns="http://www.fpml.org/2007/FpML-4-3" version="4-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2007/FpML-4-3 ../fpml-main-4-3.xsd" xsi:type="TradeCreated">
+	<header>
+		<messageId messageIdScheme="http://www.partyA.com/coding-scheme/message-id">REPOINSTR123</messageId>
+		<sentBy>PartyA</sentBy>
+		<sendTo>Custodian</sendTo>
+		<creationTimestamp>2004-06-23T06:55:42-07:00</creationTimestamp>
+	</header>
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="partyA"/>
+				<tradeId tradeIdScheme="http://partyA.com/coding-scheme/trade-id">REPO12345</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate>2003-03-05</tradeDate>
+		</tradeHeader>
+		<repo>
+			<productType>Repo</productType>
+			<fixedRateSchedule>
+				<initialValue>0.0567</initialValue>
+			</fixedRateSchedule>
+			<dayCountFraction>ACT/365.FIXED</dayCountFraction>
+			<duration>Term</duration>
+			<margin>
+				<marginType>Cash</marginType>
+				<marginFactor>1.00</marginFactor>
+			</margin>
+			<spotLeg>
+				<buyerPartyReference href="partyB"/>
+				<sellerPartyReference href="partyA"/>
+				<settlementDate>
+					<adjustableDate>
+						<unadjustedDate>2003-03-08</unadjustedDate>
+						<dateAdjustments>
+							<businessDayConvention>NONE</businessDayConvention>
+						</dateAdjustments>
+					</adjustableDate>
+				</settlementDate>
+				<settlementAmount>
+					<currency>EUR</currency>
+					<amount>9900000</amount>
+				</settlementAmount>
+				<collateral>
+					<nominalAmount>
+						<currency>EUR</currency>
+						<amount>100050000</amount>
+					</nominalAmount>
+					<assetReference href="collateral1"/>
+				</collateral>
+			</spotLeg>
+			<forwardLeg>
+				<buyerPartyReference href="partyA"/>
+				<sellerPartyReference href="partyB"/>
+				<settlementDate>
+					<adjustableDate>
+						<unadjustedDate>2003-03-15</unadjustedDate>
+						<dateAdjustments>
+							<businessDayConvention>NONE</businessDayConvention>
+						</dateAdjustments>
+					</adjustableDate>
+				</settlementDate>
+				<settlementAmount>
+					<currency>EUR</currency>
+					<amount>9910780</amount>
+				</settlementAmount>
+				<repoInterest>10780</repoInterest>
+			</forwardLeg>
+			<bond id="collateral1">
+				<instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-ISIN-1-0">XX0000294034</instrumentId>
+			</bond>
+		</repo>
+	</trade>
+	<party id="partyB">
+		<partyId>BUYRGB22</partyId>
+	</party>
+	<party id="partyA">
+		<partyId>SELLGB22</partyId>
+	</party>
+	<party id="Acustodian">
+		<partyId>SUBCXX12</partyId>
+		<account id="partyAAcct">
+			<accountId>1111111111</accountId>
+			<accountBeneficiary href="partyA"/>
+		</account>
+	</party>
+	<party id="Bcustodian">
+		<partyId>SUBCYY34</partyId>
+		<account id="partyBAcct">
+			<accountId>3333333333</accountId>
+			<accountBeneficiary href="partyB"/>
+		</account>
+	</party>
+	<party id="custodian">
+		<partyId>NCSDXX21</partyId>
+	</party>
+</FpML>

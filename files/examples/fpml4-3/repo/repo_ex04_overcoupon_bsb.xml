@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	== Copyright (c) 2002-2007. All rights reserved. 
+	== Financial Products Markup Language is subject to the FpML public license. 
+	== A copy of this license is available at http://www.fpml.org/documents/license.html
+-->
+<FpML xmlns="http://www.fpml.org/2007/FpML-4-3" version="4-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2007/FpML-4-3 ../fpml-main-4-3.xsd" xsi:type="TradeCreated">
+	<header>
+		<messageId messageIdScheme="http://www.jpmorgan.com/message-id">SXB-897987907855EAF</messageId>
+		<sentBy>CHASUS33</sentBy>
+		<creationTimestamp>2004-06-23T06:55:42-07:00</creationTimestamp>
+	</header>
+	<trade>
+		<tradeHeader>
+			<partyTradeIdentifier>
+				<partyReference href="party2" />
+				<tradeId tradeIdScheme="http://www.jpmorgan.com/coding-scheme/trade-id">NE9989244</tradeId>
+			</partyTradeIdentifier>
+			<tradeDate>2005-03-14</tradeDate>
+		</tradeHeader>
+		<repo>
+			<productType>BuySellBack</productType>
+			<fixedRateSchedule>
+				<initialValue>0.01</initialValue>
+			</fixedRateSchedule>
+			<dayCountFraction>ACT/365.FIXED</dayCountFraction>
+			<duration>Term</duration>
+			<margin>
+				<marginType>Cash</marginType>
+				<marginFactor>1.00</marginFactor>
+			</margin>
+			<spotLeg>
+				<buyerPartyReference href="party1" />
+				<sellerPartyReference href="party2" />
+				<settlementDate>
+					<adjustableDate>
+						<unadjustedDate>2005-03-14</unadjustedDate>
+						<dateAdjustments>
+							<businessDayConvention>NONE</businessDayConvention>
+						</dateAdjustments>
+					</adjustableDate>
+				</settlementDate>
+				<settlementAmount>
+					<currency>EUR</currency>
+					<amount>10000000.00</amount>
+				</settlementAmount>
+				<collateral>
+					<nominalAmount>
+						<currency>EUR</currency>
+						<amount>10000000.00</amount>
+					</nominalAmount>
+					<cleanPrice>98.79</cleanPrice>
+					<accruals>1.21</accruals>
+					<dirtyPrice>100.00</dirtyPrice>
+					<assetReference href="collateral1" />
+				</collateral>
+			</spotLeg>
+			<forwardLeg>
+				<buyerPartyReference href="party2" />
+				<sellerPartyReference href="party1" />
+				<settlementDate>
+					<adjustableDate>
+						<unadjustedDate>2005-10-14</unadjustedDate>
+						<dateAdjustments>
+							<businessDayConvention>NONE</businessDayConvention>
+						</dateAdjustments>
+					</adjustableDate>
+				</settlementDate>
+				<settlementAmount>
+					<currency>EUR</currency>
+					<amount>9856876.71</amount>
+				</settlementAmount>
+				<collateral>
+					<nominalAmount>
+						<currency>EUR</currency>
+						<amount>10000000.00</amount>
+					</nominalAmount>
+					<cleanPrice>97.234205</cleanPrice>
+					<accruals>1.334562</accruals>
+					<dirtyPrice>98.568767</dirtyPrice>
+					<assetReference href="collateral1" />
+				</collateral>
+				<repoInterest>57534.24</repoInterest>
+			</forwardLeg>
+			<couponEvent>
+				<eventDate>2005-06-10</eventDate>
+				<couponAmount>200000</couponAmount>
+				<reinvestmentRate>0.0103</reinvestmentRate>
+				<assetReference href="collateral1" />
+			</couponEvent>
+			<bond id="collateral1">
+				<instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-ISIN-1-0">FR0010011130</instrumentId>
+				<description>OAT 4% 10-2013</description>
+			</bond>
+		</repo>
+	</trade>
+	<party id="party1">
+		<partyId>BARCGB21</partyId>
+	</party>
+	<party id="party2">
+		<partyId>CHASUS33</partyId>
+	</party>
+</FpML>

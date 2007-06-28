@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	== Copyright (c) 2002-2007. All rights reserved.
+	== Financial Products Markup Language is subject to the FpML public license.
+	== A copy of this license is available at http://www.fpml.org/documents/license.html
+-->
+<FpML xsi:type="RequestPositionReport" xmlns="http://www.fpml.org/2007/FpML-4-3" version="4-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/2007/FpML-4-3 ../../fpml-main-4-3.xsd">
+	
+<!--
+18. ABC requests a position report with a listing of FX Spot/Forward involving GBP.
+-->
+	<header>
+		<messageId messageIdScheme="http://www.abc.com/mid">ABC0005</messageId>
+		<sentBy>ABCDUS33</sentBy>
+		<sendTo>RECSERV</sendTo>
+		<creationTimestamp>2006-04-28T15:38:00-00:00</creationTimestamp>
+	</header>
+	<asOfDate>2006-04-26</asOfDate>
+	<requestedPositions>
+		<queryPortfolio>
+			<queryParameter>
+				<queryParameterId queryParameterIdScheme="http://www.abc.com/coding-scheme/queryParamterId">Product</queryParameterId>
+				<queryParameterValue>fxSingleLeg</queryParameterValue>
+			</queryParameter>
+			<queryParameter>
+				<queryParameterId queryParameterIdScheme="http://www.abc.com/coding-scheme/queryParamterId">Currency</queryParameterId>
+				<queryParameterValue>GBP</queryParameterValue>
+			</queryParameter>
+		</queryPortfolio>
+	</requestedPositions>
+	<party id="dealer">
+		<partyId>ABCDU33</partyId>
+	</party>
+	<party id="fund">
+		<partyId>HEDGUS33</partyId>
+	</party>
+
+</FpML>
