@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/documents/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1072 $">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1536 $">
 	<xsd:include schemaLocation="fpml-shared-4-2.xsd"/>
 	<xsd:simpleType name="QueryParameterValue">
 		<xsd:annotation>
@@ -499,7 +499,7 @@
 			</xsd:element>
 			<xsd:element name="account" type="Account" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation xml:lang="en">Accounts serviced by this party. These are not accounts where this party is beneficiary, but instead where they are provided and by this party to the beneficiary party.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Accounts serviced by this party. These are not accounts where this party is beneficiary, but instead where services are provided by this party to the beneficiary party.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
@@ -1013,7 +1013,7 @@
 				<xsd:documentation xml:lang="en">The message creator can send the build number of the schema on which they built the messages against. </xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="actualBuild" fixed="2" type="xsd:positiveInteger">
+		<xsd:attribute name="actualBuild" fixed="3" type="xsd:positiveInteger">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">Taken from the schemas that the recipient validated against. Every time there is a change on the schema, validation rules, or examples within a version the actual build number is incremented. If no changes have been made between releases within a version (i.e. from Trial Recommendation to Recommendation) the actual build number stays the same.</xsd:documentation>
 			</xsd:annotation>
@@ -1077,11 +1077,6 @@
 			<xsd:element name="amendmentEffectiveDate" type="xsd:date">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">The date on which the Amendment becomes effective</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="revisedTrade" type="Trade" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">A copy of the trade details reflecting the revised state.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>

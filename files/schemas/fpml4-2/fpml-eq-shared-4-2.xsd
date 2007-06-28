@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/documents/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1027 $">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1707 $">
 	<xsd:include schemaLocation="fpml-asset-4-2.xsd"/>
 	<xsd:complexType name="AdditionalDisruptionEvents">
 		<xsd:annotation>
@@ -48,6 +48,9 @@
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="AdjustableDateOrRelativeDateSequence">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type describing a date defined as subject to adjustment or defined in reference to another date through one or several date offsets.</xsd:documentation>
+		</xsd:annotation>
 		<xsd:choice>
 			<xsd:element name="adjustableDate" type="AdjustableDate">
 				<xsd:annotation>
@@ -1185,6 +1188,11 @@
 			<xsd:choice>
 				<xsd:element name="initialLevel" type="xsd:decimal"/>
 				<xsd:element name="closingLevel" type="xsd:boolean"/>
+				<xsd:element name="expiringLevel" type="xsd:boolean">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">If present and true this contract will strike off the default exchange traded contract</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
 			</xsd:choice>
 			<xsd:element name="varianceAmount" type="Money"/>
 			<xsd:choice>
@@ -1202,6 +1210,11 @@
 			<xsd:element name="vegaNotionalAmount" type="xsd:decimal" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">Vega Notional represents the approximate gain/loss at maturity for a 1% difference between RVol (realised vol) and KVol (strike vol). It does not necessarily represent the Vega Risk of the trade.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="fxFeature" type="FxFeature" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Quanto, Composite, or Cross Currency FX features</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
@@ -1283,4 +1296,28 @@
 			<xsd:documentation xml:lang="en">The variance leg of the equity swap</xsd:documentation>
 		</xsd:annotation>
 	</xsd:element>
+	<!-- AP 09 feb 2007 added -->
+	<xsd:group name="Feature.model">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				A group containing Swap and Derivate features
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="feature" type="OptionFeatures" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">
+						Asian, Barrier, Knock and Pass Through features
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="fxFeature" type="FxFeature" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">
+						Quanto, Composite, or Cross Currency FX features
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:group>
 </xsd:schema>

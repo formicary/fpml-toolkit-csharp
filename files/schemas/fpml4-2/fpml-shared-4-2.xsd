@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/documents/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1051 $">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1545 $">
 	<xsd:include schemaLocation="fpml-enum-4-2.xsd"/>
 	<xsd:simpleType name="HourMinuteTime">
 		<xsd:annotation>
@@ -517,7 +517,7 @@
 	<xsd:complexType name="ContractualDefinitions">
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:normalizedString">
-				<xsd:attribute name="contractualDefinitionsScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/contractual-definitions-3-0"/>
+				<xsd:attribute name="contractualDefinitionsScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/contractual-definitions-3-1"/>
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
@@ -543,7 +543,7 @@
 	<xsd:complexType name="ContractualSupplement">
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:normalizedString">
-				<xsd:attribute name="contractualSupplementScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/contractual-supplement-6-1"/>
+				<xsd:attribute name="contractualSupplementScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/contractual-supplement-6-2"/>
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
@@ -615,6 +615,9 @@
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="DateOffset">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">A type defining an offset used in calculating a date when this date is defined in reference to another date through a date offset. The type includes the convention for adjusting the date and an optional sequence element to indicate the order in a sequence of multiple date offsets.</xsd:documentation>
+		</xsd:annotation>
 		<xsd:complexContent>
 			<xsd:extension base="Offset">
 				<xsd:sequence>
@@ -1224,6 +1227,9 @@
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="GoverningLaw">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Identification of the law governing the transaction.</xsd:documentation>
+		</xsd:annotation>
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:normalizedString">
 				<xsd:attribute name="governingLawScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/governing-law-1-0"/>

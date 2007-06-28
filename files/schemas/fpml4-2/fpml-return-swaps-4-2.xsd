@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/documents/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 918 $">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2005/FpML-4-2" xmlns:fpml="http://www.fpml.org/2005/FpML-4-2" targetNamespace="http://www.fpml.org/2005/FpML-4-2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1698 $">
 	<xsd:include schemaLocation="fpml-ird-4-2.xsd"/>
 	<xsd:include schemaLocation="fpml-eq-shared-4-2.xsd"/>
 	<xsd:complexType name="DeprecatedEquityLeg">
@@ -141,6 +141,11 @@
 					<xsd:element name="multipleExchangeIndexAnnexFallback" type="xsd:boolean" minOccurs="0">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">Used for specifying whether additional annex terms for trades with underlyers that are listed on multiple exchanges, as defined in the European Master Confirmation, will apply.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="localJurisdiction" type="Country" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="en">Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used  to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 				</xsd:sequence>
