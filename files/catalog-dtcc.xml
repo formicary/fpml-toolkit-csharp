@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  == This is a custom catalog to redirect the XML parse to the proprietary DTCC
+  == schemas and their modified FpML schema.
+  --> 
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:entity:xmlns:xml:catalog catalog.xsd">
+	<!--
+	  == FpML (since 4.0) has referenced the W3C digital signature standard.
+	  -->
+	<uri
+	 name="http://www.w3.org/2000/09/xmldsig#"
+	 uri="schemas/dsig/xmldsig-core-schema.xsd"/>
+	
+	<!--
+	  == The DTCC uses SOAP 1.1 as a wrapper around document instances.
+	  -->
+	<uri
+	 name="http://schemas.xmlsoap.org/soap/envelope/"
+	 uri="schemas/soap-envelope/soap-envelope.xsd"/>
+
+	<!--
+	  == The XML Parser does resolve namespace URI through the catalog so
+	  == the utility function does it while constructing the schema collection.
+	  -->
+	<uri
+	 name="http://www.fpml.org/2007/FpML-4-3"
+	 uri="schemas/dtcc-fpml4-3/fpml-main-4-3.xsd"/>
+		
+	<!--
+	  == DTCC proprietary schemas.
+	  -->
+	<uri
+	 name="OTC_Matching_7-0"
+	 uri="schemas/dtcc7-0/OTC_Matching_7-0.xsd"/>
+	<uri
+	 name="OTC_RM_7-0"
+	 uri="schemas/dtcc7-0/OTC_RM_7-0.xsd"/>
+</catalog>
