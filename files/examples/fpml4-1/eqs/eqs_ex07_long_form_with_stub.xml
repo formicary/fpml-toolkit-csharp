@@ -199,6 +199,7 @@
                                                         <relativeDates>
                                                                 <periodMultiplier>3</periodMultiplier>
                                                                 <period>D</period>
+                                                                <dayType>Calendar</dayType>
                                                                 <businessDayConvention>FOLLOWING</businessDayConvention>
                                                                 <businessCenters id="primaryBusinessCenter">
                                                                         <businessCenter>EUTA</businessCenter>
