@@ -52,7 +52,7 @@ namespace HandCoded.Xml
 		/// <summary>
 		/// Contains the default <see cref="Catalog"/>.
 		/// </summary>
-		public Catalog DefaultCatalog {
+		public static Catalog DefaultCatalog {
 			get {
 				return (defaultCatalog);
 			}
@@ -64,7 +64,7 @@ namespace HandCoded.Xml
 		/// <summary>
 		/// Contains the default <see cref="SchemaSet"/>.
 		/// </summary>
-		public SchemaSet DefaultSchemaSet {
+		public static SchemaSet DefaultSchemaSet {
 			get {
 				return (defaultSchemaSet);
 			}
@@ -125,7 +125,7 @@ namespace HandCoded.Xml
 		/// <returns>A <see cref="XmlDocument"/> instance if the parse succeeded
 		/// or <b>null</b> if it failed.</returns>
 		public static XmlDocument ValidatingParse (int grammer, string xml,
-			SchemaSet schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
+			XmlSchemaSet schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
 		{
 			XmlDocument			document	= new XmlDocument ();
 			XmlReaderSettings	settings	= new XmlReaderSettings ();
@@ -145,7 +145,7 @@ namespace HandCoded.Xml
 
 			if (grammer == SCHEMA_ONLY) {
 				settings.ValidationType = ValidationType.Schema;
-				settings.Schemas		= schemas.XmlSchemaSet;
+				settings.Schemas		= schemas;
 			}
 
 			reader = XmlReader.Create (new XmlTextReader (xml), settings);
@@ -173,7 +173,7 @@ namespace HandCoded.Xml
 		/// <returns>A <see cref="XmlDocument"/> instance if the parse succeeded
 		/// or <b>null</b> if it failed.</returns>
 		public static XmlDocument ValidatingParse (int grammer, Stream stream,
-			SchemaSet schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
+			XmlSchemaSet schemas, XmlResolver resolver, ValidationEventHandler eventHandler)
 		{
 			XmlDocument			document	= new XmlDocument ();
 			XmlReaderSettings	settings	= new XmlReaderSettings ();
@@ -200,9 +200,11 @@ namespace HandCoded.Xml
 			if (grammer == SCHEMA_ONLY)
 			{
 				settings.ValidationType = ValidationType.Schema;
-				settings.Schemas = schemas.SchemaSet;
+				settings.ValidationFlags = XmlSchemaValidationFlags.ReportValidationWarnings;
+				settings.Schemas = schemas;
 			}
 
+			settings.ValidationEventHandler += eventHandler;
 			reader = XmlReader.Create (stream, settings);
 
 			try
@@ -238,7 +240,7 @@ namespace HandCoded.Xml
 		}
 
 		/// <summary>
-		/// The default catalog used to resolve XML DTDs & Schemas.
+		/// The default catalog used to resolve XML DTDs and Schemas.
 		/// </summary>
 		private static Catalog		defaultCatalog		= null;
 

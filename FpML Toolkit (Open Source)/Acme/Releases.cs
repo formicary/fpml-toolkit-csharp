@@ -61,7 +61,7 @@ namespace HandCoded.Acme
         static Releases ()
         {
 		    R1_0.AddImport (HandCoded.FpML.Releases.R4_0);
-		    R2_0.AddImport (HandCoded.FpML.Releases.TR4_2);
+		    R2_0.AddImport (HandCoded.FpML.Releases.R4_2);
         }
 	}
 }

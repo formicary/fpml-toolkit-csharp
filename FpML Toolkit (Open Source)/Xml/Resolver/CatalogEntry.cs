@@ -16,61 +16,46 @@ using System;
 namespace HandCoded.Xml.Resolver
 {
 	/// <summary>
-	/// The abstract <b>CatalogEntry</b> class defines the standard API
-	/// provided by all catalog entry components.
+	/// An instance of the <b>CatalogEntry</b> class represents the
+	/// &lt;catlog&gt; element within a parsed catalog file.
 	/// </summary>
-	public abstract class CatalogEntry
+	sealed class CatalogEntry : GroupEntry
 	{
 		/// <summary>
-		/// Contains the parent <see cref="CatalogEntry"/>
-		/// </summary>
-		public GroupEntry Parent {
-			get {
-				return (parent);
-			}
-		}
-
-		/// <summary>
-		/// Converts the instance data members to a <see cref="String"/> representation
-		/// that can be displayed for debugging purposes.
-		/// </summary>
-		/// <returns>The object's <see cref="String"/> representation.</returns>
-		public override String ToString ()
-		{
-			return (getClass ().getName () + "[" + toDebug () + "]");
-		}
-
-		/// <summary>
-		/// Contains a reference to the owning <see cref="Catalog"/>.
-		/// </summary>
-		protected Catalog Catalog {
-			get {
-				for (GroupEntry entry = parent; entry != null; entry = entry.Parent)
-					if (entry is Catalog) return (entry as Catalog);
-				return (null);
-			}
-		}
-
-		/// <summary>
-		/// Constructs a <b>CatalogRule</b> component.
+		/// Constructs a <b>CatalogEntry</b> component.
 		/// </summary>
 		/// <param name="parent">The containing catalog element.</param>
-		protected CatalogEntry (GroupEntry parent)
+		public CatalogEntry (String prefer, String xmlbase)
+			: base (null, prefer, xmlbase)
+		{ }
+
+		/// <summary>
+		/// Adds a group entry to the catalog.
+		/// </summary>
+		/// <param name="prefer">Optional <b>prefer</b> value.</param>
+		/// <param name="xmlbase">Optional <b>xml:base</b> value.</param>
+		/// <returns></returns>
+		public GroupEntry AddGroup (String prefer, String xmlbase)
 		{
-			this.parent  = parent;
+			GroupEntry		result = new GroupEntry (this, prefer, xmlbase);
+			
+			rules.Add (result);
+			return (result);
 		}
 
 		/// <summary>
-		/// Converts the instance's member values to <see cref="String"/> representations
-		/// and concatenates them all together. This function is used by ToString and
-		/// may be overriden in derived classes.
+		/// Adds a group entry to the catalog.
 		/// </summary>
+		/// <param name="prefer">Optional <b>prefer</b> value.</param>
 		/// <returns></returns>
-		protected abstract String ToDebug ();
-		
-		/**
-		 * The containing catalog element or <CODE>null</CODE>.
-		 */
+		public GroupEntry AddGroup (String prefer)
+		{
+			return (AddGroup (prefer, null));
+		}
+
+		/// <summary>
+		/// The containing catalog element or <CODE>null</CODE>.
+		/// </summary>
 		private readonly GroupEntry	parent;
 	}
 }

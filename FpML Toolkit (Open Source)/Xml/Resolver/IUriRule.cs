@@ -31,6 +31,6 @@ namespace HandCoded.Xml.Resolver
 		/// <param name="catalogs">The stack of catalogs being processed.</param>
 		/// <returns>A new URI if the rule was successfully applied, otherwise
 		///	<b>null</b>.</returns>
-		String ApplyTo (String uri, Stack<Catalog> catalogs);
+		String ApplyTo (String uri, Stack<GroupEntry> catalogs);
 	}
 }

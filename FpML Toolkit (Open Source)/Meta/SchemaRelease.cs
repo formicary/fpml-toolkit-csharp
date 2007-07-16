@@ -12,7 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 
 namespace HandCoded.Meta
@@ -147,6 +147,15 @@ namespace HandCoded.Meta
 		}
 
 		/// <summary>
+		/// Contains all the imported schema releases.
+		/// </summary>
+		public List<SchemaRelease> ImportSet {
+			get {
+				return (FindAllImports (new List<SchemaRelease> ()));
+			}
+		}
+
+		/// <summary>
 		/// Determines if the given <see cref="XmlDocument"/> is an instance of the XML
 		/// grammar represented by this instance.
 		/// </summary>
@@ -230,12 +239,36 @@ namespace HandCoded.Meta
 		/// The set of other <see cref="SchemaRelease"/> instances imported into this
 		/// one.
 		/// </summary>
-		private ArrayList			imports		= new ArrayList ();
+		private List<SchemaRelease>	imports		= new List<SchemaRelease> ();
 
 		/// <summary>
 		/// The set of other <see cref="SchemaRelease"/> instance that import this
 		/// one.
 		/// </summary>
-		private ArrayList			importedBy	= new ArrayList ();
+		private List<SchemaRelease>	importedBy	= new List<SchemaRelease> ();
+
+		/// <summary>
+		/// Recursively build a set of <b>SchemaRelease</b> instances
+		/// containing this one and any that it imports with the least
+		/// dependent first.
+		/// </summary>
+		/// <param name="releases">The <see cref="List"/> of matches (so far).</param>
+		/// <returns>The updated set of imported releases.</returns>
+		private List<SchemaRelease> FindAllImports (List<SchemaRelease> releases)
+		{
+			if (!releases.Contains (this)) {
+				// Add this schema to prevent infinte recursion
+				releases.Add (this);
+				
+				foreach (SchemaRelease import in imports){
+					import.FindAllImports (releases);
+				
+					// But reposition it after any schemas it imports
+					releases.Remove (this);
+					releases.Add (this);
+				}
+			}
+			return (releases);
+		}
 	}
 }

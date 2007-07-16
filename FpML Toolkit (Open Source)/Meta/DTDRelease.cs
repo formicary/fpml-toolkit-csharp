@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2007 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -13,6 +13,8 @@
 
 using System;
 using System.Xml;
+
+using HandCoded.Xml;
 
 namespace HandCoded.Meta
 {
@@ -54,18 +56,6 @@ namespace HandCoded.Meta
 		{
 			this.publicId = publicId;
 			this.systemId = systemId;
-		}
-
-		/// <summary>
-		/// Provides access to the default <see cref="XmlResolver"/> instance.
-		/// </summary>
-		public static XmlResolver DefaultResolver {
-			get {
-				return (defaultResolver);
-			}
-			set {
-				defaultResolver = value;
-			}
 		}
 
 		/// <summary>
@@ -119,18 +109,13 @@ namespace HandCoded.Meta
 		{
 			XmlDocument		document = new XmlDocument ();
 
-			document.XmlResolver = DefaultResolver;
+			document.XmlResolver = XmlUtility.DefaultCatalog;
 
 			document.AppendChild (document.CreateDocumentType (rootElement, publicId, systemId, null));
 			document.AppendChild (document.CreateElement (rootElement));
 
 			return (document);
 		}
-
-		/// <summary>
-		/// The default <see cref="XmlResolver"/> used to access DTDs.
-		/// </summary>
-		private static XmlResolver	defaultResolver	= null;			
 
 		/// <summary>
 		/// The public name for the DTD.

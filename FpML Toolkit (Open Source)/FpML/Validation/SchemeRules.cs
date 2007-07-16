@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2007 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -40,7 +40,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE01
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-1", "averagingMethod", "averagingMethodScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-1", "averagingMethod", "averagingMethodScheme");
 
 		/// <summary>
 		/// Rule 2: The value of any <b>businessCenter</b> element must be valid
@@ -56,7 +56,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE03
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-3", "businessDayConvention", "businessDayConventionScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-3", "businessDayConvention", "businessDayConventionScheme");
 
 		/// <summary>
 		/// Rule 4: The value of any <b>compoundingMethod</b> element must be valid
@@ -64,7 +64,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE04
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-4", "compoundingMethod", "compoundingMethodScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-4", "compoundingMethod", "compoundingMethodScheme");
 
 		/// <summary>
 		/// Rule 5: The value of any <b>Currency</b> type element must be valid
@@ -85,7 +85,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE06
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-6", "dateRelativeTo", "dateRelativeToScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-6", "dateRelativeTo", "dateRelativeToScheme");
 
 		/// <summary>
 		/// Rule 7: The value of any <b>dayCountFraction</b> element must be valid
@@ -101,7 +101,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE08
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-8", "dayType", "dayTypeScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-8", "dayType", "dayTypeScheme");
 
 		/// <summary>
 		/// Rule 9: The value of any <b>discountingType</b> element must be valid
@@ -109,7 +109,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE09
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-9", "discountingType", "discountingTypeScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-9", "discountingType", "discountingTypeScheme");
 
 #if false
 		/// <summary>
@@ -127,7 +127,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE11
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-11", "negativeInterestRateTreatment", "negativeInterestRateTreatmentScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-11", "negativeInterestRateTreatment", "negativeInterestRateTreatmentScheme");
 
 		/// <summary>
 		/// Rule 12: The value of any <b>payRelativeTo</b> element must be valid
@@ -135,7 +135,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE12
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-12", "payRelativeTo", "payRelativeToScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-12", "payRelativeTo", "payRelativeToScheme");
 
 		/// <summary>
 		/// Rule 13: The value of any <b>period</b> element must be valid
@@ -143,7 +143,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE13
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-13", "period", "periodScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-13", "period", "periodScheme");
 
 		/// <summary>
 		/// Rule 14: The value of any <b>rateTreatment</b> element must be valid
@@ -151,7 +151,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE14
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-14", "rateTreatment", "rateTreatmentScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-14", "rateTreatment", "rateTreatmentScheme");
 
 		/// <summary>
 		/// Rule 15: The value of any <b>resetRelativeTo</b> element must be valid
@@ -159,7 +159,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE15
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-15", "resetRelativeTo", "resetRelativeToScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-15", "resetRelativeTo", "resetRelativeToScheme");
 
 		/// <summary>
 		/// Rule 16: The value of any <b>rollConvention</b> element must be valid
@@ -167,7 +167,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE16
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-16", "rollConvention", "rollConventionScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-16", "rollConvention", "rollConventionScheme");
 
 		/// <summary>
 		/// Rule 17: The value of any <b>roundingDirection</b> element must be valid
@@ -175,7 +175,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE17
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-17", "roundingDirection", "roundingDirectionScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-17", "roundingDirection", "roundingDirectionScheme");
 
 		/// <summary>
 		/// Rule 18: The value of any <b>stepRelativeTo</b> element must be valid
@@ -183,7 +183,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE18
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-18", "stepRelativeTo", "stepRelativeToScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-18", "stepRelativeTo", "stepRelativeToScheme");
 
 		/// <summary>
 		/// Rule 19: The value of any <b>weeklyRollConvention</b> element must be valid
@@ -191,7 +191,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1-0, 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE19
-			= new SchemeRule (Preconditions.R1_0__TR3_0, "scheme-19", "weeklyRollConvention", "weeklyRollConventionScheme");
+			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-19", "weeklyRollConvention", "weeklyRollConventionScheme");
 
 		// FpML 2.0 ------------------------------------------------------------
 
@@ -201,7 +201,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE20
-			= new SchemeRule (Preconditions.R2_0__TR3_0, "scheme-20", "calculationAgentParty", "calculationAgentPartyScheme");
+			= new SchemeRule (Preconditions.R2_0__R3_0, "scheme-20", "calculationAgentParty", "calculationAgentPartyScheme");
 
 		/// <summary>
 		/// Rule 21: The value of any <b>rateSource</b> element must be valid
@@ -217,7 +217,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE22
-			= new SchemeRule (Preconditions.R2_0__TR3_0, "scheme-22",
+			= new SchemeRule (Preconditions.R2_0__R3_0, "scheme-22",
 			new String [] { "buyer", "seller" }, "payerReceiverScheme");
 
 		/// <summary>
@@ -226,7 +226,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 2-0 and 3-0.</remarks>
 		public static readonly Rule	RULE23
-			= new SchemeRule (Preconditions.R2_0__TR3_0, "scheme-23", "quotationRateType", "quotationRateTypeScheme");
+			= new SchemeRule (Preconditions.R2_0__R3_0, "scheme-23", "quotationRateType", "quotationRateTypeScheme");
 
 		// FpML 3.0 ------------------------------------------------------------
 
@@ -236,7 +236,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0 and later.</remarks>
 		public static readonly Rule	RULE24A
-			= new SchemeRule (Preconditions.TR3_0__R4_0, "scheme-24a", "clearanceSystem", "clearanceSystemScheme");
+			= new SchemeRule (Preconditions.R3_0__R4_0, "scheme-24a", "clearanceSystem", "clearanceSystemScheme");
 		
 		/// <summary>
 		/// Rule 24: The value of any <b>clearanceSystem</b> element must be valid
@@ -244,7 +244,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0 and later.</remarks>
 		public static readonly Rule	RULE24B
-			= new SchemeRule (Preconditions.TR3_0__LATER, "scheme-24b", "clearanceSystem", "clearanceSystemScheme");
+			= new SchemeRule (Preconditions.R3_0__LATER, "scheme-24b", "clearanceSystem", "clearanceSystemScheme");
 		
 		/// <summary>
 		/// Rule 25: The value of any <b>contractualDefinitions</b> element must
@@ -253,7 +253,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0 and later.</remarks>
 		public static readonly Rule	RULE25
-			= new SchemeRule (Preconditions.TR3_0__LATER, "scheme-25", "contractualDefinitions", "contractualDefinitionsScheme");
+			= new SchemeRule (Preconditions.R3_0__LATER, "scheme-25", "contractualDefinitions", "contractualDefinitionsScheme");
 
 		/// <summary>
 		/// Rule 26: The value of any <b>country</b> element must be valid
@@ -261,7 +261,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0 and later.</remarks>
 		public static readonly Rule	RULE26
-			= new SchemeRule (Preconditions.TR3_0__LATER, "scheme-26", "country", "countryScheme");
+			= new SchemeRule (Preconditions.R3_0__LATER, "scheme-26", "country", "countryScheme");
 
 		/// <summary>
 		/// Rule 27: The value of any <b>cutName</b> element must be valid
@@ -269,7 +269,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0 and later.</remarks>
 		public static readonly Rule	RULE27
-			= new SchemeRule (Preconditions.TR3_0__LATER, "scheme-27", "cutName", "cutNameScheme");
+			= new SchemeRule (Preconditions.R3_0__LATER, "scheme-27", "cutName", "cutNameScheme");
 		
 		/// <summary>
 		/// Rule 28: The value of any <b>exerciseStyle</b> element must be valid
@@ -277,7 +277,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE28
-			= new SchemeRule (Preconditions.TR3_0, "scheme-28", "exerciseStyle", "exerciseStyleScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-28", "exerciseStyle", "exerciseStyleScheme");
 		
 		/// <summary>
 		/// Rule 29: The value of any <b>fxBarrierType</b> element must be valid
@@ -285,7 +285,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE29
-			= new SchemeRule (Preconditions.TR3_0, "scheme-29", "fxBarrierType", "fxBarrierTypeScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-29", "fxBarrierType", "fxBarrierTypeScheme");
 		
 		/// <summary>
 		/// Rule 30: The value of any <b>governingLaw</b> element must be valid
@@ -293,7 +293,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0 and later.</remarks>
 		public static readonly Rule	RULE30
-			= new SchemeRule (Preconditions.TR3_0__LATER, "scheme-30", "governingLaw", "governingLawScheme");
+			= new SchemeRule (Preconditions.R3_0__LATER, "scheme-30", "governingLaw", "governingLawScheme");
 		
 		/// <summary>
 		/// Rule 31: The value of any <b>masterAgreementType</b> element must be valid
@@ -301,7 +301,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0 and later.</remarks>
 		public static readonly Rule	RULE31
-			= new SchemeRule (Preconditions.TR3_0__LATER, "scheme-31", "masterAgreementType", "masterAgreementTypeScheme");
+			= new SchemeRule (Preconditions.R3_0__LATER, "scheme-31", "masterAgreementType", "masterAgreementTypeScheme");
 		
 		/// <summary>
 		/// Rule 32: The value of any <b>methodOfAdjustment</b> element must be valid
@@ -309,7 +309,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE32
-			= new SchemeRule (Preconditions.TR3_0, "scheme-32", "methodOfAdjustment", "methodOfAdjustmentScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-32", "methodOfAdjustment", "methodOfAdjustmentScheme");
 		
 		/// <summary>
 		/// Rule 33: The value of any <b>nationalisationOrInsolvency</b> element must be valid
@@ -317,7 +317,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE33
-			= new BrokenSchemeRule (Preconditions.TR3_0, "scheme-33",
+			= new BrokenSchemeRule (Preconditions.R3_0, "scheme-33",
 					new String [] {
 						"nationalisationOrInsolvency", "delisting" },
 					"nationalisationOrInsolvencyOrDelistingScheme");
@@ -328,7 +328,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE34
-			= new BrokenSchemeRule (Preconditions.TR3_0, "scheme-34", "optionType", "optionTypeScheme");
+			= new BrokenSchemeRule (Preconditions.R3_0, "scheme-34", "optionType", "optionTypeScheme");
 		
 		/// <summary>
 		/// Rule 35: The value of any <b>partyContactDetails</b> element must be valid
@@ -336,7 +336,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE35
-			= new SchemeRule (Preconditions.TR3_0, "scheme-35", "partyContactDetails", "partyContactDetailsScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-35", "partyContactDetails", "partyContactDetailsScheme");
 		
 		/// <summary>
 		/// Rule 36: The value of any <b>payout</b> element must be valid
@@ -344,7 +344,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE36
-			= new SchemeRule (Preconditions.TR3_0, "scheme-36", "payoutStyle", "payoutScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-36", "payoutStyle", "payoutScheme");
 
 		/// <summary>
 		/// Rule 37: The value of any <b>premiumQuoteBasis</b> element must be valid
@@ -352,7 +352,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE37
-			= new SchemeRule (Preconditions.TR3_0, "scheme-37", "premiumQuoteBasis", "premiumQuoteBasisScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-37", "premiumQuoteBasis", "premiumQuoteBasisScheme");
 
 		/// <summary>
 		/// Rule 38: The value of any <b>quoteBasis</b> element must be valid
@@ -360,7 +360,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE38
-			= new SchemeRule (Preconditions.TR3_0, "scheme-38", "quoteBasis", "quoteBasisScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-38", "quoteBasis", "quoteBasisScheme");
 
 		/// <summary>
 		/// Rule 39: The value of any <b>routingCodeId</b> element must be valid
@@ -368,7 +368,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0 and later.</remarks>
 		public static readonly Rule	RULE39
-			= new SchemeRule (Preconditions.TR3_0__LATER, "scheme-39", "routingCodeId", "routingCodeIdScheme");
+			= new SchemeRule (Preconditions.R3_0__LATER, "scheme-39", "routingCodeId", "routingCodeIdScheme");
 		
 		/// <summary>
 		/// Rule 40: The value of any <b>settlementMethod</b> element must be valid
@@ -376,7 +376,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0 and later.</remarks>
 		public static readonly Rule	RULE40
-			= new SchemeRule (Preconditions.TR3_0__LATER, "scheme-40", "settlementMethod", "settlementMethodScheme");
+			= new SchemeRule (Preconditions.R3_0__LATER, "scheme-40", "settlementMethod", "settlementMethodScheme");
 		
 		/// <summary>
 		/// Rule 41: The value of any <b>settlementPriceSource</b> element must be valid
@@ -384,7 +384,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0 and later.</remarks>
 		public static readonly Rule	RULE41
-			= new SchemeRule (Preconditions.TR3_0__LATER, "scheme-41", "settlementPriceSource", "settlementPriceSourceScheme");
+			= new SchemeRule (Preconditions.R3_0__LATER, "scheme-41", "settlementPriceSource", "settlementPriceSourceScheme");
 		
 		/// <summary>
 		/// Rule 42: The value of any <b>settlementType</b> element must be valid
@@ -392,7 +392,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE42
-			= new SchemeRule (Preconditions.TR3_0, "scheme-42", "settlementType", "settlementTypeScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-42", "settlementType", "settlementTypeScheme");
 
 		/// <summary>
 		/// Rule 43: The value of any <b>shareExtraordinaryEvent</b> element must be valid
@@ -400,7 +400,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE43
-			= new SchemeRule (Preconditions.TR3_0, "scheme-43", "shareExtraordinaryEvent", "shareExtraordinaryEventScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-43", "shareExtraordinaryEvent", "shareExtraordinaryEventScheme");
 
 		/// <summary>
 		/// Rule 44: The value of any <b>sideRateBasis</b> element must be valid
@@ -408,7 +408,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE44
-			= new SchemeRule (Preconditions.TR3_0, "scheme-44", "sideRateBasis", "sideRateBasisScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-44", "sideRateBasis", "sideRateBasisScheme");
 
 		/// <summary>
 		/// Rule 45: The value of any <b>standardSettlementStyle</b> element must be valid
@@ -416,7 +416,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE45
-			= new SchemeRule (Preconditions.TR3_0, "scheme-45", "standardSettlementStyle", "standardSettlementStyleScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-45", "standardSettlementStyle", "standardSettlementStyleScheme");
 
 		/// <summary>
 		/// Rule 46: The value of any <b>strikeQuoteBasis</b> element must be valid
@@ -424,7 +424,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE46
-			= new SchemeRule (Preconditions.TR3_0, "scheme-46", "strikeQuoteBasis", "strikeQuoteBasisScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-46", "strikeQuoteBasis", "strikeQuoteBasisScheme");
 
 		/// <summary>
 		/// Rule 47: The value of any <b>timeType</b> element must be valid
@@ -432,7 +432,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE47
-			= new SchemeRule (Preconditions.TR3_0, "scheme-47",
+			= new SchemeRule (Preconditions.R3_0, "scheme-47",
 					new String [] {
 						  "latestExerciseTimeType", "equityExpirationTimeType", "valuationTimeType" },
 					"timeTypeScheme");
@@ -443,7 +443,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE48
-			= new SchemeRule (Preconditions.TR3_0, "scheme-48", "touchCondition", "touchConditionScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-48", "touchCondition", "touchConditionScheme");
 
 		/// <summary>
 		/// Rule 49: The value of any <b>triggerCondition</b> element must be valid
@@ -451,7 +451,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE49
-			= new SchemeRule (Preconditions.TR3_0, "scheme-49", "triggerCondition", "triggerConditionScheme");
+			= new SchemeRule (Preconditions.R3_0, "scheme-49", "triggerCondition", "triggerConditionScheme");
 
 		// FpML 4.0 ------------------------------------------------------------
 
@@ -626,7 +626,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 4.2</remarks>
 		public static readonly Rule	RULE70
-			= new SchemeRule (Preconditions.TR4_2, "scheme-70", "creditSeniorityTrading", "creditSeniorityTradingScheme");
+			= new SchemeRule (Preconditions.R4_2, "scheme-70", "creditSeniorityTrading", "creditSeniorityTradingScheme");
 		
 		/// <summary>
 		/// Rule 71: The value of any <b>derivativeCalculationMethod</b> element must be valid
@@ -634,7 +634,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 4.2</remarks>
 		public static readonly Rule	RULE71
-			= new SchemeRule (Preconditions.TR4_2, "scheme-71", "derivativeCalculationMethod", "derivativeCalculationMethodScheme");
+			= new SchemeRule (Preconditions.R4_2, "scheme-71", "derivativeCalculationMethod", "derivativeCalculationMethodScheme");
 		
 		/// <summary>
 		/// Rule 72: The value of any <b>matrixType</b> element must be valid
@@ -642,7 +642,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 4.2</remarks>
 		public static readonly Rule	RULE72
-			= new SchemeRule (Preconditions.TR4_2, "scheme-72", "matrixType", "matrixTypeScheme");
+			= new SchemeRule (Preconditions.R4_2, "scheme-72", "matrixType", "matrixTypeScheme");
 		
 		/// <summary>
 		/// Ensures no instances can be constructed.

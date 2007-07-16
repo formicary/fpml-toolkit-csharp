@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2007 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -254,7 +254,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE28A
-			= new DelegatedRule (Preconditions.R1_0__TR3_0, "ird-28a", new RuleDelegate (Rule28a));
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "ird-28a", new RuleDelegate (Rule28a));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the cash settlement payment date
@@ -389,7 +389,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML 1.0, 2.0 and 3.0.</remarks>
 		public static readonly Rule	RULE46A
-			= new DelegatedRule (Preconditions.R1_0__TR3_0, "ird-46a", new RuleDelegate (Rule46A));
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "ird-46a", new RuleDelegate (Rule46A));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the cash settlement valuation

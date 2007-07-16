@@ -13,6 +13,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using System.Xml;
 
@@ -23,12 +24,23 @@ namespace HandCoded.Xml.Resolver
 	/// </summary>
 	public sealed class CatalogSet : XmlResolver
 	{
+		public override ICredentials Credentials {
+			set	{
+				throw new Exception ("The method or operation is not implemented.");
+			}
+		}
+
 		/// <summary>
 		/// Constructs a <b>CatalogSet</b> containing an empty catalog
 		/// collection.
 		/// </summary>
 		public CatalogSet ()
 		{ }
+
+		public override Object GetEntity (Uri absoluteUri, string role, Type ofObjectToReturn)
+		{
+			throw new Exception ("The method or operation is not implemented.");
+		}
 
 		/// <summary>
 		/// Adds a <see cref="Catalog"/> to the collection.

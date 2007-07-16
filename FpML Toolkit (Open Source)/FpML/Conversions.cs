@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2007 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -153,13 +153,13 @@ namespace HandCoded.FpML
 		/// <li>Superfluous <b>type</b> and <b>base</b> attributes are removed.</li>
 		/// </ul>
 		/// </summary>
-		public class R2_0__TR3_0 : HandCoded.Meta.DirectConversion
+		public class R2_0__R3_0 : HandCoded.Meta.DirectConversion
 		{
 			/// <summary>
 			/// Constructs a <b>R2_0__TR3_0</b> instance.
 			/// </summary>
-			public R2_0__TR3_0 ()
-				: base (Releases.R2_0, Releases.TR3_0)
+			public R2_0__R3_0 ()
+				: base (Releases.R2_0, Releases.R3_0)
 			{ }
 
 			/// <summary>
@@ -186,7 +186,7 @@ namespace HandCoded.FpML
 						string value = attr.Value;
 						
 						if (Releases.R2_0.SchemeDefaults.GetDefaultUriForAttribute (name).Equals (value))
-							value = Releases.TR3_0.SchemeDefaults.GetDefaultUriForAttribute (name);
+							value = Releases.R3_0.SchemeDefaults.GetDefaultUriForAttribute (name);
 						
 						if (value != null) newRoot.SetAttribute (name, null, value);
 					}
@@ -236,12 +236,12 @@ namespace HandCoded.FpML
 								}
 								else if (name.EndsWith ("Scheme")) {
 									string oldDefault = Releases.R2_0.SchemeDefaults.GetDefaultAttributeForScheme (name);
-									string newDefault = Releases.TR3_0.SchemeDefaults.GetDefaultAttributeForScheme (name);
+									string newDefault = Releases.R3_0.SchemeDefaults.GetDefaultAttributeForScheme (name);
 									
 									if (oldDefault != null && newDefault != null) {
 										string 	defaultUri = Releases.R2_0.SchemeDefaults.GetDefaultUriForAttribute (oldDefault); 
 										if ((defaultUri != null) && defaultUri.Equals (value))
-											value = Releases.TR3_0.SchemeDefaults.GetDefaultUriForAttribute (newDefault);
+											value = Releases.R3_0.SchemeDefaults.GetDefaultUriForAttribute (newDefault);
 									}
 								}
 	
@@ -287,7 +287,7 @@ namespace HandCoded.FpML
 			/// Constructs a <b>TR3_0__R4_0</b> instance.
 			/// </summary>
 			public TR3_0__R4_0 ()
-				: base (Releases.TR3_0, Releases.R4_0)
+				: base (Releases.R3_0, Releases.R4_0)
 			{ }
 
 			/// <summary>
@@ -1065,19 +1065,19 @@ namespace HandCoded.FpML
 		}
 
 		/// <summary>
-		/// The <b>CR4_1__WD4_2</b> class implements a conversion from FpML 4-1
+		/// The <b>R4_1__R4_2</b> class implements a conversion from FpML 4-1
 		/// to FpML 4-2. The specific changes need (other than basic DOCTYPE
 		/// substitutions are:
 		/// <ul>
 		/// </ul>
 		/// </summary>
-		public class R4_1__TR4_2 : HandCoded.Meta.DirectConversion
+		public class R4_1__R4_2 : HandCoded.Meta.DirectConversion
 		{
 			/// <summary>
 			/// Constructs a <b>R4_1__TR4_2</b> instance.
 			/// </summary>
-			public R4_1__TR4_2 ()
-				: base (Releases.R4_1, Releases.TR4_2)
+			public R4_1__R4_2 ()
+				: base (Releases.R4_1, Releases.R4_2)
 			{ }
 
 			/// <summary>

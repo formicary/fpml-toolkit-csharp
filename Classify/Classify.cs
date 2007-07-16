@@ -53,7 +53,7 @@ namespace Classify
 		{
 			base.StartUp ();
 
-			FpMLUtility.PreloadSchemas ();
+			XmlUtility.DefaultSchemaSet.XmlSchemaSet.Compile ();
 		}
 
 		/// <summary>

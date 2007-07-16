@@ -35,9 +35,9 @@ namespace HandCoded.Xml.Resolver
 		{
 			
 			if (catalogs.ContainsKey (url))
-				return (CatalogSet [url]);
+				return (catalogs [url]);
 
-			Catalog 			catalog;	
+			Catalog 			catalog = null;	
 			XmlReader			reader	= new XmlTextReader (url);
 			Stack<GroupEntry>	stack	= new Stack<GroupEntry> ();
 
@@ -49,72 +49,72 @@ namespace HandCoded.Xml.Resolver
 						String prefer 		= reader.GetAttribute ("prefer");
 						String xmlbase		= reader.GetAttribute ("xml:base");
 
-						stack.Push (catalog = new Catalog (url, prefer, xmlbase));
+						stack.Push ((catalog = new Catalog (url, prefer, xmlbase)).Definition);
 					}
-					else if (localName.equals ("group")) {
+					else if (localName.Equals ("group")) {
 						String prefer 		= reader.GetAttribute ("prefer");
 						String xmlbase		= reader.GetAttribute ("xml:base");
 
-						stack.Push (catalog.AddGroup (prefer, xmlbase));
+						stack.Push (catalog.Definition.AddGroup (prefer, xmlbase));
 					}
 					else {
 						GroupEntry group = stack.Peek ();
 
-						if (localName.equals ("public")) {
+						if (localName.Equals ("public")) {
 							String publicId 	= reader.GetAttribute ("publicId");
 							String uri 			= reader.GetAttribute ("uri");
 							String xmlbase		= reader.GetAttribute ("xml:base");
 
 							group.AddPublic (publicId, uri, xmlbase);
 						}
-						else if (localName.equals ("system")) {
+						else if (localName.Equals ("system")) {
 							String systemId		= reader.GetAttribute ("systemId");
 							String uri			= reader.GetAttribute ("uri");
 							String xmlbase		= reader.GetAttribute ("xml:base");
 
 							group.AddSystem (systemId, uri, xmlbase);
 						}
-						else if (localName.equals ("rewriteSystem")) {
+						else if (localName.Equals ("rewriteSystem")) {
 							String startString	= reader.GetAttribute ("systemIdStartString");
 							String rewritePrefix= reader.GetAttribute ("rewritePrefix");
 
 							group.AddRewriteSystem (startString, rewritePrefix);
 						}
-						else if (localName.equals ("delegatePublic")) {
+						else if (localName.Equals ("delegatePublic")) {
 							String startString	= reader.GetAttribute ("publicIdStartString");
 							String file			= reader.GetAttribute ("catalog");
 							String xmlbase		= reader.GetAttribute ("xml:base");
 
 							group.AddDelegatePublic (startString, file, xmlbase);
 						}
-						else if (localName.equals ("delegateSystem")) {
+						else if (localName.Equals ("delegateSystem")) {
 							String startString	= reader.GetAttribute ("systemIdStartString");
 							String file			= reader.GetAttribute ("catalog");
 							String xmlbase		= reader.GetAttribute ("xml:base");
 
 							group.AddDelegateSystem (startString, file, xmlbase);
 						}
-						else if (localName.equals ("uri")) {
+						else if (localName.Equals ("uri")) {
 							String name			= reader.GetAttribute ("name");
 							String uri			= reader.GetAttribute ("uri");
 							String xmlbase		= reader.GetAttribute ("xml:base");
 							
 							group.AddUri (name, uri, xmlbase);
 						}
-						else if (localName.equals ("rewriteUri")) {
+						else if (localName.Equals ("rewriteUri")) {
 							String startString	= reader.GetAttribute ("uriStartString");
 							String rewritePrefix = reader.GetAttribute ("rewritePrefix");
 							
 							group.AddRewriteUri (startString, rewritePrefix);
 						}
-						else if (localName.equals ("delegateUri")) {
+						else if (localName.Equals ("delegateUri")) {
 							String startString	= reader.GetAttribute ("uriStartString");
 							String file			= reader.GetAttribute ("catalog");
 							String xmlbase		= reader.GetAttribute ("xml:base");
 
 							group.AddDelegateUri (startString, file, xmlbase);
 						}
-						else if (localName.equals ("nextCatalog")) {
+						else if (localName.Equals ("nextCatalog")) {
 							String file			= reader.GetAttribute ("catalog");
 							String xmlbase		= reader.GetAttribute ("xml:base");
 

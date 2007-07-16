@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2007 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -39,43 +39,43 @@ namespace HandCoded.FpML.Validation
 		/// A <see cref="Rule"/> instance for validating hourMinute time values.
 		/// </summary>
 		public static readonly Rule	RULE01
-			= new DelegatedRule (Preconditions.R1_0__TR3_0, "datatype-1", new RuleDelegate (Rule01));
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "datatype-1", new RuleDelegate (Rule01));
 
 		/// <summary>
 		/// A <see cref="Rule"/> instance for validating date values.
 		/// </summary>
 		public static readonly Rule	RULE02
-			= new DelegatedRule (Preconditions.R1_0__TR3_0, "datatype-2", new RuleDelegate (Rule02));
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "datatype-2", new RuleDelegate (Rule02));
 
 		/// <summary>
 		/// A <see cref="Rule"/> instance for validating decimal values.
 		/// </summary>
 		public static readonly Rule	RULE03
-			= new DelegatedRule (Preconditions.R1_0__TR3_0, "datatype-3", new RuleDelegate (Rule03));
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "datatype-3", new RuleDelegate (Rule03));
 
 		/// <summary>
 		/// A <see cref="Rule"/> instance for validating integer time values.
 		/// </summary>
 		public static readonly Rule	RULE04
-			= new DelegatedRule (Preconditions.R1_0__TR3_0, "datatype-4", new RuleDelegate (Rule04));
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "datatype-4", new RuleDelegate (Rule04));
 	
 		/// <summary>
 		/// A <see cref="Rule"/> instance for validating positive integer values.
 		/// </summary>
 		public static readonly Rule	RULE05
-			= new DelegatedRule (Preconditions.R1_0__TR3_0, "datatype-5", new RuleDelegate (Rule05));
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "datatype-5", new RuleDelegate (Rule05));
 	
 		/// <summary>
 		/// A <see cref="Rule"/> instance for validating non-negative integer values.
 		/// </summary>
 		public static readonly Rule	RULE06
-			= new DelegatedRule (Preconditions.R1_0__TR3_0, "datatype-6", new RuleDelegate (Rule06));
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "datatype-6", new RuleDelegate (Rule06));
 	
 		/// <summary>
 		/// A <see cref="Rule"/> instance for validating boolean values.
 		/// </summary>
 		public static readonly Rule	RULE07
-			= new DelegatedRule (Preconditions.R1_0__TR3_0, "datatype-7", new RuleDelegate (Rule07));
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "datatype-7", new RuleDelegate (Rule07));
 
 		/// <summary>
 		/// The underlying <see cref="RuleSet"/> of <see cref="Rule"/> instances.

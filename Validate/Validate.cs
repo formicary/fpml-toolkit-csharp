@@ -22,6 +22,7 @@ using HandCoded.FpML.Validation;
 using HandCoded.Framework;
 using HandCoded.Validation;
 using HandCoded.Xml;
+using HandCoded.Xml.Resolver;
 
 using log4net;
 using log4net.Config;
@@ -69,7 +70,15 @@ namespace Validate
 				Environment.Exit (1);
 			}
 
-			FpMLUtility.PreloadSchemas ();
+			XmlUtility.DefaultCatalog = CatalogManager.Find ("files/catalog.xml");
+
+			// Activate the FpML Schemas
+			XmlUtility.DefaultSchemaSet.Add (Releases.R4_0);
+			XmlUtility.DefaultSchemaSet.Add (Releases.R4_1);
+			XmlUtility.DefaultSchemaSet.Add (Releases.R4_2);
+			XmlUtility.DefaultSchemaSet.Add (Releases.R4_3);
+
+			XmlUtility.DefaultSchemaSet.XmlSchemaSet.Compile ();
 		}
 
 		/// <summary>

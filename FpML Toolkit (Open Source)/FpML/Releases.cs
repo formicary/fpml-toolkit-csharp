@@ -137,7 +137,7 @@ namespace HandCoded.FpML
 							{ 	"weeklyRollConventionScheme",
 								"weeklyRollConventionSchemeDefault" }
 						}),
-						ParseSchemes ("Schemes1-0"));
+						ParseSchemes ("schemes1-0.xml"));
 
 		/// <summary>
 		/// A <see cref="DTDRelease"/> instance containing the details for the
@@ -263,13 +263,13 @@ namespace HandCoded.FpML
 								{ 	"weeklyRollConventionScheme",
 									"weeklyRollConventionSchemeDefault" }
 							}),
-							ParseSchemes ("Schemes2-0"));
+							ParseSchemes ("schemes2-0.xml"));
 
 		/// <summary>
 		/// A <see cref="DTDRelease"/> instance containing the details for the
 		/// FpML 3-0 trial recommendation.
 		/// </summary>
-		public static readonly DTDRelease	TR3_0
+		public static readonly DTDRelease	R3_0
 			= new DTDRelease (FPML, "3-0",
 					"-//FpML//DTD Financial product Markup Language 3-0//EN",
 					"fpml-dtd-main-3-0.dtd", "FpML",
@@ -490,7 +490,7 @@ namespace HandCoded.FpML
 								{ 	"weeklyRollConventionScheme",
 									"weeklyRollConventionSchemeDefault" }
 							}),
-							ParseSchemes ("Schemes3-0"));
+							ParseSchemes ("schemes3-0.xml"));
 
 		
 		/// <summary>
@@ -546,7 +546,7 @@ namespace HandCoded.FpML
 								{ 	"settlementPriceSourceScheme",
 									"http://www.fpml.org/spec/2002/settlement-price-source-1-0" }
 							}),
-							ParseSchemes ("Schemes4-0"));
+							ParseSchemes ("schemes4-0.xml"));
 
 		/// <summary>
 		/// A <see cref="SchemaRelease"/> instance containing the details for
@@ -601,13 +601,13 @@ namespace HandCoded.FpML
 								{ 	"settlementPriceSourceScheme",
 									"http://www.fpml.org/spec/2002/settlement-price-source-1-0" }
 							}),
-							ParseSchemes ("Schemes4-1"));
+							ParseSchemes ("schemes4-1.xml"));
 
 		/// <summary>
 		/// A <see cref="SchemaRelease"/> instance containing the details for
-		/// FpML 4-2 trial recommendation.
+		/// FpML 4-2 recommendation.
 		/// </summary>
-		public static readonly SchemaRelease	TR4_2
+		public static readonly SchemaRelease	R4_2
 			= new SchemaRelease (FPML, "4-2",
 					"http://www.fpml.org/2005/FpML-4-2", "fpml-main-4-2.xsd",
 					"fpml", "fpml4-2", "FpML",
@@ -656,8 +656,63 @@ namespace HandCoded.FpML
 								{ 	"settlementPriceSourceScheme",
 									"http://www.fpml.org/spec/2002/settlement-price-source-1-0" }
 							}),
-							ParseSchemes ("Schemes4-2"));
+							ParseSchemes ("schemes4-2.xml"));
 
+
+		/// <summary>
+		/// A <see cref="SchemaRelease"/> instance containing the details for
+		/// FpML 4-2 recommendation.
+		/// </summary>
+		public static readonly SchemaRelease	R4_3
+			= new SchemaRelease (FPML, "4-3",
+					"http://www.fpml.org/2007/FpML-4-3", "fpml-main-4-3.xsd",
+					"fpml", "fpml4-3", "FpML",
+					new SchemeDefaults (
+							new string [,] {
+								{	"additionalTermScheme",
+									"http://www.fpml.org/spec/2003/additional-term-1-0" },
+								{	"businessCenterScheme",
+									"http://www.fpml.org/spec/2000/business-center-6-2" },
+								{	"clearanceSystemIdScheme",
+									"http://www.fpml.org/spec/2002/clearance-system-1-0" },
+								{	"contractualDefinitionsScheme",
+									"http://www.fpml.org/spec/2003/contractual-definitions-2-0" },
+								{	"contractualSupplementScheme",
+									"http://www.fpml.org/spec/2003/contractual-supplement-1-0" },
+								{	"countryScheme",
+									"http://www.fpml.org/ext/iso3166" },
+								{	"currencyScheme",
+									"http://www.fpml.org/ext/iso4217-2001-08-15" },
+								{	"cutNameScheme",
+									"http://www.fpml.org/spec/2002/cut-name-1-0" },
+								{	"exchangeIdScheme",
+									"http://www.fpml.org/spec/2002/exchange-id-MIC-1-0" },
+								{	"floatingRateIndexScheme",
+									"http://www.fpml.org/ext/isda-2000-definitions" },
+								{	"fxFeatureTypeScheme",
+									"http://www.fpml.org/spec/2003/fxFeatureType-1-0" },
+								{	"governingLawScheme",
+									"http://www.fpml.org/spec/2002/governing-law-1-0" },
+								{	"informationProviderScheme",
+									"http://www.fpml.org/spec/2003/information-provider-2-0" },
+								{	"marketDisruptionScheme",
+									"http://www.fpml.org/spec/2003/marketDisruption-1-0" },
+								{	"masterAgreementTypeScheme",
+									"http://www.fpml.org/spec/2002/master-agreement-type-1-0" },
+								{	"masterConfirmationTypeScheme",
+									"http://www.fpml.org/spec/2003/master-confirmation-type-1-0" },
+								{	"partyIdScheme",
+									"http://www.fpml.org/ext/iso9362" },
+								{	"restructuringScheme",
+									"http://www.fpml.org/spec/2003/restructuring-1-0" },
+								{ 	"routingIdScheme",
+									"http://www.fpml.org/spec/2002/routing-id-code-1-0" },
+								{ 	"settlementMethodScheme",
+									"http://www.fpml.org/spec/2002/settlement-method-1-0" },
+								{ 	"settlementPriceSourceScheme",
+									"http://www.fpml.org/spec/2002/settlement-price-source-1-0" }
+							}),
+							ParseSchemes ("schemes4-3.xml"));
 
 		/// <summary>
 		/// The FpML 1.0 to 2.0 <see cref="HandCoded.Meta.Conversion"/> instance.
@@ -668,8 +723,8 @@ namespace HandCoded.FpML
 		/// <summary>
 		/// The FpML 2.0 to 3.0 <see cref="HandCoded.Meta.Conversion"/> instance.
 		/// </summary>
-		private static readonly HandCoded.Meta.Conversion R2_0__TR3_0
-			= new Conversions.R2_0__TR3_0 ();
+		private static readonly HandCoded.Meta.Conversion R2_0__R3_0
+			= new Conversions.R2_0__R3_0 ();
 
 		/// <summary>
 		/// The FpML 3.0 to 4.0 <see cref="HandCoded.Meta.Conversion"/> instance.
@@ -686,8 +741,8 @@ namespace HandCoded.FpML
 		/// <summary>
 		/// The FpML 4.1 to 4.2 <see cref="HandCoded.Meta.Conversion"/> instance.
 		/// </summary>
-		private static readonly HandCoded.Meta.Conversion R4_1__TR4_2
-			= new Conversions.R4_1__TR4_2 ();
+		private static readonly HandCoded.Meta.Conversion R4_1__R4_2
+			= new Conversions.R4_1__R4_2 ();
 
 		/// <summary>
 		/// <see cref="ILog"/> instance used to record problems.
@@ -712,16 +767,14 @@ namespace HandCoded.FpML
 			SchemeCollection	schemes	= new SchemeCollection ();
 
 			try {
-				schemes.Parse (Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
-					ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit." + suffix]));
+				schemes.Parse ("files/data/" + suffix);
             }
 			catch (Exception error) {
 				log.Fatal ("Unable to load standard FpML schemes", error);
 			}
 
 			try {
-				schemes.Parse (Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
-					ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.AdditionalSchemes"]));
+				schemes.Parse ("files/data/additionalDefinitions.xml");
 			}
 			catch (Exception error) {
 				log.Fatal ("Unable to load additional FpML schemes", error);
@@ -736,11 +789,10 @@ namespace HandCoded.FpML
 		/// </summary>
 		static Releases ()
 		{
-			DTDRelease.DefaultResolver = FpMLUtility.GetResolver ();
-
 			R4_0.AddImport (HandCoded.DSig.Releases.R1_0);
 			R4_1.AddImport (HandCoded.DSig.Releases.R1_0);
-			TR4_2.AddImport (HandCoded.DSig.Releases.R1_0);
+			R4_2.AddImport (HandCoded.DSig.Releases.R1_0);
+			R4_3.AddImport (HandCoded.DSig.Releases.R1_0);
 		}
 	}
 }

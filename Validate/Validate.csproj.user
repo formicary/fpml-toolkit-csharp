@@ -21,15 +21,14 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Project</StartAction>
-    <StartArguments>..\..\..\files\test-cases\fpml4-0\ird\*.xml</StartArguments>
+    <StartArguments>files\test-cases\fpml4-0\ird\*.xml</StartArguments>
     <StartPage>
     </StartPage>
     <StartProgram>
     </StartProgram>
     <StartURL>
     </StartURL>
-    <StartWorkingDirectory>
-    </StartWorkingDirectory>
+    <StartWorkingDirectory>C:\HandCoded\C#\Open Source\FpML Toolkit (Open Source)\</StartWorkingDirectory>
     <StartWithIE>true</StartWithIE>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">

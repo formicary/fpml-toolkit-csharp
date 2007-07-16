@@ -31,14 +31,6 @@ namespace HandCoded.FpML
 	public sealed class FpMLUtility
 	{
 		/// <summary>
-		/// Forces the cache of standard FpML schemas to be populated.
-		/// </summary>
-		public static void PreloadSchemas ()
-		{
-			GetSchemas ();
-		}
-
-		/// <summary>
 		/// Parses the XML string provided passing any validation problems to
 		/// the indicated <see cref="ValidationEventHandler"/>.
 		/// </summary>
@@ -74,7 +66,7 @@ namespace HandCoded.FpML
 		{
 			return (XmlUtility.ValidatingParse (
 				(schemaOnly ? XmlUtility.SCHEMA_ONLY : XmlUtility.DTD_OR_SCHEMA),
-				xml, schemaCollection, resolver, eventHandler));
+				xml, XmlUtility.DefaultSchemaSet.XmlSchemaSet, XmlUtility.DefaultCatalog, eventHandler));
 		}
 
 		/// <summary>
@@ -89,7 +81,7 @@ namespace HandCoded.FpML
 		{
 			return (XmlUtility.ValidatingParse (
 				(schemaOnly ? XmlUtility.SCHEMA_ONLY : XmlUtility.DTD_OR_SCHEMA),
-				stream, schemaCollection, resolver, eventHandler));
+				stream, XmlUtility.DefaultSchemaSet.XmlSchemaSet, XmlUtility.DefaultCatalog, eventHandler));
 		}
 
 		/// <summary>
@@ -237,109 +229,6 @@ namespace HandCoded.FpML
 		public static bool ParseAndValidate (bool schemaOnly, Stream stream, ValidationEventHandler eventHandler, ValidationErrorHandler errorHandler)
 		{
 			return (ParseAndValidate (schemaOnly, stream, AllRules.Rules, eventHandler, errorHandler));
-		}
-
-		/// <summary>
-		/// Returns a <see cref="XmlResolver"/> instance pre-configured for the FpML
-		/// DTD releases.
-		/// </summary>
-		/// <returns>A pre-configured <see cref="XmlResolver"/> instance.</returns>
-		public static XmlResolver GetResolver ()
-		{
-			if (resolver == null)
-				resolver = new Resolver ();
-
-			return (resolver);
-		}
-
-		/// <summary>
-		/// Returns a <see cref="XmlSchemaCollection"/> instance pre-configured
-		/// for the FpML schema releases.
-		/// </summary>
-		/// <returns>A pre-configured <see cref="XmlSchemaCollection"/> instance.
-		/// </returns>
-		public static XmlSchemaSet GetSchemas ()
-		{
-			if (schemaCollection == null) {
-				string baseDirectory = Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
-                    ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.SchemasDirectory"]);
-
-				schemaCollection = new XmlSchemaSet ();
-
-				// Must add DSIG before FpML schemas
-				schemaCollection.Add (HandCoded.DSig.Releases.R1_0.NamespaceUri,
-					Path.Combine (baseDirectory, "dsig/" + HandCoded.DSig.Releases.R1_0.SchemaLocation));
-
-				// FpML Schemas
-				schemaCollection.Add (HandCoded.FpML.Releases.R4_0.NamespaceUri,
-					Path.Combine (baseDirectory, "fpml4-0/" + HandCoded.FpML.Releases.R4_0.SchemaLocation));
-				schemaCollection.Add (HandCoded.FpML.Releases.R4_1.NamespaceUri,
-					Path.Combine (baseDirectory, "fpml4-1/" + HandCoded.FpML.Releases.R4_1.SchemaLocation));
-				schemaCollection.Add (HandCoded.FpML.Releases.TR4_2.NamespaceUri,
-					Path.Combine (baseDirectory, "fpml4-2/" + HandCoded.FpML.Releases.TR4_2.SchemaLocation));
-
-				// Acme Schemas
-				schemaCollection.Add (HandCoded.Acme.Releases.R1_0.NamespaceUri,
-					Path.Combine (baseDirectory, "acme1-0/" + HandCoded.Acme.Releases.R1_0.SchemaLocation));
-			}			
-			return (schemaCollection);
-		}
-
-		/// <summary>
-		/// The <see cref="XmlResolver"/> used to locate DTDs.
-		/// </summary>
-		private static XmlResolver			resolver			= null;
-
-		/// <summary>
-		/// The <see cref="XmlSchemaSet"/> used to hold cached schemas.
-		/// </summary>
-		private static XmlSchemaSet			schemaCollection = null;
-
-		/// <summary>
-		/// The <b>Resolver</b> class is a customised <see cref="XmlUrlResolver"/>
-		/// configured to the public names used in FpML 1-0, 2-0 and 3-0 instances
-		/// to the appropriate DTD file.
-		/// </summary>
-		private class Resolver : XmlUrlResolver
-		{
-			/// <summary>
-			/// Constructs a <b>Resolver</b> and populates its URI to filename
-			/// mapping table.
-			/// </summary>
-			public Resolver ()
-			{
-				string baseDirectory = Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
-					ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.SchemasDirectory"]);
-
-				uriMap.Add (Releases.R1_0.PublicId, 
-					Path.Combine (baseDirectory, "fpml1-0/" + Releases.R1_0.SystemId));
-				uriMap.Add (Releases.R2_0.PublicId,
-					Path.Combine (baseDirectory, "fpml2-0/" + Releases.R2_0.SystemId));
-				uriMap.Add (Releases.TR3_0.PublicId,
-					Path.Combine (baseDirectory, "fpml3-0/" + Releases.TR3_0.SystemId));
-			}
-
-			/// <summary>
-			/// Uses the mapping table to return the appropriate local filename
-			/// when a reference is made to an FpML DTD by means of its public
-			/// name.
-			/// </summary>
-			/// <param name="baseUri">The base URI.</param>
-			/// <param name="relativeUri">The relative URI.</param>
-			/// <returns>The resolved URI.</returns>
-			public override Uri ResolveUri(Uri baseUri, string relativeUri)
-			{
-				if (uriMap.ContainsKey (relativeUri))
-					relativeUri = uriMap [relativeUri] as string;
-				
-				return (base.ResolveUri (baseUri, relativeUri));
-			}
-
-			/// <summary>
-			/// The <see cref="Hashtable"/> used to record public name to system
-			/// filename mappings.
-			/// </summary>
-			private Hashtable			uriMap	= new Hashtable ();
 		}
 			
 		/// <summary>

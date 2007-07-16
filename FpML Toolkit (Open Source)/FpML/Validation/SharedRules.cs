@@ -49,7 +49,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1.0, 2.0 and 3.0.</remarks>
 		public static readonly Rule	RULE02
-			= new DelegatedRule (Preconditions.R1_0__TR3_0, "shared-2", new RuleDelegate (Rule02));
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "shared-2", new RuleDelegate (Rule02));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures that period multiplier is not zero when
@@ -57,7 +57,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 1.0, 2.0 and 3.0.</remarks>
 		public static readonly Rule	RULE03
-			= new DelegatedRule (Preconditions.R1_0__TR3_0, "shared-3", new RuleDelegate (Rule03));
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "shared-3", new RuleDelegate (Rule03));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures that the businessDayConvention is
@@ -81,7 +81,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE06
-			= new DelegatedRule (Preconditions.TR3_0__LATER, "shared-6", new RuleDelegate (Rule06));
+			= new DelegatedRule (Preconditions.R3_0__LATER, "shared-6", new RuleDelegate (Rule06));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures latestExerciseTime is after the
@@ -161,7 +161,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML 4.2 and later.</remarks>
 		public static readonly Rule	RULE16
-			= new DelegatedRule (Preconditions.TR4_2__LATER, "shared-16", new RuleDelegate (Rule16));
+			= new DelegatedRule (Preconditions.R4_2__LATER, "shared-16", new RuleDelegate (Rule16));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the reference integrity of trade side
@@ -169,7 +169,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML 4.2 and later.</remarks>
 		public static readonly Rule	RULE17
-			= new DelegatedRule (Preconditions.TR4_2__LATER, "shared-17", new RuleDelegate (Rule17));
+			= new DelegatedRule (Preconditions.R4_2__LATER, "shared-17", new RuleDelegate (Rule17));
 
 		/// <summary>
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>

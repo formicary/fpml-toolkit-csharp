@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemeDefinitions>
-	<!-- FpML 4.2 -->
+	<!-- FpML 4.3 -->
 	<scheme uri="http://www.fpml.org/coding-scheme/asset-measure-5-0" name="assetMeasureScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="AccruedCoupon">
@@ -267,7 +267,7 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/business-center-6-0" name="businessCenterScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/business-center-4-0" name="businessCenterScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="ARBA">
 				<paragraph>Buenos Aires</paragraph>
@@ -491,7 +491,7 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/business-center-6-0" name="businessCenterScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/business-center-5-0" name="businessCenterScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="ARBA">
 				<paragraph>Buenos Aires</paragraph>
@@ -582,9 +582,6 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="INMU">
 				<paragraph>Mumbai, India</paragraph>
-			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="ISRE">
-				<paragraph>Reykjavik</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ITMI">
 				<paragraph>Milan</paragraph>
@@ -726,7 +723,7 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/contractual-definitions-3-1" name="contractualDefinitionsScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/contractual-definitions-3-0" name="contractualDefinitionsScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="ISDA1991">
 				<paragraph>ISDA 1991 Definitions</paragraph>
@@ -755,12 +752,9 @@
 			<schemeValue schemeValueSource="FpML" name="ISDA2004Novation">
 				<paragraph>ISDA 2004 Novation Definitions</paragraph>
 			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="ISDA2006">
-				<paragraph>ISDA 2006 Definitions</paragraph>
-			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/contractual-supplement-6-2" name="contractualSupplementScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/contractual-supplement-6-0" name="contractualSupplementScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="CDXEmergingMarketsDiversifiedTranche">
 				<paragraph>Standard Terms Supplement for Dow Jones CDX Emerging Markets Diversified Tranche Transactions.</paragraph>
@@ -804,18 +798,6 @@
 			<schemeValue schemeValueSource="FpML" name="ISDA2003CreditUSMunicipals">
 				<paragraph>Additional Provisions for Credit Derivative Transactions - U.S. Municipal Entity as Reference Entity dated September 17, 2004.</paragraph>
 			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="ISDA2003DeliveryRestrictions">
-				<paragraph>Additional Provisions for Reference Entities with Delivery Restrictions dated February 1, 2007.</paragraph>
-			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="ISDA2003LPNReferenceEntities">
-				<paragraph>Additional Provisions for LPN Reference Entities dated October 3, 2006.</paragraph>
-			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="ISDA2003SecuredDeliverableObligationCharacteristic">
-				<paragraph>Additional Provisions for Secured Deliverable Obligation Characteristic dated June 16, 2006.</paragraph>
-			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="ISDAMarch2004EquityCanadianSupplement">
-				<paragraph>Canadian Supplement to the 2004 Americas Interdealer Master Equity Derivatives Confirmation Agreement dated March 29, 2004.</paragraph>
-			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="iTraxxAsiaExJapan">
 				<paragraph>Standard Terms Supplement for iTraxx Asia Excluding Japan.</paragraph>
 			</schemeValue>
@@ -842,9 +824,6 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="iTraxxEuropeTranche">
 				<paragraph>Standard Terms Supplement for iTraxx Europe Tranched Transactions.</paragraph>
-			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="iTraxxLevX">
-				<paragraph>Standard Terms Supplement for iTraxx LevX Transactions.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="iTraxxSDI75Dealer">
 				<paragraph>Standard Terms Supplement for iTraxx SDI 75 Dealer Transactions.</paragraph>
@@ -1970,7 +1949,7 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/master-confirmation-type-5-1" name="masterConfirmationTypeScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/master-confirmation-type-4-0" name="masterConfirmationTypeScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="2003CreditIndex">
 				<paragraph>Used for CDS Index trades. Relevant Master Confirmation determined by the contents of the creditDefaultSwap element. Best practice is to use the most specific code that applies.</paragraph>

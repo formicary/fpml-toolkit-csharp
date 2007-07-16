@@ -326,12 +326,23 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Xml\Resolver\Catalog.cs" />
+    <Compile Include="Xml\Resolver\CatalogComponent.cs" />
     <Compile Include="Xml\Resolver\CatalogEntry.cs" />
     <Compile Include="Xml\Resolver\CatalogManager.cs" />
     <Compile Include="Xml\Resolver\CatalogSet.cs" />
+    <Compile Include="Xml\Resolver\DelegatePublicEntry.cs" />
+    <Compile Include="Xml\Resolver\DelegateSystemEntry.cs" />
+    <Compile Include="Xml\Resolver\DelegateUriEntry.cs" />
+    <Compile Include="Xml\Resolver\GroupEntry.cs" />
     <Compile Include="Xml\Resolver\IEntityRule.cs" />
     <Compile Include="Xml\Resolver\IUriRule.cs" />
+    <Compile Include="Xml\Resolver\NextCatalogEntry.cs" />
+    <Compile Include="Xml\Resolver\PublicEntry.cs" />
     <Compile Include="Xml\Resolver\RelativeEntry.cs" />
+    <Compile Include="Xml\Resolver\RewriteSystemEntry.cs" />
+    <Compile Include="Xml\Resolver\RewriteUriEntry.cs" />
+    <Compile Include="Xml\Resolver\SystemEntry.cs" />
+    <Compile Include="Xml\Resolver\UriEntry.cs" />
     <Compile Include="Xml\Writer\CompactWriter.cs">
       <SubType>Code</SubType>
     </Compile>

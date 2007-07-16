@@ -12,7 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using System.Xml.Schema;
 
@@ -21,7 +21,7 @@ using HandCoded.Xml.Resolver;
 
 using log4net;
 
-namespace HandCoded.Xml.Writer
+namespace HandCoded.Xml
 {
 	/// <summary>
 	/// The <b>SchemaSet</b> class hold a collection of ...
@@ -33,18 +33,7 @@ namespace HandCoded.Xml.Writer
 		/// </summary>
 		public XmlSchemaSet XmlSchemaSet {
 			get {
-				if (schema == null) {
-					Source [] sourceArray = new Source [sources.size()];
-					sources.copyInto (sourceArray);
-
-					try {
-						schema = SchemaFactory.newInstance (XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema (sourceArray);
-					}
-					catch (SAXException error) {
-						logger.log (Level.SEVERE, "Unexpected SAX Exception", error);
-					}
-				}
-				return (schema);
+				return (schemaSet);
 			}
 		}
 
@@ -74,28 +63,18 @@ namespace HandCoded.Xml.Writer
 		/// <param name="catalog">The <see cref="Catalog"/> to resolve with.</param>
 		public void Add (SchemaRelease release, Catalog catalog)
 		{
-			Vector	imports = release.getImportSet ();
+			List<SchemaRelease>	imports = release.ImportSet;
 			
-			for (Iterator cursor = imports.iterator (); cursor.hasNext ();) {
-				SchemaRelease schema = (SchemaRelease) cursor.next ();
+			foreach (SchemaRelease schema in imports) {
+				if (!schemas.Contains (schema)) {
+					Uri			uri = catalog.ResolveUri (null, schema.NamespaceUri);
 
-				try {
-					StreamSource source = catalog.resolveUri (schema.getNamespaceUri());
-					
-					if (!schemas.contains (schema)) {
-						if (source == null) {
-							logger.severe ("Failed to resolve schema URI '" + schema.getNamespaceUri() + "'");
-							source = new StreamSource (schema.getSchemaLocation ());
-						}
-						sources.Add (source);
+					if (uri != null) {
+						schemaSet.Add (schema.NamespaceUri, uri.ToString ());
 						schemas.Add (schema);
-						
-						schema = null;
 					}
-				}
-				catch (SAXException error) {
-					logger.log (Level.SEVERE, "Unexpected SAX exception creating schema source", error);
-					System.exit (2);
+					else
+						log.Fatal ("Failed to resolve schema for '" + schema.NamespaceUri + "'");
 				}
 			}
 		}
@@ -105,24 +84,18 @@ namespace HandCoded.Xml.Writer
 		 * @since	TFP 1.0
 		 */
 		private static ILog			log
-			= LogManager.GetLogger (typeof (SchemeSet));
+			= LogManager.GetLogger (typeof (SchemaSet));
 
 		/**
 		 * The set of <CODE>SchemaReleases</CODE> added to the set.
 		 * @since	TFP 1.1
 		 */
-		private List			schemas		= new List ();
-		
-		/**
-		 * The set of <CODE>StreamSource</CODE> instances for the schemas.
-		 * @since	TFP 1.0
-		 */
-		private List			sources		= new List ();
-		
+		private List<SchemaRelease>	schemas		= new List<SchemaRelease> ();
+				
 		/**
 		 * The compiled schema representation of the schemas.
 		 * @since	TFP 1.0
 		 */
-		private XmlSchemaSet	schemaSet	= null;	
+		private XmlSchemaSet		schemaSet	= new XmlSchemaSet ();	
 	}
 }
