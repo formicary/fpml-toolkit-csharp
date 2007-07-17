@@ -148,7 +148,7 @@ namespace HandCoded.Xml
 				settings.Schemas		= schemas;
 			}
 
-			reader = XmlReader.Create (new XmlTextReader (xml), settings);
+			reader = XmlReader.Create (new StringReader (xml), settings);
 
 			try {
 				document.Load (reader);
