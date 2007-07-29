@@ -420,7 +420,9 @@ namespace HandCoded.FpML.Validation
 		/// <returns><b>true</b> if the product is single name.</returns>
 		private static bool IsSingleName (XmlElement cds)
 		{
-			if (Exists (XPath.Path (cds, "generalTerms", "referenceInformation")))
+			if (Exists (XPath.Path (cds, "generalTerms", "referenceInformation", "referenceObligation", "bond")))
+				return (true);
+			if (Exists (XPath.Path (cds, "generalTerms", "referenceInformation", "referenceObligation", "convertableBond")))
 				return (true);
 
 			return (false);
