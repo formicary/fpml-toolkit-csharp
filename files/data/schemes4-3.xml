@@ -218,6 +218,118 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/broker-confirmation-type-3-2" name="brokerConfirmationTypeScheme">
+		<schemeValues>
+			<schemeValue name="AsiaCorporate" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Asia Corporate.</paragraph>
+			</schemeValue>
+			<schemeValue name="AsiaSovereign" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Asia Sovereign.</paragraph>
+			</schemeValue>
+			<schemeValue name="AustraliaCorporate" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Australia Corporate.</paragraph>
+			</schemeValue>
+			<schemeValue name="AustraliaSovereign" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Australia Sovereign.</paragraph>
+			</schemeValue>
+			<schemeValue name="EmergingEuropeanAndMiddleEasternSovereign" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Emerging European and Middle Eastern Sovereign.</paragraph>
+			</schemeValue>
+			<schemeValue name="EuropeanCorporate" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of European Corporate.</paragraph>
+			</schemeValue>
+			<schemeValue name="JapanCorporate" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Japan Corporate.</paragraph>
+			</schemeValue>
+			<schemeValue name="JapanSovereign" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Japan Sovereign.</paragraph>
+			</schemeValue>
+			<schemeValue name="LatinAmericaCorporate" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Latin America Corporate.</paragraph>
+			</schemeValue>
+			<schemeValue name="LatinAmericaSovereign" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Latin America Sovereign.</paragraph>
+			</schemeValue>
+			<schemeValue name="NewZealandCorporate" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of New Zealand Corporate.</paragraph>
+			</schemeValue>
+			<schemeValue name="NewZealandSovereign" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of New Zealand Sovereign.</paragraph>
+			</schemeValue>
+			<schemeValue name="NorthAmericanCorporate" schemeValueSource="FpML">
+				<paragraph>Broker ConfirmationType of North American Corporate.</paragraph>
+			</schemeValue>
+			<schemeValue name="SingaporeCorporate" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Singapore Corporate.</paragraph>
+			</schemeValue>
+			<schemeValue name="SingaporeSovereign" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Singapore Sovereign.</paragraph>
+			</schemeValue>
+			<schemeValue name="SubordinatedEuropeanInsuranceCorporate" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Subordinated European Insurance Corporate.</paragraph>
+			</schemeValue>
+			<schemeValue name="WesternEuropeanSovereign" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type of Western European Sovereign.</paragraph>
+			</schemeValue>
+			<schemeValue name="DJ.CDX.NA" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for CDS Index trades relating to Dow Jones CDX.NA.IG and Dow Jones CDX.NA.HY index series.</paragraph>
+			</schemeValue>
+			<schemeValue name="DJ.CDX.EM " schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for CDS Index trades relating to Dow Jones CDX.EM index series.</paragraph>
+			</schemeValue>
+			<schemeValue name="CDXEmergingMarketsDiversifiedTranche" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for Dow Jones CDX Emerging Markets Diversified Tranche Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="CDXTranche" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for Dow Jones CDX Tranche Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxEurope" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for iTraxx Europe.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxEuropeTranche" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for iTraxx Europe Tranched Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxCJ" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for iTraxx CJ.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxCJTranche" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for iTraxx CJ Tranched Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxAsiaExJapan" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for iTraxx Asia Excluding Japan.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxAsiaExJapanTranche" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for iTraxx Asia Excluding Japan Tranched Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxAustralia" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for iTraxx Australia.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxAustraliaTranche" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for iTraxx Australia Tranched Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxSDI75" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for iTraxx SDI 75 Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="ABX.HH" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type representing ABX.HH index trades.</paragraph>
+			</schemeValue>
+			<schemeValue name="CMBX" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type representing CMBX index trades.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxLevX" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for iTraxx LevX.</paragraph>
+			</schemeValue>
+			<schemeValue name="EmergingEuropeanCorporate" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for EMERGING EUROPEAN CORPORATE.</paragraph>
+			</schemeValue>
+			<schemeValue name="LatinAmericaCorporateBond" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for LATIN AMERICA CORPORATE B.</paragraph>
+			</schemeValue>
+			<schemeValue name="LatinAmericaCorporateBondOrLoan" schemeValueSource="FpML">
+				<paragraph>Broker Confirmation Type for LATIN AMERICA CORPORATE BL.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
 	<scheme uri="http://www.fpml.org/coding-scheme/broker-confirmation-type-2-0" name="brokerConfirmationTypeScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="DJ.CDX.EM ">
@@ -267,7 +379,245 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/business-center-4-0" name="businessCenterScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/business-center-6-4" name="businessCenterScheme">
+		<schemeValues>
+			<schemeValue name="AEAD" schemeValueSource="FpML">
+				<paragraph>Abu Dhabi</paragraph>
+			</schemeValue>
+			<schemeValue name="AEDU" schemeValueSource="FpML">
+				<paragraph>Dubai</paragraph>
+			</schemeValue>
+			<schemeValue name="ARBA" schemeValueSource="FpML">
+				<paragraph>Buenos Aires</paragraph>
+			</schemeValue>
+			<schemeValue name="ATVI" schemeValueSource="FpML">
+				<paragraph>Vienna</paragraph>
+			</schemeValue>
+			<schemeValue name="AUME" schemeValueSource="FpML">
+				<paragraph>Melbourne</paragraph>
+			</schemeValue>
+			<schemeValue name="AUSY" schemeValueSource="FpML">
+				<paragraph>Sydney</paragraph>
+			</schemeValue>
+			<schemeValue name="BEBR" schemeValueSource="FpML">
+				<paragraph>Brussels</paragraph>
+			</schemeValue>
+			<schemeValue name="BMHA" schemeValueSource="FpML">
+				<paragraph>Hamilton, Bermuda</paragraph>
+			</schemeValue>
+			<schemeValue name="BRBR" schemeValueSource="FpML">
+				<paragraph>Brasilia</paragraph>
+			</schemeValue>
+			<schemeValue name="BRRJ" schemeValueSource="FpML">
+				<paragraph>Rio de Janeiro</paragraph>
+			</schemeValue>
+			<schemeValue name="BRSP" schemeValueSource="FpML">
+				<paragraph>Sao Paulo</paragraph>
+			</schemeValue>
+			<schemeValue name="CAMO" schemeValueSource="FpML">
+				<paragraph>Montreal</paragraph>
+			</schemeValue>
+			<schemeValue name="CATO" schemeValueSource="FpML">
+				<paragraph>Toronto</paragraph>
+			</schemeValue>
+			<schemeValue name="CHGE" schemeValueSource="FpML">
+				<paragraph>Geneva</paragraph>
+			</schemeValue>
+			<schemeValue name="CHZU" schemeValueSource="FpML">
+				<paragraph>Zurich</paragraph>
+			</schemeValue>
+			<schemeValue name="CLSA" schemeValueSource="FpML">
+				<paragraph>Santiago</paragraph>
+			</schemeValue>
+			<schemeValue name="CNBE" schemeValueSource="FpML">
+				<paragraph>Beijing</paragraph>
+			</schemeValue>
+			<schemeValue name="CZPR" schemeValueSource="FpML">
+				<paragraph>Prague</paragraph>
+			</schemeValue>
+			<schemeValue name="DEDU" schemeValueSource="FpML">
+				<paragraph>Düsseldorf</paragraph>
+			</schemeValue>
+			<schemeValue name="DEFR" schemeValueSource="FpML">
+				<paragraph>Frankfurt</paragraph>
+			</schemeValue>
+			<schemeValue name="DEST" schemeValueSource="FpML">
+				<paragraph>Stuttgart</paragraph>
+			</schemeValue>
+			<schemeValue name="DKCO" schemeValueSource="FpML">
+				<paragraph>Copenhagen</paragraph>
+			</schemeValue>
+			<schemeValue name="EETA" schemeValueSource="FpML">
+				<paragraph>Tallinn</paragraph>
+			</schemeValue>
+			<schemeValue name="ESAS" schemeValueSource="FpML">
+				<paragraph>ESAS Settlement Day (as defined in 2006 ISDA Definitions Section 7.1 and Supplement Number 15 to the 2000 ISDA Definitions)</paragraph>
+			</schemeValue>
+			<schemeValue name="ESBA" schemeValueSource="FpML">
+				<paragraph>Barcelona</paragraph>
+			</schemeValue>
+			<schemeValue name="ESMA" schemeValueSource="FpML">
+				<paragraph>Madrid</paragraph>
+			</schemeValue>
+			<schemeValue name="EUTA" schemeValueSource="FpML">
+				<paragraph>TARGET (euro &apos;Business Center&apos;)</paragraph>
+			</schemeValue>
+			<schemeValue name="FIHE" schemeValueSource="FpML">
+				<paragraph>Helsinki</paragraph>
+			</schemeValue>
+			<schemeValue name="FRPA" schemeValueSource="FpML">
+				<paragraph>Paris</paragraph>
+			</schemeValue>
+			<schemeValue name="GBLO" schemeValueSource="FpML">
+				<paragraph>London</paragraph>
+			</schemeValue>
+			<schemeValue name="GRAT" schemeValueSource="FpML">
+				<paragraph>Athens</paragraph>
+			</schemeValue>
+			<schemeValue name="HKHK" schemeValueSource="FpML">
+				<paragraph>Hong Kong</paragraph>
+			</schemeValue>
+			<schemeValue name="HUBU" schemeValueSource="FpML">
+				<paragraph>Budapest</paragraph>
+			</schemeValue>
+			<schemeValue name="IDJA" schemeValueSource="FpML">
+				<paragraph>Jakarta</paragraph>
+			</schemeValue>
+			<schemeValue name="IEDU" schemeValueSource="FpML">
+				<paragraph>Dublin</paragraph>
+			</schemeValue>
+			<schemeValue name="ILTA" schemeValueSource="FpML">
+				<paragraph>Tel Aviv</paragraph>
+			</schemeValue>
+			<schemeValue name="INMU" schemeValueSource="FpML">
+				<paragraph>Mumbai, India</paragraph>
+			</schemeValue>
+			<schemeValue name="ISRE" schemeValueSource="FpML">
+				<paragraph>Reykjavik</paragraph>
+			</schemeValue>
+			<schemeValue name="ITMI" schemeValueSource="FpML">
+				<paragraph>Milan</paragraph>
+			</schemeValue>
+			<schemeValue name="ITRO" schemeValueSource="FpML">
+				<paragraph>Rome</paragraph>
+			</schemeValue>
+			<schemeValue name="JPTO" schemeValueSource="FpML">
+				<paragraph>Tokyo</paragraph>
+			</schemeValue>
+			<schemeValue name="KRSE" schemeValueSource="FpML">
+				<paragraph>Seoul</paragraph>
+			</schemeValue>
+			<schemeValue name="KYGE" schemeValueSource="FpML">
+				<paragraph>George Town, Cayman Islands</paragraph>
+			</schemeValue>
+			<schemeValue name="LBBE" schemeValueSource="FpML">
+				<paragraph>Beirut</paragraph>
+			</schemeValue>
+			<schemeValue name="LKCO" schemeValueSource="FpML">
+				<paragraph>Colombo, Sri Lanka</paragraph>
+			</schemeValue>
+			<schemeValue name="LULU" schemeValueSource="FpML">
+				<paragraph>Luxembourg</paragraph>
+			</schemeValue>
+			<schemeValue name="MOMA" schemeValueSource="FpML">
+				<paragraph>Macau</paragraph>
+			</schemeValue>
+			<schemeValue name="MXMC" schemeValueSource="FpML">
+				<paragraph>Mexico City</paragraph>
+			</schemeValue>
+			<schemeValue name="MYKL" schemeValueSource="FpML">
+				<paragraph>Kuala Lumpur</paragraph>
+			</schemeValue>
+			<schemeValue name="NLAM" schemeValueSource="FpML">
+				<paragraph>Amsterdam</paragraph>
+			</schemeValue>
+			<schemeValue name="NOOS" schemeValueSource="FpML">
+				<paragraph>Oslo</paragraph>
+			</schemeValue>
+			<schemeValue name="NYFD" schemeValueSource="FpML">
+				<paragraph>New York Fed Business Day (as defined in 2006 ISDA Definitions Section 1.9 and 2000 ISDA Definitions Section 1.9)</paragraph>
+			</schemeValue>
+			<schemeValue name="NYSE" schemeValueSource="FpML">
+				<paragraph>New York Stock Exchange Business Day (as defined in 2006 ISDA Definitions Section 1.10 and 2000 ISDA Definitions Section 1.10)</paragraph>
+			</schemeValue>
+			<schemeValue name="NZAU" schemeValueSource="FpML">
+				<paragraph>Auckland</paragraph>
+			</schemeValue>
+			<schemeValue name="NZWE" schemeValueSource="FpML">
+				<paragraph>Wellington</paragraph>
+			</schemeValue>
+			<schemeValue name="PAPC" schemeValueSource="FpML">
+				<paragraph>Panama City</paragraph>
+			</schemeValue>
+			<schemeValue name="PHMA" schemeValueSource="FpML">
+				<paragraph>Manila</paragraph>
+			</schemeValue>
+			<schemeValue name="PKKA" schemeValueSource="FpML">
+				<paragraph>Karachi, Pakistan</paragraph>
+			</schemeValue>
+			<schemeValue name="PLWA" schemeValueSource="FpML">
+				<paragraph>Warsaw</paragraph>
+			</schemeValue>
+			<schemeValue name="PTLI" schemeValueSource="FpML">
+				<paragraph>Lisbon</paragraph>
+			</schemeValue>
+			<schemeValue name="ROBU" schemeValueSource="FpML">
+				<paragraph>Bucarest, Romania</paragraph>
+			</schemeValue>
+			<schemeValue name="RUMO" schemeValueSource="FpML">
+				<paragraph>Moscow</paragraph>
+			</schemeValue>
+			<schemeValue name="SARI" schemeValueSource="FpML">
+				<paragraph>Riyadh</paragraph>
+			</schemeValue>
+			<schemeValue name="SEST" schemeValueSource="FpML">
+				<paragraph>Stockholm</paragraph>
+			</schemeValue>
+			<schemeValue name="SGSI" schemeValueSource="FpML">
+				<paragraph>Singapore</paragraph>
+			</schemeValue>
+			<schemeValue name="SKBR" schemeValueSource="FpML">
+				<paragraph>Bratislava</paragraph>
+			</schemeValue>
+			<schemeValue name="THBA" schemeValueSource="FpML">
+				<paragraph>Bangkok</paragraph>
+			</schemeValue>
+			<schemeValue name="TRAN" schemeValueSource="FpML">
+				<paragraph>Ankara</paragraph>
+			</schemeValue>
+			<schemeValue name="TRIS" schemeValueSource="FpML">
+				<paragraph>Istanbul, Turkey</paragraph>
+			</schemeValue>
+			<schemeValue name="TWTA" schemeValueSource="FpML">
+				<paragraph>Taipei</paragraph>
+			</schemeValue>
+			<schemeValue name="USCH" schemeValueSource="FpML">
+				<paragraph>Chicago</paragraph>
+			</schemeValue>
+			<schemeValue name="USGS" schemeValueSource="FpML">
+				<paragraph>U.S. Government Securities Business Day (as defined in 2006 ISDA Definitions Section 1.11 and 2000 ISDA Definitions Section 1.11)</paragraph>
+			</schemeValue>
+			<schemeValue name="USLA" schemeValueSource="FpML">
+				<paragraph>Los Angeles</paragraph>
+			</schemeValue>
+			<schemeValue name="USNY" schemeValueSource="FpML">
+				<paragraph>New York</paragraph>
+			</schemeValue>
+			<schemeValue name="USSE" schemeValueSource="FpML">
+				<paragraph>Seattle</paragraph>
+			</schemeValue>
+			<schemeValue name="VNHA" schemeValueSource="FpML">
+				<paragraph>Hanoi, Vietnam</paragraph>
+			</schemeValue>
+			<schemeValue name="VECA" schemeValueSource="FpML">
+				<paragraph>Caracas, Venezuela</paragraph>
+			</schemeValue>
+			<schemeValue name="ZAJO" schemeValueSource="FpML">
+				<paragraph>Johannesburg</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/business-center-6-3" name="businessCenterScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="ARBA">
 				<paragraph>Buenos Aires</paragraph>
@@ -454,6 +804,52 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/cashflow-type-2-0" name="cashflowTypeScheme">
+		<schemeValues>
+			<schemeValue name="Premium" schemeValueSource="FpML">
+				<paragraph>The premium associated with an OTC contract such as an option or a cap/floor.</paragraph>
+			</schemeValue>
+			<schemeValue name="PrincipalExchange" schemeValueSource="FpML">
+				<paragraph>A cash flow which amount typically corresponds to the notional of the contract and that is exchanged between the parties on trade inception and reverted back when the contract is terminated.</paragraph>
+			</schemeValue>
+			<schemeValue name="TerminationFee" schemeValueSource="FpML">
+				<paragraph>A cash flow associated with a termination lifecycle event.</paragraph>
+			</schemeValue>
+			<schemeValue name="PartialTerminationFee" schemeValueSource="FpML">
+				<paragraph>A cash flow associated with a partial termination lifecycle event.</paragraph>
+			</schemeValue>
+			<schemeValue name="AssignmentFee" schemeValueSource="FpML">
+				<paragraph>A cash flow resulting from the assignment of a contract to a new counterparty.</paragraph>
+			</schemeValue>
+			<schemeValue name="Fee" schemeValueSource="FpML">
+				<paragraph>A generic term for describing a non-scheduled cashflow that can be associated either with the initial contract, with some later corrections to it (e.g. a correction to the day count fraction that has a cashflow impact) or with some lifecycle events. Fees that are specifically associated with termination and partial termination, increase, amendment, and exercise events are qualified accordingly.</paragraph>
+			</schemeValue>
+			<schemeValue name="Coupon" schemeValueSource="FpML">
+				<paragraph>A cash flow corresponding to the periodic accrued interests.</paragraph>
+			</schemeValue>
+			<schemeValue name="InterestReturn" schemeValueSource="FpML">
+				<paragraph>A cash flow corresponding to the return of the interest rate portion of a derivative instrument that has different types of underlying assets, such as a total return swap.</paragraph>
+			</schemeValue>
+			<schemeValue name="PriceReturn" schemeValueSource="FpML">
+				<paragraph>A cash flow corresponding to the return of the price portion of a derivative instrument that has different types of underlying assets, such as a total return swap.</paragraph>
+			</schemeValue>
+			<schemeValue name="DividendReturn" schemeValueSource="FpML">
+				<paragraph>A cash flow corresponding to the synthetic dividend of an equity underlyer asset traded through a derivative instrument.</paragraph>
+			</schemeValue>
+			<schemeValue name="CreditEvent" schemeValueSource="FpML">
+				<paragraph>A cashflow resulting from a credit event.</paragraph>
+			</schemeValue>
+			<schemeValue name="IncreaseFee" schemeValueSource="FpML">
+				<paragraph>A cash flow associated with an increase lifecycle event.</paragraph>
+			</schemeValue>
+			<schemeValue name="AmendmentFee" schemeValueSource="FpML">
+				<paragraph>A cash flow associated with an amendment lifecycle event.</paragraph>
+			</schemeValue>
+			<schemeValue name="ExerciseFee" schemeValueSource="FpML">
+				<paragraph>A cash flow associated with an exercise lifecycle event.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
 	<scheme uri="http://www.fpml.org/coding-scheme/cashflow-type-1-0" name="cashflowTypeScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="AssignmentFee">
@@ -491,8 +887,14 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/business-center-5-0" name="businessCenterScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/business-center-6-2" name="businessCenterScheme">
 		<schemeValues>
+			<schemeValue schemeValueSource="FpML" name="AEAD">
+				<paragraph>Abu Dhabi</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="AEDU">
+				<paragraph>Dubai</paragraph>
+			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ARBA">
 				<paragraph>Buenos Aires</paragraph>
 			</schemeValue>
@@ -508,6 +910,9 @@
 			<schemeValue schemeValueSource="FpML" name="BEBR">
 				<paragraph>Brussels</paragraph>
 			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="BMHA">
+				<paragraph>Hamilton, Bermuda</paragraph>
+			</schemeValue>			
 			<schemeValue schemeValueSource="FpML" name="BRSP">
 				<paragraph>Sao Paulo</paragraph>
 			</schemeValue>
@@ -538,6 +943,9 @@
 			<schemeValue schemeValueSource="FpML" name="DEFR">
 				<paragraph>Frankfurt</paragraph>
 			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="DEST">
+				<paragraph>Stuttgart</paragraph>
+			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="DKCO">
 				<paragraph>Copenhagen</paragraph>
 			</schemeValue>
@@ -546,6 +954,9 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ESAS">
 				<paragraph>ESAS Settlement Day (as defined in Supplement Number 15 to the 2000 ISDA Definitions)</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ESBA">
+				<paragraph>Barcelona</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ESMA">
 				<paragraph>Madrid</paragraph>
@@ -583,6 +994,9 @@
 			<schemeValue schemeValueSource="FpML" name="INMU">
 				<paragraph>Mumbai, India</paragraph>
 			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ISRE">
+				<paragraph>Reykjavik</paragraph>
+			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ITMI">
 				<paragraph>Milan</paragraph>
 			</schemeValue>
@@ -595,11 +1009,17 @@
 			<schemeValue schemeValueSource="FpML" name="KRSE">
 				<paragraph>Seoul</paragraph>
 			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="KYGE">
+				<paragraph>George Town, Cayman Islands</paragraph>
+			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="LBBE">
 				<paragraph>Beirut</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="LULU">
 				<paragraph>Luxembourg</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="MOMA">
+				<paragraph>Macau</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="MXMC">
 				<paragraph>Mexico City</paragraph>
@@ -672,6 +1092,9 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="USNY">
 				<paragraph>New York</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="USSE">
+				<paragraph>Seattle</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="VECA">
 				<paragraph>Caracas, Venezuela</paragraph>
@@ -723,7 +1146,44 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/contractual-definitions-3-0" name="contractualDefinitionsScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/contractual-definitions-3-2" name="contractualDefinitionsScheme">
+		<schemeValues>
+			<schemeValue name="ISDA1991" schemeValueSource="FpML">
+				<paragraph>ISDA 1991 Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1996Equity" schemeValueSource="FpML">
+				<paragraph>ISDA 1996 Equity Derivatives Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1997GovernmentBond" schemeValueSource="FpML">
+				<paragraph>ISDA 1997 Government Bond Option Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1998FX" schemeValueSource="FpML">
+				<paragraph>ISDA 1998 FX and Currency Option Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2000" schemeValueSource="FpML">
+				<paragraph>ISDA 2000 Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2002Equity" schemeValueSource="FpML">
+				<paragraph>ISDA 2002 Equity Derivatives Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1999Credit" schemeValueSource="FpML">
+				<paragraph>ISDA 1999 Credit Derivatives Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003Credit" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Credit Derivatives Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2004Novation" schemeValueSource="FpML">
+				<paragraph>ISDA 2004 Novation Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2006" schemeValueSource="FpML">
+				<paragraph>ISDA 2006 Definitions</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2006Inflation" schemeValueSource="FpML">
+				<paragraph>ISDA 2006 Inflation Derivatives Definitions</paragraph>
+			</schemeValue>
+		</schemeValues>	
+	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/contractual-definitions-3-1" name="contractualDefinitionsScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="ISDA1991">
 				<paragraph>ISDA 1991 Definitions</paragraph>
@@ -752,9 +1212,115 @@
 			<schemeValue schemeValueSource="FpML" name="ISDA2004Novation">
 				<paragraph>ISDA 2004 Novation Definitions</paragraph>
 			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ISDA2006">
+				<paragraph>ISDA 2006 Definitions</paragraph>
+			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/contractual-supplement-6-0" name="contractualSupplementScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/contractual-supplement-6-3" name="contractualSupplementScheme">
+		<schemeValues>
+			<schemeValue name="ISDA1999CreditRestructuring" schemeValueSource="FpML">
+				<paragraph>Restructuring Supplement to the 1999 ISDA Credit Derivatives Definitions dated May 11, 2001.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1999CreditConvertibleExchangeableAccretingObligations" schemeValueSource="FpML">
+				<paragraph>Supplement to the 1999 ISDA Credit Derivatives Definitions Relating to Convertible, Exchangeable or Accreting Obligations dated November 9, 2001.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1999CreditSuccessorAndCreditEvents" schemeValueSource="FpML">
+				<paragraph>Supplement Relating to Successor and Credit Events to the 1999 ISDA Credit Derivatives Definitions dated November 28, 2001.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditMay2003" schemeValueSource="FpML">
+				<paragraph>May 2003 Supplement to the 2003 ISDA Credit Derivatives Definitions.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditMonolineInsurers" schemeValueSource="FpML">
+				<paragraph>Additional Provisions for Physically Settled Default Swaps Monoline Insurer as Reference Entity dated May 9, 2003.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditUSMunicipals" schemeValueSource="FpML">
+				<paragraph>Additional Provisions for Credit Derivative Transactions - U.S. Municipal Entity as Reference Entity dated September 17, 2004.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditRussianFederation" schemeValueSource="FpML">
+				<paragraph>Additional Provisions for the Russian Federation: Obligation Characteristics and Deliverable Obligation Characteristics dated August 13, 2004.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditRepublicOfHungary" schemeValueSource="FpML">
+				<paragraph>Additional Provisions for the Republic of Hungary: Obligation Characteristics and Deliverable Obligation Characteristics dated August 13, 2004.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditRepublicOfHungary2005" schemeValueSource="FpML">
+				<paragraph>Additional Provisions for the Republic of Hungary: Obligation Characteristics and Deliverable Obligation Characteristics dated February 14, 2005. </paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditMonolineInsurers2005" schemeValueSource="FpML">
+				<paragraph>Additional Provisions for Physically Settled Default Swaps Monoline Insurer as Reference Entity dated January 21, 2005.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003Credit2005MatrixSupplement" schemeValueSource="FpML">
+				<paragraph>2005 Matrix Supplement to the 2003 ISDA Credit Derivatives.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxEuropeDealer" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for iTraxx Europe Dealer Form.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxEuropeNonDealer" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for iTraxx Europe Non-Dealer Form.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxEuropeTranche" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for iTraxx Europe Tranched Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxCJ" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for iTraxx CJ.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxCJTranche" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for iTraxx CJ Tranched Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxAsiaExJapan" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for iTraxx Asia Excluding Japan.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxAsiaExJapanTranche" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for iTraxx Asia Excluding Japan Tranched Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxAustralia" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for iTraxx Australia.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxAustraliaTranche" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for iTraxx Australia Tranched Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="CDXTranche" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for Dow Jones CDX Tranche Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="CDXEmergingMarketsDiversifiedTranche" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for Dow Jones CDX Emerging Markets Diversified Tranche Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxSDI75Dealer" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for iTraxx SDI 75 Dealer Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxSDI75NonDealer" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for iTraxx SDI 75 Non-Dealer Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditArgentineRepublic" schemeValueSource="FpML">
+				<paragraph>Additional Provisions for the Argentine Republic: Excluded Obligations and Excluded Deliverable Obligations dated December 21, 2005.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003LPNReferenceEntities" schemeValueSource="FpML">
+				<paragraph>Additional Provisions for LPN Reference Entities dated October 3, 2006.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003SecuredDeliverableObligationCharacteristic" schemeValueSource="FpML">
+				<paragraph>Additional Provisions for Secured Deliverable Obligation Characteristic dated June 16, 2006.</paragraph>
+			</schemeValue>
+			<schemeValue name="iTraxxLevX" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for iTraxx LevX.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003DeliveryRestrictions" schemeValueSource="FpML">
+				<paragraph>Additional Provisions for Reference Entities with Delivery Restrictions dated February 1, 2007.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDAMarch2004EquityCanadianSupplement" schemeValueSource="FpML">
+				<paragraph>Canadian Supplement to the 2004 Americas Interdealer Master Equity Derivatives Confirmation Agreement dated March 29, 2004.</paragraph>
+			</schemeValue>
+			<schemeValue name="ABXTranche" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for Asset-Backed Tranche Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="LCDX" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for Syndicated Secured Loan Credit Default Swap Index Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="LCDXTranche" schemeValueSource="FpML">
+				<paragraph>Standard Terms Supplement for Syndicated Secured Loan Credit Default Swap Index Tranche Transactions.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/contractual-supplement-6-2" name="contractualSupplementScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="CDXEmergingMarketsDiversifiedTranche">
 				<paragraph>Standard Terms Supplement for Dow Jones CDX Emerging Markets Diversified Tranche Transactions.</paragraph>
@@ -798,6 +1364,18 @@
 			<schemeValue schemeValueSource="FpML" name="ISDA2003CreditUSMunicipals">
 				<paragraph>Additional Provisions for Credit Derivative Transactions - U.S. Municipal Entity as Reference Entity dated September 17, 2004.</paragraph>
 			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ISDA2003DeliveryRestrictions">
+				<paragraph>Additional Provisions for Reference Entities with Delivery Restrictions dated February 1, 2007.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ISDA2003LPNReferenceEntities">
+				<paragraph>Additional Provisions for LPN Reference Entities dated October 3, 2006.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ISDA2003SecuredDeliverableObligationCharacteristic">
+				<paragraph>Additional Provisions for Secured Deliverable Obligation Characteristic dated June 16, 2006.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ISDAMarch2004EquityCanadianSupplement">
+				<paragraph>Canadian Supplement to the 2004 Americas Interdealer Master Equity Derivatives Confirmation Agreement dated March 29, 2004.</paragraph>
+			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="iTraxxAsiaExJapan">
 				<paragraph>Standard Terms Supplement for iTraxx Asia Excluding Japan.</paragraph>
 			</schemeValue>
@@ -824,6 +1402,9 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="iTraxxEuropeTranche">
 				<paragraph>Standard Terms Supplement for iTraxx Europe Tranched Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="iTraxxLevX">
+				<paragraph>Standard Terms Supplement for iTraxx LevX Transactions.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="iTraxxSDI75Dealer">
 				<paragraph>Standard Terms Supplement for iTraxx SDI 75 Dealer Transactions.</paragraph>
@@ -892,6 +1473,76 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="WesternEuropeanSovereign">
 				<paragraph>Matrix Transaction Type of Western European Sovereign.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/credit-matrix-transaction-type-2-2" name="matrixTermScheme">
+		<schemeValues>
+			<schemeValue name="NorthAmericanCorporate" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of NORTH AMERICAN CORPORATE.</paragraph>
+			</schemeValue>
+			<schemeValue name="EuropeanCorporate" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of EUROPEAN CORPORATE.</paragraph>
+			</schemeValue>
+			<schemeValue name="AustraliaCorporate" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of AUSTRALIA CORPORATE.</paragraph>
+			</schemeValue>
+			<schemeValue name="NewZealandCorporate" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of NEW ZEALAND CORPORATE.</paragraph>
+			</schemeValue>
+			<schemeValue name="JapanCorporate" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of JAPAN CORPORATE.</paragraph>
+			</schemeValue>
+			<schemeValue name="SingaporeCorporate" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of SINGAPORE CORPORATE.</paragraph>
+			</schemeValue>
+			<schemeValue name="AsiaCorporate" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of ASIA CORPORATE.</paragraph>
+			</schemeValue>
+			<schemeValue name="AsiaSovereign" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of ASIA SOVEREIGN.</paragraph>
+			</schemeValue>
+			<schemeValue name="EmergingEuropeanAndMiddleEasternSovereign" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of EMERGING EUROPEAN AND MIDDLE EASTERN SOVEREIGN.</paragraph>
+			</schemeValue>
+			<schemeValue name="JapanSovereign" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of JAPAN SOVEREIGN.</paragraph>
+			</schemeValue>
+			<schemeValue name="AustraliaSovereign" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of AUSTRALIA SOVEREIGN.</paragraph>
+			</schemeValue>
+			<schemeValue name="NewZealandSovereign" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of NEW ZEALAND SOVEREIGN.</paragraph>
+			</schemeValue>
+			<schemeValue name="SingaporeSovereign" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of SINGAPORE SOVEREIGN.</paragraph>
+			</schemeValue>
+			<schemeValue name="LatinAmericaSovereign" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of LATIN AMERICA SOVEREIGN.</paragraph>
+			</schemeValue>
+			<schemeValue name="WesternEuropeanSovereign" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of WESTERN EUROPEAN SOVEREIGN.</paragraph>
+			</schemeValue>
+			<schemeValue name="SubordinatedEuropeanInsuranceCorporate" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of SUBORDINATED EUROPEAN INSURANCE CORPORATE.</paragraph>
+			</schemeValue>
+			<schemeValue name="LatinAmericaCorporate" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of LATIN AMERICA CORPORATE.</paragraph>
+			</schemeValue>
+			<schemeValue name="ABX.HH" schemeValueSource="FpML">
+				<paragraph>Matrix Term Type representing ABX.HH index trades.</paragraph>
+			</schemeValue>
+			<schemeValue name="CMBX" schemeValueSource="FpML">
+				<paragraph>Matrix Term Type representing CMBX index trades.</paragraph>
+			</schemeValue>
+			<schemeValue name="EmergingEuropeanCorporate" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of EMERGING EUROPEAN CORPORATE.</paragraph>
+			</schemeValue>
+			<schemeValue name="LatinAmericaCorporateBond" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of LATIN AMERICA CORPORATE B.</paragraph>
+			</schemeValue>
+			<schemeValue name="LatinAmericaCorporateBondOrLoan" schemeValueSource="FpML">
+				<paragraph>Matrix Transaction Type of LATIN AMERICA CORPORATE BL.</paragraph>
 			</schemeValue>
 		</schemeValues>
 	</scheme>
@@ -1013,6 +1664,43 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/day-count-fraction-2-1" name="dayCountFractionScheme">
+		<schemeValues>
+			<schemeValue name="1/1" schemeValueSource="FpML">
+				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (a) or Annex to the 2000 ISDA Definitions (June 2000 Version), Section 4.16. Day Count Fraction, paragraph (a).</paragraph>
+			</schemeValue>
+			<schemeValue name="ACT/ACT.ISDA" schemeValueSource="FpML">
+				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (b) or Annex to the 2000 ISDA Definitions (June 2000 Version), Section 4.16. Day Count Fraction, paragraph (b). Note that going from FpML 2.0 Recommendation to the FpML 3.0 Trial Recommendation the code in FpML 2.0 'ACT/365.ISDA' became 'ACT/ACT.ISDA'.</paragraph>
+			</schemeValue>
+			<schemeValue name="ACT/ACT.ICMA" schemeValueSource="FpML">
+				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (c)</paragraph>
+			</schemeValue>
+			<schemeValue name="ACT/ACT.ISMA" schemeValueSource="FpML">
+				<paragraph>The Fixed/Floating Amount will be calculated in accordance with Rule 251 of the statutes, by-laws, rules and recommendations of the International Securities Market Association, as published in April 1999, as applied to straight and convertible bonds issued after December 31, 1998, as though the Fixed/Floating Amount were the interest coupon on such a bond.</paragraph>
+			</schemeValue>
+			<schemeValue name="ACT/ACT.AFB" schemeValueSource="FpML">
+				<paragraph>The Fixed/Floating Amount will be calculated in accordance with the "BASE EXACT/EXACT" day count fraction, as defined in the "Definitions Communes plusieurs Additifs Techniques" published by the Association Francaise des Banques in September 1994.</paragraph>
+			</schemeValue>
+			<schemeValue name="ACT/365.FIXED" schemeValueSource="FpML">
+				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (d) or Annex to the 2000 ISDA Definitions (June 2000 Version), Section 4.16. Day Count Fraction, paragraph (c).</paragraph>
+			</schemeValue>
+			<schemeValue name="ACT/360" schemeValueSource="FpML">
+				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (e) or Annex to the 2000 ISDA Definitions (June 2000 Version), Section 4.16. Day Count Fraction, paragraph (d).</paragraph>
+			</schemeValue>
+			<schemeValue name="30/360" schemeValueSource="FpML">
+				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (f) or Annex to the 2000 ISDA Definitions (June 2000 Version), Section 4.16. Day Count Fraction, paragraph (e).</paragraph>
+			</schemeValue>
+			<schemeValue name="30E/360" schemeValueSource="FpML">
+				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (g) or Annex to the 2000 ISDA Definitions (June 2000 Version), Section 4.16. Day Count Fraction, paragraph (f). Note that the algorithm defined for this day count fraction has changed between the 2000 ISDA Definitions and 2006 ISDA Definitions. See Introduction to the 2006 ISDA Definitions for further information relating to this change.</paragraph>
+			</schemeValue>
+			<schemeValue name="30E/360.ISDA" schemeValueSource="FpML">
+				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (h). Note the algorithm for this day count fraction under the 2006 ISDA Definitions is designed to yield the same results in practice as the version of the 30E/360 day count fraction defined in the 2000 ISDA Definitions. See Introduction to the 2006 ISDA Definitions for further information relating to this change.</paragraph>
+			</schemeValue>
+			<schemeValue name="BUS/252" schemeValueSource="FpML">
+				<paragraph>The number of Business Days in the Calculation Period or Compounding Period in respect of which payment is being made divided by 252.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
 	<scheme uri="http://www.fpml.org/coding-scheme/day-count-fraction-1-0" name="dayCountFractionScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="1/1">
@@ -1088,6 +1776,733 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="WesternEuropeanInsurance">
 				<paragraph>Entity Type of Western European Insurance.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/floating-rate-index-2-0" name="floatingRateIndexScheme">
+		<schemeValues>
+			<schemeValue name="AUD-AONIA-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="AUD-AONIA-OIS-COMPOUND-SwapMarker" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="AUD-BBR-AUBBSW" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="AUD-BBR-BBSW" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="AUD-BBR-BBSW-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="AUD-BBR-BBSY (BID)" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="AUD-BBR-ISDC" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="AUD-LIBOR-BBA" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="AUD-LIBOR-BBA-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="AUD-LIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="AUD-Swap Rate-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-BA-ISDD" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-BA-CDOR" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-BA-CDOR-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-BA-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-BA-Telerate" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-BA-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-TBILL-ISDD" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-TBILL-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-TBILL-Telerate" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-TBILL-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-LIBOR-BBA" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-LIBOR-BBA-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-LIBOR-BBA-SwapMarker" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-LIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-REPO-CORRA" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-CORRA-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-ISDA-Swap Rate" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CL-CLICP-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CZK-PRIBOR-PRBO" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CZK-PRIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="DKK-CIBOR-DKNA13" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="DKK-CIBOR-DKNA13-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="DKK-CIBOR2-DKNA13" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="DKK-CITA-DKNA14-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="DKK-CIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="DKK-DKKOIS-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-EURIBOR-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-EURIBOR-Telerate" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-EURIBOR-Act/365" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-EURIBOR-Act/365-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-EURIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-LIBOR-BBA" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-LIBOR-BBA-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-LIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-EONIA-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-EONIA-OIS-COMPOUND-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-EURONIA-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-TAM-CDC" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-TMM-CDC-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-EONIA-AVERAGE" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-TEC10-CNO" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-TEC10-CNO-SwapMarker" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-TEC10-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-TEC5-CNO" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-TEC5-CNO-SwapMarker" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-TEC5-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-Annual Swap Rate-10:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-Annual Swap Rate-10:00-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-Annual Swap Rate-10:00-SwapMarker" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-Annual Swap Rate-11:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-Annual Swap Rate-11:00-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-Annual Swap Rate-11:00-SwapMarker" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-Annual Swap Rate-3 Month" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-Annual Swap Rate-3 Month-SwapMarker" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-ISDA-EURIBOR Swap Rate-11:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-ISDA-EURIBOR Swap Rate-12:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-ISDA-LIBOR Swap Rate-10:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-ISDA-LIBOR Swap Rate-11:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-EONIA-Swap-Index" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-Annual Swap Rate-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GRD-ATHIBOR-ATHIBOR" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GRD-ATHIBOR-Telerate" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GRD-ATHIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GRD-ATHIMID-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GRD-ATHIMID-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="HKD-HIBOR-ISDC" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="HKD-HIBOR-HIBOR=" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="HKD-HIBOR-HIBOR-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="HKD-HIBOR-HKAB" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="HKD-HIBOR-HKAB-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="HKD-HIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="HKD-HONIX-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="HKD-ISDA-Swap Rate-11:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="HKD-ISDA-Swap Rate-4:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="HUF-BUBOR-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="HUF-BUBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="INR-MIBOR-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="INR-MITOR-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="INR-MIFOR" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="INR-MIOIS" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="INR-BMK" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="INR-INBMK-REUTERS" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="INR-CMT" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="INR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="IDR-IDRFIX" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="IDR-IDMA-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="IDR-SBI-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="IDR-SOR-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="IDR-SOR-Telerate" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="IDR-SOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="ILS-TELBOR01-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="ILS-TELBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-BBSF-Bloomberg-10:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-BBSF-Bloomberg-15:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-LIBOR-FRASETT" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-LIBOR-ISDA" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-LIBOR-BBA" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-LIBOR-BBA-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-LIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-MUTANCALL-TONAR" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TIBOR-TIBM (10 Banks)" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TIBOR-TIBM (5 Banks)" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TIBOR-TIBM (All Banks)" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TIBOR-TIBM (All Banks)-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TIBOR-ZTIBOR" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TIBOR-TIBM-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TSR-Reuters-10:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TSR-Telerate-10:00" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-ISDA-Swap Rate-10:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TSR-Reuters-15:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TSR-Telerate-15:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-ISDA-Swap Rate-15:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TSR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TONA-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TIBOR-17096" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-TIBOR-17097" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="KRW-CD-KSDA-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="KRW-CD-3220" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="MYR-KLIBOR-BNM" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="MYR-KLIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="MXN-TIIE-Banxico" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="MXN-TIIE-Banxico-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="MXN-TIIE-Banxico-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="NZD-BBR-BID" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="NZD-BBR-ISDC" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="NZD-BBR-FRA" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="NZD-BBR-Telerate" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="NZD-BBR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="NZD-NZIONA-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="NOK-NIBOR-NIBR" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="NOK-NIBOR-NIBR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="NOK-NIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="PLN-WIBOR-WIBO" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="PLN-WIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="PLZ-WIBOR-WIBO" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="PLZ-WIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SAR-SRIOR-SUAA" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SAR-SRIOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SGD-SIBOR-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SGD-SIBOR-Telerate" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SGD-SIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SGD-SOR-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SGD-SOR-Telerate" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SGD-SOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SGD-SONAR-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SKK-BRIBOR-NBSK07" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SKK-BRIBOR-BRBO" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SKK-BRIBOR-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SKK-BRIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="ZAR-JIBAR-SAFEX" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="ZAR-JIBAR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="ZAR-PRIME-AVERAGE" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="ZAR-PRIME-AVERAGE-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="ZAR-DEPOSIT-SAFEX" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="ZAR-DEPOSIT-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GBP-LIBOR-ISDA" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GBP-LIBOR-BBA" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GBP-LIBOR-BBA-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GBP-LIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GBP-ISDA-Swap Rate" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GBP-Semi-Annual Swap Rate" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GBP-Semi-Annual Swap Rate-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="GBP-WMBA-SONIA-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SEK-Annual Swap Rate" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SEK-STIBOR-SIDE" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SEK-STIBOR-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SEK-STIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="SEK-SIOR-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CHF-LIBOR-ISDA" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CHF-LIBOR-BBA" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CHF-LIBOR-BBA-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CHF-LIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CHF-TOIS-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CHF-Annual Swap Rate" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CHF-ISDAFIX-Swap Rate" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="CHF-Annual Swap Rate-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="TWD-Reuters-6165" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="TWD-Telerate-6165" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="TWD-TWCPBA" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="TWD-Reference Dealers" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="THB-SOR-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="THB-SOR-Telerate" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="THB-SOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="THB-THBFIX-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-BA-H.15" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-BA-Reference Dealers" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-CD-H.15" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-CD-Reference Dealers" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-CMS-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-CMS-Telerate" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-ISDA-Swap Rate" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-ISDA-Swap Rate-3:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-ISDAFIX3-Swap Rate" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-ISDAFIX3-Swap Rate-3:00" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-CMS-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-CMS-Reference Banks-ICAP SwapPX" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-CMT-T7051" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-CMT-T7052" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-COF11-Reuters" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-COF11-Telerate" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-COF11-FHLBSF" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-CP-H.15" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-CP-Reference Dealers" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-Federal Funds-H.15" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-Federal Funds-H.15-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-Federal Funds-Reference Dealers" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-FFCB-DISCO" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-LIBOR-BBA" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-LIBOR-BBA-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-LIBOR-ISDA" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-LIBOR-LIBO" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-LIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-Prime-H.15" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-Prime-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-SIBOR-SIBO" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-SIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-TBILL-H.15" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-TBILL-H.15-Bloomberg" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-TBILL-Secondary Market" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-TIBOR-ISDC" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-TIBOR-Reference Banks" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-Treasury Rate-T500" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-Treasury Rate-ICAP BrokerTec" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-Treasury Rate-SwapMarker99" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-Treasury Rate-T19901" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-Treasury Rate-SwapMarker100" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-Federal Funds-H.15-OIS-COMPOUND" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-SIFMA Municipal Swap Index" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-BMA Municipal Swap Index" schemeValueSource="ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="USD-S&amp;P Index-High Grade" schemeValueSource="ISDA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
 			</schemeValue>
 		</schemeValues>
 	</scheme>
@@ -1660,6 +3075,118 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/inflation-index-description-2-0" name="inflationIndexDescriptionScheme">
+		<schemeValues>
+			<schemeValue name="AUD-CPI" schemeValueSource="FpML">
+				<paragraph>AUD – Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="BLG-HICP" schemeValueSource="FpML">
+				<paragraph>BLG – Non-revised Harmonised Consumer Price Index (HICP)</paragraph>
+			</schemeValue>
+			<schemeValue name="BRL-IPCA" schemeValueSource="FpML">
+				<paragraph>BRL – Non-revised Consumer Price Index (IPCA)</paragraph>
+			</schemeValue>
+			<schemeValue name="BRL-IGPM" schemeValueSource="FpML">
+				<paragraph>BRL – Non-revised Price Index (IGP-M)</paragraph>
+			</schemeValue>
+			<schemeValue name="CAD-CPI" schemeValueSource="FpML">
+				<paragraph>CAD – Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="DEK-CPI" schemeValueSource="FpML">
+				<paragraph>DEK – Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-EXT-CPI" schemeValueSource="FpML">
+				<paragraph>EUR – Excluding Tobacco-Non-revised Consumer Price Index</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-AI-CPI" schemeValueSource="FpML">
+				<paragraph>EUR – All Items-Non-revised Consumer Price Index</paragraph>
+			</schemeValue>
+			<schemeValue name="EUR-AI-R-CPI" schemeValueSource="FpML">
+				<paragraph>EUR – All Items–Revised Consumer Price Index</paragraph>
+			</schemeValue>
+			<schemeValue name="FRC-EXT-CPI" schemeValueSource="FpML">
+				<paragraph>FRC – Excluding Tobacco-Non-Revised Consumer Price Index</paragraph>
+			</schemeValue>
+			<schemeValue name="DEM-CPI" schemeValueSource="FpML">
+				<paragraph>DEM – Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="GRD-HICP" schemeValueSource="FpML">
+				<paragraph>GRD – Harmonised-Non-revised Consumer Price Index (HICP)</paragraph>
+			</schemeValue>
+			<schemeValue name="GRD-CPI" schemeValueSource="FpML">
+				<paragraph>GRD – Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="IRL-CPI" schemeValueSource="FpML">
+				<paragraph>IRL – Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="ISK-CPI" schemeValueSource="FpML">
+				<paragraph>ISK – Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="ISK-HICP" schemeValueSource="FpML">
+				<paragraph>ISK – Harmonised Consumer Price Index (HICP)</paragraph>
+			</schemeValue>
+			<schemeValue name="ITL-WC-EXT-CPI" schemeValueSource="FpML">
+				<paragraph>ITL – Whole Community –Excluding Tobacco Consumer Price Index</paragraph>
+			</schemeValue>
+			<schemeValue name="ITL-WC-INT-CPI" schemeValueSource="FpML">
+				<paragraph>ITL – Whole Community –Including Tobacco Consumer Price Index</paragraph>
+			</schemeValue>
+			<schemeValue name="ITL-BC-EXT-CPI" schemeValueSource="FpML">
+				<paragraph>ITL – Inflation for Blue Collar Workers and Employees–Excluding Tobacco Consumer Price Index</paragraph>
+			</schemeValue>
+			<schemeValue name="ITL-BC-INT-CPI" schemeValueSource="FpML">
+				<paragraph>ITL – Inflation for Blue Collar Workers and Employees-Including Tobacco Consumer Price Index</paragraph>
+			</schemeValue>
+			<schemeValue name="JPY-CPI-EXF" schemeValueSource="FpML">
+				<paragraph>JPY – Non-revised Consumer Price Index Nationwide General Excluding Fresh Food (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="MXN-CPI" schemeValueSource="FpML">
+				<paragraph>MXN – Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="MXN-UDI" schemeValueSource="FpML">
+				<paragraph>MXN – Unidad de Inversion Index (UDI)</paragraph>
+			</schemeValue>
+			<schemeValue name="NLG-HICP" schemeValueSource="FpML">
+				<paragraph>NLG – Harmonised-Non-revised Consumer Price Index (HICP)</paragraph>
+			</schemeValue>
+			<schemeValue name="NZD-CPI" schemeValueSource="FpML">
+				<paragraph>NZD – Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="PLN-CPI" schemeValueSource="FpML">
+				<paragraph>PLN – Non-Revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="KRW-CPI" schemeValueSource="FpML">
+				<paragraph>KRW – Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="ESP-R-CPI" schemeValueSource="FpML">
+				<paragraph>ESP – National-Revised Consumer Price Index (CPI).</paragraph>
+			</schemeValue>
+			<schemeValue name="ESP-CPI" schemeValueSource="FpML">
+				<paragraph>ESP – National-Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="ESP-R-HICP" schemeValueSource="FpML">
+				<paragraph>ESP – Harmonised-Revised Consumer Price Index (HCPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="ESP-HICP" schemeValueSource="FpML">
+				<paragraph>ESP – Harmonised-Non-revised Consumer Price Index (HCPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="ZAR-CPIX" schemeValueSource="FpML">
+				<paragraph>ZAR – Non-revised Consumer Price Index Excluding Mortgages (CPIX)</paragraph>
+			</schemeValue>
+			<schemeValue name="ZAR-CPI" schemeValueSource="FpML">
+				<paragraph>ZAR – Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="SEK-CPI" schemeValueSource="FpML">
+				<paragraph>SEK – Non-revised Consumer Price Index (CPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="UK-RPI" schemeValueSource="FpML">
+				<paragraph>GBP – Non-revised Retail Price Index (UKRPI)</paragraph>
+			</schemeValue>
+			<schemeValue name="USA-CPI-U" schemeValueSource="FpML">
+				<paragraph>USA – Non-revised Consumer Price Index – Urban (CPI-U)</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
 	<scheme uri="http://www.fpml.org/coding-scheme/inflation-index-description-1-0" name="inflationIndexDescriptionScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="AUD-CPI">
@@ -1769,6 +3296,73 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ZAR-CPIX">
 				<paragraph>ZAR - Non-revised Consumer Price Index Excluding Mortgages(CPIX).</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/inflation-index-source-2-0" name="inflationIndexSourceScheme">
+		<schemeValues>
+			<schemeValue name="AUCPI" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen AUCP.</paragraph>
+			</schemeValue>
+			<schemeValue name="CPALBE" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen CPALBE.</paragraph>
+			</schemeValue>
+			<schemeValue name="CACPI" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen CACPI.</paragraph>
+			</schemeValue>
+			<schemeValue name="DNCPINEW" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen DNCPINEW.</paragraph>
+			</schemeValue>
+			<schemeValue name="CPTFEMU" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen CPTFEMU.</paragraph>
+			</schemeValue>
+			<schemeValue name="HICPFIX" schemeValueSource="Reuters">
+				<paragraph>Reuters Screen HICPFIX.</paragraph>
+			</schemeValue>
+			<schemeValue name="CPALEMU" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen CPALEMU.</paragraph>
+			</schemeValue>
+			<schemeValue name="OATINFLATION01" schemeValueSource="Reuters">
+				<paragraph>Reuters Screen OATINFLATION01.</paragraph>
+			</schemeValue>
+			<schemeValue name="FRCPXTOB" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen FRCPXTOB.</paragraph>
+			</schemeValue>
+			<schemeValue name="GRCP2000" schemeValueSource="Bloomberg">
+				<paragraph>GRCP2000.</paragraph>
+			</schemeValue>
+			<schemeValue name="ITCPI" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen ITCPI.</paragraph>
+			</schemeValue>
+			<schemeValue name="ITCPNICT" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen ITCPNICT.</paragraph>
+			</schemeValue>
+			<schemeValue name="ITCPNIC" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen ITCPNIC.</paragraph>
+			</schemeValue>
+			<schemeValue name="ITCPFOI" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen ITCPFOI.</paragraph>
+			</schemeValue>
+			<schemeValue name="JCPNGENF" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen JCPNGENF.</paragraph>
+			</schemeValue>
+			<schemeValue name="SPIPC" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen SPIPC.</paragraph>
+			</schemeValue>
+			<schemeValue name="SPCPEU" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen SPCPEU.</paragraph>
+			</schemeValue>
+			<schemeValue name="SWCPI" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen SWCPI.</paragraph>
+			</schemeValue>
+			<schemeValue name="UKRPI" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen UKRPI.</paragraph>
+			</schemeValue>
+			<schemeValue name="CPURNSA" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen CPURNSA.</paragraph>
+			</schemeValue>
+			<schemeValue name="CPTFIEU" schemeValueSource="Bloomberg">
+				<paragraph>Bloomberg Screen CPTFIEU.</paragraph>
 			</schemeValue>
 		</schemeValues>
 	</scheme>
@@ -1949,7 +3543,125 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/master-confirmation-type-4-0" name="masterConfirmationTypeScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/master-confirmation-type-5-4" name="masterConfirmationTypeScheme">
+		<schemeValues>
+			<schemeValue name="2003CreditIndex" schemeValueSource="FpML">
+				<paragraph>Used for CDS Index trades. Relevant Master Confirmation determined by the contents of the creditDefaultSwap element. Best practice is to use the most specific code that applies.</paragraph>
+			</schemeValue>
+			<schemeValue name="2004EquityEuropeanInterdealer" schemeValueSource="FpML">
+				<paragraph>A privately negotiated European Interdealer Master Confirmation Agreement applies.</paragraph>
+			</schemeValue>
+			<schemeValue name="DJ.CDX.NA" schemeValueSource="FpML">
+				<paragraph>Used for CDS Index trades executed under the Dow Jones CDX Master Confirmation that covers CDX.NA.IG, CDX.NA.HY, and CDX.NA.XO.</paragraph>
+			</schemeValue>
+			<schemeValue name="DJ.iTraxx.Europe" schemeValueSource="FpML">
+				<paragraph>Used for CDS Index trades executed under the Dow Jones iTraxx Europe Master Confirmation Agreement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA1999Credit" schemeValueSource="FpML">
+				<paragraph>ISDA 1999 Master Credit Derivatives Confirmation Agreement</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditAsia" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Asia had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditAustraliaNewZealand" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Australia and New Zealand had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditEuropean" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if European had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditJapan" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Japan had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditNorthAmerican" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if North American had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSingapore" schemeValueSource="FpML">
+				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Singapore had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSovereignAsia" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Asia had been specified as the relevant Transaction Type in the Transaction Supplement. The 2003 Sovereign Master Confirmation has been superceded by the 2004.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSovereignCentralAndEasternEurope" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Central and Eastern Europe had been specified as the relevant Transaction Type in the Transaction Supplement. The 2003 Sovereign Master Confirmation has been superceded by the 2004.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSovereignJapan" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Japan had been specified as the relevant Transaction Type in the Transaction Supplement. The 2003 Sovereign Master Confirmation has been superceded by the 2004.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSovereignLatinAmerica" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Latin America had been specified as the relevant Transaction Type in the Transaction Supplement. The 2003 Sovereign Master Confirmation has been superceded by the 2004.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSovereignMiddleEast" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Middle East had been specified as the relevant Transaction Type in the Transaction Supplement. The 2003 Sovereign Master Confirmation has been superceded by the 2004.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2003CreditSovereignWesternEurope" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Western Europe had been specified as the relevant Transaction Type in the Transaction Supplement. The 2003 Sovereign Master Confirmation has been superceded by the 2004.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2004CreditSovereignAsia" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2004 Master Credit Derivatives Confirmation Agreement interpreted as if Asia had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2004CreditSovereignEmergingEuropeanAndMiddleEastern" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2004 Master Credit Derivatives Confirmation Agreement interpreted as if Emerging European and Middle Eastern had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2004CreditSovereignJapan" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2004 Master Credit Derivatives Confirmation Agreement interpreted as if Japan had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2004CreditSovereignLatinAmerican" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2004 Master Credit Derivatives Confirmation Agreement interpreted as if Latin American had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2004CreditSovereignWesternEuropean" schemeValueSource="FpML">
+				<paragraph>ISDA Sovereign 2004 Master Credit Derivatives Confirmation Agreement interpreted as if Western European had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2004EquityAmericasInterdealer" schemeValueSource="FpML">
+				<paragraph>ISDA 2004 Americas Interdealer Master Equity Derivatives Confirmation Agreement applies.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2005EquityJapaneseInterdealer" schemeValueSource="FpML">
+				<paragraph>The ISDA 2005 Japanese Interdealer Master Equity Derivatives Confirmation Agreement applies.</paragraph>
+			</schemeValue>
+			<schemeValue name="EquityAmericas" schemeValueSource="FpML">
+				<paragraph>A general reference to the types of Americas Master Confirmation Agreements. Use the more specific values to reference a specific type of Americas Master Confirmation Agreement.</paragraph>
+			</schemeValue>
+			<schemeValue name="EquityEuropean" schemeValueSource="FpML">
+				<paragraph>A general reference to the types of European Master Confirmation Agreements. Use the more specific values to reference a specific type of European Master Confirmation Agreement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2005EquityAsiaExcludingJapanInterdealer" schemeValueSource="FpML">
+				<paragraph>ISDA 2005 AEJ (Asia Excluding Japan) Interdealer Master Equity Derivatives Confirmation Agreement applies.</paragraph>
+			</schemeValue>
+			<schemeValue name="2005VarianceSwapEuropeanInterdealer" schemeValueSource="FpML">
+				<paragraph>A privately negotiated European Interdealer Master Confirmation Agreement applies.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2006VarianceSwapJapaneseInterdealer" schemeValueSource="FpML">
+				<paragraph>ISDA 2006 Variance Swap Japanese Interdealer Confirmation Agreement applies.</paragraph>
+			</schemeValue>
+			<schemeValue name="DJ.CDX.EM" schemeValueSource="FpML">
+				<paragraph>Used for CDS Index trades executed under the Dow Jones CDX Emerging Markets Master Confirmation.</paragraph>
+			</schemeValue>
+			<schemeValue name="DJ.CDX.EM.DIV" schemeValueSource="FpML">
+				<paragraph>Used for CDS Index trades executed under the Dow Jones CDX Emerging Markets Diversified Master Confirmation.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2007VarianceSwapAmericas" schemeValueSource="FpML">
+				<paragraph>The ISDA 2007 Americas Master Variance Swap Confirmation Agreement applies.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2007VarianceSwapAsiaExcludingJapan" schemeValueSource="FpML">
+				<paragraph>The ISDA 2007 AEJ Master Variance Swap Confirmation Agreement applies.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2007VarianceSwapEuropean" schemeValueSource="FpML">
+				<paragraph>The ISDA 2007 European Variance Swap Master Confirmation Agreement applies.</paragraph>
+			</schemeValue>
+			<schemeValue name="EquityAsia" schemeValueSource="FpML">
+				<paragraph>A general reference to the types of Asia Master Confirmation Agreements. Use the more specific values to reference a specific type of Asia Master Confirmation Agreement.</paragraph>
+			</schemeValue>
+			<schemeValue name="ISDA2007EquityEuropean" schemeValueSource="FpML">
+				<paragraph>ISDA 2007 European Master Equity Derivatives Confirmation Agreement applies.</paragraph>
+			</schemeValue>
+			<schemeValue name="2006DividendSwapEuropean" schemeValueSource="FpML">
+				<paragraph>A European Interdealer Master Confirmation Agreement not defined by ISDA, and modified by the parties to the transaction applies.</paragraph>
+			</schemeValue>
+			<schemeValue name="2006DividendSwapEuropeanInterdealer" schemeValueSource="FpML">
+				<paragraph>A European Interdealer Master Confirmation Agreement not defined by ISDA applies.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/master-confirmation-type-5-1" name="masterConfirmationTypeScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="2003CreditIndex">
 				<paragraph>Used for CDS Index trades. Relevant Master Confirmation determined by the contents of the creditDefaultSwap element. Best practice is to use the most specific code that applies.</paragraph>
@@ -2060,6 +3772,73 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/price-quote-units-1-1" name="priceQuoteUnitsScheme">
+		<schemeValues>
+			<schemeValue name="Price" schemeValueSource="FpML">
+				<paragraph>A price, expressed in currency units.</paragraph>
+			</schemeValue>
+			<schemeValue name="ParValueDecimal" schemeValueSource="FpML">
+				<paragraph>A price, expressed in percentage of face value as a decimal, e.g. 101.5.</paragraph>
+			</schemeValue>
+			<schemeValue name="ParValueFraction" schemeValueSource="FpML">
+				<paragraph>A price, expressed in percentage of face value with fractions, e.g. 101 3/8. Normally used for quoting bonds.</paragraph>
+			</schemeValue>
+			<schemeValue name="Rate" schemeValueSource="FpML">
+				<paragraph>A yield (typically an interest rate) expressed as a decimal. I.e. 0.05 means 5%.</paragraph>
+			</schemeValue>
+			<schemeValue name="Discount" schemeValueSource="FpML">
+				<paragraph>A discount factor expressed as a decimal, e.g. 0.95.</paragraph>
+			</schemeValue>
+			<schemeValue name="IRFuturesPrice" schemeValueSource="FpML">
+				<paragraph>A IMM futures style price, e.g. 9750 is equivalent to 2.5%.</paragraph>
+			</schemeValue>
+			<schemeValue name="ExchangeRate" schemeValueSource="FpML">
+				<paragraph>A dimensionless conversion rate, e.g. 1.2. Typically used for FX.</paragraph>
+			</schemeValue>
+			<schemeValue name="LogNormalVolatility" schemeValueSource="FpML">
+				<paragraph>A log normal volatility, expressed in %/month [?] .</paragraph>
+			</schemeValue>
+			<schemeValue name="BasisPointValue" schemeValueSource="FpML">
+				<paragraph>The value (expressed in currency units) per basis point change in the underlying rate. Typically used for expressing sensitivity to interest rate chages ("IR delta" risk, "rho" risk).</paragraph>
+			</schemeValue>
+			<schemeValue name="BasisPointValuePerBasisPoint" schemeValueSource="FpML">
+				<paragraph>The Basis Point Value (BPV) (expressed in currency units per basis point) per basis point change in the underlying rate. Typically used for expressing second order sensitivity to interest rate changes (IR "gamma" risk, "convexity").</paragraph>
+			</schemeValue>
+			<schemeValue name="ValuePerPercent" schemeValueSource="FpML">
+				<paragraph>The value (expressed in currency units) per percent change in the underlying rate. Typically used for expressing sensitivity to volatility changes ("vega" risk).</paragraph>
+			</schemeValue>
+			<schemeValue name="ValuePerDay" schemeValueSource="FpML">
+				<paragraph>The value (expressed in currency units) for a one day change in a valuation date. Typically used for expressing sensitivity to the passage of time ("theta" risk, "carry", etc.).</paragraph>
+			</schemeValue>
+			<schemeValue name="Shares" schemeValueSource="FpML">
+				<paragraph>The number of units of stock. Typically used for expressing sensitivity to equity prices (equity "delta" risk).</paragraph>
+			</schemeValue>
+			<schemeValue name="MMBTU" schemeValueSource="FpML">
+				<paragraph>Million British Thermal Units.</paragraph>
+			</schemeValue>
+			<schemeValue name="BBL" schemeValueSource="FpML">
+				<paragraph>Description: Barrel.</paragraph>
+			</schemeValue>
+			<schemeValue name="GJ" schemeValueSource="FpML">
+				<paragraph>Description: Gigajoule.</paragraph>
+			</schemeValue>
+			<schemeValue name="KL" schemeValueSource="FpML">
+				<paragraph>Kiloliter.</paragraph>
+			</schemeValue>
+			<schemeValue name="KWH" schemeValueSource="FpML">
+				<paragraph>Kilowatt-hour.</paragraph>
+			</schemeValue>
+			<schemeValue name="MWH" schemeValueSource="FpML">
+				<paragraph>Megawatt-hour.</paragraph>
+			</schemeValue>
+			<schemeValue name="t" schemeValueSource="FpML">
+				<paragraph>Tonne.</paragraph>
+			</schemeValue>
+			<schemeValue name="gal" schemeValueSource="FpML">
+				<paragraph>Gallon.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
 	<scheme uri="http://www.fpml.org/coding-scheme/price-quote-units-1-0" name="priceQuoteUnitsScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="BasisPointValue">
@@ -2123,6 +3902,97 @@
 			<schemeValue schemeValueSource="FpML" name="YieldCurve">
 				<paragraph>A representation of the interest rates (yields) at different maturities.</paragraph>
 			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/product-type-simple-1-2" name="productTypeSimpleScheme">
+		<schemeValues>
+			<schemeValue name="InterestRateSwap" schemeValueSource="FpML">
+				<paragraph>A swap agreement which consists in swapping interest rate streams, whatever the type of interest rate references that are being used (i.e. float vs. float swaps, also known as basis swaps, are included in this category).</paragraph>
+			</schemeValue>
+			<schemeValue name="AssetSwap" schemeValueSource="FpML">
+				<paragraph>A swap agreement where one leg mimics the return of the underlying asset. No transfer of asset takes place (sometimes the sale of the bond is included in the “asset swap construct”).</paragraph>
+			</schemeValue>
+			<schemeValue name="InflationSwap" schemeValueSource="FpML">
+				<paragraph>A swap agreement where one leg references an inflation index while the other one will typically reference a variable interest rate.</paragraph>
+			</schemeValue>
+			<schemeValue name="CrossCurrencySwap" schemeValueSource="FpML">
+				<paragraph>An interest rate swap agreement which interest streams are denominated in different currencies.</paragraph>
+			</schemeValue>
+			<schemeValue name="CreditDefaultSwap" schemeValueSource="FpML">
+				<paragraph>A swap agreement in which one party pays a periodic fee in return for a contingent payment by the other other party following a credit event on a reference entity, a specific reference obligation or a basket of such reference names.</paragraph>
+			</schemeValue>
+			<schemeValue name="TotalReturnSwap" schemeValueSource="FpML">
+				<paragraph>A swap agreement in which one party transfers the economic performance of a reference asset to the other party, typically in the exchange of the financing cost of this asset.</paragraph>
+			</schemeValue>
+			<schemeValue name="VarianceSwap" schemeValueSource="FpML">
+				<paragraph>A financial derivative instrument whose price is a function of the variance of the price of the underlyer.</paragraph>
+			</schemeValue>
+			<schemeValue name="CapFloor" schemeValueSource="FpML">
+				<paragraph>A contract that guarantees either a maximum (cap) or a minimum (floor) level of a variable inrerest rate reference.</paragraph>
+			</schemeValue>
+			<schemeValue name="FRA" schemeValueSource="FpML">
+				<paragraph>Forward Rate Agreement, corresponding to an agreement between parties regarding the level of a variable interest rate at a future date.</paragraph>
+			</schemeValue>
+			<schemeValue name="FxForward" schemeValueSource="FpML">
+				<paragraph>An agreement between two parties regarding the future value of a currency exchange rate.</paragraph>
+			</schemeValue>
+			<schemeValue name="FxSwap" schemeValueSource="FpML">
+				<paragraph>A financial instrument that corresponds to the combination of an FX spot and an FX forward transactions.</paragraph>
+			</schemeValue>
+			<schemeValue name="EquityOption" schemeValueSource="FpML">
+				<paragraph>A contract that gives the buyer of the option the right to exercise it into the equity underlyer (or its cash equivalent) under specified conditions.</paragraph>
+			</schemeValue>
+			<schemeValue name="BondOption" schemeValueSource="FpML">
+				<paragraph>A contract that gives the buyer of the option the right to exercise it into the bond underlyer (or its cash equivalent) under specified conditions.</paragraph>
+			</schemeValue>
+			<schemeValue name="FxOption" schemeValueSource="FpML">
+				<paragraph>A contract that gives the buyer of the option the right to exercise it into the FX underlyer (or its cash equivalent) under specified conditions.</paragraph>
+			</schemeValue>
+			<schemeValue name="FxSpot" schemeValueSource="FpML">
+				<paragraph>A foreign exchange deal that consists of a bilateral contract between a party delivering a certain amount of a currency against receiving a certain amount of another currency from a second counterparty, based on an agreed exchange rate.</paragraph>
+			</schemeValue>
+			<schemeValue name="FxOptionStrategy" schemeValueSource="FpML">
+				<paragraph>A transaction consisting of several component transactions, at least one of which is a foreign exchange option transaction.</paragraph>
+			</schemeValue>
+			<schemeValue name="BulletPayment" schemeValueSource="FpML">
+				<paragraph>Refers to one of two ways for repaying a loan; With a balloon loan, a balloon payment is paid back when the loan comes to its contractual maturity, e.g. reaches the deadline set to repayment at the time the loan was granted, representing the full loan amount (also called principal). Periodic interest payments are generally made throughout the life of the loan.</paragraph>
+			</schemeValue>
+			<schemeValue name="CreditDefaultIndex" schemeValueSource="FpML">
+				<paragraph>A swap agreement in which one party pays a periodic fee in return for a contingent payment by the other party following a credit event on an Index of credit entities.</paragraph>
+			</schemeValue>
+			<schemeValue name="CreditDefaultIndexTranche" schemeValueSource="FpML">
+				<paragraph>A swap agreement in which one party pays a periodic fee in return for a contingent payment by the other party following a credit event on a Tranche of an Index of credit entities.</paragraph>
+			</schemeValue>
+			<schemeValue name="CreditDefaultBasket" schemeValueSource="FpML">
+				<paragraph>A swap agreement in which one party pays a periodic fee in return for a contingent payment by the other party following a credit event on a basket of credit entities.</paragraph>
+			</schemeValue>
+			<schemeValue name="CreditDefaultBasketTranche" schemeValueSource="FpML">
+				<paragraph>A swap agreement in which one party pays a periodic fee in return for a contingent payment by the other party following a credit event on a Tranche of an Index of a basket of credit entities.</paragraph>
+			</schemeValue>
+			<schemeValue name="CreditDefaultOption" schemeValueSource="FpML">
+				<paragraph>An option to buy protection (payer option) or sell protection (receiver option) as a credit default swap on a specific reference credit with a specific maturity.</paragraph>
+			</schemeValue>
+			<schemeValue name="EquityForward" schemeValueSource="FpML">
+				<paragraph>A contract between two parties regarding the future value of the equity underlyer (or its cash equivalent).</paragraph>
+			</schemeValue>
+			<schemeValue name="InterestRateSwaption" schemeValueSource="FpML">
+				<paragraph>An option to enter into an interest rate swap.</paragraph>
+			</schemeValue>
+			<schemeValue name="TermDeposit" schemeValueSource="FpML">
+				<paragraph>The simple commoditized term deposit that is typically a trade with a tenor of 1-year or less with no interim interest payments.</paragraph>
+			</schemeValue>
+			<schemeValue name="DividendSwap" schemeValueSource="FpML">
+				<paragraph>TBD</paragraph>
+			</schemeValue>
+			<schemeValue name="ConvertibleBondOption" schemeValueSource="FpML">
+				<paragraph>An option contract in which the underlying asset is a convertible bond.</paragraph>
+			</schemeValue>
+			<!--schemeValue name="Repo" schemeValueSource="FpML">
+				<paragraph>A Repurchase agreement in which one party (the Repo Seller) sells securities now, in return for cash from the other party (the Repo Buyer), and agrees to repurchase those securities (from the Repo Buyer) at a later time for the original cash amount and an additional sum.</paragraph>
+				</schemeValue>
+				<schemeValue name="BuySellBack" schemeValueSource="FpML">
+				<paragraph>A Sell/Buy Back is the spot sale and a forward repurchase of a Security.</paragraph>
+				</schemeValue-->
 		</schemeValues>
 	</scheme>
 	<scheme uri="http://www.fpml.org/coding-scheme/product-type-simple-1-0" name="productTypeSimpleScheme">
@@ -2247,6 +4117,191 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="PrezzoDiRiferimento">
 				<paragraph>The official reference price per share quoted by the exchange on the exchange business day immediately prior to the expiration date equal to the weighted average of the last 10% traded volume on the share</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/settlement-rate-option-2-1" name="settlementRateOptionScheme">
+		<schemeValues>
+			<schemeValue name="CNY.SAEC/CNY01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Chinese Renminbi/U.S. Dollar official fixing rate, expressed as the amount of Chinese Renminbi per one U.S. Dollar, for settlement in two Business Days reported by The State Administration of Exchange Control of the People’s Republic of China, Beijing, which appears on the Reuters Screen SAEC Page opposite the symbol "CYN=" as of 4:00 p.m., Beijing time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="INR.RBIB/INR01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Indian Rupee/U.S. Dollar reference rate, expressed as the amount of Indian Rupee per one U.S. Dollar, for settlement in two Business Days reported by the Reserve Bank of India which appears on the Reuters Screen RBIB Page at 2:30 p.m., Mumbai time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="KRW.KEBEY/KRW01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Korean Won/U.S. Dollar Specified Rate, expressed as the amount of Korean Won per one U.S. Dollar, for settlement in two Business Days which appears on the Reuters Screen KEBEY Page at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="KRW.KFTC18/KRW02" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Korean Won/U.S. Dollar market average rate (official fixing), expressed as the amount of Korean Won per one U.S. Dollar, for settlement in two Business Days reported by the Korea Financial Telecommunications and Clearing Corporation which appears on the Reuters Screen KFTC18 Page under the heading "KRW" and in the row "USD" between the hours of 8:00 a.m. and 9:00 a.m., Seoul time, on the first Business Day following that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="KRW.TELERATE.45644/KRW03" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Korean Won/U.S. Dollar market average rate (official fixing), expressed as the amount of Korean Won per one U.S. Dollar, for settlement in two Business Days reported by the Korea Financial Telecommunications and Clearing Corporation which appears on the Telerate Page 45644 between the hours of 8:00 a.m. and 9:00 a.m., Seoul time, on the first Business Day following that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="PKR.SBPK/PKR01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Pakistan Rupee/U.S. Dollar reference rate, expressed as the amount of Pakistan Rupee per one U.S. Dollar, for settlement in two Business Days which appears on Reuters Screen SBPK Page at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="PHP.PHPESO/PHP01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Philippine Peso/U.S. Dollar tom rate (mid market), expressed as the amount of Philippine Pesos per one U.S. Dollar, for settlement in one Business Day which appears on the Reuters Screen PHPESO Page at approximately 11:00 a.m., Manila time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="PHP.TELERATE.2920/PHP02" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Philippine Peso/U.S. Dollar Specified Rate, expressed as the amount of Philippine Pesos per one U.S. Dollar, for settlement in one Business Day which appears on the Telerate Page 2920 at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="PHP.TELERATE.15439/PHP03" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Philippine Peso/U.S. Dollar tom rate (mid market), expressed as the amount of Philippine Pesos per one U.S. Dollar, for settlement in one Business Day which appears on the Telerate Page 15439 at approximately 11:00 a.m., Manila time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="TWD.TELERATE.6161/TWD01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Taiwanese Dollar/U.S. Dollar Specified Rate, expressed as the amount of Taiwanese Dollars per one U.S. Dollar, for settlement in two Business Days reported by the Taipei Forex Inc. which appears on the Telerate Page 6161 under the heading "Spot" as of 11:00 a.m., Taipei time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="TWD.TFEMA/TWD02" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Taiwanese Dollar/U.S. Dollar Specified Rate, expressed as the amount of Taiwanese Dollars per one U.S. Dollar, for settlement in two Business Days which appears on the Reuters Screen TFEMA Page as of 11:00 a.m., Taipei time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="TWD.TPFL/TWD03" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Taiwanese Dollar/U.S. Dollar Specified Rate, expressed as the amount of Taiwanese Dollars per one U.S. Dollar, for settlement in two Business Days which appears on the Reuters Screen TPFL Page as of 11:00 a.m., Taipei time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="PLZ.NBPQ/PLZ01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Polish Zloty/U.S. Dollar Specified Rate, expressed as the amount of Polish Zloty per one U.S. Dollar, for settlement in two Business Days reported by the National Bank of Poland which appears on the Reuters Screen NBPQ Page at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="PLZ.NBPR/PLZ02" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Polish Zloty/U.S. Dollar fixing rate, expressed as the amount of Polish Zloty per one U.S. Dollar, for settlement in two Business Days reported by the National Bank of Poland which appears on the Reuters Screen NBPR Page at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="RUB.MICEXFRX/RUB01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Russian Ruble/U.S. Dollar Specified Rate, expressed as the amount of Russian Rubies per one U.S. Dollar, for settlement on the same day reported by the Moscow Interbank Currency Exchange which appears on the Reuters Screen MICEXFRX Page as of 10:30 a.m., Moscow time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="RUB.MMVB/RUB02" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Russian Ruble/U.S. Dollar Specified Rate, expressed as the amount of Russian Rubies per one U.S. Dollar, for settlement on the same day reported by the Moscow Interbank Currency Exchange which appears on the Reuters Screen MMVB Page as of 10:30 a.m., Moscow time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="SKK.NBSB/SKK01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Slovak Koruna/U.S. Dollar Specified Rate, expressed as the amount of Slovak Koruna per one U.S. Dollar, for settlement in two Business Days reported by the National Bank of Slovakia which appears on the Reuters Screen NBSB Page as of 11:40 a.m., Bratislava time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="UAH.UICEI/UAH01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Ukrainian Hryvnia/U.S. Dollar interbank rate, expressed as the amount of Ukrainian Hryvnia per one U.S. Dollar, for settlement on the same day reported by the Ukraine Interbank Currency Exchange which appears on the Reuters Screen UICE1 Page at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="ARS.BNAR/ARS01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Argentine Peso/U.S. Dollar Specified Rate, expressed as the amount of Argentine Pesos per one U.S. Dollar, for settlement on the same day (or, if such day is not a Business Day in New York, for settlement on the first succeeding day that is a Business Day in both Buenos Aires and New York) which appears on the Reuters Screen BNAR Page at the close of business in Buenos Aires on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="ARS.OFFICIAL.RATE/ARS02" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Argentine Peso/U.S. Dollar Specified Rate, expressed as the amount of Argentine Pesos per one U.S. Dollar, for settlement on the same day (or, if such day is not a Business Day in New York, for settlement on the first succeeding day that is a Business Day in both Buenos Aires and New York) quoted by the Banco Central de la Republica Argentina (in accordance with the Convertibility Law and Regulatory Decree No. 529/91 of April 1, 1991) at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="BRL.BRBY/BRL01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar Specified Rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) which appears on the Reuters Screen BRBY Page under the caption "INTBK FLTING (LAST)" at approximately 11:00 a.m., São Paulo time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="BRL.OFFICIAL.RATE/BRL02" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar Specified Rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both São Paulo and New York) reported by the Banco Central do Brasil in the "Diário Oficial da União" on the first Business Day following that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="BRL.PCOT-COMMERCIAL/BRL03" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar commercial rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both São Paulo and New York) reported by the Banco Central do Brasil on SISBACEN Data System under transaction code PCOT- 390, Option 3, at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="BRL.PCOT-FLOATING/BRL04" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar floating rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both São Paulo and New York) reported by the Banco Central do Brasil on SISBACEN Data System under transaction code PCOT- 390, Option 3, at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="BRL.PTAX-COMMERCIAL/BRL05" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar commercial rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both São Paulo and New York) reported by the Banco Central do Brasil on SISBACEN Data System under transaction code PTAX- 800 ("Consultas de Cãmbio" or Exchange Rate Inquiry), Option 5 ("Cotacões para Contabilidad" or Rates for Accounting Purposes) market type "L" (corresponding to U.S. Dollars traded in the foreign exchange market segment officially denominated "Livre" and commonly known as "Comercial") as of 7:30 p.m., São Paulo time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="BRL.PTAX-COMMERCIAL.BRFR/BRL06" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar commercial rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both São Paulo and New York) reported by the Banco Central do Brasil which appears on the Reuters Screen BRFR Page at PTAX-800 as of 11:00 a.m., São Paulo time, on the first Business Day following that Rate Calculation Date. 23</paragraph>
+			</schemeValue>
+			<schemeValue name="BRL.PTAX-FLOATING/BRL07" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar floating rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both São Paulo and New York) reported by the Banco Central do Brasil on SISBACEN Data System under transaction code PTAX- 800 ("Consultas de Câmbio" or Exchange Rate Inquiry), Option 5 ("Cotacões para Contabilidad" or Rates for Accounting Purposes) market type "F" (corresponding to U.S. Dollars traded in the foreign exchange market segment officially denominated "Flutuante") as of 7:30 p.m., São Paulo time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="BRL.PTAX-FLOATING.BRFR/BRL08" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar floating rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both São Paulo and New York) reported by the Banco Central do Brasil on the SISBACEN Data System which appears on the Reuters Screen BRFR Page at PTAX-800 as of 11:00 a.m., São Paulo time, on the first Business Day following that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="CLP.BCCH/CLP01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Chilean Peso/U.S. Dollar observado rate, expressed as the amount of Chilean Pesos per one U.S. Dollar, for settlement on the same day (or, if such day is not a Business Day in New York, for settlement on the first succeeding day that is a Business Day in both Santiago and New York) reported by the Banco Central de Chile which appears on the Reuters Screen BCCH Page under the caption "OBSERVADO" at 10:00 a.m., Santiago time, on the first Business Day following that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="CLP.CHILD-INFORMAL/CLP02" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Chilean Peso/U.S. Dollar informal rate, expressed as the amount of Chilean Pesos per one U.S. Dollar, for settlement on the same day (or, if such day is not a Business Day in New York, for settlement on the first succeeding day that is a Business Day in both Santiago and New York) of the informal exchange market which appears on the Reuters Screen CHILD Page at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="CLP.CHILD-INTERBANK/CLP03" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Chilean Peso/U.S. Dollar interbank rate, expressed as the amount of Chilean Pesos per one U.S. Dollar, for settlement on the same day (or, if such day is not a Business Day in New York, for settlement on the first succeeding day that is a Business Day in both Santiago and New York) reported by the Banco Central de Chile for the formal exchange market which appears on the Reuters Screen CHILD Page at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="CLP.CHILD-OBSERVADO/CLP04" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Chilean Peso/U.S. Dollar observado rate, expressed as the amount of Chilean Pesos per one U.S. Dollar, for settlement on the same day (or, if such day is not a Business Day in New York, for settlement on the first succeeding day that is a Business Day in both Santiago and New York) reported by the Banco Central de Chile which appears on the Reuters Screen CHILD Page on the first Business Day following that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="CLP.CHILG-INFORMAL/CLP05" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Chilean Peso/U.S. Dollar informal rate, expressed as the amount of Chilean Pesos per one U.S. Dollar, for settlement on the same day (or, if such day is not a Business Day in New York, for settlement on the first succeeding day that is a Business Day in both Santiago and New York) of the informal exchange market which appears on the Reuters Screen CHILG Page at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="CLP.CHILG-INTERBANK/CLP06" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Chilean Peso/U.S. Dollar interbank rate, expressed as the amount of Chilean Pesos per one U.S. Dollar, for settlement on the same day (or, if such day is not a Business Day in New York, for settlement on the first succeeding day that is a Business Day in both Santiago and New York) reported by the Banco Central de Chile for the formal exchange market which appears on the Reuters Screen CHILG Page at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="CLP.CHILG-OBSERVADO/CLP07" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Chilean Peso/U.S. Dollar observado rate, expressed as the amount of Chilean Pesos per one U.S. Dollar, for settlement on the same day (or, if such day is not a Business Day in New York, for settlement on the first succeeding day that is a Business Day in both Santiago and New York) reported by the Banco Central de Chile which appears on the Reuters Screen CHILG Page under "OBSERVADO" at the Specified Time, if any, on the first Business Day following that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="CLP.OFFICIAL.RATE/CLP08" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Chilean Peso/U.S. Dollar Specified Rate, expressed as the amount of Chilean Pesos per one U.S. Dollar (or, if such day is not a Business Day in New York, for settlement on the first succeeding day that is a Business Day in both Santiago and New York), calculated in accordance with Title I, Chapter 1 Number 6 of the Compendium of International Exchange Norms of the Banco Central de Chile and published by the Banco Central de Chile at the Specified Time, if any, on the first Business Day following that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="CLP.TELERATE.38942/CLP09" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Chilean Peso/U.S. Dollar observado rate, expressed as the amount of Chilean Pesos per one U.S. Dollar, for settlement on the same day (or, if such day is not a Business Day in New York, for settlement on the first succeeding day that is a Business Day in both Santiago and New York) reported by the Banco Central de Chile which appears on the Telerate Page 38942 opposite the caption "Observado" at the Specified Time, if any, on the first Business Day following the Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="COP.CO/COL03/COP01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Colombian Peso/U.S. Dollar fixing rate, expressed as the amount of Colombian Pesos per one U.S. Dollar, for settlement on the same day (unless such day is not a Business Day in New York, then for settlement on the first succeeding day that is a Business Day in Bogota and New York) reported by the Colombian Banking Superintendency which appears on the Reuters Screen CO/COL03 Page opposite the caption "TRCM" ("Tasa de Cierre Representative del Mercado" or closing market price) at 12:00 noon, Bogota time, on the first Business Day following that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="COP.TCRM/COP02" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Colombian Peso/U.S. Dollar fixing rate, expressed as the amount of Colombian Pesos per one U.S. Dollar, for settlement on the same day (unless such day is not a Business Day in New York, then for settlement on the first succeeding day that is a Business Day in Bogota and New York) reported by the Colombian Banking Superintendency as the "TASA Representative del Mercado" as of 12:00 noon, Bogota time, on the first Business Day following that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="ECS.DNRP/ECS01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Ecuadorian Sucre/U.S. Dollar Specified Rate, expressed as the amount of Ecuadorian Sucres per one U.S. Dollar, for settlement in one Business Day (where such day is a Business Day in Guayaquil and New York) which appears on Reuters Screen DNRP Page at 12:00 noon, Guayaquil time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="MXP.BNMX/MXP01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Pesos/U.S. Dollar Specified rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days reported by Banco de Mexico which appears on the Reuters Screen BNMX Page opposite the caption "Fix" at the close of business in Mexico City on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="MXP.FIXING.RATE/MXP02" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Peso/U.S. Dollar fixing rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days which is published by Banco de Mexico in the Official Gazette of the Federation pursuant to the "Disposiciones aplicables a la determinacion del tipo de Câmbio para solventar obligaciones denominadas en moneda extranjera pagaderas en la Republica Mexicana" (Rules applicable to determine the exchange rate to pay obligations denominated in foreign currency payable in Mexico) on the first Business Day following that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="MXP.MEX01/MXP03" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Peso/U.S. Dollar fixing rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days reported by Banco de Mexico which appears on Reuters Screen MEX01 Page under the heading "MXNFIX=RR", at the close of business in Mexico City on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="MXP.PUBLISHED/MXP04" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Peso/U.S. Dollar fixing rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days which is published by the Bolsa Mexicana de Valores, S.A. de C.V. (as established in Section 2 of the "Resolution concerning the exchange rate applicable for calculating the Mexican Peso equivalent of principal and interest of Mexican Treasury Notes denominated in foreign currency and payable in Mexican Pesos" published in the Diário Oficial de la Federacion on November 11, 1991) in the Movimiento Diário del Mercado de Valores de la Bolsa Mexicana de Valores, S.A. de C.V. under the heading "Movimiento Diário del Mercado de Valores" on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="PEN.PDSB/PEN01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Peruvian Sol/U.S. Dollar fixing rate (mid market last), expressed as the amount of Peruvian Sols per one U.S. Dollar, for settlement on that same day which appears on the Reuters Screen PDSB Page opposite the caption "PEN=" as of 12:00 noon, Lima time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="VER.VBCV/VEB01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Venezuelan Bolivar/U.S. Dollar tipo de câmbio referencial rate, expressed as the amount of Venezuelan Bolivar per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Caracas and New York) reported by the Banco Central de Venezuela which appears on the Reuters Screen VBCV Page at approximately 5:00 p.m., Caracas time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="ILS.BOIJ/ILS01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Israeli Shekel/U.S. Dollar Specified Rate, expressed as the amount of Israeli Shekels per one U.S. Dollar, for settlement in two Business Days which appears on the Reuters Screen BOIJ Page as of 1:00 p.m., Tel Aviv time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="ILS.FXIL/ILS02" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Israeli Shekel/U.S. Dollar Specified Rate, expressed as the amount of Israeli Shekels per one U.S. Dollar, for settlement in two Business Days which appears on the Reuters Screen FXIL Page as of 1:00 p.m., Tel Aviv time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="LBP.BDLX/LBP01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Lebanese Pound/U.S. Dollar Specified Rate, expressed as the amount of Lebanese Pounds per one U.S. Dollar, for settlement in two Business Days which appears on the Reuters Screen BDLX Page as of 12:00 noon, Beirut time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="MAD.OFFICIAL.RATE/MAD01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Moroccan Dirham/U.S. Dollar Specified Rate, expressed as the amount of Moroccan Dirham per one U.S. Dollar, for settlement in two Business Days reported by the Central Bank of Morocco as of 1:00 p.m., Rabat time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="CURRENCY-IMPLIED.RATE.(ADR)/CURA1" schemeValueSource="FpML">
+				<paragraph>the Spot Rate for a Rate Calculation Date will be the Reference Currency/U.S. Dollar exchange rate, expressed as the amount of Reference Currency per one U.S. Dollar, determined on the basis of quotations provided by Reference Dealers on that Rate Calculation Date of that day’s price of a Specified Company’s American Depositary Receipt or American Depositary Receipts (the "ADR" or "ADRs", as appropriate) and the price of the local share or shares of such Specified Company of the same type and in the same quantity represented by such ADR or ADRs, as the case may be (the "Share" or "Shares", as appropriate). The Calculation Agent will request each of the Reference Dealers to provide a firm quotation of (A) in the case where one ADR represents less than one Share, its bid and offer price (in the Reference Currency) for one Share and its bid and offer price (in U.S. Dollars) for the number of ADRs which represent such Share and (B) in all other cases, its bid and
+					offer price (in the Reference Currency) for the Share or Shares, as the case may be, and its bid and offer price (in U.S. Dollars) for one ADR. If one or more quotations are provided, the rate for a Rate Calculation Date will equal the ratio of (1) the arithmetic mean of the midpoint of the bid and offer prices quoted in the Reference Currency by each Reference Dealer for such Share or Shares, as the case may be, and (2) the arithmetic mean of the midpoint of the bid and offer prices quoted in U.S. Dollars by each Reference Dealer for such ADR or ADRs, as the case may be, subject to an adjustment, if any, by the Calculation Agent to reduce the effect of momentary disparities in the prices of the Share or Shares and the ADR or ADRs, as appropriate. The quotations used to determine the Spot Rate for a Rate Calculation Date will be determined in each case at the Specified Time on the Rate Calculation Date or, if no such time is specified, the time chosen by the
+					Calculation Agent.</paragraph>
+			</schemeValue>
+			<schemeValue name="CURRENCY-IMPLIED.RATE.(LOCAL.ASSET)/CURA2" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Reference Currency/Settlement Currency exchange rate, expressed as the amount of Reference Currency per one unit of Settlement Currency, determined on the basis of quotations provided by Reference Dealers on that Rate Calculation Date for that day’s price of Local Assets. The Calculation Agent will request each of the Reference Dealers to provide a firm quotation of its bid and offer price (in both the Reference Currency and the Settlement Currency) for an amount of Local Assets whose face value equals the Specified Amount. If one or more quotations are provided, the rate for a Rate Calculation Date will equal the ratio of (A) the arithmetic mean of the midpoint of the bid and offer prices quoted in the Reference Currency by each Reference Dealer for such Local Assets and (B) the arithmetic mean of the midpoint of the bid and offer prices quoted in the Settlement Currency by each Reference Dealer for such
+					Local Assets. The quotations used to determine the Spot Rate for a Rate Calculation Date will be determined in each case at the Specified Time on the Rate Calculation Date or, if no such time is specified, the time chosen by the Calculation Agent.</paragraph>
+			</schemeValue>
+			<schemeValue name="CURRENCY-MUTUAL.AGREEMENT/CURA3" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Reference Currency/Settlement Currency Specified Rate, expressed as the amount of the Reference Currency per one unit of Settlement Currency, for settlement on the Settlement Date agreed upon by the parties on or prior to that Rate Calculation Date (or, if different, the day on which rates for that date would, in the ordinary course, be published or announced).</paragraph>
+			</schemeValue>
+			<schemeValue name="CURRENCY-REFERENCE.DEALERS/CURA4" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be determined on the basis of quotations provided by Reference Dealers on that Rate Calculation Date of that day’s Specified Rate, expressed as the amount of Reference Currency per one unit of Settlement Currency, for settlement on the Settlement Date. The Calculation Agent will request the Specified Office of each of the Reference Dealers to provide a firm quotation of its Specified Rate for a transaction where the amount of Reference Currency equals the Specified Amount. If four quotations are provided, the rate for a Rate Calculation Date will be the arithmetic mean of the Specified Rates, without regard to the Specified Rates having the highest and lowest value. If exactly three quotations are provided, the rate for a Rate Calculation Date will be the Specified Rate provided by the Reference Dealer that remains after disregarding the Specified Rates having the highest and lowest values. For this purpose, if
+					more than one quotation has the same highest value or lowest value, then the Specified Rate of one of such quotations shall be disregarded. If exactly two quotations are provided, the rate for a Rate Calculation Date will be the arithmetic mean of the Specified Rates. If only one quotation is provided, the rate for a Rate Calculation Date will be the Specified Rate quoted by that Reference Dealer. The quotations used to determine the Spot Rate for a Rate Calculation Date will be determined in each case at the Specified Time on that Rate Calculation Date or, if no such time is specified, the time chosen by the Calculation Agent.</paragraph>
+			</schemeValue>
+			<schemeValue name="CURRENCY-WHOLESALE.MARKET/CURA5" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be determined by the Calculation Agent on the basis of that day’s Specified Rate, expressed as the amount of Reference Currency per one unit of Settlement Currency, in a legal and customary wholesale market in which there is no, or minimal, Governmental Authority controls or interference, except as a participant in such market.</paragraph>
+			</schemeValue>
+			<schemeValue name="MYR.ABS/MYR01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Malaysian Ringgit/U.S. Dollar spot rate at 11:00 a.m., Singapore time, expressed as the amount of Malaysian Ringgit per one U.S. Dollar, for settlement in two Business Days, reported by the Association of Banks in Singapore, which appears on the Telerate Page 50157 to the right of the caption “Spot” under the column “MYR” at approximately 11:30 a.m., Singapore time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="IDR.ABS/IDR01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Indonesian Rupiah/U.S. Dollar spot rate at 11:00 a.m., Singapore time, expressed as the amount of Indonesian Rupiah per one U.S. Dollar, for settlement in two Business Days, reported by the Association of Banks in Singapore which appears on the Telerate Page 50157 to the right of the caption "Spot" under the column "IDR" at approximately 11:30 a.m., Singapore time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="THB.ABS/THB01" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Thai Baht/U.S. Dollar spot rate at 11:00 a.m., Singapore time, expressed as the amount of Thai Bhaht per one U.S. Dollar, for settlement in two Business Days, reported by the Association of Banks in Singapore which appears on the Reuters Screen ABSIRFIX01 Page to the right of the caption "Spot" under the column "THB" at approximately 11:30 a.m., Singapore time, on that Rate Calculation Date.</paragraph>
+			</schemeValue>
+			<schemeValue name="BRL.PTAX/BRL09" schemeValueSource="FpML">
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar offered rate for U.S. Dollars, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days reported by the Banco Central do Brasil on SISBACEN Data System under transaction code PTAX-800 ("Consulta de Cambio" or Exchange Rate Inquiry), Option 5 ("Cotacoes para Contabilidade" or "Rates for Accounting Purposes") by approximately 6:00 p.m., Sao Paulo time, on that Rate Calculation Date.</paragraph>
 			</schemeValue>
 		</schemeValues>
 	</scheme>
