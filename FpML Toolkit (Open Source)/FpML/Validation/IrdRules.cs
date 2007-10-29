@@ -2456,12 +2456,16 @@ namespace HandCoded.FpML.Validation
 		/// <returns><c>true</c> if the payment date falls on a calculated date.</returns>
 		private static bool IsUnadjustedCalculationPeriodDate (Date paymentDate, Date startDate, Date endDate, Interval freq)
 		{
-			while (startDate.CompareTo (endDate) <= 0) {
-				if (paymentDate.Equals (startDate)) return (true);
+			Interval	step = new Interval (0, Period.DAY);
+
+			for (;;) {
+				Date		targetDate = startDate.Plus (step);
+
+				if (targetDate.CompareTo (endDate) > 0) return (false);
+				if (targetDate.Equals (paymentDate)) return (true);
 				
-				startDate = startDate.Plus (freq);
+				step = step.Plus (freq);
 			}
-			return (false);
 		}
 
 		/// <summary>

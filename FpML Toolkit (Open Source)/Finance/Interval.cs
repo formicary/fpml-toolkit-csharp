@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2007 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -100,11 +100,6 @@ namespace HandCoded.Finance
 				multiplier *= 7;
 			}
 
-			if (period == Period.TERM) {
-				period = Period.MONTH;
-				multiplier *= 3;
-			}
-
 			if (period == Period.YEAR) {
 				if (first.Month		 != last.Month)			return (false);
 				if (first.DayOfMonth != last.DayOfMonth)	return (false);
@@ -122,6 +117,38 @@ namespace HandCoded.Finance
 		}
 
 		/// <summary>
+		/// Calculates the result of adding another <b>Interval</b> to this
+		/// one.
+		/// </summary>
+		/// <param name="other">The <b>Interval</b> to add.</param>
+		/// <returns>A new <b>Interval</b> representing the combined time
+		/// period.</returns>
+		/// <exception cref="ArgumentException">If the two time periods
+		/// cannot be combined.</exception>
+		public Interval Plus (Interval other)
+		{
+			// One of the Intervals is zero length?
+			if (multiplier == 0) return (other);
+			if (other.multiplier == 0) return (this);
+
+			// Both Intervals have the same unit?
+			if (period == other.period)
+				return (new Interval (multiplier + other.multiplier, period));
+		
+			// Otherwise check for equivalences
+			if ((period == Period.YEAR) && (other.period == Period.MONTH))
+				return (new Interval (12 * multiplier + other.multiplier, Period.MONTH));
+			if ((period == Period.MONTH) && (other.period == Period.YEAR))
+				return (new Interval (multiplier + 12 * other.multiplier, Period.MONTH));
+			if ((period == Period.WEEK) && (other.period == Period.DAY))
+				return (new Interval (7 * multiplier + other.multiplier, Period.MONTH));
+			if ((period == Period.DAY) && (other.period == Period.WEEK))
+				return (new Interval (multiplier + 7 * other.multiplier, Period.MONTH));
+		
+			throw new ArgumentException ("Intervals cannot be combined");
+		}
+	
+		/// <summary>
 		/// Produces a hash value for the instance.
 		/// </summary>
 		/// <returns>The hash value.</returns>
@@ -135,7 +162,7 @@ namespace HandCoded.Finance
 		/// they contain the same information.
 		/// </summary>
 		/// <remarks>This routine takes into account the equivalence of certain
-		/// time intervals (e.g. 1Y = 4T = 12M and 1W = 7D).</remarks>
+		/// time intervals (e.g. 1Y = 12M and 1W = 7D).</remarks>
 		/// <param name="other">The <see cref="object"/> to compare with.</param>
 		/// <returns>A <see cref="bool"/> value indicating equality.</returns>
 		public override bool Equals (object other)
@@ -165,8 +192,6 @@ namespace HandCoded.Finance
             if (period == Period.MONTH) {
 				if (other.period == Period.YEAR)
 					return (multiplier == (other.multiplier * 12));
-				if (other.period == Period.TERM)
-					return (multiplier == (other.multiplier * 3));
 				return (false);
 			}
 
