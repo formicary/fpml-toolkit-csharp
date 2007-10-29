@@ -12,63 +12,116 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace HandCoded.Finance
 {
 	/// <summary>
-	/// The <b>Date</b> class implements an immutable date value.
+	/// The <b>DateTime</b> class provides an immutable representation for a
+	/// an ISO datetime value.
 	/// </summary>
-	/// <remarks>The implementation of this class is based on the the C++ code
-	/// in QuantLib and only covers years between 1900 and 2099. The code
-	/// emulates a bug in Microsoft Excel that erroreously indicates 1900 as a 
-	/// leap year but this is unlikely to be an issue in most applications.
-	/// </remarks>
 	[Serializable]
-	public sealed class Date : TemporalDate, IComparable
+	public sealed class DateTime : TemporalDate, IImmutableDate, IImmutableTime, IComparable
 	{
 		/// <summary>
 		/// The earliest possible date that can be correctly represented,
 		/// </summary>
-		public static readonly Date	MIN_VALUE
-			= new Date (DateValue.MIN_VALUE, null);
+		public static readonly DateTime	MIN_VALUE
+			= new DateTime (DateValue.MIN_VALUE, TimeValue.START_OF_DAY, null);
 	
 		/// <summary>
 		/// The latest possible date that can be correctly represented.
 		/// </summary>
-		public static readonly Date	MAX_VALUE
-			= new Date (DateValue.MAX_VALUE, null);
+		public static readonly DateTime	MAX_VALUE
+			= new DateTime (DateValue.MAX_VALUE, TimeValue.END_OF_DAY, null);
 
 		/// <summary>
-		/// Constructs a <b>Date</b> instance given a day, month and year.
+		/// Constructs a <b>DateTime</b> instance given all the date and
+		/// time components.
 		/// </summary>
 		/// <param name="day">The day of the month (1-31).</param>
 		/// <param name="month">The month of the year (1-12).</param>
 		/// <param name="year">The year (1900-2099).</param>
-		public Date (int day, int month, int year)
-			: this (new DateValue (day, month, year), null)
+		/// <param name="hours">The number of hours (0-24).</param>
+		/// <param name="minutes">The number of minutes (0-59).</param>
+		/// <param name="seconds">The number of seconds (0-59).</param>
+		public DateTime (int day, int month, int year,
+				int hours, int minutes, int seconds)
+			: this (new DateValue (day, month, year),
+					new TimeValue (hours, minutes, seconds), null)
 		{ }
 
 		/// <summary>
-		/// Constructs a <b>Date</b> instance given a day, month and year.
+		/// Constructs a <b>DateTime</b> instance given all the date and
+		/// time components and a flag indicating UTC time or not.
 		/// </summary>
 		/// <param name="day">The day of the month (1-31).</param>
 		/// <param name="month">The month of the year (1-12).</param>
 		/// <param name="year">The year (1900-2099).</param>
+		/// <param name="hours">The number of hours (0-24).</param>
+		/// <param name="minutes">The number of minutes (0-59).</param>
+		/// <param name="seconds">The number of seconds (0-59).</param>
 		/// <param name="utc">Indicates UTC time zone.</param>
-		public Date (int day, int month, int year, bool utc)
-			: this (new DateValue (day, month, year), utc ? TimeZone.UTC : null)
+		public DateTime (int day, int month, int year,
+				int hours, int minutes, int seconds, bool utc)
+			: this (new DateValue (day, month, year),
+					  new TimeValue (hours, minutes, seconds),
+					  utc ? TimeZone.UTC : null)
 		{ }
 
 		/// <summary>
-		/// Constructs a <b>Date</b> instance given a day, month and year.
+		/// Constructs a <b>DateTime</b> instance given all the date and time
+		/// components plus a time zone offset.
 		/// </summary>
 		/// <param name="day">The day of the month (1-31).</param>
 		/// <param name="month">The month of the year (1-12).</param>
 		/// <param name="year">The year (1900-2099).</param>
+		/// <param name="hours">The number of hours (0-24).</param>
+		/// <param name="minutes">The number of minutes (0-59).</param>
+		/// <param name="seconds">The number of seconds (0-59).</param>
 		/// <param name="offset">The time zone offset.</param>
-		public Date (int day, int month, int year, int offset)
-			: this (new DateValue (day, month, year), new TimeZone (offset))
+		public DateTime (int day, int month, int year,
+				int hours, int minutes, int seconds, int offset)
+			: this (new DateValue (day, month, year),
+					  new TimeValue (hours, minutes, seconds),
+					  new TimeZone (offset))
+		{ }
+
+		/// <summary>
+		/// Constructs a <b>DateTime</b> instance given all the date and
+		/// time components and a flag indicating UTC time or not.
+		/// </summary>
+		/// <param name="day">The day of the month (1-31).</param>
+		/// <param name="month">The month of the year (1-12).</param>
+		/// <param name="year">The year (1900-2099).</param>
+		/// <param name="hours">The number of hours (0-24).</param>
+		/// <param name="minutes">The number of minutes (0-59).</param>
+		/// <param name="seconds">The number of seconds (0-59).</param>
+		/// <param name="utc">Indicates UTC time zone.</param>
+		public DateTime (int day, int month, int year,
+				int hours, int minutes, decimal seconds, bool utc)
+			: this (new DateValue (day, month, year),
+					  new TimeValue (hours, minutes, seconds),
+					  utc ? TimeZone.UTC : null)
+		{ }
+
+		/// <summary>
+		/// Constructs a <b>DateTime</b> instance given all the date and time
+		/// components plus a time zone offset.
+		/// </summary>
+		/// <param name="day">The day of the month (1-31).</param>
+		/// <param name="month">The month of the year (1-12).</param>
+		/// <param name="year">The year (1900-2099).</param>
+		/// <param name="hours">The number of hours (0-24).</param>
+		/// <param name="minutes">The number of minutes (0-59).</param>
+		/// <param name="seconds">The number of seconds (0-59).</param>
+		/// <param name="offset">The time zone offset.</param>
+		public DateTime (int day, int month, int year,
+				int hours, int minutes, decimal seconds, int offset)
+			: this (new DateValue (day, month, year),
+					  new TimeValue (hours, minutes, seconds),
+					  new TimeZone (offset))
 		{ }
 
 		/// <summary>
@@ -135,6 +188,33 @@ namespace HandCoded.Finance
 		}
 
 		/// <summary>
+		/// Contains the hours component of the time values.
+		/// </summary>
+		public int Hours {
+			get {
+				return (timeValue.Hours);
+			}
+		}
+
+		/// <summary>
+		/// Contains the minutes component of the time value.
+		/// </summary>
+		public int Minutes {
+			get {
+				return (timeValue.Minutes);
+			}
+		}
+
+		/// <summary>
+		/// Contains the seconds component of the time value.
+		/// </summary>
+		public decimal Seconds {
+			get {
+				return (timeValue.Seconds);
+			}
+		}
+
+		/// <summary>
 		/// Parses a <b>DateTime</b> instance from a character string in the
 		/// ISO date format (as produced by <b>ToString</b>).
 		/// </summary>
@@ -142,7 +222,7 @@ namespace HandCoded.Finance
 		/// <returns>A new <b>DateTime</b> instance containing the parsed data.</returns>
 		/// <exception cref="ArgumentException">If the character string is not in the
 		///	correct format.</exception>
-		public static Date Parse (String text)
+		public static DateTime Parse (String text)
 		{
 			int			limit = text.Length;
 			int			index = 0;
@@ -172,9 +252,37 @@ namespace HandCoded.Finance
 				if ((index >= limit) || !IsDigit (text [index])) break;
 				day += (text [index++] - '0');
 
+				if ((index >= limit) || (text [index++] != 'T')) break;
+
+				// Extract time components
+				if ((index >= limit) || !IsDigit (text [index])) break;
+				int hours = (text [index++] - '0') * 10;
+				if ((index >= limit) || !IsDigit (text [index])) break;
+				hours += (text [index++] - '0');
+				
+				if ((index >= limit) || (text [index++] != ':')) break;
+				
+				if ((index >= limit) || !IsDigit (text [index])) break;
+				int minutes = (text [index++] - '0') * 10;
+				if ((index >= limit) || !IsDigit (text [index])) break;
+				minutes += (text [index++] - '0');
+				
+				if ((index >= limit) || (text [index++] != ':')) break;
+				
+				int start = index;
+				if ((index >= limit) || !IsDigit (text [index++])) break;
+				if ((index >= limit) || !IsDigit (text [index++])) break;
+			
+				if ((index < limit) && (text [index] == '.')) {
+					do {
+						++index;
+					} while ((index < limit) && IsDigit (text [index]));
+				}
+				decimal seconds = Decimal.Parse (text.Substring (start, index));
+
 				// Detect zulu time zone
 				if ((index < limit)&& (text [index] == 'Z')) {
-					return (new Date (day, month, year, true));
+					return (new DateTime (day, month, year, hours, minutes, seconds, true));
 				}
 				
 				// Detect time offsets
@@ -192,7 +300,7 @@ namespace HandCoded.Finance
 					if ((index >= limit) && !IsDigit (text [index])) break;
 					offset += (text [index++] - '0');
 
-					return (new Date (day, month, year, offset));
+					return (new DateTime (day, month, year, hours, minutes, seconds, offset));
 				}
 					
 				if ((index < limit)&& (text [index] == '-')) {
@@ -209,24 +317,104 @@ namespace HandCoded.Finance
 					if ((index >= limit) && !IsDigit (text [index])) break;
 					offset += (text [index++] - '0');
 
-					return (new Date (day, month, year, -offset));
+					return (new DateTime (day, month, year, hours, minutes, seconds, -offset));
 				}
 				
-				return (new Date (day, month, year, false));
+				return (new DateTime (day, month, year, hours, minutes, seconds, false));
 			}
 
-			throw new ArgumentException ("Value is not in ISO date format");
+			throw new ArgumentException ("Value is not in ISO date & time format");
 		}
 
 		/// <summary>
-		/// Contains the current date.
+		/// Creates a <see cref="Date"/> instance based in the date component values
+		/// of the current instance.
 		/// </summary>
-		public static Date Now {
-			get {
-				System.DateTime	now = System.DateTime.Now;
+		/// <returns>A <see cref="Date"/> instance.</returns>
+		public Date ToDate ()
+		{
+			return (new Date (dateValue, timeZone));
+		}
 
-				return (new Date (now.Day, now.Month, now.Year));
+		/// <summary>
+		/// Creates a <see cref="Time"/> instance based in the date component values
+		/// of the current instance.
+		/// </summary>
+		/// <returns>A <see cref="Time"/> instance.</returns>
+		public Time ToTime ()
+		{
+			return (new Time (timeValue, timeZone));
+		}
+
+		/// <summary>
+		/// Uses the timezone information to create a UTC normalised <b>DateTime</b>
+		/// from the current instance.
+		/// </summary>
+		/// <returns>The normalised <b>DateTime</b> instance.</returns>
+		public DateTime Normalize ()
+		{
+			// Already in UTC?
+			if ((timeZone != null) && timeZone.IsUTC ()) return (this);
+			
+			int offset = ((timeZone != null) ? timeZone : ImplicitTimeZone).Offset;
+			
+			int dt = DayOfMonth;
+			int mo = Month;
+			int yr = Year;
+			int hr = Hours   - offset / 60;
+			int mn = Minutes - offset % 60;
+			
+			// Rolled into previous day?
+			while (mn < 0) {
+				mn += 60;
+				if (--hr < 0) {
+					hr = 23;
+					if (--dt < 1) {
+						if (--mo < 1) {
+							mo = 12;
+							--yr;
+						}
+						dt = MonthLength (mo, yr);
+					}
+				}
 			}
+			while (hr < 0) {
+				hr += 24;
+				if (--dt < 1) {
+					if (--mo < 1) {
+						mo = 12;
+						--yr;
+					}
+					dt = MonthLength (mo, yr);
+				}
+			}
+			
+			// Rolled into next day?
+			while (mn > 59) {
+				mn -= 60;
+				if (++hr > 23) {
+					hr = 0;
+					if (++dt > MonthLength (mo, yr)) {
+						if (++mo > 12) {
+							mo = 1;
+							++yr;
+						}
+						dt = 1;
+					}
+				}
+			}
+			while (hr > 23) {
+				hr -= 24;
+				if (++dt > MonthLength (mo, yr)) {
+					if (++mo > 12) {
+						mo = 1;
+						++yr;
+					}
+					dt = MonthLength (mo, yr);
+				}
+			}
+			
+			return (new DateTime (dt, mo, yr, hr, mn, Seconds, true));
 		}
 
 		/// <summary>
@@ -266,71 +454,6 @@ namespace HandCoded.Finance
 		}
 	
 		/// <summary>
-		/// Creates a new <b>Date</b> based in the current instance and a given
-		/// number of days adjustment.
-		/// </summary>
-		/// <param name="days">The number of days to adjust by.</param>
-		/// <returns>The adjusted date.</returns>
-		public Date PlusDays (int days)
-		{
-			return (new Date (dateValue.PlusDays (days), timeZone));
-		}
-	
-		/// <summary>
-		/// Creates a new <b>Date</b> based on the current instance and a given
-		/// number of weeks adjustment.
-		/// </summary>
-		/// <param name="weeks">The number of weeks to adjust by.</param>
-		/// <returns>The adjusted date.</returns>
-		public Date PlusWeeks (int weeks)
-		{
-			return (new Date (dateValue.PlusWeeks (weeks), timeZone));
-		}
-
-		/// <summary>
-		/// Creates a new <b>Date</b> based on the current instance and a given
-		/// number of months adjustment.
-		/// </summary>
-		/// <param name="months">The number of months to adjust by.</param>
-		/// <returns>The adjusted date.</returns>
-		public Date PlusMonths (int months)
-		{
-			return (new Date (dateValue.PlusMonths (months), timeZone));
-		}
-		
-		/// <summary>
-		/// Creates a new <b>Date</b> based on the current instance and a given
-		/// number of years adjustment.
-		/// </summary>
-		/// <param name="years">The number of years to adjust by.</param>
-		/// <returns>The adjusted date.</returns>
-		public Date PlusYears (int years)
-		{
-			return (new Date (dateValue.PlusYears (years), timeZone));
-		}
-		
-		/// <summary>
-		/// Creates a new <b>Date</b> based on the current instance and a given
-		/// <see cref="Interval"/>.
-		/// </summary>
-		/// <param name="interval">The time <see cref="Interval"/>.</param>
-		/// <returns>The adjusted date.</returns>
-		public Date Plus (Interval interval)
-		{
-			return (new Date (dateValue.Plus (interval), timeZone));
-		}
-
-		/// <summary>
-		/// Creates a <b>DateTime</b> instance representing midnight on the
-		/// morning of the current date.
-		/// </summary>
-		/// <returns>The <b>DateTime</b> instance.</returns>
-		public DateTime ToDateTime ()
-		{
-			return (new DateTime (dateValue, TimeValue.START_OF_DAY, timeZone));
-		}
-
-		/// <summary>
 		/// Returns the hash value of the date for hash based data structures and
 		/// algorithms. 
 		/// </summary>
@@ -338,21 +461,21 @@ namespace HandCoded.Finance
 		public override int GetHashCode()
 		{
 			if (timeZone != null)
-				return (dateValue.GetHashCode () ^ timeZone.GetHashCode ());
+				return (dateValue.GetHashCode() ^ timeValue.GetHashCode() ^ timeZone.GetHashCode ());
 			else
-				return (dateValue.GetHashCode ());
+				return (dateValue.GetHashCode() ^ timeValue.GetHashCode());
 		}
 
 		/// <summary>
-		/// Determines if this <b>Date</b> instance and another hold the same
-		/// date.
+		/// Determines if this <b>Date</b> instance and another <see cref="object"/>
+		/// hold the same date.
 		/// </summary>
 		/// <param name="other">The <see cref="object"/> instance to compare with.</param>
 		/// <returns><c>true</c> if both instance represent the same date,
 		/// <c>false</c> otherwise.</returns>
 		public override bool Equals (object other)
 		{
-			return ((other is Date) && Equals (other as Date));
+			return ((other is DateTime) && Equals (other as DateTime));
 		}
 
 		/// <summary>
@@ -362,9 +485,12 @@ namespace HandCoded.Finance
 		/// <param name="other">The <b>Date</b> instance to compare with.</param>
 		/// <returns><c>true</c> if both instance represent the same date,
 		/// <c>false</c> otherwise.</returns>
-		public bool Equals (Date other)
+		public bool Equals (DateTime other)
 		{
-			return (ToDateTime ().Equals (other.ToDateTime ()));
+			DateTime	lhs = Normalize ();
+			DateTime	rhs = other.Normalize ();
+			
+			return (lhs.dateValue.Equals (rhs.dateValue) && lhs.timeValue.Equals (rhs.timeValue));
 		}
 
 		/// <summary>
@@ -376,7 +502,7 @@ namespace HandCoded.Finance
 		/// <c>Date</c> instance.</exception>
 		public int CompareTo (Object other)
 		{
-			return (CompareTo (other as Date));
+			return (CompareTo (other as DateTime));
 		}
 
 		/// <summary>
@@ -384,9 +510,14 @@ namespace HandCoded.Finance
 		/// </summary>
 		/// <param name="other">The <b>Date</b> instance to compare with.</param>
 		/// <returns>An integer value indicating the relative ordering.</returns>
-		public int CompareTo (Date other)
+		public int CompareTo (DateTime other)
 		{
-			return (ToDateTime ().CompareTo (other.ToDateTime ()));
+			DateTime	lhs = Normalize ();
+			DateTime	rhs = other.Normalize ();
+
+			int	result = lhs.dateValue.CompareTo (rhs.dateValue);
+			if (result != 0) return (result);
+			return (lhs.timeValue.CompareTo (rhs.timeValue));
 		}
 
 		/// <summary>
@@ -397,26 +528,33 @@ namespace HandCoded.Finance
 		public override string ToString ()
 		{
 			if (timeZone != null)
-				return (dateValue.ToString () + timeZone.ToString ());
+				return (dateValue.ToString() + "T" + timeValue.ToString() + timeZone.ToString());
 			else
-				return (dateValue.ToString ());
+				return (dateValue.ToString() + "T" + timeValue.ToString());
 		}
 
 		/// <summary>
-		/// Constructs a <b>Date</b> using its <see cref="DateValue"/> and
-		/// <see cref="TimeZone"/> components.
+		/// Constructs a <b>DateTime</b> instance from its date, time and
+		/// time zone components.
 		/// </summary>
 		/// <param name="dateValue">The <see cref="DateValue"/> component.</param>
+		/// <param name="timeValue">The <see cref="TimeValue"/> component.</param>
 		/// <param name="timeZone">The <see cref="TimeZone"/> component or <b>null</b>.</param>
-		internal Date (DateValue dateValue, TimeZone timeZone)
+		internal DateTime (DateValue dateValue, TimeValue timeValue, TimeZone timeZone)
 			: base (timeZone)
-		{	
+		{
 			this.dateValue = dateValue;
+			this.timeValue = timeValue;
 		}
-
+	
 		/// <summary>
 		/// The date part of the <b>DateTime</b>.
 		/// </summary>
 		private readonly DateValue		dateValue;
+
+		/// <summary>
+		/// The time part of the <b>DateTime</b>.
+		/// </summary>
+		private readonly TimeValue		timeValue;
 	}
 }
