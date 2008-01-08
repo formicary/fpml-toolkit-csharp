@@ -597,7 +597,7 @@ namespace HandCoded.Xml
 		}
 		
 		/// <summary>
-		/// Compares two <see cref="HandCided.Finance.DateTime"/> instances to determine if the
+		/// Compares two <see cref="HandCoded.Finance.DateTime"/> instances to determine if the
 		/// first is equal to or smaller than the second.
 		/// </summary>
 		/// <param name="lhs">The first DateTime.</param>
