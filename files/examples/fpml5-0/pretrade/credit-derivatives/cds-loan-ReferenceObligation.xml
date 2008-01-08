@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is pretrade-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/pretrade-->
+<!--Omit notional amounts, prices, adjustments, and other information not required for an RFQ-->
+<requestQuote xmlns="http://www.fpml.org/FpML-5-0/pretrade" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/pretrade ../fpml-main-5-0.xsd">
+  <header>
+    <messageId messageIdScheme="http://www.partyA.com/coding-scheme/messsage-id">456a789b</messageId>
+    <sentBy partyIdScheme="http://www.partyA.com/coding-scheme/party-id">msdw</sentBy>
+    <creationTimestamp>2000-08-01T08:57:00-00:00</creationTimestamp>
+  </header>
+  <creditDefaultSwap>
+    <generalTerms>
+      <scheduledTerminationDate>
+        <adjustableDate>
+          <unadjustedDate>2010-06-17-00:00</unadjustedDate>
+        </adjustableDate>
+      </scheduledTerminationDate>
+      <referenceInformation>
+        <referenceEntity>
+          <entityName>CompanyABC</entityName>
+        </referenceEntity>
+        <referenceObligation>
+          <loan>
+            <instrumentId instrumentIdScheme="http://www.partyA.com/coding-scheme/instrument-id">23490234</instrumentId>
+            <lien>FirstLien</lien>
+            <facilityType>RevolvingLoan</facilityType>
+            <maturity>2011-01-22</maturity>
+            <creditAgreementDate>2005-11-04-00:00</creditAgreementDate>
+            <tranche>LN190325</tranche>
+          </loan>
+          <primaryObligor>
+            <entityName>CompanyABC</entityName>
+          </primaryObligor>
+        </referenceObligation>
+        <allGuarantees>false</allGuarantees>
+        <referencePrice>1.0000000000</referencePrice>
+        <securedList>false</securedList>
+      </referenceInformation>
+    </generalTerms>
+    <physicalSettlementTerms></physicalSettlementTerms>
+  </creditDefaultSwap>
+</requestQuote>
+

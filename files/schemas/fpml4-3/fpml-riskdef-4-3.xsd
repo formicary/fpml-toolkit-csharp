@@ -2,10 +2,11 @@
 <!-- 
 == Copyright (c) 2002-2007. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
-== A copy of this license is available at http://www.fpml.org/documents/license.html
+== A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-3" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-3" version="$Revision: 884 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
-  <xsd:include schemaLocation="fpml-mktenv-4-3.xsd" />
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-3" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-3" version="$Revision: 2351 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xsd:include schemaLocation="fpml-doc-4-3.xsd" />
+  <xsd:include schemaLocation="fpml-asset-4-3.xsd" />
   <xsd:complexType name="AssetOrTermPointOrPricingStructureReference">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Reference to an underlying asset, term point or pricing structure (yield curve).</xsd:documentation>
@@ -13,6 +14,22 @@
     <xsd:complexContent>
       <xsd:extension base="Reference">
         <xsd:attribute name="href" type="xsd:IDREF" use="required" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="BasicAssetValuation">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A structure that holds a set of measures about an asset.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Valuation">
+        <xsd:sequence>
+          <xsd:element name="quote" type="BasicQuotation" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">One or more numerical measures relating to the asset, possibly together with sensitivities of that measure to pricing inputs</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -90,6 +107,80 @@
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:complexType name="GenericDimension">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A generic (user defined) dimension, e.g. for use in a correlation surface. e.g. a currency, stock, etc. This would take values like USD, GBP, JPY, or IBM, MSFT, etc.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="name" type="xsd:normalizedString" use="required">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The name of the dimension. E.g.: "Currency", "Stock", "Issuer", etc.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="href" type="xsd:IDREF" ecore:reference="Asset">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">A reference to an instrument (e.g. currency) that this value represents.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="InstrumentSet">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A collection of instruments usable for quotation purposes. In future releases, quotable derivative assets may be added after the underlying asset.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ref="underlyingAsset" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A collection of underlying assets (bonds, discount instruments, futures, etc.) that can be used as a basis for benchmark quotes.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Market">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A collection of pricing inputs.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The name of the market, e.g. the USDLIBOR market. Used for description and understandability.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="benchmarkQuotes" type="QuotedAssetSet" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A collection of benchmark instruments and quotes used as inputs to the pricing models.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element ref="pricingStructure" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A collection of pricing inputs (curves, volatility matrices, etc.) used to represent the market.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element ref="pricingStructureValuation" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The values of the pricing structure used to represent the markets..</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="benchmarkPricingMethod" type="PricingMethod" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The pricing structure used to quote a benchmark instrument.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:ID" />
+  </xsd:complexType>
+  <xsd:complexType name="MarketReference">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Reference to a market structure.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Reference">
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="Market" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
   <xsd:complexType name="PerturbationType">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The type of perturbation applied to compute a derivative perturbatively.</xsd:documentation>
@@ -99,6 +190,80 @@
         <xsd:attribute name="perturbationTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/perturbation-type-1-0" />
       </xsd:extension>
     </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="PositionId">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A unique identifier for the position. The id attribute is defined for intradocument referencing.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:normalizedString">
+        <xsd:attribute name="positionIdScheme" type="xsd:anyURI" />
+        <xsd:attribute name="id" type="xsd:ID" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="PricingInputReplacement">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The substitution of a pricing input (e.g. curve) for another, used in generating prices and risks for valuation scenarios.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="originalInputReference" type="PricingStructureReference">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A reference to the original value of the pricing input.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="replacementInputReference" type="PricingStructureReference">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A reference to the substitution to do.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PricingInputType">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">The type of pricing structure represented.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:normalizedString">
+        <xsd:attribute name="pricingInputTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/pricing-input-type-1-0" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="PricingDataPointCoordinate">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A set of index values that identify a pricing data point. For example: (strike = 17%, expiration = 6M, term = 1Y.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:group ref="PricingStructureIndex.model" maxOccurs="unbounded" />
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:ID" />
+  </xsd:complexType>
+  <xsd:complexType name="PricingDataPointCoordinateReference">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Reference to a Pricing Data Point Coordinate.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Reference">
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="PricingDataPointCoordinate" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="PricingMethod">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">For an asset (e.g. a reference/benchmark asset), the pricing structure used to price it. Used, for example, to specify that the rateIndex "USD-LIBOR-Telerate" with term = 6M is priced using the "USD-LIBOR-Close" curve.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="assetReference" type="AnyAssetReference">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The asset whose price is required.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="pricingInputReference" type="PricingStructureReference">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A reference to the pricing input used to value the asset.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="PricingParameterDerivative">
     <xsd:annotation>
@@ -158,6 +323,39 @@
       </xsd:element>
     </xsd:sequence>
     <xsd:attribute name="id" type="xsd:ID" />
+  </xsd:complexType>
+  <xsd:complexType name="PricingStructureValuation">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">An abstract pricing structure valuation base type. Used as a base for values of pricing structures such as yield curves and volatility matrices. Derived from the "Valuation" type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Valuation">
+        <xsd:sequence>
+          <xsd:group ref="PricingInputDates.model">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The relevant dates for a pricing structure - what is applies to, when it was built, etc.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:group>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="QuotedAssetSet">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A collection of quoted assets.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="instrumentSet" type="InstrumentSet" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A collection of instruments used as a basis for quotation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="assetQuote" type="BasicAssetValuation" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A collection of valuations (quotes) for the assets needed in the set. Normally these quotes will be for the underlying assets listed above, but they don't necesarily have to be.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="SensitivityDefinition">
     <xsd:annotation>
@@ -229,6 +427,106 @@
     </xsd:sequence>
     <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
+  <xsd:complexType name="TimeDimension">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The time dimensions of a term-structure. The user must supply either a tenor or a date or both.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="tenor" type="Interval">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The amount of time from the base date of the pricing input to the specified term point, e.g. 6M or 5Y.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:sequence>
+        <xsd:element name="date" type="xsd:date">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The absolute date corresponding to this term point, for example January 3, 2005.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="tenor" type="Interval" minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The amount of time from the base date of the pricing input to the specified term point, e.g. 6M or 5Y.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:complexType name="Valuation">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A valuation of an valuable object - an asset or a pricing input. This is an abstract type, used as a base for values of pricing structures such as yield curves as well as asset values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="objectReference" type="AnyAssetReference" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A reference to the asset or pricing structure that this values.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="valuationScenarioReference" type="ValuationScenarioReference" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A reference to the valuation scenario used to calculate this valuation. If the Valuation occurs within a ValuationSet, this value is optional and is defaulted from the ValuationSet. If this value occurs in both places, the lower level value (i.e. the one here) overrides that in the higher (i.e. ValuationSet).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:ID" />
+    <xsd:attribute name="definitionRef" type="xsd:IDREF" ecore:reference="ValuationScenario">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">An optional reference to the scenario that this valuation applies to.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="ValuationReference">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Reference to a Valuation or any derived structure such as PricingStructureValuation.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Reference">
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="Valuation" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ValuationScenario">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A set of rules for generating a valuation.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The (optional) name for this valuation scenario, used for understandability. For example "EOD Valuations".</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="valuationDate" type="IdentifiedDate">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The date for which the assets are valued.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="marketReference" type="MarketReference" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A reference to the market environment used to price the asset.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="shift" type="PricingParameterShift" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A collection of shifts to be applied to market inputs prior to computation of the derivative.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="replacement" type="PricingInputReplacement" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A collection of shifts to be applied to market inputs prior to computation of the derivative.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:ID" />
+  </xsd:complexType>
+  <xsd:complexType name="ValuationScenarioReference">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Reference to a valuation scenario.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Reference">
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="ValuationScenario" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
   <xsd:complexType name="WeightedPartialDerivative">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A partial derivative multiplied by a weighting factor.</xsd:documentation>
@@ -246,6 +544,13 @@
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="market" type="Market">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">This is a global element used for creating global types. It holds Market information, e.g. curves, surfaces, quotes, etc.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="pricingStructure" type="PricingStructure" abstract="true" />
+  <xsd:element name="pricingStructureValuation" type="PricingStructureValuation" abstract="true" />
   <xsd:group name="AnalyticDerivativeParameters.model">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Parameters used in the computation of a derivative using analytical (closed form formula) techiques.</xsd:documentation>
@@ -306,6 +611,95 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="PositionIdAndVersion.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A model group that includes a position ID and an optional version.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="positionId" type="PositionId">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A version-independent identifier for the position, possibly based on trade identifier.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="version" type="xsd:positiveInteger" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A version identifier. Version identifiers must be ascending, i.e. higher numbers imply newer versions. There is no requirement that version identifiers for a position be sequential or small, so for example timestamp-based version identifiers could be used.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="PricingCoordinateOrReference.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A pricing structure coordinate, or a reference to one. This can be used to either directly define a coordinate or reference an existing coordinate.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="coordinate" type="PricingDataPointCoordinate">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">An explicit, filled in data point coordinate. This might specify expiration, strike, etc.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="coordinateReference" type="PricingDataPointCoordinateReference">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A reference to a pricing data point coordinate within this document.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:choice>
+  </xsd:group>
+  <xsd:group name="PricingInputDates.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The dates that might be relevant for a pricing input, e.g. what valuation date it applies to, when it was built, when the data comes from, etc..</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="baseDate" type="IdentifiedDate">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The base date for which the structure applies, i.e. the curve date. Normally this will align with the valuation date.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="spotDate" type="IdentifiedDate" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The spot settlement date for which the structure applies, normally 0-2 days after the base date. The difference between the baseDate and the spotDate is termed the settlement lag, and is sometimes called "days to spot".</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="inputDataDate" type="IdentifiedDate" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The date from which the input data used to construct the pricing input was obtained. Often the same as the baseDate, but sometimes the pricing input may be "rolled forward", in which input data from one date is used to generate a curve for a later date.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="endDate" type="IdentifiedDate" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The last date for which data is supplied in this pricing input.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="buildDateTime" type="xsd:dateTime" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The date and time when the pricing input was generated.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="PricingStructureIndex.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The index (an ordinate) of a pricing structure. The index expresses how far along a particular dimension (e.g. time, strike, etc.) a point is located.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="term" type="TimeDimension">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A time dimension that represents the term of a financial instrument, e.g. of a zero-coupon bond on a curve, or of an underlying caplet or swap for an option.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="expiration" type="TimeDimension">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A time dimension that represents the time to expiration of an option.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="strike" type="xsd:decimal">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A numerical dimension that represents the strike rate or price of an option.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="generic" type="GenericDimension" />
+    </xsd:choice>
   </xsd:group>
   <xsd:group name="SensitivityDescription.model">
     <xsd:annotation>

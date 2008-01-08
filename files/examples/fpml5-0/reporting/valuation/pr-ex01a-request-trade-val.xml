@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is reporting-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/reporting-->
+<!--Omit some adjustments, details of procedures, and other information not required for a report-->
+<requestValuationReport xmlns="http://www.fpml.org/FpML-5-0/reporting" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/reporting ../fpml-main-5-0.xsd">
+<!-- This is a request to value a trade, where the full trade details are supplied -->
+  <header>
+    <messageId messageIdScheme="http://www.abcdef.org/message-id">VAL001</messageId>
+    <sentBy>ABCDEF</sentBy>
+    <sendTo>BBBBBB</sendTo>
+    <creationTimestamp>2004-06-14T12:40:12-00:00</creationTimestamp>
+  </header>
+  <party id="party1">
+    <partyId>ABCDEF</partyId>
+  </party>
+  <party id="party2">
+    <partyId>BBBBBB</partyId>
+  </party>
+<!--Trade Valuation Item-->
+  <tradeValuationItem>
+    <trade>
+      <tradeHeader>
+        <partyTradeIdentifier>
+          <tradeId tradeIdScheme="http://www.partyA.com/trade-id">AAA123</tradeId>
+        </partyTradeIdentifier>
+        <tradeDate>2004-04-29-00:00</tradeDate>
+      </tradeHeader>
+      <bulletPayment>
+        <payment>
+          <payerPartyReference href="party1" />
+          <paymentAmount>
+            <currency>USD</currency>
+            <amount>15000.00</amount>
+          </paymentAmount>
+          <paymentDate>
+            <unadjustedDate>2004-07-27-00:00</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>MODFOLLOWING</businessDayConvention>
+              <businessCenters id="businessCenters0">
+                <businessCenter>GBLO</businessCenter>
+                <businessCenter>USNY</businessCenter>
+              </businessCenters>
+            </dateAdjustments>
+          </paymentDate>
+        </payment>
+      </bulletPayment>
+    </trade>
+<!--Trade Valuation Set-->
+    <valuationSet>
+<!--Valuation Scenario-->
+      <valuationScenario id="valscen1">
+        <name>EOD Valuation</name>
+        <valuationDate>2004-05-01-00:00</valuationDate>
+      </valuationScenario>
+      <baseParty href="party1" />
+<!--Requested Valuation Characteristics-->
+      <quotationCharacteristics>
+        <measureType>NPV</measureType>
+      </quotationCharacteristics>
+    </valuationSet>
+<!--Portfolio Valuation Set-->
+  </tradeValuationItem>
+</requestValuationReport>
+

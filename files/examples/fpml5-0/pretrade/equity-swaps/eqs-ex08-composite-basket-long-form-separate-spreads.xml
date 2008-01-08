@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is pretrade-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/pretrade-->
+<!--Omit notional amounts, prices, adjustments, and other information not required for an RFQ-->
+<requestQuote xmlns="http://www.fpml.org/FpML-5-0/pretrade" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/pretrade ../fpml-main-5-0.xsd">
+  <header>
+    <conversationId conversationIdScheme="http://www.example.com/conversationId">CS/2006/07/02/32-09</conversationId>
+    <messageId messageIdScheme="http://www.example.com/messageId">MS/2006/04/07/15-99</messageId>
+    <sentBy>PARTYABICXXX</sentBy>
+    <sendTo>PARTYBBICXXX</sendTo>
+    <creationTimestamp>2006-07-02T16:38:00-00:00</creationTimestamp>
+  </header>
+  <returnSwap>
+    <productType>CompositeBasketSwap</productType>
+    <returnLeg>
+      <terminationDate id="TerminationDate">
+        <relativeDate>
+          <periodMultiplier>0</periodMultiplier>
+          <period>D</period>
+          <businessDayConvention>NotApplicable</businessDayConvention>
+        </relativeDate>
+      </terminationDate>
+      <underlyer>
+        <basket>
+          <basketConstituent>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">TIT.ME</instrumentId>
+              <description>Telecom Italia spa</description>
+              <currency>EUR</currency>
+              <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">Milan Stock Exchange</exchangeId>
+            </equity>
+            <constituentWeight>
+              <openUnits>432000</openUnits>
+            </constituentWeight>
+          </basketConstituent>
+          <basketConstituent>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">NOK1V.HE</instrumentId>
+              <description>Nokya Oyj</description>
+              <currency>EUR</currency>
+              <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">Helsinki Stock Exchange</exchangeId>
+            </equity>
+            <constituentWeight>
+              <openUnits>227000</openUnits>
+            </constituentWeight>
+          </basketConstituent>
+          <basketConstituent>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">TIM.MI</instrumentId>
+              <description>Telecom Italia Mobile spa</description>
+              <currency>EUR</currency>
+              <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">Milan Stock Exchange</exchangeId>
+            </equity>
+            <constituentWeight>
+              <openUnits>783000</openUnits>
+            </constituentWeight>
+          </basketConstituent>
+          <basketConstituent>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">TEF.MC</instrumentId>
+              <description>Telefonica de Espana</description>
+              <currency>EUR</currency>
+              <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">Madrid Stock Exchange</exchangeId>
+            </equity>
+            <constituentWeight>
+              <openUnits>344000</openUnits>
+            </constituentWeight>
+          </basketConstituent>
+          <basketConstituent>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">PTCO.IN</instrumentId>
+              <description>Portugal Telecom SA</description>
+              <currency>EUR</currency>
+              <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">Interbolsa</exchangeId>
+            </equity>
+            <constituentWeight>
+              <openUnits>340000</openUnits>
+            </constituentWeight>
+          </basketConstituent>
+          <basketConstituent>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">VOD.L</instrumentId>
+              <description>Vodafone Group</description>
+              <currency>GBP</currency>
+              <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">London Stock Exchange</exchangeId>
+            </equity>
+            <constituentWeight>
+              <openUnits>2486000</openUnits>
+            </constituentWeight>
+          </basketConstituent>
+        </basket>
+      </underlyer>
+      <rateOfReturn>
+        <initialPrice>
+          <netPrice>
+            <currency>EUR</currency>
+            <amount>19785157.16</amount>
+          </netPrice>
+        </initialPrice>
+        <notionalReset>true</notionalReset>
+      </rateOfReturn>
+      <fxFeature>
+        <referenceCurrency id="ReferenceCurrency">EUR</referenceCurrency>
+        <composite>
+          <determinationMethod>GoodFaith</determinationMethod>
+        </composite>
+      </fxFeature>
+    </returnLeg>
+    <interestLeg>
+      <interestCalculation>
+        <floatingRateCalculation>
+          <floatingRateIndex>EUR-EURIBOR-Telerate</floatingRateIndex>
+          <indexTenor>
+            <periodMultiplier>3</periodMultiplier>
+            <period>M</period>
+          </indexTenor>
+        </floatingRateCalculation>
+        <dayCountFraction>ACT/360</dayCountFraction>
+      </interestCalculation>
+    </interestLeg>
+  </returnSwap>
+</requestQuote>
+

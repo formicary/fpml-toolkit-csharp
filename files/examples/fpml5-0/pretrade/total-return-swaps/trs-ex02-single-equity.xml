@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is pretrade-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/pretrade-->
+<!--Omit notional amounts, prices, adjustments, and other information not required for an RFQ-->
+<requestQuote xmlns="http://www.fpml.org/FpML-5-0/pretrade" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/pretrade ../fpml-main-5-0.xsd">
+  <header>
+    <messageId messageIdScheme="http://www.fpml.org/msg-id">123</messageId>
+    <sentBy>DEF</sentBy>
+    <sendTo>ABC</sendTo>
+    <creationTimestamp>2007-04-02T15:38:00-00:00</creationTimestamp>
+  </header>
+<!-- TRS, single equity-->
+  <returnSwap>
+    <productType productTypeScheme="http://www.datastandardsworkinggroup.org/products-1-0">TRS-Equity-Single-EarlyTerm</productType>
+    <returnLeg legIdentifier="trs-eq1-equityLeg">
+      <terminationDate id="trs-eq1-TerminationDate">
+        <adjustableDate>
+          <unadjustedDate>2006-10-12+05:00</unadjustedDate>
+        </adjustableDate>
+      </terminationDate>
+      <underlyer>
+        <singleUnderlyer>
+          <equity id="trs-eq1-equity-asset">
+            <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-CUSIP-1-0">SHPGY.O</instrumentId>
+            <description>Shire Pharmeceuticals Group - American Depositary Receipts</description>
+            <currency>EUR</currency>
+            <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">NASDAQ</exchangeId>
+          </equity>
+<!--
+                                                                <underlyerPrice>
+                                                                        <netPrice>
+                                                                                <currency>EUR</currency>
+                                                                                <amount>19785157.16</amount>
+                                                                                <priceExpression>AbsoluteTerms</priceExpression>
+                                                                        </netPrice>
+                                                                        <accruedInterestPrice>1234.56</accruedInterestPrice>
+                                                                        <quotationCharacteristics>
+                                                                                <side>Mid</side>
+                                                                                <currency>USD</currency>
+                                                                                <timing>Close</timing>
+                                                                        </quotationCharacteristics>
+                                                                </underlyerPrice>
+                                                                        -->
+        </singleUnderlyer>
+      </underlyer>
+      <rateOfReturn>
+        <initialPrice>
+          <netPrice>
+            <currency>USD</currency>
+            <amount>37.44</amount>
+          </netPrice>
+        </initialPrice>
+        <notionalReset>true</notionalReset>
+      </rateOfReturn>
+<!--The notionalAdjustments element indicates that this is an execution-style swap -->
+    </returnLeg>
+    <interestLeg legIdentifier="trs-eq1-interestLeg">
+      <interestCalculation>
+        <floatingRateCalculation>
+          <floatingRateIndex>USD-LIBOR-BBA</floatingRateIndex>
+          <indexTenor>
+            <periodMultiplier>1</periodMultiplier>
+            <period>M</period>
+          </indexTenor>
+        </floatingRateCalculation>
+        <dayCountFraction>ACT/360</dayCountFraction>
+      </interestCalculation>
+    </interestLeg>
+  </returnSwap>
+</requestQuote>
+

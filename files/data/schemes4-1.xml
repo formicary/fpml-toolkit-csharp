@@ -857,4 +857,738 @@ Swaps Monoline Insurer as Reference Entity dated January 21, 2005.</paragraph>
 			<schemeValue name="Moderate" schemeValueSource="FpML"/>
 		</schemeValues>
 	</scheme>
+	<!--
+	  == These schemes are referenced as defaults by the schema but are not
+	  == defined in the schemes documentation.
+	  -->
+	<scheme uri="http://www.fpml.org/ext/isda-2000-definitions" name="floatingRateIndexScheme">
+		<schemeValues>
+			<schemeValue schemeValueSource="ISDA" name="AUD-AONIA-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="AUD-AONIA-OIS-COMPOUND-SwapMarker">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="AUD-BBR-AUBBSW">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="AUD-BBR-BBSW">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="AUD-BBR-BBSW-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="AUD-BBR-BBSY (BID)">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="AUD-BBR-ISDC">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="AUD-LIBOR-BBA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="AUD-LIBOR-BBA-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="AUD-LIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="AUD-Swap Rate-Reuters">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-BA-ISDD">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-BA-CDOR">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-BA-CDOR-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-BA-Reuters">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-BA-Telerate">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-BA-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-TBILL-ISDD">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-TBILL-Reuters">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-TBILL-Telerate">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-TBILL-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-LIBOR-BBA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-LIBOR-BBA-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-LIBOR-BBA-SwapMarker">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-LIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-REPO-CORRA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-CORRA-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CAD-ISDA-Swap Rate">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CL-CLICP-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CZK-PRIBOR-PRBO">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CZK-PRIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="DKK-CIBOR-DKNA13">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="DKK-CIBOR-DKNA13-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="DKK-CIBOR2-DKNA13">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="DKK-CITA-DKNA14-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="DKK-CIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="DKK-DKKOIS-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-EURIBOR-Reuters">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-EURIBOR-Telerate">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-EURIBOR-Act/365">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-EURIBOR-Act/365-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-EURIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-LIBOR-BBA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-LIBOR-BBA-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-LIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-EONIA-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-EONIA-OIS-COMPOUND-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-EURONIA-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-TAM-CDC">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-TMM-CDC-COMPOUND">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-EONIA-AVERAGE">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-TEC10-CNO">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-TEC10-CNO-SwapMarker">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-TEC10-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-TEC5-CNO">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-TEC5-CNO-SwapMarker">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-TEC5-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-Annual Swap Rate-10:00">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-Annual Swap Rate-10:00-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-Annual Swap Rate-10:00-SwapMarker">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-Annual Swap Rate-11:00">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-Annual Swap Rate-11:00-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-Annual Swap Rate-11:00-SwapMarker">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-Annual Swap Rate-3 Month">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-Annual Swap Rate-3 Month-SwapMarker">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-ISDA-EURIBOR Swap Rate-11:00">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-ISDA-EURIBOR Swap Rate-12:00">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-ISDA-LIBOR Swap Rate-10:00">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-ISDA-LIBOR Swap Rate-11:00">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-EONIA-Swap-Index">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="EUR-Annual Swap Rate-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GRD-ATHIBOR-ATHIBOR">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GRD-ATHIBOR-Telerate">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GRD-ATHIBOR-Reference Banks">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GRD-ATHIMID-Reuters">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GRD-ATHIMID-Reference Banks">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="HKD-HIBOR-ISDC">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="HKD-HIBOR-HIBOR=">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="HKD-HIBOR-HIBOR-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="HKD-HIBOR-HKAB">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="HKD-HIBOR-HKAB-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="HKD-HIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="HKD-HONIX-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="HKD-ISDA-Swap Rate-11:00">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="HKD-ISDA-Swap Rate-4:00">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="HUF-BUBOR-Reuters">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="HUF-BUBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="INR-MIBOR-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="INR-MITOR-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="INR-MIFOR">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="INR-MIOIS">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="INR-BMK">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="INR-INBMK-REUTERS">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="INR-CMT">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="INR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="IDR-IDRFIX">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="IDR-IDMA-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="IDR-SBI-Reuters">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="IDR-SOR-Reuters">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="IDR-SOR-Telerate">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="IDR-SOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="ILS-TELBOR01-Reuters">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="ILS-TELBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-BBSF-Bloomberg-10:00">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-BBSF-Bloomberg-15:00">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-LIBOR-FRASETT">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-LIBOR-ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-LIBOR-BBA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-LIBOR-BBA-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-LIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-MUTANCALL-TONAR">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TIBOR-TIBM (10 Banks)">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TIBOR-TIBM (5 Banks)">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TIBOR-TIBM (All Banks)">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TIBOR-TIBM (All Banks)-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TIBOR-ZTIBOR">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TIBOR-TIBM-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TSR-Reuters-10:00">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TSR-Telerate-10:00">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-ISDA-Swap Rate-10:00">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TSR-Reuters-15:00">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TSR-Telerate-15:00">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-ISDA-Swap Rate-15:00">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TSR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TONA-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TIBOR-17096">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="JPY-TIBOR-17097">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="KRW-CD-KSDA-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="KRW-CD-3220">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="MYR-KLIBOR-BNM">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="MYR-KLIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="MXN-TIIE-Banxico">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="MXN-TIIE-Banxico-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="MXN-TIIE-Banxico-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="NZD-BBR-BID">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="NZD-BBR-ISDC">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="NZD-BBR-FRA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="NZD-BBR-Telerate">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="NZD-BBR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="NZD-NZIONA-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="NOK-NIBOR-NIBR">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="NOK-NIBOR-NIBR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="NOK-NIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="PLN-WIBOR-WIBO">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="PLN-WIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="PLZ-WIBOR-WIBO">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="PLZ-WIBOR-Reference Banks">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SAR-SRIOR-SUAA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SAR-SRIOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SGD-SIBOR-Reuters">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SGD-SIBOR-Telerate">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SGD-SIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SGD-SOR-Reuters">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SGD-SOR-Telerate">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SGD-SOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SGD-SONAR-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SKK-BRIBOR-NBSK07">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SKK-BRIBOR-BRBO">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SKK-BRIBOR-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SKK-BRIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="ZAR-JIBAR-SAFEX">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="ZAR-JIBAR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="ZAR-PRIME-AVERAGE">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="ZAR-PRIME-AVERAGE-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="ZAR-DEPOSIT-SAFEX">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="ZAR-DEPOSIT-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GBP-LIBOR-ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GBP-LIBOR-BBA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GBP-LIBOR-BBA-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GBP-LIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GBP-ISDA-Swap Rate">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GBP-Semi-Annual Swap Rate">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GBP-Semi-Annual Swap Rate-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="GBP-WMBA-SONIA-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SEK-Annual Swap Rate">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SEK-STIBOR-SIDE">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SEK-STIBOR-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SEK-STIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="SEK-SIOR-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CHF-LIBOR-ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CHF-LIBOR-BBA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CHF-LIBOR-BBA-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CHF-LIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CHF-TOIS-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CHF-Annual Swap Rate">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CHF-ISDAFIX-Swap Rate">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="CHF-Annual Swap Rate-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="TWD-Reuters-6165">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="TWD-Telerate-6165">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="TWD-TWCPBA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="TWD-Reference Dealers">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="THB-SOR-Reuters">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="THB-SOR-Telerate">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="THB-SOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="THB-THBFIX-Reuters">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-BA-H.15">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-BA-Reference Dealers">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-CD-H.15">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-CD-Reference Dealers">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-CMS-Reuters">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-CMS-Telerate">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-ISDA-Swap Rate">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-ISDA-Swap Rate-3:00">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-ISDAFIX3-Swap Rate">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-ISDAFIX3-Swap Rate-3:00">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-CMS-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-CMS-Reference Banks-ICAP SwapPX">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-CMT-T7051">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-CMT-T7052">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-COF11-Reuters">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-COF11-Telerate">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-COF11-FHLBSF">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-CP-H.15">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-CP-Reference Dealers">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-Federal Funds-H.15">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-Federal Funds-H.15-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-Federal Funds-Reference Dealers">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-FFCB-DISCO">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-LIBOR-BBA">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-LIBOR-BBA-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-LIBOR-ISDA">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-LIBOR-LIBO">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-LIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-Prime-H.15">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-Prime-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-SIBOR-SIBO">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-SIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-TBILL-H.15">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-TBILL-H.15-Bloomberg">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-TBILL-Secondary Market">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-TIBOR-ISDC">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-TIBOR-Reference Banks">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-Treasury Rate-T500">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-Treasury Rate-ICAP BrokerTec">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-Treasury Rate-SwapMarker99">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-Treasury Rate-T19901">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-Treasury Rate-SwapMarker100">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-Federal Funds-H.15-OIS-COMPOUND">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-SIFMA Municipal Swap Index">
+				<paragraph>Per 2006 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-BMA Municipal Swap Index">
+				<paragraph>Per Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="ISDA" name="USD-S&amp;P Index-High Grade">
+				<paragraph>Per 2006 ISDA Definitions or Annex to the 2000 ISDA Definitions, Section 7.1 Rate Options, as amended and supplemented through the date on which parties enter into the relevant transaction.</paragraph>
+			</schemeValue>
+			<!-- Added -->
+			<schemeValue schemeValueSource="ISDA" name="USD-LIBOR-Telerate"/>
+			<schemeValue schemeValueSource="ISDA" name="DEM-LIBOR-BBA"/>
+		</schemeValues>
+	</scheme>
 </schemeDefinitions>

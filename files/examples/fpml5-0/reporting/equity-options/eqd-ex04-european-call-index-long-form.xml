@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is reporting-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/reporting-->
+<!--Omit some adjustments, details of procedures, and other information not required for a report-->
+<tradeExecutionNotification xmlns="http://www.fpml.org/FpML-5-0/reporting" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/reporting ../fpml-main-5-0.xsd">
+  <header>
+    <conversationId conversationIdScheme="http://www.msdw.com/conversationId/OTC">EquityIndexOption369</conversationId>
+    <messageId messageIdScheme="http://www.msdw.com/messageId/OTC">EquityIndexOption456a789b</messageId>
+    <sentBy partyIdScheme="http://www.MsgParty.com/partyId">msdw</sentBy>
+    <creationTimestamp>2000-08-01T08:57:00-00:00</creationTimestamp>
+  </header>
+  <trade>
+    <tradeHeader>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.PartyB.com/eqd-trade-id">1234</tradeId>
+      </partyTradeIdentifier>
+      <tradeDate>2001-09-04-00:00</tradeDate>
+    </tradeHeader>
+    <equityOption>
+      <productType>europeanCallIndex</productType>
+      <buyerPartyReference href="party2" />
+      <optionType>Call</optionType>
+      <underlyer>
+        <singleUnderlyer>
+          <index>
+            <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">.SSMI</instrumentId>
+            <description>Swiss Market Index</description>
+            <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">NYSE</exchangeId>
+          </index>
+        </singleUnderlyer>
+      </underlyer>
+      <equityExercise>
+        <equityEuropeanExercise>
+          <expirationDate>
+            <adjustableDate>
+              <unadjustedDate>2004-12-19-00:00</unadjustedDate>
+              <dateAdjustments>
+                <businessDayConvention>NONE</businessDayConvention>
+              </dateAdjustments>
+            </adjustableDate>
+          </expirationDate>
+        </equityEuropeanExercise>
+        <automaticExercise>true</automaticExercise>
+        <equityValuation id="valuation">
+          <valuationTimeType>OSP</valuationTimeType>
+        </equityValuation>
+        <settlementDate>
+          <relativeDate>
+            <periodMultiplier>2</periodMultiplier>
+            <period>D</period>
+            <dayType>Business</dayType>
+            <businessDayConvention>NONE</businessDayConvention>
+            <dateRelativeTo href="valuation" />
+          </relativeDate>
+        </settlementDate>
+        <settlementCurrency>CHF</settlementCurrency>
+      </equityExercise>
+      <strike>
+        <strikePrice>8700</strikePrice>
+      </strike>
+      <numberOfOptions>2500</numberOfOptions>
+      <optionEntitlement>1.00</optionEntitlement>
+      <equityPremium>
+        <payerPartyReference href="party2" />
+        <paymentAmount>
+          <currency>CHF</currency>
+          <amount>300000</amount>
+        </paymentAmount>
+        <paymentDate>
+          <unadjustedDate>2001-09-06-00:00</unadjustedDate>
+          <dateAdjustments>
+            <businessDayConvention>NONE</businessDayConvention>
+          </dateAdjustments>
+        </paymentDate>
+      </equityPremium>
+    </equityOption>
+    <governingLaw>GBEN</governingLaw>
+  </trade>
+  <party id="party1">
+    <partyId>Party A</partyId>
+  </party>
+  <party id="party2">
+    <partyId>Party B</partyId>
+  </party>
+</tradeExecutionNotification>
+

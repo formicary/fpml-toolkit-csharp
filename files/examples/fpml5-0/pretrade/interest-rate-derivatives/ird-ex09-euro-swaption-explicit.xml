@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is pretrade-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/pretrade-->
+<!--Omit notional amounts, prices, adjustments, and other information not required for an RFQ-->
+<requestQuote xmlns="http://www.fpml.org/FpML-5-0/pretrade" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/pretrade ../fpml-main-5-0.xsd">
+  <header>
+    <messageId messageIdScheme="http://www.fpml.org/msg-id">123</messageId>
+    <sentBy>DEF</sentBy>
+    <sendTo>ABC</sendTo>
+    <creationTimestamp>2007-04-02T15:38:00-00:00</creationTimestamp>
+  </header>
+  <swaption>
+    <europeanExercise>
+      <expirationDate>
+        <adjustableDate>
+          <unadjustedDate>2001-08-28-05:00</unadjustedDate>
+        </adjustableDate>
+      </expirationDate>
+    </europeanExercise>
+    <swaptionStraddle>false</swaptionStraddle>
+    <swap>
+      <swapStream>
+        <calculationPeriodDates id="CalcPeriodDates0">
+          <terminationDate>
+            <unadjustedDate>2006-08-30-05:00</unadjustedDate>
+          </terminationDate>
+          <calculationPeriodFrequency>
+            <periodMultiplier>1</periodMultiplier>
+            <period>Y</period>
+          </calculationPeriodFrequency>
+        </calculationPeriodDates>
+        <calculationPeriodAmount>
+          <calculation>
+            <notionalSchedule>
+              <notionalStepSchedule>
+                <currency>EUR</currency>
+              </notionalStepSchedule>
+            </notionalSchedule>
+            <fixedRateSchedule>
+              <initialValue>0.05</initialValue>
+            </fixedRateSchedule>
+            <dayCountFraction>30/360</dayCountFraction>
+          </calculation>
+        </calculationPeriodAmount>
+      </swapStream>
+      <swapStream>
+        <calculationPeriodDates id="CalcPeriodDates1"></calculationPeriodDates>
+        <calculationPeriodAmount>
+          <calculation>
+            <notionalSchedule>
+              <notionalStepSchedule>
+                <currency>EUR</currency>
+              </notionalStepSchedule>
+            </notionalSchedule>
+            <floatingRateCalculation>
+              <floatingRateIndex>EUR-EURIBOR-Telerate</floatingRateIndex>
+              <indexTenor>
+                <periodMultiplier>6</periodMultiplier>
+                <period>M</period>
+              </indexTenor>
+            </floatingRateCalculation>
+            <dayCountFraction>ACT/360</dayCountFraction>
+          </calculation>
+        </calculationPeriodAmount>
+      </swapStream>
+    </swap>
+  </swaption>
+</requestQuote>
+

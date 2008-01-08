@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+        == Copyright (c) 2002-2007. All rights reserved. 
+        == Financial Products Markup Language is subject to the FpML public license. 
+        == A copy of this license is available at http://www.fpml.org/license/license.html
+-->
+<!--View is confirmation-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/FpML-5-0/confirmation" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/FpML-5-0/confirmation" version="$Revision: $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xsd:include schemaLocation="fpml-asset-5-0.xsd" />
+  <xsd:include schemaLocation="fpml-shared-5-0.xsd" />
+  <xsd:include schemaLocation="fpml-eq-shared-5-0.xsd" />
+  <xsd:complexType name="CommodityMarketDisruption">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Commodity Market Disruption elements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element name="marketDisruption" type="xsd:boolean" />
+        <xsd:element name="marketDisruptionEvent" type="MarketDisruptionEvent" maxOccurs="unbounded" />
+      </xsd:choice>
+      <xsd:element name="additionalMarketDisruptionEvent" type="MarketDisruption" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="disruptionFallback" type="MarketDisruptionFallback" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="fallbackReferencePrice" type="CommodityReferencePrice" minOccurs="0" />
+      <xsd:element name="maximumNumberOfDaysOfDisruption" type="xsd:nonNegativeInteger" minOccurs="0" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CommodityNotional">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Commodity Notional.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ReturnSwapNotional">
+        <xsd:sequence>
+          <xsd:group ref="Unit.model" />
+          <xsd:group ref="Quantity.model" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CommodityReferencePrice">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Commodity Reference Price as specified by ISDA 2005 Commodity Definition Annexes.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="specifiedPrice" type="SpecifiedPrice">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Specified price used to calculate the price on a transaction.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:group ref="Price.model" />
+      <xsd:element name="rounding" type="Rounding" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Rounding direction and precision for price values.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CommoditySwap">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Commodity Swap.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Product">
+        <xsd:sequence>
+          <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="fixedLeg" type="FixedPriceLeg">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Fixed Price Leg.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="floatLeg" type="FloatingPriceLeg">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Floating Price leg.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:choice>
+          <xsd:group ref="CommodityContent.model" minOccurs="0" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="FixedPrice">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Fixed Price.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="price" type="xsd:decimal" />
+      <xsd:group ref="Price.model" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FixedPriceLeg">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Fixed Price Leg of a Return Swap.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ReturnSwapLeg">
+        <xsd:sequence>
+          <xsd:element name="fixedPrice" type="FixedPrice">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Fixed price on which fixed payments are based.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="notional" type="ReturnSwapNotional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Notional on which fixed payments are based.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="paymentDates" type="AdjustableOrRelativeDates">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Dates on which fixed price payments will be made.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="FloatLegAmount">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Float Leg Amount.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="LegAmount">
+        <xsd:sequence>
+          <xsd:element name="settlementType" type="SettlementTypeEnum"></xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="FloatLegValuation">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Floating Leg Valuation.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="UnderlyerValuation">
+        <xsd:sequence>
+          <xsd:element name="paymentDates" type="AdjustableOrRelativeDates">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Specifies the payment dates of the swap.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="FloatingPriceLeg">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Floating Price Leg of a Return Swap.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ReturnSwapLeg">
+        <xsd:sequence>
+          <xsd:element name="effectiveDate" type="AdjustableOrRelativeDate">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Specifies the effective date.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="terminationDate" type="AdjustableOrRelativeDate">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Specifies the termination date.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="underlyer" type="Underlyer">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Specifies the underlying component, which can be either one or many and consists of either equity, index, bond, or commodity component, or a combination of these.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="return" type="FloatLegValuation">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The parameters for defining when valuation of the underlying which drives return takes place.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="notional" type="CommodityNotional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Specifies the notional of a return type swap. When used in the float leg, the definition will typically combine the actual amount (using the notional component) and the determination method.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="amount" type="FloatLegAmount">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Specifies, in relation to each Payment Date, the amount to which the Payment Date relates. Unless otherwise specified, this term has the meaning defined in the ISDA 2000 ISDA Definitions.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="fxFeature" type="FxFeature" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A Quanto or Composite FX Feature.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MarketDisruptionEvent">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:normalizedString">
+        <xsd:attribute name="commodityMarketDisruptionScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/commodity-market-disruption-1-0" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="MarketDisruptionFallback">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:token">
+        <xsd:attribute name="commodityMarketDisruptionFallbackScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/commodity-market-disruption-fallback-1-0.xml" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="PriceUnit">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A Price Unit classification.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:token">
+        <xsd:attribute name="priceUnitScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/price-unit-1-0" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="SpecifiedPrice">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Specified price used to calculate the price on a transaction.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:token">
+        <xsd:attribute name="specifiedPriceScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/specified-price-1-0" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="QuantityFrequency">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A Quantity Frequency</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="periodMultiplier" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A time period multiplier, e.g. 1, 2 or 3 etc. A negative value can be used when specifying an offset relative to another date, e.g. -2 days. If the period value is T (Term) then periodMultiplier must contain the value 1.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="period" type="PeriodEnum">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A time period, e.g. a day, week, month, year or term of the stream. If the periodMultiplier value is 0 (zero) then period must contain the value D (day).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="QuantityUnit">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Quantity Unit classification.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:token">
+        <xsd:attribute name="quantityUnitScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/quantity-unit-1-0" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="UnderlyerValuation">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Underlyer Valuation.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="EquityValuation">
+        <xsd:sequence>
+          <xsd:element name="spreadSchedule" type="SpreadSchedule" minOccurs="0" maxOccurs="unbounded" />
+          <xsd:group ref="Pricing.model" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="commoditySwap" type="CommoditySwap" substitutionGroup="product">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines a commodity swap product.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:group name="CommodityContent.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Model group which Commodity Swap and Derivative content elements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="marketDisruption" type="CommodityMarketDisruption" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Market disruption events as defined by ISDA 2005 Commodity Definitions.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="rounding" type="Rounding" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Rounding direction and precision for amounts.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="Price.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Price model group.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="priceCurrency" type="Currency">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Currency of the price units (index, or securities, or commodity).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="priceUnit" type="PriceUnit">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Price Unit is the unit of measure applicable for the price on the transaction.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="Pricing.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Pricing model group.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="commonPricing" type="xsd:boolean" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Common pricing may be relevant for a Transaction that references more than one Commodity Reference Price. If Common Pricing is not specified as applicable, it will be deemed not to apply.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="referencePrice" type="CommodityReferencePrice" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Commodity Reference Price.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="pricingDates" type="AdjustableOrRelativeDates" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Commodity Pricing Dates.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="priceSource" type="InformationSource" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Indicates which price source is used to calculate the price on a transaction. Holiday dates will differ by Pricing Calendar.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="averagingMethod" type="AveragingMethodEnum" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The parties may specify a Method of Averaging where more than one pricing Dates is being specified as being applicable</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="Quantity.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Quantity element group.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="quantityFrequency" type="QuantityFrequency">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Rate at which quantity is quoted in the transaction.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="quantity" type="xsd:decimal">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Amount of commodity per quantity frequency.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="totalQuantity" type="xsd:decimal">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Total amount of commodity.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="Unit.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Unit element group.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:group ref="Price.model" />
+      <xsd:element name="quantityUnit" type="QuantityUnit">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Quantity Unit is the unit of measure applicable for the quantity on the transaction.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
+</xsd:schema>
+

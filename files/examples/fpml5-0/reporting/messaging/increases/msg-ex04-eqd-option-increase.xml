@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is reporting-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/reporting-->
+<!--Omit some adjustments, details of procedures, and other information not required for a report-->
+<tradeIncreaseRequest xmlns="http://www.fpml.org/FpML-5-0/reporting" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/reporting ../../fpml-main-5-0.xsd">
+  <header>
+    <conversationId conversationIdScheme="http://www.drkw.com/conversationId/OTC">OTCCallorPutSpread45678</conversationId>
+    <messageId messageIdScheme="http://www.drkw.com/messageId/OTC">OTCCallorPutSpread456a789b</messageId>
+    <sentBy partyIdScheme="http://www.MsgParty.com/partyId">drkw</sentBy>
+    <creationTimestamp>2000-08-01T08:57:00-00:00</creationTimestamp>
+  </header>
+  <increase>
+    <trade>
+      <tradeHeader>
+        <partyTradeIdentifier>
+          <tradeId tradeIdScheme="http://www.drkw.com/tradeId/OTC">1234</tradeId>
+        </partyTradeIdentifier>
+        <tradeDate id="TradeDate">2001-07-13-00:00</tradeDate>
+      </tradeHeader>
+      <equityOptionTransactionSupplement>
+        <productType>americanCallStock</productType>
+        <buyerPartyReference href="party2" />
+        <optionType>Put</optionType>
+        <underlyer>
+          <singleUnderlyer>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">STM-FP</instrumentId>
+              <description>STMicroelectronics N.V. ordinary shares</description>
+              <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">NSE</exchangeId>
+            </equity>
+          </singleUnderlyer>
+        </underlyer>
+        <equityExercise>
+          <equityAmericanExercise>
+            <commencementDate>
+              <adjustableDate>
+                <unadjustedDate>2001-07-13-00:00</unadjustedDate>
+                <dateAdjustments>
+                  <businessDayConvention>NONE</businessDayConvention>
+                </dateAdjustments>
+              </adjustableDate>
+            </commencementDate>
+            <expirationDate>
+              <adjustableDate>
+                <unadjustedDate>2001-09-27-00:00</unadjustedDate>
+                <dateAdjustments>
+                  <businessDayConvention>NONE</businessDayConvention>
+                </dateAdjustments>
+              </adjustableDate>
+            </expirationDate>
+          </equityAmericanExercise>
+          <automaticExercise>true</automaticExercise>
+          <equityValuation>
+            <valuationTimeType>Close</valuationTimeType>
+          </equityValuation>
+          <settlementCurrency>EUR</settlementCurrency>
+        </equityExercise>
+        <strike>
+          <strikePrice>32.00</strikePrice>
+        </strike>
+        <spotPrice>30.00</spotPrice>
+        <numberOfOptions>10000</numberOfOptions>
+        <equityPremium>
+          <payerPartyReference href="party2" />
+          <paymentAmount>
+            <currency>EUR</currency>
+            <amount>405000</amount>
+          </paymentAmount>
+          <paymentDate>
+            <unadjustedDate>2001-07-17-00:00</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NONE</businessDayConvention>
+            </dateAdjustments>
+          </paymentDate>
+          <pricePerOption>
+            <currency>EUR</currency>
+            <amount>2.70</amount>
+          </pricePerOption>
+        </equityPremium>
+      </equityOptionTransactionSupplement>
+      <governingLaw>GBEN</governingLaw>
+    </trade>
+    <increaseTradeDate>2004-04-28-00:00</increaseTradeDate>
+    <increaseEffectiveDate>2004-04-30-00:00</increaseEffectiveDate>
+    <increaseInNumberOfOptions>100.00</increaseInNumberOfOptions>
+    <outstandingNumberOfOptions>30.00</outstandingNumberOfOptions>
+  </increase>
+  <party id="party1">
+    <partyId>DRKW</partyId>
+  </party>
+  <party id="party2">
+    <partyId>Party B</partyId>
+  </party>
+</tradeIncreaseRequest>
+

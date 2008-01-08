@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is reporting-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/reporting-->
+<!--Omit some adjustments, details of procedures, and other information not required for a report-->
+<tradeCashflowsMatchResult xmlns="http://www.fpml.org/FpML-5-0/reporting" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/reporting ../../fpml-main-5-0.xsd">
+  <header>
+    <messageId messageIdScheme="http://www.example.com/messageId">CEN/2004/01/05/15-39</messageId>
+    <inReplyTo messageIdScheme="http://www.example.com/messageId">CEN/2004/01/05/15-38</inReplyTo>
+    <sentBy>DEF</sentBy>
+    <sendTo>ABC</sendTo>
+    <creationTimestamp>2005-02-28T16:00:00-00:00</creationTimestamp>
+  </header>
+  <status tradeCashflowsStatusScheme="http://www.fpml.org/coding-scheme/trade-cashflows-status-1-0">Unmatched</status>
+  <assertedCashflow>
+    <tradeCashflowsId tradeCashflowsIdScheme="www.abc.com/tradeCashflowsId">8410363</tradeCashflowsId>
+  </assertedCashflow>
+  <party id="party1">
+    <partyId>ABCBank001</partyId>
+  </party>
+  <party id="party2">
+    <partyId>DEFBank001</partyId>
+  </party>
+</tradeCashflowsMatchResult>
+

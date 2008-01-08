@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is pretrade-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/pretrade-->
+<!--Omit notional amounts, prices, adjustments, and other information not required for an RFQ-->
+<requestQuote xmlns="http://www.fpml.org/FpML-5-0/pretrade" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/pretrade ../fpml-main-5-0.xsd">
+  <header>
+    <conversationId conversationIdScheme="http://www.matchingservice.com/coding-scheme/conversationId">FX987</conversationId>
+    <messageId messageIdScheme="http://www.matchingservice.com/coding-scheme/messageId">FX456a789b</messageId>
+    <sentBy partyIdScheme="http://www.matchingservice.com/partyId">ABN</sentBy>
+    <sendTo partyIdScheme="http://www.matchingservice.com/partyId">MATCHSRV</sendTo>
+    <creationTimestamp>2001-11-19T08:57:00-00:00</creationTimestamp>
+  </header>
+  <fxSingleLeg>
+    <exchangedCurrency1>
+      <paymentAmount>
+        <currency>EUR</currency>
+      </paymentAmount>
+      <settlementInformation>
+        <standardSettlementStyle>Standard</standardSettlementStyle>
+      </settlementInformation>
+    </exchangedCurrency1>
+    <exchangedCurrency2>
+      <paymentAmount>
+        <currency>USD</currency>
+      </paymentAmount>
+      <settlementInformation>
+        <standardSettlementStyle>Standard</standardSettlementStyle>
+      </settlementInformation>
+    </exchangedCurrency2>
+    <valueDate>2001-12-21-00:00</valueDate>
+    <exchangeRate>
+      <quotedCurrencyPair>
+        <currency1>EUR</currency1>
+        <currency2>USD</currency2>
+        <quoteBasis>Currency2PerCurrency1</quoteBasis>
+      </quotedCurrencyPair>
+      <rate>0.9175</rate>
+      <spotRate>0.9130</spotRate>
+      <forwardPoints>0.0045</forwardPoints>
+    </exchangeRate>
+  </fxSingleLeg>
+</requestQuote>
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is reporting-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/reporting-->
+<!--Omit some adjustments, details of procedures, and other information not required for a report-->
+<tradeExecutionNotification xmlns="http://www.fpml.org/FpML-5-0/reporting" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/reporting ../fpml-main-5-0.xsd">
+  <header>
+    <conversationId conversationIdScheme="http://www.abn.com/coding-scheme/conversationId">FX65431</conversationId>
+    <messageId messageIdScheme="http://www.abn.com/coding-scheme/messageId">FX87653</messageId>
+    <sentBy partyIdScheme="http://www.abn.com/partyId">ABNANL2A</sentBy>
+    <sendTo partyIdScheme="http://www.abn.com/partyId">MIDLGB22</sendTo>
+    <creationTimestamp>2001-12-04T08:57:00-00:00</creationTimestamp>
+  </header>
+  <trade>
+    <tradeHeader>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.hsbc.com/swaps/trade-id">MB87623</tradeId>
+      </partyTradeIdentifier>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.abnamro.com/swaps/trade-id">AA9876</tradeId>
+      </partyTradeIdentifier>
+      <tradeDate>2002-02-14-00:00</tradeDate>
+    </tradeHeader>
+    <termDeposit>
+      <productType>Overnight Deposit</productType>
+      <initialPayerReference href="party1" />
+      <startDate>2002-02-14-00:00</startDate>
+      <maturityDate>2002-02-15-00:00</maturityDate>
+      <dayCountFraction>ACT/360</dayCountFraction>
+      <principal>
+        <currency>CHF</currency>
+        <amount>25000000.00</amount>
+      </principal>
+      <fixedRate>0.04</fixedRate>
+      <interest>
+        <currency>CHF</currency>
+        <amount>2777.77</amount>
+      </interest>
+      <payment>
+        <payerPartyReference href="party1" />
+        <paymentAmount>
+          <currency>CHF</currency>
+          <amount>25000000</amount>
+        </paymentAmount>
+        <paymentType>Initial Principal Payment</paymentType>
+        <settlementInformation>
+          <settlementInstruction>
+            <beneficiary>
+              <routingIds>
+                <routingId routingIdCodeScheme="http://www.fpml.org/ext/iso9362">ABNANL2A</routingId>
+              </routingIds>
+            </beneficiary>
+          </settlementInstruction>
+        </settlementInformation>
+      </payment>
+      <payment>
+        <payerPartyReference href="party2" />
+        <paymentAmount>
+          <currency>CHF</currency>
+          <amount>2777.77</amount>
+        </paymentAmount>
+        <paymentType>Interest Payment</paymentType>
+        <settlementInformation>
+          <settlementInstruction>
+            <beneficiary>
+              <routingIds>
+                <routingId routingIdCodeScheme="http://www.fpml.org/ext/iso9362">MIDLAND</routingId>
+              </routingIds>
+            </beneficiary>
+          </settlementInstruction>
+        </settlementInformation>
+      </payment>
+      <payment>
+        <payerPartyReference href="party2" />
+        <paymentAmount>
+          <currency>CHF</currency>
+          <amount>25000000</amount>
+        </paymentAmount>
+        <paymentType>Final Principal Payment</paymentType>
+        <settlementInformation>
+          <settlementInstruction>
+            <beneficiary>
+              <routingIds>
+                <routingId routingIdCodeScheme="http://www.fpml.org/ext/iso9362">MIDLGB22</routingId>
+              </routingIds>
+            </beneficiary>
+          </settlementInstruction>
+        </settlementInformation>
+      </payment>
+    </termDeposit>
+  </trade>
+  <party id="party1">
+    <partyId>MIDLGB22</partyId>
+    <partyName>MIDLAND</partyName>
+  </party>
+  <party id="party2">
+    <partyId>ABNANL2A</partyId>
+    <partyName>ABN AMRO</partyName>
+  </party>
+</tradeExecutionNotification>
+

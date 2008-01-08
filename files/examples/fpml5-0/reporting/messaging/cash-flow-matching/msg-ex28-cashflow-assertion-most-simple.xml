@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is reporting-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/reporting-->
+<!--Omit some adjustments, details of procedures, and other information not required for a report-->
+<tradeCashflowsAsserted xmlns="http://www.fpml.org/FpML-5-0/reporting" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/reporting ../../fpml-main-5-0.xsd">
+  <header>
+    <messageId messageIdScheme="http://www.example.com/messageId">CEN/2004/01/05/15-38</messageId>
+    <sentBy>ABC</sentBy>
+    <sendTo>DEF</sendTo>
+    <creationTimestamp>2005-01-05T15:38:00-00:00</creationTimestamp>
+  </header>
+  <asOfDate>2005-01-05T15:00:00-00:00</asOfDate>
+  <tradeCashflowsId tradeCashflowsIdScheme="http://www.abc.com/tradeCashflowsId">tradeCashflowsABC001</tradeCashflowsId>
+  <tradeIdentifyingItems>
+    <partyTradeIdentifier>
+      <tradeId tradeIdScheme="http://www.abc.com/tradeId">trade1abcxxx</tradeId>
+    </partyTradeIdentifier>
+    <partyTradeIdentifier>
+      <tradeId tradeIdScheme="http://www.def.com/tradeId">123cds</tradeId>
+    </partyTradeIdentifier>
+  </tradeIdentifyingItems>
+  <adjustedPaymentDate>2005-01-31-00:00</adjustedPaymentDate>
+  <payment>
+    <identifier paymentIdScheme="http://www.centralservice.com/netPaymentId">netPaymentABCDEF001</identifier>
+    <payerPartyReference href="party1" />
+    <paymentAmount>
+      <currency>EUR</currency>
+      <amount>200000</amount>
+    </paymentAmount>
+  </payment>
+  <party id="party1">
+    <partyId>ABCBank001</partyId>
+  </party>
+  <party id="party2">
+    <partyId>DEFBank001</partyId>
+  </party>
+</tradeCashflowsAsserted>
+

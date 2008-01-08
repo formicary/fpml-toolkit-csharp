@@ -2,9 +2,9 @@
 <!-- 
 == Copyright (c) 2002-2007. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
-== A copy of this license is available at http://www.fpml.org/documents/license.html
+== A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-3" version="$Revision: 884 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-3" version="$Revision: 2351 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-msg-4-3.xsd" />
   <xsd:include schemaLocation="fpml-valuation-4-3.xsd" />
   <xsd:complexType name="RequestPositionReport">
@@ -93,6 +93,19 @@
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="RequestedPositions">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A definition of the positions that are requested.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="queryPortfolio" type="QueryPortfolio">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The desired query portfolio.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:group ref="PositionIdAndVersion.model" />
+    </xsd:choice>
   </xsd:complexType>
   <xsd:complexType name="RequestValuationReport">
     <xsd:annotation>

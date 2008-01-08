@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is pretrade-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/pretrade-->
+<!--Omit notional amounts, prices, adjustments, and other information not required for an RFQ-->
+<requestQuote xmlns="http://www.fpml.org/FpML-5-0/pretrade" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/pretrade ../fpml-main-5-0.xsd">
+  <header>
+    <messageId messageIdScheme="http://www.partyA.com/coding-scheme/messsage-id">456a789b</messageId>
+    <sentBy partyIdScheme="http://www.partyA.com/coding-scheme/party-id">msdw</sentBy>
+    <creationTimestamp>2000-08-01T08:57:00-00:00</creationTimestamp>
+  </header>
+  <creditDefaultSwap>
+    <generalTerms>
+      <scheduledTerminationDate>
+        <adjustableDate>
+          <unadjustedDate>2046-07-12-00:00</unadjustedDate>
+        </adjustableDate>
+      </scheduledTerminationDate>
+      <referenceInformation>
+        <referenceEntity>
+          <entityName>MERRILL LYNCH/COUNTRYWIDE COMM, 2006-3</entityName>
+        </referenceEntity>
+        <referenceObligation>
+          <mortgage>
+            <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-CUSIP-1-0">60687VAQ8</instrumentId>
+            <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-Bloomberg-1-0">MLCFC 2006-3</instrumentId>
+            <currency>USD</currency>
+            <maturity>2046-07-12</maturity>
+            <originalPrincipalAmount>21219000</originalPrincipalAmount>
+            <pool>
+              <initialFactor>1</initialFactor>
+            </pool>
+            <sector>CMBS</sector>
+            <tranche>H</tranche>
+          </mortgage>
+          <primaryObligor>
+            <entityName>MERRILL LYNCH/COUNTRYWIDE COMM, 2006-3</entityName>
+          </primaryObligor>
+        </referenceObligation>
+        <allGuarantees>false</allGuarantees>
+      </referenceInformation>
+    </generalTerms>
+    <physicalSettlementTerms></physicalSettlementTerms>
+  </creditDefaultSwap>
+</requestQuote>
+

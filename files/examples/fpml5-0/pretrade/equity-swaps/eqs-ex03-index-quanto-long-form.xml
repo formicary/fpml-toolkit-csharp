@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is pretrade-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/pretrade-->
+<!--Omit notional amounts, prices, adjustments, and other information not required for an RFQ-->
+<requestQuote xmlns="http://www.fpml.org/FpML-5-0/pretrade" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/pretrade ../fpml-main-5-0.xsd">
+  <header>
+    <conversationId conversationIdScheme="http://www.example.com/conversationId">CS/2006/07/02/32-09</conversationId>
+    <messageId messageIdScheme="http://www.example.com/messageId">MS/2006/04/07/15-99</messageId>
+    <sentBy>PARTYABICXXX</sentBy>
+    <sendTo>PARTYBBICXXX</sendTo>
+    <creationTimestamp>2006-07-02T16:38:00-00:00</creationTimestamp>
+  </header>
+  <returnSwap>
+    <productType>IndexQuantoSwap</productType>
+    <returnLeg>
+      <terminationDate id="TerminationDate">
+        <relativeDate>
+          <periodMultiplier>0</periodMultiplier>
+          <period>D</period>
+          <businessDayConvention>NotApplicable</businessDayConvention>
+        </relativeDate>
+      </terminationDate>
+      <underlyer>
+        <basket>
+          <basketConstituent>
+            <index>
+              <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">.FCHI</instrumentId>
+              <description>France CAC 40 Index</description>
+              <currency>EUR</currency>
+              <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">EuroNext</exchangeId>
+              <relatedExchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">MATIF</relatedExchangeId>
+              <relatedExchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">MONEP</relatedExchangeId>
+            </index>
+            <constituentWeight>
+              <openUnits>960</openUnits>
+            </constituentWeight>
+          </basketConstituent>
+          <basketConstituent>
+            <index>
+              <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">.IBEX</instrumentId>
+              <description>IBEX 35</description>
+              <currency>EUR</currency>
+              <relatedExchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">MEFF</relatedExchangeId>
+            </index>
+            <constituentWeight>
+              <openUnits>260</openUnits>
+            </constituentWeight>
+          </basketConstituent>
+          <basketConstituent>
+            <index>
+              <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">.HSI</instrumentId>
+              <description>Hong Kong Hang Seng Index</description>
+              <currency>HKD</currency>
+              <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">Hong Kong Stock Exchange</exchangeId>
+            </index>
+            <constituentWeight>
+              <openUnits>580</openUnits>
+            </constituentWeight>
+          </basketConstituent>
+        </basket>
+      </underlyer>
+      <rateOfReturn>
+        <initialPrice>
+          <netPrice>
+            <currency>USD</currency>
+            <amount>5591987.41</amount>
+          </netPrice>
+        </initialPrice>
+        <notionalReset>true</notionalReset>
+      </rateOfReturn>
+      <fxFeature>
+        <referenceCurrency id="ReferenceCurrency">USD</referenceCurrency>
+        <quanto>
+          <fxRate>
+            <quotedCurrencyPair>
+              <currency1>USD</currency1>
+              <currency2>EUR</currency2>
+              <quoteBasis>Currency2PerCurrency1</quoteBasis>
+            </quotedCurrencyPair>
+            <rate>0.99140</rate>
+          </fxRate>
+          <fxRate>
+            <quotedCurrencyPair>
+              <currency1>USD</currency1>
+              <currency2>HKD</currency2>
+              <quoteBasis>Currency2PerCurrency1</quoteBasis>
+            </quotedCurrencyPair>
+            <rate>7.80</rate>
+          </fxRate>
+        </quanto>
+      </fxFeature>
+    </returnLeg>
+    <interestLeg>
+      <interestCalculation>
+        <floatingRateCalculation>
+          <floatingRateIndex>USD-LIBOR-BBA</floatingRateIndex>
+          <indexTenor>
+            <periodMultiplier>3</periodMultiplier>
+            <period>M</period>
+          </indexTenor>
+        </floatingRateCalculation>
+        <dayCountFraction>ACT/360</dayCountFraction>
+      </interestCalculation>
+    </interestLeg>
+  </returnSwap>
+</requestQuote>
+

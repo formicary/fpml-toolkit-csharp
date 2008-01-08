@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is reporting-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/reporting-->
+<!--Omit some adjustments, details of procedures, and other information not required for a report-->
+<valuationReport xmlns="http://www.fpml.org/FpML-5-0/reporting" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/reporting ../fpml-main-5-0.xsd">
+<!-- This is a trade valuation report for a previous valuation request -->
+  <header>
+    <messageId messageIdScheme="http://www.bbbbbb.org/message-id">RESP001</messageId>
+    <inReplyTo messageIdScheme="http://www.abcdef.org/message-id">VAL001</inReplyTo>
+    <sentBy>BBBBBB</sentBy>
+    <sendTo>ABCDEF</sendTo>
+    <creationTimestamp>2004-06-14T12:47:50-00:00</creationTimestamp>
+  </header>
+  <party id="party1">
+    <partyId>ABCDEF</partyId>
+  </party>
+  <party id="party2">
+    <partyId>BBBBBB</partyId>
+  </party>
+  <tradeValuationItem>
+    <partyTradeIdentifier id="tid-1">
+      <tradeId tradeIdScheme="http://www.partyA.com/trade-id">AAA123</tradeId>
+    </partyTradeIdentifier>
+<!--Valuation Set (report)-->
+    <valuationSet id="val1">
+      <valuationScenario id="valscen1">
+        <name>EOD Valuation</name>
+        <valuationDate>2004-05-01-00:00</valuationDate>
+      </valuationScenario>
+      <baseParty href="party1" />
+      <quotationCharacteristics>
+        <side>Mid</side>
+        <currency>USD</currency>
+      </quotationCharacteristics>
+<!--results for trade #1-->
+      <assetValuation>
+        <objectReference href="tid-1" />
+<!--quote value and NPV-->
+        <quote>
+          <value>-14875</value>
+          <measureType>NPV</measureType>
+        </quote>
+      </assetValuation>
+    </valuationSet>
+  </tradeValuationItem>
+</valuationReport>
+

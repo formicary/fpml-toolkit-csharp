@@ -2,9 +2,9 @@
 <!-- 
 == Copyright (c) 2002-2006. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
-== A copy of this license is available at http://www.fpml.org/documents/license.html
+== A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-3" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-3" version="$Revision: 1072 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-3" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-3" version="$Revision: 2607 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-shared-4-3.xsd" />
   <xsd:simpleType name="QueryParameterValue">
     <xsd:annotation>
@@ -12,49 +12,6 @@
     </xsd:annotation>
     <xsd:restriction base="xsd:string" />
   </xsd:simpleType>
-  <xsd:complexType name="Account">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">A generic account that represents any party's account at another party. Parties may be identified by the account at another party.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:sequence>
-      <xsd:sequence maxOccurs="unbounded">
-        <xsd:element name="accountId" type="AccountId">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">An account identifier. For example an Account number.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-        <xsd:element name="accountName" type="xsd:normalizedString" minOccurs="0">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">The name by which the account is known.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-      </xsd:sequence>
-      <xsd:element name="accountBeneficiary" type="PartyReference" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A reference to the party beneficiary of the account.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
-    <xsd:attribute name="id" type="xsd:ID" use="required">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">The unique identifier for the account within the document.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-  </xsd:complexType>
-  <xsd:complexType name="AccountId">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">The data type used for party identifiers.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="accountIdScheme" type="xsd:anyURI">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">The identifier scheme used with this accountId. A unique URI to determine the authoritative issuer of these identifiers.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:attribute>
-      </xsd:extension>
-    </xsd:simpleContent>
-  </xsd:complexType>
   <xsd:complexType name="Allocation">
     <xsd:sequence>
       <xsd:element name="allocationTradeId" type="PartyTradeIdentifier">
@@ -184,23 +141,27 @@
   </xsd:complexType>
   <xsd:complexType name="ChangeContract" abstract="true">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Abstract base class for changes to a Contract</xsd:documentation>
+      <xsd:documentation xml:lang="en">Abstract base class for changes to a Contract.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="contractReference" type="ContractReference" />
+      <xsd:element name="contractReference" type="ContractReference">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Identification of the Contract which is subject to change.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
       <xsd:element name="date" type="xsd:date">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">The date on which the the parties enter into the change</xsd:documentation>
+          <xsd:documentation xml:lang="en">The date on which the the parties enter into the change.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="effectiveDate" type="xsd:date">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">The date on which the change becomes effective</xsd:documentation>
+          <xsd:documentation xml:lang="en">The date on which the change becomes effective.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="payment" type="Payment" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Payment for the right to change the Contract</xsd:documentation>
+          <xsd:documentation xml:lang="en">Payment for the right to change the Contract.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -265,8 +226,15 @@
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="Contract">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Definition of a Financial Contract.</xsd:documentation>
+    </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="header" type="ContractHeader" />
+      <xsd:element name="header" type="ContractHeader">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Contract header containing identification and other information which is independent of the type of financial product which is the subject of this contract.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
       <xsd:element ref="product" />
       <xsd:element name="otherPartyPayment" type="Payment" minOccurs="0" maxOccurs="unbounded">
         <xsd:annotation>
@@ -292,15 +260,30 @@
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="ContractHeader">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Contract header containing identification and other information which is independent of the type of financial product.</xsd:documentation>
+    </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="identifier" type="ContractIdentifier" maxOccurs="unbounded" />
-      <xsd:element name="information" type="ContractInformation" minOccurs="0" maxOccurs="unbounded" />
-      <xsd:element name="contractDate" type="IdentifiedDate" />
+      <xsd:element name="identifier" type="ContractIdentifier" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Identification of the Contract. Each party to the contract may assign multiple identifiers.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="information" type="ContractInformation" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Information regarding the Contract from the perspective of the party referenced.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="contractDate" type="IdentifiedDate">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Corresponds to the trade date. This element will be renamed tradeDate in the next major version (5.0) of FpML.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="ContractId">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A contact reference identifier allocated by a party. FpML does not define the domain values associated with this element. Note that the domain values for this element are not strictly an enumerated list.</xsd:documentation>
+      <xsd:documentation xml:lang="en">A contact id identifier allocated by a party. FpML does not define the domain values associated with this element.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="xsd:normalizedString">
@@ -323,8 +306,16 @@
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Where the legal activity is to agree a contract of variation then the business process should be to modify a contract. This is a contract in its own right and not a version of a previous contract. Where the business process is to replace and supersede a contract then you have a new contract and a contract version should not be used</xsd:documentation>
         </xsd:annotation>
-        <xsd:element name="contractId" type="ContractId" maxOccurs="unbounded" />
-        <xsd:element name="versionedContractId" type="VersionedContractId" maxOccurs="unbounded" />
+        <xsd:element name="contractId" type="ContractId" maxOccurs="unbounded">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">A contract id which is not version aware.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="versionedContractId" type="VersionedContractId" maxOccurs="unbounded">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">A contract id which is version aware.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="id" type="xsd:ID" />
@@ -347,17 +338,28 @@
     </xsd:annotation>
     <xsd:sequence>
       <xsd:group ref="ContractNovationDetails.model" />
-      <xsd:element name="payment" type="Payment" minOccurs="0" />
+      <xsd:element name="payment" type="Payment" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Payment for the Novation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="ContractReference">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A type which contains identifiers to a single contract, which are assigned by parties to the contract.</xsd:documentation>
+    </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="identifier" type="ContractIdentifier" maxOccurs="unbounded" />
+      <xsd:element name="identifier" type="ContractIdentifier" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A contract identifier which is assigned by a party to the contract.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="ContractTermination">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Contract Full Termination</xsd:documentation>
+      <xsd:documentation xml:lang="en">Contract Termination Details.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="ChangeContract" />
@@ -425,7 +427,7 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">The abstract base type from which all FpML compliant messages and documents must be derived.</xsd:documentation>
     </xsd:annotation>
-    <xsd:attributeGroup ref="StandardAttributes.atts" />
+    <xsd:attributeGroup ref="VersionAttributes.atts" />
   </xsd:complexType>
   <xsd:complexType name="Event" abstract="true">
     <xsd:annotation>
@@ -447,6 +449,20 @@
       <xsd:extension base="xsd:normalizedString">
         <xsd:attribute name="eventIdScheme" use="required" type="xsd:anyURI" />
         <xsd:attribute name="id" type="xsd:ID" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="ExecutionDateTime">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A type defining the trade execution date time and the source of it. For use inside containing types which already have a Reference to a Party that has assigned this trade execution date time.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:dateTime">
+        <xsd:attribute name="executionDateTimeScheme" type="xsd:anyURI">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Identification of the source (e.g. clock id) generating the execution date time.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -493,44 +509,6 @@
       <xsd:extension base="xsd:normalizedString">
         <xsd:attribute name="id" type="xsd:ID" />
         <xsd:attribute name="linkIdScheme" type="xsd:anyURI" use="required" />
-      </xsd:extension>
-    </xsd:simpleContent>
-  </xsd:complexType>
-  <xsd:complexType name="Party">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type defining a legal entity or a subdivision of a legal entity.</xsd:documentation>
-      <xsd:documentation xml:lang="en">Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element name="partyId" type="PartyId" maxOccurs="unbounded">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A party identifier, e.g. a S.W.I.F.T. bank identifier code (BIC).</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="partyName" type="xsd:normalizedString" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The name of the party. A free format string. FpML does not define usage rules for this element.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="account" type="Account" minOccurs="0" maxOccurs="unbounded">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Accounts serviced by this party. These are not accounts where this party is beneficiary, but instead where services are provided by this party to the beneficiary party.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
-    <xsd:attribute name="id" type="xsd:ID" use="required">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">The id uniquely identifying the Party within the document.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-  </xsd:complexType>
-  <xsd:complexType name="PartyId">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">The data type used for party identifiers.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="partyIdScheme" type="xsd:anyURI" default="http://www.fpml.org/ext/iso9362" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -607,19 +585,29 @@
           <xsd:documentation xml:lang="en">Identifies the person or persons who assumed the role of trader for this trade.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
+      <xsd:element name="executionDateTime" type="ExecutionDateTime" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Trade execution date time provided by the owner of the party trade information.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="PaymentDetail">
     <xsd:sequence>
       <xsd:choice minOccurs="0">
-        <xsd:element name="adjustablePaymentDate" type="AdjustableDate2">
+        <xsd:element name="adjustablePaymentDate" type="AdjustableDate2" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="This structure doesn't provide the ability to provide a payment date relative to another date. The paymentDate element of type AdjustableOrRelativeDate should be used instead. In version 5.0 the date structures will be rationalized.">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">A fixed amount payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
-        <xsd:element name="adjustedPaymentDate" type="xsd:date">
+        <xsd:element name="adjustedPaymentDate" type="xsd:date" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="In version 5.0 the date structures will be rationalized.">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="paymentDate" type="AdjustableOrRelativeDate">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Payment date.</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
       </xsd:choice>
@@ -661,7 +649,6 @@
               <xsd:documentation xml:lang="en">A percentage of the notional amount.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-<!-- Reference to the notional leg: specifying who is paying and who is receiving -->
           <xsd:element name="notionalAmountReference" type="NotionalAmountReference">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">A reference to the notional amount.</xsd:documentation>
@@ -764,7 +751,7 @@
   </xsd:complexType>
   <xsd:complexType name="Trade">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type definiting an FpML trade.</xsd:documentation>
+      <xsd:documentation xml:lang="en">A type defining an FpML trade.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
       <xsd:element name="tradeHeader" type="TradeHeader">
@@ -796,7 +783,7 @@
       </xsd:element>
       <xsd:element name="governingLaw" type="GoverningLaw" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">TBA</xsd:documentation>
+          <xsd:documentation xml:lang="en">Identification of the law governing the transaction.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="allocations" type="Allocations" minOccurs="0">
@@ -998,7 +985,11 @@
     </xsd:annotation>
     <xsd:sequence>
       <xsd:element name="contractId" type="ContractId" />
-      <xsd:group ref="VersionHistory.model" />
+      <xsd:group ref="VersionHistory.model">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The version of the contract id. The contractId is versioned and not the contract.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:group>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="VersionedTradeId">
@@ -1007,11 +998,17 @@
     </xsd:annotation>
     <xsd:sequence>
       <xsd:element name="tradeId" type="TradeId" />
-      <xsd:group ref="VersionHistory.model" />
+      <xsd:group ref="VersionHistory.model">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The version of the trade id. The tradeId is versioned and not the trade.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:group>
     </xsd:sequence>
   </xsd:complexType>
-<!--Standard Attributes-->
-  <xsd:attributeGroup name="StandardAttributes.atts">
+  <xsd:attributeGroup name="VersionAttributes.atts">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Set of attributes that define versioning information.</xsd:documentation>
+    </xsd:annotation>
     <xsd:attribute name="version" use="required">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Indicate which version of the FpML Schema an FpML message adheres to.</xsd:documentation>
@@ -1027,12 +1024,12 @@
     </xsd:attribute>
     <xsd:attribute name="expectedBuild" type="xsd:positiveInteger">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">The message creator can send the build number of the schema on which they built the messages against.</xsd:documentation>
+        <xsd:documentation xml:lang="en">This optional attribute can be supplied by a message creator in an FpML instance to specify which build number of the schema was used to define the message when it was generated.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="actualBuild" fixed="3" type="xsd:positiveInteger">
+    <xsd:attribute name="actualBuild" fixed="7" type="xsd:positiveInteger">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Taken from the schemas that the recipient validated against. Every time there is a change on the schema, validation rules, or examples within a version the actual build number is incremented. If no changes have been made between releases within a version (i.e. from Trial Recommendation to Recommendation) the actual build number stays the same.</xsd:documentation>
+        <xsd:documentation xml:lang="en">The specific build number of this schema version. This attribute is not included in an instance document. Instead, it is supplied by the XML parser when the document is validated against the FpML schema and indicates the build number of the schema file. Every time FpML publishes a change to the schema, validation rules, or examples within a version (e.g., version 4.2) the actual build number is incremented. If no changes have been made between releases within a version (i.e. from Trial Recommendation to Recommendation) the actual build number stays the same.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:attributeGroup>
@@ -1113,9 +1110,15 @@
     </xsd:sequence>
   </xsd:group>
   <xsd:group name="ContractNovationDetails.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Model group with Contract Novation element content.</xsd:documentation>
+    </xsd:annotation>
     <xsd:sequence>
       <xsd:choice>
         <xsd:choice>
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Choice between identification and representation of the new contract.</xsd:documentation>
+          </xsd:annotation>
           <xsd:element name="newContractReference" type="ContractReference">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Indicates a reference to the new Contract between the transferee and the remaining party.</xsd:documentation>
@@ -1128,6 +1131,9 @@
           </xsd:element>
         </xsd:choice>
         <xsd:sequence>
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Choice between identification and representation of the old contract.</xsd:documentation>
+          </xsd:annotation>
           <xsd:choice>
             <xsd:element name="oldContractReference" type="ContractReference">
               <xsd:annotation>
@@ -1141,6 +1147,9 @@
             </xsd:element>
           </xsd:choice>
           <xsd:choice minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Choice between identification and representation of the new contract.</xsd:documentation>
+            </xsd:annotation>
             <xsd:element name="newContractReference" type="ContractReference" />
             <xsd:element name="newContract" type="Contract" />
           </xsd:choice>
@@ -1177,6 +1186,9 @@
         </xsd:annotation>
       </xsd:element>
       <xsd:choice>
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Choice for expressing the novated amount as either a money amount, number of options, or number of units, according the the financial product which is being novated.</xsd:documentation>
+        </xsd:annotation>
         <xsd:element name="novatedAmount" type="Money">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">The amount which represents the portion of the Old Contract being novated.</xsd:documentation>
@@ -1226,6 +1238,9 @@
     </xsd:sequence>
   </xsd:group>
   <xsd:group name="ContractOrContractReference.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Choice between identification and representation of the contract.</xsd:documentation>
+    </xsd:annotation>
     <xsd:choice>
       <xsd:element name="contract" type="Contract">
         <xsd:annotation>
@@ -1280,6 +1295,9 @@
     </xsd:sequence>
   </xsd:group>
   <xsd:group name="TradeOrTradeReference.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Choice between identification and representation of trade execution.</xsd:documentation>
+    </xsd:annotation>
     <xsd:choice>
       <xsd:element name="trade" type="Trade">
         <xsd:annotation>

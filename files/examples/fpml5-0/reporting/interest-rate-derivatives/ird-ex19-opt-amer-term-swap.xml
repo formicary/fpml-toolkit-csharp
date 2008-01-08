@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is reporting-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/reporting-->
+<!--Omit some adjustments, details of procedures, and other information not required for a report-->
+<dataDocument xmlns="http://www.fpml.org/FpML-5-0/reporting" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/reporting ../fpml-main-5-0.xsd">
+  <trade>
+    <tradeHeader>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.partyA.com/trade-id">123</tradeId>
+      </partyTradeIdentifier>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.partyB.com/trade-id">123</tradeId>
+      </partyTradeIdentifier>
+      <tradeDate>2001-04-29-00:00</tradeDate>
+    </tradeHeader>
+    <swap>
+      <swapStream>
+        <payerPartyReference href="party1" />
+        <calculationPeriodDates id="CalcPeriodDates0">
+          <terminationDate>
+            <unadjustedDate>2011-08-30-00:00</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>MODFOLLOWING</businessDayConvention>
+              <businessCenters id="accrualBusinessCenters0">
+                <businessCenter>EUTA</businessCenter>
+              </businessCenters>
+            </dateAdjustments>
+          </terminationDate>
+          <calculationPeriodDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+          </calculationPeriodDatesAdjustments>
+          <calculationPeriodFrequency>
+            <periodMultiplier>1</periodMultiplier>
+            <period>Y</period>
+          </calculationPeriodFrequency>
+        </calculationPeriodDates>
+        <paymentDates>
+          <paymentFrequency>
+            <periodMultiplier>1</periodMultiplier>
+            <period>Y</period>
+          </paymentFrequency>
+          <paymentDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCenters id="paymentBusinessCenters0">
+              <businessCenter>EUTA</businessCenter>
+            </businessCenters>
+          </paymentDatesAdjustments>
+        </paymentDates>
+        <calculationPeriodAmount>
+          <calculation>
+            <notionalSchedule>
+              <notionalStepSchedule>
+                <initialValue>100000000</initialValue>
+                <currency>EUR</currency>
+              </notionalStepSchedule>
+            </notionalSchedule>
+            <fixedRateSchedule>
+              <initialValue>0.05</initialValue>
+            </fixedRateSchedule>
+            <dayCountFraction>30/360</dayCountFraction>
+          </calculation>
+        </calculationPeriodAmount>
+      </swapStream>
+      <swapStream>
+        <payerPartyReference href="party2" />
+        <calculationPeriodDates id="CalcPeriodDates1">
+          <calculationPeriodDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+          </calculationPeriodDatesAdjustments>
+          <calculationPeriodFrequency>
+            <periodMultiplier>6</periodMultiplier>
+            <period>M</period>
+          </calculationPeriodFrequency>
+        </calculationPeriodDates>
+        <paymentDates>
+          <paymentFrequency>
+            <periodMultiplier>6</periodMultiplier>
+            <period>M</period>
+          </paymentFrequency>
+          <paymentDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCenters id="paymentBusinessCenters1">
+              <businessCenter>EUTA</businessCenter>
+            </businessCenters>
+          </paymentDatesAdjustments>
+        </paymentDates>
+        <resetDates id="resetDates0">
+          <resetFrequency>
+            <periodMultiplier>6</periodMultiplier>
+            <period>M</period>
+          </resetFrequency>
+          <resetDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+          </resetDatesAdjustments>
+        </resetDates>
+        <calculationPeriodAmount>
+          <calculation>
+            <notionalSchedule>
+              <notionalStepSchedule>
+                <initialValue>100000000</initialValue>
+                <currency>EUR</currency>
+              </notionalStepSchedule>
+            </notionalSchedule>
+            <floatingRateCalculation>
+              <floatingRateIndex>EUR-EURIBOR-Telerate</floatingRateIndex>
+              <indexTenor>
+                <periodMultiplier>6</periodMultiplier>
+                <period>M</period>
+              </indexTenor>
+            </floatingRateCalculation>
+            <dayCountFraction>ACT/360</dayCountFraction>
+          </calculation>
+        </calculationPeriodAmount>
+      </swapStream>
+      <earlyTerminationProvision>
+        <optionalEarlyTermination>
+          <americanExercise>
+            <commencementDate>
+              <relativeDate>
+                <periodMultiplier>-5</periodMultiplier>
+                <period>D</period>
+                <dayType>Business</dayType>
+                <businessDayConvention>NONE</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>EUTA</businessCenter>
+                </businessCenters>
+                <dateRelativeTo href="cashSettlementPayment0" />
+              </relativeDate>
+            </commencementDate>
+            <expirationDate>
+              <relativeDate>
+                <periodMultiplier>-5</periodMultiplier>
+                <period>D</period>
+                <dayType>Business</dayType>
+                <businessDayConvention>NONE</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>EUTA</businessCenter>
+                </businessCenters>
+                <dateRelativeTo href="cashSettlementPayment0" />
+              </relativeDate>
+            </expirationDate>
+          </americanExercise>
+          <cashSettlement>
+            <cashSettlementValuationDate>
+              <periodMultiplier>-2</periodMultiplier>
+              <period>D</period>
+              <dayType>Business</dayType>
+              <businessDayConvention>NONE</businessDayConvention>
+              <businessCenters>
+                <businessCenter>EUTA</businessCenter>
+              </businessCenters>
+              <dateRelativeTo href="cashSettlementPayment0" />
+            </cashSettlementValuationDate>
+            <cashSettlementPaymentDate id="cashSettlementPayment0">
+              <businessDateRange>
+                <unadjustedFirstDate>2001-08-30-00:00</unadjustedFirstDate>
+                <unadjustedLastDate>2006-08-30-00:00</unadjustedLastDate>
+                <businessDayConvention>FOLLOWING</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>GBLO</businessCenter>
+                  <businessCenter>EUTA</businessCenter>
+                </businessCenters>
+              </businessDateRange>
+            </cashSettlementPaymentDate>
+            <cashPriceMethod>
+              <cashSettlementCurrency>EUR</cashSettlementCurrency>
+              <quotationRateType>Mid</quotationRateType>
+            </cashPriceMethod>
+          </cashSettlement>
+        </optionalEarlyTermination>
+      </earlyTerminationProvision>
+    </swap>
+  </trade>
+  <party id="party1">
+    <partyId>party A</partyId>
+  </party>
+  <party id="party2">
+    <partyId>party B</partyId>
+  </party>
+</dataDocument>
+

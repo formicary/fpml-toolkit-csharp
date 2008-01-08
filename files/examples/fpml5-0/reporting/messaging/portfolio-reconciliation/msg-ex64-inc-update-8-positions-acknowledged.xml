@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is reporting-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/reporting-->
+<!--Omit some adjustments, details of procedures, and other information not required for a report-->
+<positionsAcknowledged xmlns="http://www.fpml.org/FpML-5-0/reporting" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/reporting ../../fpml-main-5-0.xsd">
+<!--
+8. RECSERV acknowledges the position
+-->
+  <header>
+    <messageId messageIdScheme="http://www.recserv.com/mid">MSG0005</messageId>
+    <inReplyTo messageIdScheme="http://www.hedgeco.com/mid">HDG0001</inReplyTo>
+    <sentBy>RECSERV</sentBy>
+    <sendTo>HEDGUS33</sendTo>
+    <creationTimestamp>2006-04-27T15:48:01-00:00</creationTimestamp>
+  </header>
+  <portfolio>
+    <portfolioName>fundPortfolio1</portfolioName>
+    <asOfDate>2006-04-25-00:00</asOfDate>
+    <definingParty href="fund" />
+    <matchingParty href="dealer" />
+  </portfolio>
+  <definedPosition>
+    <positionId positionIdScheme="http://www.hedgeco.com/positionId">MyPos-01</positionId>
+    <version>1</version>
+  </definedPosition>
+  <party id="dealer">
+    <partyId>ABCDUS33</partyId>
+    <partyName>ABCD Securities Inc.</partyName>
+  </party>
+  <party id="fund">
+    <partyId>HEGDUS33</partyId>
+    <partyName>HedgeCo Capital L.L.C.</partyName>
+  </party>
+</positionsAcknowledged>
+

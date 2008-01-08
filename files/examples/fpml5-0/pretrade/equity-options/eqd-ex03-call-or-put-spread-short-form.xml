@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is pretrade-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/pretrade-->
+<!--Omit notional amounts, prices, adjustments, and other information not required for an RFQ-->
+<requestQuote xmlns="http://www.fpml.org/FpML-5-0/pretrade" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/pretrade ../fpml-main-5-0.xsd">
+  <header>
+    <conversationId conversationIdScheme="http://www.partyA.com/conversationId/OTC">OTCCallorPutSpread45678</conversationId>
+    <messageId messageIdScheme="http://www.partyA.com/messageId/OTC">OTCCallorPutSpread456a789b</messageId>
+    <sentBy partyIdScheme="http://www.MsgParty.com/partyId">Party A</sentBy>
+    <creationTimestamp>2000-08-01T08:57:00-00:00</creationTimestamp>
+  </header>
+  <brokerEquityOption>
+    <productType>putSpread</productType>
+    <optionType>Put</optionType>
+    <underlyer>
+      <singleUnderlyer>
+        <equity>
+          <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">STM-FP</instrumentId>
+          <description>STMicroelectronics N.V. ordinary shares</description>
+          <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">NSE</exchangeId>
+        </equity>
+      </singleUnderlyer>
+    </underlyer>
+    <equityExercise>
+      <equityAmericanExercise>
+        <commencementDate>
+          <adjustableDate>
+            <unadjustedDate>2001-07-13-00:00</unadjustedDate>
+          </adjustableDate>
+        </commencementDate>
+        <expirationDate>
+          <adjustableDate>
+            <unadjustedDate>2001-09-27-00:00</unadjustedDate>
+          </adjustableDate>
+        </expirationDate>
+      </equityAmericanExercise>
+      <automaticExercise>true</automaticExercise>
+      <settlementCurrency>EUR</settlementCurrency>
+    </equityExercise>
+    <strategyFeature>
+      <strikeSpread>
+        <upperStrike>
+          <strikePrice>38.00</strikePrice>
+        </upperStrike>
+        <upperStrikeNumberOfOptions>15000</upperStrikeNumberOfOptions>
+      </strikeSpread>
+    </strategyFeature>
+    <spotPrice>30.00</spotPrice>
+    <equityPremium>
+      <paymentAmount>
+        <currency>EUR</currency>
+      </paymentAmount>
+      <paymentDate>
+        <unadjustedDate>2001-07-17-00:00</unadjustedDate>
+      </paymentDate>
+      <pricePerOption>
+        <currency>EUR</currency>
+      </pricePerOption>
+    </equityPremium>
+    <deltaCrossed>false</deltaCrossed>
+    <brokerageFee>
+      <currency>EUR</currency>
+    </brokerageFee>
+    <brokerNotes>Broker Notes regarding trade</brokerNotes>
+  </brokerEquityOption>
+</requestQuote>
+

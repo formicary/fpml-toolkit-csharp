@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is reporting-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/reporting-->
+<!--Omit some adjustments, details of procedures, and other information not required for a report-->
+<valuationDocument xmlns="http://www.fpml.org/FpML-5-0/reporting" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/reporting ../fpml-main-5-0.xsd">
+<!--Portfolio of trades -->
+  <portfolio id="port1">
+    <tradeId id="tid-1" tradeIdScheme="http://party1.com/tids">1234</tradeId>
+    <tradeId id="tid-2" tradeIdScheme="http://party1.com/tids">2345</tradeId>
+    <tradeId id="tid-3" tradeIdScheme="http://party1.com/tids">3456</tradeId>
+  </portfolio>
+  <party id="party1">
+    <partyId>ABCDEF</partyId>
+  </party>
+<!--Valuation Set (report)-->
+  <valuationSet id="val1">
+    <valuationScenario id="valscen1">
+      <name>EOD Valuation</name>
+      <valuationDate>2003-10-29-00:00</valuationDate>
+    </valuationScenario>
+    <baseParty href="party1" />
+    <quotationCharacteristics>
+      <side>Mid</side>
+    </quotationCharacteristics>
+<!--results for trade #1-->
+    <assetValuation>
+      <objectReference href="tid-1" />
+<!--quote value and NPV-->
+      <quote>
+        <value>123000</value>
+        <measureType>NPV</measureType>
+        <currency>USD</currency>
+      </quote>
+      <quote>
+        <value>10000</value>
+        <measureType>Cash</measureType>
+        <currency>USD</currency>
+        <cashFlowType>Coupon</cashFlowType>
+      </quote>
+    </assetValuation>
+<!--results for trade #2-->
+    <assetValuation>
+      <objectReference href="tid-2" />
+<!--quote value and NPV-->
+      <quote>
+        <value>456000</value>
+        <measureType>NPV</measureType>
+        <currency>EUR</currency>
+      </quote>
+      <quote>
+        <value>5000</value>
+        <measureType>Cash</measureType>
+        <currency>USD</currency>
+        <cashFlowType>Fee</cashFlowType>
+      </quote>
+      <quote />
+    </assetValuation>
+<!--results for trade #3-->
+    <assetValuation>
+      <objectReference href="tid-3" />
+      <quote>
+        <value>789000</value>
+        <measureType>NPV</measureType>
+        <currency>USD</currency>
+      </quote>
+    </assetValuation>
+  </valuationSet>
+</valuationDocument>
+

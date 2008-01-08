@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is pretrade-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/pretrade-->
+<!--Omit notional amounts, prices, adjustments, and other information not required for an RFQ-->
+<requestQuote xmlns="http://www.fpml.org/FpML-5-0/pretrade" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/pretrade ../fpml-main-5-0.xsd">
+  <header>
+    <messageId messageIdScheme="http://www.example.com/messageId">MS/2003/04/02/15-38</messageId>
+    <sentBy>PartyAXXX</sentBy>
+    <sendTo>PartyBXXX</sendTo>
+    <creationTimestamp>2006-04-02T15:38:00-00:00</creationTimestamp>
+  </header>
+  <equityForward>
+    <productType>forwardStock</productType>
+    <optionType>Forward</optionType>
+    <underlyer>
+      <singleUnderlyer>
+        <equity>
+          <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">STM-FP</instrumentId>
+          <description>STMicroelectronics N.V. ordinary shares</description>
+          <currency>EUR</currency>
+          <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">NSE</exchangeId>
+        </equity>
+      </singleUnderlyer>
+    </underlyer>
+    <equityExercise>
+      <equityEuropeanExercise>
+        <expirationDate>
+          <adjustableDate>
+            <unadjustedDate>2004-07-13-00:00</unadjustedDate>
+          </adjustableDate>
+        </expirationDate>
+      </equityEuropeanExercise>
+      <settlementCurrency>EUR</settlementCurrency>
+    </equityExercise>
+    <equityFeatures>
+      <asian>
+        <averagingInOut>Out</averagingInOut>
+        <averagingPeriodOut>
+          <averagingDateTimes>
+            <dateTime>2000-08-01T08:57:00-00:00</dateTime>
+            <dateTime>2000-09-01T08:57:00-00:00</dateTime>
+            <dateTime>2000-10-01T08:57:00-00:00</dateTime>
+            <dateTime>2000-11-01T08:57:00-00:00</dateTime>
+            <dateTime>2000-12-01T08:57:00-00:00</dateTime>
+            <dateTime>2001-01-04T08:57:00-00:00</dateTime>
+            <dateTime>2001-02-01T08:57:00-00:00</dateTime>
+            <dateTime>2001-03-01T08:57:00-00:00</dateTime>
+          </averagingDateTimes>
+        </averagingPeriodOut>
+      </asian>
+    </equityFeatures>
+    <forwardPrice>
+      <currency>EUR</currency>
+    </forwardPrice>
+  </equityForward>
+</requestQuote>
+

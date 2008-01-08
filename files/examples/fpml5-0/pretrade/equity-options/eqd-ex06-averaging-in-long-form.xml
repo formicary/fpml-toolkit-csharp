@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is pretrade-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/pretrade-->
+<!--Omit notional amounts, prices, adjustments, and other information not required for an RFQ-->
+<requestQuote xmlns="http://www.fpml.org/FpML-5-0/pretrade" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/pretrade ../fpml-main-5-0.xsd">
+  <header>
+    <conversationId conversationIdScheme="http://www.example.com/conversationId">CS/2006/04/02/32-02</conversationId>
+    <messageId messageIdScheme="http://www.example.com/messageId">MS/2006/04/02/15-05</messageId>
+    <sentBy>PARTYABICXXX</sentBy>
+    <sendTo>PARTYBBICXXX</sendTo>
+    <creationTimestamp>2006-04-02T15:38:00-00:00</creationTimestamp>
+  </header>
+  <equityOption>
+    <productType>europeanCallIndex</productType>
+    <optionType>Call</optionType>
+    <underlyer>
+      <singleUnderlyer>
+        <index>
+          <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">.N225</instrumentId>
+          <description>NIKKEI 225 INDEX</description>
+          <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">TSE</exchangeId>
+          <relatedExchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">OSE</relatedExchangeId>
+        </index>
+      </singleUnderlyer>
+    </underlyer>
+    <equityExercise>
+      <equityEuropeanExercise>
+        <expirationDate>
+          <adjustableDate>
+            <unadjustedDate>2002-07-01-00:00</unadjustedDate>
+          </adjustableDate>
+        </expirationDate>
+      </equityEuropeanExercise>
+      <automaticExercise>true</automaticExercise>
+      <settlementCurrency>EUR</settlementCurrency>
+    </equityExercise>
+    <fxFeature>
+      <referenceCurrency>JPY</referenceCurrency>
+      <composite />
+    </fxFeature>
+    <equityFeatures>
+      <asian>
+        <averagingInOut>In</averagingInOut>
+        <averagingPeriodIn>
+          <averagingDateTimes>
+            <dateTime>2000-08-01T08:57:00-00:00</dateTime>
+            <dateTime>2000-09-01T08:57:00-00:00</dateTime>
+            <dateTime>2000-10-01T08:57:00-00:00</dateTime>
+            <dateTime>2000-11-01T08:57:00-00:00</dateTime>
+            <dateTime>2000-12-01T08:57:00-00:00</dateTime>
+            <dateTime>2001-01-04T08:57:00-00:00</dateTime>
+            <dateTime>2001-02-01T08:57:00-00:00</dateTime>
+            <dateTime>2001-03-01T08:57:00-00:00</dateTime>
+          </averagingDateTimes>
+        </averagingPeriodIn>
+      </asian>
+    </equityFeatures>
+    <equityPremium>
+      <paymentAmount>
+        <currency>EUR</currency>
+      </paymentAmount>
+      <paymentDate>
+        <unadjustedDate>2000-07-03-00:00</unadjustedDate>
+      </paymentDate>
+      <pricePerOption>
+        <currency>EUR</currency>
+      </pricePerOption>
+    </equityPremium>
+  </equityOption>
+</requestQuote>
+

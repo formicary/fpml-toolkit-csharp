@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is reporting-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/reporting-->
+<!--Omit some adjustments, details of procedures, and other information not required for a report-->
+<dataDocument xmlns="http://www.fpml.org/FpML-5-0/reporting" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/reporting ../fpml-main-5-0.xsd">
+  <trade>
+    <tradeHeader>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://xml.morganstanley.com/fid/ird/msTradeIdScheme/swapName">martin</tradeId>
+      </partyTradeIdentifier>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://xml.morganstanley.com/fid/ird/counterpartyTradeIdScheme" />
+      </partyTradeIdentifier>
+      <tradeDate id="tradeDate">2005-07-31-00:00</tradeDate>
+    </tradeHeader>
+    <swap>
+      <productType>swap</productType>
+      <swapStream id="swapStream_0_0">
+        <payerPartyReference href="party1" />
+        <calculationPeriodDates id="calculationPeriodDates_0_0">
+          <relativeEffectiveDate id="effectiveDate_0_0">
+            <periodMultiplier>2</periodMultiplier>
+            <period>D</period>
+            <dayType>Business</dayType>
+            <businessDayConvention>NONE</businessDayConvention>
+            <businessCenters>
+              <businessCenter>GBLO</businessCenter>
+            </businessCenters>
+            <dateRelativeTo href="tradeDate" />
+            <relativeDateAdjustments>
+              <businessDayConvention>MODFOLLOWING</businessDayConvention>
+              <businessCenters>
+                <businessCenter>GBLO</businessCenter>
+                <businessCenter>USNY</businessCenter>
+              </businessCenters>
+            </relativeDateAdjustments>
+          </relativeEffectiveDate>
+          <relativeTerminationDate id="terminationDate_0_0">
+            <periodMultiplier>2</periodMultiplier>
+            <period>Y</period>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCenters>
+              <businessCenter>GBLO</businessCenter>
+              <businessCenter>USNY</businessCenter>
+            </businessCenters>
+            <dateRelativeTo href="effectiveDate_0_0" />
+          </relativeTerminationDate>
+          <calculationPeriodDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCenters>
+              <businessCenter>GBLO</businessCenter>
+              <businessCenter>USNY</businessCenter>
+            </businessCenters>
+          </calculationPeriodDatesAdjustments>
+          <calculationPeriodFrequency>
+            <periodMultiplier>6</periodMultiplier>
+            <period>M</period>
+          </calculationPeriodFrequency>
+        </calculationPeriodDates>
+        <paymentDates>
+          <paymentFrequency>
+            <periodMultiplier>6</periodMultiplier>
+            <period>M</period>
+          </paymentFrequency>
+          <paymentDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCenters>
+              <businessCenter>GBLO</businessCenter>
+              <businessCenter>USNY</businessCenter>
+            </businessCenters>
+          </paymentDatesAdjustments>
+        </paymentDates>
+        <calculationPeriodAmount>
+          <calculation>
+            <notionalSchedule id="notionalSchedule_0_0">
+              <notionalStepSchedule>
+                <initialValue>100000000</initialValue>
+                <currency>USD</currency>
+              </notionalStepSchedule>
+            </notionalSchedule>
+            <fixedRateSchedule>
+              <initialValue>0.0003</initialValue>
+            </fixedRateSchedule>
+            <dayCountFraction>30/360</dayCountFraction>
+          </calculation>
+        </calculationPeriodAmount>
+        <principalExchanges>
+          <initialExchange>false</initialExchange>
+          <finalExchange>false</finalExchange>
+          <intermediateExchange>false</intermediateExchange>
+        </principalExchanges>
+      </swapStream>
+      <swapStream id="swapStream_0_1">
+        <payerPartyReference href="party2" />
+        <calculationPeriodDates id="calculationPeriodDates_0_1">
+          <relativeEffectiveDate id="effectiveDate_0_1">
+            <periodMultiplier>2</periodMultiplier>
+            <period>D</period>
+            <dayType>Business</dayType>
+            <businessDayConvention>NONE</businessDayConvention>
+            <businessCenters>
+              <businessCenter>GBLO</businessCenter>
+            </businessCenters>
+            <dateRelativeTo href="tradeDate" />
+            <relativeDateAdjustments>
+              <businessDayConvention>MODFOLLOWING</businessDayConvention>
+              <businessCenters>
+                <businessCenter>GBLO</businessCenter>
+                <businessCenter>USNY</businessCenter>
+              </businessCenters>
+            </relativeDateAdjustments>
+          </relativeEffectiveDate>
+          <relativeTerminationDate id="terminationDate_0_1">
+            <periodMultiplier>2</periodMultiplier>
+            <period>Y</period>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCenters>
+              <businessCenter>GBLO</businessCenter>
+              <businessCenter>USNY</businessCenter>
+            </businessCenters>
+            <dateRelativeTo href="effectiveDate_0_1" />
+          </relativeTerminationDate>
+          <calculationPeriodDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCenters>
+              <businessCenter>GBLO</businessCenter>
+              <businessCenter>USNY</businessCenter>
+            </businessCenters>
+          </calculationPeriodDatesAdjustments>
+          <calculationPeriodFrequency>
+            <periodMultiplier>3</periodMultiplier>
+            <period>M</period>
+          </calculationPeriodFrequency>
+        </calculationPeriodDates>
+        <paymentDates>
+          <paymentFrequency>
+            <periodMultiplier>6</periodMultiplier>
+            <period>M</period>
+          </paymentFrequency>
+          <paymentDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCenters>
+              <businessCenter>GBLO</businessCenter>
+              <businessCenter>USNY</businessCenter>
+            </businessCenters>
+          </paymentDatesAdjustments>
+        </paymentDates>
+        <resetDates id="resetDates_0_1">
+          <resetFrequency>
+            <periodMultiplier>1</periodMultiplier>
+            <period>M</period>
+          </resetFrequency>
+          <resetDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCenters>
+              <businessCenter>GBLO</businessCenter>
+            </businessCenters>
+          </resetDatesAdjustments>
+        </resetDates>
+        <calculationPeriodAmount>
+          <calculation>
+            <notionalSchedule id="notionalSchedule_0_1">
+              <notionalStepSchedule>
+                <initialValue>100000000</initialValue>
+                <currency>USD</currency>
+              </notionalStepSchedule>
+            </notionalSchedule>
+            <floatingRateCalculation>
+              <floatingRateIndex>USD-LIBOR-BBA</floatingRateIndex>
+              <indexTenor>
+                <periodMultiplier>6</periodMultiplier>
+                <period>M</period>
+              </indexTenor>
+            </floatingRateCalculation>
+            <dayCountFraction>ACT/360</dayCountFraction>
+            <compoundingMethod>Straight</compoundingMethod>
+          </calculation>
+        </calculationPeriodAmount>
+        <principalExchanges>
+          <initialExchange>false</initialExchange>
+          <finalExchange>false</finalExchange>
+          <intermediateExchange>false</intermediateExchange>
+        </principalExchanges>
+      </swapStream>
+    </swap>
+  </trade>
+  <party id="party1">
+    <partyId>0103</partyId>
+    <partyName>MarketProducts</partyName>
+  </party>
+  <party id="party2">
+    <partyId>0617mpm24</partyId>
+  </party>
+</dataDocument>
+

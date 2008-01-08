@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is pretrade-->
+<!--Version is 5-0-->
+<!--NS is http://www.fpml.org/FpML-5-0/pretrade-->
+<!--Omit notional amounts, prices, adjustments, and other information not required for an RFQ-->
+<requestQuote xmlns="http://www.fpml.org/FpML-5-0/pretrade" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-0" xsi:schemaLocation="http://www.fpml.org/FpML-5-0/pretrade ../fpml-main-5-0.xsd">
+  <header>
+    <messageId messageIdScheme="http://www.fpml.org/msg-id">123</messageId>
+    <sentBy>DEF</sentBy>
+    <sendTo>ABC</sendTo>
+    <creationTimestamp>2007-04-02T15:38:00-00:00</creationTimestamp>
+  </header>
+  <swap>
+<!-- Morgan Stanley Dean Witter pays the floating rate quarterly,
+            based on 3M USD-LIBOR-BBA reset in arrears, on an ACT/360 basis. -->
+    <swapStream>
+      <calculationPeriodDates id="floatingCalcPeriodDates">
+        <terminationDate>
+          <unadjustedDate>2002-04-27-00:00</unadjustedDate>
+        </terminationDate>
+      </calculationPeriodDates>
+      <calculationPeriodAmount>
+        <calculation>
+          <notionalSchedule>
+            <notionalStepSchedule>
+              <currency>USD</currency>
+            </notionalStepSchedule>
+          </notionalSchedule>
+          <floatingRateCalculation>
+            <floatingRateIndex>USD-LIBOR-BBA</floatingRateIndex>
+            <indexTenor>
+              <periodMultiplier>3</periodMultiplier>
+              <period>M</period>
+            </indexTenor>
+          </floatingRateCalculation>
+          <dayCountFraction>ACT/360</dayCountFraction>
+        </calculation>
+      </calculationPeriodAmount>
+    </swapStream>
+<!-- JPMorgan pays a 6.0% fixed rate semi-annually on a 30/360
+            basis for the first year and a fixed rate of 6.5% for the
+            final year -->
+    <swapStream>
+      <calculationPeriodDates id="fixedCalcPeriodDates">
+        <calculationPeriodFrequency>
+          <periodMultiplier>6</periodMultiplier>
+          <period>M</period>
+        </calculationPeriodFrequency>
+      </calculationPeriodDates>
+      <calculationPeriodAmount>
+        <calculation>
+          <notionalSchedule>
+            <notionalStepSchedule>
+              <currency>USD</currency>
+            </notionalStepSchedule>
+          </notionalSchedule>
+          <fixedRateSchedule>
+            <step>
+              <stepDate>2001-04-27-00:00</stepDate>
+              <stepValue>0.065</stepValue>
+            </step>
+          </fixedRateSchedule>
+          <dayCountFraction>30/360</dayCountFraction>
+        </calculation>
+      </calculationPeriodAmount>
+    </swapStream>
+  </swap>
+</requestQuote>
+

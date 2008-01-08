@@ -2,13 +2,12 @@
 <!-- 
 == Copyright (c) 2002-2006. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
-== A copy of this license is available at http://www.fpml.org/documents/license.html
+== A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-3" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-3" version="$Revision: 884 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-3" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-3" version="$Revision: 2597 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:simpleType name="AveragingInOutEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The type of averaging used in an Asian option.</xsd:documentation>
-      <xsd:documentation source="http://www.FpML.org" xml:lang="de">Art der Durchschnittsberechnung.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:token">
       <xsd:enumeration value="In">
@@ -314,6 +313,21 @@
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Total of dividends which go ex, paid on next following Payment Date, which is immediately following the Dividend Period during which the Shares commence trading ex-dividend on the Exchange, or where the date on which the Shares commence trading ex-dividend is a Payment Date, such Payment Date.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
+      <xsd:enumeration value="SharePayment">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">If "Dividend Payment Date(s)" is specified in the Transaction Supplement as "Share Payment", then the Dividend Payment Date in respect of a Dividend Amount shall fall on a date on or before the date that is two (or any other number that is specified in the Transaction Supplement) Currency Business Days following the day on which the Issuer of the Shares pays the relevant dividend to holders of record of the Shares</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CashSettlementPaymentDate">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">If "Dividend Payment Date(s)" is specified in the Transaction Supplement as "Cash Settlement Payment Date", then the Dividend Payment Date in respect of a Dividend Amount shall be the Cash Settlement Payment Date relating to the end of the Dividend Period during which the Shares commenced trading "ex" the relevant dividend on the Exchange</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FloatingAmountPaymentDate">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">If "Dividend Payment Date(s)" is specified in the Transaction Supplement as "Floating Amount Payment Date", then the Dividend Payment Date in respect of a Dividend Amount shall be the first Payment Date falling at least one Settlement Cycle after the date that the Shares have commenced trading "ex" the relevant dividend on the Exchange.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
   <xsd:simpleType name="DividendEntitlementEnum">
@@ -397,7 +411,6 @@
   <xsd:simpleType name="FrequencyTypeEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The schedule frequency type</xsd:documentation>
-      <xsd:documentation source="http://www.FpML.org" xml:lang="de">Art der Zahlungsfrequenz laut Zeitplan.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:token">
       <xsd:enumeration value="Day">
@@ -599,14 +612,29 @@
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">A call option gives the holder the right to buy the underlying asset by a certain date for a certain price.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
-      <xsd:enumeration value="Forward">
+      <xsd:enumeration value="Forward" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="The optionType is to be used if the underlyer does not carry any mention of the resulting trade direction.">
         <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">A forward contract is an agreement to buy or sell the underlying asset at a certain future time for a certain price.</xsd:documentation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">DEPRECATED value which will be removed in FpML-5-0 onwards A forward contract is an agreement to buy or sell the underlying asset at a certain future time for a certain price.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
       <xsd:enumeration value="Put">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">A put option gives the holder the right to sell the underlying asset by a certain date for a certain price.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Payer">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">A payer option</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Receiver">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">A receiver option</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Straddle">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">A straddle strategy.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>
@@ -854,6 +882,28 @@
       <xsd:enumeration value="MoneyMarketYield">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Money Market Yield. Per Annex to the 2000 ISDA Definitions (June 2000 Version), Section 7.3. Certain General Definitions Relating to Floating Rate Options, paragraph (h).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="RealisedVarianceMethodEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">The contract specifies whether which price must satisfy the boundary condition.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Previous">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">For a return on day T, the observed price on T-1 must be in range.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Last">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">For a return on day T, the observed price on T must be in range.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Both">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">For a return on day T, the observed prices on both T and T-1 must be in range</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>

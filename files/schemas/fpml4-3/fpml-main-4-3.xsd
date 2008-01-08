@@ -2,9 +2,9 @@
 <!-- 
 == Copyright (c) 2002-2007. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
-== A copy of this license is available at http://www.fpml.org/documents/license.html
+== A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-3" version="$Revision: 884 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-3" version="$Revision: 2618 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:annotation>
     <xsd:documentation xml:lang="en">products</xsd:documentation>
   </xsd:annotation>
@@ -13,11 +13,10 @@
   <xsd:include schemaLocation="fpml-eqd-4-3.xsd" />
   <xsd:include schemaLocation="fpml-return-swaps-4-3.xsd" />
   <xsd:include schemaLocation="fpml-cd-4-3.xsd" />
-  <xsd:include schemaLocation="fpml-repo-4-3.xsd" />
-  <xsd:annotation>
-    <xsd:documentation xml:lang="en">valuation</xsd:documentation>
-  </xsd:annotation>
-  <xsd:include schemaLocation="fpml-valuation-4-3.xsd" />
+  <xsd:include schemaLocation="fpml-bond-option-4-3.xsd" />
+  <xsd:include schemaLocation="fpml-correlation-swaps-4-3.xsd" />
+  <xsd:include schemaLocation="fpml-dividend-swaps-4-3.xsd" />
+  <xsd:include schemaLocation="fpml-variance-swaps-4-3.xsd" />
   <xsd:annotation>
     <xsd:documentation xml:lang="en">business process messaging</xsd:documentation>
   </xsd:annotation>
