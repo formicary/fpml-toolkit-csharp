@@ -15,6 +15,8 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 
+using log4net;
+
 namespace HandCoded.Meta
 {
 	/// <summary>
@@ -64,6 +66,29 @@ namespace HandCoded.Meta
 		/// Constructs a <b>SchemaRelease</b> instance describing a schema
 		/// based release of a particular <see cref="Specification"/>.
 		/// </summary>
+		/// <remarks>This constructor should be used when creating a description of a
+		/// pure extension schema, i.e. one that contains no useable root elements.</remarks>
+		/// <param name="specification">The owning <see cref="Specification"/>.</param>
+		/// <param name="version">The version identifier for this release.</param>
+		/// <param name="namespaceUri">The namespace used to identify the schema.</param>
+		/// <param name="schemaLocation">The default schema location.</param>
+		/// <param name="preferredPrefix">The preferred prefix for the namespace.</param>
+		/// <param name="alternatePrefix">The alternate prefix for the namespace.</param>
+		/// <param name="initialiser">The <see cref="IInstanceInitialiser"/>.</param>
+		/// <param name="recogniser">The <see cref="ISchemaRecogniser"/>.</param>
+		public SchemaRelease (Specification specification, string version,
+			string namespaceUri, string schemaLocation,
+			string preferredPrefix, string alternatePrefix,
+			IInstanceInitialiser initialiser, ISchemaRecogniser recogniser)
+			: this (specification, version, namespaceUri, schemaLocation,
+					preferredPrefix, alternatePrefix,
+					initialiser, recogniser, (string []) null)
+		{ }
+
+		/// <summary>
+		/// Constructs a <b>SchemaRelease</b> instance describing a schema
+		/// based release of a particular <see cref="Specification"/>.
+		/// </summary>
 		/// <remarks>This constructor should be used when creating a description
 		/// of a schema that has only a single root element.</remarks>
 		/// <param name="specification">The owning <see cref="Specification"/>.</param>
@@ -78,7 +103,33 @@ namespace HandCoded.Meta
 			string preferredPrefix, string alternatePrefix,
 			string rootElement)
 			: this (specification, version, namespaceUri, schemaLocation,
-					preferredPrefix, alternatePrefix, new string [] { rootElement })
+					preferredPrefix, alternatePrefix,
+					new string [] { rootElement })
+		{ }
+
+		/// <summary>
+		/// Constructs a <b>SchemaRelease</b> instance describing a schema
+		/// based release of a particular <see cref="Specification"/>.
+		/// </summary>
+		/// <remarks>This constructor should be used when creating a description
+		/// of a schema that has only a single root element.</remarks>
+		/// <param name="specification">The owning <see cref="Specification"/>.</param>
+		/// <param name="version">The version identifier for this release.</param>
+		/// <param name="namespaceUri">The namespace used to identify the schema.</param>
+		/// <param name="schemaLocation">The default schema location.</param>
+		/// <param name="preferredPrefix">The preferred prefix for the namespace.</param>
+		/// <param name="alternatePrefix">The alternate prefix for the namespace.</param>
+		/// <param name="initialiser">The <see cref="IInstanceInitialiser"/>.</param>
+		/// <param name="recogniser">The <see cref="ISchemaRecogniser"/>.</param>
+		/// <param name="rootElement">The normal root element.</param>
+		public SchemaRelease (Specification specification, string version,
+			string namespaceUri, string schemaLocation,
+			string preferredPrefix, string alternatePrefix,
+			IInstanceInitialiser initialiser, ISchemaRecogniser recogniser,
+			string rootElement)
+			: this (specification, version, namespaceUri, schemaLocation,
+					preferredPrefix, alternatePrefix, initialiser, recogniser,
+					new string [] { rootElement })
 		{ }
 
 		/// <summary>
@@ -98,12 +149,42 @@ namespace HandCoded.Meta
 			string namespaceUri, string schemaLocation,
 			string preferredPrefix, string alternatePrefix,
 			string [] rootElements)
+			: this (specification, version, namespaceUri, schemaLocation,
+					preferredPrefix, alternatePrefix,
+					new DefaultInstanceInitialiser (),
+					new DefaultSchemaRecogniser (),
+					rootElements)
+		{ }
+
+		/// <summary>
+		/// Constructs a <b>SchemaRelease</b> instance describing a schema
+		/// based release of a particular <see cref="Specification"/>.
+		/// </summary>
+		/// <remarks>This constructor should be used when creating a description of a
+		/// schema that has multiple root elements.</remarks>
+		/// <param name="specification">The owning <see cref="Specification"/>.</param>
+		/// <param name="version">The version identifier for this release.</param>
+		/// <param name="namespaceUri">The namespace used to identify the schema.</param>
+		/// <param name="schemaLocation">The default schema location.</param>
+		/// <param name="preferredPrefix">The preferred prefix for the namespace.</param>
+		/// <param name="alternatePrefix">The alternate prefix for the namespace.</param>
+		/// <param name="initialiser">The <see cref="IInstanceInitialiser"/>.</param>
+		/// <param name="recogniser">The <see cref="ISchemaRecogniser"/>.</param>
+		/// <param name="rootElements">The set of possible root elements.</param>
+		public SchemaRelease (Specification specification, string version,
+			string namespaceUri, string schemaLocation,
+			string preferredPrefix, string alternatePrefix,
+			IInstanceInitialiser initialiser, ISchemaRecogniser recogniser,
+			string [] rootElements)
 			: base (specification, version, rootElements)
 		{
 			this.namespaceUri    = namespaceUri;
 			this.schemaLocation  = schemaLocation;
 			this.preferredPrefix = preferredPrefix;
 			this.alternatePrefix = alternatePrefix;
+
+			this.initialiser	= initialiser;
+			this.recogniser		= recogniser;
 		}
 
 		/// <summary>
@@ -164,13 +245,11 @@ namespace HandCoded.Meta
 		/// <see cref="IGrammar"/>, <c>false</c> otherwise.</returns>
 		public override bool IsInstance (XmlDocument document)
 		{
-			XmlElement		element = document.DocumentElement;
+			if (recogniser.Recognises (this, document)) {
+				XmlElement			root = document.DocumentElement;
 
-			if ((element != null) && (element.NamespaceURI.Equals (namespaceUri))) {
-				foreach (string name in RootElements) {
-					if (element.LocalName.Equals (name))
-						return (true);
-				}
+				// TODO: Improve import detection
+				return (true);
 			}
 			return (false);
 		}
@@ -183,12 +262,31 @@ namespace HandCoded.Meta
 		/// <returns>A new <see cref="XmlDocument"/> instance.</returns>
 		public override XmlDocument NewInstance (string rootElement)
 		{
+			List<SchemaRelease>	releases	= new List<SchemaRelease> ();
+			SchemaRelease		mainSchema	= null;
+		
+			FindAllImports (releases);
+			foreach (SchemaRelease	release in releases) {
+				if (release.HasRootElement (rootElement)) {
+					if (mainSchema != null) {
+						log.Fatal ("Multiple schemas define root element '" + rootElement + "'");
+						return (null);
+					}
+					mainSchema = release;
+				}
+			}
+			if (mainSchema == null) {
+				log.Fatal ("No schema recognised '" + rootElement + "' as a root element.");
+				return (null);
+			}
+			
 			XmlDocument		document = new XmlDocument ();
 			XmlElement		element  = document.CreateElement (rootElement, namespaceUri);
 
-			element.SetAttribute ("xmlns",	   NAMESPACES_URL, namespaceUri);
 			element.SetAttribute ("xmlns:xsi", INSTANCE_URL);
-			document.AppendChild (element);
+			
+			foreach (SchemaRelease	release in releases)
+				release.initialiser.Initialise (release, element, release == mainSchema);
 
 			return (document);
 		}
@@ -216,6 +314,12 @@ namespace HandCoded.Meta
 		}
 
 		/// <summary>
+		/// <see cref="ILog"/> instance used to record problems.
+		/// </summary>
+		private static ILog			log
+			= LogManager.GetLogger (typeof (SchemaRelease));
+
+		/// <summary>
 		/// The namespace URI for the schema.
 		/// </summary>
 		private readonly string		namespaceUri;
@@ -236,6 +340,16 @@ namespace HandCoded.Meta
 		private readonly string		alternatePrefix;
 
 		/// <summary>
+		/// The <see cref="IInstanceInitialiser"/> used to build new documents.
+		/// </summary>
+		private readonly IInstanceInitialiser	initialiser;
+
+		/// <summary>
+		/// The <see cref="ISchemaRecogniser"/> used to determine document type.
+		/// </summary>
+		private readonly ISchemaRecogniser		recogniser;
+	
+		/// <summary>
 		/// The set of other <see cref="SchemaRelease"/> instances imported into this
 		/// one.
 		/// </summary>
@@ -252,7 +366,7 @@ namespace HandCoded.Meta
 		/// containing this one and any that it imports with the least
 		/// dependent first.
 		/// </summary>
-		/// <param name="releases">The <see cref="List"/> of matches (so far).</param>
+		/// <param name="releases">The <see cref="List&lt;SchemaRelease&gt;"/> of matches (so far).</param>
 		/// <returns>The updated set of imported releases.</returns>
 		private List<SchemaRelease> FindAllImports (List<SchemaRelease> releases)
 		{

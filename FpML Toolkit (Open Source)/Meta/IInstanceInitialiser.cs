@@ -19,7 +19,7 @@ namespace HandCoded.Meta
     /// An instance of the <b>InstanceInitialiser</b> interface is used to
     /// initialise new schema based <see cref="XmlDocument"/> instances.
     /// </summary>
-    interface IInstanceInitialiser
+    public interface IInstanceInitialiser
     {
         /// <summary>
         /// Initialises a new <see cref="XmlDocument"/> by adding required definitions to

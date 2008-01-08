@@ -1266,7 +1266,7 @@ namespace HandCoded.FpML.Validation
 
 				if (And (
 					Exists (feeDate = XPath.Path (context, "feeLeg", "singlePayment", "adjustablePaymentDate")),
-					Exists (termDate = XPath.Path (context, "generalTerms", "scheduledTerminationDate", "adjustableDate")))) {
+					Exists (termDate = XPath.Path (context, "generalTerms", "scheduledTerminationDate", "adjustableDate", "unadjustedDate")))) {
 					if (Less (feeDate, termDate)) continue;
 
 					errorHandler ("305", context,
@@ -1444,7 +1444,7 @@ namespace HandCoded.FpML.Validation
 
 				Interval	interval	= Interval (XPath.Path (context, "paymentFrequency"));
 
-				if (interval.DividesDates (Date.Parse (firstDate.InnerText), Date.Parse (lastDate.InnerText)))
+				if (interval.DividesDates (ToDate (firstDate), ToDate (lastDate)))
 					continue;
 
 				errorHandler ("305", context,
@@ -1557,7 +1557,7 @@ namespace HandCoded.FpML.Validation
 
 				if ((ccy1 == null) || (ccy2 == null) || (amount == null) || (minimum == null)
 					|| NotEqual (ccy1, ccy2)
-					|| (Double.Parse (amount.InnerText) >= Double.Parse (minimum.InnerText)))
+					|| (ToDouble (amount) >= ToDouble (minimum)))
 					continue;
 
 				errorHandler ("305", context,
@@ -1580,8 +1580,8 @@ namespace HandCoded.FpML.Validation
 		{
 			try {
 				return (new Interval (
-					Int32.Parse (String (XPath.Path (context, "periodMultiplier"))),
-					Period.ForCode (String (XPath.Path (context, "period")))));
+					ToInteger (XPath.Path (context, "periodMultiplier")),
+					Period.ForCode (ToString (XPath.Path (context, "period")))));
 			}
 			catch (Exception) {
 				return (null);

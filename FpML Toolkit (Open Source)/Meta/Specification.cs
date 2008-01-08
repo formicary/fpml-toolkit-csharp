@@ -132,7 +132,7 @@ namespace HandCoded.Meta
 		/// if none exists.</returns>
 		public Release GetReleaseForVersion (String version)
 		{
-			return (releases [version] as Release);
+		    return (releases [version] as Release);
 		}
 
 		/// <summary>
@@ -147,7 +147,7 @@ namespace HandCoded.Meta
 			if (release.Specification != this)
 				throw new ArgumentException ("The provided release is for a different specification", "release");
 
-			releases.Add (release.Version, release);
+			releases [release.Version] = release;
 		}
 
 		/// <summary>

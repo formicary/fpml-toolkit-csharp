@@ -13,7 +13,6 @@
 
 using System;
 using System.Collections.Generic;
-//using System.Text;
 using System.Xml;
 
 namespace HandCoded.Xml.Resolver
@@ -26,7 +25,9 @@ namespace HandCoded.Xml.Resolver
 	public sealed class CatalogManager
 	{
 		/// <summary>
-		/// 
+		/// Creates an <see cref="Catalog"/> instance from the definition held in
+		/// the indicated URL. If the file has been requested previously then the
+		/// cached object is returned.
 		/// </summary>
 		/// <param name="url">The catalog's URI.</param>
 		/// <param name="validate">Determines if the catalog should be validated.</param>
@@ -136,6 +137,13 @@ namespace HandCoded.Xml.Resolver
 			return (catalogs [url] = catalog);
 		}
 
+		/// <summary>
+		/// Creates an <see cref="Catalog"/> instance from the definition held in
+		/// the indicated URL. If the file has been requested previously then the
+		/// cached object is returned.
+		/// </summary>
+		/// <param name="url">The catalog's URI.</param>
+		/// <returns>The <see cref="Catalog"/> instance created from the URL.</returns>
 		public static Catalog Find (String url)
 		{
 			return (Find (url, false));

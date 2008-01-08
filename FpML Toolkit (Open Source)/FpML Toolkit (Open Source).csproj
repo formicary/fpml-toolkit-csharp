@@ -92,7 +92,12 @@
     <Compile Include="Acme\Releases.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Finance\DateTime.cs" />
+    <Compile Include="Finance\Temporal.cs" />
+    <Compile Include="FpML\Meta\FpMLInstanceInitialiser.cs" />
+    <Compile Include="FpML\Meta\FpMLSchemaRecogniser.cs" />
     <Compile Include="Framework\Process.cs" />
+    <Compile Include="Meta\Schema\QualifiedName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -359,6 +364,15 @@
     <Compile Include="Xml\XPath.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Finance\DateValue.cs" />
+    <Compile Include="Finance\IImmutableDate.cs" />
+    <Compile Include="Finance\IImmutableTime.cs" />
+    <Compile Include="Finance\TemporalDate.cs" />
+    <Compile Include="Finance\TimeValue.cs" />
+    <Compile Include="Finance\TimeZone.cs" />
+    <Compile Include="Xml\Types.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

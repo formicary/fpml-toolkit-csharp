@@ -107,14 +107,13 @@ namespace HandCoded.Xml.Resolver
 			return (AddSystem (systemId, uri, null));
 		}
 
-		/**
-		 * Adds a rule to the catalog which will cause a matching system identifier
-		 * to its starting prefix replaced.
-		 *
-		 * @param	startString		The system identifier prefix to match.
-		 * @param	rewritePrefix	The new prefix to replace with.
-		 * @since	TFP 1.0
-		 */
+		/// <summary>
+		/// Adds a rule to the catalog which will cause a matching system identifier
+		/// to its starting prefix replaced.
+		/// </summary>
+		/// <param name="startString">The system identifier prefix to match.</param>
+		/// <param name="rewritePrefix">The new prefix to replace with.</param>
+		/// <returns>The constructed <see cref="RewriteSystemEntry"/> instance.</returns>
 		public RewriteSystemEntry AddRewriteSystem (String startString, String rewritePrefix)
 		{
 			RewriteSystemEntry	result = new RewriteSystemEntry (this, startString, rewritePrefix);
@@ -123,16 +122,15 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 
-		/**
-		 * Adds a rule to the catalog which will direct the resolution for any
-		 * system identifier that starts with the given prefix to a sub-catalog
-		 * file.
-		 *
-		 * @param	startString		The system identifier prefix to match
-		 * @param	catalog			The URI of the sub-catalog.
-		 * @param	xmlbase			Optional xml:base value.
-		 * @since	TFP 1.0
-		 */
+		/// <summary>
+		/// Adds a rule to the catalog which will direct the resolution for any
+		/// system identifier that starts with the given prefix to a sub-catalog
+		/// file.
+		/// </summary>
+		/// <param name="startString">The system identifier prefix to match</param>
+		/// <param name="catalog">The URI of the sub-catalog.</param>
+		/// <param name="xmlbase">Optional xml:base value.</param>
+		/// <returns>The constructed <see cref="DelegateSystemEntry"/> instance.</returns>
 		public DelegateSystemEntry AddDelegateSystem (String startString, String catalog,
 				String xmlbase)
 		{
@@ -142,30 +140,28 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 
-		/**
-		 * Adds a rule to the catalog which will direct the resolution for any
-		 * system identifier that starts with the given prefix to a sub-catalog
-		 * file.
-		 *
-		 * @param	startString		The system identifier prefix to match
-		 * @param	catalog			The URI of the sub-catalog.
-		 * @since	TFP 1.0
-		 */
+		/// <summary>
+		/// Adds a rule to the catalog which will direct the resolution for any
+		/// system identifier that starts with the given prefix to a sub-catalog
+		/// file.
+		/// </summary>
+		/// <param name="startString">The system identifier prefix to match</param>
+		/// <param name="catalog">The URI of the sub-catalog.</param>
+		/// <returns>The constructed <see cref="DelegateSystemEntry"/> instance.</returns>
 		public DelegateSystemEntry AddDelegateSystem (String startString, String catalog)
 		{
 			return (AddDelegateSystem (startString, catalog, null));
 		}
 
-		/**
-		 * Adds a rule to the catalog which will direct the resolution for any
-		 * public identifier that starts with the given prefix to a sub-catalog
-		 * file.
-		 *
-		 * @param	startString		The public identifier prefix to match
-		 * @param	catalog			The URI of the sub-catalog.
-		 * @param	xmlbase			The optional xml:base URI
-		 * @since	TFP 1.0
-		 */
+		/// <summary>
+		/// Adds a rule to the catalog which will direct the resolution for any
+		/// public identifier that starts with the given prefix to a sub-catalog
+		/// file.
+		/// </summary>
+		/// <param name="startString">The public identifier prefix to match</param>
+		/// <param name="catalog">The URI of the sub-catalog.</param>
+		/// <param name="xmlbase">The optional xml:base URI</param>
+		/// <returns>The constructed <see cref="DelegatePublicEntry"/> instance.</returns>
 		public DelegatePublicEntry AddDelegatePublic (String startString, String catalog,
 				String xmlbase)
 		{
@@ -175,20 +171,26 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 
-		/**
-		 * Adds a rule to the catalog which will direct the resolution for any
-		 * public identifier that starts with the given prefix to a sub-catalog
-		 * file.
-		 *
-		 * @param	startString		The public identifier prefix to match
-		 * @param	catalog			The URI of the sub-catalog.
-		 * @since	TFP 1.0
-		 */
+		/// <summary>
+		/// Adds a rule to the catalog which will direct the resolution for any
+		/// public identifier that starts with the given prefix to a sub-catalog
+		/// file.
+		/// </summary>
+		/// <param name="startString">The public identifier prefix to match</param>
+		/// <param name="catalog">The URI of the sub-catalog.</param>
+		/// <returns>The constructed <see cref="DelegatePublicEntry"/> instance.</returns>
 		public DelegatePublicEntry AddDelegatePublic (String startString, String catalog)
 		{
 			return (AddDelegatePublic (startString, catalog, null));
 		}
 		
+		/// <summary>
+		/// Adds a rule to the catalog which performs URI matching.
+		/// </summary>
+		/// <param name="name">The URI to match with.</param>
+		/// <param name="uri">The URI to replace with.</param>
+		/// <param name="xmlbase">The optional xml:base URI</param>
+		/// <returns>The constructed <see cref="UriEntry"/> instance.</returns>
 		public UriEntry AddUri (String name, String uri, String xmlbase)
 		{
 			UriEntry	result  = new UriEntry (this, name, uri, xmlbase);
@@ -197,11 +199,23 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 		
+		/// <summary>
+		/// Adds a rule to the catalog which performs URI matching.
+		/// </summary>
+		/// <param name="name">The URI to match with.</param>
+		/// <param name="uri">The URI to replace with.</param>
+		/// <returns>The constructed <see cref="UriEntry"/> instance.</returns>
 		public UriEntry AddUri (String name, String uri)
 		{
 			return (AddUri (name, uri, null));
 		}
 		
+		/// <summary>
+		/// Adds a rule to the catalog which perform URI rewriting.
+		/// </summary>
+		/// <param name="startString">The prefix string to match with.</param>
+		/// <param name="rewritePrefix">The string to replace matches with.</param>
+		/// <returns>The constructed <see cref="RewriteUriEntry"/> instance.</returns>
 		public RewriteUriEntry AddRewriteUri (String startString, String rewritePrefix)
 		{
 			RewriteUriEntry		result = new RewriteUriEntry (this, startString, rewritePrefix);
@@ -210,6 +224,14 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 		
+		/// <summary>
+		/// Adds a rule with delegates the processing for matched URIs to another
+		/// catalog.
+		/// </summary>
+		/// <param name="startString">The prefix string to match against.</param>
+		/// <param name="catalog">The catalog to delegate to.</param>
+		/// <param name="xmlbase">The optional xml:base URI</param>
+		/// <returns>The constructed <see cref="DelegateUriEntry"/> instance.</returns>
 		public DelegateUriEntry AddDelegateUri (String startString, String catalog, String xmlbase)
 		{
 			DelegateUriEntry	result = new DelegateUriEntry (this, startString, catalog, xmlbase);
@@ -218,22 +240,25 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 		
+		/// <summary>
+		/// Adds a rule with delegates the processing for matched URIs to another
+		/// catalog.
+		/// </summary>
+		/// <param name="startString">The prefix string to match against.</param>
+		/// <param name="catalog">The catalog to delegate to.</param>
+		/// <returns>The constructed <see cref="DelegateUriEntry"/> instance.</returns>
 		public DelegateUriEntry AddDelegateUri (String startString, String catalog)
 		{
 			return (AddDelegateUri (startString, catalog, null));
 		}
 		
-		/**
-		 * Adds a rule which will cause resolution to chain to another catalog
-		 * if no match can be found in this one.
-		 * <P>
-		 * This method is only available to the <CODE>XmlCatalogManager</CODE>
-		 * class.
-		 *
-		 * @param	catalog			The URI of the catalog to chain to.
-		 * @param	xmlbase			The optional xml:base URI
-		 * @since	TFP 1.0
-		 */
+		/// <summary>
+		/// Adds a rule which will cause resolution to chain to another catalog
+		/// if no match can be found in this one.
+		/// </summary>
+		/// <param name="catalog">The URI of the catalog to chain to.</param>
+		/// <param name="xmlbase">The optional xml:base URI</param>
+		/// <returns>The constructed <see cref="NextCatalogEntry"/> instance.</returns>
 		public NextCatalogEntry AddNextCatalog (String catalog, String xmlbase)
 		{
 			NextCatalogEntry	result = new NextCatalogEntry (this, catalog, xmlbase);
@@ -242,21 +267,20 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 
-		/**
-		 * Adds a rule which will cause resolution to chain to another catalog
-		 * if no match can be found in this one.
-		 * <P>
-		 * This method is only available to the <CODE>CatalogManager</CODE>
-		 * class.
-		 *
-		 * @param	catalog			The URI of the catalog to chain to.
-		 * @since	TFP 1.0
-		 */
+		/// <summary>
+		/// Adds a rule which will cause resolution to chain to another catalog
+		/// if no match can be found in this one.
+		/// </summary>
+		/// <param name="catalog">The URI of the catalog to chain to.</param>
+		/// <returns>The constructed <see cref="NextCatalogEntry"/> instance.</returns>
 		public NextCatalogEntry AddNextCatalog (String catalog)
 		{
 			return (AddNextCatalog (catalog, null));
 		}
 
+		/// <summary>
+		/// The list of <see cref="CatalogComponent"/> that make up the group.
+		/// </summary>
 		protected List<CatalogComponent>	rules = new List<CatalogComponent> ();
 
 		/// <summary>
@@ -401,20 +425,17 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 
-		/**
-		 * Applies all the <CODE>RewriteSystemEntry</CODE> rules in the current
-		 * catalog recursing into <CODE>Group</CODE> definitions.
-		 * 
-		 * @param	publicId		The public identifier of the external entity
-		 *							being referenced, or null if none was supplied.
-		 * @param	systemId		The system identifier of the external entity
-		 *							being referenced.
-		 * @param	catalogs		A stack of catalogs being processed used to
-		 *							detect circular dependency.
-		 * @return  The URI of the resolved entity or <CODE>null</CODE>.
-		 * @throws 	SAXException	If an occur was detected during processing.
-		 * @since	TFP 1.0 
-		 */
+		/// <summary>
+		/// Applies all the <see cref="RewriteSystemEntry"/> rules in the current
+		/// catalog recursing into <b>GroupEntry</b> definitions.
+		/// </summary>
+		/// <param name="publicId">The public identifier of the external entity
+		/// being referenced, or null if none was supplied.</param>
+		/// <param name="systemId">The system identifier of the external entity
+		/// being referenced.</param>
+		/// <param name="catalogs">A stack of catalogs being processed used to
+		/// detect circular dependency.</param>
+		/// <returns>The URI of the resolved entity or <b>null</b>.</returns>
 		private String ApplyRewriteSystemEntries (String publicId, String systemId, Stack<GroupEntry> catalogs)
 		{
 			String		result = null;
@@ -435,20 +456,17 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 
-		/**
-		 * Applies all the <CODE>DelegateSystemEntry</CODE> rules in the current
-		 * catalog recursing into <CODE>Group</CODE> definitions.
-		 * 
-		 * @param	publicId		The public identifier of the external entity
-		 *							being referenced, or null if none was supplied.
-		 * @param	systemId		The system identifier of the external entity
-		 *							being referenced.
-		 * @param	catalogs		A stack of catalogs being processed used to
-		 *							detect circular dependency.
-		 * @return  The URI of the resolved entity or <CODE>null</CODE>.
-		 * @throws 	SAXException	If an occur was detected during processing.
-		 * @since	TFP 1.0 
-		 */
+		/// <summary>
+		/// Applies all the <see cref="DelegateSystemEntry"/> rules in the current
+		/// catalog recursing into <b>GroupEntry</b> definitions.
+		/// </summary>
+		/// <param name="publicId">The public identifier of the external entity
+		/// being referenced, or null if none was supplied.</param>
+		/// <param name="systemId">The system identifier of the external entity
+		/// being referenced.</param>
+		/// <param name="catalogs">A stack of catalogs being processed used to
+		/// detect circular dependency.</param>
+		/// <returns>The URI of the resolved entity or <b>null</b>.</returns>
 		private String ApplyDelegateSystemEntries (String publicId, String systemId, Stack<GroupEntry> catalogs)
 		{
 			String		result = null;
@@ -469,20 +487,17 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 
-		/**
-		 * Applies all the <CODE>PublicEntry</CODE> rules in the current
-		 * catalog recursing into <CODE>Group</CODE> definitions.
-		 * 
-		 * @param	publicId		The public identifier of the external entity
-		 *							being referenced, or null if none was supplied.
-		 * @param	systemId		The system identifier of the external entity
-		 *							being referenced.
-		 * @param	catalogs		A stack of catalogs being processed used to
-		 *							detect circular dependency.
-		 * @return  The URI of the resolved entity or <CODE>null</CODE>.
-		 * @throws 	SAXException	If an occur was detected during processing.
-		 * @since	TFP 1.0 
-		 */
+		/// <summary>
+		/// Applies all the <see cref="PublicEntry"/> rules in the current
+		/// catalog recursing into <b>GroupEntry</b> definitions.
+		/// </summary>
+		/// <param name="publicId">The public identifier of the external entity
+		/// being referenced, or null if none was supplied.</param>
+		/// <param name="systemId">The system identifier of the external entity
+		/// being referenced.</param>
+		/// <param name="catalogs">A stack of catalogs being processed used to
+		/// detect circular dependency.</param>
+		/// <returns>The URI of the resolved entity or <b>null</b>.</returns>
 		private String ApplyPublicEntries (String publicId, String systemId, Stack<GroupEntry> catalogs)
 		{
 			String		result = null;
@@ -503,20 +518,17 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 
-		/**
-		 * Applies all the <CODE>DelegatePublicEntry</CODE> rules in the current
-		 * catalog recursing into <CODE>Group</CODE> definitions.
-		 * 
-		 * @param	publicId		The public identifier of the external entity
-		 *							being referenced, or null if none was supplied.
-		 * @param	systemId		The system identifier of the external entity
-		 *							being referenced.
-		 * @param	catalogs		A stack of catalogs being processed used to
-		 *							detect circular dependency.
-		 * @return  The URI of the resolved entity or <CODE>null</CODE>.
-		 * @throws 	SAXException	If an occur was detected during processing.
-		 * @since	TFP 1.0 
-		 */
+		/// <summary>
+		/// Applies all the <see cref="DelegatePublicEntry"/> rules in the current
+		/// catalog recursing into <b>GroupEntry</b> definitions.
+		/// </summary>
+		/// <param name="publicId">The public identifier of the external entity
+		/// being referenced, or null if none was supplied.</param>
+		/// <param name="systemId">The system identifier of the external entity
+		/// being referenced.</param>
+		/// <param name="catalogs">A stack of catalogs being processed used to
+		/// detect circular dependency.</param>
+		/// <returns>The URI of the resolved entity or <b>null</b>.</returns>
 		private String ApplyDelegatePublicEntries (String publicId, String systemId, Stack<GroupEntry> catalogs)
 		{
 			String		result = null;
@@ -537,20 +549,17 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 
-		/**
-		 * Applies all the <CODE>NextCatalog</CODE> rules in the current
-		 * catalog recursing into <CODE>Group</CODE> definitions.
-		 * 
-		 * @param	publicId		The public identifier of the external entity
-		 *							being referenced, or null if none was supplied.
-		 * @param	systemId		The system identifier of the external entity
-		 *							being referenced.
-		 * @param	catalogs		A stack of catalogs being processed used to
-		 *							detect circular dependency.
-		 * @return  The URI of the resolved entity or <CODE>null</CODE>.
-		 * @throws 	SAXException	If an occur was detected during processing.
-		 * @since	TFP 1.0 
-		 */
+		/// <summary>
+		/// Applies all the <see cref="NextCatalogEntry"/> rules in the current
+		/// catalog recursing into <b>GroupEntry</b> definitions.
+		/// </summary>
+		/// <param name="publicId">The public identifier of the external entity
+		/// being referenced, or null if none was supplied.</param>
+		/// <param name="systemId">The system identifier of the external entity
+		/// being referenced.</param>
+		/// <param name="catalogs">A stack of catalogs being processed used to
+		/// detect circular dependency.</param>
+		/// <returns>The URI of the resolved entity or <b>null</b>.</returns>
 		private String ApplyNextCatalogEntries (String publicId, String systemId, Stack<GroupEntry> catalogs)
 		{
 			String		result = null;
@@ -571,17 +580,15 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 
-		/**
-		 * Applies all the <CODE>UriEntry</CODE> rules in the current
-		 * catalog recursing into <CODE>Group</CODE> definitions.
-		 * 
-		 * @param 	uri				The URI of the required resource.
-		 * @param	catalogs		A stack of catalogs being processed used to
-		 *							detect circular dependency.
-		 * @return  The URI of the resolved entity or <CODE>null</CODE>.
-		 * @throws	SAXException If an error occurs during processing.
-		 * @since	TFP 1.0 
-		 */
+		/// <summary>
+		/// Applies all the <see cref="UriEntry"/> rules in the current
+		/// catalog recursing into <b>GroupEntry</b> definitions.
+		/// </summary>
+		/// <param name="uri">The public identifier of the external entity
+		/// being referenced, or null if none was supplied.</param>
+		/// <param name="catalogs">A stack of catalogs being processed used to
+		/// detect circular dependency.</param>
+		/// <returns>The URI of the resolved entity or <b>null</b>.</returns>
 		private String ApplyUriEntries (String uri, Stack<GroupEntry> catalogs)
 		{
 			String		result = null;
@@ -602,17 +609,15 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 		
-		/**
-		 * Applies all the <CODE>RewriteUriEntry</CODE> rules in the current
-		 * catalog recursing into <CODE>Group</CODE> definitions.
-		 * 
-		 * @param 	uri				The URI of the required resource.
-		 * @param	catalogs		A stack of catalogs being processed used to
-		 *							detect circular dependency.
-		 * @return  The URI of the resolved entity or <CODE>null</CODE>.
-		 * @throws	SAXException If an error occurs during processing.
-		 * @since	TFP 1.0 
-		 */
+		/// <summary>
+		/// Applies all the <see cref="RewriteUriEntry"/> rules in the current
+		/// catalog recursing into <b>GroupEntry</b> definitions.
+		/// </summary>
+		/// <param name="uri">The public identifier of the external entity
+		/// being referenced, or null if none was supplied.</param>
+		/// <param name="catalogs">A stack of catalogs being processed used to
+		/// detect circular dependency.</param>
+		/// <returns>The URI of the resolved entity or <b>null</b>.</returns>
 		private String ApplyRewriteUriEntries (String uri, Stack<GroupEntry> catalogs)
 		{
 			String		result = null;
@@ -633,17 +638,15 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 		
-		/**
-		 * Applies all the <CODE>DelegateUriEntry</CODE> rules in the current
-		 * catalog recursing into <CODE>Group</CODE> definitions.
-		 * 
-		 * @param 	uri				The URI of the required resource.
-		 * @param	catalogs		A stack of catalogs being processed used to
-		 *							detect circular dependency.
-		 * @return  The URI of the resolved entity or <CODE>null</CODE>.
-		 * @throws	SAXException If an error occurs during processing.
-		 * @since	TFP 1.0 
-		 */
+		/// <summary>
+		/// Applies all the <see cref="DelegateUriEntry"/> rules in the current
+		/// catalog recursing into <b>GroupEntry</b> definitions.
+		/// </summary>
+		/// <param name="uri">The public identifier of the external entity
+		/// being referenced, or null if none was supplied.</param>
+		/// <param name="catalogs">A stack of catalogs being processed used to
+		/// detect circular dependency.</param>
+		/// <returns>The URI of the resolved entity or <b>null</b>.</returns>
 		private String ApplyDelegateUriEntries (String uri, Stack<GroupEntry> catalogs)
 		{
 			String		result = null;
@@ -664,17 +667,15 @@ namespace HandCoded.Xml.Resolver
 			return (result);
 		}
 
-		/**
-		 * Applies all the <CODE>NextCatalog</CODE> rules in the current
-		 * catalog recursing into <CODE>Group</CODE> definitions.
-		 * 
-		 * @param 	uri				The URI of the required resource.
-		 * @param	catalogs		A stack of catalogs being processed used to
-		 *							detect circular dependency.
-		 * @return  The URI of the resolved entity or <CODE>null</CODE>.
-		 * @throws	SAXException If an error occurs during processing.
-		 * @since	TFP 1.0 
-		 */
+		/// <summary>
+		/// Applies all the <see cref="NextCatalogEntry"/> rules in the current
+		/// catalog recursing into <b>GroupEntry</b> definitions.
+		/// </summary>
+		/// <param name="uri">The public identifier of the external entity
+		/// being referenced, or null if none was supplied.</param>
+		/// <param name="catalogs">A stack of catalogs being processed used to
+		/// detect circular dependency.</param>
+		/// <returns>The URI of the resolved entity or <b>null</b>.</returns>
 		private String ApplyNextCatalogEntries (String uri, Stack<GroupEntry> catalogs)
 		{
 			String		result = null;

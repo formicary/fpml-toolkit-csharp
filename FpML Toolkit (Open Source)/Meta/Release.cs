@@ -101,23 +101,18 @@ namespace HandCoded.Meta
 		public abstract XmlDocument NewInstance (String rootElement);
 
 		/// <summary>
-		/// Adds the indicated <see cref="Conversion"/> to the set of conversions
-		/// that take this <b>Release</b> as the source format.
+		/// Determines if the indicated root element name is one accepted by this
+		/// <b>Release</b>.
 		/// </summary>
-		/// <param name="conversion">The <see cref="Conversion"/> to be added.</param>
-		public void AddSourceConversion (Conversion conversion)
+		/// <param name="rootElement">The root element name to test.</param>
+		/// <returns><b>true</b> if the root element name is known, <b>false</b>
+		/// otherwise.</returns>
+		public bool HasRootElement (String rootElement)
 		{
-			sourceConversions.Add (conversion);
-		}
+			foreach (String name in rootElements)
+				if (rootElement.Equals (name)) return (true);
 
-		/// <summary>
-		/// Adds the indicated <see cref="Conversion"/> to the set of conversions
-		/// that take this <b>Release</b> as the target format.
-		/// </summary>
-		/// <param name="conversion">The <see cref="Conversion"/> to be added.</param>
-		public void AddTargetConversion (Conversion conversion)
-		{
-			targetConversions.Add (conversion);
+			return (false);
 		}
 
 		/// <summary>
@@ -133,6 +128,26 @@ namespace HandCoded.Meta
 			this.rootElements  = rootElements;
 
 			specification.Add (this);
+		}
+
+		/// <summary>
+		/// Adds the indicated <see cref="Conversion"/> to the set of conversions
+		/// that take this <b>Release</b> as the source format.
+		/// </summary>
+		/// <param name="conversion">The <see cref="Conversion"/> to be added.</param>
+		internal protected void AddSourceConversion (Conversion conversion)
+		{
+			sourceConversions.Add (conversion);
+		}
+
+		/// <summary>
+		/// Adds the indicated <see cref="Conversion"/> to the set of conversions
+		/// that take this <b>Release</b> as the target format.
+		/// </summary>
+		/// <param name="conversion">The <see cref="Conversion"/> to be added.</param>
+		internal protected void AddTargetConversion (Conversion conversion)
+		{
+			targetConversions.Add (conversion);
 		}
 
 		/// <summary>

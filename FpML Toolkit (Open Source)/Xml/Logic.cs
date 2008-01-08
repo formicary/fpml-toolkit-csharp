@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2007 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -11,9 +11,9 @@
 // LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
-using System;
 using System.Xml;
 
+using HandCoded.Finance;
 using HandCoded.Xml;
 
 namespace HandCoded.Xml
@@ -26,7 +26,7 @@ namespace HandCoded.Xml
 	/// <remarks>Not every possible combination of arguments types is provided
 	/// by all the functions - only those that are currently used in the validation
 	/// code.</remarks>
-	public abstract class Logic
+	public abstract class Logic : Types
 	{
 		/// <summary>
 		/// Calculates the logical-not of the given predicate result value.
@@ -117,77 +117,6 @@ namespace HandCoded.Xml
 		// --------------------------------------------------------------------
 
 		/// <summary>
-		/// Returns the value of the given <see cref="XmlNode"/> as a string.
-		/// </summary>
-		/// <param name="node">The <see cref="XmlNode"/> containing the value.</param>
-		/// <returns>The value of the node as a C# datatype.</returns>
-		public static string String (XmlNode node)
-		{
-			return ((node != null) ? node.InnerText.Trim () : null);
-		}
-
-		/// <summary>
-		/// Returns the value of the given <see cref="XmlNode"/> as a boolean.
-		/// </summary>
-		/// <param name="node">The <see cref="XmlNode"/> containing the value.</param>
-		/// <returns>The value of the node as a C# datatype.</returns>
-		public static bool Bool (XmlNode node)
-		{
-			try {
-				return (bool.Parse (node.InnerText));
-			}
-			catch (Exception) {
-				;
-			}
-			return (false);
-		}
-
-		/// <summary>
-		/// Returns the value of the given <see cref="XmlNode"/> as an integer.
-		/// </summary>
-		/// <param name="node">The <see cref="XmlNode"/> containing the value.</param>
-		/// <returns>The value of the node as a C# datatype.</returns>
-		public static int Integer (XmlNode node)
-		{
-			try {
-				return (int.Parse (node.InnerText));
-			}
-			catch (Exception) {
-				;
-			}
-			return (0);
-		}
-
-		/// <summary>
-		/// Returns the value of the given <see cref="XmlNode"/> as a decimal.
-		/// </summary>
-		/// <param name="node">The <see cref="XmlNode"/> containing the value.</param>
-		/// <returns>The value of the node as a C# datatype.</returns>
-		public static decimal Decimal (XmlNode node)
-		{
-			try {
-                return (decimal.Parse (node.InnerText));
-			}
-			catch (Exception) {
-				;
-			}
-			return (0.0M);
-		}
-
-		/// <summary>
-		/// Rounds a monetary decimal value to a given number of places. 
-		/// </summary>
-		/// <param name="value">The <see cref="decimal"/> to round.</param>
-		/// <param name="places">The number of places required.</param>
-		/// <returns>The rounded value.</returns>
-		public static decimal Round (decimal value, int places)
-		{
-			return (decimal.Round (value, places));
-		}
-
-		// --------------------------------------------------------------------
-
-		/// <summary>
 		/// Determines if two nodes contain the same value.
 		/// </summary>
 		/// <param name="lhs">The first node to compare.</param>
@@ -196,7 +125,7 @@ namespace HandCoded.Xml
 		public static bool Equal (XmlNode lhs, XmlNode rhs)
 		{
 			if ((lhs != null) && (rhs != null))
-				return (Equal (String (lhs), String (rhs)));
+				return (Equal (ToString (lhs), ToString (rhs)));
 			return (false);
 		}
 
@@ -209,7 +138,7 @@ namespace HandCoded.Xml
 		/// <returns><c>true</c> if the two values are equal.</returns>
 		public static bool Equal (XmlNode lhs, string rhs)
 		{
-			return ((lhs != null) ? Equal (String (lhs), rhs) : false);
+			return ((lhs != null) ? Equal (ToString (lhs), rhs) : false);
 		}
 
 		/// <summary>
@@ -234,9 +163,9 @@ namespace HandCoded.Xml
 		{
 			if (lhs != null) {
 				try {
-					return (Integer (lhs) == rhs);
+					return (ToInteger (lhs) == rhs);
 				}
-				catch (Exception) {
+				catch (System.Exception) {
 					return (false);
 				}
 			}
@@ -265,6 +194,39 @@ namespace HandCoded.Xml
 			return (lhs.Equals (rhs));
 		}
 
+		/// <summary>
+		/// Determines if two <see cref="Date"/> values have the same contents.
+		/// </summary>
+		/// <param name="lhs">The <see cref="Date"/> to compare.</param>
+		/// <param name="rhs">The <see cref="Date"/> to compare with.</param>
+		/// <returns><c>true</c> if the <see cref="Date"/> values are equal.</returns>
+		public static bool Equal (Date lhs, Date rhs)
+		{
+			return (lhs.Equals (rhs));
+		}
+
+		/// <summary>
+		/// Determines if two <see cref="HandCoded.Finance.DateTime"/> values have the same contents.
+		/// </summary>
+		/// <param name="lhs">The <see cref="HandCoded.Finance.DateTime"/> to compare.</param>
+		/// <param name="rhs">The <see cref="HandCoded.Finance.DateTime"/> to compare with.</param>
+		/// <returns><c>true</c> if the <see cref="HandCoded.Finance.DateTime"/> values are equal.</returns>
+		public static bool Equal (HandCoded.Finance.DateTime lhs, HandCoded.Finance.DateTime rhs)
+		{
+			return (lhs.Equals (rhs));
+		}
+
+		/// <summary>
+		/// Determines if two <see cref="Time"/> values have the same contents.
+		/// </summary>
+		/// <param name="lhs">The <see cref="Time"/> to compare.</param>
+		/// <param name="rhs">The <see cref="Time"/> to compare with.</param>
+		/// <returns><c>true</c> if the <see cref="Time"/> values are equal.</returns>
+		public static bool Equal (Time lhs, Time rhs)
+		{
+			return (lhs.Equals (rhs));
+		}
+
 		// --------------------------------------------------------------------
 
 		/// <summary>
@@ -276,7 +238,7 @@ namespace HandCoded.Xml
 		public static bool NotEqual (XmlNode lhs, XmlNode rhs)
 		{
 			if ((lhs != null) && (rhs != null))
-				return (NotEqual (lhs.InnerText.Trim (), rhs.InnerText.Trim ()));
+				return (NotEqual (ToString (lhs), ToString (rhs)));
 			return (false);
 		}
 
@@ -289,7 +251,7 @@ namespace HandCoded.Xml
 		/// <returns><c>true</c> if the two values are different.</returns>
 		public static bool NotEqual (XmlNode lhs, string rhs)
 		{
-			return ((lhs != null) ? NotEqual (lhs.InnerText.Trim (), rhs) : false);
+			return ((lhs != null) ? NotEqual (ToString (lhs), rhs) : false);
 		}
 
 		/// <summary>
@@ -314,9 +276,9 @@ namespace HandCoded.Xml
 		{
 			if (lhs != null) {
 				try {
-					return (Int32.Parse (lhs.InnerText.Trim ()) != rhs);
+					return (ToInteger (lhs) != rhs);
 				}
-				catch (Exception) {
+				catch (System.Exception) {
 					return (false);
 				}
 			}
@@ -334,13 +296,57 @@ namespace HandCoded.Xml
 		{
 			if (lhs != null) {
 				try {
-					return (decimal.Parse (lhs.InnerText.Trim ()) != rhs);
+					return (ToDecimal (lhs) != rhs);
 				}
-				catch (Exception) {
+				catch (System.Exception) {
 					return (false);
 				}
 			}
 			return (false);
+		}
+
+		/// <summary>
+		/// Determines if two <see cref="decimal"/> values are different.
+		/// </summary>
+		/// <param name="lhs">The <see cref="decimal"/> to compare.</param>
+		/// <param name="rhs">The <see cref="decimal"/> to compare to.</param>
+		/// <returns><c>true</c> if the two <see cref="decimal"/> values are different.</returns>
+		public static bool NotEqual (decimal lhs, decimal rhs)
+		{
+			return (!lhs.Equals (rhs));
+		}
+
+		/// <summary>
+		/// Determines if two <see cref="Date"/> values are different.
+		/// </summary>
+		/// <param name="lhs">The <see cref="Date"/> to compare.</param>
+		/// <param name="rhs">The <see cref="Date"/> to compare to.</param>
+		/// <returns><c>true</c> if the two <see cref="Date"/> values are different.</returns>
+		public static bool NotEqual (Date lhs, Date rhs)
+		{
+			return (!lhs.Equals (rhs));
+		}
+
+		/// <summary>
+		/// Determines if two <see cref="HandCoded.Finance.DateTime"/> values are different.
+		/// </summary>
+		/// <param name="lhs">The <see cref="HandCoded.Finance.DateTime"/> to compare.</param>
+		/// <param name="rhs">The <see cref="HandCoded.Finance.DateTime"/> to compare to.</param>
+		/// <returns><c>true</c> if the two <see cref="DateTime"/> values are different.</returns>
+		public static bool NotEqual (HandCoded.Finance.DateTime lhs, HandCoded.Finance.DateTime rhs)
+		{
+			return (!lhs.Equals (rhs));
+		}
+
+		/// <summary>
+		/// Determines if two <see cref="Time"/> values are different.
+		/// </summary>
+		/// <param name="lhs">The <see cref="Time"/> to compare.</param>
+		/// <param name="rhs">The <see cref="Time"/> to compare to.</param>
+		/// <returns><c>true</c> if the two <see cref="Time"/> values are different.</returns>
+		public static bool NotEqual (Time lhs, Time rhs)
+		{
+			return (!lhs.Equals (rhs));
 		}
 
 		// --------------------------------------------------------------------
@@ -397,6 +403,42 @@ namespace HandCoded.Xml
 			return (lhs.CompareTo (rhs) < 0);
 		}
 		
+		/// <summary>
+		/// Determines if the value of a <see cref="Date"/> is less than
+		/// the value of another.
+		/// </summary>
+		/// <param name="lhs">The <see cref="Date"/> to compare.</param>
+		/// <param name="rhs">The <see cref="Date"/> to compare with.</param>
+		/// <returns><c>true</c> if the first value is less than the second.</returns>
+		public static bool Less (Date lhs, Date rhs)
+		{
+			return (lhs.CompareTo (rhs) < 0);
+		}
+		
+		/// <summary>
+		/// Determines if the value of a <see cref="HandCoded.Finance.DateTime"/> is less than
+		/// the value of another.
+		/// </summary>
+		/// <param name="lhs">The <see cref="HandCoded.Finance.DateTime"/> to compare.</param>
+		/// <param name="rhs">The <see cref="HandCoded.Finance.DateTime"/> to compare with.</param>
+		/// <returns><c>true</c> if the first value is less than the second.</returns>
+		public static bool Less (HandCoded.Finance.DateTime lhs, HandCoded.Finance.DateTime rhs)
+		{
+			return (lhs.CompareTo (rhs) < 0);
+		}
+		
+		/// <summary>
+		/// Determines if the value of a <see cref="Time"/> is less than
+		/// the value of another.
+		/// </summary>
+		/// <param name="lhs">The <see cref="Time"/> to compare.</param>
+		/// <param name="rhs">The <see cref="Time"/> to compare with.</param>
+		/// <returns><c>true</c> if the first value is less than the second.</returns>
+		public static bool Less (Time lhs, Time rhs)
+		{
+			return (lhs.CompareTo (rhs) < 0);
+		}
+		
 		// --------------------------------------------------------------------
 
 		/// <summary>
@@ -426,7 +468,7 @@ namespace HandCoded.Xml
 		}
 		
 		/// <summary>
-		/// Compares two <see cref="Int32"/> instances to determine if the
+		/// Compares two <see cref="int"/> instances to determine if the
 		/// first is larger than the second.
 		/// </summary>
 		/// <param name="lhs">The first int.</param>
@@ -437,6 +479,54 @@ namespace HandCoded.Xml
 			return (lhs > rhs);
 		}
 
+		/// <summary>
+		/// Determines if the value of a <see cref="decimal"/> is greater than
+		/// the value of another.
+		/// </summary>
+		/// <param name="lhs">The <see cref="decimal"/> to compare.</param>
+		/// <param name="rhs">The <see cref="decimal"/> to compare with.</param>
+		/// <returns><c>true</c> if the first value is greater than the second.</returns>
+		public static bool Greater (decimal lhs, decimal rhs)
+		{
+			return (lhs.CompareTo (rhs) > 0);
+		}
+		
+		/// <summary>
+		/// Determines if the value of a <see cref="Date"/> is greater than
+		/// the value of another.
+		/// </summary>
+		/// <param name="lhs">The <see cref="Date"/> to compare.</param>
+		/// <param name="rhs">The <see cref="Date"/> to compare with.</param>
+		/// <returns><c>true</c> if the first value is greater than the second.</returns>
+		public static bool Greater (Date lhs, Date rhs)
+		{
+			return (lhs.CompareTo (rhs) > 0);
+		}
+		
+		/// <summary>
+		/// Determines if the value of a <see cref="HandCoded.Finance.DateTime"/> is greater than
+		/// the value of another.
+		/// </summary>
+		/// <param name="lhs">The <see cref="HandCoded.Finance.DateTime"/> to compare.</param>
+		/// <param name="rhs">The <see cref="HandCoded.Finance.DateTime"/> to compare with.</param>
+		/// <returns><c>true</c> if the first value is greater than the second.</returns>
+		public static bool Greater (HandCoded.Finance.DateTime lhs, HandCoded.Finance.DateTime rhs)
+		{
+			return (lhs.CompareTo (rhs) > 0);
+		}
+		
+		/// <summary>
+		/// Determines if the value of a <see cref="Time"/> is greater than
+		/// the value of another.
+		/// </summary>
+		/// <param name="lhs">The <see cref="Time"/> to compare.</param>
+		/// <param name="rhs">The <see cref="Time"/> to compare with.</param>
+		/// <returns><c>true</c> if the first value is greater than the second.</returns>
+		public static bool Greater (Time lhs, Time rhs)
+		{
+			return (lhs.CompareTo (rhs) > 0);
+		}
+		
 		// --------------------------------------------------------------------
 
 		/// <summary>
@@ -445,7 +535,7 @@ namespace HandCoded.Xml
 		/// </summary>
 		/// <param name="lhs">The first node.</param>
 		/// <param name="rhs">The second node.</param>
-		/// <returns><c>true</c> if the first value is greater than the second.</returns>
+		/// <returns><c>true</c> if the first value is less than the second.</returns>
 		public static bool LessOrEqual (XmlNode lhs, XmlNode rhs)
 		{
 			if ((lhs != null) && (rhs != null))
@@ -459,13 +549,13 @@ namespace HandCoded.Xml
 		/// </summary>
 		/// <param name="lhs">The node holding the value.</param>
 		/// <param name="rhs">The value to compare against.</param>
-		/// <returns><c>true</c> if the first value is greater than the second.</returns>
+		/// <returns><c>true</c> if the first value is less than the second.</returns>
 		public static bool LessOrEqual (XmlNode lhs, double rhs)
 		{
 			try {
-				return (Double.Parse (lhs.InnerText) <= rhs);
+				return (ToDouble (lhs) <= rhs);
 			}
-			catch (Exception) {
+			catch (System.Exception) {
 				return (false);
 			}
 		}
@@ -476,7 +566,7 @@ namespace HandCoded.Xml
 		/// </summary>
 		/// <param name="lhs">The first string.</param>
 		/// <param name="rhs">The second string.</param>
-		/// <returns><c>true</c> if the first value is greater than the second.</returns>
+		/// <returns><c>true</c> if the first value is less than the second.</returns>
 		public static bool LessOrEqual (string lhs, string rhs)
 		{
 			return (lhs.CompareTo (rhs) <= 0);
@@ -488,8 +578,44 @@ namespace HandCoded.Xml
 		/// </summary>
 		/// <param name="lhs">The first decimal.</param>
 		/// <param name="rhs">The second decimal.</param>
-		/// <returns><c>true</c> if the first value is greater than the second.</returns>
+		/// <returns><c>true</c> if the first value is less than the second.</returns>
 		public static bool LessOrEqual (decimal lhs, decimal rhs)
+		{
+			return (lhs.CompareTo (rhs) <= 0);
+		}
+		
+		/// <summary>
+		/// Compares two <see cref="Date"/> instances to determine if the
+		/// first is equal to or smaller than the second.
+		/// </summary>
+		/// <param name="lhs">The first date.</param>
+		/// <param name="rhs">The second date.</param>
+		/// <returns><c>true</c> if the first value is less than the second.</returns>
+		public static bool LessOrEqual (Date lhs, Date rhs)
+		{
+			return (lhs.CompareTo (rhs) <= 0);
+		}
+		
+		/// <summary>
+		/// Compares two <see cref="HandCided.Finance.DateTime"/> instances to determine if the
+		/// first is equal to or smaller than the second.
+		/// </summary>
+		/// <param name="lhs">The first DateTime.</param>
+		/// <param name="rhs">The second DateTime.</param>
+		/// <returns><c>true</c> if the first value is less than the second.</returns>
+		public static bool LessOrEqual (HandCoded.Finance.DateTime lhs, HandCoded.Finance.DateTime rhs)
+		{
+			return (lhs.CompareTo (rhs) <= 0);
+		}
+		
+		/// <summary>
+		/// Compares two <see cref="Time"/> instances to determine if the
+		/// first is equal to or smaller than the second.
+		/// </summary>
+		/// <param name="lhs">The first Time.</param>
+		/// <param name="rhs">The second Tie.</param>
+		/// <returns><c>true</c> if the first value is less than the second.</returns>
+		public static bool LessOrEqual (Time lhs, Time rhs)
 		{
 			return (lhs.CompareTo (rhs) <= 0);
 		}
@@ -532,13 +658,61 @@ namespace HandCoded.Xml
 		public static bool GreaterOrEqual (XmlNode lhs, double rhs)
 		{
 			try {
-				return (Double.Parse (lhs.InnerText) >= rhs);
+				return (ToDouble (lhs) >= rhs);
 			}
-			catch (Exception) {
+			catch (System.Exception) {
 				return (false);
 			}
 		}
 
+		/// <summary>
+		/// Compares two <see cref="decimal"/> instances to determine if the
+		/// first is equal to or larger than the second.
+		/// </summary>
+		/// <param name="lhs">The first decimal.</param>
+		/// <param name="rhs">The second decimal.</param>
+		/// <returns><c>true</c> if the first value is greater than the second.</returns>
+		public static bool GreaterOrEqual (decimal lhs, decimal rhs)
+		{
+			return (lhs.CompareTo (rhs) >= 0);
+		}
+		
+		/// <summary>
+		/// Compares two <see cref="Date"/> instances to determine if the
+		/// first is equal to or larger than the second.
+		/// </summary>
+		/// <param name="lhs">The first Date.</param>
+		/// <param name="rhs">The second Date.</param>
+		/// <returns><c>true</c> if the first value is greater than the second.</returns>
+		public static bool GreaterOrEqual (Date lhs, Date rhs)
+		{
+			return (lhs.CompareTo (rhs) >= 0);
+		}
+		
+		/// <summary>
+		/// Compares two <see cref="HandCoded.Finance.DateTime"/> instances to determine if the
+		/// first is equal to or larger than the second.
+		/// </summary>
+		/// <param name="lhs">The first DateTime.</param>
+		/// <param name="rhs">The second DateTime.</param>
+		/// <returns><c>true</c> if the first value is greater than the second.</returns>
+		public static bool GreaterOrEqual (HandCoded.Finance.DateTime lhs, HandCoded.Finance.DateTime rhs)
+		{
+			return (lhs.CompareTo (rhs) >= 0);
+		}
+		
+		/// <summary>
+		/// Compares two <see cref="Time"/> instances to determine if the
+		/// first is equal to or larger than the second.
+		/// </summary>
+		/// <param name="lhs">The first Time.</param>
+		/// <param name="rhs">The second Time.</param>
+		/// <returns><c>true</c> if the first value is greater than the second.</returns>
+		public static bool GreaterOrEqual (Time lhs, Time rhs)
+		{
+			return (lhs.CompareTo (rhs) >= 0);
+		}
+		
 		/// <summary>
 		/// Constructs a <b>Logic</b> instance.
 		/// </summary>

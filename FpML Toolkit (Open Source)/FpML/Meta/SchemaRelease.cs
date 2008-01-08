@@ -51,6 +51,84 @@ namespace HandCoded.FpML.Meta
 		}
 
 		/// <summary>
+		/// Constructs a <b>SchemaRelease</b> instance describing a schema
+		/// based release of a particular <see cref="HandCoded.Meta.Specification"/>.
+		/// </summary>
+		/// <param name="specification">The owning <see cref="HandCoded.Meta.Specification"/>.</param>
+		/// <param name="version">The version identifier for this release.</param>
+		/// <param name="namespaceUri">The namespace used to identify the schema.</param>
+		/// <param name="schemaLocation">The default schema location.</param>
+		/// <param name="preferredPrefix">The preferred prefix for the namespace.</param>
+		/// <param name="alternatePrefix">The alternate prefix for the namespace.</param>
+		/// <param name="rootElements">The possible root elements.</param>
+		/// <param name="schemeDefaults">Scheme default URI information.</param>
+		/// <param name="schemeCollection">The SchemeCollection for this release.</param>
+		public SchemaRelease (HandCoded.Meta.Specification specification, string version,
+			string namespaceUri, string schemaLocation,	string preferredPrefix,
+			string alternatePrefix, string [] rootElements, SchemeDefaults schemeDefaults,
+			SchemeCollection schemeCollection)
+			: base (specification, version, namespaceUri, schemaLocation,
+				preferredPrefix, alternatePrefix, rootElements)
+		{
+			this.schemeDefaults   = schemeDefaults;
+			this.schemeCollection = schemeCollection;
+		}
+
+		/// <summary>
+		/// Constructs a <b>SchemaRelease</b> instance describing a schema
+		/// based release of a particular <see cref="HandCoded.Meta.Specification"/>.
+		/// </summary>
+		/// <param name="specification">The owning <see cref="HandCoded.Meta.Specification"/>.</param>
+		/// <param name="version">The version identifier for this release.</param>
+		/// <param name="namespaceUri">The namespace used to identify the schema.</param>
+		/// <param name="schemaLocation">The default schema location.</param>
+		/// <param name="preferredPrefix">The preferred prefix for the namespace.</param>
+		/// <param name="alternatePrefix">The alternate prefix for the namespace.</param>
+		/// <param name="initialiser">The <see cref="HandCoded.Meta.IInstanceInitialiser"/>.</param>
+		/// <param name="recogniser">The <see cref="HandCoded.Meta.ISchemaRecogniser"/>.</param>
+		/// <param name="rootElement">The normal root element.</param>
+		/// <param name="schemeDefaults">Scheme default URI information.</param>
+		/// <param name="schemeCollection">The SchemeCollection for this release.</param>
+		public SchemaRelease (HandCoded.Meta.Specification specification, string version,
+			string namespaceUri, string schemaLocation,	string preferredPrefix,
+			string alternatePrefix, HandCoded.Meta.IInstanceInitialiser initialiser,
+			HandCoded.Meta.ISchemaRecogniser recogniser, string rootElement,
+			SchemeDefaults schemeDefaults, SchemeCollection schemeCollection)
+			: base (specification, version, namespaceUri, schemaLocation,
+				preferredPrefix, alternatePrefix, initialiser, recogniser, rootElement)
+		{
+			this.schemeDefaults   = schemeDefaults;
+			this.schemeCollection = schemeCollection;
+		}
+
+		/// <summary>
+		/// Constructs a <b>SchemaRelease</b> instance describing a schema
+		/// based release of a particular <see cref="HandCoded.Meta.Specification"/>.
+		/// </summary>
+		/// <param name="specification">The owning <see cref="HandCoded.Meta.Specification"/>.</param>
+		/// <param name="version">The version identifier for this release.</param>
+		/// <param name="namespaceUri">The namespace used to identify the schema.</param>
+		/// <param name="schemaLocation">The default schema location.</param>
+		/// <param name="preferredPrefix">The preferred prefix for the namespace.</param>
+		/// <param name="alternatePrefix">The alternate prefix for the namespace.</param>
+		/// <param name="initialiser">The <see cref="HandCoded.Meta.IInstanceInitialiser"/>.</param>
+		/// <param name="recogniser">The <see cref="HandCoded.Meta.ISchemaRecogniser"/>.</param>
+		/// <param name="rootElements">The possible root elements.</param>
+		/// <param name="schemeDefaults">Scheme default URI information.</param>
+		/// <param name="schemeCollection">The SchemeCollection for this release.</param>
+		public SchemaRelease (HandCoded.Meta.Specification specification, string version,
+			string namespaceUri, string schemaLocation,	string preferredPrefix,
+			string alternatePrefix, HandCoded.Meta.IInstanceInitialiser initialiser,
+			HandCoded.Meta.ISchemaRecogniser recogniser, string [] rootElements,
+			SchemeDefaults schemeDefaults, SchemeCollection schemeCollection)
+			: base (specification, version, namespaceUri, schemaLocation,
+				preferredPrefix, alternatePrefix, initialiser, recogniser, rootElements)
+		{
+			this.schemeDefaults   = schemeDefaults;
+			this.schemeCollection = schemeCollection;
+		}
+
+		/// <summary>
 		/// Contains scheme default information
 		/// </summary>
 		public SchemeDefaults SchemeDefaults {
@@ -66,28 +144,6 @@ namespace HandCoded.FpML.Meta
 			get {
 				return (schemeCollection);
 			}
-		}
-
-		/// <summary>
-		/// Creates a new instance the XML grammar represented by this instance
-		/// using the indicated element name as the root element for the document.
-		/// </summary>
-		/// <param name="rootElement">The name of the root element.</param>
-		/// <returns>A new <see cref="XmlDocument"/> instance.</returns>
-		public override XmlDocument NewInstance (string rootElement)
-		{
-			XmlDocument		document = base.NewInstance (rootElement);
-			XmlElement		element  = document.DocumentElement;
-
-			element.SetAttribute ("xmlns:dsig",
-				HandCoded.DSig.Releases.R1_0.NamespaceUri);
-			element.SetAttribute ("xsi:schemaLocation",
-				NamespaceUri + " " + SchemaLocation
-				+ " " + HandCoded.DSig.Releases.R1_0.NamespaceUri
-				+ " " + HandCoded.DSig.Releases.R1_0.SchemaLocation);
-			element.SetAttribute ("version", null, Version);
-
-			return (document);
 		}
 
 		/// <summary>

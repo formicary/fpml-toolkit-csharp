@@ -24,7 +24,8 @@ namespace HandCoded.Xml.Resolver
 		/// <summary>
 		/// Constructs a <b>CatalogEntry</b> component.
 		/// </summary>
-		/// <param name="parent">The containing catalog element.</param>
+		/// <param name="prefer">Options <b>prefer</b> value.</param>
+		/// <param name="xmlbase">Options <b>xml:base</b> value.</param>
 		public CatalogEntry (String prefer, String xmlbase)
 			: base (null, prefer, xmlbase)
 		{ }
@@ -34,7 +35,7 @@ namespace HandCoded.Xml.Resolver
 		/// </summary>
 		/// <param name="prefer">Optional <b>prefer</b> value.</param>
 		/// <param name="xmlbase">Optional <b>xml:base</b> value.</param>
-		/// <returns></returns>
+		/// <returns>The constructed <see cref="GroupEntry"/> instance.</returns>
 		public GroupEntry AddGroup (String prefer, String xmlbase)
 		{
 			GroupEntry		result = new GroupEntry (this, prefer, xmlbase);
@@ -47,15 +48,10 @@ namespace HandCoded.Xml.Resolver
 		/// Adds a group entry to the catalog.
 		/// </summary>
 		/// <param name="prefer">Optional <b>prefer</b> value.</param>
-		/// <returns></returns>
+		/// <returns>The constructed <see cref="GroupEntry"/> instance.</returns>
 		public GroupEntry AddGroup (String prefer)
 		{
 			return (AddGroup (prefer, null));
 		}
-
-		/// <summary>
-		/// The containing catalog element or <CODE>null</CODE>.
-		/// </summary>
-		private readonly GroupEntry	parent;
 	}
 }

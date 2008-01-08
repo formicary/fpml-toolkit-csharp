@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2007 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -87,6 +87,7 @@ namespace HandCoded.FpML.Validation
 		/// A <see cref="Rule"/> instance that ensures bermudan exercise dates are
 		/// in order.
 		/// </summary>
+		/// <remarks>Deprecated.</remarks>
 		public static readonly Rule	RULE07
 			= new DelegatedRule (Preconditions.R4_0__LATER, "eqd-7", new RuleDelegate (Rule07));
 
@@ -227,12 +228,12 @@ namespace HandCoded.FpML.Validation
 				XmlElement	commence	= XPath.Path (context, "commencementDate", "adjustableDate", "unadjustedDate");
 				XmlElement	trade		= XPath.Path (context, "..", "..", "..", "tradeHeader", "tradeDate");
 
-				if ((commence == null) || (trade == null) || Equal (commence, trade))
+				if ((commence == null) || (trade == null) || Equal (ToDate (commence), ToDate (trade)))
 					continue;
 
 				errorHandler ("305", context,
-					"American exercise commencement date " + commence.InnerText.Trim () +
-					" should be the same as trade date " + trade.InnerText.Trim (),
+					"American exercise commencement date " + ToString (commence) +
+					" should be the same as trade date " + ToString (trade),
 					name, null);
 
 				result = false;
@@ -255,12 +256,12 @@ namespace HandCoded.FpML.Validation
 				XmlElement	expiration	= XPath.Path (context, "expirationDate", "adjustableDate", "unadjustedDate");
 				XmlElement	trade		= XPath.Path (context, "..", "..", "..", "tradeHeader", "tradeDate");
 
-				if ((expiration == null) || (trade == null) || GreaterOrEqual (expiration, trade))
+				if ((expiration == null) || (trade == null) || GreaterOrEqual (Types.ToDate (expiration), Types.ToDate (trade)))
 					continue;
 
 				errorHandler ("305", context,
-					"American exercise expiration date " + expiration.InnerText.Trim () +
-					" should be the same or later than trade date " + trade.InnerText.Trim (),
+					"American exercise expiration date " + ToString (expiration) +
+					" should be the same or later than trade date " + ToString (trade),
 					name, null);
 
 				result = false;
@@ -310,12 +311,12 @@ namespace HandCoded.FpML.Validation
 				XmlElement	commence	= XPath.Path (context, "commencementDate", "adjustableDate", "unadjustedDate");
 				XmlElement	trade		= XPath.Path (context, "..", "..", "..", "tradeHeader", "tradeDate");
 
-				if ((commence == null) || (trade == null) || Equal (commence, trade))
+				if ((commence == null) || (trade == null) || GreaterOrEqual (Types.ToDate (commence), Types.ToDate (trade)))
 					continue;
 
 				errorHandler ("305", context,
-					"Bermuda exercise commencement date " + commence.InnerText.Trim () +
-					" should be the same as trade date " + trade.InnerText.Trim (),
+					"Bermuda exercise commencement date " + ToString (commence) +
+					" should not be before the trade date " + ToString (trade),
 					name, null);
 
 				result = false;
@@ -338,12 +339,12 @@ namespace HandCoded.FpML.Validation
 				XmlElement	expiration	= XPath.Path (context, "expirationDate", "adjustableDate", "unadjustedDate");
 				XmlElement	trade		= XPath.Path (context, "..", "..", "..", "tradeHeader", "tradeDate");
 
-				if ((expiration == null) || (trade == null) || GreaterOrEqual (expiration, trade))
+				if ((expiration == null) || (trade == null) || GreaterOrEqual (Types.ToDate (expiration), Types.ToDate (trade)))
 					continue;
 
 				errorHandler ("305", context,
-					"Bermuda exercise expiration date " + expiration.InnerText.Trim () +
-					" should be the same or later than trade date " + trade.InnerText.Trim (),
+					"Bermuda exercise expiration date " + ToString (expiration) +
+					" should not be before trade date " + ToString (trade),
 					name, null);
 
 				result = false;
@@ -392,12 +393,12 @@ namespace HandCoded.FpML.Validation
 			foreach (XmlElement context in XPath.Paths (list, "bermudaExerciseDates", "date")) {
 				XmlElement		next	= DOM.GetNextSibling (context);
 
-				if ((next == null) || Less (context, next))
+				if ((next == null) || Less (Types.ToDate (context), Types.ToDate (next)))
 					continue;
 
 				errorHandler ("305", context,
-					"Bermuda exercise dates " + context.InnerText.Trim () + " and " +
-					next.InnerText.Trim () + " are not in order",
+					"Bermuda exercise dates " + ToString (context) + " and " +
+					ToString (next) + " are not in order",
 					name, null);
 
 				result = false;
@@ -419,13 +420,13 @@ namespace HandCoded.FpML.Validation
 			foreach (XmlElement context in XPath.Paths (list, "bermudaExerciseDates", "date")) {
 				XmlElement	commence	= XPath.Path (context, "..", "..", "commencementDate", "adjustableDate", "unadjustedDate");
 
-				if ((commence == null) || Greater (context, commence))
+				if ((commence == null) || Greater (Types.ToDate (context), Types.ToDate (commence)))
 					continue;
 
 				errorHandler ("305", context,
-					"Bermuda exercise date " + context.InnerText.Trim () +
+					"Bermuda exercise date " + ToString (context) +
 					" should be after exercise period commencement date " +
-					commence.InnerText.Trim (),
+					ToString (commence),
 					name, null);
 								
 				result = false;
@@ -447,13 +448,13 @@ namespace HandCoded.FpML.Validation
 			foreach (XmlElement context in XPath.Paths (list, "bermudaExerciseDates", "date")) {
 				XmlElement	expiration	= XPath.Path (context, "..", "..", "expirationDate", "adjustableDate", "unadjustedDate");
 
-				if ((expiration == null) || LessOrEqual (context, expiration))
+				if ((expiration == null) || LessOrEqual (ToDate (context), ToDate (expiration)))
 					continue;
 
 				errorHandler ("305", context,
-					"Bermuda exercise date " + context.InnerText.Trim () +
+					"Bermuda exercise date " + ToString (context) +
 					" should be on or before exercise period expiration date " +
-					expiration.InnerText.Trim (),
+					ToString (expiration),
 					name, null);
 								
 				result = false;
@@ -476,11 +477,11 @@ namespace HandCoded.FpML.Validation
 				XmlElement	other	= DOM.GetNextSibling (context);
 
 				for (; other != null; other = DOM.GetNextSibling (other)) {
-					if (NotEqual (context, other)) continue;
+					if (NotEqual (ToDate (context), ToDate (other))) continue;
 
 					errorHandler ("305", context,
-						"Duplicate bermuda exercise date, " + other.InnerText.Trim (),
-						name, other.InnerText.Trim ());
+						"Duplicate bermuda exercise date, " + ToString (other),
+						name, ToString (other));
 
 					result = false;
 				}
@@ -503,12 +504,12 @@ namespace HandCoded.FpML.Validation
 				XmlElement	expiration	= XPath.Path (context, "expirationDate", "adjustableDate", "unadjustedDate");
 				XmlElement	trade		= XPath.Path (context, "..", "..", "..", "tradeHeader", "tradeDate");
 
-				if ((expiration == null) || (trade == null) || GreaterOrEqual (expiration, trade))
+				if ((expiration == null) || (trade == null) || GreaterOrEqual (ToDate (expiration), ToDate (trade)))
 					continue;
 
 				errorHandler ("305", context,
-					"European exercise expiration date " + expiration.InnerText.Trim () +
-					" should be the same or later than trade date " + trade.InnerText.Trim (),
+					"European exercise expiration date " + ToString (expiration) +
+					" should not be before the trade date " + ToString (trade),
 					name, null);
 
 				result = false;
@@ -531,12 +532,12 @@ namespace HandCoded.FpML.Validation
 				XmlElement	premiumDate	= XPath.Path (context, "equityOption", "equityPremium", "paymentDate", "unadjustedDate");
 				XmlElement	tradeDate	= XPath.Path (context, "tradeHeader", "tradeDate");
 
-				if ((premiumDate == null) || (tradeDate == null) || GreaterOrEqual (premiumDate, tradeDate))
+				if ((premiumDate == null) || (tradeDate == null) || GreaterOrEqual (ToDate (premiumDate), ToDate (tradeDate)))
 					continue;
 
 				errorHandler ("305", context,
-					"Equity premium payment date " + premiumDate.InnerText.Trim () +
-					" must be on or after trade date " + tradeDate.InnerText.Trim (),
+					"Equity premium payment date " + ToString (premiumDate) +
+					" must be on or after trade date " + ToString (tradeDate),
 					name, null);
 
 				result = false;
@@ -559,12 +560,12 @@ namespace HandCoded.FpML.Validation
 				XmlElement	premiumDate	= XPath.Path (context, "brokerEquityOption", "equityPremium", "paymentDate", "unadjustedDate");
 				XmlElement	tradeDate	= XPath.Path (context, "tradeHeader", "tradeDate");
 
-				if ((premiumDate == null) || (tradeDate == null) || GreaterOrEqual (premiumDate, tradeDate))
+				if ((premiumDate == null) || (tradeDate == null) || GreaterOrEqual (ToDate (premiumDate), ToDate (tradeDate)))
 					continue;
 
 				errorHandler ("305", context,
-					"Broker equity premium payment date " + premiumDate.InnerText.Trim () +
-					" must be on or after trade date " + tradeDate.InnerText.Trim (),
+					"Broker equity premium payment date " + ToString (premiumDate) +
+					" must be on or after trade date " + ToString (tradeDate),
 					name, null);
 
 				result = false;
@@ -587,7 +588,7 @@ namespace HandCoded.FpML.Validation
 				XmlElement	valuationDate	= XPath.Path (context, "equityValuation", "valuationDate", "adjustableDate", "unadjustedDate");
 				XmlElement	expirationDate	= XPath.Path (context, "equityEuropeanExercise", "expirationDate", "adjustableDate", "unadjustedDate");
 
-				if ((valuationDate == null) || (expirationDate == null) || Equal (valuationDate, expirationDate))
+				if ((valuationDate == null) || (expirationDate == null) || Equal (ToDate (valuationDate), ToDate (expirationDate)))
 					continue;
 
 				errorHandler ("305", context,
@@ -614,7 +615,7 @@ namespace HandCoded.FpML.Validation
 				XmlElement	minimum = XPath.Path (context, "minimumNumberOfOptions");
 				XmlElement	maximum = XPath.Path (context, "maximumNumberOfOptions");
 
-				if ((minimum == null) || (maximum == null) || Less (Decimal (minimum), Decimal (maximum)))
+				if ((minimum == null) || (maximum == null) || Less (ToDecimal (minimum), ToDecimal (maximum)))
 					continue;
 
 				errorHandler ("305", context,
@@ -648,7 +649,7 @@ namespace HandCoded.FpML.Validation
 				XmlElement	integral	= XPath.Path (multiple, "integralMultipleExercise");
 				XmlElement	maximum		= XPath.Path (multiple, "maximumNumberOfOptions");
 
-				if ((integral == null) || (maximum == null) || LessOrEqual (Decimal (integral) * Decimal (maximum), Decimal (number)))
+				if ((integral == null) || (maximum == null) || GreaterOrEqual (ToDecimal (integral) * ToDecimal (maximum), ToDecimal (number)))
 					continue;
 
 				errorHandler ("305", context,
@@ -683,7 +684,7 @@ namespace HandCoded.FpML.Validation
 				XmlElement	integral	= XPath.Path (multiple, "integralMultipleExercise");
 				XmlElement	maximum		= XPath.Path (multiple, "maximumNumberOfOptions");
 
-				if ((integral == null) || (maximum == null) || LessOrEqual (Decimal (integral) * Decimal (maximum), Decimal (number)))
+				if ((integral == null) || (maximum == null) || LessOrEqual (ToDecimal (integral) * ToDecimal (maximum), ToDecimal (number)))
 					continue;
 
 				errorHandler ("305", context,
@@ -710,12 +711,17 @@ namespace HandCoded.FpML.Validation
 			bool		result	= true;
 
 			foreach (XmlElement context in list) {
-				XmlElement	notional	= XPath.Path (context, "notional", "amount");
-				XmlElement	percentage	= XPath.Path (context, "equityPremium", "percentageOfNotional");
-				XmlElement	amount		= XPath.Path (context, "equityPremium", "paymentAmount", "amount");
+				XmlElement	notional	= XPath.Path (context, "notional");
+				XmlElement	payment		= XPath.Path (context, "equityPremium", "paymentAmount");
 
-				if ((notional == null) || (percentage == null) || (amount == null) ||
-					Equal (Round (Decimal (amount), 2), Round (Decimal (notional) * Decimal (percentage), 2)))
+				if (!IsSameCurrency (notional, payment)) continue;
+
+				XmlElement	totalValue	= XPath.Path (notional, "amount");
+				XmlElement	percentage	= XPath.Path (context, "equityPremium", "percentageOfNotional");
+				XmlElement	amount		= XPath.Path (payment, "amount");
+
+				if ((totalValue == null) || (percentage == null) || (amount == null) ||
+					Equal (Round (ToDecimal (amount), 2), Round (ToDecimal (totalValue) * ToDecimal (percentage), 2)))
 					continue;
 
 				errorHandler ("305", context,
@@ -742,13 +748,18 @@ namespace HandCoded.FpML.Validation
 			bool		result	= true;
 
 			foreach (XmlElement context in list) {
+				XmlElement	price		= XPath.Path (context, "equityPremium", "pricePerOption");
+				XmlElement	payment		= XPath.Path (context, "equityPremium", "paymentAmount");
+
+				if (!IsSameCurrency (price, payment)) continue;
+
 				XmlElement	number		= XPath.Path (context, "numberOfOptions");
 				XmlElement	entitlement	= XPath.Path (context, "optionEntitlement");
-				XmlElement	price		= XPath.Path (context, "equityPremium", "pricePerOption", "amount");
-				XmlElement	amount		= XPath.Path (context, "equityPremium", "paymentAmount", "amount");
+				XmlElement	priceEach	= XPath.Path (price, "amount");
+				XmlElement	amount		= XPath.Path (payment, "amount");
 
-				if ((number == null) || (entitlement == null) || (price == null) || (amount == null) ||
-					Equal (Round (Decimal (amount), 2), Round (Decimal (price) * Decimal (number) * Decimal (entitlement), 2)))
+				if ((number == null) || (entitlement == null) || (priceEach == null) || (amount == null) ||
+					Equal (Round (ToDecimal (amount), 2), Round (ToDecimal (priceEach) * ToDecimal (number) * ToDecimal (entitlement), 2)))
 					continue;
 
 				errorHandler ("305", context,
@@ -839,7 +850,7 @@ namespace HandCoded.FpML.Validation
 				XmlElement	tradeDate		= XPath.Path (context, "..", "tradeHeader", "tradeDate");
 
 				if ((effectiveDate == null) || (tradeDate == null) ||
-						GreaterOrEqual (effectiveDate, tradeDate))
+						GreaterOrEqual (Types.ToDate (effectiveDate), Types.ToDate (tradeDate)))
 					continue;
 
 				errorHandler ("305", context,
@@ -866,7 +877,8 @@ namespace HandCoded.FpML.Validation
 				XmlElement	startDate	= XPath.Path (context, "startDate");
 				XmlElement	endDate		= XPath.Path (context, "endDate");
 
-				if ((startDate == null) || (endDate == null) || LessOrEqual (startDate, endDate))
+				if ((startDate == null) || (endDate == null) ||
+						LessOrEqual (Types.ToDate (startDate), Types.ToDate (endDate)))
 					continue;
 
 				errorHandler ("305", context,
@@ -890,12 +902,17 @@ namespace HandCoded.FpML.Validation
 			bool		result	= true;
 
 			foreach (XmlElement context in list) {
-				XmlElement	number		= XPath.Path (context, "numberOfOptions");
-				XmlElement	price		= XPath.Path (context, "equityPremium", "pricePerOption", "amount");
-				XmlElement	amount		= XPath.Path (context, "equityPremium", "paymentAmount", "amount");
+				XmlElement	price		= XPath.Path (context, "equityPremium", "pricePerOption");
+				XmlElement	payment		= XPath.Path (context, "equityPremium", "paymentAmount");
 
-				if ((number == null) || (price == null) || (amount == null) ||
-					Equal (Round (Decimal (amount), 2), Round (Decimal (price) * Decimal (number), 2)))
+				if (!IsSameCurrency (price, payment)) continue;
+
+				XmlElement	number		= XPath.Path (context, "numberOfOptions");
+				XmlElement	priceEach	= XPath.Path (price, "amount");
+				XmlElement	amount		= XPath.Path (payment, "amount");
+
+				if ((number == null) || (priceEach == null) || (amount == null) ||
+					Equal (Round (ToDecimal (amount), 2), Round (ToDecimal (priceEach) * ToDecimal (number), 2)))
 					continue;
 
 				errorHandler ("305", context,
@@ -906,6 +923,19 @@ namespace HandCoded.FpML.Validation
 				result = false;
 			}
 			return (result);
+		}
+
+		/// <summary>
+		/// Determine if two <see cref="XmlElement"/> structures containing
+		/// <b>Money</b> instances have the same currency code.
+		/// </summary>
+		/// <param name="moneyA">The <see cref="XmlElement"/> containing the first <b>Money</b>.</param>
+		/// <param name="moneyB">The <see cref="XmlElement"/> containing the second <b>Money</b>.</param>
+		/// <returns><b>true</b> if both <b>Money</b> structures have the same currency.</returns>
+		private static bool IsSameCurrency (XmlElement moneyA, XmlElement moneyB)
+		{
+			return (Equal (XPath.Path (moneyA, "currency"),
+						   XPath.Path (moneyB, "currency")));
 		}
 
 		/// <summary>
@@ -920,7 +950,6 @@ namespace HandCoded.FpML.Validation
 			Rules.Add (RULE04);
 			Rules.Add (RULE05);
 			Rules.Add (RULE06);
-			Rules.Add (RULE07);
 			Rules.Add (RULE08);
 			Rules.Add (RULE09);
 			Rules.Add (RULE10);

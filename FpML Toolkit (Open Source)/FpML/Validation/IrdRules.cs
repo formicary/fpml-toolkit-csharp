@@ -520,7 +520,7 @@ namespace HandCoded.FpML.Validation
 			XmlElement	cashflows;
 
 			if (Exists (cashflows = XPath.Path (stream, "cashflows")))
-				return (Bool (XPath.Path (cashflows, "cashflowsMatchParameters")));
+				return (ToBool (XPath.Path (cashflows, "cashflowsMatchParameters")));
 
 			return (true);
 		}
@@ -577,15 +577,15 @@ namespace HandCoded.FpML.Validation
 
 				if ((paymentFreq == null) || (calcFreq == null)) continue;
 
-				Interval payment = Interval (paymentFreq);
-				Interval calc    = Interval (calcFreq);
+				Interval payment = ToInterval (paymentFreq);
+				Interval calc    = ToInterval (calcFreq);
 
 				if ((payment == null) || (calc == null) || payment.IsMultipleOf (calc)) continue;
 
 				errorHandler ("305", context,
-					"Payment frequency '" + Interval (paymentFreq) +
+					"Payment frequency '" + ToInterval (paymentFreq) +
 					"' is not an integer multiple of calculation frequency '" +
-					Interval (calcFreq) + "'",
+					ToInterval (calcFreq) + "'",
 					name, null);
 
 				result = false;				
@@ -619,17 +619,15 @@ namespace HandCoded.FpML.Validation
 				if (!Exists (endDate))
 					endDate   = XPath.Path (context, "calculationPeriodDates", "terminationDate", "unadjustedDate");
 				
-				Interval interval	= Interval (XPath.Path (context, "calculationPeriodDates", "calculationPeriodFrequency"));
+				Interval interval	= ToInterval (XPath.Path (context, "calculationPeriodDates", "calculationPeriodFrequency"));
 				
 				if ((paymentDate == null) || (startDate == null) || (endDate == null) || (interval == null) ||
 						IsUnadjustedCalculationPeriodDate (
-								Date.Parse (String (paymentDate)),
-								Date.Parse (String (startDate)),
-								Date.Parse (String (endDate)),
+								ToDate (paymentDate), ToDate (startDate),ToDate (endDate),
 								interval)) continue;
 			
 				errorHandler ("305", context,
-					"The first payment date '" + String (paymentDate) + "' does not " +
+					"The first payment date '" + ToString (paymentDate) + "' does not " +
 					"fall on one of the unadjusted calculation period dates.",
 					name, null);
 				
@@ -664,17 +662,15 @@ namespace HandCoded.FpML.Validation
 				if (!Exists (endDate))
 					endDate = XPath.Path (context, "calculationPeriodDates", "terminationDate", "unadjustedDate");
 				
-				Interval interval	= Interval (XPath.Path (context, "calculationPeriodDates", "calculationPeriodFrequency"));
+				Interval interval	= ToInterval (XPath.Path (context, "calculationPeriodDates", "calculationPeriodFrequency"));
 				
 				if ((paymentDate == null) || (startDate == null) || (endDate == null) || (interval == null) ||
 						IsUnadjustedCalculationPeriodDate (
-								Date.Parse (String (paymentDate)),
-								Date.Parse (String (startDate)),
-								Date.Parse (String (endDate)),
+								ToDate (paymentDate), ToDate (startDate), ToDate (endDate),
 								interval)) continue;
 			
 				errorHandler ("305", context,
-					"The last regular payment date '" + String (paymentDate) + "' does not " +
+					"The last regular payment date '" + ToString (paymentDate) + "' does not " +
 					"fall on one of the unadjusted calculation period dates.",
 					name, null);
 				
@@ -704,16 +700,16 @@ namespace HandCoded.FpML.Validation
 
 				if ((calcFreq == null) || (resetFreq == null)) continue;
 				
-				Interval calc  = Interval (calcFreq);
-				Interval reset = Interval (resetFreq);
+				Interval calc  = ToInterval (calcFreq);
+				Interval reset = ToInterval (resetFreq);
 				
 				if ((calc == null) || (reset == null) || calc.IsMultipleOf (reset))
 					continue;
 
 				errorHandler ("305", context,
-					"Calculation frequency '" + Interval(calcFreq) +
+					"Calculation frequency '" + ToInterval (calcFreq) +
 					"' is not an integer multiple of reset frequency '" +
-					Interval (resetFreq) + "'",
+					ToInterval (resetFreq) + "'",
 					name, null);
 
 				result = false;				
@@ -744,8 +740,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The first payment date " + String (payment) + " must be after " +
-					"the unadjusted effective date " + String (effective),
+					"The first payment date " + ToString (payment) + " must be after " +
+					"the unadjusted effective date " + ToString (effective),
 					name, null);
 			
 				result = false;
@@ -775,8 +771,8 @@ namespace HandCoded.FpML.Validation
 
 				if ((paymentFreq == null) || (calcFreq == null)) continue;
 
-				Interval payment = Interval (paymentFreq);
-				Interval calc    = Interval (calcFreq);
+				Interval payment = ToInterval (paymentFreq);
+				Interval calc    = ToInterval (calcFreq);
 
 				if ((payment == null) || (calc == null)) continue;
 
@@ -787,8 +783,8 @@ namespace HandCoded.FpML.Validation
 
 				errorHandler ("305", context,
 					"Compounding method must only be present when the payment frequency '" +
-					Interval (paymentFreq) + "' is different from the calculation " +
-					"frequency '" + Interval (calcFreq) + "'",
+					ToInterval (paymentFreq) + "' is different from the calculation " +
+					"frequency '" + ToInterval (calcFreq) + "'",
 					name, null);
 
 				result = false;
@@ -864,14 +860,14 @@ namespace HandCoded.FpML.Validation
 			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
 				XmlElement rollConvention	= XPath.Path (context, "calculationPeriodFrequency", "rollConvention");
 				
-				if (!IsNumber (String (rollConvention))) continue;
+				if (!IsNumber (ToString (rollConvention))) continue;
 				
 				XmlElement	startDate = XPath.Path (context, "firstRegularPeriodStartDate");
 				if (!Exists (startDate))
 					startDate = XPath.Path (context, "effectiveDate", "unadjustedDate");
 				
-				int		rollDate = Integer (rollConvention);
-				Date	start	 = Date.Parse (String (startDate));
+				int		rollDate = ToInteger (rollConvention);
+				Date	start	 = ToDate (startDate);
 				
 				if (rollDate < start.LastDayOfMonth) {
 					if (rollDate == start.DayOfMonth) continue;
@@ -881,7 +877,7 @@ namespace HandCoded.FpML.Validation
 				
 				errorHandler ("305", context,
 					"The start date of the calculation period,  '" + start + "' is not " +
-					"consistent with the roll convention " + String (rollConvention),
+					"consistent with the roll convention " + ToString (rollConvention),
 					name, null);
 				
 				result = false;
@@ -898,14 +894,14 @@ namespace HandCoded.FpML.Validation
 			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
 				XmlElement	rollConvention	= XPath.Path (context, "calculationPeriodFrequency", "rollConvention");
 				
-				if (!IsNumber (String (rollConvention))) continue;
+				if (!IsNumber (ToString (rollConvention))) continue;
 				
 				XmlElement	endDate = XPath.Path (context, "firstRegularPeriodEndDate");
 				if (!Exists (endDate))
 					endDate = XPath.Path (context, "terminationDate", "unadjustedDate");
 				
-				int		rollDate = Integer (rollConvention);
-				Date	end	 = Date.Parse (String (endDate));
+				int		rollDate = ToInteger (rollConvention);
+				Date	end	 = ToDate (endDate);
 				
 				if (rollDate < end.LastDayOfMonth) {
 					if (rollDate == end.DayOfMonth) continue;
@@ -915,7 +911,7 @@ namespace HandCoded.FpML.Validation
 				
 				errorHandler ("305", context,
 					"The end date of the calculation period,  '" + end + "' is not " +
-					"consistent with the roll convention " + String (rollConvention),
+					"consistent with the roll convention " + ToString (rollConvention),
 					name, null);
 				
 				result = false;
@@ -938,9 +934,9 @@ namespace HandCoded.FpML.Validation
 				if (end   == null) end   = XPath.Path (context, "terminationDate", "unadjustedDate");
 
 				if ((start != null) && (end != null) && (period != null)) {
-					Date		startDate = Date.Parse (String (start));
-					Date		endDate	  = Date.Parse (String (end));
-					Interval	interval  = Interval (period);
+					Date		startDate = ToDate (start);
+					Date		endDate	  = ToDate (end);
+					Interval	interval  = ToInterval (period);
 
 					if ((startDate == null) || (endDate == null) || (interval == null)) continue;
 
@@ -971,8 +967,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted termination date '" + String (termination) + "' should " +
-					"be after unadjusted effective date '" + String (effective) + "'",
+					"Unadjusted termination date '" + ToString (termination) + "' should " +
+					"be after unadjusted effective date '" + ToString (effective) + "'",
 					name, null);
 
 				result = false;
@@ -994,8 +990,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted termination date '" + String (termination) + "' should " +
-					"be after unadjusted first period start date '" + String (periodStart) + "'",
+					"Unadjusted termination date '" + ToString (termination) + "' should " +
+					"be after unadjusted first period start date '" + ToString (periodStart) + "'",
 					name, null);
 
 				result = false;
@@ -1017,8 +1013,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted termination date '" + String (termination) + "' should " +
-					"be after unadjusted first regular period start date '" + String (periodStart) + "'",
+					"Unadjusted termination date '" + ToString (termination) + "' should " +
+					"be after unadjusted first regular period start date '" + ToString (periodStart) + "'",
 					name, null);
 
 				result = false;
@@ -1040,8 +1036,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted termination date '" + String (termination) + "' should " +
-					"be after unadjusted last regular period end date '" + String (periodEnd) + "'",
+					"Unadjusted termination date '" + ToString (termination) + "' should " +
+					"be after unadjusted last regular period end date '" + ToString (periodEnd) + "'",
 					name, null);
 
 				result = false;
@@ -1063,8 +1059,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted last regular period end date '" + String (periodEnd) + "' should " +
-					"be after unadjusted first regular period start date '" + String (periodStart) + "'",
+					"Unadjusted last regular period end date '" + ToString (periodEnd) + "' should " +
+					"be after unadjusted first regular period start date '" + ToString (periodStart) + "'",
 					name, null);
 
 				result = false;
@@ -1086,8 +1082,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted last regular period end date '" + String (periodEnd) + "' should " +
-					"be after unadjusted first period start date '" + String (periodStart) + "'",
+					"Unadjusted last regular period end date '" + ToString (periodEnd) + "' should " +
+					"be after unadjusted first period start date '" + ToString (periodStart) + "'",
 					name, null);
 
 				result = false;
@@ -1109,8 +1105,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted last regular period end date " + String (last) +
-					" must be after unadjusted effective date " + String (effective),
+					"Unadjusted last regular period end date " + ToString (last) +
+					" must be after unadjusted effective date " + ToString (effective),
 					name, null);
 
 				result = false;
@@ -1132,8 +1128,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted first period start date " + String (first) +
-					" must be before unadjusted effective date " + String (effective),
+					"Unadjusted first period start date " + ToString (first) +
+					" must be before unadjusted effective date " + ToString (effective),
 					name, null);
 
 				result = false;
@@ -1155,8 +1151,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted first period start date " + String (first) +
-					" must be before first regular period start date " + String (regular),
+					"Unadjusted first period start date " + ToString (first) +
+					" must be before first regular period start date " + ToString (regular),
 					name, null);
 
 				result = false;
@@ -1533,8 +1529,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Adjusted termination date '" + String (termination) + "' must be " +
-					"after adjusted effective date '" + String (effective) + "'",
+					"Adjusted termination date '" + ToString (termination) + "' must be " +
+					"after adjusted effective date '" + ToString (effective) + "'",
 					name, null);
 
 				result = false;
@@ -1591,8 +1587,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The first payment date '" + String (firstDate) + "' should be " +
-					"before the last payment date '" + String (lastDate) + "'",
+					"The first payment date '" + ToString (firstDate) + "' should be " +
+					"before the last payment date '" + ToString (lastDate) + "'",
 					name, null);
 
 				result = false;
@@ -1617,9 +1613,9 @@ namespace HandCoded.FpML.Validation
 				XmlElement	period	= XPath.Path (context, "paymentFrequency");
 
 				if ((first != null) && (last != null)) {
-					Date		firstDate	= Date.Parse (String (first));
-					Date		lastDate	= Date.Parse (String (last));
-					Interval	frequency	= Interval (period);
+					Date		firstDate	= ToDate (first);
+					Date		lastDate	= ToDate (last);
+					Interval	frequency	= ToInterval (period);
 
 					if (frequency.DividesDates (firstDate, lastDate)) continue;
 
@@ -1682,8 +1678,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The adjusted exercise date '" + String (exercise) + "' should be " +
-					"on or before the adjusted early termination date '" + String (termination) + "'",
+					"The adjusted exercise date '" + ToString (exercise) + "' should be " +
+					"on or before the adjusted early termination date '" + ToString (termination) + "'",
 					name, null);
 
 				result = false;
@@ -1710,9 +1706,9 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The adjusted exercise date '" + String (exercise) + "' should be " +
+					"The adjusted exercise date '" + ToString (exercise) + "' should be " +
 					"on or before the adjusted cash settlement date '" + 
-					String (valuation) + "'",
+					ToString (valuation) + "'",
 					name, null);
 
 				result = false;
@@ -1739,9 +1735,9 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The adjusted case settlement valuation date '" + String (valuation) +
+					"The adjusted case settlement valuation date '" + ToString (valuation) +
 					"' should be on or before the adjusted cash settlement payment date '" + 
-					String (payment) + "'",
+					ToString (payment) + "'",
 					name, null);
 
 				result = false;
@@ -1768,8 +1764,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The adjusted exercise date '" + String (exercise) + "' should be " +
-					"on or before the adjusted extended termination date '" + String (termination) + "'",
+					"The adjusted exercise date '" + ToString (exercise) + "' should be " +
+					"on or before the adjusted extended termination date '" + ToString (termination) + "'",
 					name, null);
 
 				result = false;
@@ -1823,9 +1819,9 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The adjusted mandatory early termination date '" + String (termination) + "', " +
-					"cash settlement valuation date '" + String (valuation) + "' and " +
-					"cash settlement payment date '" + String (payment) + "' " +
+					"The adjusted mandatory early termination date '" + ToString (termination) + "', " +
+					"cash settlement valuation date '" + ToString (valuation) + "' and " +
+					"cash settlement payment date '" + ToString (payment) + "' " +
 					"are not in order",
 					name, null);
 
@@ -2041,17 +2037,17 @@ namespace HandCoded.FpML.Validation
 					lastDate  = XPath.Path (calculation, "terminationDate", "unadjustedDate");
 
 				XmlElement	period			= XPath.Path (calculation, "calculationPeriodFrequency");
-				Interval	interval		= Interval (period);
+				Interval	interval		= ToInterval (period);
 
 				if ((firstDate == null) || (lastDate == null) || (interval == null)) continue;
 
-				Date		first	= Date.Parse (String (firstDate));
-				Date		last	= Date.Parse (String (lastDate));
+				Date		first	= ToDate (firstDate);
+				Date		last	= ToDate (lastDate);
 
 				if ((first ==null) || (last == null)) continue;
 
 				foreach (XmlElement date in dates) {
-					Date		payment = Date.Parse (String (date));
+					Date		payment = ToDate (date);
 
 					if (IsUnadjustedCalculationPeriodDate (payment, first, last, interval)) continue;
 						
@@ -2059,7 +2055,7 @@ namespace HandCoded.FpML.Validation
 						"The notional step schedule step date '" + payment + "' does not fall " +
 						"on one of the calculated period dates between '" + first + "' and '" +
 						last + "'",
-						name, String (date));
+						name, ToString (date));
 
 					result = false;
 				}
@@ -2088,17 +2084,17 @@ namespace HandCoded.FpML.Validation
 					lastDate  = XPath.Path (calculation, "terminationDate", "unadjustedDate");
 
 				XmlElement	period			= XPath.Path (calculation, "calculationPeriodFrequency");
-				Interval	interval		= Interval (period);
+				Interval	interval		= ToInterval (period);
 
 				if ((firstDate == null) || (lastDate == null) || (interval == null)) continue;
 
-				Date		first	= Date.Parse (String (firstDate));
-				Date		last	= Date.Parse (String (lastDate));
+				Date		first	= ToDate (firstDate);
+				Date		last	= ToDate (lastDate);
 
 				if ((first == null) || (last == null)) continue;
 
 				foreach (XmlElement date in dates) {
-					Date		payment = Date.Parse (String (date));
+					Date		payment = ToDate (date);
 
 					if (IsUnadjustedCalculationPeriodDate (payment, first, last, interval)) continue;
 						
@@ -2106,7 +2102,7 @@ namespace HandCoded.FpML.Validation
 						"The fixed rate schedule step date '" + payment + "' does not fall " +
 						"on one of the calculated period dates between '" + first + "' and '" +
 						last + "'",
-						name, String (date));
+						name, ToString (date));
 
 					result = false;
 				}
@@ -2134,17 +2130,17 @@ namespace HandCoded.FpML.Validation
 					lastDate  = XPath.Path (calculation, "terminationDate", "unadjustedDate");
 
 				XmlElement	period			= XPath.Path (calculation, "calculationPeriodFrequency");
-				Interval	interval		= Interval (period);
+				Interval	interval		= ToInterval (period);
 
 				if ((firstDate == null) || (lastDate == null) || (interval == null)) continue;
 
-				Date		first	= Date.Parse (String (firstDate));
-				Date		last	= Date.Parse (String (lastDate));
+				Date		first	= ToDate (firstDate);
+				Date		last	= ToDate (lastDate);
 
 				if ((first == null) || (last == null)) continue;
 
 				foreach (XmlElement date in dates) {
-					Date		payment = Date.Parse (String (date));
+					Date		payment = ToDate (date);
 
 					if (IsUnadjustedCalculationPeriodDate (payment, first, last, interval)) continue;
 						
@@ -2152,7 +2148,7 @@ namespace HandCoded.FpML.Validation
 						"The cap rate schedule step date '" + payment + "' does not fall " +
 						"on one of the calculated period dates between '" + first + "' and '" +
 						last + "'",
-						name, String (date));
+						name, ToString (date));
 
 					result = false;
 				}
@@ -2180,17 +2176,17 @@ namespace HandCoded.FpML.Validation
 					lastDate  = XPath.Path (calculation, "terminationDate", "unadjustedDate");
 
 				XmlElement	period			= XPath.Path (calculation, "calculationPeriodFrequency");
-				Interval	interval		= Interval (period);
+				Interval	interval		= ToInterval (period);
 
 				if ((firstDate == null) || (lastDate == null) || (interval == null)) continue;
 
-				Date		first	= Date.Parse (String (firstDate));
-				Date		last	= Date.Parse (String (lastDate));
+				Date		first	= ToDate (firstDate);
+				Date		last	= ToDate (lastDate);
 
 				if ((first ==null) || (last == null)) continue;
 
 				foreach (XmlElement date in dates) {
-					Date		payment = Date.Parse (String (date));
+					Date		payment = ToDate (date);
 
 					if (IsUnadjustedCalculationPeriodDate (payment, first, last, interval)) continue;
 						
@@ -2198,7 +2194,7 @@ namespace HandCoded.FpML.Validation
 						"The floor rate schedule step date '" + payment + "' does not fall " +
 						"on one of the calculated period dates between '" + first + "' and '" +
 						last + "'",
-						name, String (date));
+						name, ToString (date));
 
 					result = false;
 				}
@@ -2227,17 +2223,17 @@ namespace HandCoded.FpML.Validation
 					lastDate  = XPath.Path (calculation, "terminationDate", "unadjustedDate");
 
 				XmlElement	period			= XPath.Path (calculation, "calculationPeriodFrequency");
-				Interval	interval		= Interval (period);
+				Interval	interval		= ToInterval (period);
 
 				if ((firstDate == null) || (lastDate == null) || (interval == null)) continue;
 
-				Date		first	= Date.Parse (String (firstDate));
-				Date		last	= Date.Parse (String (lastDate));
+				Date		first	= ToDate (firstDate);
+				Date		last	= ToDate (lastDate);
 
 				if ((first ==null) || (last == null)) continue;
 
 				foreach (XmlElement date in dates) {
-					Date		payment = Date.Parse (String (date));
+					Date		payment = ToDate (date);
 
 					if (IsUnadjustedCalculationPeriodDate (payment, first, last, interval)) continue;
 						
@@ -2245,7 +2241,7 @@ namespace HandCoded.FpML.Validation
 						"The known amount schedule step date '" + payment + "' does not fall " +
 						"on one of the calculated period dates between '" + first + "' and '" +
 						last + "'",
-						name, String (date));
+						name, ToString (date));
 
 					result = false;
 				}
@@ -2327,7 +2323,7 @@ namespace HandCoded.FpML.Validation
 					Implies (
 						Not (
 							Or (
-								IsWeekDayName (String (convention)),
+								IsWeekDayName (ToString (convention)),
 								Or (
 									Equal (convention, "NONE"),
 									Equal (convention, "SFE")))),
@@ -2358,7 +2354,7 @@ namespace HandCoded.FpML.Validation
 
 				if ((convention == null) || (period == null) ||
 					Implies (
-						IsWeekDayName (String (convention)),
+						IsWeekDayName (ToString (convention)),
 						Equal (period, "W")))
 					continue;
 
@@ -2474,16 +2470,19 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <param name="context">The context <see cref="XmlElement"/>.</param>
 		/// <returns>An <see cref="Interval"/> constructed from the stored data.</returns>
-		private static Interval Interval (XmlElement context)
+		private static Interval ToInterval (XmlElement context)
 		{
-			try {
-				return (new Interval (
-					Int32.Parse (String (XPath.Path (context, "periodMultiplier"))),
-					Period.ForCode (String (XPath.Path (context, "period")))));
+			if (context != null) {
+				try {
+					return (new Interval (
+						ToInteger (XPath.Path (context, "periodMultiplier")),
+						Period.ForCode (ToString (XPath.Path (context, "period")))));
+				}
+				catch (Exception) {
+					return (null);
+				}
 			}
-			catch (Exception) {
-				return (null);
-			}
+			return (null);
 		}
 
 		/// <summary>

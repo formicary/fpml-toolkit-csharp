@@ -14,9 +14,15 @@
 using System;
 using System.Xml;
 
+using HandCoded.Meta;
+
 namespace HandCoded.Meta
 {
-    class DefaultInstanceInitialiser : IInstanceInitialiser
+	/// <summary>
+	/// The <b>DefaultInstanceInitialiser</b> class performs the population of
+	/// attributes and values on the root element of a new document.
+	/// </summary>
+    public class DefaultInstanceInitialiser : IInstanceInitialiser
     {
         /// <summary>
         /// Constructs a <b>DefaultInstanceInitialiser</b> that performs the
@@ -38,7 +44,16 @@ namespace HandCoded.Meta
             string preferredPrefix = release.PreferredPrefix;
             string schemaLocation = release.SchemaLocation;
 
-            
+			if (isDefaultNamespace)
+				root.SetAttribute ("xmlns", SchemaRelease.NAMESPACES_URL, namespaceUri);
+			else
+				root.SetAttribute ("xmlns:" + preferredPrefix, SchemaRelease.NAMESPACES_URL, namespaceUri);
+			
+			String 	value = root.GetAttribute ("xsi:schemaLocation");
+
+			if (value != null) value += " ";
+			value += namespaceUri + " " + schemaLocation;
+			root.SetAttribute ("xsi:schemaLocation", value);
         }
     }
 }

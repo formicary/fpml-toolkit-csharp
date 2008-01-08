@@ -111,10 +111,17 @@ namespace HandCoded.FpML.Validation
 				string		version	= null;
 
 				// Find the FpML root node
-				while ((fpml != null) && !fpml.LocalName.Equals ("FpML"))
+				while (fpml != null) {
+					if (fpml.LocalName.Equals ("FpML")) {
+						version = fpml.GetAttribute ("version");
+						break;
+					}
+					if (fpml.HasAttribute ("fpmlVersion")) {
+						version = fpml.GetAttribute ("fpmlVersion");
+						break;
+					}
 					fpml = DOM.GetParent (fpml);
-
-				if (fpml != null) version = fpml.GetAttribute ("version");
+				}
 
 				SchemeCollection	schemes =
 					(Releases.FPML.GetReleaseForVersion (version) as ISchemeAccess).SchemeCollection;

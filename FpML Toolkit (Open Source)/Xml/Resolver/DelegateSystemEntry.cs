@@ -25,7 +25,7 @@ namespace HandCoded.Xml.Resolver
 	{
 		/// <summary>
 		/// Constructs a <b>DelegateSystem</b> instance that will direct
-		// matching system identifier searches to a sub-catalog.
+		/// matching system identifier searches to a sub-catalog.
 		/// </summary>
 		/// <param name="parent">The containing catalog element.</param>
 		/// <param name="prefix">The system identifier to be matched.</param>
