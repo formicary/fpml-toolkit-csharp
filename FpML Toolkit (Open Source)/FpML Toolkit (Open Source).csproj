@@ -89,15 +89,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Acme\Releases.cs">
+    <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Finance\DateTime.cs" />
-    <Compile Include="Finance\Temporal.cs" />
-    <Compile Include="FpML\Meta\FpMLInstanceInitialiser.cs" />
-    <Compile Include="FpML\Meta\FpMLSchemaRecogniser.cs" />
-    <Compile Include="Framework\Process.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
+    <Compile Include="Acme\Releases.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classification\AbstractCategory.cs">
@@ -127,15 +122,19 @@
     <Compile Include="Finance\Date.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Finance\DateTime.cs" />
     <Compile Include="Finance\DateRoll.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Finance\DateValue.cs" />
     <Compile Include="Finance\DelegatedDateRoll.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Finance\DelegatedWeekend.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Finance\IImmutableDate.cs" />
+    <Compile Include="Finance\IImmutableTime.cs" />
     <Compile Include="Finance\Interval.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -145,9 +144,13 @@
     <Compile Include="Finance\RuleBasedCalendar.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Finance\Temporal.cs" />
+    <Compile Include="Finance\TemporalDate.cs" />
     <Compile Include="Finance\Time.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Finance\TimeValue.cs" />
+    <Compile Include="Finance\TimeZone.cs" />
     <Compile Include="Finance\Weekend.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -163,6 +166,8 @@
     <Compile Include="FpML\Meta\DTDRelease.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FpML\Meta\FpMLInstanceInitialiser.cs" />
+    <Compile Include="FpML\Meta\FpMLSchemaRecogniser.cs" />
     <Compile Include="FpML\Meta\ISchemeAccess.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -247,6 +252,7 @@
     <Compile Include="Framework\Option.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Framework\Process.cs" />
     <Compile Include="Meta\Conversion.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -357,21 +363,13 @@
     <Compile Include="Xml\Writer\XmlWriter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Xml\Types.cs" />
     <Compile Include="Xml\XmlUtility.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Xml\XPath.cs">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Finance\DateValue.cs" />
-    <Compile Include="Finance\IImmutableDate.cs" />
-    <Compile Include="Finance\IImmutableTime.cs" />
-    <Compile Include="Finance\TemporalDate.cs" />
-    <Compile Include="Finance\TimeValue.cs" />
-    <Compile Include="Finance\TimeZone.cs" />
-    <Compile Include="Xml\Types.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
