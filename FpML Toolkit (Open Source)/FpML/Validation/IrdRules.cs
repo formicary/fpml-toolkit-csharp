@@ -769,7 +769,7 @@ namespace HandCoded.FpML.Validation
 				XmlElement	paymentFreq	= XPath.Path (context, "paymentDates", "paymentFrequency");
 				XmlElement	calcFreq	= XPath.Path (context, "calculationPeriodDates", "calculationPeriodFrequency");
 
-				if ((paymentFreq == null) || (calcFreq == null)) continue;
+				if ((paymentFreq == null) || (calcFreq == null) || (compounding == null)) continue;
 
 				Interval payment = ToInterval (paymentFreq);
 				Interval calc    = ToInterval (calcFreq);
