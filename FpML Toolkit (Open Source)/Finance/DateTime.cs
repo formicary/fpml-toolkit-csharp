@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -278,7 +278,7 @@ namespace HandCoded.Finance
 						++index;
 					} while ((index < limit) && IsDigit (text [index]));
 				}
-				decimal seconds = Decimal.Parse (text.Substring (start, index));
+				decimal seconds = Decimal.Parse (text.Substring (start, index - start));
 
 				// Detect zulu time zone
 				if ((index < limit)&& (text [index] == 'Z')) {
