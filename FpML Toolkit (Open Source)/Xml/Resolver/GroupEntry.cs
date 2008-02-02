@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -355,6 +355,9 @@ namespace HandCoded.Xml.Resolver
 		///
 		protected internal String ApplyRules (String uri, Stack<GroupEntry> catalogs)
 		{
+			if (uri.StartsWith ("-//") || uri.StartsWith ("urn:public:"))
+				return (ApplyRules (uri, null, catalogs));
+
 			String				result = null;
 
 			if (catalogs.Contains (this))

@@ -49,15 +49,15 @@ namespace HandCoded.Xml.Resolver
 		///	<b>null</b>.</returns>
 		public String ApplyTo (String uri, Stack<GroupEntry> catalogs)
 		{
-			Uri					targetUri;
-			Uri					systemUri;
+			String				targetUri;
+			String				systemUri;
 			
 			// Convert the target uri value to a URI
 			try {
 				if (uri.StartsWith ("file:"))
-					targetUri = new Uri (uri.Substring (5));
+					targetUri = uri.Substring (5);
 				else
-					targetUri = Resolve (BaseAsUri (), new Uri (uri));
+					targetUri = Resolve (XmlBase, uri);
 			}
 			catch (UriFormatException error) {
 				throw new Exception ("Failed to normalise target URI", error);
@@ -65,7 +65,7 @@ namespace HandCoded.Xml.Resolver
 		
 			// Convert the catalog name value to a URI
 			try {
-				systemUri = Resolve (BaseAsUri (), new Uri (name));
+				systemUri = Resolve (XmlBase, name);
 			}
 			catch (UriFormatException error) {
 				throw new Exception ("Failed to normalise name", error);
@@ -74,7 +74,7 @@ namespace HandCoded.Xml.Resolver
 			// If they match then replace with the catalog URI
 			if (systemUri.Equals (targetUri)) {
 				try {
-					return (Resolve (BaseAsUri (), new Uri (this.uri, UriKind.RelativeOrAbsolute)).ToString ());
+					return (Resolve (XmlBase, this.uri));
 				}
 				catch (UriFormatException error) {
 					throw new Exception ("Failed to resolve new URI", error);

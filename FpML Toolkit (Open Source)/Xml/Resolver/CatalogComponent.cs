@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -71,14 +71,29 @@ namespace HandCoded.Xml.Resolver
 		/// <returns>The object's <see cref="String"/> representation.</returns>
 		protected abstract String ToDebug ();
 
-		protected Uri Resolve (Uri baseurl, Uri relative)
+		/// <summary>
+		/// Combines a base URL and a (possibly) relative URL to make a new absolute
+		/// URL.
+		/// </summary>
+		/// <param name="baseUrl">The base URL or <b>null</b>.</param>
+		/// <param name="relative">The (possibly) relative URL.</param>
+		/// <returns>The resolved combination of the two URLs.</returns>
+		protected String Resolve (String baseUrl, String relative)
 		{
-			if (relative.IsAbsoluteUri || (baseurl == null))
-				return (relative);
-			else {
-				// FIX
-				return (new Uri (baseurl.ToString () + "/" + relative.ToString (), UriKind.RelativeOrAbsolute));
+			Uri			uri		= null;
+
+			// Is the relative portion really a URI?
+			try {
+			    uri = new Uri (relative, UriKind.RelativeOrAbsolute);
 			}
+			catch (UriFormatException) {
+			    return (relative);
+			}
+
+			if (uri.IsAbsoluteUri || (baseUrl == null))
+				return (uri.ToString ());
+
+			return (new Uri (baseUrl + "/" + relative).ToString ());
 		}
 
 		/// <summary>
