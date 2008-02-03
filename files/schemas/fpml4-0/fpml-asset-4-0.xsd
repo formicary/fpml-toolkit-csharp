@@ -51,8 +51,8 @@
 			<xsd:element name="instrumentId" type="InstrumentId" maxOccurs="unbounded"/>
 			<xsd:element name="description" type="xsd:string" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation xml:lang="de">Vollständige Wertpapierbezeichnung.</xsd:documentation>
 					<xsd:documentation xml:lang="en">The long name of a security.</xsd:documentation>
+					<xsd:documentation xml:lang="de">Vollständige Wertpapierbezeichnung.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="currency" type="Currency" minOccurs="0">
@@ -74,8 +74,8 @@
 					<xsd:sequence>
 						<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0">
 							<xsd:annotation>
-								<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
 								<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+								<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 						<xsd:element name="issuerName" type="xsd:string" minOccurs="0">
@@ -118,8 +118,8 @@
 					<xsd:sequence>
 						<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
 								<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+								<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 						<xsd:element name="issuerName" type="xsd:string" minOccurs="0">
@@ -167,8 +167,8 @@
 					<xsd:sequence>
 						<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
 								<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+								<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 						<xsd:element name="optionsExchangeId" type="ExchangeId" minOccurs="0">
@@ -191,8 +191,8 @@
 					<xsd:sequence>
 						<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0">
 							<xsd:annotation>
-								<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
 								<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+								<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 						<xsd:element name="optionsExchangeId" type="ExchangeId" minOccurs="0">
@@ -220,8 +220,8 @@
 					<xsd:sequence minOccurs="0">
 						<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0">
 							<xsd:annotation>
-								<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
 								<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+								<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 						<xsd:element name="optionsExchangeId" type="ExchangeId" minOccurs="0">
@@ -254,8 +254,8 @@
 					<xsd:sequence>
 						<xsd:element name="relatedExchangeId" type="ExchangeId" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
 								<xsd:documentation xml:lang="en">A short form unique identifier for a related exchange. If the element is not present then the exchange shall be the primary exchange on which listed futures and options on the underlying are listed. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+								<xsd:documentation xml:lang="de">Eindeutiges Kürzel einer relevanten Börse. Fehlt dieses Element, gilt die Hauptbörse, an der börsengehandelte Futures- und Optionskontrakte auf den Basiswert notiert sind, als "Börse" im Sinne der ISDA-Definitionen zu Aktienderivaten von 2002.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 						<xsd:element name="futureId" minOccurs="0">
@@ -340,12 +340,12 @@
 			</xsd:element>
 			<xsd:element name="underlyerPrice" type="Price" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation>Specifies the price that is associated with each of the basket constituents. This component is optional, as it is not absolutely required to accurately describe the economics of the trade, considering the price that characterizes the equity swap is associated to the leg of the trade.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Specifies the price that is associated with each of the basket constituents. This component is optional, as it is not absolutely required to accurately describe the economics of the trade, considering the price that characterizes the equity swap is associated to the leg of the trade.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="underlyerNotional" type="Money" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation>Specifies the notional (i.e. price * quantity) that is associated with each of the basket constituents. This component is optional, as it is not absolutely required to accurately describe the economics of the trade, considering the notional that characterizes the equity swap is associated to the leg of the trade.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Specifies the notional (i.e. price * quantity) that is associated with each of the basket constituents. This component is optional, as it is not absolutely required to accurately describe the economics of the trade, considering the notional that characterizes the equity swap is associated to the leg of the trade.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
@@ -409,7 +409,7 @@
 					</xsd:element>
 					<xsd:element name="netPrice" type="ActualPrice">
 						<xsd:annotation>
-							<xsd:documentation>Specifies the price of the underlyer, net of commissions.</xsd:documentation>
+							<xsd:documentation xml:lang="en">Specifies the price of the underlyer, net of commissions.</xsd:documentation>
 						</xsd:annotation>
 					</xsd:element>
 					<xsd:element name="accruedInterestPrice" type="xsd:decimal" minOccurs="0">
@@ -462,17 +462,17 @@
 		<xsd:sequence>
 			<xsd:element name="currency" type="Currency" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation>Specifies the currency associated with the net price. This element is not present if the price is expressed in percentage terms (as specified through the priceExpression element).</xsd:documentation>
+					<xsd:documentation xml:lang="en">Specifies the currency associated with the net price. This element is not present if the price is expressed in percentage terms (as specified through the priceExpression element).</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="amount" type="xsd:decimal">
 				<xsd:annotation>
-					<xsd:documentation>Specifies the net price amount. In the case of a fixed income security or a convertible bond, this price includes the accrued interests.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Specifies the net price amount. In the case of a fixed income security or a convertible bond, this price includes the accrued interests.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="priceExpression" type="PriceExpressionEnum">
 				<xsd:annotation>
-					<xsd:documentation>Specifies whether the price is expressed in absolute or relative terms.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Specifies whether the price is expressed in absolute or relative terms.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>

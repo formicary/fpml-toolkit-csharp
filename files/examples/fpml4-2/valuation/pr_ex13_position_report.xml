@@ -157,7 +157,7 @@
 									</notionalStepSchedule>
 								</notionalSchedule>
 								<floatingRateCalculation>
-									<floatingRateIndex>EURIBOR-Telerate</floatingRateIndex>
+									<floatingRateIndex>EUR-EURIBOR-Telerate</floatingRateIndex>
 									<indexTenor>
 										<periodMultiplier>6</periodMultiplier>
 										<period>M</period>

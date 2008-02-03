@@ -225,7 +225,7 @@
 							</notionalStepSchedule>
 						</notionalSchedule>
 						<floatingRateCalculation>
-							<floatingRateIndex floatingRateIndexScheme="http://www.fpml.org/ext/isda-2000-definitions">USD-LIBOR-BBA</floatingRateIndex>
+							<floatingRateIndex>USD-LIBOR-BBA</floatingRateIndex>
 							<indexTenor>
 								<periodMultiplier>3</periodMultiplier>
 								<period>M</period>

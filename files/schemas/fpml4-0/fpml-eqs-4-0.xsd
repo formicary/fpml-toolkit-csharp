@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Pierre Lamy (Goldman Sachs & Co.) -->
 <!--
   == Copyright (c) 2002-2003. All rights reserved.
   == Financial Products Markup Language is subject to the FpML public license.
@@ -8,7 +7,6 @@
 <xsd:schema targetNamespace="http://www.fpml.org/2003/FpML-4-0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2003/FpML-4-0" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:include schemaLocation="fpml-asset-4-0.xsd"/>
 	<xsd:include schemaLocation="fpml-ird-4-0.xsd"/>
-
 	<xsd:complexType name="AdjustableRelativeOrPeriodicDates">
 		<xsd:choice>
 			<xsd:element name="adjustableDates" type="AdjustableDates">
@@ -715,7 +713,7 @@
 								<xsd:documentation xml:lang="en">The convention for adjusting a date if it would otherwise fall on a day that is not a business day.</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
-						<xsd:element name="sequence" minOccurs="0">
+						<xsd:element name="sequence" minOccurs="0" type="xsd:integer">
 							<xsd:annotation>
 								<xsd:documentation xml:lang="en">Sequence in which the reference to the time period multiplier should be applied.</xsd:documentation>
 							</xsd:annotation>
@@ -761,14 +759,14 @@
 							<xsd:sequence>
 								<xsd:element name="valuationTimeType" type="TimeTypeEnum" minOccurs="0">
 									<xsd:annotation>
-										<xsd:documentation xml:lang="de">Tageszeit, zu der die Berechnungsstelle den Basiswert bewertet, zum Beispiel der offizielle Börsenschluss.</xsd:documentation>
 										<xsd:documentation xml:lang="en">The time of day at which the calculation agent values the underlying, for example the official closing time of the exchange.</xsd:documentation>
+										<xsd:documentation xml:lang="de">Tageszeit, zu der die Berechnungsstelle den Basiswert bewertet, zum Beispiel der offizielle Börsenschluss.</xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
 								<xsd:element name="valuationTime" type="BusinessCenterTime" minOccurs="0">
 									<xsd:annotation>
-										<xsd:documentation xml:lang="de">Genaue Tageszeit, zu der die Bewertungsstelle den Basiswert bewertet.</xsd:documentation>
 										<xsd:documentation xml:lang="en">The specific time of day at which the calculation agent values the underlying.</xsd:documentation>
+										<xsd:documentation xml:lang="de">Genaue Tageszeit, zu der die Bewertungsstelle den Basiswert bewertet.</xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
 								<xsd:element name="equityValuationDate" minOccurs="0">
@@ -798,7 +796,7 @@
 			</xsd:element>
 			<xsd:element name="equityNotionalReset" type="xsd:boolean">
 				<xsd:annotation>
-					<xsd:documentation xml:lang="en">The term "Equity Notional Reset" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions. The reference to the ISDA definition is either "Applicable" or 'Inapplicable".</xsd:documentation>
+					<xsd:documentation xml:lang="en">The term "Equity Notional Reset" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions. The reference to the ISDA definition is either "Applicable" or &apos;Inapplicable".</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="valuationPriceInterim" minOccurs="0">
@@ -811,14 +809,14 @@
 							<xsd:sequence>
 								<xsd:element name="valuationTimeType" type="TimeTypeEnum">
 									<xsd:annotation>
-										<xsd:documentation xml:lang="de">Tageszeit, zu der die Berechnungsstelle den Basiswert bewertet, zum Beispiel der offizielle Börsenschluss.</xsd:documentation>
 										<xsd:documentation xml:lang="en">The time of day at which the calculation agent values the underlying, for example the official closing time of the exchange.</xsd:documentation>
+										<xsd:documentation xml:lang="de">Tageszeit, zu der die Berechnungsstelle den Basiswert bewertet, zum Beispiel der offizielle Börsenschluss.</xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
 								<xsd:element name="valuationTime" type="BusinessCenterTime" minOccurs="0">
 									<xsd:annotation>
-										<xsd:documentation xml:lang="de">Genaue Tageszeit, zu der die Bewertungsstelle den Basiswert bewertet.</xsd:documentation>
 										<xsd:documentation xml:lang="en">The specific time of day at which the calculation agent values the underlying.</xsd:documentation>
+										<xsd:documentation xml:lang="de">Genaue Tageszeit, zu der die Bewertungsstelle den Basiswert bewertet.</xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
 								<xsd:element name="equityValuationDates" type="AdjustableRelativeOrPeriodicDates">
@@ -841,14 +839,14 @@
 							<xsd:sequence>
 								<xsd:element name="valuationTimeType" type="TimeTypeEnum" minOccurs="0">
 									<xsd:annotation>
-										<xsd:documentation xml:lang="de">Tageszeit, zu der die Berechnungsstelle den Basiswert bewertet, zum Beispiel der offizielle Börsenschluss.</xsd:documentation>
 										<xsd:documentation xml:lang="en">The time of day at which the calculation agent values the underlying, for example the official closing time of the exchange.</xsd:documentation>
+										<xsd:documentation xml:lang="de">Tageszeit, zu der die Berechnungsstelle den Basiswert bewertet, zum Beispiel der offizielle Börsenschluss.</xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
 								<xsd:element name="valuationTime" type="BusinessCenterTime" minOccurs="0">
 									<xsd:annotation>
-										<xsd:documentation xml:lang="de">Genaue Tageszeit, zu der die Bewertungsstelle den Basiswert bewertet.</xsd:documentation>
 										<xsd:documentation xml:lang="en">The specific time of day at which the calculation agent values the underlying.</xsd:documentation>
+										<xsd:documentation xml:lang="de">Genaue Tageszeit, zu der die Bewertungsstelle den Basiswert bewertet.</xsd:documentation>
 									</xsd:annotation>
 								</xsd:element>
 								<xsd:element name="equityValuationDate">
@@ -864,7 +862,7 @@
 											</xsd:element>
 											<xsd:element name="relativeDateSequence" type="RelativeDateSequence">
 												<xsd:annotation>
-													<xsd:documentation xml:lang="en">A date specified in relation to some other date defined in the document (the anchor date), where there is the opportunity to specify a combination of offset rules.  This component will typically be used for defining the valuation date in relation to the payment date, as both the currency and the exchange holiday calendars need to be considered.</xsd:documentation>
+													<xsd:documentation xml:lang="en">A date specified in relation to some other date defined in the document (the anchor date), where there is the opportunity to specify a combination of offset rules. This component will typically be used for defining the valuation date in relation to the payment date, as both the currency and the exchange holiday calendars need to be considered.</xsd:documentation>
 												</xsd:annotation>
 											</xsd:element>
 										</xsd:choice>

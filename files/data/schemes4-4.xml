@@ -217,7 +217,7 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/broker-confirmation-type-3-2" name="brokerConfirmationTypeScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/broker-confirmation-type-4-0" name="brokerConfirmationTypeScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="AsiaCorporate">
 				<paragraph>Broker Confirmation Type of Asia Corporate.</paragraph>
@@ -309,8 +309,8 @@
 			<schemeValue schemeValueSource="FpML" name="iTraxxSDI75">
 				<paragraph>Broker Confirmation Type for iTraxx SDI 75 Transactions.</paragraph>
 			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="ABX.HH">
-				<paragraph>Broker Confirmation Type representing ABX.HH index trades.</paragraph>
+			<schemeValue schemeValueSource="FpML" name="ABX">
+				<paragraph>Broker Confirmation Type representing ABX index trades.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="CMBX">
 				<paragraph>Broker Confirmation Type representing CMBX index trades.</paragraph>
@@ -326,6 +326,9 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="LatinAmericaCorporateBondOrLoan">
 				<paragraph>Broker Confirmation Type for LATIN AMERICA CORPORATE BL.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="EmergingEuropeanCorporateLPN">
+				<paragraph>Matrix Transaction Type of EMERGING EUROPEAN CORPORATE LPN.</paragraph>
 			</schemeValue>
 		</schemeValues>
 	</scheme>
@@ -386,7 +389,7 @@
 				<paragraph>Prague</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="DEDU">
-				<paragraph>Dusseldorf</paragraph>
+				<paragraph>Dsseldorf</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="DEFR">
 				<paragraph>Frankfurt</paragraph>
@@ -410,7 +413,7 @@
 				<paragraph>Madrid</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="EUTA">
-				<paragraph>TARGET (euro 'Business Center')</paragraph>
+				<paragraph>TARGET (euro &apos;Business Center&apos;)</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="FIHE">
 				<paragraph>Helsinki</paragraph>
@@ -682,7 +685,7 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/contractual-supplement-6-3" name="contractualSupplementScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/contractual-supplement-6-4" name="contractualSupplementScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="ISDA1999CreditRestructuring">
 				<paragraph>Restructuring Supplement to the 1999 ISDA Credit Derivatives Definitions dated May 11, 2001.</paragraph>
@@ -777,11 +780,23 @@
 			<schemeValue schemeValueSource="FpML" name="ABXTranche">
 				<paragraph>Standard Terms Supplement for Asset-Backed Tranche Transactions.</paragraph>
 			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ABX">
+				<paragraph>Standard Terms Supplement for ABX Transactions.</paragraph>
+			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="LCDX">
 				<paragraph>Standard Terms Supplement for Syndicated Secured Loan Credit Default Swap Index Transactions.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="LCDXTranche">
 				<paragraph>Standard Terms Supplement for Syndicated Secured Loan Credit Default Swap Index Tranche Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="CMBX">
+				<paragraph>Standard Terms Supplement for CMBX Transactions.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ISDA2003AdditionalProvisionsLPN">
+				<paragraph>Additional Provisions for LPN dated December 6, 2007.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ISDA2003STMicroelectronicsNV">
+				<paragraph>Additional Provisions for STMicroelectronics NV dated December 6, 2007.</paragraph>
 			</schemeValue>
 		</schemeValues>
 	</scheme>
@@ -867,7 +882,7 @@
 				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (a) or Annex to the 2000 ISDA Definitions (June 2000 Version), Section 4.16. Day Count Fraction, paragraph (a).</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ACT/ACT.ISDA">
-				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (b) or Annex to the 2000 ISDA Definitions (June 2000 Version), Section 4.16. Day Count Fraction, paragraph (b). Note that going from FpML 2.0 Recommendation to the FpML 3.0 Trial Recommendation the code in FpML 2.0 'ACT/365.ISDA' became 'ACT/ACT.ISDA'.</paragraph>
+				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (b) or Annex to the 2000 ISDA Definitions (June 2000 Version), Section 4.16. Day Count Fraction, paragraph (b). Note that going from FpML 2.0 Recommendation to the FpML 3.0 Trial Recommendation the code in FpML 2.0 &apos;ACT/365.ISDA&apos; became &apos;ACT/ACT.ISDA&apos;.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ACT/ACT.ICMA">
 				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (c)</paragraph>
@@ -2092,7 +2107,7 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/master-confirmation-type-5-4" name="masterConfirmationTypeScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/master-confirmation-type-5-5" name="masterConfirmationTypeScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="2003CreditIndex">
 				<paragraph>Used for CDS Index trades. Relevant Master Confirmation determined by the contents of the creditDefaultSwap element. Best practice is to use the most specific code that applies.</paragraph>
@@ -2200,7 +2215,7 @@
 				<paragraph>A general reference to the types of Asia Master Confirmation Agreements. Use the more specific values to reference a specific type of Asia Master Confirmation Agreement.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ISDA2007EquityEuropean">
-				<paragraph>ISDA 2007 European Master Equity Derivatives Confirmation Agreement applies.</paragraph>
+				<paragraph>The ISDA 2007 European Master Equity Derivatives Confirmation Agreement applies.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="2006DividendSwapEuropean">
 				<paragraph>A European Interdealer Master Confirmation Agreement not defined by ISDA, and modified by the parties to the transaction applies.</paragraph>
@@ -2208,9 +2223,12 @@
 			<schemeValue schemeValueSource="FpML" name="2006DividendSwapEuropeanInterdealer">
 				<paragraph>A European Interdealer Master Confirmation Agreement not defined by ISDA applies.</paragraph>
 			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ISDA2007EquityFinanceSwapEuropean">
+				<paragraph>The EFS (Equity Share Finance Swap) Annex to the ISDA 2007 European Master Equity Derivatives Confirmation Agreement applies.</paragraph>
+			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/credit-matrix-transaction-type-2-2" name="matrixTermScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/credit-matrix-transaction-type-3-0" name="matrixTermScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="NorthAmericanCorporate">
 				<paragraph>Matrix Transaction Type of NORTH AMERICAN CORPORATE.</paragraph>
@@ -2263,12 +2281,6 @@
 			<schemeValue schemeValueSource="FpML" name="LatinAmericaCorporate">
 				<paragraph>Matrix Transaction Type of LATIN AMERICA CORPORATE.</paragraph>
 			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="ABX.HH">
-				<paragraph>Matrix Term Type representing ABX.HH index trades.</paragraph>
-			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="CMBX">
-				<paragraph>Matrix Term Type representing CMBX index trades.</paragraph>
-			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="EmergingEuropeanCorporate">
 				<paragraph>Matrix Transaction Type of EMERGING EUROPEAN CORPORATE.</paragraph>
 			</schemeValue>
@@ -2277,6 +2289,9 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="LatinAmericaCorporateBondOrLoan">
 				<paragraph>Matrix Transaction Type of LATIN AMERICA CORPORATE BL.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="EmergingEuropeanCorporateLPN">
+				<paragraph>Matrix Transaction Type of EMERGING EUROPEAN CORPORATE LPN.</paragraph>
 			</schemeValue>
 		</schemeValues>
 	</scheme>
@@ -2565,7 +2580,7 @@
 				<paragraph>Message corrupted (e.g. CRC failure).</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="111">
-				<paragraph>Message text doesn't match digital signature hash.</paragraph>
+				<paragraph>Message text doesn&apos;t match digital signature hash.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="200">
 				<paragraph>Default message processing error code.</paragraph>
@@ -2586,7 +2601,7 @@
 				<paragraph>System unavailable.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="211">
-				<paragraph>Message component text doesn't match digital signature hash.</paragraph>
+				<paragraph>Message component text doesn&apos;t match digital signature hash.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="300">
 				<paragraph>Default validation error code.</paragraph>
@@ -2598,7 +2613,7 @@
 				<paragraph>Unsupported FpML version.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="303">
-				<paragraph>Invalid FpML message - message doesn't validate w.r.t. specified DTD/schema.</paragraph>
+				<paragraph>Invalid FpML message - message doesn&apos;t validate w.r.t. specified DTD/schema.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="304">
 				<paragraph>Validation failure - unsupported message type.</paragraph>
@@ -2625,13 +2640,13 @@
 				<paragraph>Default business process error code.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="401">
-				<paragraph>Don't know - unrecognized trade.</paragraph>
+				<paragraph>Don&apos;t know - unrecognized trade.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="402">
-				<paragraph>Suitability - trade can't be done for client or dealer suitability reasons.</paragraph>
+				<paragraph>Suitability - trade can&apos;t be done for client or dealer suitability reasons.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="403">
-				<paragraph>Credit - trade can't be done for credit reasons.</paragraph>
+				<paragraph>Credit - trade can&apos;t be done for credit reasons.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="404">
 				<paragraph>Not interested - recipient chooses not to respond.</paragraph>
@@ -2817,7 +2832,7 @@
 				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar Specified Rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) which appears on the Reuters Screen BRBY Page under the caption "INTBK FLTING (LAST)" at approximately 11:00 a.m., Sao Paulo time, on that Rate Calculation Date.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="BRL.OFFICIAL.RATE/BRL02">
-				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar Specified Rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) reported by the Banco Central do Brasil in the "Di&#160;rio Oficial da Uniao" on the first Business Day following that Rate Calculation Date.</paragraph>
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar Specified Rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) reported by the Banco Central do Brasil in the "Di rio Oficial da Uniao" on the first Business Day following that Rate Calculation Date.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="BRL.PCOT-COMMERCIAL/BRL03">
 				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar commercial rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) reported by the Banco Central do Brasil on SISBACEN Data System under transaction code PCOT- 390, Option 3, at the Specified Time, if any, on that Rate Calculation Date.</paragraph>
@@ -2832,7 +2847,7 @@
 				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar commercial rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) reported by the Banco Central do Brasil which appears on the Reuters Screen BRFR Page at PTAX-800 as of 11:00 a.m., Sao Paulo time, on the first Business Day following that Rate Calculation Date. 23</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="BRL.PTAX-FLOATING/BRL07">
-				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar floating rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) reported by the Banco Central do Brasil on SISBACEN Data System under transaction code PTAX- 800 ("Consultas de C&#131;mbio" or Exchange Rate Inquiry), Option 5 ("Cotacoes para Contabilidad" or Rates for Accounting Purposes) market type "F" (corresponding to U.S. Dollars traded in the foreign exchange market segment officially denominated "Flutuante") as of 7:30 p.m., Sao Paulo time, on that Rate Calculation Date.</paragraph>
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar floating rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) reported by the Banco Central do Brasil on SISBACEN Data System under transaction code PTAX- 800 ("Consultas de Cmbio" or Exchange Rate Inquiry), Option 5 ("Cotacoes para Contabilidad" or Rates for Accounting Purposes) market type "F" (corresponding to U.S. Dollars traded in the foreign exchange market segment officially denominated "Flutuante") as of 7:30 p.m., Sao Paulo time, on that Rate Calculation Date.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="BRL.PTAX-FLOATING.BRFR/BRL08">
 				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar floating rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) reported by the Banco Central do Brasil on the SISBACEN Data System which appears on the Reuters Screen BRFR Page at PTAX-800 as of 11:00 a.m., Sao Paulo time, on the first Business Day following that Rate Calculation Date.</paragraph>
@@ -2877,19 +2892,19 @@
 				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Pesos/U.S. Dollar Specified rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days reported by Banco de Mexico which appears on the Reuters Screen BNMX Page opposite the caption "Fix" at the close of business in Mexico City on that Rate Calculation Date.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="MXP.FIXING.RATE/MXP02">
-				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Peso/U.S. Dollar fixing rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days which is published by Banco de Mexico in the Official Gazette of the Federation pursuant to the "Disposiciones aplicables a la determinacion del tipo de C&#131;mbio para solventar obligaciones denominadas en moneda extranjera pagaderas en la Republica Mexicana" (Rules applicable to determine the exchange rate to pay obligations denominated in foreign currency payable in Mexico) on the first Business Day following that Rate Calculation Date.</paragraph>
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Peso/U.S. Dollar fixing rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days which is published by Banco de Mexico in the Official Gazette of the Federation pursuant to the "Disposiciones aplicables a la determinacion del tipo de Cmbio para solventar obligaciones denominadas en moneda extranjera pagaderas en la Republica Mexicana" (Rules applicable to determine the exchange rate to pay obligations denominated in foreign currency payable in Mexico) on the first Business Day following that Rate Calculation Date.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="MXP.MEX01/MXP03">
 				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Peso/U.S. Dollar fixing rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days reported by Banco de Mexico which appears on Reuters Screen MEX01 Page under the heading "MXNFIX=RR", at the close of business in Mexico City on that Rate Calculation Date.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="MXP.PUBLISHED/MXP04">
-				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Peso/U.S. Dollar fixing rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days which is published by the Bolsa Mexicana de Valores, S.A. de C.V. (as established in Section 2 of the "Resolution concerning the exchange rate applicable for calculating the Mexican Peso equivalent of principal and interest of Mexican Treasury Notes denominated in foreign currency and payable in Mexican Pesos" published in the Di&#160;rio Oficial de la Federacion on November 11, 1991) in the Movimiento Di&#160;rio del Mercado de Valores de la Bolsa Mexicana de Valores, S.A. de C.V. under the heading "Movimiento Di&#160;rio del Mercado de Valores" on that Rate Calculation Date.</paragraph>
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Peso/U.S. Dollar fixing rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days which is published by the Bolsa Mexicana de Valores, S.A. de C.V. (as established in Section 2 of the "Resolution concerning the exchange rate applicable for calculating the Mexican Peso equivalent of principal and interest of Mexican Treasury Notes denominated in foreign currency and payable in Mexican Pesos" published in the Di rio Oficial de la Federacion on November 11, 1991) in the Movimiento Di rio del Mercado de Valores de la Bolsa Mexicana de Valores, S.A. de C.V. under the heading "Movimiento Di rio del Mercado de Valores" on that Rate Calculation Date.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="PEN.PDSB/PEN01">
 				<paragraph>The Spot Rate for a Rate Calculation Date will be the Peruvian Sol/U.S. Dollar fixing rate (mid market last), expressed as the amount of Peruvian Sols per one U.S. Dollar, for settlement on that same day which appears on the Reuters Screen PDSB Page opposite the caption "PEN=" as of 12:00 noon, Lima time, on that Rate Calculation Date.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="VER.VBCV/VEB01">
-				<paragraph>The Spot Rate for a Rate Calculation Date will be the Venezuelan Bolivar/U.S. Dollar tipo de c&#131;mbio referencial rate, expressed as the amount of Venezuelan Bolivar per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Caracas and New York) reported by the Banco Central de Venezuela which appears on the Reuters Screen VBCV Page at approximately 5:00 p.m., Caracas time, on that Rate Calculation Date.</paragraph>
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Venezuelan Bolivar/U.S. Dollar tipo de cmbio referencial rate, expressed as the amount of Venezuelan Bolivar per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Caracas and New York) reported by the Banco Central de Venezuela which appears on the Reuters Screen VBCV Page at approximately 5:00 p.m., Caracas time, on that Rate Calculation Date.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ILS.BOIJ/ILS01">
 				<paragraph>The Spot Rate for a Rate Calculation Date will be the Israeli Shekel/U.S. Dollar Specified Rate, expressed as the amount of Israeli Shekels per one U.S. Dollar, for settlement in two Business Days which appears on the Reuters Screen BOIJ Page as of 1:00 p.m., Tel Aviv time, on that Rate Calculation Date.</paragraph>
@@ -2959,128 +2974,6 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="Unmatched">
 				<paragraph>No corresponding payment (or set of payments) was found in the "other party's" submitted sets.</paragraph>
-			</schemeValue>
-		</schemeValues>
-	</scheme>
-	<!--
-	  == These schemes are referenced as defaults by the schema but are not
-	  == defined in the schemes documentation.
-	  -->
-	<scheme uri="http://www.fpml.org/coding-scheme/master-confirmation-type-5-3" name="masterConfirmationTypeScheme">
-		<schemeValues>
-			<schemeValue name="2003CreditIndex" schemeValueSource="FpML">
-				<paragraph>Used for CDS Index trades. Relevant Master Confirmation determined by the contents of the creditDefaultSwap element. Best practice is to use the most specific code that applies.</paragraph>
-			</schemeValue>
-			<schemeValue name="2004EquityEuropeanInterdealer" schemeValueSource="FpML">
-				<paragraph>A privately negotiated European Interdealer Master Confirmation Agreement applies.</paragraph>
-			</schemeValue>
-			<schemeValue name="DJ.CDX.NA" schemeValueSource="FpML">
-				<paragraph>Used for CDS Index trades executed under the Dow Jones CDX Master Confirmation that covers CDX.NA.IG, CDX.NA.HY, and CDX.NA.XO.</paragraph>
-			</schemeValue>
-			<schemeValue name="DJ.iTraxx.Europe" schemeValueSource="FpML">
-				<paragraph>Used for CDS Index trades executed under the Dow Jones iTraxx Europe Master Confirmation Agreement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA1999Credit" schemeValueSource="FpML">
-				<paragraph>ISDA 1999 Master Credit Derivatives Confirmation Agreement</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2003CreditAsia" schemeValueSource="FpML">
-				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Asia had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2003CreditAustraliaNewZealand" schemeValueSource="FpML">
-				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Australia and New Zealand had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2003CreditEuropean" schemeValueSource="FpML">
-				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if European had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2003CreditJapan" schemeValueSource="FpML">
-				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Japan had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2003CreditNorthAmerican" schemeValueSource="FpML">
-				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if North American had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2003CreditSingapore" schemeValueSource="FpML">
-				<paragraph>ISDA 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Singapore had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2003CreditSovereignAsia" schemeValueSource="FpML">
-				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Asia had been specified as the relevant Transaction Type in the Transaction Supplement. The 2003 Sovereign Master Confirmation has been superceded by the 2004.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2003CreditSovereignCentralAndEasternEurope" schemeValueSource="FpML">
-				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Central and Eastern Europe had been specified as the relevant Transaction Type in the Transaction Supplement. The 2003 Sovereign Master Confirmation has been superceded by the 2004.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2003CreditSovereignJapan" schemeValueSource="FpML">
-				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Japan had been specified as the relevant Transaction Type in the Transaction Supplement. The 2003 Sovereign Master Confirmation has been superceded by the 2004.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2003CreditSovereignLatinAmerica" schemeValueSource="FpML">
-				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Latin America had been specified as the relevant Transaction Type in the Transaction Supplement. The 2003 Sovereign Master Confirmation has been superceded by the 2004.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2003CreditSovereignMiddleEast" schemeValueSource="FpML">
-				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Middle East had been specified as the relevant Transaction Type in the Transaction Supplement. The 2003 Sovereign Master Confirmation has been superceded by the 2004.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2003CreditSovereignWesternEurope" schemeValueSource="FpML">
-				<paragraph>ISDA Sovereign 2003 Master Credit Derivatives Confirmation Agreement interpreted as if Western Europe had been specified as the relevant Transaction Type in the Transaction Supplement. The 2003 Sovereign Master Confirmation has been superceded by the 2004.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2004CreditSovereignAsia" schemeValueSource="FpML">
-				<paragraph>ISDA Sovereign 2004 Master Credit Derivatives Confirmation Agreement interpreted as if Asia had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2004CreditSovereignEmergingEuropeanAndMiddleEastern" schemeValueSource="FpML">
-				<paragraph>ISDA Sovereign 2004 Master Credit Derivatives Confirmation Agreement interpreted as if Emerging European and Middle Eastern had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2004CreditSovereignJapan" schemeValueSource="FpML">
-				<paragraph>ISDA Sovereign 2004 Master Credit Derivatives Confirmation Agreement interpreted as if Japan had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2004CreditSovereignLatinAmerican" schemeValueSource="FpML">
-				<paragraph>ISDA Sovereign 2004 Master Credit Derivatives Confirmation Agreement interpreted as if Latin American had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2004CreditSovereignWesternEuropean" schemeValueSource="FpML">
-				<paragraph>ISDA Sovereign 2004 Master Credit Derivatives Confirmation Agreement interpreted as if Western European had been specified as the relevant Transaction Type in the Transaction Supplement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2004EquityAmericasInterdealer" schemeValueSource="FpML">
-				<paragraph>ISDA 2004 Americas Interdealer Master Equity Derivatives Confirmation Agreement applies.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2005EquityJapaneseInterdealer" schemeValueSource="FpML">
-				<paragraph>The ISDA 2005 Japanese Interdealer Master Equity Derivatives Confirmation Agreement applies.</paragraph>
-			</schemeValue>
-			<schemeValue name="EquityAmericas" schemeValueSource="FpML">
-				<paragraph>A general reference to the types of Americas Master Confirmation Agreements. Use the more specific values to reference a specific type of Americas Master Confirmation Agreement.</paragraph>
-			</schemeValue>
-			<schemeValue name="EquityEuropean" schemeValueSource="FpML">
-				<paragraph>A general reference to the types of European Master Confirmation Agreements. Use the more specific values to reference a specific type of European Master Confirmation Agreement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2005EquityAsiaExcludingJapanInterdealer" schemeValueSource="FpML">
-				<paragraph>ISDA 2005 AEJ (Asia Excluding Japan) Interdealer Master Equity Derivatives Confirmation Agreement applies.</paragraph>
-			</schemeValue>
-			<schemeValue name="2005VarianceSwapEuropeanInterdealer" schemeValueSource="FpML">
-				<paragraph>A privately negotiated European Interdealer Master Confirmation Agreement applies.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2006VarianceSwapJapaneseInterdealer" schemeValueSource="FpML">
-				<paragraph>ISDA 2006 Variance Swap Japanese Interdealer Confirmation Agreement applies.</paragraph>
-			</schemeValue>
-			<schemeValue name="DJ.CDX.EM" schemeValueSource="FpML">
-				<paragraph>Used for CDS Index trades executed under the Dow Jones CDX Emerging Markets Master Confirmation.</paragraph>
-			</schemeValue>
-			<schemeValue name="DJ.CDX.EM.DIV" schemeValueSource="FpML">
-				<paragraph>Used for CDS Index trades executed under the Dow Jones CDX Emerging Markets Diversified Master Confirmation.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2007VarianceSwapAmericas" schemeValueSource="FpML">
-				<paragraph>The ISDA 2007 Americas Master Variance Swap Confirmation Agreement applies.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2007VarianceSwapAsiaExcludingJapan" schemeValueSource="FpML">
-				<paragraph>The ISDA 2007 AEJ Master Variance Swap Confirmation Agreement applies.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2007VarianceSwapEuropean" schemeValueSource="FpML">
-				<paragraph>The ISDA 2007 European Variance Swap Master Confirmation Agreement applies.</paragraph>
-			</schemeValue>
-			<schemeValue name="EquityAsia" schemeValueSource="FpML">
-				<paragraph>A general reference to the types of Asia Master Confirmation Agreements. Use the more specific values to reference a specific type of Asia Master Confirmation Agreement.</paragraph>
-			</schemeValue>
-			<schemeValue name="ISDA2007EquityEuropean" schemeValueSource="FpML">
-				<paragraph>ISDA 2007 European Master Equity Derivatives Confirmation Agreement applies.</paragraph>
-			</schemeValue>
-			<schemeValue name="2006DividendSwapEuropean" schemeValueSource="FpML">
-				<paragraph>A European Interdealer Master Confirmation Agreement not defined by ISDA, and modified by the parties to the transaction applies.</paragraph>
-			</schemeValue>
-			<schemeValue name="2006DividendSwapEuropeanInterdealer" schemeValueSource="FpML">
-				<paragraph>A European Interdealer Master Confirmation Agreement not defined by ISDA applies.</paragraph>
 			</schemeValue>
 		</schemeValues>
 	</scheme>
