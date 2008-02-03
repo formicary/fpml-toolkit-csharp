@@ -6,41 +6,39 @@
    <trade>
       <tradeHeader>
          <partyTradeIdentifier>
-            <partyReference href="party1"/>
-            <tradeId tradeIdScheme="http://www.newbank.com/trade-id">ITRAXX1234</tradeId>
+            <partyReference href="party2"/>
+            <tradeId tradeIdScheme="http://www.partyB.com/trade-id">ITRAXX1234</tradeId>
          </partyTradeIdentifier>
          <partyTradeIdentifier>
-            <partyReference href="party2"/>
-            <tradeId tradeIdScheme="http://www.massivebank.com/trade-id">1234B6</tradeId>
+            <partyReference href="party1"/>
+            <tradeId tradeIdScheme="http://www.partyA.com/trade-id">1234B6</tradeId>
          </partyTradeIdentifier>
-         <tradeDate>2004-11-03Z</tradeDate>
+         <tradeDate>2005-11-03+05:00</tradeDate>
       </tradeHeader>
       <creditDefaultSwap>
          <generalTerms>
             <scheduledTerminationDate>
                <adjustableDate>
-                  <unadjustedDate>2010-03-20Z</unadjustedDate>
+                  <unadjustedDate>2010-03-20+05:00</unadjustedDate>
                </adjustableDate>
             </scheduledTerminationDate>
-            <sellerPartyReference href="party2"/>
-            <buyerPartyReference href="party1"/>
+            <sellerPartyReference href="party1"/>
+            <buyerPartyReference href="party2"/>
             <indexReferenceInformation>
                <indexName>Dow Jones iTraxx Europe Consumers Series 2 Version 1</indexName>
                <indexSeries>2</indexSeries>
                <indexAnnexVersion>1</indexAnnexVersion>
-               <tranche>
-                  <attachmentPoint>0.03</attachmentPoint>
-                  <exhaustionPoint>0.07</exhaustionPoint>
-               </tranche>
-               <settledEntityMatrix>
-                  <matrixSource>NotApplicable</matrixSource>
-               </settledEntityMatrix>
+               <indexAnnexDate>2005-11-01+05:00</indexAnnexDate>
+               <indexAnnexSource>Publisher</indexAnnexSource>
+               <excludedReferenceEntity>
+                  <entityName>TESCO PLC</entityName>
+               </excludedReferenceEntity>
             </indexReferenceInformation>
          </generalTerms>
          <feeLeg>
             <initialPayment>
-               <payerPartyReference href="party1"/>
-               <receiverPartyReference href="party2"/>
+               <payerPartyReference href="party2"/>
+               <receiverPartyReference href="party1"/>
                <paymentAmount>
                   <currency>EUR</currency>
                   <amount>17000</amount>
@@ -49,24 +47,34 @@
          </feeLeg>
          <protectionTerms>
             <calculationAmount>
-               <currency>USD</currency>
+               <currency>EUR</currency>
                <amount>25000000</amount>
             </calculationAmount>
          </protectionTerms>
       </creditDefaultSwap>
       <documentation>
-         <masterConfirmation>
-            <masterConfirmationType>DJ.iTraxx.Europe</masterConfirmationType>
-            <masterConfirmationDate>2004-10-11Z</masterConfirmationDate>
-         </masterConfirmation>
+         <masterAgreement>
+            <masterAgreementType>ISDA1992</masterAgreementType>
+            <masterAgreementDate>2000-01-01+05:00</masterAgreementDate>
+         </masterAgreement>
+         <contractualTermsSupplement>
+            <type contractualSupplementScheme="http://www.fpml.org/coding-scheme/contractual-supplement-4-0">iTraxxEuropeDealer</type>
+            <publicationDate>2005-09-19+05:00</publicationDate>
+         </contractualTermsSupplement>
       </documentation>
    </trade>
    <party id="party1">
-      <partyId>NEWBANKLDNBICXXX</partyId>
-      <partyName>New Bank, New York</partyName>
+      <partyId>PARTYABICXXX</partyId>
+      <partyName>Party A</partyName>
+      <account id="accountParty1">
+         <accountId accountIdScheme="http://www.partyA/accountId">12345PartyA</accountId>
+      </account>
    </party>
    <party id="party2">
-      <partyId>MASSIVELDNBICXXX</partyId>
-      <partyName>Massive Bank, New York</partyName>
+      <partyId>PARTYBBICXXX</partyId>
+      <partyName>Party B</partyName>
+      <account id="accountParty2">
+         <accountId accountIdScheme="http://partyB/accountId">67899PartyB</accountId>
+      </account>
    </party>
 </FpML>

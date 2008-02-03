@@ -7,34 +7,31 @@
       <tradeHeader>
          <partyTradeIdentifier>
             <partyReference href="party1"/>
-            <tradeId tradeIdScheme="http://www.newbank.com/trade-id">ITRAXX1234</tradeId>
+            <tradeId tradeIdScheme="http://www.newbank.com/trade-id">CDX1234</tradeId>
          </partyTradeIdentifier>
          <partyTradeIdentifier>
             <partyReference href="party2"/>
-            <tradeId tradeIdScheme="http://www.massivebank.com/trade-id">1234B6</tradeId>
+            <tradeId tradeIdScheme="http://www.massivebank.com/trade-id">1234A6</tradeId>
          </partyTradeIdentifier>
-         <tradeDate>2004-11-03Z</tradeDate>
+         <tradeDate>2005-01-24Z</tradeDate>
       </tradeHeader>
       <creditDefaultSwap>
          <generalTerms>
+            <effectiveDate>
+               <unadjustedDate>2004-03-23Z</unadjustedDate>
+            </effectiveDate>
             <scheduledTerminationDate>
                <adjustableDate>
-                  <unadjustedDate>2010-03-20Z</unadjustedDate>
+                  <unadjustedDate>2009-03-20Z</unadjustedDate>
                </adjustableDate>
             </scheduledTerminationDate>
-            <sellerPartyReference href="party2"/>
-            <buyerPartyReference href="party1"/>
+            <sellerPartyReference href="party1"/>
+            <buyerPartyReference href="party2"/>
             <indexReferenceInformation>
-               <indexName>Dow Jones iTraxx Europe Consumers Series 2 Version 1</indexName>
+               <indexName>Dow Jones CDX NA IG.2</indexName>
                <indexSeries>2</indexSeries>
-               <indexAnnexVersion>1</indexAnnexVersion>
-               <tranche>
-                  <attachmentPoint>0.03</attachmentPoint>
-                  <exhaustionPoint>0.07</exhaustionPoint>
-               </tranche>
-               <settledEntityMatrix>
-                  <matrixSource>NotApplicable</matrixSource>
-               </settledEntityMatrix>
+               <indexAnnexDate>2004-07-06Z</indexAnnexDate>
+               <indexAnnexSource>Publisher</indexAnnexSource>
             </indexReferenceInformation>
          </generalTerms>
          <feeLeg>
@@ -42,10 +39,15 @@
                <payerPartyReference href="party1"/>
                <receiverPartyReference href="party2"/>
                <paymentAmount>
-                  <currency>EUR</currency>
-                  <amount>17000</amount>
+                  <currency>USD</currency>
+                  <amount>16000</amount>
                </paymentAmount>
             </initialPayment>
+            <periodicPayment>
+               <fixedAmountCalculation>
+                  <fixedRate>0.0060</fixedRate>
+               </fixedAmountCalculation>
+            </periodicPayment>
          </feeLeg>
          <protectionTerms>
             <calculationAmount>
@@ -56,17 +58,17 @@
       </creditDefaultSwap>
       <documentation>
          <masterConfirmation>
-            <masterConfirmationType>DJ.iTraxx.Europe</masterConfirmationType>
-            <masterConfirmationDate>2004-10-11Z</masterConfirmationDate>
+            <masterConfirmationType>DJ.CDX.NA</masterConfirmationType>
+            <masterConfirmationDate>2004-10-18Z</masterConfirmationDate>
          </masterConfirmation>
       </documentation>
    </trade>
    <party id="party1">
-      <partyId>NEWBANKLDNBICXXX</partyId>
+      <partyId>NEWBANKNYBICXXX</partyId>
       <partyName>New Bank, New York</partyName>
    </party>
    <party id="party2">
-      <partyId>MASSIVELDNBICXXX</partyId>
+      <partyId>MASSIVENYBICXXX</partyId>
       <partyName>Massive Bank, New York</partyName>
    </party>
 </FpML>

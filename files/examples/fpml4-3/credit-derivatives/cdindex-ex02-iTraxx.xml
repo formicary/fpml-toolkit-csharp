@@ -28,13 +28,9 @@
                <indexName>Dow Jones iTraxx Europe Consumers Series 2 Version 1</indexName>
                <indexSeries>2</indexSeries>
                <indexAnnexVersion>1</indexAnnexVersion>
-               <tranche>
-                  <attachmentPoint>0.03</attachmentPoint>
-                  <exhaustionPoint>0.07</exhaustionPoint>
-               </tranche>
-               <settledEntityMatrix>
-                  <matrixSource>NotApplicable</matrixSource>
-               </settledEntityMatrix>
+               <excludedReferenceEntity>
+                  <entityName>TESCO PLC</entityName>
+               </excludedReferenceEntity>
             </indexReferenceInformation>
          </generalTerms>
          <feeLeg>
