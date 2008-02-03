@@ -1,0 +1,2 @@
+Validate -schemaOnly files\examples\fpml4-1\cd\*.xml files\examples\fpml4-1\eqd\*.xml files\examples\fpml4-1\eqf\*.xml files\examples\fpml4-1\eqs\*.xml files\examples\fpml4-1\eqvs\*.xml files\examples\fpml4-1\fx\*.xml files\examples\fpml4-1\ird\*.xml files\examples\fpml4-1\msg\*.xml files\examples\fpml4-1\pr\*.xml
+pause
