@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -100,13 +100,20 @@ namespace HandCoded.Xml
 		public static XmlDocument NonValidatingParse (Stream stream)
 		{
 			XmlDocument			document	= new XmlDocument ();
-			XmlReader			reader		= new XmlTextReader (stream);
+			XmlReaderSettings	settings	= new XmlReaderSettings ();
+
+			settings.ProhibitDtd	 = false;
+			settings.ValidationFlags = XmlSchemaValidationFlags.None;
+			settings.ValidationType	 = ValidationType.None;
+			settings.XmlResolver	 = defaultCatalog;
+
+			XmlReader			reader		= XmlReader.Create (stream, settings);
 
 			try {
 				document.Load (reader);
 				return (document);
 			}
-			catch (XmlException) {
+			catch (XmlException error) {
 				return (null);
 			}
 		}
