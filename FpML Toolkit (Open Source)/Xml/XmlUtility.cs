@@ -113,7 +113,7 @@ namespace HandCoded.Xml
 				document.Load (reader);
 				return (document);
 			}
-			catch (XmlException error) {
+			catch (XmlException) {
 				return (null);
 			}
 		}

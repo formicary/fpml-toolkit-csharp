@@ -293,7 +293,6 @@
     <Compile Include="Meta\Specification.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Meta\Schema\QualifiedName.cs" />
     <Compile Include="Validation\DelegatedPrecondition.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -73,7 +73,8 @@ namespace HandCoded.Xml.Resolver
 		/// cannot be resolved.</returns>
 		public override Object GetEntity (Uri absoluteUri, string role, Type ofObjectToReturn)
 		{
-		   return (File.Open (absoluteUri.LocalPath, FileMode.Open));
+//			Console.Error.WriteLine ("!! absoluteUri=" + absoluteUri);
+			return (File.Open (absoluteUri.LocalPath, FileMode.Open));
 		}
 
 		/// <summary>
@@ -86,9 +87,24 @@ namespace HandCoded.Xml.Resolver
 		/// <returns></returns>
 		public override Uri ResolveUri (Uri baseUri, string relativeUri)
 		{
+//			Console.Error.WriteLine ("!! baseUri=" + baseUri + " relativeUri=" + relativeUri);
 		    String	result = definition.ApplyRules (relativeUri, new Stack<GroupEntry> ());	
 	
-			return ((result != null) ? new Uri (result) : null);
+			// No mapping in the catalog try against the base URL directly
+			if (result == null) {
+				try {
+					if (baseUri != null) 
+						return (new Uri (baseUri, relativeUri));
+					else
+						return (new Uri (relativeUri, UriKind.Absolute));
+				}
+				catch (UriFormatException) {
+					Console.Error.WriteLine ("URI '" + relativeUri + "' could not be resolved");
+				}
+				return (null);
+			}
+
+			return (new Uri (result));
 		}
 
 		/// <summary>
