@@ -37,7 +37,7 @@
                <adjustableDate>
                   <unadjustedDate>2035-09-25Z</unadjustedDate>
                   <dateAdjustments>
-                     <businessDayConvention>NONE</businessDayConvention>
+                     <businessDayConvention>FOLLOWING</businessDayConvention>
                      <businessCenters>
                         <businessCenter>GBLO</businessCenter>
                         <businessCenter>USNY</businessCenter>
@@ -81,7 +81,7 @@
                   <period>M</period>
                </paymentFrequency>
                <firstPaymentDate>2006-11-01Z</firstPaymentDate>
-               <lastRegularPaymentDate>2035-09-25Z</lastRegularPaymentDate>
+               <lastRegularPaymentDate>2035-06-01Z</lastRegularPaymentDate>
                <rollConvention>11</rollConvention>
                <fixedAmountCalculation>
                   <calculationAmount>

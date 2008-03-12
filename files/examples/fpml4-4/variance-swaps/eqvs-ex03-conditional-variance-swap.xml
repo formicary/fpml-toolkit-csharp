@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><!--
-  == Copyright (c) 2002-2007. All rights reserved.
-  == Financial Products Markup Language is subject to the FpML public license.
-  == A copy of this license is available at http://www.fpml.org/license/license.html
--->
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+   == Copyright (c) 2002-2007. All rights reserved. 
+   == Financial Products Markup Language is subject to the FpML public license. 
+   == A copy of this license is available at http://www.fpml.org/license/license.html-->
 <FpML xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4-4" xsi:schemaLocation="http://www.fpml.org/2007/FpML-4-4 ../fpml-main-4-4.xsd http://www.w3.org/2000/09/xmldsig# ../xmldsig-core-schema.xsd" xsi:type="RequestTradeConfirmation">
    <header>
       <messageId messageIdScheme="http://www.partyA.com/coding-scheme/message-id">234234923420</messageId>
@@ -12,22 +12,20 @@
    <trade>
       <tradeHeader>
          <partyTradeIdentifier>
-            <partyReference href="party1"/>
+            <partyReference href="kom722"/>
             <tradeId tradeIdScheme="http://www.partyA.com/coding-scheme/trade-id">6234</tradeId>
          </partyTradeIdentifier>
          <partyTradeIdentifier>
-            <partyReference href="party2"/>
+            <partyReference href="kow029"/>
             <tradeId tradeIdScheme="http://www.partyB.com/coding-scheme/trade-id">6569</tradeId>
          </partyTradeIdentifier>
-         <tradeDate id="TradeDate">2007-01-05Z</tradeDate>
+         <tradeDate id="d989">2007-01-05Z</tradeDate>
       </tradeHeader>
-      <returnSwap>
-         <productType>ConditionalSingleStockVarianceSwap</productType>
-         <buyerPartyReference href="party1"/>
-         <sellerPartyReference href="party2"/>
+      <!-- use distinct product type rather than deprecated variance leg within return swap -->
+      <varianceSwap>
          <varianceLeg>
-            <payerPartyReference href="party1"/>
-            <receiverPartyReference href="party2"/>
+            <payerPartyReference href="kom722"/>
+            <receiverPartyReference href="kow029"/>
             <underlyer>
                <singleUnderlyer>
                   <equity>
@@ -37,7 +35,8 @@
                   </equity>
                </singleUnderlyer>
             </underlyer>
-            <equityValuation>
+            <settlementType>Cash</settlementType>
+            <valuation>
                <valuationDate id="FinalValuationDate">
                   <adjustableDate>
                      <unadjustedDate>2004-07-21Z</unadjustedDate>
@@ -47,11 +46,10 @@
                   </adjustableDate>
                </valuationDate>
                <optionsPriceValuation>true</optionsPriceValuation>
-            </equityValuation>
-            <equityAmount>
-               <paymentCurrency id="EquityPaymentCurrency">
-                  <currency>USD</currency>
-               </paymentCurrency>
+            </valuation>
+            <amount>
+               <optionsExchangeDividends>true</optionsExchangeDividends>
+               <additionalDividends>false</additionalDividends>
                <variance>
                   <closingLevel>true</closingLevel>
                   <varianceAmount>
@@ -59,6 +57,12 @@
                      <amount>1388.889</amount>
                   </varianceAmount>
                   <varianceStrikePrice>18.135</varianceStrikePrice>
+                  <boundedVariance>
+                     <realisedVarianceMethod>Previous</realisedVarianceMethod>
+                     <daysInRangeAdjustment>true</daysInRangeAdjustment>
+                     <upperBarrier>101.00</upperBarrier>
+                     <lowerBarrier>94.00</lowerBarrier>
+                  </boundedVariance>
                   <exchangeTradedContractNearest>
                      <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">.IBM</instrumentId>
                      <description>IBM ordinary shares</description>
@@ -76,24 +80,15 @@
                      </expirationDate>
                   </exchangeTradedContractNearest>
                   <vegaNotionalAmount>50000</vegaNotionalAmount>
-                  <boundedVariance>
-                     <realisedVarianceMethod>Previous</realisedVarianceMethod>
-                     <daysInRangeAdjustment>true</daysInRangeAdjustment>
-                     <upperBarrier>101.00</upperBarrier>
-                     <lowerBarrier>94.00</lowerBarrier>
-                  </boundedVariance>
                </variance>
-               <cashSettlement>true</cashSettlement>
-               <optionsExchangeDividends>true</optionsExchangeDividends>
-               <additionalDividends>false</additionalDividends>
-            </equityAmount>
+            </amount>
          </varianceLeg>
-      </returnSwap>
+      </varianceSwap>
    </trade>
-   <party id="party1">
+   <party id="kom722">
       <partyId>Party A</partyId>
    </party>
-   <party id="party2">
+   <party id="kow029">
       <partyId>Party B</partyId>
    </party>
 </FpML>

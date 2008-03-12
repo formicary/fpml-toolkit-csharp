@@ -31,7 +31,7 @@
             <referenceInformation>
                <referenceEntity id="referenceEntity">
                   <entityName>Aiful Corporation</entityName>
-                  <entityId entityIdScheme="http://www.fpml.org/spec/2003/entity-id-RED-1-0">008FAQ</entityId>
+                  <entityId>008FAQ</entityId>
                </referenceEntity>
                <referenceObligation>
                   <bond>

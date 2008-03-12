@@ -76,7 +76,7 @@ Example of a cashflow match result message related to an interest rate swap with
                   <currency>USD</currency>
                   <amount>290.51</amount>
                </cashflowAmount>
-               <cashflowType cashflowTypeScheme="http://www.fpml.org/coding-scheme/cashflow-type-1-0">PriceReturn</cashflowType>
+               <cashflowType>PriceReturn</cashflowType>
             </grossCashflow>
             <observationElements id="observation_ASN.N_1-PROP">
                <underlyerReference href="ASN.N-PROP"/>
@@ -150,7 +150,7 @@ Example of a cashflow match result message related to an interest rate swap with
                   <currency>USD</currency>
                   <amount>41.60</amount>
                </cashflowAmount>
-               <cashflowType cashflowTypeScheme="http://www.fpml.org/coding-scheme/cashflow-type-1-0">PriceReturn</cashflowType>
+               <cashflowType>PriceReturn</cashflowType>
             </grossCashflow>
             <observationElements id="observation_ASN.N_3-PROP">
                <underlyerReference href="ASN.N-PROP"/>
@@ -158,8 +158,8 @@ Example of a cashflow match result message related to an interest rate swap with
                <observedValue>
                   <value>42.6552</value>
                   <measureType>TransactedNetPrice</measureType>
-                  <quoteUnits priceQuoteUnitsScheme="http://www.fpml.org/coding-scheme/price-quote-units-1-0">Price</quoteUnits>
-                  <currency currencyScheme="http://www.fpml.org/ext/iso4217-2001-08-15">USD</currency>
+                  <quoteUnits>Price</quoteUnits>
+                  <currency>USD</currency>
                </observedValue>
             </observationElements>
             <observationElements id="observation_ASN.N_4-PROP">
@@ -188,7 +188,7 @@ Example of a cashflow match result message related to an interest rate swap with
                   <currency>USD</currency>
                   <amount>2524.51</amount>
                </cashflowAmount>
-               <cashflowType>InterestReturn</cashflowType>
+               <cashflowType cashflowTypeScheme="http://www.fpml.org/coding-scheme/cashflow-type-1-0">InterestReturn</cashflowType>
             </grossCashflow>
             <observationElements id="observation_USD-LIBOR-BBA-2-PROP">
                <underlyerReference href="USD-LIBOR-BBA-PROP"/>

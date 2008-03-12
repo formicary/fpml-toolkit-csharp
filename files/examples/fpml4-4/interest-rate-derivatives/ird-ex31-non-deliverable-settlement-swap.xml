@@ -55,16 +55,6 @@
                      <businessCenter>GBLO</businessCenter>
                   </businessCenters>
                </calculationPeriodDatesAdjustments>
-               <firstPeriodStartDate>
-                  <unadjustedDate>2004-12-16Z</unadjustedDate>
-                  <dateAdjustments>
-                     <businessDayConvention>MODFOLLOWING</businessDayConvention>
-                     <businessCenters>
-                        <businessCenter>USNY</businessCenter>
-                        <businessCenter>GBLO</businessCenter>
-                     </businessCenters>
-                  </dateAdjustments>
-               </firstPeriodStartDate>
                <calculationPeriodFrequency>
                   <periodMultiplier>6</periodMultiplier>
                   <period>M</period>
@@ -77,7 +67,6 @@
                   <periodMultiplier>6</periodMultiplier>
                   <period>M</period>
                </paymentFrequency>
-               <firstPaymentDate>2005-06-16Z</firstPaymentDate>
                <payRelativeTo>CalculationPeriodEndDate</payRelativeTo>
                <paymentDatesAdjustments>
                   <businessDayConvention>MODFOLLOWING</businessDayConvention>
@@ -179,16 +168,6 @@
                      <businessCenter>GBLO</businessCenter>
                   </businessCenters>
                </calculationPeriodDatesAdjustments>
-               <firstPeriodStartDate>
-                  <unadjustedDate>2004-12-16Z</unadjustedDate>
-                  <dateAdjustments>
-                     <businessDayConvention>MODFOLLOWING</businessDayConvention>
-                     <businessCenters>
-                        <businessCenter>USNY</businessCenter>
-                        <businessCenter>GBLO</businessCenter>
-                     </businessCenters>
-                  </dateAdjustments>
-               </firstPeriodStartDate>
                <calculationPeriodFrequency>
                   <periodMultiplier>6</periodMultiplier>
                   <period>M</period>
@@ -201,7 +180,6 @@
                   <periodMultiplier>6</periodMultiplier>
                   <period>M</period>
                </paymentFrequency>
-               <firstPaymentDate>2005-06-16Z</firstPaymentDate>
                <payRelativeTo>CalculationPeriodEndDate</payRelativeTo>
                <paymentDatesAdjustments>
                   <businessDayConvention>MODFOLLOWING</businessDayConvention>

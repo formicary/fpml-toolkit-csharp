@@ -27,21 +27,13 @@
                <unadjustedDate>2006-12-02Z</unadjustedDate>
                <dateAdjustments>
                   <businessDayConvention>NONE</businessDayConvention>
-                  <businessCenters>
-                     <businessCenter>GBLO</businessCenter>
-                     <businessCenter>USNY</businessCenter>
-                  </businessCenters>
                </dateAdjustments>
             </effectiveDate>
             <scheduledTerminationDate>
                <adjustableDate>
-                  <unadjustedDate>2010-03-20Z</unadjustedDate>
+                  <unadjustedDate>2010-03-21Z</unadjustedDate>
                   <dateAdjustments>
                      <businessDayConvention>NONE</businessDayConvention>
-                     <businessCenters>
-                        <businessCenter>GBLO</businessCenter>
-                        <businessCenter>USNY</businessCenter>
-                     </businessCenters>
                   </dateAdjustments>
                </adjustableDate>
             </scheduledTerminationDate>

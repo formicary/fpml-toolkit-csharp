@@ -14,7 +14,7 @@
             <partyReference href="party2"/>
             <tradeId tradeIdScheme="http://www.massivebank.com/trade-id">1234A6</tradeId>
          </partyTradeIdentifier>
-         <tradeDate>2004-01-24Z</tradeDate>
+         <tradeDate>2005-01-24Z</tradeDate>
       </tradeHeader>
       <creditDefaultSwap>
          <generalTerms>

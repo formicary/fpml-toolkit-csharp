@@ -77,31 +77,22 @@
                <effectiveDate>
                   <unadjustedDate>2006-03-20Z</unadjustedDate>
                   <dateAdjustments>
-                     <businessDayConvention>FOLLOWING</businessDayConvention>
-                     <businessCenters>
-                        <businessCenter/>
-                     </businessCenters>
-                  </dateAdjustments>
+                     <businessDayConvention>NONE</businessDayConvention>
+                 </dateAdjustments>
                </effectiveDate>
                <scheduledTerminationDate>
                   <adjustableDate>
                      <unadjustedDate>2011-06-20Z</unadjustedDate>
                      <dateAdjustments>
                         <businessDayConvention>NONE</businessDayConvention>
-                        <businessCenters>
-                           <businessCenter/>
-                        </businessCenters>
                      </dateAdjustments>
                   </adjustableDate>
                </scheduledTerminationDate>
                <sellerPartyReference href="Party2"/>
                <buyerPartyReference href="Party1"/>
                <dateAdjustments>
-                  <businessDayConvention>FOLLOWING</businessDayConvention>
-                  <businessCenters>
-                     <businessCenter/>
-                  </businessCenters>
-               </dateAdjustments>
+                  <businessDayConvention>NONE</businessDayConvention>
+                </dateAdjustments>
                <indexReferenceInformation>
                   <indexName indexNameScheme="123">iTraxx Europe Series 5 Version 1</indexName>
                   <indexId indexIdScheme="CUSIP">ExampleCUSIP4</indexId>
@@ -114,7 +105,7 @@
                      <period>M</period>
                   </paymentFrequency>
                   <firstPaymentDate>2007-03-20Z</firstPaymentDate>
-                  <lastRegularPaymentDate>2011-06-20Z</lastRegularPaymentDate>
+                  <lastRegularPaymentDate>2011-03-20Z</lastRegularPaymentDate>
                   <rollConvention>20</rollConvention>
                   <fixedAmountCalculation>
                      <calculationAmount>
@@ -155,7 +146,7 @@
                </obligations>
             </protectionTerms>
             <physicalSettlementTerms>
-               <settlementCurrency>USD<settlementCurrency>
+               <settlementCurrency>USD</settlementCurrency>
                <physicalSettlementPeriod>
                   <maximumBusinessDays>30</maximumBusinessDays>
                </physicalSettlementPeriod>

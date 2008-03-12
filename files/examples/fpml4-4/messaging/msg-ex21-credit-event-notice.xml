@@ -5,7 +5,7 @@
   --><!--
   == This examples shows how to represent Credit Event Notice as notification message
   -->
-<FpML xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4-4" xsi:schemaLocation="http://www.fpml.org/2007/FpML-4-4 ../../fpml-main-4-4.xsd http://www.w3.org/2000/09/xmldsig# ../../xmldsig-core-schema.xsd" xsi:type="CreditEventNotification">
+<FpML xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4-4" xsi:schemaLocation="http://www.fpml.org/2007/FpML-4-4 ../fpml-main-4-4.xsd http://www.w3.org/2000/09/xmldsig# ../xmldsig-core-schema.xsd" xsi:type="CreditEventNotification">
    <header>
       <messageId messageIdScheme="http://www.example.com/messageId">CEN/2004/01/05/15-38</messageId>
       <sentBy>GSI</sentBy>
