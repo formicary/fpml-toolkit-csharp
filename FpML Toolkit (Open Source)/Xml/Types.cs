@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -157,6 +157,69 @@ namespace HandCoded.Xml
 		public static decimal Round (decimal value, int places)
 		{
 			return (decimal.Round (value, places));
+		}
+
+		/// <summary>
+		/// Converts the value of the indicated <see cref="XmlNode"/> into a
+		/// <see cref="decimal"/> value and then determines if it is positive.
+		/// </summary>
+		/// <param name="node">The <see cref="XmlNode"/> to be tested.</param>
+		/// <returns><b>true</b> if the value is positive, <b>false</b> otherwise.</returns>
+		public static bool IsPositive (XmlNode node)
+		{
+			return (IsPositive (ToDecimal (node)));
+		}
+
+		/// <summary>
+		/// Determines if the supplied <see cref="decimal"/> value is positive.
+		/// </summary>
+		/// <param name="value">The <see cref="decimal"/> to test.</param>
+		/// <returns><b>true</b> if the value is positive, <b>false</b> otherwise.</returns>
+		public static bool IsPositive (decimal value)
+		{
+			return (value > 0);
+		}
+
+		/// <summary>
+		/// Converts the value of the indicated <see cref="XmlNode"/> into a
+		/// <see cref="decimal"/> value and then determines if it is negative.
+		/// </summary>
+		/// <param name="node">The <see cref="XmlNode"/> to be tested.</param>
+		/// <returns><b>true</b> if the value is negative, <b>false</b> otherwise.</returns>
+		public static bool IsNegative (XmlNode node)
+		{
+			return (IsNegative (ToDecimal (node)));
+		}
+
+		/// <summary>
+		/// Determines if the supplied <see cref="decimal"/> value is negative.
+		/// </summary>
+		/// <param name="value">The <see cref="decimal"/> to test.</param>
+		/// <returns><b>true</b> if the value is negative, <b>false</b> otherwise.</returns>
+		public static bool IsNegative (decimal value)
+		{
+			return (value < 0);
+		}
+
+		/// <summary>
+		/// Converts the value of the indicated <see cref="XmlNode"/> into a
+		/// <see cref="decimal"/> value and then determines if it is non-negative.
+		/// </summary>
+		/// <param name="node">The <see cref="XmlNode"/> to be tested.</param>
+		/// <returns><b>true</b> if the value is non-negative, <b>false</b> otherwise.</returns>
+		public static bool IsNonNegative (XmlNode node)
+		{
+			return (IsNonNegative (ToDecimal (node)));
+		}
+
+		/// <summary>
+		/// Determines if the supplied <see cref="decimal"/> value is non-negative.
+		/// </summary>
+		/// <param name="value">The <see cref="decimal"/> to test.</param>
+		/// <returns><b>true</b> if the value is non-negative, <b>false</b> otherwise.</returns>
+		public static bool IsNonNegative (decimal value)
+		{
+			return (value >= 0);
 		}
 
 		/// <summary>
