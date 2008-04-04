@@ -20,7 +20,7 @@
  partyIdSchemeDefault="http://www.fpml.org/ext/iso9362"
  quoteBasisSchemeDefault="http://www.fpml.org/spec/2001/quote-basis-1-0"
  routingIdTypeSchemeDefault="http://www.fpml.org/spec/2002/routing-id-code-1-0"
- settlementMethodSchemeDefault="http://www.fpml.org/spec/2002/settlement-method-1-0">
+ settlementMethodSchemeDefault="http://www.fpml.org/spec/2002/settlement-method-scheme-1-0">
 
   <trade>
     <tradeHeader>

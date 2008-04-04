@@ -19,7 +19,7 @@
  businessCenterSchemeDefault="http://www.fpml.org/spec/2000/business-center-1-0"
  businessDayConventionSchemeDefault="http://www.fpml.org/spec/2000/business-day-convention-1-0"
  currencySchemeDefault="http://www.fpml.org/ext/iso4217"
- dateRelativeToSchemeDefault="http://www.fpml.org/spec/2001/date-relative-to-2-0"
+ dateRelativeToSchemeDefault="http://www.fpml.org/spec/2001/date-relative-to-3-0"
  dayCountFractionSchemeDefault="http://www.fpml.org/spec/2000/day-count-fraction-1-0"
  dayTypeSchemeDefault="http://www.fpml.org/spec/2000/day-type-1-0"
  floatingRateIndexSchemeDefault="http://www.fpml.org/ext/isda-2000-definitions"
@@ -142,8 +142,7 @@
               </notionalStepSchedule>
             </notionalSchedule>
             <floatingRateCalculation>
-              <floatingRateIndex>
-              EUR-LIBOR-TELERATE</floatingRateIndex>
+              <floatingRateIndex>EUR-LIBOR-Telerate</floatingRateIndex>
               <indexTenor>
                 <periodMultiplier>6</periodMultiplier>
                 <period>M</period>
