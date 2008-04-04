@@ -311,7 +311,7 @@ namespace HandCoded.FpML
 									"http://www.fpml.org/spec/2000/day-count-fraction-1-0" },
 								{ 	"dayTypeSchemeDefault",
 									"http://www.fpml.org/spec/2000/day-type-1-0" },
-								{ 	"definitionsToSchemeDefault",
+								{ 	"definitionsSchemeDefault",
 									"http://www.fpml.org/spec/2002/contractual-definitions-scheme-1-0" },
 								{ 	"discountingSchemeDefault",
 									"http://www.fpml.org/spec/2000/discounting-type-1-0" },
@@ -397,10 +397,10 @@ namespace HandCoded.FpML
 									"calculationAgentPartySchemeDefault" },
 								{ 	"clearanceSystemScheme",
 									"clearanceSystemSchemeDefault" },
-							    {	"contractualDefinitionsScheme",
-									"definitionsSchemeDefault" },		// Irregular
 								{ 	"compoundingMethodScheme",
 									"compoundingMethodSchemeDefault" },
+							    {	"contractualDefinitionsScheme",
+									"definitionsSchemeDefault" },
 								{ 	"countryScheme",
 									"countrySchemeDefault" },
 								{ 	"currencyScheme",
@@ -434,7 +434,7 @@ namespace HandCoded.FpML
 								{ 	"methodOfAdjustmentScheme",
 									"methodOfAdjustmentSchemeDefault" },
 								{ 	"nationalisationOrInsolvencyOrDelistingScheme",
-									"nationalisationOrInsolvencySchemeDefault" },	// Irregular
+									"nationalisationOrInsolvencyOrDelistingSchemeDefault" },	// Irregular
 								{ 	"negativeInterestRateTreatmentScheme",
 									"negativeInterestRateTreatmentSchemeDefault" },
 								{ 	"partyIdScheme",
