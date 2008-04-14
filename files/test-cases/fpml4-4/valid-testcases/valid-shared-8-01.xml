@@ -199,10 +199,8 @@
                         <businessDayConvention>NONE</businessDayConvention>
                         <dateRelativeTo href="cashSettlement0"/><!-- CHANGED, Added by: Keith Date: 14-05-2003 --><!-- VALID FOR IRD57  -->
                         <scheduleBounds>
-                           <unadjustedFirstDate>
-	          1999-12-12Z</unadjustedFirstDate>
-                           <unadjustedLastDate>
-		  2000-12-12Z</unadjustedLastDate>
+                           <unadjustedFirstDate>1999-12-12Z</unadjustedFirstDate>
+                           <unadjustedLastDate>2000-12-12Z</unadjustedLastDate>
                         </scheduleBounds><!-- end of changes -->
                      </relativeDates>
                   </relevantUnderlyingDate>
