@@ -22,7 +22,6 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-<!-- AP 20070918 added -->
   <xsd:complexType name="CorrelationLeg">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A type describing return which is driven by a Correlation calculation.</xsd:documentation>
@@ -39,7 +38,6 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-<!-- AP 20070918 added -->
   <xsd:complexType name="CorrelationSwap">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A Correlation Swap modelled using a single netted leg.</xsd:documentation>

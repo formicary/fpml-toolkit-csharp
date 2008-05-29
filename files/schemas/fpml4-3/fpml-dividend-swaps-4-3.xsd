@@ -80,7 +80,6 @@
       <xsd:documentation xml:lang="en">Fixed payment amount within a Dividend Swap.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-<!-- AP 20070918 made optional and annotation added -->
       <xsd:element name="paymentAmount" type="Money" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Payment amount, which is optional since the payment amount may be calculated using fixed strike and number of open units.</xsd:documentation>

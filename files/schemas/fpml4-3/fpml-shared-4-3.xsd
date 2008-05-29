@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-3" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-3" version="$Revision: 2604 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-3" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-3" version="$Revision: 3127 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-enum-4-3.xsd" />
   <xsd:simpleType name="CorrelationValue">
     <xsd:annotation>
@@ -444,7 +444,7 @@
   </xsd:complexType>
   <xsd:complexType name="BrokerConfirmation">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">An entity for details on the broker confirm.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Identifies the market sector in which the trade has been arranged.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
       <xsd:element name="brokerConfirmationType" type="BrokerConfirmationType">
@@ -455,9 +455,12 @@
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="BrokerConfirmationType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Identifies the market sector in which the trade has been arranged.</xsd:documentation>
+    </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="brokerConfirmationTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/broker-confirmation-type-3-2" />
+        <xsd:attribute name="brokerConfirmationTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/broker-confirmation-type-4-0" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -612,6 +615,9 @@
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="ContractualDefinitions">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The definitions, such as those published by ISDA, that will define the terms of the trade.</xsd:documentation>
+    </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="xsd:normalizedString">
         <xsd:attribute name="contractualDefinitionsScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/contractual-definitions-3-2" />
@@ -638,13 +644,19 @@
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="ContractualSupplement">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A contractual supplement (such as those published by ISDA) that will apply to the trade.</xsd:documentation>
+    </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="contractualSupplementScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/contractual-supplement-6-3" />
+        <xsd:attribute name="contractualSupplementScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/contractual-supplement-6-5" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="ContractualTermsSupplement">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A contractual supplement (such as those published by ISDA) and its publication date that will apply to the trade.</xsd:documentation>
+    </xsd:annotation>
     <xsd:sequence>
       <xsd:element name="type" type="ContractualSupplement">
         <xsd:annotation>
@@ -918,7 +930,7 @@
       </xsd:choice>
       <xsd:element name="contractualDefinitions" type="ContractualDefinitions" minOccurs="0" maxOccurs="unbounded">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">The definitions (such as those published by ISDA) published by ISDA that will define the terms of the trade.</xsd:documentation>
+          <xsd:documentation xml:lang="en">The definitions such as those published by ISDA that will define the terms of the trade.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:choice>
@@ -951,6 +963,9 @@
     </xsd:annotation>
   </xsd:complexType>
   <xsd:complexType name="EntityId">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A legal entity identifier (e.g. RED entity code).</xsd:documentation>
+    </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="xsd:normalizedString">
         <xsd:attribute name="entityIdScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2003/entity-id-RED-1-0" />
@@ -958,6 +973,9 @@
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityName">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The name of the reference entity. A free format string. FpML does not define usage rules for this element.</xsd:documentation>
+    </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="xsd:normalizedString">
         <xsd:attribute name="entityNameScheme" type="xsd:anyURI" default="http://www.fpml.org/spec/2003/entity-name-RED-1-0" />
@@ -1521,12 +1539,12 @@
       <xsd:sequence>
         <xsd:element name="entityName" type="EntityName">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">The name of the party. A free format string. FpML does not define usage rules for this element.</xsd:documentation>
+            <xsd:documentation xml:lang="en">The name of the reference entity. A free format string. FpML does not define usage rules for this element.</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
         <xsd:element name="entityId" type="EntityId" minOccurs="0" maxOccurs="unbounded">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">A legal entity identifier (e.g. RED entity code)..</xsd:documentation>
+            <xsd:documentation xml:lang="en">A legal entity identifier (e.g. RED entity code).</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
       </xsd:sequence>
@@ -1624,7 +1642,7 @@
   <xsd:complexType name="MasterConfirmationType">
     <xsd:simpleContent>
       <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="masterConfirmationTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/master-confirmation-type-5-3" />
+        <xsd:attribute name="masterConfirmationTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/master-confirmation-type-5-6" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -1646,7 +1664,7 @@
   <xsd:complexType name="MatrixTerm">
     <xsd:simpleContent>
       <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="matrixTermScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/credit-matrix-transaction-type-2-2" />
+        <xsd:attribute name="matrixTermScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/credit-matrix-transaction-type-3-0" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -2102,7 +2120,7 @@
   </xsd:complexType>
   <xsd:complexType name="RelativeDateOffset">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type defining a date (referred to as the derived date) as a relative offset from another date (referred to as the anchor date). If the anchor date is itself an adjustable date then the offset is assumed to be calculated from the adjusted anchor date. A number of different scenarios can be supported, namely; 1) the derived date my simply be a number of calendar periods (days, weeks, months or years) preceding or following the anchor date; 2) the unadjusted derived date may be a number of calendar periods(days, weeks, months or years) preceding or following the anchor date with the resulting unadjusted derived date subject to adjustment in accordance with a specified business day convention, i.e. the derived date must fall on a good business day; 3) the derived date may be a number of business days preceding or following the anchor date. Note that the businessDayConvention specifies any required adjustment to the unadjusted derived date. A negative or positive value in the periodMultiplier indicates whether the unadjusted derived precedes or follows the anchor date. The businessDayConvention should contain a value NONE if the day type element contains a value of Business (since specifying a negative or positive business days offset would already guarantee that the derived date would fall on a good business day in the specified business centers).</xsd:documentation>
+      <xsd:documentation xml:lang="en">A type defining a date (referred to as the derived date) as a relative offset from another date (referred to as the anchor date). If the anchor date is itself an adjustable date then the offset is assumed to be calculated from the adjusted anchor date. A number of different scenarios can be supported, namely; 1) the derived date may simply be a number of calendar periods (days, weeks, months or years) preceding or following the anchor date; 2) the unadjusted derived date may be a number of calendar periods(days, weeks, months or years) preceding or following the anchor date with the resulting unadjusted derived date subject to adjustment in accordance with a specified business day convention, i.e. the derived date must fall on a good business day; 3) the derived date may be a number of business days preceding or following the anchor date. Note that the businessDayConvention specifies any required adjustment to the unadjusted derived date. A negative or positive value in the periodMultiplier indicates whether the unadjusted derived precedes or follows the anchor date. The businessDayConvention should contain a value NONE if the day type element contains a value of Business (since specifying a negative or positive business days offset would already guarantee that the derived date would fall on a good business day in the specified business centers).</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="Offset">
