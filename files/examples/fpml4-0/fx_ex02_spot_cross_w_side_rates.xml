@@ -11,7 +11,7 @@
  xsi:type="DataDocument"
  xmlns="http://www.fpml.org/2003/FpML-4-0"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.fpml.org/2003/FpML-4-0 fpml-main-4-0.xsd"
+ xsi:schemaLocation="http://www.fpml.org/2003/FpML-4-0 ../fpml-main-4-0.xsd"
 >
   <trade>
     <tradeHeader>
@@ -61,14 +61,14 @@
         <sideRates>
           <baseCurrency>USD</baseCurrency>
           <currency1SideRate>
-            <currency>GBP</currency>
+            <currency>EUR</currency>
             <sideRateBasis>BaseCurrencyPerCurrency1</sideRateBasis>
-            <rate>1.4800</rate>
+            <rate>0.9325</rate>
           </currency1SideRate>
           <currency2SideRate>
-            <currency>EUR</currency>
+            <currency>GBP</currency>
             <sideRateBasis>BaseCurrencyPerCurrency2</sideRateBasis>
-            <rate>0.9325</rate>
+            <rate>1.4800</rate>
           </currency2SideRate>
         </sideRates>
       </exchangeRate>

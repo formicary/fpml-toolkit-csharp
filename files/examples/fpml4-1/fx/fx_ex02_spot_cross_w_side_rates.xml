@@ -45,14 +45,14 @@
 				<sideRates>
 					<baseCurrency>USD</baseCurrency>
 					<currency1SideRate>
-						<currency>GBP</currency>
+						<currency>EUR</currency>
 						<sideRateBasis>BaseCurrencyPerCurrency1</sideRateBasis>
-						<rate>1.4800</rate>
+						<rate>0.9325</rate>
 					</currency1SideRate>
 					<currency2SideRate>
-						<currency>EUR</currency>
+						<currency>GBP</currency>
 						<sideRateBasis>BaseCurrencyPerCurrency2</sideRateBasis>
-						<rate>0.9325</rate>
+						<rate>1.4800</rate>
 					</currency2SideRate>
 				</sideRates>
 			</exchangeRate>
