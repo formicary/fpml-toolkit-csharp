@@ -54,35 +54,9 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="VarianceSwapOption">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">An Option on a Variance Swap.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:complexContent>
-      <xsd:extension base="OptionBaseExtended">
-        <xsd:sequence>
-          <xsd:element name="strike" type="OptionNumericStrike">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">Strike of the Variance Swap Option.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
-          <xsd:element name="varianceSwap" type="VarianceSwap">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">Variance Swap which is the underlyer of this Option.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
-        </xsd:sequence>
-      </xsd:extension>
-    </xsd:complexContent>
-  </xsd:complexType>
   <xsd:element name="varianceSwap" type="VarianceSwap" substitutionGroup="product">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Specifies the structure of a variance swap.</xsd:documentation>
-    </xsd:annotation>
-  </xsd:element>
-  <xsd:element name="varianceSwapOption" type="VarianceSwapOption" substitutionGroup="product">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">Specifies the structure of a variance swap option.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
 </xsd:schema>

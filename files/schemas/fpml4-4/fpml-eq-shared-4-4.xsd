@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-4" version="$Revision: 2654 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-4" version="$Revision: 3963 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-option-shared-4-4.xsd" />
   <xsd:complexType name="AdditionalDisruptionEvents">
     <xsd:annotation>
@@ -198,7 +198,7 @@
       <xsd:documentation xml:lang="en">Specifies the compounding method and the compounding rate.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="compoundingMethod" type="CompoundingMethodEnum">
+      <xsd:element name="compoundingMethod" type="CompoundingMethodEnum" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">If more that one calculation period contributes to a single payment amount this element specifies whether compounding is applicable, and if so, what compounding method is to be used. This element must only be included when more that one calculation period contributes to a single payment amount.</xsd:documentation>
         </xsd:annotation>
@@ -206,6 +206,11 @@
       <xsd:element name="compoundingRate" type="CompoundingRate">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Defines a compounding rate. The compounding interest can either point back to the interest calculation node on the Interest Leg, or be defined specifically.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="compoundingSpread" type="xsd:decimal" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Defines the spread to be used for compounding. This field should be used in scenarios where the interest payment is based on a compounding formula that uses a compounding spread in addition to the regular spread.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -266,6 +271,11 @@
       <xsd:choice>
         <xsd:element name="initialLevel" type="xsd:decimal" />
         <xsd:element name="closingLevel" type="xsd:boolean" />
+        <xsd:element name="expiringLevel" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">If present and true this contract will strike off the default exchange traded contract</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
       </xsd:choice>
       <xsd:element name="varianceAmount" type="Money" />
       <xsd:choice>
@@ -283,6 +293,11 @@
       <xsd:element name="vegaNotionalAmount" type="xsd:decimal" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Vega Notional represents the approximate gain/loss at maturity for a 1% difference between RVol (realised vol) and KVol (strike vol). It does not necessarily represent the Vega Risk of the trade.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="fxFeature" type="FxFeature" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Quanto, Composite, or Cross Currency FX features</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -761,7 +776,7 @@
           <xsd:documentation xml:lang="en">Specifies the reset dates of the interest leg of the swap.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="interestLegPaymentDates" type="AdjustableOrRelativeDates">
+      <xsd:element name="interestLegPaymentDates" type="AdjustableRelativeOrPeriodicDates2">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Specifies the payment dates of the interest leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDates component), this element will typically point to the payment dates of the equity leg of the swap.</xsd:documentation>
         </xsd:annotation>
@@ -1088,7 +1103,7 @@
           <xsd:documentation xml:lang="en">Specifies the initial reference price of the underlyer. This price can be expressed either as an actual amount/currency, as a determination method, or by reference to another value specified in the swap document.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="notionalReset" type="xsd:boolean">
+      <xsd:element name="notionalReset" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Element named "equityNotionalReset" in versions prior to FpML 4.2 Second Working Draft. For equity swaps, this element is equivalent to the term "Equity Notional Reset" as defined in the ISDA 2002 Equity Derivatives Definitions. The reference to the ISDA definition is either "Applicable" or 'Inapplicable".</xsd:documentation>
         </xsd:annotation>

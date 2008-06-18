@@ -54,35 +54,9 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="CorrelationSwapOption">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">An Option on a Correlation Swap.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:complexContent>
-      <xsd:extension base="OptionBaseExtended">
-        <xsd:sequence>
-          <xsd:element name="strike" type="OptionNumericStrike">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">Strike of the the Correlation Swap Option.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
-          <xsd:element name="correlationSwap" type="CorrelationSwap">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">Correlation Swap which is the underlyer of this Option.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
-        </xsd:sequence>
-      </xsd:extension>
-    </xsd:complexContent>
-  </xsd:complexType>
   <xsd:element name="correlationSwap" type="CorrelationSwap" substitutionGroup="product">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Specifies the structure of a correlation swap.</xsd:documentation>
-    </xsd:annotation>
-  </xsd:element>
-  <xsd:element name="correlationSwapOption" type="CorrelationSwapOption" substitutionGroup="product">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">Specifies the structure of a correlation swap option.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
 </xsd:schema>

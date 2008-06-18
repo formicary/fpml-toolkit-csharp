@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-4" version="$Revision: 2590 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-4" version="$Revision: 3660 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-asset-4-4.xsd" />
   <xsd:complexType name="Asian">
     <xsd:annotation>
@@ -56,16 +56,11 @@
       <xsd:documentation xml:lang="en">Method of generating a series of dates.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="startDate" type="xsd:date">
+      <xsd:group ref="Period.model">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">The averaging period start date.</xsd:documentation>
+          <xsd:documentation xml:lang="en">The averaging period defined by a start date and an end date.</xsd:documentation>
         </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="endDate" type="xsd:date">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The averaging period end date.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
+      </xsd:group>
       <xsd:element name="frequency" type="xsd:positiveInteger">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The schedule frequency.</xsd:documentation>
@@ -722,7 +717,7 @@
       <xsd:documentation xml:lang="en">A group which has Option Settlement elements</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="settlementType" type="SettlementTypeEnum" />
+      <xsd:element name="settlementType" type="SettlementTypeEnum" minOccurs="0" />
       <xsd:element name="settlementDate" type="AdjustableOrRelativeDate" minOccurs="0" />
       <xsd:group ref="SettlementAmountOrCurrency.model" minOccurs="0" />
     </xsd:sequence>

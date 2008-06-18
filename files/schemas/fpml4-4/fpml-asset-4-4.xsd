@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-4" version="$Revision: 2587 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-4" version="$Revision: 3246 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-shared-4-4.xsd" />
   <xsd:complexType name="ActualPrice">
     <xsd:sequence>
@@ -37,16 +37,8 @@
   </xsd:complexType>
   <xsd:complexType name="Asset" abstract="true">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A generic type describing the basic components of an asset.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Abstract base class for all underlying assets.</xsd:documentation>
     </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element name="instrumentId" type="InstrumentId" maxOccurs="unbounded" />
-      <xsd:element name="description" type="xsd:string" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The long name of a security.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
     <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="AssetMeasureType">
@@ -99,34 +91,37 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A type describing the underlyer features of a basket swap. Each of the basket constituents are described through an embedded component, the basketConstituentsType.</xsd:documentation>
     </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element name="openUnits" type="xsd:decimal" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The number of units (index or securities) that constitute the underlyer of the swap. In the case of a basket swap, this element is used to reference both the number of basket units, and the number of each asset components of the basket when these are expressed in absolute terms.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="basketConstituent" type="BasketConstituent" maxOccurs="unbounded">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Describes each of the components of the basket.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="basketDivisor" type="xsd:decimal" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Specifies the basket divisor amount. This value is normally used to adjust the constituent weight for pricing or to adjust for dividends, or other corporate actions.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:group ref="BasketIdentifier.model" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Reuses the group that specifies a name and an identifier for a given basket.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:group>
-      <xsd:element name="basketCurrency" type="Currency" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Specifies the currency for this basket.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
-    <xsd:attribute name="id" type="xsd:ID" use="optional" />
+    <xsd:complexContent>
+      <xsd:extension base="Asset">
+        <xsd:sequence>
+          <xsd:element name="openUnits" type="xsd:decimal" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The number of units (index or securities) that constitute the underlyer of the swap. In the case of a basket swap, this element is used to reference both the number of basket units, and the number of each asset components of the basket when these are expressed in absolute terms.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="basketConstituent" type="BasketConstituent" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Describes each of the components of the basket.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="basketDivisor" type="xsd:decimal" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Specifies the basket divisor amount. This value is normally used to adjust the constituent weight for pricing or to adjust for dividends, or other corporate actions.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:group ref="BasketIdentifier.model" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Reuses the group that specifies a name and an identifier for a given basket.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:group>
+          <xsd:element name="basketCurrency" type="Currency" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Specifies the currency for this basket.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="BasketConstituent">
     <xsd:annotation>
@@ -182,6 +177,9 @@
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="Bond">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">An exchange traded bond.</xsd:documentation>
+    </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="ExchangeTraded">
         <xsd:sequence>
@@ -203,7 +201,7 @@
   </xsd:complexType>
   <xsd:complexType name="Cash">
     <xsd:complexContent>
-      <xsd:extension base="Asset">
+      <xsd:extension base="IdentifiedAsset">
         <xsd:sequence>
           <xsd:element name="currency" type="Currency">
             <xsd:annotation>
@@ -344,11 +342,17 @@
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="EquityAsset">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">An exchange traded equity asset.</xsd:documentation>
+    </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="ExchangeTraded" />
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="ExchangeTraded" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">An abstract base class for all exchange traded financial products.</xsd:documentation>
+    </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="UnderlyingAsset">
         <xsd:sequence>
@@ -357,9 +361,25 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
+  <xsd:complexType name="ExchangeTradedCalculatedPrice" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Abstract base class for all exchange traded financial products with a price which is calculated from exchange traded constituents.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ExchangeTraded">
+        <xsd:sequence>
+          <xsd:element name="constituentExchangeId" type="ExchangeId" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Identification of all the exchanges where constituents are traded. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
   <xsd:complexType name="ExchangeTradedContract">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type an Exchange Traded Contract</xsd:documentation>
+      <xsd:documentation xml:lang="en">An exchange traded derivative contract.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="ExchangeTraded">
@@ -384,8 +404,11 @@
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="ExchangeTradedFund">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">An exchange traded fund whose price depends on exchange traded constituents.</xsd:documentation>
+    </xsd:annotation>
     <xsd:complexContent>
-      <xsd:extension base="ExchangeTraded">
+      <xsd:extension base="ExchangeTradedCalculatedPrice">
         <xsd:sequence>
           <xsd:element name="fundManager" type="xsd:string" minOccurs="0">
             <xsd:annotation>
@@ -407,6 +430,9 @@
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="Future">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">An exchange traded future contract.</xsd:documentation>
+    </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="ExchangeTraded">
         <xsd:sequence>
@@ -467,9 +493,33 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="Index">
+  <xsd:complexType name="IdentifiedAsset" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A generic type describing an identified asset.</xsd:documentation>
+    </xsd:annotation>
     <xsd:complexContent>
-      <xsd:extension base="ExchangeTraded">
+      <xsd:extension base="Asset">
+        <xsd:sequence>
+          <xsd:element name="instrumentId" type="InstrumentId" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Identification of the underlying asset, using public and/or private identifiers.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="description" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Long name of the underlying asset.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Index">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A published index whose price depends on exchange traded constituents.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ExchangeTradedCalculatedPrice">
         <xsd:sequence>
           <xsd:element name="futureId" type="FutureId" minOccurs="0">
             <xsd:annotation>
@@ -842,18 +892,26 @@
   </xsd:complexType>
   <xsd:complexType name="UnderlyingAsset" abstract="true">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type describing the basic components of a security of index underlyer.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Abstract base class for all underlying assets.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
-      <xsd:extension base="Asset">
+      <xsd:extension base="IdentifiedAsset">
         <xsd:sequence>
           <xsd:element name="currency" type="Currency" minOccurs="0">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+              <xsd:documentation xml:lang="en">Currency in which the underlying asset is denominated.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:element name="exchangeId" type="ExchangeId" minOccurs="0" />
-          <xsd:element name="clearanceSystem" type="ClearanceSystem" minOccurs="0" />
+          <xsd:element name="exchangeId" type="ExchangeId" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Identification of the exchange on which this asset is transacted for the purposes of calculating a contractural payoff. The term "Exchange" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="clearanceSystem" type="ClearanceSystem" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Identification of the clearance system associated with the transaction exchange.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
           <xsd:element name="definition" type="ProductReference" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">An optional reference to a full FpML product that defines the simple product in greater detail. In case of inconsistency between the terms of the simple product and those of the detailed definition, the values in the simple product override those in the detailed definition.</xsd:documentation>
@@ -870,6 +928,11 @@
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
+  <xsd:element name="basket" type="Basket" substitutionGroup="underlyingAsset">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines the underlying asset when it is a basket.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
   <xsd:element name="bond" type="Bond" substitutionGroup="underlyingAsset">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Defines the underlying asset when it is a bond.</xsd:documentation>

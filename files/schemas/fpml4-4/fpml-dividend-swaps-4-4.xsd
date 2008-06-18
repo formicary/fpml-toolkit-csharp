@@ -14,12 +14,12 @@
     <xsd:complexContent>
       <xsd:extension base="DirectionalLegUnderlyer">
         <xsd:sequence>
-          <xsd:element name="declaredCashDividendPercentage" type="NonNegativeDecimal">
+          <xsd:element name="declaredCashDividendPercentage" type="NonNegativeDecimal" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Declared Cash Dividend Percentage.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:element name="declaredCashEquivalentDividendPercentage" type="NonNegativeDecimal">
+          <xsd:element name="declaredCashEquivalentDividendPercentage" type="NonNegativeDecimal" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Declared Cash Equivalent Dividend Percentage.</xsd:documentation>
             </xsd:annotation>
@@ -27,6 +27,16 @@
           <xsd:element name="dividendPeriod" type="DividendPeriodPayment" maxOccurs="unbounded">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">One to many time bounded dividend payment periods, each with a fixed strike and dividend payment date per period.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="excludeSpecialDividends" type="xsd:boolean" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation>If present and true, Exclude Special Dividends and Memorial Dividends</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="nonCashDividend" type="xsd:boolean" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation>If present and true, non cash dividends are applicable</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
         </xsd:sequence>
@@ -50,6 +60,11 @@
               <xsd:documentation xml:lang="en">Dividend period amount payment date.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
+          <xsd:element name="valuationDate" type="AdjustableOrRelativeDate" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Dividend period amount valuation date.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -69,27 +84,6 @@
           <xsd:element name="fixedLeg" type="FixedPaymentLeg">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Fixed payment leg.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
-        </xsd:sequence>
-      </xsd:extension>
-    </xsd:complexContent>
-  </xsd:complexType>
-  <xsd:complexType name="DividendSwapTransactionSupplementOption">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">An Option on a Dividend Swap Transaction Supplement.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:complexContent>
-      <xsd:extension base="OptionBaseExtended">
-        <xsd:sequence>
-          <xsd:element name="strike" type="OptionStrike">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">Strike of the Dividend Swap Transaction Supplement.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
-          <xsd:element name="dividendSwapTransactionSupplement" type="DividendSwapTransactionSupplement">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">Dividend Swap Transaction Supplement which is the underlyer of this Option.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
         </xsd:sequence>
@@ -132,11 +126,6 @@
   <xsd:element name="dividendSwapTransactionSupplement" type="DividendSwapTransactionSupplement" substitutionGroup="product">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Specifies the structure of the dividend swap transaction supplement.</xsd:documentation>
-    </xsd:annotation>
-  </xsd:element>
-  <xsd:element name="dividendSwapTransactionSupplementOption" type="DividendSwapTransactionSupplementOption" substitutionGroup="product">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">Specifies the structure of the dividend swap transaction supplement option</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
 </xsd:schema>

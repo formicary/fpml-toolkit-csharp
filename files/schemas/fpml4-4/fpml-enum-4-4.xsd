@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-4" version="$Revision: 2971 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-4" version="$Revision: 3909 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:simpleType name="AveragingInOutEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The type of averaging used in an Asian option.</xsd:documentation>
@@ -170,6 +170,28 @@
       <xsd:enumeration value="Straight">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Straight compounding. Compounding includes the spread.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ConditionsPrecedentEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">Defines whether conditions precedent have been met in a given syndicated loan deal.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Yes">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Conditions precedent have been met.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="No">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Conditions precedent have not been met.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Waived">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The requirement for conditions precedent were waived.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>
@@ -572,7 +594,7 @@
   </xsd:simpleType>
   <xsd:simpleType name="LoanRepaymentConfirmEnum">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">&gt;Defines whether the lender is accepting in full, partially accepting or denying repayment</xsd:documentation>
+      <xsd:documentation xml:lang="en">Defines whether the lender is accepting in full, partially accepting or denying repayment.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:token">
       <xsd:enumeration value="AcceptInFull">
@@ -707,14 +729,39 @@
       <xsd:documentation xml:lang="en">The list of oneOff fee types associated with a facility.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="AmendmentFee">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A fee charged to the borrower for an amendment being made to the originally agreed credit agreement. The fee is based on a rate (as stated in the agreement) applied to the current commitment level.Calculated as a percentage of the unutilized portion of the facility.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
       <xsd:enumeration value="AssignmentFee">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Calculated as a percentage of the unutilized portion of the facility.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
+      <xsd:enumeration value="FacilityExtensionFee">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This fee represents any fee paid by the borrower to the syndicate lenders for extending an existing facility.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FundingFee">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Fee associated with the funding requirements for given facility.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
       <xsd:enumeration value="BreakageFee">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Calculated as the cost of breaking financing on a loan contract which is repaid early.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UpfrontFee">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This fee is also known as Participation Fee, Arrangement Fee etc. This fee represents compensation to the members of the lending syndicate (and sometimes to institutional investors as well) in return for their commitment of capital.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="WaiverFee">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This fee represents any fee paid by the borrower to the syndicate lenders / agent bank for accepting /processing waiver request. Waiver request is sent by the borrower to obtain approval from the syndicate lenders for any of their requirement, which is outside the terms of the agreement.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>
@@ -832,6 +879,11 @@
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Payments will occur relative to the reset date.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
+      <xsd:enumeration value="ValuationDate">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Payments will occur relative to the valuation date.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
   <xsd:simpleType name="PeriodEnum">
@@ -861,7 +913,7 @@
       </xsd:enumeration>
       <xsd:enumeration value="T">
         <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Term.</xsd:documentation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Term. The period commencing on the effective date and ending on the termination date. The T period always appears in association with periodMultiplier = 1, and the notation is intended for use in contexts where the interval thus qualified (e.g. accrual period, payment period, reset period, ...) spans the entire term of the trade.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>
@@ -1648,6 +1700,11 @@
       <xsd:enumeration value="SUN">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Sunday</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TBILL">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.publicdebt.treas.gov" xml:lang="en">13-week and 26-week U.S. Treasury Bill Auction Dates. Each Monday except for U.S. (New York) holidays when it will occur on a Tuesday.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>

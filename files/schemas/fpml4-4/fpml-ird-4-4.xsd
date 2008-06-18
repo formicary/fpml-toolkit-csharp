@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-4" version="$Revision: 3007 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2007/FpML-4-4" xmlns:fpml="http://www.fpml.org/2007/FpML-4-4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2007/FpML-4-4" version="$Revision: 3606 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-asset-4-4.xsd" />
   <xsd:complexType name="BondReference">
     <xsd:annotation>
@@ -456,6 +456,18 @@
     </xsd:choice>
     <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
+  <xsd:complexType name="DateRelativeToCalculationPeriodDates">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A type to provide the ability to point to multiple payment nodes in the document through the unbounded paymentDatesReference.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="calculationPeriodDatesReference" type="CalculationPeriodDatesReference" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A set of href pointers to calculation period dates defined somewhere else in the document.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
   <xsd:complexType name="DateRelativeToPaymentDates">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A type to provide the ability to point to multiple payment nodes in the document through the unbounded paymentDatesReference.</xsd:documentation>
@@ -478,16 +490,7 @@
           <xsd:documentation xml:lang="en">The discounting method that is applicable.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="discountRate" type="xsd:decimal" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A discount rate, expressed as a decimal, to be used in the calculation of a discounted amount. A discount amount of 5% would be represented as 0.05.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="discountRateDayCountFraction" type="DayCountFraction" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A discount day count fraction to be used in the calculation of a discounted amount.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
+      <xsd:group ref="DiscountRate.model" minOccurs="0" />
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="EarlyTerminationEvent">
@@ -803,11 +806,18 @@
             </xsd:annotation>
           </xsd:element>
           <xsd:group ref="BusinessCentersOrReference.model" minOccurs="0" />
-          <xsd:element name="dateRelativeToPaymentDates" type="DateRelativeToPaymentDates">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">The payment date references on which settlements in non-deliverable currency are due and will then have to be converted according to the terms specified through the other parts of the nonDeliverableSettlement structure.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
+          <xsd:choice>
+            <xsd:element name="dateRelativeToPaymentDates" type="DateRelativeToPaymentDates">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">The payment date references on which settlements in non-deliverable currency are due and will then have to be converted according to the terms specified through the other parts of the nonDeliverableSettlement structure.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="dateRelativeToCalculationPeriodDates" type="DateRelativeToCalculationPeriodDates">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">The calculation period references on which settlements in non-deliverable currency are due and will then have to be converted according to the terms specified through the other parts of the nonDeliverableSettlement structure. Implemented for Brazilian-CDI swaps where it will refer to the termination date of the appropriate leg.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:choice>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -902,6 +912,11 @@
           <xsd:element name="initialIndexLevel" type="xsd:decimal" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">initial known index level for the first calculation period.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="fallbackBondApplicable" type="xsd:boolean" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The applicability of a fallback bond as defined in the 2006 ISDA Inflation Derivatives Definitions, sections 1.3 and 1.8. Omission of this element imples a value of true.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
         </xsd:sequence>
@@ -1229,6 +1244,11 @@
             <xsd:documentation xml:lang="en">A pointer style reference to the associated reset dates component defined elsewhere in the document.</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
+        <xsd:element name="valuationDatesReference" type="ValuationDatesReference">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">A pointer style reference to the associated valuation dates component defined elsewhere in the document. Implemented for Brazilian-CDI Swaps where it will refer to the settlemementProvision/nonDeliverableSettlement/fxFixingDate structure</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
       </xsd:choice>
       <xsd:element name="paymentFrequency" type="Interval">
         <xsd:annotation>
@@ -1247,7 +1267,7 @@
       </xsd:element>
       <xsd:element name="payRelativeTo" type="PayRelativeToEnum">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Specifies whether the payments occur relative to each adjusted calculation period start date, adjusted calculation period end date or each reset date. The reset date is applicable in the case of certain euro (former French Franc) floating rate indices. Calculation period start date means relative to the start of the first calculation period contributing to a given payment. Similarly, calculation period end date means the end of the last calculation period contributing to a given payment.</xsd:documentation>
+          <xsd:documentation xml:lang="en">Specifies whether the payments occur relative to each adjusted calculation period start date, adjusted calculation period end date or each reset date. The reset date is applicable in the case of certain euro (former French Franc) floating rate indices. Calculation period start date means relative to the start of the first calculation period contributing to a given payment. Similarly, calculation period end date means the end of the last calculation period contributing to a given payment.The valuation date is applicable for Brazilian-CDI swaps.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="paymentDaysOffset" type="Offset" minOccurs="0">
@@ -1546,6 +1566,16 @@
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:complexType name="ValuationDatesReference">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Reference to a Valuation dates node.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Reference">
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="FxFixingDate" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
   <xsd:complexType name="ValuationPostponement">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Specifies how long to wait to get a quote from a settlement rate option upon a price source disruption.</xsd:documentation>
@@ -1617,6 +1647,23 @@
       <xsd:documentation xml:lang="en">A swaption product definition.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
+  <xsd:group name="DiscountRate.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Model group enforces association of day count fraction with the discount rate.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="discountRate" type="xsd:decimal">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A discount rate, expressed as a decimal, to be used in the calculation of a discounted amount. A discount amount of 5% would be represented as 0.05.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="discountRateDayCountFraction" type="DayCountFraction" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A discount day count fraction to be used in the calculation of a discounted amount.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
   <xsd:group name="MandatoryEarlyTermination.model">
     <xsd:choice>
       <xsd:element name="mandatoryEarlyTermination" type="MandatoryEarlyTermination">
