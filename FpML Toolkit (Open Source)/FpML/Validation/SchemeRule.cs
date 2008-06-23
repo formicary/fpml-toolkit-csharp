@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -34,11 +34,14 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <param name="precondition">A <see cref="Precondition"/> instance.</param>
 		/// <param name="name">The unique name for the rule.</param>
+		/// <param name="parentNames">The local names of the parent elements or <b>null</b>.</param>
 		/// <param name="elementNames">An array of element names using the same scheme type for validation.</param>
 		/// <param name="attributeName">The name of the attribute containing the scheme URI.</param>
-		public SchemeRule (Precondition precondition, string name, string [] elementNames, string attributeName)
+		public SchemeRule (Precondition precondition, string name, string [] parentNames,
+				string [] elementNames, string attributeName)
 			: base (precondition, name)
 		{
+			this.parentNames   = parentNames;
 			this.elementNames  = elementNames;
 			this.attributeName = attributeName;
 		}
@@ -49,20 +52,34 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <param name="precondition">A <see cref="Precondition"/> instance.</param>
 		/// <param name="name">The unique name for the rule.</param>
-		/// <param name="elementName">An element name that uses a scheme for validation.</param>
+		/// <param name="elementNames">An array of element names using the same scheme type for validation.</param>
 		/// <param name="attributeName">The name of the attribute containing the scheme URI.</param>
-		public SchemeRule (Precondition precondition, string name, string elementName, string attributeName)
-			: this (precondition, name, new string [] { elementName }, attributeName)
+		public SchemeRule (Precondition precondition, string name, string [] elementNames, string attributeName)
+			: this (precondition, name, null, elementNames, attributeName)
 		{ }
 
 		/// <summary>
-		/// Constructs a <c>SchemeRule</c> that applies to any document. 
+		/// Constructs a <c>SchemeRule</c> with the given name and that applies in
+		/// the circumstances defined by its <see cref="Precondition"/>.
 		/// </summary>
+		/// <param name="precondition">A <see cref="Precondition"/> instance.</param>
 		/// <param name="name">The unique name for the rule.</param>
 		/// <param name="elementName">An element name that uses a scheme for validation.</param>
 		/// <param name="attributeName">The name of the attribute containing the scheme URI.</param>
-		public SchemeRule (string name, string elementName, string attributeName)
-			: this (Precondition.ALWAYS, name, elementName, attributeName)
+		public SchemeRule (Precondition precondition, string name, string elementName, string attributeName)
+			: this (precondition, name, null, new string [] { elementName }, attributeName)
+		{ }
+
+		/// <summary>
+		/// Constructs a <c>SchemeRule</c> with the given name and that applies in
+		/// the circumstances defined by its <see cref="Precondition"/>.
+		/// </summary>
+		/// <param name="precondition">A <see cref="Precondition"/> instance.</param>
+		/// <param name="name">The unique name for the rule.</param>
+		/// <param name="elementName">An element name that uses a scheme for validation.</param>
+		/// <param name="attributeName">The name of the attribute containing the scheme URI.</param>
+		public SchemeRule (Precondition precondition, string name, string parentName, string elementName, string attributeName)
+			: this (precondition, name, new string [] { parentName }, new string [] { elementName }, attributeName)
 		{ }
 
 		/// <summary>
@@ -72,7 +89,28 @@ namespace HandCoded.FpML.Validation
 		/// <param name="elementNames">An array of element names using the same scheme type for validation.</param>
 		/// <param name="attributeName">The name of the attribute containing the scheme URI.</param>
 		public SchemeRule (string name, string [] elementNames, string attributeName)
-			: this (Precondition.ALWAYS, name, elementNames, attributeName)
+			: this (Precondition.ALWAYS, name, null, elementNames, attributeName)
+		{ }
+
+		/// <summary>
+		/// Constructs a <c>SchemeRule</c> that applies to any document. 
+		/// </summary>
+		/// <param name="name">The unique name for the rule.</param>
+		/// <param name="elementName">An element name that uses a scheme for validation.</param>
+		/// <param name="attributeName">The name of the attribute containing the scheme URI.</param>
+		public SchemeRule (string name, string elementName, string attributeName)
+			: this (Precondition.ALWAYS, name, null, new string [] { elementName }, attributeName)
+		{ }
+
+		/// <summary>
+		/// Constructs a <c>SchemeRule</c> that applies to any document. 
+		/// </summary>
+		/// <param name="name">The unique name for the rule.</param>
+		/// <param name="parentName">The local name of the parent <b>XmlElement</b>.</param>
+		/// <param name="elementName">An element name that uses a scheme for validation.</param>
+		/// <param name="attributeName">The name of the attribute containing the scheme URI.</param>
+		public SchemeRule (string name, string parentName, string elementName, string attributeName)
+			: this (Precondition.ALWAYS, name, new string [] { parentName}, new string [] { elementName }, attributeName)
 		{ }
 
 		/// <summary>
@@ -87,9 +125,24 @@ namespace HandCoded.FpML.Validation
 		{
 			bool		result	= true;
 
-			foreach (string elementName in elementNames)
-				result &= Validate (nodeIndex.GetElementsByName (elementName), errorHandler);
-
+			for (int index = 0; index < elementNames.Length; ++index) {
+				XmlNodeList	list = nodeIndex.GetElementsByName (elementNames [index]);
+				
+				if (parentNames == null)
+					result &= Validate (list, errorHandler);
+				else {
+					MutableNodeList		targets = new MutableNodeList ();
+					
+					foreach (XmlElement context in list) {
+						XmlNode    parent  = context.ParentNode;
+						
+						if ((parent.NodeType == XmlNodeType.Element) &&
+								parent.LocalName.Equals (parentNames [index]))
+							targets.Add (context);
+					}
+					result &= Validate (targets, errorHandler);
+				}
+			}
 			return (result);
 		}
 
@@ -172,6 +225,13 @@ namespace HandCoded.FpML.Validation
 			}
 			return (result);
 		}
+
+		/// <summary>
+		/// A list of the local parent element names corresponding to the
+		/// <b>elementNames</b>. If the array has a <b>null</b> value
+		/// then no parent element qualification is performed.
+		/// </summary>
+		private readonly string []	parentNames;
 
 		/// <summary>
 		/// The set of element names to be validated.

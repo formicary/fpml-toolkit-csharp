@@ -25,7 +25,7 @@ namespace HandCoded.FpML.Validation
 	/// all of the defined validation <see cref="Rule"/> instances for Interest
 	/// Rate Derivative Products.
 	/// </summary>
-	public class IrdRules : Logic
+	public sealed class IrdRules : FpMLRuleSet
 	{
 		/// <summary>
 		/// Contains the <see cref="RuleSet"/>.
@@ -515,7 +515,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <param name="stream">The stream <see cref="XmlElement"/>.</param>
 		/// <returns><c>true</c> if the swap is parametric.</returns>
-		protected static bool IsParametric (XmlElement stream)
+		private static bool IsParametric (XmlElement stream)
 		{
 			XmlElement	cashflows;
 
@@ -1581,14 +1581,14 @@ namespace HandCoded.FpML.Validation
 
 			foreach (XmlElement context in list) {
 				XmlElement	firstDate	= XPath.Path (context, "firstPaymentDate");
-				XmlElement	lastDate	= XPath.Path (context, "lastPaymentDate");
+				XmlElement	lastDate	= XPath.Path (context, "lastRegularPaymentDate");
 
 				if ((firstDate == null) || (lastDate == null) || Less (firstDate, lastDate))
 					continue;
 
 				errorHandler ("305", context,
 					"The first payment date '" + ToString (firstDate) + "' should be " +
-					"before the last payment date '" + ToString (lastDate) + "'",
+					"before the last regular payment date '" + ToString (lastDate) + "'",
 					name, null);
 
 				result = false;
@@ -2462,27 +2462,6 @@ namespace HandCoded.FpML.Validation
 				
 				step = step.Plus (freq);
 			}
-		}
-
-		/// <summary>
-		/// Extracts an <see cref="Interval"/> from the data stored below the
-		/// given context node.
-		/// </summary>
-		/// <param name="context">The context <see cref="XmlElement"/>.</param>
-		/// <returns>An <see cref="Interval"/> constructed from the stored data.</returns>
-		private static Interval ToInterval (XmlElement context)
-		{
-			if (context != null) {
-				try {
-					return (new Interval (
-						ToInteger (XPath.Path (context, "periodMultiplier")),
-						Period.ForCode (ToString (XPath.Path (context, "period")))));
-				}
-				catch (Exception) {
-					return (null);
-				}
-			}
-			return (null);
 		}
 
 		/// <summary>

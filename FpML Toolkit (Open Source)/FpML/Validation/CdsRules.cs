@@ -25,11 +25,7 @@ namespace HandCoded.FpML.Validation
 	/// all of the defined validation <see cref="Rule"/> instances for Credit
 	/// Derivative Products.
 	/// </summary>
-	/// <remarks>This rules are based on the Systemwire's Clix definitions
-	/// http://www.fpml.org/2003/FpML-4-0/validation/2004-04-02 corresponding to
-	/// http://www.fpml.org/2003/FpML-4-0/validation/2004-04-02/rules-english-cd.html
-	/// </remarks>
-	public class CdsRules : Logic
+	public sealed class CdsRules : FpMLRuleSet
 	{
 		/// <summary>
 		/// Contains the <see cref="RuleSet"/>.
@@ -660,6 +656,8 @@ namespace HandCoded.FpML.Validation
 			foreach (XmlElement trade in nodeIndex.GetElementsByName ("trade")) {
 				if (IsLongForm (trade)) {
 					XmlElement		context = XPath.Path (trade, "creditDefaultSwap", "generalTerms") as XmlElement;
+
+					if (!Exists (XPath.Path (context, "scheduledTerminationDate"))) continue;
 
 					if (Or (
 							Exists (XPath.Path (context, "scheduledTerminationDate", "adjustableDate", "dateAdjustments")),

@@ -313,13 +313,12 @@ namespace HandCoded.FpML.Validation
 		
 		/// <summary>
 		/// Rule 33: The value of any <b>nationalisationOrInsolvency</b> element must be valid
-		/// within the domain defined by its <b>@nationalisationOrInsolvencyOrDelistingEventScheme</b> attribute.
+		/// within the domain defined by its <b>@nationalisationOrInsolvencyOrDelistingScheme</b> attribute.
 		/// </summary>
 		/// <remarks>Applies to FpML 3-0.</remarks>
 		public static readonly Rule	RULE33
-			= new BrokenSchemeRule (Preconditions.R3_0, "scheme-33",
-					new String [] {
-						"nationalisationOrInsolvency", "delisting" },
+			= new SchemeRule (Preconditions.R3_0, "scheme-33",
+					new String [] {	"nationalisationOrInsolvency", "delisting" },
 					"nationalisationOrInsolvencyOrDelistingScheme");
 		
 		/// <summary>
@@ -645,6 +644,14 @@ namespace HandCoded.FpML.Validation
 			= new SchemeRule (Preconditions.R4_2, "scheme-72", "matrixType", "matrixTypeScheme");
 		
 		/// <summary>
+		/// Rule 73: The value of any <b>interestShortfall/rateSource</b> type element must
+		/// be valid within the domain defined by its <b>@floatingRateIndexScheme</b> attribute.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.3 and later.</remarks>
+		public static readonly Rule	RULE73
+			= new SchemeRule (Preconditions.R4_3__LATER, "scheme-73", "interestShortfall", "rateSource", "floatingRateIndexScheme");
+
+		/// <summary>
 		/// Ensures no instances can be constructed.
 		/// </summary>
 		private SchemeRules ()
@@ -734,6 +741,7 @@ namespace HandCoded.FpML.Validation
 			rules.Add (RULE70);
 			rules.Add (RULE71);
 			rules.Add (RULE72);
+			rules.Add (RULE73);
 		}
 	}
 }

@@ -24,7 +24,7 @@ namespace HandCoded.FpML.Validation
 	/// all of the defined validation <see cref="Rule"/> instances for Equity
 	/// Derivative Products.
 	/// </summary>
-	public class EqdRules : Logic
+	public sealed class EqdRules : FpMLRuleSet
 	{
 		/// <summary>
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>

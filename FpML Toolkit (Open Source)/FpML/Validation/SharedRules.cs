@@ -24,7 +24,7 @@ namespace HandCoded.FpML.Validation
 	/// all of the defined validation <see cref="Rule"/> instances for shared
 	/// components.
 	/// </summary>
-	public class SharedRules : Logic
+	public class SharedRules : FpMLRuleSet
 	{
 		/// <summary>
 		/// Contains the <see cref="RuleSet"/>.
