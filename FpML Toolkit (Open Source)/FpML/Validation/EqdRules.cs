@@ -30,7 +30,7 @@ namespace HandCoded.FpML.Validation
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>
 		/// instances.
 		/// </summary>
-		private static readonly RuleSet	rules = new RuleSet ();
+		private static readonly RuleSet	rules = RuleSet.ForName ("EqdRules");
 
 		/// <summary>
 		/// Contains the <see cref="RuleSet"/>.
@@ -232,8 +232,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"American exercise commencement date " + ToString (commence) +
-					" should be the same as trade date " + ToString (trade),
+                    "American exercise commencement date " + ToToken (commence) +
+                    " should be the same as trade date " + ToToken (trade),
 					name, null);
 
 				result = false;
@@ -260,8 +260,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"American exercise expiration date " + ToString (expiration) +
-					" should be the same or later than trade date " + ToString (trade),
+                    "American exercise expiration date " + ToToken (expiration) +
+                    " should be the same or later than trade date " + ToToken (trade),
 					name, null);
 
 				result = false;
@@ -315,8 +315,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Bermuda exercise commencement date " + ToString (commence) +
-					" should not be before the trade date " + ToString (trade),
+                    "Bermuda exercise commencement date " + ToToken (commence) +
+                    " should not be before the trade date " + ToToken (trade),
 					name, null);
 
 				result = false;
@@ -343,8 +343,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Bermuda exercise expiration date " + ToString (expiration) +
-					" should not be before trade date " + ToString (trade),
+                    "Bermuda exercise expiration date " + ToToken (expiration) +
+                    " should not be before trade date " + ToToken (trade),
 					name, null);
 
 				result = false;
@@ -397,8 +397,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Bermuda exercise dates " + ToString (context) + " and " +
-					ToString (next) + " are not in order",
+                    "Bermuda exercise dates " + ToToken (context) + " and " +
+                    ToToken (next) + " are not in order",
 					name, null);
 
 				result = false;
@@ -424,9 +424,9 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Bermuda exercise date " + ToString (context) +
+                    "Bermuda exercise date " + ToToken (context) +
 					" should be after exercise period commencement date " +
-					ToString (commence),
+                    ToToken (commence),
 					name, null);
 								
 				result = false;
@@ -452,9 +452,9 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Bermuda exercise date " + ToString (context) +
+                    "Bermuda exercise date " + ToToken (context) +
 					" should be on or before exercise period expiration date " +
-					ToString (expiration),
+                    ToToken (expiration),
 					name, null);
 								
 				result = false;
@@ -480,8 +480,8 @@ namespace HandCoded.FpML.Validation
 					if (NotEqual (ToDate (context), ToDate (other))) continue;
 
 					errorHandler ("305", context,
-						"Duplicate bermuda exercise date, " + ToString (other),
-						name, ToString (other));
+                        "Duplicate bermuda exercise date, " + ToToken (other),
+                        name, ToToken (other));
 
 					result = false;
 				}
@@ -508,8 +508,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"European exercise expiration date " + ToString (expiration) +
-					" should not be before the trade date " + ToString (trade),
+                    "European exercise expiration date " + ToToken (expiration) +
+                    " should not be before the trade date " + ToToken (trade),
 					name, null);
 
 				result = false;
@@ -536,8 +536,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Equity premium payment date " + ToString (premiumDate) +
-					" must be on or after trade date " + ToString (tradeDate),
+                    "Equity premium payment date " + ToToken (premiumDate) +
+                    " must be on or after trade date " + ToToken (tradeDate),
 					name, null);
 
 				result = false;
@@ -564,8 +564,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Broker equity premium payment date " + ToString (premiumDate) +
-					" must be on or after trade date " + ToString (tradeDate),
+                    "Broker equity premium payment date " + ToToken (premiumDate) +
+                    " must be on or after trade date " + ToToken (tradeDate),
 					name, null);
 
 				result = false;
@@ -938,6 +938,7 @@ namespace HandCoded.FpML.Validation
 						   XPath.Path (moneyB, "currency")));
 		}
 
+#if false
 		/// <summary>
 		/// Initialises the <see cref="RuleSet"/> with copies of all the FpML
 		/// defined <see cref="Rule"/> instances for Interest Rate Derivatives.
@@ -968,5 +969,6 @@ namespace HandCoded.FpML.Validation
 			Rules.Add (RULE24);
 			Rules.Add (RULE25);
 		}
+#endif
 	}
 }

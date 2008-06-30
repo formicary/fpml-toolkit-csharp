@@ -313,7 +313,7 @@ namespace HandCoded.FpML.Validation
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>
 		/// instances.
 		/// </summary>
-		private static readonly RuleSet	rules = new RuleSet ();
+		private static readonly RuleSet	rules = RuleSet.ForName ("CdsRules");
 
 		/// <summary>
 		/// Ensures that no instances can be constructed.
@@ -1579,13 +1579,14 @@ namespace HandCoded.FpML.Validation
 			try {
 				return (new Interval (
 					ToInteger (XPath.Path (context, "periodMultiplier")),
-					Period.ForCode (ToString (XPath.Path (context, "period")))));
+                    Period.ForCode (ToToken (XPath.Path (context, "period")))));
 			}
 			catch (Exception) {
 				return (null);
 			}
 		}
 
+#if false
 		/// <summary>
 		/// Initialises the <see cref="RuleSet"/> with copies of all the FpML
 		/// defined <see cref="Rule"/> instances for Credit Derivatives.
@@ -1632,5 +1633,6 @@ namespace HandCoded.FpML.Validation
 			Rules.Add (RULE36);
 			Rules.Add (RULE37);
 		}
+#endif
 	}
 }

@@ -37,7 +37,7 @@ namespace HandCoded.FpML.Validation
 				try {
 					return (new Interval (
 						ToInteger (XPath.Path (context, "periodMultiplier")),
-						Period.ForCode (ToString (XPath.Path (context, "period")))));
+						Period.ForCode (ToToken (XPath.Path (context, "period")))));
 				}
 				catch (Exception) {
 					return (null);
@@ -45,5 +45,15 @@ namespace HandCoded.FpML.Validation
 			}
 			return (null);
 		}
+
+        /// <summary>
+        /// Determines the namespace URI of the FpML document.
+        /// </summary>
+        /// <param name="nodeIndex">A <see cref="NodeIndex"/> of the entire document.</param>
+        /// <returns>A <see cref="String"/> containing the namespace URI.</returns>
+ 	    protected static String DetermineNamespace (NodeIndex nodeIndex)
+	    {
+		    return (nodeIndex.Document.DocumentElement.NamespaceURI);
+	    }
 	}
 }

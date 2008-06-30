@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,7 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace HandCoded.FpML.Meta
 {
@@ -33,7 +33,7 @@ namespace HandCoded.FpML.Meta
 		public SchemeDefaults (string [,] values)
 		{
 			for (int index = 0; index < (values.Length / 2); ++index)
-				defaultValues.Add(values [index, 0], values [index, 1]);
+				defaultValues.Add (values [index, 0], values [index, 1]);
 		}
 	
 		/// <summary>
@@ -58,7 +58,7 @@ namespace HandCoded.FpML.Meta
 		/// <c>null</c> if none.</returns>
 		public string GetDefaultUriForAttribute (string name)
 		{
-			return (defaultValues [name] as string);
+            return (defaultValues.ContainsKey (name) ? defaultValues [name] : null);
 		}
 	
 		/// <summary>
@@ -72,20 +72,22 @@ namespace HandCoded.FpML.Meta
 		/// this scheme attribute.</returns>
 		public string GetDefaultAttributeForScheme (string name)
 		{
-			return (defaultAttrs [name] as string);
+			return (defaultAttrs.ContainsKey (name) ? defaultAttrs [name] : null);
 		}
 	
 		/// <summary>
-		/// A <see cref="Hashtable"/> containing the scheme URI associated with each
+		/// A collection containing the scheme URI associated with each
 		/// scheme default attribute.
 		/// </summary>
-		private Hashtable		defaultValues	= new Hashtable ();
+		private Dictionary<string,string>	defaultValues
+            = new Dictionary<string, string> ();
 
 		/// <summary>
-		/// A <see cref="Hashtable"/> relating a scheme attribute name to its
+		/// A collection relating a scheme attribute name to its
 		/// corresponding scheme default attribute (e.g. partyIdScheme uses
 		/// partyIdSchemeDefault).
 		/// </summary>
-		private Hashtable		defaultAttrs 	= new Hashtable ();
+        private Dictionary<string, string>  defaultAttrs
+            = new Dictionary<string, string> ();
 	}
 }

@@ -28,7 +28,7 @@
     </StartProgram>
     <StartURL>
     </StartURL>
-    <StartWorkingDirectory>C:\HandCoded\C#\Open Source\FpML Toolkit (Public Release)\</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\HandCoded\C#\Open Source\FpML Toolkit (Open Source)\</StartWorkingDirectory>
     <StartWithIE>true</StartWithIE>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">

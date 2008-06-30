@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,7 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 
 namespace HandCoded.Framework
@@ -186,7 +186,7 @@ namespace HandCoded.Framework
 		/// <summary>
 		/// The set of all defined <b>Option</b> instances.
 		/// </summary>
-		private static ArrayList	options		= new ArrayList ();
+		private static List<Option>	options		= new List<Option> ();
 
 		/// <summary>
 		/// The name of the option (including any leading dash).

@@ -76,7 +76,8 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <param name="precondition">A <see cref="Precondition"/> instance.</param>
 		/// <param name="name">The unique name for the rule.</param>
-		/// <param name="elementName">An element name that uses a scheme for validation.</param>
+        /// <param name="parentName">The local name of the parent element or <b>null</b>.</param>
+        /// <param name="elementName">An element name that uses a scheme for validation.</param>
 		/// <param name="attributeName">The name of the attribute containing the scheme URI.</param>
 		public SchemeRule (Precondition precondition, string name, string parentName, string elementName, string attributeName)
 			: this (precondition, name, new string [] { parentName }, new string [] { elementName }, attributeName)

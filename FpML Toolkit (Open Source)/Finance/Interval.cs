@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -64,6 +64,9 @@ namespace HandCoded.Finance
 		/// <summary>
 		/// Determines if this <b>Interval</b> is an integer multiple of another.
 		/// </summary>
+        /// <remarks>The calculation recognises that a week is seven days and that
+        /// a year is twelve months. It also allows 1T to match any time period
+        /// longer than a day and for any time period to be a multiple of 1 day.</remarks>
 		/// <param name="other">The other <b>Interval</b> instance.</param>
 		/// <returns><c>true</c> if this instance is an integer multiple of the
 		/// other <b>Interval</b>, <c>false</c> otherwise.</returns>
@@ -71,7 +74,16 @@ namespace HandCoded.Finance
 		{
 			int				value = 0;
 
-			if (period == other.Period)
+            // 1T is a positive integer multiple (>= 1) of any frequency
+            if ((multiplier == 1) && (period == Period.TERM) && (other.multiplier >= 1))
+                return (true);
+
+            // Any period > 0 is a multiple of 1D
+            if ((multiplier > 0) && (other.multiplier == 1) && (other.period == Period.DAY))
+                return (true);
+
+            // Handle 1W = 7D and 1Y = 12M or multiples thereof
+            if (period == other.Period)
 				value = multiplier;
 			else if ((period == Period.WEEK) && (other.Period == Period.DAY))
 				value = 7 * multiplier;

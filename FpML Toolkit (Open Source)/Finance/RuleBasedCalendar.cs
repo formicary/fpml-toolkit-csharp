@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,7 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace HandCoded.Finance
 {
@@ -51,7 +51,7 @@ namespace HandCoded.Finance
 			if ((holidays == null) || (year < minYear) || (year > maxYear))
 				lock (this) {
 					if (holidays == null) {
-						holidays = new Hashtable ();
+						holidays = new Dictionary<Date, CalendarRule> ();
 
 						Generate (minYear = maxYear = year, year);
 					}
@@ -67,7 +67,7 @@ namespace HandCoded.Finance
 					}
 				}
 
-			return (!holidays.Contains (date));
+			return (!holidays.ContainsKey (date));
 		}
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace HandCoded.Finance
 		/// The set of <see cref="CalendarRule"/> instances used to define
 		/// holidays.
 		/// </summary>
-		private ArrayList		rules		= new ArrayList ();
+		private List<CalendarRule>	rules		= new List<CalendarRule> ();
 
 		/// <summary>
 		/// The oldest year for which holiday dates have been calculated.
@@ -105,7 +105,7 @@ namespace HandCoded.Finance
 		/// <summary>
 		/// The set of all holiday dates determined so far.
 		/// </summary>
-		private Hashtable		holidays	= null;
+		private Dictionary<Date, CalendarRule>	holidays	= null;
 
 		/// <summary>
 		/// Uses the <see cref="CalendarRule"/> instances to extend the holiday

@@ -661,8 +661,9 @@ namespace HandCoded.FpML.Validation
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>
 		/// instances.
 		/// </summary>
-		private static readonly RuleSet	rules = new RuleSet ();
+		private static readonly RuleSet	rules = RuleSet.ForName ("SchemeRules");
 
+#if false
 		/// <summary>
 		/// Initialises the <see cref="RuleSet"/> by adding the individually defined
 		/// validation rules.
@@ -743,5 +744,6 @@ namespace HandCoded.FpML.Validation
 			rules.Add (RULE72);
 			rules.Add (RULE73);
 		}
+#endif
 	}
 }

@@ -33,10 +33,21 @@ namespace HandCoded.Xml
 		/// <returns>The value of the node as a C# datatype.</returns>
 		public static string ToString (XmlNode node)
 		{
-			return ((node != null) ? node.InnerText.Trim () : null);
+			return ((node != null) ? node.InnerText : null);
 		}
 
-		/// <summary>
+        /// <summary>
+        /// Returns the value of the given <see cref="XmlNode"/> as a string
+        /// with all extra white space removed.
+        /// </summary>
+        /// <param name="node">The <see cref="XmlNode"/> containing the value.</param>
+        /// <returns>The value of the node as a C# datatype.</returns>
+        public static string ToToken (XmlNode node)
+        {
+            return ((node != null) ? node.InnerText.Trim () : null);
+        }
+
+        /// <summary>
 		/// Returns the value of the given <see cref="XmlNode"/> as a boolean.
 		/// </summary>
 		/// <param name="node">The <see cref="XmlNode"/> containing the value.</param>

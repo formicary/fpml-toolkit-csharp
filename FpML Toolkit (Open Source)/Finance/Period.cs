@@ -1,4 +1,4 @@
-// Copyright (C),2005 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is the confidential and proprietary information of HandCoded
@@ -14,7 +14,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace HandCoded.Finance
 {
@@ -26,7 +26,8 @@ namespace HandCoded.Finance
 		/// <summary>
 		/// The extent set of all <b>Period</b> instances.
 		/// </summary>
-		private static Hashtable	extent	= new Hashtable ();
+		private static Dictionary<string, Period>	extent
+            = new Dictionary<string, Period> ();
 
 		/// <summary>
 		/// A <b>Period</b> instance representing a day.
@@ -62,7 +63,7 @@ namespace HandCoded.Finance
 		/// was found.</returns>
 		public static Period ForCode (string code)
 		{
-			return (extent [code] as Period);
+			return (extent.ContainsKey (code) ? extent [code] : null);
 		}
 
 		/// <summary>

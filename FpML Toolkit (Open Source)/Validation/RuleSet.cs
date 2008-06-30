@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -13,7 +13,12 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Reflection;
 using System.Xml;
+
+using log4net;
 
 using HandCoded.Xml;
 
@@ -26,22 +31,25 @@ namespace HandCoded.Validation
 	/// </summary>
 	public class RuleSet : Validator
 	{
-		/// <summary>
-		/// Constructs an empty <B>RuleSet</B>.
-		/// </summary>
-		public RuleSet()
-		{ }
+        /// <summary>
+        /// Contains the name of the <c>RuleSet</c> or <c>null</c> if unnamed.
+        /// </summary>
+        public string Name {
+            get {
+                return (name);
+            }
+        }
 
-		/// <summary>
+        /// <summary>
 		/// Contains the rule names.
 		/// </summary>
-		public ICollection Keys {
+		public ICollection<string> Keys {
 			get {
 				return (rules.Keys);
 			}
 		}
 
-		/// <summary>
+ 		/// <summary>
 		/// Contains the current number of rules in the <B>RuleSet</B>
 		/// </summary>
 		public int Size {
@@ -49,6 +57,33 @@ namespace HandCoded.Validation
 				return (rules.Count);
 			}
 		}
+
+		/// <summary>
+		/// Constructs an unnamed empty <B>RuleSet</B>.
+		/// </summary>
+		public RuleSet()
+            : this (null)
+		{ }
+
+        /// <summary>
+        /// Constructs a named empty <B>RuleSet</B>.
+        /// </summary>
+        public RuleSet (string name)
+        {
+            if ((this.name = name) != null) extent [name] = this;
+        }
+
+        /// <summary>
+        /// Returns a reference to the named <c>RuleSet</c> instance if it exists.
+        /// </summary>
+        /// <param name="name">The name of the required <c>RuleSet</c>.</param>
+        /// <returns>The corresponding <c>RuleSet</c> instance.</returns>
+        public static RuleSet ForName (string name)
+        {
+            lock (extent) {
+                return (extent.ContainsKey (name) ? extent [name] : new RuleSet (name));
+            }
+        }
 
 		/// <summary>
 		/// Adds the indicated <see cref="Rule"/> instance to the <B>RuleSet</B>
@@ -84,10 +119,13 @@ namespace HandCoded.Validation
 		/// <c>null</c> if there was no match.</returns>
 		public Rule Remove (string name)
 		{
-			Rule		result = rules [name] as Rule;
+            if (rules.ContainsKey (name)) {
+                Rule result = rules [name];
 
-			rules.Remove (name);
-			return (result);
+                rules.Remove (name);
+                return (result);
+            }
+            return (null);
 		}
 
 		/// <summary>
@@ -140,6 +178,12 @@ namespace HandCoded.Validation
 		}
 
 		/// <summary>
+		/// A <see cref="ILog"/> instance used to report run-time problems.
+		/// </summary>
+		private static ILog			logger
+			= LogManager.GetLogger (typeof (RuleSet));
+
+		/// <summary>
 		/// A static object used to represent a true outcome.
 		/// </summary>
 		private static readonly	object	trueObject	= new object ();
@@ -149,9 +193,135 @@ namespace HandCoded.Validation
 		/// </summary>
 		private static readonly object	falseObject	= new object ();
 
+        /// <summary>
+        /// The set of all named <c>RuleSet</c> instances.
+        /// </summary>
+        private static Dictionary<string, RuleSet> extent
+            = new Dictionary<string, RuleSet> ();
+
+        /// <summary>
+        /// The name of the <c>RuleSet</c> or <c>null</c> if not named
+	    /// (for backwards compatibility).
+        /// </summary>
+        private readonly string         name;
+
 		/// <summary>
 		/// The underlying collection of rules indexed by name.
 		/// </summary>
-		private Hashtable			rules = new Hashtable ();
+		private Dictionary<string, Rule>    rules
+            = new Dictionary<string, Rule> ();
+
+        /// <summary>
+        /// Parse the <b>RuleSet</b> definitions in the configuration file
+        /// indicated by the URI.
+        /// </summary>
+        /// <param name="uri">The URI of the business rule configuration file.</param>
+        private static void ParseRuleSets (string uri)
+        {
+            RuleSet         ruleSet     = null;
+			XmlReader		reader		= XmlReader.Create (uri);
+
+			while (reader.Read ()) {
+				switch (reader.NodeType) {
+				case XmlNodeType.Element:
+					{
+                        if (reader.LocalName.Equals ("forceLoad")) {
+                            string platform = reader ["platform"];
+                            string implementation = reader ["class"];
+
+                            if (platform.Equals (".Net")) {
+                                try {
+                                    Type type = Type.GetType (implementation);
+
+                                    // Access each member to ensure it has a chance to initialise
+                                    foreach (MemberInfo member in type.GetMembers ()) {
+                                        if (member.MemberType == MemberTypes.Field) {
+                                            type.InvokeMember (member.Name, BindingFlags.GetField, null, null, null);
+                                        }
+                                    }
+                                }
+                                catch (Exception error) {
+                                    logger.Error ("Could not force load rule class '" + implementation + "'", error);
+                                }
+                            }
+                        } else	if (reader.LocalName.Equals ("ruleSet")) {
+							string		name	= reader ["name"];
+
+                            ruleSet = new RuleSet (name);
+                        }
+						else if (reader.LocalName.Equals ("addRule")) {
+							string		name	= reader ["name"];
+                            Rule        rule    = Rule.ForName (name);
+
+                            if (rule != null) {
+                                if (ruleSet != null)
+                                    ruleSet.Add (rule);
+                                else
+                                    logger.Error ("Syntax error in rule file - addRule outside of RuleSet");
+                            }
+                            else
+                                logger.Error ("Reference to undefined rule '" + name + "' in addRule");
+                        }
+                        else if (reader.LocalName.Equals ("removeRule")) {
+                            string name = reader ["name"];
+                            Rule rule = Rule.ForName (name);
+
+                            if (rule != null) {
+                                if (ruleSet != null)
+                                    ruleSet.Remove (rule);
+                                else
+                                    logger.Error ("Syntax error in rule file - removeRule outside of RuleSet");
+                            }
+                            else
+                                logger.Error ("Reference to undefined rule '" + name + "' in addRule");
+                        }
+                        else if (reader.LocalName.Equals ("addRuleSet")) {
+                            string name = reader ["name"];
+                            RuleSet rules = ForName (name);
+
+                            if (rules != null) {
+                                if (ruleSet != null) {
+                                    if (rules != ruleSet)
+                                        ruleSet.Add (rules);
+                                    else
+                                        logger.Error ("Attempt to recursively define ruleset '" + name + "'");
+                                }
+                                else
+                                    logger.Error ("Syntax error in rule file - addRuleSet outside of RuleSet");
+                            }
+                            else
+                                logger.Error ("Reference to undefined rule '" + name + "' in addRule");
+                        }
+						break;
+					}
+                case XmlNodeType.EndElement:
+                    {
+                        if (reader.LocalName.Equals ("ruleSet"))
+                            ruleSet = null;
+     
+                        break;
+                    }
+				}
+			}
+			reader.Close ();
+        }
+
+        /// <summary>
+        /// Causes the <b>RuleSet</b> class to try and bootstrap the business
+	    /// rules from a configuration file.
+        /// </summary>
+        static RuleSet ()
+        {
+            logger.Debug ("Bootstrapping");
+
+			try {
+				ParseRuleSets (ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.BusinessRules"]);
+			}
+			catch (Exception error) {
+				logger.Error ("Unable to load standard rule set definitions", error);
+			}
+
+			logger.Debug ("Completed");
+        }
 	}
 }

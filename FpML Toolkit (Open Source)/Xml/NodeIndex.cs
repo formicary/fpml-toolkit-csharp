@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,7 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Schema;
 
@@ -74,9 +74,7 @@ namespace HandCoded.Xml
 		/// <returns>A <see cref="XmlNodeList"/> of corresponding nodes.</returns>
 		public XmlNodeList GetElementsByName (string name)
 		{
-			XmlNodeList		list = elementsByName [name] as XmlNodeList;
-
-			return ((list != null) ? list : MutableNodeList.EMPTY);
+            return (elementsByName.ContainsKey (name) ? elementsByName [name] : MutableNodeList.EMPTY);
 		}
 
 		/// <summary>
@@ -89,23 +87,31 @@ namespace HandCoded.Xml
 		{
 			MutableNodeList list = new MutableNodeList ();
 
-			foreach (string name in names)
-				list.AddAll (GetElementsByName (name));
-
+            foreach (string name in names) {
+                if (elementsByName.ContainsKey (name))
+                    list.AddAll (elementsByName [name]);
+            }
 			return (list);
 		}
 
+        /// <summary>
+        /// Creates a (possibly empty) <see cref="XmlNodeList"/> containing all the
+	    /// element nodes of a given type (or a derived subtype).
+        /// </summary>
+        /// <param name="ns">The required namespace URI.</param>
+        /// <param name="type">The required type.</param>
+        /// <returns>A <see cref="XmlNodeList"/> of corresponding nodes.</returns>
 		public XmlNodeList GetElementsByType (string ns, string type)
 		{
-			ArrayList	matches = compatibleTypes [type] as ArrayList;
+			List<XmlSchemaType>	matches;
 			
-			if (matches == null) {
-				compatibleTypes.Add (type, matches = new ArrayList ());
+			if (!compatibleTypes.ContainsKey (type)) {
+				compatibleTypes.Add (type, matches = new List<XmlSchemaType> ());
 				
 	//			System.err.println ("%% Looking for " + ns + ":" + type);
 				
 				foreach (string key in typesByName.Keys) {
-					ArrayList types = typesByName [key] as ArrayList;
+					List<XmlSchemaType> types = typesByName [key];
 					
 					foreach (XmlSchemaType info in types) {
 						if (type.Equals (info.Name) || IsDerived (new XmlQualifiedName (type, ns), info)) {
@@ -115,23 +121,24 @@ namespace HandCoded.Xml
 					}
 				}
 			}
+            else
+                matches = compatibleTypes [type];
 			
 			MutableNodeList		result = new MutableNodeList ();
 			
 			foreach (XmlSchemaType info in matches) {
-				XmlNodeList nodes = elementsByType [info.Name] as XmlNodeList;
-				
-	//			System.err.println ("-- Matching elements of type: " + info.getTypeName ());
-				
-				foreach (XmlElement  element in nodes) {
-					XmlSchemaType typeInfo = element.SchemaInfo.SchemaType;
-					
-					if (typeInfo.QualifiedName.Equals (info.QualifiedName)) {
-						result.Add (element);
-						
-	//					System.err.println ("-- Matched: " + element.getLocalName ());
-					}
-				}
+     //			System.err.println ("-- Matching elements of type: " + info.getTypeName ());
+                if (elementsByType.ContainsKey (info.Name)) {
+                    foreach (XmlElement element in elementsByType [info.Name]) {
+                        XmlSchemaType typeInfo = element.SchemaInfo.SchemaType;
+
+                        if (typeInfo.QualifiedName.Equals (info.QualifiedName)) {
+                            result.Add (element);
+
+     //					    System.err.println ("-- Matched: " + element.getLocalName ());
+                        }
+                    }
+                }
 			}
 			
 			return (result);
@@ -146,7 +153,7 @@ namespace HandCoded.Xml
 		/// none.</returns>
 		public XmlElement GetElementById (string id)
 		{
-			return (elementsById [id] as XmlElement);
+			return (elementsById.ContainsKey (id) ? elementsById [id] : null);
 		}
 
 		/// <summary>
@@ -155,22 +162,39 @@ namespace HandCoded.Xml
 		private XmlDocument			document;
 
 		/// <summary>
-		/// A <see cref="Hashtable"/> containing <see cref="XmlNodeList"/> instances
+        /// A collection containing <see cref="MutableNodeList"/> instances
 		/// indexed by element name.
 		/// </summary>
-		private Hashtable			elementsByName	= new Hashtable ();
+		private Dictionary<string, MutableNodeList>	elementsByName
+            = new Dictionary<string, MutableNodeList> ();
 
-		private Hashtable			elementsByType	= new Hashtable ();
+        /// <summary>
+        /// A collection containing <see cref="MutableNodeList"/> instances
+        /// indexed by type name.
+        /// </summary>
+        private Dictionary<string, MutableNodeList> elementsByType
+            = new Dictionary<string, MutableNodeList> ();
 
 		/// <summary>
-		/// A <see cref="Hashtable"/> containing <see cref="XmlElement"/> instances
-		/// index by thier id attribute value.
+		/// A collection containing <see cref="XmlElement"/> instances
+		/// indexed by thier id attribute value.
 		/// </summary>
-		private Hashtable			elementsById	= new Hashtable ();
+        private Dictionary<string, XmlElement> elementsById
+            = new Dictionary<string, XmlElement> ();
 
-		private Hashtable			typesByName		= new Hashtable ();
+        /// <summary>
+        /// A collection containing <see cref="XmlSchemaType"/>
+        /// instances indexed by name.
+        /// </summary>
+        private Dictionary<string, List<XmlSchemaType>> typesByName
+            = new Dictionary<string, List<XmlSchemaType>> ();
 	
-		private Hashtable			compatibleTypes	= new Hashtable ();
+        /// <summary>
+        /// A collection containing a list for each explored type
+        /// containing related types defined by extension or restriction.
+        /// </summary>
+		private Dictionary<string, List<XmlSchemaType>>	compatibleTypes
+            = new Dictionary<string, List<XmlSchemaType>> ();
 
 		/// <summary>
 		/// Recursively walks a DOM tree creating an index of the elements by
@@ -187,39 +211,43 @@ namespace HandCoded.Xml
 			case XmlNodeType.Element:
 					{
 						string			name  = (node as XmlElement).LocalName;
-						MutableNodeList	list  = elementsByName [name] as MutableNodeList;
+						MutableNodeList	list;
 
-						if (list == null)
+						if (!elementsByName.ContainsKey (name))
 							elementsByName.Add (name, list = new MutableNodeList ());
+                        else
+                            list = elementsByName [name];
 
 						list.Add (node);
 
 						XmlSchemaType typeInfo = (node as XmlElement).SchemaInfo.SchemaType;
 						if ((typeInfo != null) && ((name = typeInfo.Name) != null)) {
-							ArrayList 	types = typesByName [name] as ArrayList;
-							int		index;
+                            List<XmlSchemaType> types;
+                            int		            index;
 							
-							if (types == null)
-								typesByName.Add (name, types = new ArrayList ());
-							
+                            if (!typesByName.ContainsKey (name))
+                                typesByName.Add (name, types = new List<XmlSchemaType> ());
+                            else
+                                types =  typesByName [name];
+
 							for (index = 0; index < types.Count; ++index) {
-								XmlSchemaType info = types [index] as XmlSchemaType;
+								XmlSchemaType info = types [index];
 								
 								if (typeInfo.QualifiedName.Equals (info.QualifiedName)) break;
 							}
 							if (index == types.Count) types.Add (typeInfo);
 							
-							list = (MutableNodeList) elementsByType [name];
-							
-							if (list == null)
-								elementsByType.Add(name, list = new MutableNodeList ());
+							if (!elementsByType.ContainsKey (name))
+								elementsByType.Add (name, list = new MutableNodeList ());
+                            else
+                                list = elementsByType [name];
 								
 							list.Add (node);
 						}
 
 						XmlAttribute	id	  = (node as XmlElement).GetAttributeNode ("id");
 
-						if (id != null) elementsById [id.Value] = node;
+						if (id != null) elementsById [id.Value] = node as XmlElement;
 
 						foreach (XmlNode child in (node as XmlElement).ChildNodes)
 							if (child.NodeType == XmlNodeType.Element)
@@ -229,6 +257,13 @@ namespace HandCoded.Xml
 			}
 		}	
 
+        /// <summary>
+        /// Walks up the type inheritance structure to determine if the indicated
+        /// <see cref="XmlSchemaType"/> is derived from the named type.
+        /// </summary>
+        /// <param name="name">The target parent type.</param>
+        /// <param name="type">The type being tested.</param>
+        /// <returns><c>true</c> if the types are related, <c>false</c> otherwise.</returns>
 		private bool IsDerived (XmlQualifiedName name, XmlSchemaType type)
 		{
 			while ((type = type.BaseXmlSchemaType) != null) {

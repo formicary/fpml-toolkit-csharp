@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,7 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
@@ -90,7 +90,7 @@ namespace HandCoded.Meta
 		/// Contains all the currently defined <see cref="Release"/> instances associated
 		/// with this <b>Specification</b>.
 		/// </summary>
-		public IEnumerable Releases {
+		public IEnumerable<Release> Releases {
 			get {
 				return (releases.Values);
 			}
@@ -186,7 +186,8 @@ namespace HandCoded.Meta
 		/// <summary>
 		/// The extent set of all <b>Specification</b> instances.
 		/// </summary>
-		private static Hashtable	extent		= new Hashtable ();
+		private static Dictionary<string, Specification> extent
+            = new Dictionary<string, Specification> ();
 
 		/// <summary>
 		/// The unique name of this <b>Specification</b>.
@@ -197,7 +198,8 @@ namespace HandCoded.Meta
 		/// The set of <see cref="Release"/> instances associated with this
 		/// <b>Specification</b>.
 		/// </summary>
-		private Hashtable			releases	= new Hashtable ();
+		private Dictionary<string, Release> releases
+            = new Dictionary<string, Release> ();
 
 		/// <summary>
 		/// Produces a debugging string describing the state of the instance.
@@ -212,7 +214,7 @@ namespace HandCoded.Meta
 
 			bool first = true;
 
-			foreach (Release release in releases) {
+			foreach (Release release in releases.Values) {
 				if (!first) buffer.Append (',');
 
 				buffer.Append ('\"');

@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -13,6 +13,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace HandCoded.FpML.Schemes
@@ -40,7 +41,7 @@ namespace HandCoded.FpML.Schemes
 			get {
 				Value []		result  = new Value [values.Count];
 
-				values.CopyTo (result, 0);
+				values.Values.CopyTo (result, 0);
 				return (result);
 			}
 		}

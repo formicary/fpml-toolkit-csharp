@@ -125,7 +125,7 @@ namespace HandCoded.Xml
 		public static bool Equal (XmlNode lhs, XmlNode rhs)
 		{
 			if ((lhs != null) && (rhs != null))
-				return (Equal (ToString (lhs), ToString (rhs)));
+				return (Equal (ToToken (lhs), ToToken (rhs)));
 			return (false);
 		}
 
@@ -138,7 +138,7 @@ namespace HandCoded.Xml
 		/// <returns><c>true</c> if the two values are equal.</returns>
 		public static bool Equal (XmlNode lhs, string rhs)
 		{
-			return ((lhs != null) ? Equal (ToString (lhs), rhs) : false);
+			return ((lhs != null) ? Equal (ToToken (lhs), rhs) : false);
 		}
 
 		/// <summary>
@@ -238,7 +238,7 @@ namespace HandCoded.Xml
 		public static bool NotEqual (XmlNode lhs, XmlNode rhs)
 		{
 			if ((lhs != null) && (rhs != null))
-				return (NotEqual (ToString (lhs), ToString (rhs)));
+				return (NotEqual (ToToken (lhs), ToToken (rhs)));
 			return (false);
 		}
 
@@ -251,7 +251,7 @@ namespace HandCoded.Xml
 		/// <returns><c>true</c> if the two values are different.</returns>
 		public static bool NotEqual (XmlNode lhs, string rhs)
 		{
-			return ((lhs != null) ? NotEqual (ToString (lhs), rhs) : false);
+			return ((lhs != null) ? NotEqual (ToToken (lhs), rhs) : false);
 		}
 
 		/// <summary>

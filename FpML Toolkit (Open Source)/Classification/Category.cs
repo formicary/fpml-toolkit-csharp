@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -13,6 +13,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace HandCoded.Classification
 {
@@ -36,7 +37,7 @@ namespace HandCoded.Classification
 		/// <summary>
 		/// Contains an <see cref="IEnumerable"/> of super-categories.
 		/// </summary>
-		public IEnumerable SuperCategories {
+		public IEnumerable<Category> SuperCategories {
 			get {
 				return (superCategories);
 			}
@@ -45,7 +46,7 @@ namespace HandCoded.Classification
 		/// <summary>
 		/// Contains an <see cref="IEnumerable"/> of sub-categories.
 		/// </summary>
-		public IEnumerable SubCategories {
+		public IEnumerable<Category> SubCategories {
 			get {
 				return (subCategories);
 			}
@@ -102,12 +103,14 @@ namespace HandCoded.Classification
 		/// <summary>
 		/// <b>Category</b> instances that reference this instance.
 		/// </summary>
-		protected internal ArrayList superCategories = new ArrayList ();
+		protected internal List<Category> superCategories
+            = new List<Category> ();
 
 		/// <summary>
 		/// <b>Category</b> instances referenced by this instance.
 		/// </summary>
-		protected internal ArrayList subCategories	= new ArrayList ();
+		protected internal List<Category> subCategories
+            = new List<Category> ();
 
 		/// <summary>
 		/// Construct a <b>Category</b> with the given name.

@@ -1,3 +1,16 @@
+// Copyright (C),2005-2008 HandCoded Software Ltd.
+// All rights reserved.
+//
+// This software is licensed in accordance with the terms of the 'Open Source
+// License (OSL) Version 3.0'. Please see 'license.txt' for the details.
+//
+// HANDCODED SOFTWARE LTD MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE
+// SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT
+// LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+// PARTICULAR PURPOSE, OR NON-INFRINGEMENT. HANDCODED SOFTWARE LTD SHALL NOT BE
+// LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING
+// OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
+
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -11,7 +24,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("Open Source Version")]
 [assembly: AssemblyCompany("HandCoded Software Ltd")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("(C)2006-2007 HandCoded Software Ltd.")]
+[assembly: AssemblyCopyright("(C)2006-2008 HandCoded Software Ltd.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 
@@ -26,7 +39,7 @@ using System.Runtime.CompilerServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.2.*")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 

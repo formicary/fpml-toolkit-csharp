@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,7 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace HandCoded.Finance
 {
@@ -27,7 +27,8 @@ namespace HandCoded.Finance
 		/// <summary>
 		/// The extent set of all <b>Weekend</b> instances.
 		/// </summary>
-		private static Hashtable	extent	= new Hashtable ();
+		private static Dictionary<string, Weekend>	extent
+            = new Dictionary<string, Weekend> ();
 
 		/// <summary>
 		/// A <b>Weekend</b> instance that detects Islamic style
@@ -68,7 +69,7 @@ namespace HandCoded.Finance
 		/// no match could be found.</returns>
 		public static Weekend ForName (string name)
 		{
-			return (extent [name] as Weekend);
+			return (extent.ContainsKey (name) ? extent [name] : null);
 		}
 
 		/// <summary>

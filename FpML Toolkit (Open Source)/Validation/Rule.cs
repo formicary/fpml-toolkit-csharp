@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,6 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
+using System.Collections.Generic;
 using System.Xml;
 
 using HandCoded.Xml;
@@ -42,6 +43,16 @@ namespace HandCoded.Validation
 			}
 		}
 
+        /// <summary>
+        /// Returns a reference to the named <c>Rule</c> instance if it exists.
+        /// </summary>
+        /// <param name="name">The name of the required <c>Rule</c>.</param>
+        /// <returns>The corresponding <c>Rule</c> instance or <c>null</c>.</returns>
+        public static Rule ForName (string name)
+        {
+            return (extent.ContainsKey (name) ? extent [name] : null);
+        }
+
 		/// <summary>
 		/// Determines if the <b>Rule</b> applies to a document but evaluating
 		/// its <see cref="Precondition"/>.
@@ -63,6 +74,8 @@ namespace HandCoded.Validation
 		{
 			this.precondition = precondition;
 			this.name		  = name;
+
+            extent [name] = this;
 		}
 
 		/// <summary>
@@ -73,8 +86,13 @@ namespace HandCoded.Validation
 			: this (Precondition.ALWAYS, name)
 		{ }
 
+        /// <summary>
+        /// The set of all <c>Rule</c> instances indexed by name.
+        /// </summary>
+        private static Dictionary<string, Rule> extent = new Dictionary<string, Rule> ();
+
 		/// <summary>
-		/// The <c>Precondition</c> for this rule.
+		/// The <see cref="Precondition"/> for this rule.
 		/// </summary>
 		private readonly Precondition	precondition;
 

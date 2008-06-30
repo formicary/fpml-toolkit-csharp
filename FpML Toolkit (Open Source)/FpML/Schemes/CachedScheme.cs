@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,7 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace HandCoded.FpML.Schemes
 {
@@ -45,7 +45,8 @@ namespace HandCoded.FpML.Schemes
 		/// <summary>
 		/// Provides the underlying storage for the code values.
 		/// </summary>
-		protected Hashtable		values = new Hashtable ();
+		protected Dictionary<string, Value> values
+            = new Dictionary<string, Value> ();
 
 		/// <summary>
 		/// Adds a <see cref="Value"/> instance to the extent set manange by
@@ -58,7 +59,7 @@ namespace HandCoded.FpML.Schemes
 		/// as the new one, otherwise <c>null</c>.</returns>
 		protected internal Value Add (Value value)
 		{
-			Value		result = values [value.Code] as Value;
+            Value result = values.ContainsKey (value.Code) ? values [value.Code] : null;
 
 			values [value.Code] = value;
 			return (result);

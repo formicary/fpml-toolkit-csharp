@@ -54,6 +54,7 @@ namespace HandCoded.FpML.Validation
 			rules.Add (IrdRules.Rules);
 			rules.Add (CdsRules.Rules);
 			rules.Add (EqdRules.Rules);
-		}
+            rules.Add (FxRules.Rules);
+        }
 	}
 }

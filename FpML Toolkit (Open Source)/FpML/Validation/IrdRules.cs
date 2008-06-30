@@ -627,7 +627,7 @@ namespace HandCoded.FpML.Validation
 								interval)) continue;
 			
 				errorHandler ("305", context,
-					"The first payment date '" + ToString (paymentDate) + "' does not " +
+					"The first payment date '" + ToToken (paymentDate) + "' does not " +
 					"fall on one of the unadjusted calculation period dates.",
 					name, null);
 				
@@ -670,7 +670,7 @@ namespace HandCoded.FpML.Validation
 								interval)) continue;
 			
 				errorHandler ("305", context,
-					"The last regular payment date '" + ToString (paymentDate) + "' does not " +
+					"The last regular payment date '" + ToToken (paymentDate) + "' does not " +
 					"fall on one of the unadjusted calculation period dates.",
 					name, null);
 				
@@ -740,8 +740,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The first payment date " + ToString (payment) + " must be after " +
-					"the unadjusted effective date " + ToString (effective),
+					"The first payment date " + ToToken (payment) + " must be after " +
+                    "the unadjusted effective date " + ToToken (effective),
 					name, null);
 			
 				result = false;
@@ -860,7 +860,7 @@ namespace HandCoded.FpML.Validation
 			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
 				XmlElement rollConvention	= XPath.Path (context, "calculationPeriodFrequency", "rollConvention");
 				
-				if (!IsNumber (ToString (rollConvention))) continue;
+				if (!IsNumber (ToToken (rollConvention))) continue;
 				
 				XmlElement	startDate = XPath.Path (context, "firstRegularPeriodStartDate");
 				if (!Exists (startDate))
@@ -877,7 +877,7 @@ namespace HandCoded.FpML.Validation
 				
 				errorHandler ("305", context,
 					"The start date of the calculation period,  '" + start + "' is not " +
-					"consistent with the roll convention " + ToString (rollConvention),
+                    "consistent with the roll convention " + ToToken (rollConvention),
 					name, null);
 				
 				result = false;
@@ -893,8 +893,9 @@ namespace HandCoded.FpML.Validation
 
 			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
 				XmlElement	rollConvention	= XPath.Path (context, "calculationPeriodFrequency", "rollConvention");
-				
-				if (!IsNumber (ToString (rollConvention))) continue;
+
+                if (!IsNumber (ToToken (rollConvention)))
+                    continue;
 				
 				XmlElement	endDate = XPath.Path (context, "firstRegularPeriodEndDate");
 				if (!Exists (endDate))
@@ -911,7 +912,7 @@ namespace HandCoded.FpML.Validation
 				
 				errorHandler ("305", context,
 					"The end date of the calculation period,  '" + end + "' is not " +
-					"consistent with the roll convention " + ToString (rollConvention),
+                    "consistent with the roll convention " + ToToken (rollConvention),
 					name, null);
 				
 				result = false;
@@ -967,8 +968,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted termination date '" + ToString (termination) + "' should " +
-					"be after unadjusted effective date '" + ToString (effective) + "'",
+                    "Unadjusted termination date '" + ToToken (termination) + "' should " +
+                    "be after unadjusted effective date '" + ToToken (effective) + "'",
 					name, null);
 
 				result = false;
@@ -990,8 +991,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted termination date '" + ToString (termination) + "' should " +
-					"be after unadjusted first period start date '" + ToString (periodStart) + "'",
+                    "Unadjusted termination date '" + ToToken (termination) + "' should " +
+                    "be after unadjusted first period start date '" + ToToken (periodStart) + "'",
 					name, null);
 
 				result = false;
@@ -1013,8 +1014,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted termination date '" + ToString (termination) + "' should " +
-					"be after unadjusted first regular period start date '" + ToString (periodStart) + "'",
+                    "Unadjusted termination date '" + ToToken (termination) + "' should " +
+                    "be after unadjusted first regular period start date '" + ToToken (periodStart) + "'",
 					name, null);
 
 				result = false;
@@ -1036,8 +1037,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted termination date '" + ToString (termination) + "' should " +
-					"be after unadjusted last regular period end date '" + ToString (periodEnd) + "'",
+                    "Unadjusted termination date '" + ToToken (termination) + "' should " +
+                    "be after unadjusted last regular period end date '" + ToToken (periodEnd) + "'",
 					name, null);
 
 				result = false;
@@ -1059,8 +1060,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted last regular period end date '" + ToString (periodEnd) + "' should " +
-					"be after unadjusted first regular period start date '" + ToString (periodStart) + "'",
+                    "Unadjusted last regular period end date '" + ToToken (periodEnd) + "' should " +
+                    "be after unadjusted first regular period start date '" + ToToken (periodStart) + "'",
 					name, null);
 
 				result = false;
@@ -1082,8 +1083,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted last regular period end date '" + ToString (periodEnd) + "' should " +
-					"be after unadjusted first period start date '" + ToString (periodStart) + "'",
+                    "Unadjusted last regular period end date '" + ToToken (periodEnd) + "' should " +
+                    "be after unadjusted first period start date '" + ToToken (periodStart) + "'",
 					name, null);
 
 				result = false;
@@ -1105,8 +1106,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted last regular period end date " + ToString (last) +
-					" must be after unadjusted effective date " + ToString (effective),
+                    "Unadjusted last regular period end date " + ToToken (last) +
+                    " must be after unadjusted effective date " + ToToken (effective),
 					name, null);
 
 				result = false;
@@ -1128,8 +1129,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted first period start date " + ToString (first) +
-					" must be before unadjusted effective date " + ToString (effective),
+                    "Unadjusted first period start date " + ToToken (first) +
+                    " must be before unadjusted effective date " + ToToken (effective),
 					name, null);
 
 				result = false;
@@ -1151,8 +1152,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Unadjusted first period start date " + ToString (first) +
-					" must be before first regular period start date " + ToString (regular),
+                    "Unadjusted first period start date " + ToToken (first) +
+                    " must be before first regular period start date " + ToToken (regular),
 					name, null);
 
 				result = false;
@@ -1529,8 +1530,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"Adjusted termination date '" + ToString (termination) + "' must be " +
-					"after adjusted effective date '" + ToString (effective) + "'",
+                    "Adjusted termination date '" + ToToken (termination) + "' must be " +
+                    "after adjusted effective date '" + ToToken (effective) + "'",
 					name, null);
 
 				result = false;
@@ -1587,8 +1588,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The first payment date '" + ToString (firstDate) + "' should be " +
-					"before the last regular payment date '" + ToString (lastDate) + "'",
+                    "The first payment date '" + ToToken (firstDate) + "' should be " +
+                    "before the last regular payment date '" + ToToken (lastDate) + "'",
 					name, null);
 
 				result = false;
@@ -1678,8 +1679,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The adjusted exercise date '" + ToString (exercise) + "' should be " +
-					"on or before the adjusted early termination date '" + ToString (termination) + "'",
+                    "The adjusted exercise date '" + ToToken (exercise) + "' should be " +
+                    "on or before the adjusted early termination date '" + ToToken (termination) + "'",
 					name, null);
 
 				result = false;
@@ -1706,9 +1707,9 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The adjusted exercise date '" + ToString (exercise) + "' should be " +
-					"on or before the adjusted cash settlement date '" + 
-					ToString (valuation) + "'",
+                    "The adjusted exercise date '" + ToToken (exercise) + "' should be " +
+					"on or before the adjusted cash settlement date '" +
+                    ToToken (valuation) + "'",
 					name, null);
 
 				result = false;
@@ -1735,9 +1736,9 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The adjusted case settlement valuation date '" + ToString (valuation) +
-					"' should be on or before the adjusted cash settlement payment date '" + 
-					ToString (payment) + "'",
+                    "The adjusted case settlement valuation date '" + ToToken (valuation) +
+					"' should be on or before the adjusted cash settlement payment date '" +
+                    ToToken (payment) + "'",
 					name, null);
 
 				result = false;
@@ -1764,8 +1765,8 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The adjusted exercise date '" + ToString (exercise) + "' should be " +
-					"on or before the adjusted extended termination date '" + ToString (termination) + "'",
+                    "The adjusted exercise date '" + ToToken (exercise) + "' should be " +
+                    "on or before the adjusted extended termination date '" + ToToken (termination) + "'",
 					name, null);
 
 				result = false;
@@ -1819,9 +1820,9 @@ namespace HandCoded.FpML.Validation
 					continue;
 
 				errorHandler ("305", context,
-					"The adjusted mandatory early termination date '" + ToString (termination) + "', " +
-					"cash settlement valuation date '" + ToString (valuation) + "' and " +
-					"cash settlement payment date '" + ToString (payment) + "' " +
+                    "The adjusted mandatory early termination date '" + ToToken (termination) + "', " +
+                    "cash settlement valuation date '" + ToToken (valuation) + "' and " +
+                    "cash settlement payment date '" + ToToken (payment) + "' " +
 					"are not in order",
 					name, null);
 
@@ -2055,7 +2056,7 @@ namespace HandCoded.FpML.Validation
 						"The notional step schedule step date '" + payment + "' does not fall " +
 						"on one of the calculated period dates between '" + first + "' and '" +
 						last + "'",
-						name, ToString (date));
+                        name, ToToken (date));
 
 					result = false;
 				}
@@ -2102,7 +2103,7 @@ namespace HandCoded.FpML.Validation
 						"The fixed rate schedule step date '" + payment + "' does not fall " +
 						"on one of the calculated period dates between '" + first + "' and '" +
 						last + "'",
-						name, ToString (date));
+                        name, ToToken (date));
 
 					result = false;
 				}
@@ -2148,7 +2149,7 @@ namespace HandCoded.FpML.Validation
 						"The cap rate schedule step date '" + payment + "' does not fall " +
 						"on one of the calculated period dates between '" + first + "' and '" +
 						last + "'",
-						name, ToString (date));
+                        name, ToToken (date));
 
 					result = false;
 				}
@@ -2194,7 +2195,7 @@ namespace HandCoded.FpML.Validation
 						"The floor rate schedule step date '" + payment + "' does not fall " +
 						"on one of the calculated period dates between '" + first + "' and '" +
 						last + "'",
-						name, ToString (date));
+                        name, ToToken (date));
 
 					result = false;
 				}
@@ -2241,7 +2242,7 @@ namespace HandCoded.FpML.Validation
 						"The known amount schedule step date '" + payment + "' does not fall " +
 						"on one of the calculated period dates between '" + first + "' and '" +
 						last + "'",
-						name, ToString (date));
+                        name, ToToken (date));
 
 					result = false;
 				}
@@ -2323,7 +2324,7 @@ namespace HandCoded.FpML.Validation
 					Implies (
 						Not (
 							Or (
-								IsWeekDayName (ToString (convention)),
+                                IsWeekDayName (ToToken (convention)),
 								Or (
 									Equal (convention, "NONE"),
 									Equal (convention, "SFE")))),
@@ -2354,7 +2355,7 @@ namespace HandCoded.FpML.Validation
 
 				if ((convention == null) || (period == null) ||
 					Implies (
-						IsWeekDayName (ToString (convention)),
+                        IsWeekDayName (ToToken (convention)),
 						Equal (period, "W")))
 					continue;
 
@@ -2402,7 +2403,7 @@ namespace HandCoded.FpML.Validation
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>
 		/// instances.
 		/// </summary>
-		private static readonly RuleSet	rules = new RuleSet ();
+		private static readonly RuleSet	rules = RuleSet.ForName ("IrdRules");
 
 		/// <summary>
 		/// Ensures that no instances can be constructed.
@@ -2464,6 +2465,7 @@ namespace HandCoded.FpML.Validation
 			}
 		}
 
+#if false
 		/// <summary>
 		/// Initialises the <see cref="RuleSet"/> with copies of all the FpML
 		/// defined <see cref="Rule"/> instances for Interest Rate Derivatives.
@@ -2529,5 +2531,6 @@ namespace HandCoded.FpML.Validation
 			Rules.Add (RULE58);
 			Rules.Add (RULE59);
 		}
+#endif
 	}
 }

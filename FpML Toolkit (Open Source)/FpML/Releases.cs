@@ -12,7 +12,6 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
 using System.Configuration;
 using System.IO;
 using System.Xml;
@@ -1096,7 +1095,19 @@ namespace HandCoded.FpML
 		private static readonly HandCoded.Meta.Conversion R4_1__R4_2
 			= new Conversions.R4_1__R4_2 ();
 
-		/// <summary>
+        /// <summary>
+        /// The FpML 4.2 to 4.3 <see cref="HandCoded.Meta.Conversion"/> instance.
+        /// </summary>
+        private static readonly HandCoded.Meta.Conversion R4_2__R4_3
+            = new Conversions.R4_2__R4_3 ();
+
+        /// <summary>
+        /// The FpML 4.3 to 4.4 <see cref="HandCoded.Meta.Conversion"/> instance.
+        /// </summary>
+        private static readonly HandCoded.Meta.Conversion R4_3__R4_4
+            = new Conversions.R4_3__R4_4 ();
+
+        /// <summary>
 		/// <see cref="ILog"/> instance used to record problems.
 		/// </summary>
 		private static ILog			log
@@ -1144,6 +1155,7 @@ namespace HandCoded.FpML
 			R4_1.AddImport (HandCoded.DSig.Releases.R1_0);
 			R4_2.AddImport (HandCoded.DSig.Releases.R1_0);
 			R4_3.AddImport (HandCoded.DSig.Releases.R1_0);
+            R4_4.AddImport (HandCoded.DSig.Releases.R1_0);
 
 			R5_0_CONFIRMATION.AddImport (HandCoded.DSig.Releases.R1_0);
 			R5_0_PRETRADE.AddImport (HandCoded.DSig.Releases.R1_0);

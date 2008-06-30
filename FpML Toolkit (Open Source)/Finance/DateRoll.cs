@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,7 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace HandCoded.Finance
 {
@@ -27,7 +27,8 @@ namespace HandCoded.Finance
 		/// <summary>
 		/// The set of all existing <b>DateRoll</b> instances.
 		/// </summary>
-		private static Hashtable	extent	= new Hashtable ();
+		private static Dictionary<string, DateRoll>	extent
+            = new Dictionary<string, DateRoll> ();
 
 		/// <summary>
 		/// A <b>DateRoll</b> that performs no adjustment.
@@ -82,7 +83,7 @@ namespace HandCoded.Finance
 		/// <c>null</c> if no match was found.</returns>
 		public static DateRoll ForName (string name)
 		{
-			return (extent [name] as DateRoll);
+			return (extent.ContainsKey (name) ? extent [name] : null);
 		}
 
 		/// <summary>

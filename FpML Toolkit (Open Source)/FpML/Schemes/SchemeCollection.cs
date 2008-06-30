@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,7 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 
 using log4net;
@@ -116,7 +116,7 @@ namespace HandCoded.FpML.Schemes
 		/// by this action, <c>null</c> otherwise.</returns>
 		public Scheme Add (Scheme scheme)
 		{
-			Scheme		result = schemes [scheme.Uri] as Scheme;
+			Scheme		result = schemes.ContainsKey (scheme.Uri) ? schemes [scheme.Uri] : null;
 
 			schemes [scheme.Uri] = scheme;
 			return (result);
@@ -170,6 +170,7 @@ namespace HandCoded.FpML.Schemes
 		/// <summary>
 		/// The extent set of all <see cref="Scheme"/> instances.
 		/// </summary>
-		private Hashtable	schemes	= new Hashtable ();
+		private Dictionary<string, Scheme>  schemes
+            = new Dictionary<string, Scheme> ();
 	}
 }

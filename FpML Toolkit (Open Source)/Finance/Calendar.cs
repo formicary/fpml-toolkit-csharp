@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,7 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Xml;
 
@@ -52,7 +52,7 @@ namespace HandCoded.Finance
 		/// if the name was not found.</returns>
 		public static Calendar ForName (string name)
 		{
-			return (extent [name] as Calendar);
+			return (extent.ContainsKey (name) ? extent [name] : null);
 		}
 
 		/// <summary>
@@ -110,7 +110,8 @@ namespace HandCoded.Finance
 		/// <summary>
 		/// The set of all named <b>Calendar</b> instances.
 		/// </summary>
-		private static Hashtable	extent	= new Hashtable ();
+		private static Dictionary<string, Calendar>	extent
+            = new Dictionary<string, Calendar> ();
 
 		/// <summary>
 		/// The name of this <b>Calendar</b> instance.
