@@ -29,8 +29,19 @@ namespace HandCoded.FpML.Schemes
 		/// Constructs a <b>ClosedScheme</b> instance for the indicated scheme
 		/// URI.
 		/// </summary>
+		/// <param name="uri">The URI used to reference the scheme.</param>
 		public ClosedScheme (string uri)
 			: base (uri)
+		{ }
+
+		/// <summary>
+		/// Constructs a <b>ClosedScheme</b> instance for the indicated scheme
+		/// URI and canonical URI.
+		/// </summary>
+		/// <param name="uri">The URI used to reference the scheme.</param>
+		/// <param name="canonicalUri">The canonical URI or <c>null</c>.</param>
+		public ClosedScheme (string uri, string canonicalUri)
+			: base (uri, canonicalUri)
 		{ }
 
 		/// <summary>

@@ -51,7 +51,11 @@ namespace HandCoded.FpML.Schemes
 					{
 						if (reader.LocalName.Equals ("scheme")) {
 							if (reader ["uri"] != null) {
-								Add (scheme = new ClosedScheme (reader ["uri"]));
+								if (reader ["canonicalUri"] != null)
+									Add (scheme = new ClosedScheme (reader ["uri"], reader ["canonicalUri"]));
+								else	
+									Add (scheme = new ClosedScheme (reader ["uri"]));
+
 								log.Debug ("Added scheme " + reader ["uri"]);
 							}
 							else {
@@ -116,10 +120,17 @@ namespace HandCoded.FpML.Schemes
 		/// by this action, <c>null</c> otherwise.</returns>
 		public Scheme Add (Scheme scheme)
 		{
-			Scheme		result = schemes.ContainsKey (scheme.Uri) ? schemes [scheme.Uri] : null;
+			Scheme		resultA	= schemes.ContainsKey (scheme.Uri) ? schemes [scheme.Uri] : null;
+			Scheme		resultB	= null;
+			
+			if (scheme.CanonicalUri != null) {
+				resultB = schemes.ContainsKey (scheme.CanonicalUri) ? schemes [scheme.CanonicalUri] : null;
 
+				schemes [scheme.CanonicalUri] = scheme;
+			}
 			schemes [scheme.Uri] = scheme;
-			return (result);
+			
+			return ((resultA != null) ? resultA : resultB);
 		}
 
 		/// <summary>
@@ -131,7 +142,17 @@ namespace HandCoded.FpML.Schemes
 		/// extent set, <c>null</c> if it was not.</returns>
 		public Scheme Remove (Scheme scheme)
 		{
-			return (Remove (scheme.Uri));
+			Scheme		resultA	= null;
+			Scheme		resultB = null;
+
+			if (schemes.ContainsKey (scheme.Uri))
+				schemes.Remove ((resultA = scheme).Uri);
+
+			if (scheme.CanonicalUri != null)
+				if (schemes.ContainsKey (scheme.CanonicalUri))
+					schemes.Remove ((resultB = scheme).CanonicalUri);
+ 
+			return ((resultA != null) ? resultA : resultB);
 		}
 
 		/// <summary>
@@ -143,10 +164,12 @@ namespace HandCoded.FpML.Schemes
 		/// extent set, <c>null</c> if it was not.</returns>
 		public Scheme Remove (string uri)
 		{
-			Scheme		result  = schemes [uri] as Scheme;
+			Scheme		scheme	= FindSchemeForUri (uri);
 
-			schemes.Remove (uri);
-			return (result);
+			if (scheme != null)
+				return (Remove (scheme));
+
+			return (null);
 		}
 
 		/// <summary>
@@ -158,7 +181,7 @@ namespace HandCoded.FpML.Schemes
 		/// <c>null</c> if it was not in the cache.</returns>
 		public Scheme FindSchemeForUri (string uri)
 		{
-			return (schemes [uri] as Scheme);
+			return (schemes.ContainsKey (uri) ? schemes [uri] : null);
 		}
 
 		/// <summary>

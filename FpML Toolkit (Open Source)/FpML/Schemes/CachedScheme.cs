@@ -24,11 +24,21 @@ namespace HandCoded.FpML.Schemes
 	{
 		/// <summary>
 		/// Constructs a <b>CachedScheme</b> instance for the indicated scheme
-		/// URI
+		/// URI.
 		/// </summary>
 		/// <param name="uri">The URI used to reference the scheme.</param>
 		public CachedScheme (string uri)
 			: base (uri)
+		{ }
+
+		/// <summary>
+		/// Constructs a <b>CachedScheme</b> instance for the indicated scheme
+		/// URI and canonical URI.
+		/// </summary>
+		/// <param name="uri">The URI used to reference the scheme.</param>
+		/// <param name="canonicalUri">The canonical URI or <c>null</c>.</param>
+		public CachedScheme (string uri, string canonicalUri)
+			: base (uri, canonicalUri)
 		{ }
 
 		/// <summary>

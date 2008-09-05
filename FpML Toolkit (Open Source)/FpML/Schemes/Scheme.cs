@@ -32,6 +32,15 @@ namespace HandCoded.FpML.Schemes
 		}
 
 		/// <summary>
+		/// Contains the Canonical URI associated with the <b>Scheme</b>, <c>null</c> if none.
+		/// </summary>
+		public string CanonicalUri {
+			get {
+				return (canonicalUri);
+			}
+		}
+
+		/// <summary>
 		/// Determines if the given code value is valid within the scheme.
 		/// </summary>
 		/// <param name="code">The code value to be validated.</param>
@@ -40,17 +49,32 @@ namespace HandCoded.FpML.Schemes
 		public abstract bool IsValid (string code);
 
 		/// <summary>
+		/// Constructs a <b>Scheme</b> for the given URI and canonical uri.
+		/// </summary>
+		/// <param name="uri">The associated URI.</param>
+		/// <param name="canonicalUri">The associated canonical URI or <c>null</c>.</param>
+		protected Scheme (string uri, string canonicalUri)
+		{
+			this.uri		  = uri;
+			this.canonicalUri = canonicalUri;
+		}
+
+		/// <summary>
 		/// Constructs a <b>Scheme</b> for the given URI.
 		/// </summary>
 		/// <param name="uri">The associated URI.</param>
 		protected Scheme (string uri)
-		{
-			this.uri = uri;
-		}
+			: this (uri, null)
+		{ }
 
 		/// <summary>
 		/// The associated URI for the <b>Scheme</b>.
 		/// </summary>
 		private readonly string		uri;
+
+		/// <summary>
+		/// The associated Canonical URI for the <b>Scheme</b>.
+		/// </summary>
+		private readonly string		canonicalUri;
 	}
 }
