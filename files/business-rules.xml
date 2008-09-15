@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  == Copyright (C),2005-2008 HandCoded Software Ltd.
+  == All rights reserved.
+  ==
+  == This software is licensed in accordance with the terms of the 'Open Source
+  == License (OSL) Version 3.0'. Please see 'license.txt' for the details.
+  ==
+  == HANDCODED SOFTWARE LTD MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE
+  == SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT
+  == LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+  == PARTICULAR PURPOSE, OR NON-INFRINGEMENT. HANDCODED SOFTWARE LTD SHALL NOT BE
+  == LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING
+  == OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
+  -->
 <rules
  xmlns="http://www.handcoded.com/BusinessRules"
  xsi:schemaLocation="http://www.handcoded.com/BusinessRules business-rules.xsd"
@@ -12,6 +26,7 @@
 	<forceLoad platform=".Net" class="HandCoded.FpML.Validation.BusinessProcessRules"/>
 	<forceLoad platform=".Net" class="HandCoded.FpML.Validation.PricingAndRiskRules"/>
 	<forceLoad platform=".Net" class="HandCoded.FpML.Validation.ReferenceRules"/>
+	<forceLoad platform=".Net" class="HandCoded.FpML.Validation.LoanRules"/>
 	
 	<forceLoad platform=".Net" class="HandCoded.FpML.Validation.SchemeRules"/>
 	<forceLoad platform=".Net" class="HandCoded.FpML.Validation.DataTypeRules"/>
@@ -131,22 +146,22 @@
 	</ruleSet>
 	
 	<ruleSet name="EqdRules">
-		<addRule name="eqd-1"/>
+		<!-- Removed <addRule name="eqd-1"/> -->
 		<addRule name="eqd-2"/>
 		<addRule name="eqd-3"/>
 		<addRule name="eqd-4"/>
 		<addRule name="eqd-5"/>
 		<addRule name="eqd-6"/>
-		<addRule name="eqd-7"/>
+		<!-- Deprecated <addRule name="eqd-7"/> -->
 		<addRule name="eqd-8"/>
 		<addRule name="eqd-9"/>
 		<addRule name="eqd-10"/>
-		<!-- Gap in the sequence <addRule name="eqd-11"/> -->
+		<!-- Removed <addRule name="eqd-11"/> -->
 		<addRule name="eqd-12"/>
 		<addRule name="eqd-13"/>
 		<addRule name="eqd-14"/>
 		<addRule name="eqd-15"/>
-		<addRule name="eqd-16"/>
+		<!-- Removed <addRule name="eqd-16"/> -->
 		<addRule name="eqd-17"/>
 		<addRule name="eqd-18"/>
 		<addRule name="eqd-19"/>
@@ -220,15 +235,36 @@
 		<addRule name="shared-9"/>
 		<addRule name="shared-10"/>
 		<addRule name="shared-11"/>
-		<addRule name="shared-12a"/>
-		<addRule name="shared-12b"/>
-		<addRule name="shared-13a"/>
-		<addRule name="shared-13b"/>
-		<addRule name="shared-14a"/>
-		<addRule name="shared-14b"/>
+		<addRule name="shared-12"/>
+		<addRule name="shared-13"/>
+		<addRule name="shared-14"/>
 		<addRule name="shared-15"/>
 		<addRule name="shared-16"/>
 		<addRule name="shared-17"/>
+	</ruleSet>
+	
+	<ruleSet name="BusinessProcessRules">
+		<!-- Deprecated <addRule name="bp-1"/> -->
+		<!-- Deprecated <addRule name="bp-2"/> -->
+	</ruleSet>
+	
+	<ruleSet name="PricingAndRiskRules">
+		<!-- Deprecated <addRule name="pr-1"/> -->
+		<!-- Deprecated <addRule name="pr-2"/> -->
+	</ruleSet>
+	
+	<ruleSet name="ReferenceRules">
+		<addRule name="ref-10"/>
+		<addRule name="ref-18"/>
+	</ruleSet>
+	
+	<ruleSet name="LoanRules">
+		<addRule name="ln-1"/>
+		<addRule name="ln-2"/>
+		<addRule name="ln-3"/>
+		<addRule name="ln-4"/>
+		<addRule name="ln-5"/>
+		<addRule name="ln-10"/>
 	</ruleSet>
 	
 	<!-- HandCoded Rule Sets -->
@@ -326,9 +362,10 @@
 		<addRuleSet name="CdsRules"/>
 		<addRuleSet name="EqdRules"/>
 		<addRuleSet name="SharedRules"/>
-		<!-- <addRuleSet name="BusinessProcessRules"/> -->
-		<!-- <addRuleSet name="PricingAndRiskRules"/> -->
-		<!-- <addRuleSet name="ReferenceRules"/> -->
+		<addRuleSet name="BusinessProcessRules"/>
+		<addRuleSet name="PricingAndRiskRules"/>
+		<addRuleSet name="ReferenceRules"/>
+		<addRuleSet name="LoanRules"/>
 	</ruleSet>
 	
 	<!-- All the rules defined by HandCoded -->
