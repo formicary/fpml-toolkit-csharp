@@ -28,7 +28,7 @@
             <payerPartyReference href="party2"/>
             <receiverPartyReference href="party1"/>
             <paymentAmount>
-               <currency>EUR</currency>
+               <currency>GBP</currency>
                <amount>10000000</amount>
             </paymentAmount>
          </exchangedCurrency1>
@@ -36,15 +36,15 @@
             <payerPartyReference href="party1"/>
             <receiverPartyReference href="party2"/>
             <paymentAmount>
-               <currency>GBP</currency>
+               <currency>EUR</currency>
                <amount>6300680</amount>
             </paymentAmount>
          </exchangedCurrency2>
          <valueDate>2001-10-25Z</valueDate>
          <exchangeRate>
             <quotedCurrencyPair>
-               <currency1>EUR</currency1>
-               <currency2>GBP</currency2>
+               <currency1>GBP</currency1>
+               <currency2>EUR</currency2>
                <quoteBasis>Currency2PerCurrency1</quoteBasis>
             </quotedCurrencyPair>
             <rate>0.630068</rate>

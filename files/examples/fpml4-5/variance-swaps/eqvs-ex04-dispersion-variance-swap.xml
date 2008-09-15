@@ -67,7 +67,7 @@
                   <period>D</period>
                   <businessDayConvention>MODFOLLOWING</businessDayConvention>
                   <businessCenters>
-                     <businessCenter>GBLN</businessCenter>
+                     <businessCenter>GBLO</businessCenter>
                   </businessCenters>
                   <dateRelativeTo href="osd"/>
                </relativeDate>
@@ -78,7 +78,7 @@
                   <period>D</period>
                   <businessDayConvention>MODFOLLOWING</businessDayConvention>
                   <businessCenters>
-                     <businessCenter>GBLN</businessCenter>
+                     <businessCenter>GBLO</businessCenter>
                   </businessCenters>
                   <dateRelativeTo href="csd"/>
                </relativeDate>
@@ -95,9 +95,10 @@
                <relativeDate id="csd">
                   <periodMultiplier>2</periodMultiplier>
                   <period>D</period>
+                  <dayType>Calendar</dayType>
                   <businessDayConvention>MODFOLLOWING</businessDayConvention>
                   <businessCenters>
-                     <businessCenter>TARGET</businessCenter>
+                     <businessCenter>EUTA</businessCenter>
                   </businessCenters>
                   <dateRelativeTo href="vd"/>
                </relativeDate>
@@ -110,7 +111,7 @@
                      <dateAdjustments>
                         <businessDayConvention>MODFOLLOWING</businessDayConvention>
                         <businessCenters>
-                           <businessCenter>GBLN</businessCenter>
+                           <businessCenter>GBLO</businessCenter>
                         </businessCenters>
                      </dateAdjustments>
                   </adjustableDate>
@@ -125,7 +126,7 @@
                      <period>D</period>
                      <businessDayConvention>MODFOLLOWING</businessDayConvention>
                      <businessCenters>
-                        <businessCenter>TARGET</businessCenter>
+                        <businessCenter>EUTA</businessCenter>
                      </businessCenters>
                      <dateRelativeTo href="td"/>
                   </relativeDate>
