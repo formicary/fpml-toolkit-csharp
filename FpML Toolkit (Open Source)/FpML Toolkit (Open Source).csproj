@@ -89,8 +89,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FpML\Validation\BusinessProcessRules.cs" />
     <Compile Include="FpML\Validation\FpMLRuleSet.cs" />
     <Compile Include="FpML\Validation\FxRules.cs" />
+    <Compile Include="FpML\Validation\LoanRules.cs" />
+    <Compile Include="FpML\Validation\PricingAndRiskRules.cs" />
+    <Compile Include="FpML\Validation\ReferenceRule.cs" />
+    <Compile Include="FpML\Validation\ReferenceRules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

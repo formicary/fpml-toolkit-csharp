@@ -310,6 +310,64 @@ namespace HandCoded.FpML.Validation
 			= new DelegatedRule (Preconditions.R4_0__LATER, "cd-37", new RuleDelegate (Rule37));
 
 		/// <summary>
+		/// A <see cref="Rule"/> that ensures the if any
+		/// <c>referencePoolItem/constituentWeight/basketPercentage</c> values
+		/// are defined then they must sum to 1.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.2 and later.</remarks>
+		public static readonly Rule	RULE38
+			= new DelegatedRule (Preconditions.R4_2__LATER, "cd-38", new RuleDelegate (Rule38));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures if <c>nthToDefault</c> is present
+		/// and <c>mthToDefault</c> is present then <c>nthToDefault</c>
+		/// must be less than <c>mthToDefaultM</c>.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.2 and later.</remarks>
+		public static readonly Rule	RULE39
+			= new DelegatedRule (Preconditions.R4_2__LATER, "cd-39", new RuleDelegate (Rule39));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures <c>attachmentPoint</c> must be
+		/// less than or equal to <c>exhaustionPoint</c>.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.2 and later.</remarks>
+		public static readonly Rule	RULE40
+			= new DelegatedRule (Preconditions.R4_2__LATER, "cd-40", new RuleDelegate (Rule40));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures if <c>indexReferenceInformation/tranche</c>
+		/// is not present then <c>modifiedEquityDelivery</c> must not be present.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.3 and later.</remarks>
+		public static readonly Rule	RULE41
+			= new DelegatedRule (Preconditions.R4_3__LATER, "cd-41", new RuleDelegate (Rule41));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures if <c>basketReferenceInformation</c>c>
+		/// is not present then <c>substitution</c> must not be present.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.3 and later.</remarks>
+		public static readonly Rule	RULE42
+			= new DelegatedRule (Preconditions.R4_3__LATER, "cd-42", new RuleDelegate (Rule42));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that if the trade has an initial payment
+		/// then it is paid by the protection buyer to the protection seller.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.3 and later.</remarks>
+		public static readonly Rule	RULE43
+			= new DelegatedRule (Preconditions.R4_3__LATER, "cd-43", new RuleDelegate (Rule43));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures either every <c>referencePoolItem</c>
+		/// has a <c>basketPercentage</c> or that none of them have.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.2 and later.</remarks>
+		public static readonly Rule	RULE44
+			= new DelegatedRule (Preconditions.R4_2__LATER, "cd-44", new RuleDelegate (Rule44));
+
+		/// <summary>
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>
 		/// instances.
 		/// </summary>
@@ -416,9 +474,7 @@ namespace HandCoded.FpML.Validation
 		/// <returns><b>true</b> if the product is single name.</returns>
 		private static bool IsSingleName (XmlElement cds)
 		{
-			if (Exists (XPath.Path (cds, "generalTerms", "referenceInformation", "referenceObligation", "bond")))
-				return (true);
-			if (Exists (XPath.Path (cds, "generalTerms", "referenceInformation", "referenceObligation", "convertableBond")))
+			if (Exists (XPath.Path (cds, "generalTerms", "referenceInformation")))
 				return (true);
 
 			return (false);
@@ -442,9 +498,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule01 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule01 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule01 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule01 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool			result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement context in list) {
 				XmlElement		cds;
 
 				if (Exists (cds = XPath.Path (context, "creditDefaultSwap"))) {
@@ -471,9 +534,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule01b (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule01b (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule01b (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule01b (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool			result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement context in list) {
 				XmlElement		cds;
 
 				if (Exists (cds = XPath.Path (context, "creditDefaultSwap"))) {
@@ -500,9 +570,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule02 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule02 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule02 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule02 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool			result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement context in list) {
 				if (context ["calculationAgent"] != null) {
 					bool			failed	= false;
 
@@ -536,9 +613,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule03 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule03 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule03 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule03 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool		result = true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement context in list) {
 				if (IsIsda1999 (context)) {
 					XmlNode	supplement = XPath.Path (context, "documentation", "contractualSupplement");
 					if ((supplement == null) || !supplement.InnerText.Trim ().StartsWith ("ISDA2003Credit"))
@@ -558,9 +642,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule04 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule04 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule04 (name, nodeIndex.GetElementsByName ("trade"), errorHandler));
+		}
+
+		private static bool Rule04 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool		result = true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement context in list) {
 				if (IsIsda2003 (context)) {
 					XmlNode	supplement = XPath.Path (context, "documentation", "contractualSupplement");
 					if ((supplement == null) || !supplement.InnerText.Trim ().StartsWith ("ISDA1999Credit"))
@@ -625,9 +716,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule07 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule07 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule07 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule07 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool			result = true;
 
-			foreach (XmlElement trade in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement trade in list) {
 				if (IsLongForm (trade)) {
 					XmlElement		context = XPath.Path (trade, "creditDefaultSwap", "generalTerms") as XmlElement;
 
@@ -651,11 +749,18 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule08 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule08 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule08 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule08 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool			result = true;
 
-			foreach (XmlElement trade in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement trade in list) {
 				if (IsLongForm (trade)) {
-					XmlElement		context = XPath.Path (trade, "creditDefaultSwap", "generalTerms") as XmlElement;
+					XmlElement		context = XPath.Path (trade, "creditDefaultSwap", "generalTerms");
 
 					if (!Exists (XPath.Path (context, "scheduledTerminationDate"))) continue;
 
@@ -963,16 +1068,23 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule19 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule19 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule19 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule19 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool			result = true;
 
-			foreach (XmlElement trade in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement trade in list) {
 				if (IsIsda1999 (trade)) {
 					XmlElement	context = XPath.Path (trade, "creditDefaultSwap");
 	
 					result &=
 						  Rule19 (name, context, XPath.Path (context, "protectionTerms", "creditEvents", "creditEventNotice", "businessCenter"), errorHandler)
 						& Rule19 (name, context, XPath.Path (context, "protectionTerms", "creditEvents", "restructuring", "multipleHolderObligation"), errorHandler)
-						& Rule19 (name, context, XPath.Path (context, "protectionTerms", "creditEvents", "restructuring", "multiplCreditEventNotices"), errorHandler)
+						& Rule19 (name, context, XPath.Path (context, "protectionTerms", "creditEvents", "restructuring", "multipleCreditEventNotices"), errorHandler)
 						& Rule19 (name, context, XPath.Path (context, "generalTerms", "referenceInformation", "allGuarantees"), errorHandler);
 				}
 			}
@@ -995,9 +1107,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule20 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule20 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule20 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule20 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool			result = true;
 
-			foreach (XmlElement trade in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement trade in list) {
 				if (IsIsda2003 (trade)) {
 					XmlElement context = XPath.Path (trade, "creditDefaultSwap") as XmlElement;
 
@@ -1018,9 +1137,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule21 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule21 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule21 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule21 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool			result = true;
 
-			foreach (XmlElement trade in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement trade in list) {
 				if (IsShortForm (trade)) {
 					XmlElement	context = XPath.Path (trade, "creditDefaultSwap");
 
@@ -1059,9 +1185,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule21b (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule21b (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule21b (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule21b (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool			result = true;
 
-			foreach (XmlElement trade in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement trade in list) {
 				if (IsShortForm (trade)) {
 					XmlElement	context = XPath.Path (trade, "creditDefaultSwap");
 
@@ -1098,23 +1231,39 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule22 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule22 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule22 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule22 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool		result	= true;
 
-			foreach (XmlElement trade in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement trade in list) {
 				if (IsShortForm (trade)) {
 					XmlElement	context = XPath.Path (trade, "creditDefaultSwap");
 					XmlElement	events  = XPath.Path (context, "protectionTerms", "creditEvents");
 
 					if (events != null) {
-						foreach (XmlNode node in events.ChildNodes) {
-							if (!(node is XmlElement) || (node.LocalName.Equals ("restructuring")))
-								continue;
+						XmlNodeList	children = events.ChildNodes;
+						for (int count = 0; count < children.Count; ++count) {
+							XmlNode	node = children [count];
+							if (node is XmlElement) {
+								String localName = node.LocalName;
 
-							errorHandler ("305", context,
-								"Illegal element found in short form credit default swap",
-								name, XPath.ForNode (node));
+								if (localName.Equals ("bankruptcy") ||
+									localName.Equals ("failureToPay") ||
+									localName.Equals ("repudiationMoratorium") ||
+									localName.Equals ("obligationDefault") ||
+									localName.Equals ("obligationAcceleration")) {
+									errorHandler ("305", context,
+										"Illegal element found in short form credit default swap",
+										name, localName);
 
-							result = false;
+										result = false;
+								}
+							}
 						}
 					}
 				}
@@ -1126,9 +1275,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule23 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule23 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule23 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule23 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool		result = true;
 
-			foreach (XmlElement trade in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement trade in list) {
 				if (IsLongForm (trade)) {
 					XmlElement	context = XPath.Path (trade, "creditDefaultSwap");
 
@@ -1151,9 +1307,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule24 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule24 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule24 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule24 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool		result = true;
 
-			foreach (XmlElement trade in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement trade in list) {
 				if (IsLongForm (trade)) {
 					XmlElement	context = XPath.Path (trade, "creditDefaultSwap");
 
@@ -1189,9 +1352,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule25 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule25 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule25 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule25 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool		result = true;
 
-			foreach (XmlElement trade in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement trade in list) {
 				if (IsLongForm (trade)) {
 					XmlElement	context = XPath.Path (trade, "creditDefaultSwap");
 
@@ -1393,9 +1563,16 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule32 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			return (
+				  Rule32 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule32 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule32 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
 			bool		result = true;
 
-			foreach (XmlElement trade in nodeIndex.GetElementsByName ("trade")) {
+			foreach (XmlElement trade in list) {
 				if (IsLongForm (trade)) {
 					XmlElement	context = XPath.Path (trade, "creditDefaultSwap", "feeLeg", "periodicPayment");
 
@@ -1440,7 +1617,7 @@ namespace HandCoded.FpML.Validation
 
 				if ((firstDate == null) || (lastDate == null)) continue;
 
-				Interval	interval	= Interval (XPath.Path (context, "paymentFrequency"));
+				Interval	interval	= ToInterval (XPath.Path (context, "paymentFrequency"));
 
 				if (interval.DividesDates (ToDate (firstDate), ToDate (lastDate)))
 					continue;
@@ -1568,71 +1745,190 @@ namespace HandCoded.FpML.Validation
 			return (result);
 		}
 
-		/// <summary>
-		/// Extracts an <see cref="Interval"/> from the data stored below the
-		/// given context node.
-		/// </summary>
-		/// <param name="context">The context <see cref="XmlElement"/>.</param>
-		/// <returns>An <see cref="Interval"/> constructed from the stored data.</returns>
-		private static Interval Interval (XmlElement context)
+		// --------------------------------------------------------------------
+
+		private static bool Rule38 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			try {
-				return (new Interval (
-					ToInteger (XPath.Path (context, "periodMultiplier")),
-                    Period.ForCode (ToToken (XPath.Path (context, "period")))));
-			}
-			catch (Exception) {
-				return (null);
-			}
+			return (Rule38 (name, nodeIndex.GetElementsByName ("creditDefaultSwap"), errorHandler));
 		}
 
-#if false
-		/// <summary>
-		/// Initialises the <see cref="RuleSet"/> with copies of all the FpML
-		/// defined <see cref="Rule"/> instances for Credit Derivatives.
-		/// </summary>
-		static CdsRules ()
+		private static bool Rule38 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
 		{
-			Rules.Add (RULE01);
-			Rules.Add (RULE01B);
-			Rules.Add (RULE02);
-			Rules.Add (RULE03);
-			Rules.Add (RULE04);
-			Rules.Add (RULE05);
-			Rules.Add (RULE06);
-			Rules.Add (RULE07);
-			Rules.Add (RULE08);
-			Rules.Add (RULE09);
-			Rules.Add (RULE10);
-			Rules.Add (RULE11);
-			Rules.Add (RULE12);
-			Rules.Add (RULE13);
-			Rules.Add (RULE14);
-			Rules.Add (RULE15);
-			Rules.Add (RULE16);
-			Rules.Add (RULE17);
-			Rules.Add (RULE18);
-			Rules.Add (RULE19);
-			Rules.Add (RULE20);
-			Rules.Add (RULE21);
-			Rules.Add (RULE21B);
-			Rules.Add (RULE22);
-			Rules.Add (RULE23);
-			Rules.Add (RULE24);
-			Rules.Add (RULE25);
-			Rules.Add (RULE26);
-			Rules.Add (RULE27);
-			Rules.Add (RULE28);
-			Rules.Add (RULE29);
-			Rules.Add (RULE30);
-			Rules.Add (RULE31);
-			Rules.Add (RULE32);
-			Rules.Add (RULE33);
-			Rules.Add (RULE34);
-			Rules.Add (RULE35);
-			Rules.Add (RULE36);
-			Rules.Add (RULE37);
+			bool		result = true;
+
+			foreach (XmlElement context in list) {
+				XmlElement 	pool	= XPath.Path (context, "generalTerms", "basketReferenceInformation", "referencePool");
+				XmlNodeList	items	= XPath.Paths (pool, "referencePoolItem", "constituentWeight", "basketPercentage");
+
+				if (items.Count == 0) continue;
+
+				Decimal total = 0;
+				foreach (XmlElement item in items)
+					total += ToDecimal (item);
+
+				if (Equal (total, decimal.One)) continue;
+
+				errorHandler ("305", pool,
+						"The sum of referencePoolItem/constituentWeight/basketPercentage should be equal to 1",
+						name, total.ToString ());
+
+				result = false;
+			}
+			return (result);
 		}
-#endif
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule39 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			return (Rule39 (name, nodeIndex.GetElementsByName ("creditDefaultSwap"), errorHandler));
+		}
+
+		private static bool Rule39 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool		result = true;
+
+			foreach (XmlElement context in list) {
+				XmlElement	info	= XPath.Path (context, "generalTerms", "basketReferenceInformation");
+				XmlElement	nth		= XPath.Path (context, "nthToDefault");
+				XmlElement	mth		= XPath.Path (context, "mthToDefault");
+
+				if ((nth == null) || (mth == null) || (ToInteger (nth) < ToInteger (mth))) continue;
+
+				errorHandler ("305", info,
+						"If nthToDefault is present and mthToDefault is present then nthToDefault must be less than mthToDefault.",
+						name, null);
+
+				result = false;
+			}
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule40 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			return (Rule40 (name, nodeIndex.GetElementsByName ("creditDefaultSwap"), errorHandler));
+		}
+
+		private static bool Rule40 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool		result = true;
+
+			foreach (XmlElement context in list) {
+				XmlElement	tranche	= XPath.Path (context, "generalTerms", "indexReferenceInformation", "tranche");
+				XmlElement	attach	= XPath.Path (tranche, "attachmentPoint");
+				XmlElement	exhaust	= XPath.Path (tranche, "exhaustionPoint");
+
+				if ((attach == null) || (exhaust == null) || LessOrEqual (ToDecimal (attach), ToDecimal (exhaust))) continue;
+
+				errorHandler ("305", tranche,
+						"attachmentPoint must be less than or equal to exhaustionPoint.",
+						name, null);
+
+				result = false;
+			}
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule41 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			bool		result 	= true;
+
+			foreach (XmlElement context in nodeIndex.GetElementsByName ("generalTerms")) {
+				XmlElement		tranche		= XPath.Path (context, "indexReferenceInformation", "tranche");
+				XmlElement		delivery	= XPath.Path (context, "modifiedEquityDelivery");
+
+				if ((tranche == null) && (delivery != null)) {
+					errorHandler ("305", context,
+						"If indexReferenceInformation/tranche is not present then modifiedEquityDelivery must not be present.",
+						name, null);
+
+					result = false;
+				}
+			}
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule42 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			bool		result 	= true;
+
+			foreach (XmlElement context in nodeIndex.GetElementsByName ("generalTerms")) {
+				XmlElement	basket			= XPath.Path (context, "basketReferenceInformation");
+				XmlElement	substitution	= XPath.Path (context, "substitution");
+
+				if ((basket == null) && (substitution != null)) {
+					errorHandler ("305", context,
+						"If basketReferenceInformation is not present then substitution must not be present.",
+						name, null);
+
+					result = false;
+				}
+			}
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule43 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			bool		result 	= true;
+
+			foreach (XmlElement context in nodeIndex.GetElementsByName ("creditDefaultSwap")) {
+				if (!IsSingleName (context)) continue;
+
+				if (!Exists (XPath.Path(context, "feeLeg", "initialPayment"))) continue;
+
+				XmlElement	payer		= XPath.Path (context, "feeLeg", "initialPayment", "payerPartyReference");
+				XmlElement	receiver 	= XPath.Path (context, "feeLeg", "initialPayment", "receiverPartyReference");
+				XmlElement	seller		= XPath.Path (context, "generalTerms", "sellerPartyReference");
+				XmlElement	buyer		= XPath.Path (context, "generalTerms", "buyerPartyReference");
+
+				if ((payer != null) && (seller != null) && (receiver != null) && (buyer != null)) {
+					if (payer.GetAttribute ("href").Equals (buyer.GetAttribute ("href")) &&
+						receiver.GetAttribute ("href").Equals (seller.GetAttribute ("href")))
+						continue;
+				}
+
+				errorHandler ("305", context,
+					"The initial payment should be paid by the protection buyer to the protection seller",
+					name, null);
+
+				result = false;
+			}
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule44 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			return (Rule44 (name, nodeIndex.GetElementsByName ("creditDefaultSwap"), errorHandler));
+		}
+
+		private static bool Rule44 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool		result = true;
+
+			foreach (XmlElement context in list) {
+				XmlElement	pool	= XPath.Path (context, "generalTerms", "basketReferenceInformation", "referencePool");
+				XmlNodeList	items  	= XPath.Paths (pool, "referencePoolItem");
+				XmlNodeList	weights	= XPath.Paths (pool, "referencePoolItem", "constituentWeight", "basketPercentage");
+
+				if ((weights.Count == 0) || (weights.Count == items.Count)) continue;
+
+				errorHandler ("305", pool,
+						"Either every referencePoolItem should have a basketPercentage or none should have one",
+						name, null);
+
+				result = false;
+			}
+			return (result);
+		}
 	}
 }

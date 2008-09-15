@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -35,14 +35,6 @@ namespace HandCoded.FpML.Validation
 				return (rules);
 			}
 		}
-
-#if false
-		/// <summary>
-		/// A <see cref="Precondition"/> that recognizes IRD products.
-		/// </summary>
-		public static readonly Precondition	IRD
-			= new ElementPrecondition (new string [] { "swap", "swaption", "fra", "bulletPayment" });
-#endif
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures reset dates are present for
@@ -2464,73 +2456,5 @@ namespace HandCoded.FpML.Validation
 				step = step.Plus (freq);
 			}
 		}
-
-#if false
-		/// <summary>
-		/// Initialises the <see cref="RuleSet"/> with copies of all the FpML
-		/// defined <see cref="Rule"/> instances for Interest Rate Derivatives.
-		/// </summary>
-		static IrdRules ()
-		{
-			Rules.Add (RULE01);
-			Rules.Add (RULE02);
-			Rules.Add (RULE03);
-			Rules.Add (RULE04);
-			Rules.Add (RULE05);
-			Rules.Add (RULE06);
-			Rules.Add (RULE07);
-			//Rules.Add (RULE08);
-			Rules.Add (RULE09);
-			Rules.Add (RULE10);
-			Rules.Add (RULE11);
-			Rules.Add (RULE12);
-			Rules.Add (RULE14);
-			Rules.Add (RULE15);
-			Rules.Add (RULE16);
-			Rules.Add (RULE17);
-			Rules.Add (RULE18);
-			Rules.Add (RULE19);
-			Rules.Add (RULE20);
-			Rules.Add (RULE21);
-			Rules.Add (RULE22);
-			Rules.Add (RULE23);
-			Rules.Add (RULE24);
-			Rules.Add (RULE25);
-			Rules.Add (RULE26);
-			Rules.Add (RULE27);
-			Rules.Add (RULE28A);
-			Rules.Add (RULE28B);
-			Rules.Add (RULE29);
-			Rules.Add (RULE30);
-			Rules.Add (RULE31);
-			Rules.Add (RULE32);
-			Rules.Add (RULE33);
-			Rules.Add (RULE34);
-			Rules.Add (RULE35);
-			Rules.Add (RULE36);
-			Rules.Add (RULE38);
-			Rules.Add (RULE39);
-			Rules.Add (RULE40);
-			Rules.Add (RULE41);
-			Rules.Add (RULE42);
-			Rules.Add (RULE43);
-			Rules.Add (RULE44);
-			Rules.Add (RULE46A);
-			Rules.Add (RULE46B);
-			Rules.Add (RULE47);
-			Rules.Add (RULE48);
-			Rules.Add (RULE49);
-			Rules.Add (RULE50);
-			Rules.Add (RULE51);
-			Rules.Add (RULE52);
-			Rules.Add (RULE53);
-			Rules.Add (RULE54);
-			Rules.Add (RULE55);
-			Rules.Add (RULE56);
-			Rules.Add (RULE57);
-			Rules.Add (RULE58);
-			Rules.Add (RULE59);
-		}
-#endif
 	}
 }

@@ -233,12 +233,19 @@ namespace HandCoded.Validation
                                 try {
                                     Type type = Type.GetType (implementation);
 
-                                    // Access each member to ensure it has a chance to initialise
-                                    foreach (MemberInfo member in type.GetMembers ()) {
-                                        if (member.MemberType == MemberTypes.Field) {
-                                            type.InvokeMember (member.Name, BindingFlags.GetField, null, null, null);
-                                        }
-                                    }
+									if (type != null) {
+										// Access each member to ensure it has a chance to initialise
+										MemberInfo [] members = type.GetMembers ();
+										if (members != null) {
+											foreach (MemberInfo member in members) {
+												if (member.MemberType == MemberTypes.Field) {
+													type.InvokeMember (member.Name, BindingFlags.GetField, null, null, null);
+												}
+											}
+										}
+									}
+									else
+	                                    logger.Error ("Could not find load rule class '" + implementation + "'");
                                 }
                                 catch (Exception error) {
                                     logger.Error ("Could not force load rule class '" + implementation + "'", error);

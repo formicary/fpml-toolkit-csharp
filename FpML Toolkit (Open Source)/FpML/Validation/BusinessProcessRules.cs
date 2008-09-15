@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,16 +12,14 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
+using System.Xml;
 
 using HandCoded.Validation;
+using HandCoded.Xml;
 
 namespace HandCoded.FpML.Validation
 {
-	/// <summary>
-	/// The <b>FpMLRules</b> class contains a <see cref="RuleSet"/> that holds
-	/// all of the FpML defined validation <see cref="Rule"/> instances.
-	/// </summary>
-	public class FpMLRules
+	public sealed class BusinessProcessRules : FpMLRuleSet
 	{
 		/// <summary>
 		/// Contains the <see cref="RuleSet"/>.
@@ -36,12 +34,12 @@ namespace HandCoded.FpML.Validation
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>
 		/// instances.
 		/// </summary>
-		private static readonly RuleSet	rules = RuleSet.ForName ("FpMLRules");
+		private static readonly RuleSet	rules = RuleSet.ForName ("BusinessProcessRules");
 
 		/// <summary>
 		/// Ensures that no instances can be constructed.
 		/// </summary>
-		private FpMLRules ()
+		private BusinessProcessRules ()
 		{ }
 	}
 }

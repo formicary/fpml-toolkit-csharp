@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -20,7 +20,8 @@ using HandCoded.Xml;
 namespace HandCoded.FpML.Validation
 {
 	/// <summary>
-	/// Summary description for SchemeRules.
+	/// The <b>SchemeRules</b> class contains a <see cref="RuleSet"/>
+	/// initialised with validation rules for scheme values.
 	/// </summary>
 	public class SchemeRules {
 		/// <summary>
@@ -111,7 +112,6 @@ namespace HandCoded.FpML.Validation
 		public static readonly Rule	RULE09
 			= new SchemeRule (Preconditions.R1_0__R3_0, "scheme-9", "discountingType", "discountingTypeScheme");
 
-#if false
 		/// <summary>
 		/// Rule 10: The value of any <b>floatingRateIndex</b> type element must be valid
 		/// within the domain defined by its <b>@floatingRateIndexScheme</b> attribute.
@@ -119,7 +119,6 @@ namespace HandCoded.FpML.Validation
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE10
 			= new SchemeRule ("scheme-10", "floatingRateIndex", "floatingRateIndexScheme");
-#endif
 
 		/// <summary>
 		/// Rule 11: The value of any <b>negativeInterestRateTreatment</b> element must be valid
@@ -485,7 +484,9 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 4.0 and later.</remarks>
 		public static readonly Rule	RULE53
-			= new SchemeRule (Preconditions.R4_0__LATER, "scheme-53", "marketDisruption", "marketDisruptionScheme");
+			= new SchemeRule (Preconditions.R4_0__LATER, "scheme-53",
+					new string [] { "averagingPeriodIn", "averagingPeriodOut" },
+					new string [] { "marketDisruption" }, "marketDisruptionScheme");
 		
 		/// <summary>
 		/// Rule 54: The value of any <b>masterConfirmationType</b>b> element must be valid
@@ -652,98 +653,15 @@ namespace HandCoded.FpML.Validation
 			= new SchemeRule (Preconditions.R4_3__LATER, "scheme-73", "interestShortfall", "rateSource", "floatingRateIndexScheme");
 
 		/// <summary>
-		/// Ensures no instances can be constructed.
-		/// </summary>
-		private SchemeRules ()
-		{ }
-	
-		/// <summary>
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>
 		/// instances.
 		/// </summary>
 		private static readonly RuleSet	rules = RuleSet.ForName ("SchemeRules");
 
-#if false
 		/// <summary>
-		/// Initialises the <see cref="RuleSet"/> by adding the individually defined
-		/// validation rules.
+		/// Ensures no instances can be constructed.
 		/// </summary>
-		static SchemeRules () {
-			rules.Add (RULE01);
-			rules.Add (RULE02);
-			rules.Add (RULE03);
-			rules.Add (RULE04);
-			rules.Add (RULE05);
-			rules.Add (RULE06);
-			rules.Add (RULE07);
-			rules.Add (RULE08);
-			rules.Add (RULE09);
-			// rules.Add (RULE10);
-			rules.Add (RULE11);
-			rules.Add (RULE12);
-			rules.Add (RULE13);
-			rules.Add (RULE14);
-			rules.Add (RULE15);
-			rules.Add (RULE16);
-			rules.Add (RULE17);
-			rules.Add (RULE18);
-			rules.Add (RULE19);
-			rules.Add (RULE20);
-			rules.Add (RULE21);
-			rules.Add (RULE22);
-			rules.Add (RULE23);
-			rules.Add (RULE24A);
-			rules.Add (RULE24B);
-			rules.Add (RULE25);
-			rules.Add (RULE26);
-			rules.Add (RULE27);
-			rules.Add (RULE28);
-			rules.Add (RULE29);
-			rules.Add (RULE30);
-			rules.Add (RULE31);
-			rules.Add (RULE32);
-			rules.Add (RULE33);
-			rules.Add (RULE34);
-			rules.Add (RULE35);
-			rules.Add (RULE36);
-			rules.Add (RULE37);
-			rules.Add (RULE38);
-			rules.Add (RULE39);
-			rules.Add (RULE40);
-			rules.Add (RULE41);
-			rules.Add (RULE42);
-			rules.Add (RULE43);
-			rules.Add (RULE44);
-			rules.Add (RULE45);
-			rules.Add (RULE46);
-			rules.Add (RULE47);
-			rules.Add (RULE48);
-			rules.Add (RULE49);
-			rules.Add (RULE50);
-			rules.Add (RULE51);
-			rules.Add (RULE52);
-			rules.Add (RULE53);
-			rules.Add (RULE54);
-			rules.Add (RULE55);
-			rules.Add (RULE56);
-			rules.Add (RULE57);
-			rules.Add (RULE58);
-			rules.Add (RULE59);
-			rules.Add (RULE60);
-			rules.Add (RULE61);
-			rules.Add (RULE62);
-			rules.Add (RULE63);
-			rules.Add (RULE64);
-			rules.Add (RULE65);
-			rules.Add (RULE66);
-			rules.Add (RULE67);
-			rules.Add (RULE68);
-			rules.Add (RULE69);
-			rules.Add (RULE70);
-			rules.Add (RULE71);
-			rules.Add (RULE72);
-			rules.Add (RULE73);
-		}
-#endif
+		private SchemeRules ()
+		{ }
 	}
 }

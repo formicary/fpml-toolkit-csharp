@@ -73,9 +73,7 @@ namespace Classify
 						location = location.Parent;
 						target = target.Substring (3);
 					}
-					FileInfo []		info = location.GetFiles (target);
-
-					foreach (FileInfo file in info) files.Add (file); 
+					FindFiles (files, Path.Combine (location.ToString (), target));
 				}
 			}
 			catch (Exception) {
@@ -130,6 +128,37 @@ namespace Classify
 		/// </summary>
 		private Classify ()
 		{ }
+
+		/// <summary>
+		/// Creates a list of files to be processed by expanding a path and handling
+		/// wildcards.
+		/// </summary>
+		/// <param name="files">The set of files to be processed.</param>
+		/// <param name="path">The path to be processed.</param>
+		private void FindFiles (ArrayList files, string path)
+		{
+			if (Directory.Exists (path)) {
+				foreach (string subdir in Directory.GetDirectories (path)) {
+					if ((new DirectoryInfo (subdir).Attributes & FileAttributes.Hidden) == 0)
+						FindFiles (files, subdir);
+				}
+
+				foreach (string file in Directory.GetFiles (path, "*.xml")) {
+					FileInfo	info = new FileInfo (file);
+
+					if ((info.Attributes & FileAttributes.Hidden) == 0)
+						files.Add (info);
+				}
+			}
+			else {
+				foreach (string file in Directory.GetFiles (path)) {
+					FileInfo	info = new FileInfo (file);
+
+					if ((info.Attributes & FileAttributes.Hidden) == 0)
+						files.Add (info);
+				}
+			}
+		}
 
 		/// <summary>
 		/// Uses the predefined FpML product types to attempt to classify a

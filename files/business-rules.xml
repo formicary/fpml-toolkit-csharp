@@ -254,8 +254,44 @@
 	</ruleSet>
 	
 	<ruleSet name="ReferenceRules">
+		<addRule name="ref-1"/>
+		<addRule name="ref-2"/>
+		<addRule name="ref-3"/>
+		<addRule name="ref-4"/>
+		<!-- Deprecated <addRule name="ref-5"/> -->
+		<addRule name="ref-6"/>
+		<addRule name="ref-7"/>
+		<addRule name="ref-8"/>
+		<addRule name="ref-9"/>
 		<addRule name="ref-10"/>
+		<addRule name="ref-11"/>
+		<addRule name="ref-12"/>
+		<addRule name="ref-13"/>
+		<addRule name="ref-14"/>
+		<addRule name="ref-15"/>
+		<addRule name="ref-16"/>
+		<addRule name="ref-17"/>
 		<addRule name="ref-18"/>
+		<addRule name="ref-19"/>
+		<addRule name="ref-20"/>
+		<addRule name="ref-21"/>
+		<!-- Not implemented yet <addRule name="ref-22"/> -->
+		<addRule name="ref-23"/>
+		<addRule name="ref-24"/>
+		<addRule name="ref-25"/>
+		<addRule name="ref-26"/>
+		<addRule name="ref-27"/>
+		<addRule name="ref-28"/>
+		<addRule name="ref-29"/>
+		<addRule name="ref-30"/>
+		<addRule name="ref-31"/>
+		<!-- Not implemented yet <addRule name="ref-32"/> -->
+		<addRule name="ref-33"/>
+		<addRule name="ref-34"/>
+		<addRule name="ref-35"/>
+		<addRule name="ref-36"/>
+		<!-- Not implemented yet <addRule name="ref-37"/> -->
+		<!-- Not implemented yet <addRule name="ref-38"/> -->
 	</ruleSet>
 	
 	<ruleSet name="LoanRules">

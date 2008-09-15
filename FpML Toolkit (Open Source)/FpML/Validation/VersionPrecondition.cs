@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -14,6 +14,7 @@
 using System;
 using System.Xml;
 
+using HandCoded.Meta;
 using HandCoded.Validation;
 using HandCoded.Xml;
 
@@ -29,10 +30,10 @@ namespace HandCoded.FpML.Validation
 		/// Constructs a <b>VersionPrecondition</b> that detects a specific
 		/// version number.
 		/// </summary>
-		/// <param name="version">The required version number.</param>
-		public VersionPrecondition (string version)
+		/// <param name="release">The required FpML release.</param>
+		public VersionPrecondition (Release release)
 		{
-			this.version = version;
+			this.release = release;
 		}
 
 		/// <summary>
@@ -44,12 +45,17 @@ namespace HandCoded.FpML.Validation
 		/// <see cref="Precondition"/> to the <see cref="XmlDocument"/>.</returns>
 		public override bool Evaluate (NodeIndex nodeIndex)
 		{
-			XmlNodeList list = nodeIndex.GetElementsByName ("FpML");
-
-			if (list.Count == 1) {
-				XmlElement	fpml = list.Item (0) as XmlElement;
-
-				return (fpml.GetAttribute ("version").Equals (version));
+			foreach (string rootElement in release.RootElements) {
+				XmlNodeList list = nodeIndex.GetElementsByName (rootElement);
+				
+				if (list.Count == 1) {
+					XmlElement	fpml = list [0] as XmlElement;
+				
+					if (fpml.LocalName.Equals("FpML"))
+						return (fpml.GetAttribute ("version").Equals (release.Version));
+					else
+						return (fpml.GetAttribute ("fpmlVersion").Equals (release.Version));					
+				}
 			}
 			return (false);
 		}
@@ -60,12 +66,12 @@ namespace HandCoded.FpML.Validation
 		/// <returns>A debugging string.</returns>
 		public override string ToString()
 		{
-			return ("version==" + version);
+			return ("version=" + release);
 		}
 
 		/// <summary>
 		/// The specific FpML version to match against. 
 		/// </summary>
-		private readonly string		version;
+		private readonly Release	release;
 	}
 }

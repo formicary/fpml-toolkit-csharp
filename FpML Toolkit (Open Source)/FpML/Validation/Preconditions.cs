@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -30,49 +30,92 @@ namespace HandCoded.FpML.Validation
 		/// documents.
 		/// </summary>
 		public static readonly Precondition	R1_0
-			= new VersionPrecondition (Releases.R1_0.Version);
+			= new VersionPrecondition (Releases.R1_0);
 
 		/// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML 2-0 compatible
 		/// documents.
 		/// </summary>
 		public static readonly Precondition	R2_0
-			= new VersionPrecondition (Releases.R2_0.Version);
+			= new VersionPrecondition (Releases.R2_0);
 
 		/// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML 3-0 compatible
 		/// documents.
 		/// </summary>
 		public static readonly Precondition	R3_0
-			= new VersionPrecondition (Releases.R3_0.Version);
+			= new VersionPrecondition (Releases.R3_0);
 
 		/// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML 4-0 compatible
 		/// documents.
 		/// </summary>
 		public static readonly Precondition	R4_0
-			= new VersionPrecondition (Releases.R4_0.Version);
+			= new VersionPrecondition (Releases.R4_0);
 
 		/// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML 4-1 compatible
 		/// documents.
 		/// </summary>
 		public static readonly Precondition	R4_1
-			= new VersionPrecondition (Releases.R4_1.Version);
+			= new VersionPrecondition (Releases.R4_1);
 
 		/// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML 4-2 compatible
 		/// documents.
 		/// </summary>
 		public static readonly Precondition	R4_2
-			= new VersionPrecondition (Releases.R4_2.Version);
+			= new VersionPrecondition (Releases.R4_2);
 
 		/// <summary>
-		/// A <see cref="Precondition"/> instance that detects FpML 4-2 compatible
+		/// A <see cref="Precondition"/> instance that detects FpML 4-3 compatible
 		/// documents.
 		/// </summary>
 		public static readonly Precondition	R4_3
-			= new VersionPrecondition (Releases.R4_3.Version);
+			= new VersionPrecondition (Releases.R4_3);
+
+		/// <summary>
+		/// A <see cref="Precondition"/> instance that detects FpML 4-4 compatible
+		/// documents.
+		/// </summary>
+		public static readonly Precondition	R4_4
+			= new VersionPrecondition (Releases.R4_4);
+
+		/// <summary>
+		/// A <see cref="Precondition"/> instance that detects FpML 4-5 compatible
+		/// documents.
+		/// </summary>
+		public static readonly Precondition	R4_5
+			= new VersionPrecondition (Releases.R4_5);
+
+		/// <summary>
+		/// A <see cref="Precondition"/> instance that detects FpML 5-0 confirmation
+		/// compatible documents.
+		/// </summary>
+		public static readonly Precondition	R5_0_CONFIRMATION
+			= new VersionPrecondition (Releases.R5_0_CONFIRMATION);
+
+		/// <summary>
+		/// A <see cref="Precondition"/> instance that detects FpML 5-0 pre-trade
+		/// compatible documents.
+		/// </summary>
+		public static readonly Precondition	R5_0_PRETRADE
+			= new VersionPrecondition (Releases.R5_0_PRETRADE);
+
+		/// <summary>
+		/// A <see cref="Precondition"/> instance that detects FpML 5-0 reporting
+		/// compatible documents.
+		/// </summary>
+		public static readonly Precondition	R5_0_REPORTING
+			= new VersionPrecondition (Releases.R5_0_REPORTING);
+
+		/// <summary>
+		/// A <see cref="Precondition"/> instance that detects FpML 5-0 compatible
+		/// documents.
+		/// </summary>
+		public static readonly Precondition	R5_0
+			= Precondition.Or (R5_0_CONFIRMATION,
+				Precondition.Or (R5_0_PRETRADE, R5_0_REPORTING));
 
 		/// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML versions that use
@@ -103,11 +146,32 @@ namespace HandCoded.FpML.Validation
 			= Precondition.Or (R3_0, R4_0);
 
 		/// <summary>
+		/// A <see cref="Precondition"/> instance that detects FpML versions 5-0 and
+		/// later.
+		/// </summary>
+		public static readonly Precondition	R5_0__LATER
+			= R5_0;
+
+		/// <summary>
+		/// A <see cref="Precondition"/> instance that detects FpML versions 4-5 and
+		/// later.
+		/// </summary>
+		public static readonly Precondition	R4_5__LATER
+			= Precondition.Or (R4_5, R5_0__LATER);
+
+		/// <summary>
+		/// A <see cref="Precondition"/> instance that detects FpML versions 4-4 and
+		/// later.
+		/// </summary>
+		public static readonly Precondition	R4_4__LATER
+			= Precondition.Or (R4_4, R4_5__LATER);
+
+		/// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML versions 4-3 and
 		/// later.
 		/// </summary>
 		public static readonly Precondition	R4_3__LATER
-			= R4_3;
+			= Precondition.Or (R4_3, R4_4__LATER);
 
 		/// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML versions 4-2 and

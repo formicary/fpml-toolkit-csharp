@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -175,7 +175,7 @@ namespace HandCoded.FpML.Validation
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>
 		/// instances.
 		/// </summary>
-		private static readonly RuleSet	rules = new RuleSet ();
+		private static readonly RuleSet	rules = RuleSet.ForName ("SharedRules");
 
 		/// <summary>
 		/// Ensures that no instances can be constructed.
@@ -364,15 +364,15 @@ namespace HandCoded.FpML.Validation
 			bool		result = true;
 
 			foreach (XmlElement context in list) {
-				if (Less (context ["earliestExerciseTime"]["hourMinuteTime"].InnerText,
-							context ["latestExerciseTime"]["hourMinuteTime"].InnerText))
-					continue;
+				XmlElement	earliest	= XPath.Path (context, "earliestExerciseTime", "hourMinuteTime");
+				XmlElement	latest		= XPath.Path (context, "latestExerciseTime", "hourMinuteTime");
+
+				if ((earliest == null) || (latest == null) ||
+					Less (ToTime (earliest), ToTime (latest))) continue;
 
 				errorHandler ("305", context,
-					"American exercise earliest exercise time " +
-					context ["earliestExerciseTime"]["hourMinuteTime"].InnerText +
-					" must be before latest exercise time " +
-					context ["latestExerciseTime"]["hourMinuteTime"].InnerText,
+					"American exercise earliest exercise time " + earliest.InnerText +
+					" must be before latest exercise time " + latest.InnerText,
 					name, null);
 
 				result = false;
@@ -712,31 +712,6 @@ namespace HandCoded.FpML.Validation
 				result = false;
 			}
 			return (result);
-		}
-
-		/// <summary>
-		/// Initialises the <see cref="RuleSet"/> with copies of all the FpML
-		/// defined <see cref="Rule"/> instances for shared components.
-		/// </summary>
-		static SharedRules ()
-		{
-			rules.Add (RULE01);
-			rules.Add (RULE02);
-			rules.Add (RULE03);
-			rules.Add (RULE04);
-			rules.Add (RULE05);
-			rules.Add (RULE06);
-			rules.Add (RULE07);
-			rules.Add (RULE08);
-			rules.Add (RULE09);
-			rules.Add (RULE10);
-			rules.Add (RULE11);
-			rules.Add (RULE12);
-			rules.Add (RULE13);
-			rules.Add (RULE14);
-			rules.Add (RULE15);
-			rules.Add (RULE16);
-			rules.Add (RULE17);
 		}
 	}
 }

@@ -27,12 +27,6 @@ namespace HandCoded.FpML.Validation
 	public sealed class EqdRules : FpMLRuleSet
 	{
 		/// <summary>
-		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>
-		/// instances.
-		/// </summary>
-		private static readonly RuleSet	rules = RuleSet.ForName ("EqdRules");
-
-		/// <summary>
 		/// Contains the <see cref="RuleSet"/>.
 		/// </summary>
 		public static RuleSet Rules {
@@ -40,13 +34,6 @@ namespace HandCoded.FpML.Validation
 				return (rules);
 			}
 		}
-
-		/// <summary>
-		/// A <see cref="Rule"/> instance that ensures the unadjusted commencement
-		/// date is the same as the trade date for american options.
-		/// </summary>
-		public static readonly Rule	RULE01
-			= new DelegatedRule (Preconditions.R4_0__LATER, "eqd-1", new RuleDelegate (Rule01));
 
 		/// <summary>
 		/// A <see cref="Rule"/> instance that ensures the unadjusted expiration
@@ -141,13 +128,6 @@ namespace HandCoded.FpML.Validation
 			= new DelegatedRule (Preconditions.R4_0__LATER, "eqd-15", new RuleDelegate (Rule15));
 
 		/// <summary>
-		/// A <see cref="Rule"/> instance that ensures the minimum number of options
-		/// is less than the maximum.
-		/// </summary>
-		public static readonly Rule	RULE16
-			= new DelegatedRule (Preconditions.R4_0__LATER, "eqd-16", new RuleDelegate (Rule16));
-
-		/// <summary>
 		/// A <see cref="Rule"/> instance that ensures the number of options in
 		/// a multiple exercise American option is correct.
 		/// </summary>
@@ -210,36 +190,16 @@ namespace HandCoded.FpML.Validation
 			= new DelegatedRule (Preconditions.R4_0__LATER, "eqd-25", new RuleDelegate (Rule25));
 
 		/// <summary>
+		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>
+		/// instances.
+		/// </summary>
+		private static readonly RuleSet	rules = RuleSet.ForName ("EqdRules");
+
+		/// <summary>
 		/// Ensures that no instances can be constructed.
 		/// </summary>
 		private EqdRules ()
 		{ }
-
-		private static bool Rule01 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
-			return (Rule01 (name, nodeIndex.GetElementsByName ("equityAmericanExercise"), errorHandler));
-		}
-
-		private static bool Rule01 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
-		{
-			bool		result	= true;
-
-			foreach (XmlElement context in list) {
-				XmlElement	commence	= XPath.Path (context, "commencementDate", "adjustableDate", "unadjustedDate");
-				XmlElement	trade		= XPath.Path (context, "..", "..", "..", "tradeHeader", "tradeDate");
-
-				if ((commence == null) || (trade == null) || Equal (ToDate (commence), ToDate (trade)))
-					continue;
-
-				errorHandler ("305", context,
-                    "American exercise commencement date " + ToToken (commence) +
-                    " should be the same as trade date " + ToToken (trade),
-					name, null);
-
-				result = false;
-			}
-			return (result);
-		}
 
 		// --------------------------------------------------------------------
 
@@ -602,33 +562,6 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule16 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
-			return (Rule16 (name, nodeIndex.GetElementsByName ("equityMultipleExercise"), errorHandler));
-		}
-
-		private static bool Rule16 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
-		{
-			bool		result	= true;
-
-			foreach (XmlElement context in list) {
-				XmlElement	minimum = XPath.Path (context, "minimumNumberOfOptions");
-				XmlElement	maximum = XPath.Path (context, "maximumNumberOfOptions");
-
-				if ((minimum == null) || (maximum == null) || Less (ToDecimal (minimum), ToDecimal (maximum)))
-					continue;
-
-				errorHandler ("305", context,
-					"Minimum number of options must be less than the maximum number",
-					name, null);
-
-				result = false;
-			}
-			return (result);
-		}
-
-		// --------------------------------------------------------------------
-
 		private static bool Rule17 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			return (
@@ -711,14 +644,14 @@ namespace HandCoded.FpML.Validation
 			bool		result	= true;
 
 			foreach (XmlElement context in list) {
-				XmlElement	notional	= XPath.Path (context, "notional");
-				XmlElement	payment		= XPath.Path (context, "equityPremium", "paymentAmount");
+				XmlElement	notionalCcy	= XPath.Path (context, "notional", "currency");
+				XmlElement	paymentCcy	= XPath.Path (context, "equityPremium", "paymentAmount", "currency");
 
-				if (!IsSameCurrency (notional, payment)) continue;
+				if ((notionalCcy == null) || (paymentCcy == null) || !IsSameCurrency (notionalCcy, paymentCcy)) continue;
 
-				XmlElement	totalValue	= XPath.Path (notional, "amount");
+				XmlElement	totalValue	= XPath.Path (context, "notional", "amount");
 				XmlElement	percentage	= XPath.Path (context, "equityPremium", "percentageOfNotional");
-				XmlElement	amount		= XPath.Path (payment, "amount");
+				XmlElement	amount		= XPath.Path (context, "equityPremium", "paymentAmount", "amount");
 
 				if ((totalValue == null) || (percentage == null) || (amount == null) ||
 					Equal (Round (ToDecimal (amount), 2), Round (ToDecimal (totalValue) * ToDecimal (percentage), 2)))
@@ -748,15 +681,15 @@ namespace HandCoded.FpML.Validation
 			bool		result	= true;
 
 			foreach (XmlElement context in list) {
-				XmlElement	price		= XPath.Path (context, "equityPremium", "pricePerOption");
-				XmlElement	payment		= XPath.Path (context, "equityPremium", "paymentAmount");
+				XmlElement	priceCcy	= XPath.Path (context, "equityPremium", "pricePerOption", "currency");
+				XmlElement	paymentCcy	= XPath.Path (context, "equityPremium", "paymentAmount", "currency");
 
-				if (!IsSameCurrency (price, payment)) continue;
+				if ((priceCcy == null) || (paymentCcy == null) || !IsSameCurrency (priceCcy, paymentCcy)) continue;
 
 				XmlElement	number		= XPath.Path (context, "numberOfOptions");
 				XmlElement	entitlement	= XPath.Path (context, "optionEntitlement");
-				XmlElement	priceEach	= XPath.Path (price, "amount");
-				XmlElement	amount		= XPath.Path (payment, "amount");
+				XmlElement	priceEach	= XPath.Path (context, "equityPremium", "pricePerOption", "amount");
+				XmlElement	amount		= XPath.Path (context, "equityPremium", "paymentAmount", "amount");
 
 				if ((number == null) || (entitlement == null) || (priceEach == null) || (amount == null) ||
 					Equal (Round (ToDecimal (amount), 2), Round (ToDecimal (priceEach) * ToDecimal (number) * ToDecimal (entitlement), 2)))
@@ -902,14 +835,14 @@ namespace HandCoded.FpML.Validation
 			bool		result	= true;
 
 			foreach (XmlElement context in list) {
-				XmlElement	price		= XPath.Path (context, "equityPremium", "pricePerOption");
-				XmlElement	payment		= XPath.Path (context, "equityPremium", "paymentAmount");
+				XmlElement	priceCcy	= XPath.Path (context, "equityPremium", "pricePerOption", "currency");
+				XmlElement	paymentCcy	= XPath.Path (context, "equityPremium", "paymentAmount", "currency");
 
-				if (!IsSameCurrency (price, payment)) continue;
+				if (!IsSameCurrency (priceCcy, paymentCcy)) continue;
 
 				XmlElement	number		= XPath.Path (context, "numberOfOptions");
-				XmlElement	priceEach	= XPath.Path (price, "amount");
-				XmlElement	amount		= XPath.Path (payment, "amount");
+				XmlElement	priceEach	= XPath.Path (context, "equityPremium", "pricePerOption", "amount");
+				XmlElement	amount		= XPath.Path (context, "equityPremium", "paymentAmount", "amount");
 
 				if ((number == null) || (priceEach == null) || (amount == null) ||
 					Equal (Round (ToDecimal (amount), 2), Round (ToDecimal (priceEach) * ToDecimal (number), 2)))
@@ -923,19 +856,6 @@ namespace HandCoded.FpML.Validation
 				result = false;
 			}
 			return (result);
-		}
-
-		/// <summary>
-		/// Determine if two <see cref="XmlElement"/> structures containing
-		/// <b>Money</b> instances have the same currency code.
-		/// </summary>
-		/// <param name="moneyA">The <see cref="XmlElement"/> containing the first <b>Money</b>.</param>
-		/// <param name="moneyB">The <see cref="XmlElement"/> containing the second <b>Money</b>.</param>
-		/// <returns><b>true</b> if both <b>Money</b> structures have the same currency.</returns>
-		private static bool IsSameCurrency (XmlElement moneyA, XmlElement moneyB)
-		{
-			return (Equal (XPath.Path (moneyA, "currency"),
-						   XPath.Path (moneyB, "currency")));
 		}
 
 #if false

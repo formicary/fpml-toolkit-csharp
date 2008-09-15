@@ -63,7 +63,9 @@ namespace Validate
 					Environment.Exit (1);
 				}
 			}
-			random = randomOption.Present;
+
+			schemaOnly	= schemaOnlyOption.Present;
+			random		= randomOption.Present;
 
 			if (Arguments.Length == 0) {
 				log.Error ("No files are present on the command line");
@@ -78,6 +80,7 @@ namespace Validate
 			XmlUtility.DefaultSchemaSet.Add (Releases.R4_2);
 			XmlUtility.DefaultSchemaSet.Add (Releases.R4_3);
 			XmlUtility.DefaultSchemaSet.Add (Releases.R4_4);
+			XmlUtility.DefaultSchemaSet.Add (Releases.R4_5);
 
 			XmlUtility.DefaultSchemaSet.Add (Releases.R5_0_PRETRADE);
 			XmlUtility.DefaultSchemaSet.Add (Releases.R5_0_CONFIRMATION);
@@ -103,9 +106,7 @@ namespace Validate
 						location = location.Parent;
 						target = target.Substring (3);
 					}
-					FileInfo []		info = location.GetFiles (target);
-
-					foreach (FileInfo file in info) files.Add (file); 
+					FindFiles (files, Path.Combine (location.ToString (), target));
 				}
 			}
 			catch (Exception) {
@@ -129,7 +130,7 @@ namespace Validate
 
 						FileStream	stream	= File.OpenRead ((files [which] as FileInfo).FullName);
 
-						FpMLUtility.ParseAndValidate (stream, rules,
+						FpMLUtility.ParseAndValidate (schemaOnly, stream, rules,
 								new ValidationEventHandler (SyntaxError),
 								new ValidationErrorHandler (SemanticError));
 				
@@ -181,10 +182,16 @@ namespace Validate
 			= new Option ("-random", "Pick files at random for processing");
 
 		/// <summary>
-		/// The <see cref="Option"/> instance used to detct <b>-strict</b>.
+		/// The <see cref="Option"/> instance used to detwct <b>-strict</b>.
 		/// </summary>
 		private Option			strictOption
 			= new Option ("-strict", "Use only FpML defined rules (no extensions)");
+		
+		/// <summary>
+		/// The <see cref="Option"/> instance used to detwct <b>-schemaOnly</b>.
+		/// </summary>
+		private Option			schemaOnlyOption
+			= new Option ("-schemaOnly", "Only support XML Schema based documents");
 		
 		/// <summary>
 		/// A counter for the number of time to reprocess the files. 
@@ -197,10 +204,46 @@ namespace Validate
 		private bool			random = false;
 
 		/// <summary>
+		/// Defines the type(s) of grammar supported.
+		/// </summary>
+		private bool			schemaOnly;
+
+		/// <summary>
 		/// Constructs a <b>Validate</b> instance.
 		/// </summary>
 		private Validate ()
 		{ }
+
+		/// <summary>
+		/// Creates a list of files to be processed by expanding a path and handling
+		/// wildcards.
+		/// </summary>
+		/// <param name="files">The set of files to be processed.</param>
+		/// <param name="path">The path to be processed.</param>
+		private void FindFiles (ArrayList files, string path)
+		{
+			if (Directory.Exists (path)) {
+				foreach (string subdir in Directory.GetDirectories (path)) {
+					if ((new DirectoryInfo (subdir).Attributes & FileAttributes.Hidden) == 0)
+						FindFiles (files, subdir);
+				}
+
+				foreach (string file in Directory.GetFiles (path, "*.xml")) {
+					FileInfo	info = new FileInfo (file);
+
+					if ((info.Attributes & FileAttributes.Hidden) == 0)
+						files.Add (info);
+				}
+			}
+			else {
+				foreach (string file in Directory.GetFiles (path)) {
+					FileInfo	info = new FileInfo (file);
+
+					if ((info.Attributes & FileAttributes.Hidden) == 0)
+						files.Add (info);
+				}
+			}
+		}
 
 		/// <summary>
 		/// Report XML parser errors.

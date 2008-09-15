@@ -21,7 +21,7 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Project</StartAction>
-    <StartArguments>files\examples\fpml1-0\*.xml files\examples\fpml3-0\*.xml files\examples\fpml4-0\*.xml</StartArguments>
+    <StartArguments>-schemaOnly files\examples\fpml4-5</StartArguments>
     <StartPage>
     </StartPage>
     <StartProgram>

@@ -46,12 +46,31 @@ namespace HandCoded.FpML.Validation
 			return (null);
 		}
 
+		/// <summary>
+		/// Determine if two <see cref="XmlElement"/> structures containing
+		/// <b>currency</b> instances have the same currency codes belonging to
+		/// the same currency code scheme.
+		/// </summary>
+		/// <param name="ccy1">The first currency <see cref="XmlElement"/>.</param>
+		/// <param name="ccy2">The second currency <see cref="XmlElement"/>.</param>
+		/// <returns><c>true</c> if both <b>currency</b> structures have the same code.</returns>
+ 		protected static bool IsSameCurrency (XmlElement ccy1, XmlElement ccy2)
+		{
+			string		uri1	= DOM.GetAttribute (ccy1, "currencyScheme");
+			string		uri2	= DOM.GetAttribute (ccy2, "currencyScheme");
+			
+			if ((uri1 != null) && (uri2 != null) && uri1.Equals (uri2))
+				return (Equal (ccy1, ccy2));
+			
+			return (false);
+		}
+	
         /// <summary>
         /// Determines the namespace URI of the FpML document.
         /// </summary>
         /// <param name="nodeIndex">A <see cref="NodeIndex"/> of the entire document.</param>
         /// <returns>A <see cref="String"/> containing the namespace URI.</returns>
- 	    protected static String DetermineNamespace (NodeIndex nodeIndex)
+ 	    protected internal static String DetermineNamespace (NodeIndex nodeIndex)
 	    {
 		    return (nodeIndex.Document.DocumentElement.NamespaceURI);
 	    }

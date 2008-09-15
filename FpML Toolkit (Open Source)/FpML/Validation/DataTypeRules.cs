@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -80,7 +80,7 @@ namespace HandCoded.FpML.Validation
 		/// <summary>
 		/// The underlying <see cref="RuleSet"/> of <see cref="Rule"/> instances.
 		/// </summary>
-		private static readonly RuleSet	rules = new RuleSet ();
+		private static readonly RuleSet	rules = RuleSet.ForName ("DataTypeRules");
 
 		/// <summary>
 		/// Ensures that no instances can be constructed.
@@ -355,20 +355,6 @@ namespace HandCoded.FpML.Validation
 				}
 			}
 			return (result);
-		}
-
-		/// <summary>
-		/// Initialises the <see cref="RuleSet"/> contents.
-		/// </summary>
-		static DataTypeRules ()
-		{
-			rules.Add (RULE01);
-			rules.Add (RULE02);
-			rules.Add (RULE03);
-			rules.Add (RULE04);
-			rules.Add (RULE05);
-			rules.Add (RULE06);
-			rules.Add (RULE07);
 		}
 	}
 }

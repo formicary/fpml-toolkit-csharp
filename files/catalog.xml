@@ -13,7 +13,7 @@
   == LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING
   == OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
   -->
- <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:entity:xmlns:xml:catalog catalog.xsd">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:entity:xmlns:xml:catalog catalog.xsd">
 	<!--
  	  == The catalog rules for DTD based specifications are straight forward
  	  == as the XML parser entity resolver is passed the public name from
@@ -38,6 +38,7 @@
 	<uri name="http://www.fpml.org/2005/FpML-4-2" uri="schemas/fpml4-2/fpml-main-4-2.xsd"/>
 	<uri name="http://www.fpml.org/2007/FpML-4-3" uri="schemas/fpml4-3/fpml-main-4-3.xsd"/>
 	<uri name="http://www.fpml.org/2007/FpML-4-4" uri="schemas/fpml4-4/fpml-main-4-4.xsd"/>
+	<uri name="http://www.fpml.org/2008/FpML-4-5" uri="schemas/fpml4-5/fpml-main-4-5.xsd"/>
 
 	<!--
 	  == Experimental FpML 5.0 Working Draft
