@@ -173,6 +173,39 @@ namespace HandCoded.Xml
 			}
 			return (list);
 		}
+
+		/// <summary>
+		/// Gets the value of the specified attribute on the indicated context
+		/// <see cref="XmlElement"/>. Note that this method returns <c>null</c>
+		/// if the attribute is not present compared to the DOM function which
+		/// returns a empty string.
+		/// </summary>
+		/// <param name="context">The context <see cref="XmlElement"/>.</param>
+		/// <param name="name">The attribute name.</param>
+		/// <returns>The value of the attribute or <c>null</c> if it was not present.</returns>
+		public static string GetAttribute (XmlElement context, string name)
+		{
+			XmlAttribute	attr	= context.GetAttributeNode (name);
+
+			return ((attr != null) ? attr.Value : null);
+		}
+
+		/// <summary>
+		/// Sets the value of specified attribute on the indicated context
+		/// <see cref="XmlElement"/>. If the value is <c>null</c> then the
+		/// attribute is removed.
+		/// </summary>
+		/// <param name="context">The context <see cref="XmlElement"/>.</param>
+		/// <param name="name">The attribute name.</param>
+		/// <param name="value">The new value or <c>null</c>.</param>
+		public static void SetAttribute (XmlElement context, string name, string value)
+		{
+			if (value == null) {
+				context.RemoveAttribute (name);
+			}
+			else
+				context.SetAttribute (name, value);
+		}
 				
 		/// <summary>
 		/// Ensures no instances can be constructed.
