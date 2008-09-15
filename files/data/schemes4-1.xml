@@ -420,35 +420,6 @@ Swaps Monoline Insurer as Reference Entity dated January 21, 2005.</paragraph>
 				<paragraph>12:15 p.m. London time.</paragraph>
 			</schemeValue>
 		</schemeValues>
-		<scheme name="contractualDefinitionsScheme" uri="http://www.fpml.org/spec/2003/contractual-definitions-2-0">
-			<schemeDefinition>Specifies a set of standard contract definitions relevant to the transaction</schemeDefinition>
-			<schemeValues>
-				<schemeValue name="ISDA1991" schemeValueSource="FpML">
-					<paragraph>ISDA 1991 Definitions</paragraph>
-				</schemeValue>
-				<schemeValue name="ISDA1996Equity" schemeValueSource="FpML">
-					<paragraph>ISDA 1996 Equity Derivatives Definitions</paragraph>
-				</schemeValue>
-				<schemeValue name="ISDA1997GovernmentBond" schemeValueSource="FpML">
-					<paragraph>ISDA 1997 Government Bond Option Definitions</paragraph>
-				</schemeValue>
-				<schemeValue name="ISDA1998FX" schemeValueSource="FpML">
-					<paragraph>ISDA 1998 FX and Currency Option Definitions</paragraph>
-				</schemeValue>
-				<schemeValue name="ISDA2000" schemeValueSource="FpML">
-					<paragraph>ISDA 2000 Definitions</paragraph>
-				</schemeValue>
-				<schemeValue name="ISDA2002Equity" schemeValueSource="FpML">
-					<paragraph>ISDA 2002 Equity Derivatives Definitions</paragraph>
-				</schemeValue>
-				<schemeValue name="ISDA1999Credit" schemeValueSource="FpML">
-					<paragraph>ISDA 1999 Credit Derivatives Definitions</paragraph>
-				</schemeValue>
-				<schemeValue name="ISDA2003Credit" schemeValueSource="FpML">
-					<paragraph>ISDA 2003 Credit Derivatives Definitions</paragraph>
-				</schemeValue>
-			</schemeValues>
-		</scheme>
 	</scheme>
 	<scheme name="dayCountFractionScheme" uri="http://www.fpml.org/spec/2000/day-count-fraction-1-0">
 		<schemeValues>
