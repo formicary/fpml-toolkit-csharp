@@ -21,7 +21,7 @@ namespace HandCoded.Meta
     /// to compare an <see cref="XmlDocument"/> to a <see cref="SchemaRelease"/> to
     /// see if it could be an instance of it.
     /// </summary>
-    public class DefaultSchemaRecogniser : ISchemaRecogniser
+    public class DefaultSchemaRecogniser : SchemaRecogniser
     {
 		/// <summary>
 		/// The <b>DefaultSchemaRecognise</b> class uses the following strategy
@@ -49,7 +49,7 @@ namespace HandCoded.Meta
         /// <param name="document">The <see cref="XmlDocument"/> to be tested.</param>
         /// <returns><b>true</b> if the <see cref="XmlDocument"/> could be an
 	    ///	instance of the indicated <see cref="SchemaRelease"/>.</returns>
-        public bool Recognises (SchemaRelease release, XmlDocument document)
+        public override bool Recognises (SchemaRelease release, XmlDocument document)
         {
 			if (release.IsExtensionOnly) {
 				// If the schema is a pure extension then check to see if any

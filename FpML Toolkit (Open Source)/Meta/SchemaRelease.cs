@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -79,7 +79,7 @@ namespace HandCoded.Meta
 		public SchemaRelease (Specification specification, string version,
 			string namespaceUri, string schemaLocation,
 			string preferredPrefix, string alternatePrefix,
-			IInstanceInitialiser initialiser, ISchemaRecogniser recogniser)
+			InstanceInitialiser initialiser, SchemaRecogniser recogniser)
 			: this (specification, version, namespaceUri, schemaLocation,
 					preferredPrefix, alternatePrefix,
 					initialiser, recogniser, (string []) null)
@@ -125,7 +125,7 @@ namespace HandCoded.Meta
 		public SchemaRelease (Specification specification, string version,
 			string namespaceUri, string schemaLocation,
 			string preferredPrefix, string alternatePrefix,
-			IInstanceInitialiser initialiser, ISchemaRecogniser recogniser,
+			InstanceInitialiser initialiser, SchemaRecogniser recogniser,
 			string rootElement)
 			: this (specification, version, namespaceUri, schemaLocation,
 					preferredPrefix, alternatePrefix, initialiser, recogniser,
@@ -174,7 +174,7 @@ namespace HandCoded.Meta
 		public SchemaRelease (Specification specification, string version,
 			string namespaceUri, string schemaLocation,
 			string preferredPrefix, string alternatePrefix,
-			IInstanceInitialiser initialiser, ISchemaRecogniser recogniser,
+			InstanceInitialiser initialiser, SchemaRecogniser recogniser,
 			string [] rootElements)
 			: base (specification, version, rootElements)
 		{
@@ -284,6 +284,7 @@ namespace HandCoded.Meta
 			XmlElement		element  = document.CreateElement (rootElement, namespaceUri);
 
 			element.SetAttribute ("xmlns:xsi", INSTANCE_URL);
+			document.AppendChild (element);
 			
 			foreach (SchemaRelease	release in releases)
 				release.initialiser.Initialise (release, element, release == mainSchema);
@@ -340,14 +341,14 @@ namespace HandCoded.Meta
 		private readonly string		alternatePrefix;
 
 		/// <summary>
-		/// The <see cref="IInstanceInitialiser"/> used to build new documents.
+		/// The <see cref="InstanceInitialiser"/> used to build new documents.
 		/// </summary>
-		private readonly IInstanceInitialiser	initialiser;
+		private readonly InstanceInitialiser	initialiser;
 
 		/// <summary>
-		/// The <see cref="ISchemaRecogniser"/> used to determine document type.
+		/// The <see cref="SchemaRecogniser"/> used to determine document type.
 		/// </summary>
-		private readonly ISchemaRecogniser		recogniser;
+		private readonly SchemaRecogniser		recogniser;
 	
 		/// <summary>
 		/// The set of other <see cref="SchemaRelease"/> instances imported into this

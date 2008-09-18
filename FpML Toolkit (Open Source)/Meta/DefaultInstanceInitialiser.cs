@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -22,7 +22,7 @@ namespace HandCoded.Meta
 	/// The <b>DefaultInstanceInitialiser</b> class performs the population of
 	/// attributes and values on the root element of a new document.
 	/// </summary>
-    public class DefaultInstanceInitialiser : IInstanceInitialiser
+    public class DefaultInstanceInitialiser : InstanceInitialiser
     {
         /// <summary>
         /// Constructs a <b>DefaultInstanceInitialiser</b> that performs the
@@ -38,17 +38,21 @@ namespace HandCoded.Meta
         /// <param name="release">The <see cref="SchemaRelease"/> being initialised.</param>
         /// <param name="root">The root <see cref="XmlElement"/> of the new document.</param>
         /// <param name="isDefaultNamespace"><b>true</b> if the default namespace is being initialised.</param>
-        public void Initialise(SchemaRelease release, XmlElement root, bool isDefaultNamespace)
+        public override void Initialise (SchemaRelease release, XmlElement root, bool isDefaultNamespace)
         {
             string namespaceUri = release.NamespaceUri;
             string preferredPrefix = release.PreferredPrefix;
             string schemaLocation = release.SchemaLocation;
+			XmlAttribute	attr;
 
 			if (isDefaultNamespace)
-				root.SetAttribute ("xmlns", SchemaRelease.NAMESPACES_URL, namespaceUri);
-			else
-				root.SetAttribute ("xmlns:" + preferredPrefix, SchemaRelease.NAMESPACES_URL, namespaceUri);
-			
+				attr = root.OwnerDocument.CreateAttribute ("xmlns", SchemaRelease.NAMESPACES_URL);
+			else 
+				attr = root.OwnerDocument.CreateAttribute ("xmlns", preferredPrefix, SchemaRelease.NAMESPACES_URL);
+	
+			attr.Value = namespaceUri;
+			root.Attributes.Append (attr);
+	
 			String 	value = root.GetAttribute ("xsi:schemaLocation");
 
 			if (value != null) value += " ";

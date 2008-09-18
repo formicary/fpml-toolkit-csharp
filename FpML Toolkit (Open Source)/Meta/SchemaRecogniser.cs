@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -11,18 +11,17 @@
 // LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
-using System;
 using System.Xml;
 
 namespace HandCoded.Meta
 {
     /// <summary>
-    /// An instance implementing the <b>ISchemaRecognise</b> interface is used
+    /// An instance implementing the <b>SchemaRecognise</b> interface is used
     /// to compare an <see cref="XmlDocument"/> to a <see cref="SchemaRelease"/> to
     /// see if it could be an instance of it.
     /// </summary>
-    public interface ISchemaRecogniser
-    {
+	public abstract class SchemaRecogniser
+	{
         /// <summary>
         /// Determines if the <see cref="XmlDocument"/> could be an instance of the
         /// indicated <see cref="SchemaRelease"/>.
@@ -31,6 +30,12 @@ namespace HandCoded.Meta
         /// <param name="document">The <see cref="XmlDocument"/> to be tested.</param>
         /// <returns><b>true</b> if the <see cref="XmlDocument"/> could be an
         ///	instance of the indicated <see cref="SchemaRelease"/>.</returns>
-        bool Recognises(SchemaRelease release, XmlDocument document);
-    }
+        public abstract bool Recognises (SchemaRelease release, XmlDocument document);
+
+		/// <summary>
+		/// Constructs an <b>SchemaRecogniser</b> instance.
+		/// </summary>
+		protected SchemaRecogniser ()
+		{ }
+	}
 }
