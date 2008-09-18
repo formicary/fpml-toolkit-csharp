@@ -54,10 +54,8 @@ namespace HandCoded.Xml.Resolver
 		{
 			this.url = url;
 
-			if (!url.Contains (":"))
-				url = Path.GetDirectoryName (Path.GetFullPath (url));
-
-			definition = new CatalogEntry (prefer, (xmlbase != null) ? xmlbase : url);
+			definition = new CatalogEntry (prefer,
+				(xmlbase != null) ? xmlbase : Path.GetDirectoryName (Path.GetFullPath (url)));
 		}
 
 		/// <summary>

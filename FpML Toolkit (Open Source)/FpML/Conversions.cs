@@ -568,16 +568,14 @@ namespace HandCoded.FpML
 
 						// Generate <calculationAgentPartyReference> at the end of trade
 						// if no peer element.
-						if (element.Name.Equals ("trade")) {
+						if (element.Name.Equals ("trade") && cache.ContainsKey ("calculationAgentPartyReference")) {
 							XmlElement agent = cache ["calculationAgentPartyReference"] as XmlElement;
 
-							if (agent != null) {
-								XmlElement container = document.CreateElement ("calculationAgent");
+							XmlElement container = document.CreateElement ("calculationAgent");
 
-								clone.AppendChild (container);
-								Transcribe (agent, document, container, cache, false);
-								cache.Remove ("calculationAgentPartyReference");
-							}
+							clone.AppendChild (container);
+							Transcribe (agent, document, container, cache, false);
+							cache.Remove ("calculationAgentPartyReference");
 						}
 						break;
 					}

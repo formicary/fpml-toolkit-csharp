@@ -96,6 +96,8 @@
     <Compile Include="FpML\Validation\PricingAndRiskRules.cs" />
     <Compile Include="FpML\Validation\ReferenceRule.cs" />
     <Compile Include="FpML\Validation\ReferenceRules.cs" />
+    <Compile Include="Meta\InstanceInitialiser.cs" />
+    <Compile Include="Meta\SchemaRecogniser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -286,14 +288,12 @@
     <Compile Include="Meta\IndirectConversion.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Meta\IInstanceInitialiser.cs" />
     <Compile Include="Meta\ISchema.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Meta\Release.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Meta\ISchemaRecogniser.cs" />
     <Compile Include="Meta\SchemaRelease.cs">
       <SubType>Code</SubType>
     </Compile>

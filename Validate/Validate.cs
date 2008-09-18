@@ -13,6 +13,7 @@
 
 using System;
 using System.Collections;
+using System.Configuration;
 using System.IO;
 using System.Xml;
 using System.Xml.Schema;
@@ -72,7 +73,9 @@ namespace Validate
 				Environment.Exit (1);
 			}
 
-			XmlUtility.DefaultCatalog = CatalogManager.Find ("files/catalog.xml");
+			XmlUtility.DefaultCatalog = CatalogManager.Find (
+				Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
+					ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.XmlCatalog"]));
 
 			// Activate the FpML Schemas
 			XmlUtility.DefaultSchemaSet.Add (Releases.R4_0);

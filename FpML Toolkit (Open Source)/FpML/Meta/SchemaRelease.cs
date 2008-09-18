@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -91,8 +91,8 @@ namespace HandCoded.FpML.Meta
 		/// <param name="schemeCollection">The SchemeCollection for this release.</param>
 		public SchemaRelease (HandCoded.Meta.Specification specification, string version,
 			string namespaceUri, string schemaLocation,	string preferredPrefix,
-			string alternatePrefix, HandCoded.Meta.IInstanceInitialiser initialiser,
-			HandCoded.Meta.ISchemaRecogniser recogniser, string rootElement,
+			string alternatePrefix, HandCoded.Meta.InstanceInitialiser initialiser,
+			HandCoded.Meta.SchemaRecogniser recogniser, string rootElement,
 			SchemeDefaults schemeDefaults, SchemeCollection schemeCollection)
 			: base (specification, version, namespaceUri, schemaLocation,
 				preferredPrefix, alternatePrefix, initialiser, recogniser, rootElement)
@@ -118,8 +118,8 @@ namespace HandCoded.FpML.Meta
 		/// <param name="schemeCollection">The SchemeCollection for this release.</param>
 		public SchemaRelease (HandCoded.Meta.Specification specification, string version,
 			string namespaceUri, string schemaLocation,	string preferredPrefix,
-			string alternatePrefix, HandCoded.Meta.IInstanceInitialiser initialiser,
-			HandCoded.Meta.ISchemaRecogniser recogniser, string [] rootElements,
+			string alternatePrefix, HandCoded.Meta.InstanceInitialiser initialiser,
+			HandCoded.Meta.SchemaRecogniser recogniser, string [] rootElements,
 			SchemeDefaults schemeDefaults, SchemeCollection schemeCollection)
 			: base (specification, version, namespaceUri, schemaLocation,
 				preferredPrefix, alternatePrefix, initialiser, recogniser, rootElements)

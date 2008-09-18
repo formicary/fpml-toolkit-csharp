@@ -33,13 +33,13 @@ namespace HandCoded.FpML
 		/// <summary>
 		/// The <see cref="HandCoded.Meta.IInstanceInitialiser"/> used to populate new documents.
 		/// </summary>
-		private static HandCoded.Meta.IInstanceInitialiser	initialiser
+		private static HandCoded.Meta.InstanceInitialiser	initialiser
 			= new FpMLInstanceInitialiser ();
 		
 		/// <summary>
 		/// The <see cref="HandCoded.Meta.ISchemaRecogniser"/> used to detect schema based documents.
 		/// </summary>
-		private static HandCoded.Meta.ISchemaRecogniser	recogniser
+		private static HandCoded.Meta.SchemaRecogniser	recogniser
 			= new FpMLSchemaRecogniser ();
 		
 		/// <summary>
@@ -1251,14 +1251,21 @@ namespace HandCoded.FpML
 			SchemeCollection	schemes	= new SchemeCollection ();
 
 			try {
-				schemes.Parse ("files/data/" + suffix);
+				schemes.Parse (
+					Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
+						Path.Combine (
+							ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.SchemesDirectory"], suffix)));
             }
 			catch (Exception error) {
 				log.Fatal ("Unable to load standard FpML schemes", error);
 			}
 
 			try {
-				schemes.Parse ("files/data/additionalDefinitions.xml");
+				schemes.Parse (
+					Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
+						Path.Combine (
+							ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.SchemesDirectory"],
+							ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.AdditionalSchemes"])));
 			}
 			catch (Exception error) {
 				log.Fatal ("Unable to load additional FpML schemes", error);
@@ -1276,8 +1283,8 @@ namespace HandCoded.FpML
 			R4_1.AddImport (HandCoded.DSig.Releases.R1_0);
 			R4_2.AddImport (HandCoded.DSig.Releases.R1_0);
 			R4_3.AddImport (HandCoded.DSig.Releases.R1_0);
-            R4_4.AddImport (HandCoded.DSig.Releases.R1_0);
-            R4_5.AddImport (HandCoded.DSig.Releases.R1_0);
+			R4_4.AddImport (HandCoded.DSig.Releases.R1_0);
+			R4_5.AddImport (HandCoded.DSig.Releases.R1_0);
 
 			R5_0_CONFIRMATION.AddImport (HandCoded.DSig.Releases.R1_0);
 			R5_0_PRETRADE.AddImport (HandCoded.DSig.Releases.R1_0);

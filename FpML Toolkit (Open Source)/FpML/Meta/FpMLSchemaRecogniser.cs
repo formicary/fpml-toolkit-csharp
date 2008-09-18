@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -40,7 +40,7 @@ namespace HandCoded.FpML.Meta
         /// <param name="document">The <see cref="XmlDocument"/> to be tested.</param>
         /// <returns><b>true</b> if the <see cref="XmlDocument"/> could be an
 	    ///	instance of the indicated <see cref="SchemaRelease"/>.</returns>
-		public bool Recognises (SchemaRelease release, XmlDocument document)
+		public override bool Recognises (HandCoded.Meta.SchemaRelease release, XmlDocument document)
 		{
 			if (base.Recognises (release, document)) {
 				int majorVersion = Int32.Parse (release.Version.Split('-')[0]);

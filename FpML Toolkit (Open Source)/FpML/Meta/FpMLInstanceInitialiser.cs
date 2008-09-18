@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2008 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -38,7 +38,7 @@ namespace HandCoded.FpML.Meta
         /// <param name="release">The <see cref="SchemaRelease"/> being initialised.</param>
         /// <param name="root">The root <see cref="XmlElement"/> of the new document.</param>
         /// <param name="isDefaultNamespace"><b>true</b> if the default namespace is being initialised.</param>
-        public void Initialise(SchemaRelease release, XmlElement root, bool isDefaultNamespace)
+        public override void Initialise (HandCoded.Meta.SchemaRelease release, XmlElement root, bool isDefaultNamespace)
 		{
 			base.Initialise (release, root, isDefaultNamespace);
 

@@ -15,6 +15,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Reflection;
 using System.Xml;
 
@@ -322,7 +323,9 @@ namespace HandCoded.Validation
             logger.Debug ("Bootstrapping");
 
 			try {
-				ParseRuleSets (ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.BusinessRules"]);
+				ParseRuleSets (
+					Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
+						ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.BusinessRules"]));
 			}
 			catch (Exception error) {
 				logger.Error ("Unable to load standard rule set definitions", error);
