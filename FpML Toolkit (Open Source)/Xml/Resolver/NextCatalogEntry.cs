@@ -50,7 +50,8 @@ namespace HandCoded.Xml.Resolver
 		/// <b>null</b>.</returns>
 		public String ApplyTo (String publicId, String systemId, Stack<GroupEntry> catalogs)
 		{
-			return (CatalogManager.Find (catalog).Definition.ApplyRules (publicId, systemId, catalogs));
+			return (CatalogManager.Find (new Uri (XmlBase + "/" + catalog).ToString ())
+				.Definition.ApplyRules (publicId, systemId, catalogs));
 		}
 
 		/// <summary>
@@ -64,7 +65,8 @@ namespace HandCoded.Xml.Resolver
 		///	<b>null</b>.</returns>
 		public String ApplyTo (String uri, Stack<GroupEntry> catalogs)
 		{
-			return (CatalogManager.Find (catalog).Definition.ApplyRules (uri, catalogs));
+			return (CatalogManager.Find (new Uri (XmlBase + "/" + catalog).ToString ())
+				.Definition.ApplyRules (uri, catalogs));
 		}
 
 		/// <summary>

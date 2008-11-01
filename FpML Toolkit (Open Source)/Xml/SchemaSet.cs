@@ -70,7 +70,7 @@ namespace HandCoded.Xml
 					Uri			uri = catalog.ResolveUri (null, schema.NamespaceUri);
 
 					if (uri != null) {
-						schemaSet.Add (schema.NamespaceUri, uri.ToString ());
+						schemaSet.Add (schema.NamespaceUri, Unwrap (uri.LocalPath));
 						schemas.Add (schema);
 					}
 					else
@@ -97,5 +97,69 @@ namespace HandCoded.Xml
 		 * @since	TFP 1.0
 		 */
 		private XmlSchemaSet		schemaSet	= new XmlSchemaSet ();	
+
+		/// <summary>
+		/// Scans a path and removes and URI style encoded characters.
+		/// </summary>
+		/// <param name="path">The path to be processed.</param>
+		/// <returns>The processed path.</returns>
+		private String Unwrap (String path)
+		{
+			StringBuilder	buffer	= new StringBuilder ();
+
+			for (int index = 0; index < path.Length;) {
+				char		ch;
+
+				switch (ch = path [index++]) {
+				case '%':
+					switch (ch = path [index++]) {
+					case '2':
+						switch (ch = path [index++]) {
+						case '3':	buffer.Append ('#'); break;
+						case '5':	buffer.Append ('%'); break;
+						case '7':	buffer.Append ('\''); break;
+						case 'b': case 'B':
+									buffer.Append ('+'); break;
+						case 'f': case 'F':
+									buffer.Append ('/'); break;
+						default:
+							buffer.Append ('%');
+							buffer.Append ('2');
+							buffer.Append (ch);
+							break;
+						}
+						break;
+
+					case '3':
+						switch (ch = path [index++]) {
+						case 'a': case 'A':
+									buffer.Append (':'); break;
+						case 'b': case 'B':
+									buffer.Append (';'); break;
+						case 'f': case 'F':
+									buffer.Append ('?'); break;
+
+						default:
+							buffer.Append ('%');
+							buffer.Append ('3');
+							buffer.Append (ch);
+							break;
+						}
+						break;
+
+					default:
+						buffer.Append ('%');
+						buffer.Append (ch);
+						break;
+					}
+					break;
+			
+				default:
+					buffer.Append (ch);
+					break;
+				}
+			}
+			return (buffer.ToString ());
+		}
 	}
 }

@@ -14,6 +14,10 @@
   == OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
   -->
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:entity:xmlns:xml:catalog catalog.xsd">
-	<nextCatalog catalog="catalog-fpml.xml"/>
-	<nextCatalog catalog="catalog-acme.xml"/>
+	<!--
+	  == HandCoded extensions for errors and messaging are provided in
+	  == this schema.
+	  -->
+	<uri name="http://www.handcoded.com/spec/2005/Acme-1-0" uri="schemas/acme1-0/acme-1-0.xsd"/>
+	<uri name="http://www.handcoded.com/spec/2007/Acme-2-0" uri="schemas/acme2-0/acme-2-0.xsd"/>
 </catalog>
