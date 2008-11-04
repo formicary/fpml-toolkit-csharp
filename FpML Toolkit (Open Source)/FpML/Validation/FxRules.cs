@@ -310,11 +310,25 @@ namespace HandCoded.FpML.Validation
 			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-36", new RuleDelegate (Rule36));
 
 		/// <summary>
-		/// A <see cref="Rule"/> that
+		/// A <see cref="Rule"/> that ensures expiry date is after contract trade date.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.2 and later.</remarks>
+		public static readonly Rule RULE36B
+			= new DelegatedRule (Preconditions.R4_2__LATER, "fx-36b", new RuleDelegate (Rule36B));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures expiry date is after trade date.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE37
 			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-37", new RuleDelegate (Rule37));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures expiry date is after contract trade date.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.2 and later.</remarks>
+		public static readonly Rule RULE37B
+			= new DelegatedRule (Preconditions.R4_2__LATER, "fx-37b", new RuleDelegate (Rule37B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures expiry date is after trade date.
@@ -324,11 +338,25 @@ namespace HandCoded.FpML.Validation
 			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-38", new RuleDelegate (Rule38));
 
 		/// <summary>
+		/// A <see cref="Rule"/> that ensures expiry date is after contract trade date.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.2 and later.</remarks>
+		public static readonly Rule RULE38B
+			= new DelegatedRule (Preconditions.R4_2__LATER, "fx-38b", new RuleDelegate (Rule38B));
+
+		/// <summary>
 		/// A <see cref="Rule"/> that ensures value date is after trade date.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE39
 			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-39", new RuleDelegate (Rule39));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures value date is after contract trade date.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.2 and later.</remarks>
+		public static readonly Rule RULE39B
+			= new DelegatedRule (Preconditions.R4_2__LATER, "fx-39b", new RuleDelegate (Rule39B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that all FX swap value dates are after the
@@ -337,6 +365,14 @@ namespace HandCoded.FpML.Validation
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE40
 			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-40", new RuleDelegate (Rule40));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that all FX swap value dates are after the
+		/// contract trade date.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.2 and later.</remarks>
+		public static readonly Rule RULE40B
+			= new DelegatedRule (Preconditions.R4_2__LATER, "fx-40b", new RuleDelegate (Rule40B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures triggerRate is positive.
@@ -1653,7 +1689,42 @@ namespace HandCoded.FpML.Validation
 			
 			return (result);
 		}
-					
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule36B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			if (nodeIndex.HasTypeInformation)
+				return (Rule36B (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "Contract"), errorHandler));
+
+			return (
+				  Rule36B (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule36B (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool result = true;
+
+			foreach (XmlElement context in list) {
+				XmlElement tradeDate = XPath.Path (context, "header", "contractDate");
+				XmlElement expiryDate = XPath.Path (context, "fxAverageRateOption", "expiryDateTime", "expiryDate");
+
+				if ((tradeDate == null) || (expiryDate == null))
+					continue;
+
+				if (Less (ToDate (tradeDate), ToDate (expiryDate)))
+					continue;
+
+				errorHandler ("305", context,
+						"Expiry date must be after contract trade date.",
+						name, ToToken (expiryDate));
+
+				result = false;
+			}
+
+			return (result);
+		}
+
 		// --------------------------------------------------------------------
 
 		private static bool Rule37 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
@@ -1689,6 +1760,41 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
+		private static bool Rule37B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			if (nodeIndex.HasTypeInformation)
+				return (Rule37B (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "Contract"), errorHandler));
+
+			return (
+				  Rule37B (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule37B (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool result = true;
+
+			foreach (XmlElement context in list) {
+				XmlElement tradeDate = XPath.Path (context, "header", "contractDate");
+				XmlElement expiryDate = XPath.Path (context, "fxBarrierOption", "expiryDateTime", "expiryDate");
+
+				if ((tradeDate == null) || (expiryDate == null))
+					continue;
+
+				if (Less (ToDate (tradeDate), ToDate (expiryDate)))
+					continue;
+
+				errorHandler ("305", context,
+						"Expiry date must be after contract trade date.",
+						name, ToToken (expiryDate));
+
+				result = false;
+			}
+
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
 		private static bool Rule38 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			if (nodeIndex.HasTypeInformation) 
@@ -1719,7 +1825,42 @@ namespace HandCoded.FpML.Validation
 			
 			return (result);
 		}
-						
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule38B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			if (nodeIndex.HasTypeInformation)
+				return (Rule38B (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "Contract"), errorHandler));
+
+			return (
+				  Rule38B (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule38B (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool result = true;
+
+			foreach (XmlElement context in list) {
+				XmlElement tradeDate = XPath.Path (context, "header", "contractDate");
+				XmlElement expiryDate = XPath.Path (context, "fxDigitalOption", "expiryDateTime", "expiryDate");
+
+				if ((tradeDate == null) || (expiryDate == null))
+					continue;
+
+				if (Less (ToDate (tradeDate), ToDate (expiryDate)))
+					continue;
+
+				errorHandler ("305", context,
+						"Expiry date must be after contract trade date.",
+						name, ToToken (expiryDate));
+
+				result = false;
+			}
+
+			return (result);
+		}
+
 		// --------------------------------------------------------------------
 
 		private static bool Rule39 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
@@ -1774,6 +1915,66 @@ namespace HandCoded.FpML.Validation
 				}
 			}
 			
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule39B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			if (nodeIndex.HasTypeInformation)
+				return (Rule39B (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "Contract"), errorHandler));
+
+			return (
+				  Rule39B (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule39B (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool result = true;
+
+			foreach (XmlElement context in list) {
+				XmlElement tradeDate = XPath.Path (context, "header", "contractDate");
+				XmlElement valueDate = XPath.Path (context, "fxSingleLeg", "valueDate");
+				XmlElement value1Date = XPath.Path (context, "fxSingleLeg", "currency1ValueDate");
+				XmlElement value2Date = XPath.Path (context, "fxSingleLeg", "currency2ValueDate");
+
+				if (tradeDate != null) {
+					if (valueDate != null) {
+						if (Less (ToDate (tradeDate), ToDate (valueDate)))
+							continue;
+
+						errorHandler ("305", context,
+								"value date must be after contract trade date.",
+								name, ToToken (valueDate));
+
+						result = false;
+					}
+
+					if (value1Date != null) {
+						if (Less (ToDate (tradeDate), ToDate (value1Date)))
+							continue;
+
+						errorHandler ("305", context,
+								"value1date must be after contract trade date.",
+								name, ToToken (value1Date));
+
+						result = false;
+					}
+
+					if (value2Date != null) {
+						if (Less (ToDate (tradeDate), ToDate (value2Date)))
+							continue;
+
+						errorHandler ("305", context,
+								"value2date must be after contract trade date.",
+								name, ToToken (value2Date));
+
+						result = false;
+					}
+				}
+			}
+
 			return (result);
 		}
 
@@ -1835,6 +2036,70 @@ namespace HandCoded.FpML.Validation
 				}
 			}
 			
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule40B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			if (nodeIndex.HasTypeInformation)
+				return (Rule40B (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "Contract"), errorHandler));
+
+			return (
+				  Rule40B (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule40B (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool result = true;
+
+			foreach (XmlElement context in list) {
+				XmlElement tradeDate = XPath.Path (context, "header", "contractDate");
+				XmlNodeList legs = XPath.Paths (context, "fxSwap", "fxSingleLeg");
+
+				foreach (XmlElement leg in legs) {
+					XmlElement valueDate = XPath.Path (leg, "valueDate");
+					XmlElement value1Date = XPath.Path (leg, "currency1ValueDate");
+					XmlElement value2Date = XPath.Path (leg, "currency2ValueDate");
+
+					if (tradeDate != null) {
+						if (valueDate != null) {
+							if (Less (ToDate (tradeDate), ToDate (valueDate)))
+								continue;
+
+							errorHandler ("305", leg,
+									"value date must be after contract trade date.",
+									name, ToToken (valueDate));
+
+							result = false;
+						}
+
+						if (value1Date != null) {
+							if (Less (ToDate (tradeDate), ToDate (value1Date)))
+								continue;
+
+							errorHandler ("305", leg,
+									"value1date must be after contract trade date.",
+									name, ToToken (value1Date));
+
+							result = false;
+						}
+
+						if (value2Date != null) {
+							if (Less (ToDate (tradeDate), ToDate (value2Date)))
+								continue;
+
+							errorHandler ("305", leg,
+									"value2date must be after contract trade date.",
+									name, ToToken (value2Date));
+
+							result = false;
+						}
+					}
+				}
+			}
+
 			return (result);
 		}
 

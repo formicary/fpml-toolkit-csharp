@@ -210,10 +210,15 @@
 		<addRule name="fx-34"/>
 		<addRule name="fx-35"/>
 		<addRule name="fx-36"/>
+		<addRule name="fx-36b"/>
 		<addRule name="fx-37"/>
+		<addRule name="fx-37b"/>
 		<addRule name="fx-38"/>
+		<addRule name="fx-38b"/>
 		<addRule name="fx-39"/>
+		<addRule name="fx-39b"/>
 		<addRule name="fx-40"/>
+		<addRule name="fx-40b"/>
 		<addRule name="fx-41"/>
 		<addRule name="fx-42"/>
 		<addRule name="fx-43"/>

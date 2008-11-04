@@ -19,6 +19,10 @@ using HandCoded.Xml;
 
 namespace HandCoded.FpML.Validation
 {
+	/// <summary>
+	/// The <b>BusinessProcessRulesRules</b> class contains a <see cref="RuleSet"/>
+	/// initialised with FpML defined validation rules for business process messages.
+	/// </summary>
 	public sealed class BusinessProcessRules : FpMLRuleSet
 	{
 		/// <summary>

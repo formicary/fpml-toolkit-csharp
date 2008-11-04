@@ -74,8 +74,8 @@ namespace HandCoded.Meta
 		/// <param name="schemaLocation">The default schema location.</param>
 		/// <param name="preferredPrefix">The preferred prefix for the namespace.</param>
 		/// <param name="alternatePrefix">The alternate prefix for the namespace.</param>
-		/// <param name="initialiser">The <see cref="IInstanceInitialiser"/>.</param>
-		/// <param name="recogniser">The <see cref="ISchemaRecogniser"/>.</param>
+		/// <param name="initialiser">The <see cref="InstanceInitialiser"/>.</param>
+		/// <param name="recogniser">The <see cref="SchemaRecogniser"/>.</param>
 		public SchemaRelease (Specification specification, string version,
 			string namespaceUri, string schemaLocation,
 			string preferredPrefix, string alternatePrefix,
@@ -119,8 +119,8 @@ namespace HandCoded.Meta
 		/// <param name="schemaLocation">The default schema location.</param>
 		/// <param name="preferredPrefix">The preferred prefix for the namespace.</param>
 		/// <param name="alternatePrefix">The alternate prefix for the namespace.</param>
-		/// <param name="initialiser">The <see cref="IInstanceInitialiser"/>.</param>
-		/// <param name="recogniser">The <see cref="ISchemaRecogniser"/>.</param>
+		/// <param name="initialiser">The <see cref="InstanceInitialiser"/>.</param>
+		/// <param name="recogniser">The <see cref="SchemaRecogniser"/>.</param>
 		/// <param name="rootElement">The normal root element.</param>
 		public SchemaRelease (Specification specification, string version,
 			string namespaceUri, string schemaLocation,
@@ -168,8 +168,8 @@ namespace HandCoded.Meta
 		/// <param name="schemaLocation">The default schema location.</param>
 		/// <param name="preferredPrefix">The preferred prefix for the namespace.</param>
 		/// <param name="alternatePrefix">The alternate prefix for the namespace.</param>
-		/// <param name="initialiser">The <see cref="IInstanceInitialiser"/>.</param>
-		/// <param name="recogniser">The <see cref="ISchemaRecogniser"/>.</param>
+		/// <param name="initialiser">The <see cref="InstanceInitialiser"/>.</param>
+		/// <param name="recogniser">The <see cref="SchemaRecogniser"/>.</param>
 		/// <param name="rootElements">The set of possible root elements.</param>
 		public SchemaRelease (Specification specification, string version,
 			string namespaceUri, string schemaLocation,

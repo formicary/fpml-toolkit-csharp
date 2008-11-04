@@ -84,8 +84,8 @@ namespace HandCoded.FpML.Meta
 		/// <param name="schemaLocation">The default schema location.</param>
 		/// <param name="preferredPrefix">The preferred prefix for the namespace.</param>
 		/// <param name="alternatePrefix">The alternate prefix for the namespace.</param>
-		/// <param name="initialiser">The <see cref="HandCoded.Meta.IInstanceInitialiser"/>.</param>
-		/// <param name="recogniser">The <see cref="HandCoded.Meta.ISchemaRecogniser"/>.</param>
+		/// <param name="initialiser">The <see cref="HandCoded.Meta.InstanceInitialiser"/>.</param>
+		/// <param name="recogniser">The <see cref="HandCoded.Meta.SchemaRecogniser"/>.</param>
 		/// <param name="rootElement">The normal root element.</param>
 		/// <param name="schemeDefaults">Scheme default URI information.</param>
 		/// <param name="schemeCollection">The SchemeCollection for this release.</param>
@@ -111,8 +111,8 @@ namespace HandCoded.FpML.Meta
 		/// <param name="schemaLocation">The default schema location.</param>
 		/// <param name="preferredPrefix">The preferred prefix for the namespace.</param>
 		/// <param name="alternatePrefix">The alternate prefix for the namespace.</param>
-		/// <param name="initialiser">The <see cref="HandCoded.Meta.IInstanceInitialiser"/>.</param>
-		/// <param name="recogniser">The <see cref="HandCoded.Meta.ISchemaRecogniser"/>.</param>
+		/// <param name="initialiser">The <see cref="HandCoded.Meta.InstanceInitialiser"/>.</param>
+		/// <param name="recogniser">The <see cref="HandCoded.Meta.SchemaRecogniser"/>.</param>
 		/// <param name="rootElements">The possible root elements.</param>
 		/// <param name="schemeDefaults">Scheme default URI information.</param>
 		/// <param name="schemeCollection">The SchemeCollection for this release.</param>

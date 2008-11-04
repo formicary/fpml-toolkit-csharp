@@ -31,13 +31,13 @@ namespace HandCoded.FpML
 	public sealed class Releases
 	{
 		/// <summary>
-		/// The <see cref="HandCoded.Meta.IInstanceInitialiser"/> used to populate new documents.
+		/// The <see cref="HandCoded.Meta.InstanceInitialiser"/> used to populate new documents.
 		/// </summary>
 		private static HandCoded.Meta.InstanceInitialiser	initialiser
 			= new FpMLInstanceInitialiser ();
 		
 		/// <summary>
-		/// The <see cref="HandCoded.Meta.ISchemaRecogniser"/> used to detect schema based documents.
+		/// The <see cref="HandCoded.Meta.SchemaRecogniser"/> used to detect schema based documents.
 		/// </summary>
 		private static HandCoded.Meta.SchemaRecogniser	recogniser
 			= new FpMLSchemaRecogniser ();
