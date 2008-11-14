@@ -395,7 +395,7 @@
 				<paragraph>Prague</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="DEDU">
-				<paragraph>D&#194;&#129;sseldorf</paragraph>
+				<paragraph>Dusseldorf</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="DEFR">
 				<paragraph>Frankfurt</paragraph>
@@ -419,7 +419,7 @@
 				<paragraph>Madrid</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="EUTA">
-				<paragraph>TARGET (euro 'Business Center')</paragraph>
+				<paragraph>TARGET (euro &apos;Business Center&apos;)</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="FIHE">
 				<paragraph>Helsinki</paragraph>
@@ -647,6 +647,48 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/commodity-business-calendar-1-0" canonicalUri="http://www.fpml.org/coding-scheme/commodity-business-calendar" name="commodityBusinessCalendarScheme">
+		<schemeValues>
+			<schemeValue schemeValueSource="FpML" name="NERC">
+				<paragraph>North American Electric Reliability Corporation</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="NYMEX">
+				<paragraph>New York Mercantile Exchange</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="DowJonesPower">
+				<paragraph>Dow Jones Power</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/commodity-frequency-type-1-0" canonicalUri="http://www.fpml.org/coding-scheme/commodity-frequency-type" name="commodityFrequencyTypeScheme">
+		<schemeValues>
+			<schemeValue schemeValueSource="FpML" name="First">
+				<paragraph>The price will be observed only on the first day (day type is defined in the message) in the Calculation Period.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="Last">
+				<paragraph>The price will be observed only on the last day (day type is defined in the message) in the Calculation Period.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="Penultimate">
+				<paragraph>The price will be observed only on the penultimate day (day type is defined in the message) in the Calculation Period.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="All">
+				<paragraph>The price will be observed on all days (day type is defined in the message) in the Calculation Period.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/commodity-fx-type-1-0" canonicalUri="http://www.fpml.org/coding-scheme/commodity-fx-type" name="commodityFxTypeScheme">
+		<schemeValues>
+			<schemeValue schemeValueSource="FpML" name="Daily">
+				<paragraph>The spot FX rate will be applied to the floating price on each day that the price is osberved.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="SpotAtPeriodEnd">
+				<paragraph>The spot FX rate will be applied to the avergage of the floating price on the final day of each period over which prices are observed.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="AverageAtPeriodEnd">
+				<paragraph>An average FX rate will be applied to the avergage of the floating price on the final day of each period over which prices are observed.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
 	<scheme uri="http://www.fpml.org/coding-scheme/commodity-market-disruption-fallback-1-0" canonicalUri="http://www.fpml.org/coding-scheme/commodity-market-disruption-fallback" name="commodityMarketDisruptionFallbackScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="FallbackReferenceDealers">
@@ -706,6 +748,22 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/commodity-quantity-frequency-1-0" canonicalUri="http://www.fpml.org/coding-scheme/commodity-quantity-frequency" name="commodityQuantityFrequencyScheme">
+		<schemeValues>
+			<schemeValue schemeValueSource="FpML" name="Term">
+				<paragraph>The Notional Quantity is deemed to apply once over the term of the trade for purposes of calculating the Total Notional Quantity.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="PerCalculationPeriod">
+				<paragraph>The Notional Quantity is deemed to apply once per Calculation Period for purposes of calculating the Total Notional Quantity.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="PerSettlementPeriod">
+				<paragraph>The Notional Quantity is deemed to apply once per Settlement Period for purposes of calculating the Total Notional Quantity.</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="PerCalendarDay">
+				<paragraph>The Notional Quantity is deemed to apply once per Calendar Day for purposes of calculating the Total Notional Quantity.</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
 	<scheme uri="http://www.fpml.org/coding-scheme/compounding-frequency-1-0" canonicalUri="http://www.fpml.org/coding-scheme/compounding-frequency" name="compoundingFrequencyScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="Continuous">
@@ -719,7 +777,7 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/contractual-definitions-3-2" canonicalUri="http://www.fpml.org/coding-scheme/contractual-definitions" name="contractualDefinitionsScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/contractual-definitions-3-3" canonicalUri="http://www.fpml.org/coding-scheme/contractual-definitions" name="contractualDefinitionsScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="ISDA1991">
 				<paragraph>ISDA 1991 Definitions</paragraph>
@@ -753,6 +811,12 @@
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ISDA2006Inflation">
 				<paragraph>ISDA 2006 Inflation Derivatives Definitions</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ISDA1993Commodity">
+				<paragraph>ISDA 1993 Commodity Derivatives Definitions</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="ISDA2005Commodity">
+				<paragraph>ISDA 2005 Commodity Derivatives Definitions</paragraph>
 			</schemeValue>
 		</schemeValues>
 	</scheme>
@@ -1008,7 +1072,7 @@
 				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (a) or Annex to the 2000 ISDA Definitions (June 2000 Version), Section 4.16. Day Count Fraction, paragraph (a).</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ACT/ACT.ISDA">
-				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (b) or Annex to the 2000 ISDA Definitions (June 2000 Version), Section 4.16. Day Count Fraction, paragraph (b). Note that going from FpML 2.0 Recommendation to the FpML 3.0 Trial Recommendation the code in FpML 2.0 'ACT/365.ISDA' became 'ACT/ACT.ISDA'.</paragraph>
+				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (b) or Annex to the 2000 ISDA Definitions (June 2000 Version), Section 4.16. Day Count Fraction, paragraph (b). Note that going from FpML 2.0 Recommendation to the FpML 3.0 Trial Recommendation the code in FpML 2.0 &apos;ACT/365.ISDA&apos; became &apos;ACT/ACT.ISDA&apos;.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="ACT/ACT.ICMA">
 				<paragraph>Per 2006 ISDA Definitions, Section 4.16. Day Count Fraction, paragraph (c)</paragraph>
@@ -2217,7 +2281,7 @@
 			</schemeValue>
 		</schemeValues>
 	</scheme>
-	<scheme uri="http://www.fpml.org/coding-scheme/master-agreement-type-1-0" canonicalUri="http://www.fpml.org/coding-scheme/master-agreement-type" name="masterAgreementTypeScheme">
+	<scheme uri="http://www.fpml.org/coding-scheme/master-agreement-type-2-0" canonicalUri="http://www.fpml.org/coding-scheme/master-agreement-type" name="masterAgreementTypeScheme">
 		<schemeValues>
 			<schemeValue schemeValueSource="FpML" name="AFB">
 				<paragraph>AFB Master Agreement for Foreign Exchange and Derivatives Transactions</paragraph>
@@ -2225,17 +2289,24 @@
 			<schemeValue schemeValueSource="FpML" name="German">
 				<paragraph>German Master Agreement for Financial derivatives and Addendum for Options on Stock Exchange Indices or Securities</paragraph>
 			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="ISDA1987">
-				<paragraph>ISDA 1987 Master Agreement</paragraph>
-			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="ISDA1992">
-				<paragraph>ISDA 1992 Master Agreement</paragraph>
-			</schemeValue>
-			<schemeValue schemeValueSource="FpML" name="ISDA2002">
-				<paragraph>ISDA 2002 Master Agreement</paragraph>
+			<schemeValue schemeValueSource="FpML" name="ISDA">
+				<paragraph>ISDA Master Agreement</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="Swiss">
 				<paragraph>Swiss Master Agreement for OTC Derivatives Instruments</paragraph>
+			</schemeValue>
+		</schemeValues>
+	</scheme>
+	<scheme uri="http://www.fpml.org/coding-scheme/master-agreement-version-1-0" canonicalUri="http://www.fpml.org/coding-scheme/master-agreement-version" name="masterAgreementVersionScheme">
+		<schemeValues>
+			<schemeValue schemeValueSource="FpML" name="1987">
+				<paragraph>ISDA 1987 Master Agreement</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="1992">
+				<paragraph>ISDA 1992 Master Agreement</paragraph>
+			</schemeValue>
+			<schemeValue schemeValueSource="FpML" name="2002">
+				<paragraph>ISDA 2002 Master Agreement</paragraph>
 			</schemeValue>
 		</schemeValues>
 	</scheme>
@@ -2802,7 +2873,7 @@
 				<paragraph>Message corrupted (e.g. CRC failure).</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="111">
-				<paragraph>Message text doesn't match digital signature hash.</paragraph>
+				<paragraph>Message text doesn&apos;t match digital signature hash.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="200">
 				<paragraph>Default message processing error code.</paragraph>
@@ -2823,7 +2894,7 @@
 				<paragraph>System unavailable.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="211">
-				<paragraph>Message component text doesn't match digital signature hash.</paragraph>
+				<paragraph>Message component text doesn&apos;t match digital signature hash.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="300">
 				<paragraph>Default validation error code.</paragraph>
@@ -2835,7 +2906,7 @@
 				<paragraph>Unsupported FpML version.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="303">
-				<paragraph>Invalid FpML message - message doesn't validate w.r.t. specified DTD/schema.</paragraph>
+				<paragraph>Invalid FpML message - message doesn&apos;t validate w.r.t. specified DTD/schema.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="304">
 				<paragraph>Validation failure - unsupported message type.</paragraph>
@@ -2862,13 +2933,13 @@
 				<paragraph>Default business process error code.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="401">
-				<paragraph>Don't know - unrecognized trade.</paragraph>
+				<paragraph>Don&apos;t know - unrecognized trade.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="402">
-				<paragraph>Suitability - trade can't be done for client or dealer suitability reasons.</paragraph>
+				<paragraph>Suitability - trade can&apos;t be done for client or dealer suitability reasons.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="403">
-				<paragraph>Credit - trade can't be done for credit reasons.</paragraph>
+				<paragraph>Credit - trade can&apos;t be done for credit reasons.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="404">
 				<paragraph>Not interested - recipient chooses not to respond.</paragraph>
@@ -3069,7 +3140,7 @@
 				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar commercial rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) reported by the Banco Central do Brasil which appears on the Reuters Screen BRFR Page at PTAX-800 as of 11:00 a.m., Sao Paulo time, on the first Business Day following that Rate Calculation Date. 23</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="BRL.PTAX-FLOATING/BRL07">
-				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar floating rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) reported by the Banco Central do Brasil on SISBACEN Data System under transaction code PTAX- 800 ("Consultas de C?mbio" or Exchange Rate Inquiry), Option 5 ("Cotacoes para Contabilidad" or Rates for Accounting Purposes) market type "F" (corresponding to U.S. Dollars traded in the foreign exchange market segment officially denominated "Flutuante") as of 7:30 p.m., Sao Paulo time, on that Rate Calculation Date.</paragraph>
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar floating rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) reported by the Banco Central do Brasil on SISBACEN Data System under transaction code PTAX- 800 ("Consultas de Cambio" or Exchange Rate Inquiry), Option 5 ("Cotacoes para Contabilidad" or Rates for Accounting Purposes) market type "F" (corresponding to U.S. Dollars traded in the foreign exchange market segment officially denominated "Flutuante") as of 7:30 p.m., Sao Paulo time, on that Rate Calculation Date.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="BRL.PTAX-FLOATING.BRFR/BRL08">
 				<paragraph>The Spot Rate for a Rate Calculation Date will be the Brazilian Real/U.S. Dollar floating rate, expressed as the amount of Brazilian Reais per one U.S. Dollar, for settlement in two Business Days (where such days are Business Days in both Sao Paulo and New York) reported by the Banco Central do Brasil on the SISBACEN Data System which appears on the Reuters Screen BRFR Page at PTAX-800 as of 11:00 a.m., Sao Paulo time, on the first Business Day following that Rate Calculation Date.</paragraph>
@@ -3120,7 +3191,7 @@
 				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Peso/U.S. Dollar fixing rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days reported by Banco de Mexico which appears on Reuters Screen MEX01 Page under the heading "MXNFIX=RR", at the close of business in Mexico City on that Rate Calculation Date.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="MXP.PUBLISHED/MXP04">
-				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Peso/U.S. Dollar fixing rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days which is published by the Bolsa Mexicana de Valores, S.A. de C.V. (as established in Section 2 of the "Resolution concerning the exchange rate applicable for calculating the Mexican Peso equivalent of principal and interest of Mexican Treasury Notes denominated in foreign currency and payable in Mexican Pesos" published in the Di&#160;rio Oficial de la Federacion on November 11, 1991) in the Movimiento Di&#160;rio del Mercado de Valores de la Bolsa Mexicana de Valores, S.A. de C.V. under the heading "Movimiento Di&#160;rio del Mercado de Valores" on that Rate Calculation Date.</paragraph>
+				<paragraph>The Spot Rate for a Rate Calculation Date will be the Mexican Peso/U.S. Dollar fixing rate, expressed as the amount of Mexican Pesos per one U.S. Dollar, for settlement in two Business Days which is published by the Bolsa Mexicana de Valores, S.A. de C.V. (as established in Section 2 of the "Resolution concerning the exchange rate applicable for calculating the Mexican Peso equivalent of principal and interest of Mexican Treasury Notes denominated in foreign currency and payable in Mexican Pesos" published in the Diario Oficial de la Federacion on November 11, 1991) in the Movimiento Diario del Mercado de Valores de la Bolsa Mexicana de Valores, S.A. de C.V. under the heading "Movimiento Diario del Mercado de Valores" on that Rate Calculation Date.</paragraph>
 			</schemeValue>
 			<schemeValue schemeValueSource="FpML" name="PEN.PDSB/PEN01">
 				<paragraph>The Spot Rate for a Rate Calculation Date will be the Peruvian Sol/U.S. Dollar fixing rate (mid market last), expressed as the amount of Peruvian Sols per one U.S. Dollar, for settlement on that same day which appears on the Reuters Screen PDSB Page opposite the caption "PEN=" as of 12:00 noon, Lima time, on that Rate Calculation Date.</paragraph>

@@ -40,21 +40,16 @@
          <calculationPeriodsSchedule id="CalculationPeriods">
             <periodMultiplier>1</periodMultiplier>
             <period>M</period>
+            <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
          </calculationPeriodsSchedule>
          <pricingDates>
             <calculationPeriodsReference href="CalculationPeriods"/>
             <dayType>CommodityBusiness</dayType>
             <dayDistribution>All</dayDistribution>
-            <dateAdjustments>
-               <businessDayConvention>NONE</businessDayConvention>
-            </dateAdjustments>
          </pricingDates>
          <notionalQuantity>
-            <quantityUnit>Metric Tonne</quantityUnit>
-            <quantityFrequency>
-               <periodMultiplier>1</periodMultiplier>
-               <period>M</period>
-            </quantityFrequency>
+            <quantityUnit>MT</quantityUnit>
+            <quantityFrequency>PerCalculationPeriod</quantityFrequency>
             <quantity>10000</quantity>
          </notionalQuantity>
          <totalNotionalQuantity>30000</totalNotionalQuantity>

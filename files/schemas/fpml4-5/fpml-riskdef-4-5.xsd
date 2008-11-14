@@ -4,16 +4,16 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2008/FpML-4-5" xmlns:fpml="http://www.fpml.org/2008/FpML-4-5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://www.fpml.org/2008/FpML-4-5" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 4615 $" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML">
-  <xsd:include schemaLocation="fpml-doc-4-5.xsd"/>
-  <xsd:include schemaLocation="fpml-asset-4-5.xsd"/>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2008/FpML-4-5" xmlns:fpml="http://www.fpml.org/2008/FpML-4-5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2008/FpML-4-5" version="$Revision: 4859 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xsd:include schemaLocation="fpml-doc-4-5.xsd" />
+  <xsd:include schemaLocation="fpml-asset-4-5.xsd" />
   <xsd:complexType name="AssetOrTermPointOrPricingStructureReference">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Reference to an underlying asset, term point or pricing structure (yield curve).</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="Reference">
-        <xsd:attribute name="href" type="xsd:IDREF" use="required"/>
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" />
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -56,7 +56,7 @@
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="Scheme">
-        <xsd:attribute name="derivativeCalculationMethodScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/derivative-calculation-method"/>
+        <xsd:attribute name="derivativeCalculationMethodScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/derivative-calculation-method" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -70,7 +70,7 @@
           <xsd:documentation xml:lang="en">The method by which a derivative is computed, e.g. analytic, numerical model, perturbation, etc.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:group ref="DerivativeCalculationParameters.model" minOccurs="0"/>
+      <xsd:group ref="DerivativeCalculationParameters.model" minOccurs="0" />
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="DerivativeFormula">
@@ -169,7 +169,7 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
-    <xsd:attribute name="id" type="xsd:ID"/>
+    <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="MarketReference">
     <xsd:annotation>
@@ -177,7 +177,7 @@
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="Reference">
-        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="Market"/>
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="Market" />
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -187,7 +187,7 @@
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="Scheme">
-        <xsd:attribute name="perturbationTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/perturbation-type"/>
+        <xsd:attribute name="perturbationTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/perturbation-type" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -197,8 +197,8 @@
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="Scheme">
-        <xsd:attribute name="positionIdScheme" type="xsd:anyURI"/>
-        <xsd:attribute name="id" type="xsd:ID"/>
+        <xsd:attribute name="positionIdScheme" type="xsd:anyURI" />
+        <xsd:attribute name="id" type="xsd:ID" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -225,7 +225,7 @@
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="Scheme">
-        <xsd:attribute name="pricingInputTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/pricing-input-type"/>
+        <xsd:attribute name="pricingInputTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/pricing-input-type" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -234,9 +234,9 @@
       <xsd:documentation xml:lang="en">A set of index values that identify a pricing data point. For example: (strike = 17%, expiration = 6M, term = 1Y.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:group ref="PricingStructureIndex.model" maxOccurs="unbounded"/>
+      <xsd:group ref="PricingStructureIndex.model" maxOccurs="unbounded" />
     </xsd:sequence>
-    <xsd:attribute name="id" type="xsd:ID"/>
+    <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="PricingDataPointCoordinateReference">
     <xsd:annotation>
@@ -244,7 +244,7 @@
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="Reference">
-        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="PricingDataPointCoordinate"/>
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="PricingDataPointCoordinate" />
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -293,7 +293,7 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
-    <xsd:attribute name="id" type="xsd:ID"/>
+    <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="PricingParameterDerivativeReference">
     <xsd:annotation>
@@ -301,7 +301,7 @@
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="Reference">
-        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="PricingParameterDerivative"/>
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="PricingParameterDerivative" />
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -310,7 +310,7 @@
       <xsd:documentation xml:lang="en">A definition of a shift with respect to a specific pricing parameter.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="parameterReference" type="AssetOrTermPointOrPricingStructureReference"/>
+      <xsd:element name="parameterReference" type="AssetOrTermPointOrPricingStructureReference" />
       <xsd:element name="shift" type="xsd:decimal">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The size of the denominator, e.g. 0.0001 = 1 bp.</xsd:documentation>
@@ -322,7 +322,7 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
-    <xsd:attribute name="id" type="xsd:ID"/>
+    <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="PricingStructureValuation">
     <xsd:annotation>
@@ -373,11 +373,11 @@
         </xsd:annotation>
       </xsd:element>
       <xsd:choice>
-        <xsd:group ref="ComputedDerivative.model"/>
-        <xsd:group ref="SensitivityDescription.model"/>
+        <xsd:group ref="ComputedDerivative.model" />
+        <xsd:group ref="SensitivityDescription.model" />
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute name="id" type="xsd:ID"/>
+    <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="SensitivitySetDefinition">
     <xsd:annotation>
@@ -425,13 +425,17 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
-    <xsd:attribute name="id" type="xsd:ID"/>
+    <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="SensitivitySetDefinitionReference">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A reference to a sensitivity set definition.</xsd:documentation>
     </xsd:annotation>
-    <xsd:attribute name="href" type="xsd:IDREF" use="required"/>
+    <xsd:complexContent>
+      <xsd:extension base="Reference">
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="SensitivitySetDefinition" />
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="TimeDimension">
     <xsd:annotation>
@@ -473,7 +477,7 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
-    <xsd:attribute name="id" type="xsd:ID"/>
+    <xsd:attribute name="id" type="xsd:ID" />
     <xsd:attribute name="definitionRef" type="xsd:IDREF" ecore:reference="ValuationScenario">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">An optional reference to the scenario that this valuation applies to.</xsd:documentation>
@@ -486,7 +490,7 @@
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="Reference">
-        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="Valuation"/>
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="Valuation" />
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -521,7 +525,7 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
-    <xsd:attribute name="id" type="xsd:ID"/>
+    <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="ValuationScenarioReference">
     <xsd:annotation>
@@ -529,7 +533,7 @@
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="Reference">
-        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="ValuationScenario"/>
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="ValuationScenario" />
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -555,8 +559,8 @@
       <xsd:documentation xml:lang="en">This is a global element used for creating global types. It holds Market information, e.g. curves, surfaces, quotes, etc.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
-  <xsd:element name="pricingStructure" type="PricingStructure" abstract="true"/>
-  <xsd:element name="pricingStructureValuation" type="PricingStructureValuation" abstract="true"/>
+  <xsd:element name="pricingStructure" type="PricingStructure" abstract="true" />
+  <xsd:element name="pricingStructureValuation" type="PricingStructureValuation" abstract="true" />
   <xsd:group name="AnalyticDerivativeParameters.model">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Parameters used in the computation of a derivative using analytical (closed form formula) techiques.</xsd:documentation>
@@ -591,9 +595,9 @@
       <xsd:documentation xml:lang="en">Parameters used in the computation of a derivative.</xsd:documentation>
     </xsd:annotation>
     <xsd:choice>
-      <xsd:group ref="FiniteDifferenceDerivativeParameters.model"/>
-      <xsd:group ref="AnalyticDerivativeParameters.model"/>
-      <xsd:group ref="SubstitutionDerivativeParameters.model"/>
+      <xsd:group ref="FiniteDifferenceDerivativeParameters.model" />
+      <xsd:group ref="AnalyticDerivativeParameters.model" />
+      <xsd:group ref="SubstitutionDerivativeParameters.model" />
     </xsd:choice>
   </xsd:group>
   <xsd:group name="FiniteDifferenceDerivativeParameters.model">
@@ -704,7 +708,7 @@
           <xsd:documentation xml:lang="en">A numerical dimension that represents the strike rate or price of an option.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="generic" type="GenericDimension"/>
+      <xsd:element name="generic" type="GenericDimension" />
     </xsd:choice>
   </xsd:group>
   <xsd:group name="SensitivityDescription.model">
@@ -737,3 +741,4 @@
     </xsd:sequence>
   </xsd:group>
 </xsd:schema>
+

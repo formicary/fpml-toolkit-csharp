@@ -54,9 +54,9 @@
                   </adjustableDate>
                </expirationDate>
                <bermudaExerciseDates>
-                  <date>2002-04-21</date>
-                  <date>2002-05-21</date>
-                  <date>2002-06-21</date>
+                  <date>2002-04-21Z</date>
+                  <date>2002-05-21Z</date>
+                  <date>2002-06-21Z</date>
                </bermudaExerciseDates>
                <latestExerciseTimeType>Close</latestExerciseTimeType>
                <equityExpirationTimeType>Close</equityExpirationTimeType>
@@ -131,7 +131,8 @@
       </calculationAgent>
       <documentation>
          <masterAgreement>
-            <masterAgreementType>ISDA2002</masterAgreementType>
+            <masterAgreementType>ISDA</masterAgreementType>
+            <masterAgreementVersion>2002</masterAgreementVersion>
             <masterAgreementDate>2002-03-15</masterAgreementDate>
          </masterAgreement>
          <contractualDefinitions>ISDA2000</contractualDefinitions>

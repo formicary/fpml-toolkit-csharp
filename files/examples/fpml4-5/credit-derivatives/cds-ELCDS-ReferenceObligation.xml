@@ -104,7 +104,7 @@
       </collateral>
       <documentation>
          <masterAgreement>
-            <masterAgreementType masterAgreementTypeScheme="http://dtcc.com/coding-scheme/master-agreement-type">ISDA</masterAgreementType>
+            <masterAgreementType>ISDA</masterAgreementType>
             <masterAgreementDate>2007-12-12</masterAgreementDate>
          </masterAgreement>
          <contractualTermsSupplement>

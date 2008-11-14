@@ -50,12 +50,12 @@
                   <openUnits>1</openUnits>
                   <basketConstituent>
                      <index>
-                        <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">.FCHI</instrumentId>
+                        <instrumentId instrumentIdScheme="http://www.abc.com/instrumentId">.FCHI</instrumentId>
                         <description>France CAC 40 Index</description>
                         <currency>EUR</currency>
-                        <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">EuroNext</exchangeId>
-                        <relatedExchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">MATIF</relatedExchangeId>
-                        <relatedExchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">MONEP</relatedExchangeId>
+                        <exchangeId exchangeIdScheme="http://www.abc.com/exchangeId">EuroNext</exchangeId>
+                        <relatedExchangeId exchangeIdScheme="http://www.abc.com/exchangeId">MATIF</relatedExchangeId>
+                        <relatedExchangeId exchangeIdScheme="http://www.abc.com/exchangeId">MONEP</relatedExchangeId>
                      </index>
                      <constituentWeight>
                         <openUnits>960</openUnits>
@@ -63,10 +63,10 @@
                   </basketConstituent>
                   <basketConstituent>
                      <index>
-                        <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">.IBEX</instrumentId>
+                        <instrumentId instrumentIdScheme="http://www.abc.com/instrumentId">.IBEX</instrumentId>
                         <description>IBEX 35</description>
                         <currency>EUR</currency>
-                        <relatedExchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">MEFF</relatedExchangeId>
+                        <relatedExchangeId exchangeIdScheme="http://www.abc.com/exchangeId">MEFF</relatedExchangeId>
                      </index>
                      <constituentWeight>
                         <openUnits>260</openUnits>
@@ -74,10 +74,10 @@
                   </basketConstituent>
                   <basketConstituent>
                      <index>
-                        <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">.HSI</instrumentId>
+                        <instrumentId instrumentIdScheme="http://www.abc.com/instrumentId">.HSI</instrumentId>
                         <description>Hong Kong Hang Seng Index</description>
                         <currency>HKD</currency>
-                        <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">Hong Kong Stock Exchange</exchangeId>
+                        <exchangeId exchangeIdScheme="http://www.abc.com/exchangeId">Hong Kong Stock Exchange</exchangeId>
                      </index>
                      <constituentWeight>
                         <openUnits>580</openUnits>
@@ -270,7 +270,8 @@
       </calculationAgent>
       <documentation>
          <masterAgreement>
-            <masterAgreementType>ISDA2002</masterAgreementType>
+            <masterAgreementType>ISDA</masterAgreementType>
+            <masterAgreementVersion>2002</masterAgreementVersion>
          </masterAgreement>
          <contractualDefinitions>ISDA2000</contractualDefinitions>
          <contractualDefinitions>ISDA2002Equity</contractualDefinitions>

@@ -35,9 +35,9 @@
             <underlyer>
                <singleUnderlyer>
                   <index>
-                     <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2003/instrument-id-Reuters-RIC-1-0">.SPX</instrumentId>
-                     <exchangeId exchangeIdScheme="http://www.fpml.org/spec/2002/exchange-id-REC-1-0">N</exchangeId>
-                     <relatedExchangeId exchangeIdScheme="http://www.fpml.org/spec/2002/exchange-id-REC-1-0">ALL</relatedExchangeId>
+                     <instrumentId instrumentIdScheme="http://www.abc.com/instrument-id-Reuters-RIC-1-0">.SPX</instrumentId>
+                     <exchangeId exchangeIdScheme="http://www.abc.com/exchange-id-REC-1-0">N</exchangeId>
+                     <relatedExchangeId exchangeIdScheme="http://www.abc.com/exchange-id-REC-1-0">ALL</relatedExchangeId>
                   </index>
                </singleUnderlyer>
             </underlyer>
@@ -88,13 +88,13 @@
             </rateOfReturn>
             <notional id="equityNotionalAmount">
                <notionalAmount>
-                  <currency currencyScheme="http://www.fpml.org/ext/iso4217">USD</currency>
+                  <currency>USD</currency>
                   <amount>1000000</amount>
                </notionalAmount>
             </notional>
             <amount>
                <paymentCurrency id="settlementCurrency">
-                  <currency currencyScheme="http://www.fpml.org/ext/iso4217">USD</currency>
+                  <currency>USD</currency>
                </paymentCurrency>
                <referenceAmount>StandardISDA</referenceAmount>
                <cashSettlement>true</cashSettlement>
@@ -133,10 +133,6 @@
                      <unadjustedDate>2009-01-01</unadjustedDate>
                      <dateAdjustments>
                         <businessDayConvention>NotApplicable</businessDayConvention>
-                        <businessCenters>
-                           <businessCenter businessCenterScheme="http://www.fpml.org/spec/2004/business-center-1-1">USNY</businessCenter>
-                           <businessCenter businessCenterScheme="http://www.fpml.org/spec/2004/business-center-1-1">GBLO</businessCenter>
-                        </businessCenters>
                      </dateAdjustments>
                   </adjustableDates>
                </interestLegPaymentDates>
@@ -150,7 +146,7 @@
             </interestAmount>
             <interestCalculation>
                <floatingRateCalculation id="floatingRateCalculation">
-                  <floatingRateIndex floatingRateIndexScheme="http://www.fpml.org/ext/isda-2000-definitions">USD-LIBOR-BBA</floatingRateIndex>
+                  <floatingRateIndex>USD-LIBOR-BBA</floatingRateIndex>
                   <indexTenor>
                      <periodMultiplier>1</periodMultiplier>
                      <period>M</period>
@@ -159,7 +155,7 @@
                      <initialValue>.01</initialValue>
                   </spreadSchedule>
                </floatingRateCalculation>
-               <dayCountFraction dayCountFractionScheme="http://www.fpml.org/spec/2004/day-count-fraction-1-0">ACT/360</dayCountFraction><!-- Compounding Spread   -->
+               <dayCountFraction>ACT/360</dayCountFraction><!-- Compounding Spread   -->
                <compounding>
                   <compoundingRate>
                      <interestLegRate href="floatingRateCalculation"/>

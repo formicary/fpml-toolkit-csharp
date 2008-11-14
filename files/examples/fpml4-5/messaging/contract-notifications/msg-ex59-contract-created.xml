@@ -122,14 +122,14 @@
                   <businessCentersReference href="BCT1"/>
                </paymentDatesAdjustments>
             </paymentDates>
-            <resetDates id="RES1">
-               <calculationPeriodDatesReference href="CALC1"/>
+            <resetDates id="RES2">
+               <calculationPeriodDatesReference href="CALC2"/>
                <fixingDates>
                   <periodMultiplier>-2</periodMultiplier>
                   <period>D</period>
                   <dayType>Business</dayType>
                   <businessDayConvention>NONE</businessDayConvention>
-                  <dateRelativeTo href="RES1"/>
+                  <dateRelativeTo href="RES2"/>
                </fixingDates>
                <resetFrequency>
                   <periodMultiplier>3</periodMultiplier>

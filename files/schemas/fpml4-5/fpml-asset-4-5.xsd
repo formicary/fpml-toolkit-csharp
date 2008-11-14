@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2008/FpML-4-5" xmlns:fpml="http://www.fpml.org/2008/FpML-4-5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2008/FpML-4-5" version="$Revision: 4645 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2008/FpML-4-5" xmlns:fpml="http://www.fpml.org/2008/FpML-4-5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2008/FpML-4-5" version="$Revision: 4935 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-shared-4-5.xsd" />
   <xsd:complexType name="ActualPrice">
     <xsd:sequence>
@@ -263,17 +263,42 @@
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
+  <xsd:complexType name="CommodityBusinessCalendar">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines a commodity business day calendar.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="Scheme">
+        <xsd:attribute name="commodityBusinessCalendarScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/commodity-business-calendar" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="CommodityBusinessCalendarTime">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Specifies the time with respect to a commodity business calendar.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="hourMinuteTime" type="HourMinuteTime">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A time specified as Hour Ending in hh:mm:ss format where the second component must be '00', e.g. 11am would be represented as 11:00:00.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="timeZone" type="TimeZone">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">An identifier for a specific location or region which translates into a combination of rules for calculating the UTC offset.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="businessCalendar" type="CommodityBusinessCalendar">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Identifies a commodity business day calendar.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
   <xsd:complexType name="CommodityDetails">
     <xsd:simpleContent>
       <xsd:extension base="Scheme">
         <xsd:attribute name="commodityDetailsScheme" type="xsd:anyURI" />
-      </xsd:extension>
-    </xsd:simpleContent>
-  </xsd:complexType>
-  <xsd:complexType name="CommodityUnit">
-    <xsd:simpleContent>
-      <xsd:extension base="Scheme">
-        <xsd:attribute name="commodityUnitScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/price-quote-units" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -772,6 +797,13 @@
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
+  <xsd:complexType name="QuantityUnit">
+    <xsd:simpleContent>
+      <xsd:extension base="Scheme">
+        <xsd:attribute name="quantityUnitScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/price-quote-units" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
   <xsd:complexType name="QuotationCharacteristics">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A type representing a set of characteristics that describe a quotation.</xsd:documentation>
@@ -834,12 +866,12 @@
           <xsd:documentation xml:lang="en">If this delivery schedule remains good even if the day(s) it relates to fall on a holiday, this element should be set to 'true'. On the other hand, if the delivery schedule is not valid for holidays, this element should be set to 'false'.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="startTime" type="BusinessCenterTime">
+      <xsd:element name="startTime" type="CommodityBusinessCalendarTime">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Specifies the Start Time with respect to a Settlement Period.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="endTime" type="BusinessCenterTime">
+      <xsd:element name="endTime" type="CommodityBusinessCalendarTime">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Specifies the End Time with respect to a Settlement Period.</xsd:documentation>
         </xsd:annotation>
@@ -937,6 +969,16 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TimeZone">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines an identifier for a specific location or region which translates into a combination of rules for calculating the UTC offset.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="Scheme">
+        <xsd:attribute name="timeZoneScheme" type="xsd:anyURI" />
+      </xsd:extension>
+    </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="Underlyer">
     <xsd:annotation>
@@ -1227,7 +1269,7 @@
           <xsd:documentation xml:lang="en">A coding scheme value to identify the commodity being traded more specifically. Where possible, this should follow the naming convention used in the 2005 ISDA Commodity Definitions. For example, 'Brent'.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="unit" type="CommodityUnit">
+      <xsd:element name="unit" type="QuantityUnit">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">A coding scheme value to identify the unit in which the undelryer is denominated. Where possible, this should follow the naming convention used in the 2005 ISDA Commodity Definitions.</xsd:documentation>
         </xsd:annotation>

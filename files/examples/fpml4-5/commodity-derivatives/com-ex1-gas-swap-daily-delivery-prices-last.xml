@@ -45,11 +45,7 @@
             </fixedPrice>
             <notionalQuantity>
                <quantityUnit>MMBTU</quantityUnit>
-               <quantityFrequency>
-                  <periodMultiplier>1</periodMultiplier>
-                  <period>D</period>
-                  <dayType>Calendar</dayType>
-               </quantityFrequency>
+               <quantityFrequency>PerCalendarDay</quantityFrequency>
                <quantity>2500.0</quantity>
             </notionalQuantity>
             <totalNotionalQuantity>77500.0</totalNotionalQuantity>
@@ -73,19 +69,16 @@
             <calculationPeriodsSchedule id="floatingLegCalculationPeriods">
                <periodMultiplier>1</periodMultiplier>
                <period>M</period>
+               <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
             </calculationPeriodsSchedule>
             <commodity>
-               <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2008/commodity-reference-price-1-0">NATURAL GAS-HENRY HUB-NYMEX</instrumentId>
+               <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/commodity-reference-price">NATURAL GAS-HENRY HUB-NYMEX</instrumentId>
                <specifiedPrice>Settlement</specifiedPrice>
                <deliveryDates>FirstNearby</deliveryDates>
             </commodity>
             <notionalQuantity>
                <quantityUnit>MMBTU</quantityUnit>
-               <quantityFrequency>
-                  <periodMultiplier>1</periodMultiplier>
-                  <period>D</period>
-                  <dayType>Calendar</dayType>
-               </quantityFrequency>
+               <quantityFrequency>PerCalendarDay</quantityFrequency>
                <quantity>2500.0</quantity>
             </notionalQuantity>
             <totalNotionalQuantity>77500.0</totalNotionalQuantity>
@@ -94,12 +87,7 @@
                   <calculationPeriodsScheduleReference href="floatingLegCalculationPeriods"/>
                   <dayType>CommodityBusiness</dayType>
                   <dayDistribution>Last</dayDistribution>
-                  <dateAdjustments>
-                     <businessDayConvention>NONE</businessDayConvention>
-                     <businessCenters>
-                        <businessCenter businessCenterScheme="www.example.com/spec/2008/business-center-1-0">NYMEX</businessCenter>
-                     </businessCenters>
-                  </dateAdjustments>
+                  <businessCalendar>NYMEX</businessCalendar>
                </pricingDates>
             </calculation>
             <relativePaymentDates>

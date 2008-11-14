@@ -86,6 +86,7 @@
               <xsd:documentation xml:lang="en">Fixed payment leg.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
+          <xsd:group ref="EquityUnderlyerProvisions.model" minOccurs="0" />
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>

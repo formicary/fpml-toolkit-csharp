@@ -40,6 +40,7 @@
             <calculationPeriodsSchedule id="floatingLeg1CalculationPeriods">
                <periodMultiplier>1</periodMultiplier>
                <period>M</period>
+               <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
             </calculationPeriodsSchedule>
             <commodity>
                <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2008/commodity-reference-price-1-0">NATURAL GAS-HENRY HUB-NYMEX</instrumentId>
@@ -48,11 +49,7 @@
             </commodity>
             <notionalQuantity>
                <quantityUnit>MMBTU</quantityUnit>
-               <quantityFrequency>
-                  <periodMultiplier>1</periodMultiplier>
-                  <period>D</period>
-                  <dayType>Calendar</dayType>
-               </quantityFrequency>
+               <quantityFrequency>PerCalendarDay</quantityFrequency>
                <quantity>15000.0</quantity>
             </notionalQuantity>
             <totalNotionalQuantity>465000.0</totalNotionalQuantity>
@@ -61,12 +58,7 @@
                   <calculationPeriodsScheduleReference href="floatingLeg1CalculationPeriods"/>
                   <dayType>CommodityBusiness</dayType>
                   <dayDistribution>Last</dayDistribution>
-                  <dateAdjustments>
-                     <businessDayConvention>NONE</businessDayConvention>
-                     <businessCenters>
-                        <businessCenter businessCenterScheme="www.example.com/spec/2008/business-center-1-0">NYMEX</businessCenter>
-                     </businessCenters>
-                  </dateAdjustments>
+                  <businessCalendar>NYMEX</businessCalendar>
                </pricingDates>
                <spread>
                   <currency>USD</currency>
@@ -80,11 +72,8 @@
                   <periodMultiplier>5</periodMultiplier>
                   <period>D</period>
                   <dayType>Business</dayType>
-                  <businessDayConvention>NONE</businessDayConvention>
+                  <businessDayConvention>NotApplicable</businessDayConvention>
                </paymentDaysOffset>
-               <businessCenters>
-                  <businessCenter>USNY</businessCenter>
-               </businessCenters>
             </relativePaymentDates>
          </floatingLeg>
          <floatingLeg>
@@ -105,21 +94,19 @@
                   <includesHolidays>false</includesHolidays>
                   <startTime>
                      <hourMinuteTime>06:00:00</hourMinuteTime>
-                     <businessCenter>NERC</businessCenter>
+                     <timeZone>EST</timeZone>
+                     <businessCalendar>NERC</businessCalendar>
                   </startTime>
                   <endTime>
                      <hourMinuteTime>22:00:00</hourMinuteTime>
-                     <businessCenter>NERC</businessCenter>
+                     <timeZone>EST</timeZone>
+                     <businessCalendar>NERC</businessCalendar>
                   </endTime>
                </settlementPeriod>
             </commodity>
             <notionalQuantity>
                <quantityUnit>MMBTU</quantityUnit>
-               <quantityFrequency>
-                  <periodMultiplier>1</periodMultiplier>
-                  <period>D</period>
-                  <dayType>Calendar</dayType>
-               </quantityFrequency>
+               <quantityFrequency>PerCalendarDay</quantityFrequency>
                <quantity>15000.0</quantity>
             </notionalQuantity>
             <totalNotionalQuantity>465000.0</totalNotionalQuantity>
@@ -128,12 +115,7 @@
                   <calculationPeriodsScheduleReference href="floatingLeg1CalculationPeriods"/>
                   <dayType>Calendar</dayType>
                   <dayDistribution>Each</dayDistribution>
-                  <dateAdjustments>
-                     <businessDayConvention>NONE</businessDayConvention>
-                     <businessCenters>
-                        <businessCenter businessCenterScheme="www.example.com/spec/2008/business-center-1-0">DOW JONES POWER</businessCenter>
-                     </businessCenters>
-                  </dateAdjustments>
+                  <businessCalendar>DOW JONES POWER</businessCalendar>
                </pricingDates>
                <averagingMethod>Unweighted</averagingMethod><!-- TBD: What is the correct factor for MWH to MMBTU? -->
                <conversionFactor>0.4913</conversionFactor>
@@ -145,11 +127,8 @@
                   <periodMultiplier>5</periodMultiplier>
                   <period>D</period>
                   <dayType>Business</dayType>
-                  <businessDayConvention>NONE</businessDayConvention>
+                  <businessDayConvention>NotApplicable</businessDayConvention>
                </paymentDaysOffset>
-               <businessCenters>
-                  <businessCenter>USNY</businessCenter>
-               </businessCenters>
             </relativePaymentDates>
          </floatingLeg>
          <marketDisruption>

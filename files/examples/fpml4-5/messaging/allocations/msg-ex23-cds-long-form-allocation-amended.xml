@@ -193,7 +193,8 @@
          </collateral>
          <documentation>
             <masterAgreement>
-               <masterAgreementType>ISDA1992</masterAgreementType>
+               <masterAgreementType>ISDA</masterAgreementType>
+               <masterAgreementVersion>1992</masterAgreementVersion>
             </masterAgreement>
             <contractualDefinitions>ISDA1999Credit</contractualDefinitions>
             <contractualSupplement>ISDA1999CreditRestructuring</contractualSupplement>

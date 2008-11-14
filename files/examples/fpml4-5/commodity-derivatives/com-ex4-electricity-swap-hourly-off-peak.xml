@@ -45,10 +45,7 @@
             </fixedPrice>
             <notionalQuantity>
                <quantityUnit>MWH</quantityUnit>
-               <quantityFrequency>
-                  <periodMultiplier>1</periodMultiplier>
-                  <period>H</period>
-               </quantityFrequency>
+               <quantityFrequency>PerSettlementPeriod</quantityFrequency>
                <quantity>17.0</quantity>
             </notionalQuantity>
             <totalNotionalQuantity>83776.0</totalNotionalQuantity>
@@ -72,6 +69,7 @@
             <calculationPeriodsSchedule id="floatingLegCalculationPeriods">
                <periodMultiplier>1</periodMultiplier>
                <period>M</period>
+               <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
             </calculationPeriodsSchedule>
             <commodity>
                <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2008/commodity-reference-price-1-0">ELECTRICITY-MID-COLUMBIA FIRM (ON-PEAK)-DOW JONES POWER</instrumentId>
@@ -87,11 +85,13 @@
                   <includesHolidays>false</includesHolidays>
                   <startTime>
                      <hourMinuteTime>00:00:00</hourMinuteTime>
-                     <businessCenter businessCenterScheme="www.example.com/spec/2008/business-center-1-0">NERC</businessCenter>
+                     <timeZone>PPT</timeZone>
+                     <businessCalendar>NERC</businessCalendar>
                   </startTime>
                   <endTime>
                      <hourMinuteTime>06:00:00</hourMinuteTime>
-                     <businessCenter businessCenterScheme="www.example.com/spec/2008/business-center-1-0">NERC</businessCenter>
+                     <timeZone>PPT</timeZone>
+                     <businessCalendar>NERC</businessCalendar>
                   </endTime>
                </settlementPeriod>
                <settlementPeriod>
@@ -105,11 +105,13 @@
                   <includesHolidays>false</includesHolidays>
                   <startTime>
                      <hourMinuteTime>22:00:00</hourMinuteTime>
-                     <businessCenter businessCenterScheme="www.example.com/spec/2008/business-center-1-0">NERC</businessCenter>
+                     <timeZone>PPT</timeZone>
+                     <businessCalendar>NERC</businessCalendar>
                   </startTime>
                   <endTime>
                      <hourMinuteTime>00:00:00</hourMinuteTime>
-                     <businessCenter businessCenterScheme="www.example.com/spec/2008/business-center-1-0">NERC</businessCenter>
+                     <timeZone>PPT</timeZone>
+                     <businessCalendar>NERC</businessCalendar>
                   </endTime>
                </settlementPeriod>
                <settlementPeriod>
@@ -118,20 +120,19 @@
                   <includesHolidays>true</includesHolidays>
                   <startTime>
                      <hourMinuteTime>00:00:00</hourMinuteTime>
-                     <businessCenter businessCenterScheme="www.example.com/spec/2008/business-center-1-0">NERC</businessCenter>
+                     <timeZone>PPT</timeZone>
+                     <businessCalendar>NERC</businessCalendar>
                   </startTime>
                   <endTime>
                      <hourMinuteTime>00:00:00</hourMinuteTime>
-                     <businessCenter businessCenterScheme="www.example.com/spec/2008/business-center-1-0">NERC</businessCenter>
+                     <timeZone>PPT</timeZone>
+                     <businessCalendar>NERC</businessCalendar>
                   </endTime>
                </settlementPeriod>
             </commodity>
             <notionalQuantity>
                <quantityUnit>MWH</quantityUnit>
-               <quantityFrequency>
-                  <periodMultiplier>1</periodMultiplier>
-                  <period>H</period>
-               </quantityFrequency>
+               <quantityFrequency>PerSettlementPeriod</quantityFrequency>
                <quantity>17.0</quantity>
             </notionalQuantity>
             <totalNotionalQuantity>83776.0</totalNotionalQuantity>
@@ -140,12 +141,7 @@
                   <calculationPeriodsScheduleReference href="floatingLegCalculationPeriods"/>
                   <dayType>CommodityBusiness</dayType>
                   <dayDistribution>Each</dayDistribution>
-                  <dateAdjustments>
-                     <businessDayConvention>NONE</businessDayConvention>
-                     <businessCenters>
-                        <businessCenter businessCenterScheme="www.example.com/spec/2008/business-center-1-0">DOW JONES POWER</businessCenter>
-                     </businessCenters>
-                  </dateAdjustments>
+                  <businessCalendar>DowJonesPower</businessCalendar>
                </pricingDates>
                <averagingMethod>Weighted</averagingMethod>
             </calculation>

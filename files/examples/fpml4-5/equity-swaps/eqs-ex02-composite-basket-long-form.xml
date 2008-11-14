@@ -50,10 +50,10 @@
                   <openUnits>1</openUnits>
                   <basketConstituent>
                      <equity>
-                        <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">TIT.ME</instrumentId>
+                        <instrumentId instrumentIdScheme="http://www.abc.com/instrumentId">TIT.ME</instrumentId>
                         <description>Telecom Italia spa</description>
                         <currency>EUR</currency>
-                        <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">Milan Stock Exchange</exchangeId>
+                        <exchangeId exchangeIdScheme="http://www.abc.com/exchangeId">Milan Stock Exchange</exchangeId>
                      </equity>
                      <constituentWeight>
                         <openUnits>432000</openUnits>
@@ -64,10 +64,10 @@
                   </basketConstituent>
                   <basketConstituent>
                      <equity>
-                        <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">NOK1V.HE</instrumentId>
+                        <instrumentId instrumentIdScheme="http://www.abc.com/instrumentId">NOK1V.HE</instrumentId>
                         <description>Nokya Oyj</description>
                         <currency>EUR</currency>
-                        <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">Helsinki Stock Exchange</exchangeId>
+                        <exchangeId exchangeIdScheme="http://www.abc.com/exchangeId">Helsinki Stock Exchange</exchangeId>
                      </equity>
                      <constituentWeight>
                         <openUnits>227000</openUnits>
@@ -78,10 +78,10 @@
                   </basketConstituent>
                   <basketConstituent>
                      <equity>
-                        <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">TIM.MI</instrumentId>
+                        <instrumentId instrumentIdScheme="http://www.abc.com/instrumentId">TIM.MI</instrumentId>
                         <description>Telecom Italia Mobile spa</description>
                         <currency>EUR</currency>
-                        <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">Milan Stock Exchange</exchangeId>
+                        <exchangeId exchangeIdScheme="http://www.abc.com/exchangeId">Milan Stock Exchange</exchangeId>
                      </equity>
                      <constituentWeight>
                         <openUnits>783000</openUnits>
@@ -92,10 +92,10 @@
                   </basketConstituent>
                   <basketConstituent>
                      <equity>
-                        <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">TEF.MC</instrumentId>
+                        <instrumentId instrumentIdScheme="http://www.abc.com/instrumentId">TEF.MC</instrumentId>
                         <description>Telefonica de Espana</description>
                         <currency>EUR</currency>
-                        <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">Madrid Stock Exchange</exchangeId>
+                        <exchangeId exchangeIdScheme="http://www.abc.com/exchangeId">Madrid Stock Exchange</exchangeId>
                      </equity>
                      <constituentWeight>
                         <openUnits>344000</openUnits>
@@ -106,10 +106,10 @@
                   </basketConstituent>
                   <basketConstituent>
                      <equity>
-                        <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">PTCO.IN</instrumentId>
+                        <instrumentId instrumentIdScheme="http://www.abc.com/instrumentId">PTCO.IN</instrumentId>
                         <description>Portugal Telecom SA</description>
                         <currency>EUR</currency>
-                        <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">Interbolsa</exchangeId>
+                        <exchangeId exchangeIdScheme="http://www.abc.com/exchangeId">Interbolsa</exchangeId>
                      </equity>
                      <constituentWeight>
                         <openUnits>340000</openUnits>
@@ -120,10 +120,10 @@
                   </basketConstituent>
                   <basketConstituent>
                      <equity>
-                        <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4-1/instrumentId">VOD.L</instrumentId>
+                        <instrumentId instrumentIdScheme="http://www.abc.com/instrumentId">VOD.L</instrumentId>
                         <description>Vodafone Group</description>
                         <currency>GBP</currency>
-                        <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4-1/exchangeId">London Stock Exchange</exchangeId>
+                        <exchangeId exchangeIdScheme="http://www.abc.com/exchangeId">London Stock Exchange</exchangeId>
                      </equity>
                      <constituentWeight>
                         <openUnits>2486000</openUnits>
@@ -331,7 +331,8 @@
       </calculationAgent>
       <documentation>
          <masterAgreement>
-            <masterAgreementType>ISDA2002</masterAgreementType>
+            <masterAgreementType>ISDA</masterAgreementType>
+            <masterAgreementVersion>2002</masterAgreementVersion>
          </masterAgreement>
          <contractualDefinitions>ISDA2000</contractualDefinitions>
          <contractualDefinitions>ISDA2002Equity</contractualDefinitions>

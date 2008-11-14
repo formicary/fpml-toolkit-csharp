@@ -4,16 +4,16 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2008/FpML-4-5" xmlns:fpml="http://www.fpml.org/2008/FpML-4-5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2008/FpML-4-5" version="$Revision: 4318 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2008/FpML-4-5" xmlns:fpml="http://www.fpml.org/2008/FpML-4-5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2008/FpML-4-5" version="$Revision: 4946 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-option-shared-4-5.xsd" />
   <xsd:complexType name="AdditionalDisruptionEvents">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type for defining ISDA 2002 Equity Derivative Additional Disruption Events</xsd:documentation>
+      <xsd:documentation xml:lang="en">A type for defining ISDA 2002 Equity Derivative Additional Disruption Events.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
       <xsd:element name="changeInLaw" type="xsd:boolean">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">If true, then change in law is applicable</xsd:documentation>
+          <xsd:documentation xml:lang="en">If true, then change in law is applicable.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="failureToDeliver" type="xsd:boolean" minOccurs="0">
@@ -23,32 +23,32 @@
       </xsd:element>
       <xsd:element name="insolvencyFiling" type="xsd:boolean">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">If true, then insolvency filing is applicable</xsd:documentation>
+          <xsd:documentation xml:lang="en">If true, then insolvency filing is applicable.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="hedgingDisruption" type="xsd:boolean">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">If true, then hedging disruption is applicable</xsd:documentation>
+          <xsd:documentation xml:lang="en">If true, then hedging disruption is applicable.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="lossOfStockBorrow" type="xsd:boolean">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">If true, then loss of stock borrow is applicable</xsd:documentation>
+          <xsd:documentation xml:lang="en">If true, then loss of stock borrow is applicable.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="increasedCostOfStockBorrow" type="xsd:boolean">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">If true, then increased cost of stock borrow is applicable</xsd:documentation>
+          <xsd:documentation xml:lang="en">If true, then increased cost of stock borrow is applicable.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="increasedCostOfHedging" type="xsd:boolean">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">If true, then increased cost of hedging is applicable</xsd:documentation>
+          <xsd:documentation xml:lang="en">If true, then increased cost of hedging is applicable.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="determiningPartyReference" type="PartyReference">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">A reference to the party which determines additional disruption events</xsd:documentation>
+          <xsd:documentation xml:lang="en">A reference to the party which determines additional disruption events.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -166,29 +166,29 @@
   </xsd:complexType>
   <xsd:complexType name="CalculationFromObservation" abstract="true">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Abstract base class for all calculation from observed values</xsd:documentation>
+      <xsd:documentation xml:lang="en">Abstract base class for all calculation from observed values.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
       <xsd:choice>
         <xsd:element name="initialLevel" type="xsd:decimal">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">Contract will strike off this initial level</xsd:documentation>
+            <xsd:documentation xml:lang="en">Contract will strike off this initial level.</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
         <xsd:element name="closingLevel" type="xsd:boolean">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">If true this contract will strike off the closing level of the default exchange traded contract</xsd:documentation>
+            <xsd:documentation xml:lang="en">If true this contract will strike off the closing level of the default exchange traded contract.</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
         <xsd:element name="expiringLevel" type="xsd:boolean">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">If true this contract will strike off the expiring level of the default exchange traded contract</xsd:documentation>
+            <xsd:documentation xml:lang="en">If true this contract will strike off the expiring level of the default exchange traded contract.</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
       </xsd:choice>
       <xsd:element name="expectedN" type="xsd:positiveInteger" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Expected number of trading days</xsd:documentation>
+          <xsd:documentation xml:lang="en">Expected number of trading days.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -217,12 +217,12 @@
   </xsd:complexType>
   <xsd:complexType name="CompoundingRate">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type defining a compounding rate. The compounding interest can either point back to the interest calculation node on the Interest Leg, or be defined specifically.</xsd:documentation>
+      <xsd:documentation xml:lang="en">A type defining a compounding rate. The compounding interest can either point back to the floating rate calculation of interest calculation node on the Interest Leg, or be defined specifically.</xsd:documentation>
     </xsd:annotation>
     <xsd:choice>
-      <xsd:element name="interestLegRate" type="InterestCalculationReference">
+      <xsd:element name="interestLegRate" type="FloatingRateCalculationReference">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Reference to the interest calculation node on the Interest Leg.</xsd:documentation>
+          <xsd:documentation xml:lang="en">Reference to the floating rate calculation of interest calculation node on the Interest Leg.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="specificRate" type="InterestAccrualsMethod">
@@ -234,29 +234,29 @@
   </xsd:complexType>
   <xsd:complexType name="Correlation">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type describing the correlation amount of a correlation swap</xsd:documentation>
+      <xsd:documentation xml:lang="en">A type describing the correlation amount of a correlation swap.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="CalculationFromObservation">
         <xsd:sequence>
           <xsd:element name="notionalAmount" type="Money">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">Notional amount, which is a cash multiplier</xsd:documentation>
+              <xsd:documentation xml:lang="en">Notional amount, which is a cash multiplier.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
           <xsd:element name="correlationStrikePrice" type="CorrelationValue">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">Correlation Strike Price</xsd:documentation>
+              <xsd:documentation xml:lang="en">Correlation Strike Price.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
           <xsd:element name="boundedCorrelation" type="BoundedCorrelation" minOccurs="0">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">Bounded Correlation</xsd:documentation>
+              <xsd:documentation xml:lang="en">Bounded Correlation.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
           <xsd:element name="numberOfDataSeries" type="xsd:positiveInteger" minOccurs="0">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">Number of data series, normal market practice is that correlation data sets are drawn from geographic market areas, such as America, Europe and Asia Pacific, each of these geographic areas will have its own data series to avoid contagion</xsd:documentation>
+              <xsd:documentation xml:lang="en">Number of data series, normal market practice is that correlation data sets are drawn from geographic market areas, such as America, Europe and Asia Pacific, each of these geographic areas will have its own data series to avoid contagion.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
         </xsd:sequence>
@@ -363,7 +363,7 @@
         <xsd:sequence>
           <xsd:element name="legIdentifier" type="LegIdentifier" minOccurs="0" maxOccurs="unbounded">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">Version aware identification of this leg</xsd:documentation>
+              <xsd:documentation xml:lang="en">Version aware identification of this leg.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
           <xsd:group ref="PayerReceiver.model" />
@@ -671,6 +671,16 @@
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:complexType name="FloatingRateCalculationReference">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Reference to a floating rate calculation of interest calculation component.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Reference">
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="floatingRateCalculation" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
   <xsd:complexType name="IndexAdjustmentEvents">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Defines the specification of the consequences of Index Events as defined by the 2002 ISDA Equity Derivatives Definitions.</xsd:documentation>
@@ -715,16 +725,6 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="InterestCalculationReference">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">Reference to an interest calculation component.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:complexContent>
-      <xsd:extension base="Reference">
-        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="InterestCalculation" />
-      </xsd:extension>
-    </xsd:complexContent>
-  </xsd:complexType>
   <xsd:complexType name="InterestLeg">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A type describing the fixed income leg of the equity swap.</xsd:documentation>
@@ -754,7 +754,7 @@
           </xsd:element>
           <xsd:element name="stubCalculationPeriod" type="StubCalculationPeriod" minOccurs="0">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">Specifies the stub calculation period</xsd:documentation>
+              <xsd:documentation xml:lang="en">Specifies the stub calculation period.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
         </xsd:sequence>
@@ -825,7 +825,7 @@
       </xsd:element>
       <xsd:element name="fixingDates" type="AdjustableDatesOrRelativeDateOffset" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Specifies the fixing date relative to the reset date in terms of a business days offset, or by providing a series of adjustable dates</xsd:documentation>
+          <xsd:documentation xml:lang="en">Specifies the fixing date relative to the reset date in terms of a business days offset, or by providing a series of adjustable dates.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -1053,7 +1053,7 @@
       </xsd:element>
       <xsd:element name="indexDisclaimer" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">If present and true, then index disclaimer is applicable</xsd:documentation>
+          <xsd:documentation xml:lang="en">If present and true, then index disclaimer is applicable.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="additionalAcknowledgements" type="xsd:boolean">
@@ -1215,7 +1215,7 @@
       </xsd:element>
       <xsd:element name="paymentType" type="PaymentType" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Classification of the payment</xsd:documentation>
+          <xsd:documentation xml:lang="en">Classification of the payment.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -1381,19 +1381,19 @@
     <xsd:choice>
       <xsd:element name="dateRelativeTo" type="DateReference">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Reference to a date defined elswhere in the document</xsd:documentation>
+          <xsd:documentation xml:lang="en">Reference to a date defined elswhere in the document.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="adjustableDate" type="AdjustableDate">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Date from which early termination clause can be exercised</xsd:documentation>
+          <xsd:documentation xml:lang="en">Date from which early termination clause can be exercised.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:choice>
   </xsd:complexType>
   <xsd:complexType name="StubCalculationPeriod">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type describing the Stub Calculation Period</xsd:documentation>
+      <xsd:documentation xml:lang="en">A type describing the Stub Calculation Period.</xsd:documentation>
     </xsd:annotation>
     <xsd:choice>
       <xsd:annotation>
@@ -1408,7 +1408,7 @@
   </xsd:complexType>
   <xsd:complexType name="Variance">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type describing the variance amount of a variance swap</xsd:documentation>
+      <xsd:documentation xml:lang="en">A type describing the variance amount of a variance swap.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="CalculationFromObservation">
@@ -1479,19 +1479,41 @@
       <xsd:documentation xml:lang="en">DEPRECATED This element will be removed in the next FpML major version. Return Swap model should not be used for Variance Swaps, use the Variance Swap Product. The variance leg of the return swap.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
+  <xsd:group name="EquityUnderlyerProvisions.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A group containing Equity Underlyer provisions.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="multipleExchangeIndexAnnexFallback" type="xsd:boolean" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Used for specifying whether additional annex terms for trades with underlyers that are listed on multiple exchanges, as defined in the European Master Confirmation, will apply.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="localJurisdiction" type="Country" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="relevantJurisdiction" type="Country" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Relevent Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties and similar charges that would be imposed by the taxing authority of the Country of Underlyer on a Hypothetical Broker Dealer assuming the Applicable Hedge Positions are held by its office in the Relevant Jurisdiction. If this element is not present Relevant Jurisdiction is Not Applicable.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
   <xsd:group name="Feature.model">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A group containing Swap and Derivative features</xsd:documentation>
+      <xsd:documentation xml:lang="en">A group containing Swap and Derivative features.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
       <xsd:element name="feature" type="OptionFeatures" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Asian, Barrier, Knock and Pass Through features</xsd:documentation>
+          <xsd:documentation xml:lang="en">Asian, Barrier, Knock and Pass Through features.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="fxFeature" type="FxFeature" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Quanto, Composite, or Cross Currency FX features</xsd:documentation>
+          <xsd:documentation xml:lang="en">Quanto, Composite, or Cross Currency FX features.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>

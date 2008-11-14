@@ -138,7 +138,8 @@
       <calculationAgentBusinessCenter>USNY</calculationAgentBusinessCenter>
       <documentation>
          <masterAgreement>
-            <masterAgreementType>ISDA1992</masterAgreementType>
+            <masterAgreementType>ISDA</masterAgreementType>
+            <masterAgreementVersion>1992</masterAgreementVersion>
          </masterAgreement>
          <contractualDefinitions>ISDA2003Credit</contractualDefinitions>
          <contractualTermsSupplement>

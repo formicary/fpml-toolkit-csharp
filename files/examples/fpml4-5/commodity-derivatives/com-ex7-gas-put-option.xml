@@ -36,21 +36,17 @@
          <calculationPeriodsSchedule id="CalculationPeriods">
             <periodMultiplier>1</periodMultiplier>
             <period>M</period>
+            <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
          </calculationPeriodsSchedule>
          <pricingDates>
             <calculationPeriodsReference href="CalculationPeriods"/>
             <dayType>ScheduledTradingDay</dayType>
             <dayDistribution>Penultimate</dayDistribution>
-            <dateAdjustments>
-               <businessDayConvention>NONE</businessDayConvention>
-            </dateAdjustments>
+            <businessCalendar>NYMEX</businessCalendar>
          </pricingDates>
          <notionalQuantity>
             <quantityUnit>MMBTU</quantityUnit>
-            <quantityFrequency>
-               <periodMultiplier>1</periodMultiplier>
-               <period>M</period>
-            </quantityFrequency>
+            <quantityFrequency>PerCalculationPeriod</quantityFrequency>
             <quantity>1500000</quantity>
          </notionalQuantity>
          <totalNotionalQuantity>1500000</totalNotionalQuantity>

@@ -76,7 +76,7 @@
                <fixingDates>
                   <periodMultiplier>1</periodMultiplier>
                   <period>D</period>
-                  <dayType>Business</dayType>
+                  <dayType>Calendar</dayType>
                   <businessDayConvention>FOLLOWING</businessDayConvention>
                   <businessCenters>
                      <businessCenter>BRRJ</businessCenter>
@@ -231,7 +231,7 @@
       <calculationAgentBusinessCenter>USNY</calculationAgentBusinessCenter>
       <documentation>
          <masterAgreement>
-            <masterAgreementType masterAgreementTypeScheme="http://www.swapswire.com/spec/2001/master-agreement-type-1-0">ISDA</masterAgreementType>
+            <masterAgreementType>ISDA</masterAgreementType>
          </masterAgreement>
          <contractualDefinitions>ISDA2000</contractualDefinitions>
       </documentation>

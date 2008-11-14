@@ -47,9 +47,9 @@
             <underlyer>
                <singleUnderlyer>
                   <equity>
-                     <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">ZEE.NS</instrumentId>
+                     <instrumentId instrumentIdScheme="http://www.abc.com/instrumentId">ZEE.NS</instrumentId>
                      <description>ZEE</description>
-                     <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">NationalStockExchange</exchangeId>
+                     <exchangeId exchangeIdScheme="http://www.abc.com/exchangeId">NationalStockExchange</exchangeId>
                   </equity>
                   <openUnits>31000</openUnits>
                   <dividendPayout>
@@ -211,7 +211,8 @@
       </calculationAgent>
       <documentation>
          <masterAgreement>
-            <masterAgreementType>ISDA2002</masterAgreementType>
+            <masterAgreementType>ISDA</masterAgreementType>
+            <masterAgreementVersion>2002</masterAgreementVersion>
          </masterAgreement>
          <contractualDefinitions>ISDA2000</contractualDefinitions>
          <contractualDefinitions>ISDA2002Equity</contractualDefinitions>

@@ -94,6 +94,7 @@
 		<addRule name="ird-57"/>
 		<addRule name="ird-58"/>
 		<addRule name="ird-59"/>
+		<addRule name="ird-60"/>
 	</ruleSet>
 	
 	<ruleSet name="CdsRules">

@@ -144,7 +144,8 @@
       </varianceSwapTransactionSupplement>
       <documentation>
          <masterAgreement>
-            <masterAgreementType>ISDA2002</masterAgreementType>
+            <masterAgreementType>ISDA</masterAgreementType>
+            <masterAgreementVersion>2002</masterAgreementVersion>
          </masterAgreement>
       </documentation>
       <governingLaw>GBEN</governingLaw>
