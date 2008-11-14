@@ -498,6 +498,14 @@ namespace HandCoded.FpML.Validation
 		public static readonly Rule	RULE59
 			= new DelegatedRule ("ird-59", new RuleDelegate (Rule59));
 
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures when the calculation period is "1T"
+		/// the roll convention is a "NONE".
+		/// </summary>
+		/// <remarks>Applies to all FpML releases.</remarks>
+		public static readonly Rule	RULE60
+			= new DelegatedRule ("ird-60", new RuleDelegate (Rule60));
+
 		// --------------------------------------------------------------------
 
 		/// <summary>
@@ -1229,6 +1237,9 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule25 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+			if (nodeIndex.HasTypeInformation) 
+				return (Rule25 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "Schedule"), errorHandler));					
+
 			return (
 				  Rule25 (name, nodeIndex.GetElementsByName ("feeRateSchedule"), errorHandler)
 				& Rule25 (name, nodeIndex.GetElementsByName ("floatingRateMultiplierSchedule"), errorHandler)
@@ -2312,22 +2323,14 @@ namespace HandCoded.FpML.Validation
 				XmlElement	convention	= XPath.Path (context, "rollConvention");
 				XmlElement	period		= XPath.Path (context, "period");
 
-				if ((convention == null) || (period == null) ||
-					Implies (
-						Not (
-							Or (
-                                IsWeekDayName (ToToken (convention)),
-								Or (
-									Equal (convention, "NONE"),
-									Equal (convention, "SFE")))),
-						Or (
-							Equal (period, "M"),
-							Equal (period, "Y"))))
-					continue;
+				if ((convention == null) || (period == null)
+					|| !(Equal (period, "M") || Equal (period, "Y"))) continue;
+
+				if (!IsWeeklyRollConvention (ToToken (convention))) continue;
 
 				errorHandler ("305", context,
-					"Calculation period frequency roll convention '" + convention.InnerText.Trim () +
-					"' is inconsistent with the calculation period '" + period.InnerText.Trim () + "'",
+					"Calculation period frequency roll convention '" + ToToken (convention) +
+					"' is inconsistent with the calculation period '" + ToToken (period) + "'",
 					name, null);
 				
 				result = false;	
@@ -2345,15 +2348,13 @@ namespace HandCoded.FpML.Validation
 				XmlElement	convention	= XPath.Path (context, "rollConvention");
 				XmlElement	period		= XPath.Path (context, "period");
 
-				if ((convention == null) || (period == null) ||
-					Implies (
-                        IsWeekDayName (ToToken (convention)),
-						Equal (period, "W")))
-					continue;
+				if ((convention == null) || (period == null) || !Equal (period, "W")) continue;
+
+				if (IsWeeklyRollConvention (ToToken (convention))) continue;
 
 				errorHandler ("305", context,
-					"Calculation period frequency roll convention '" + convention.InnerText.Trim () +
-					"' is inconsistent with the calculation period '" + period.InnerText.Trim () + "'",
+					"Calculation period frequency roll convention '" + ToToken (convention) +
+					"' is inconsistent with the calculation period '" + ToToken (period) + "'",
 					name, null);
 				
 				result = false;
@@ -2387,6 +2388,30 @@ namespace HandCoded.FpML.Validation
 
 					result = false;
 				}
+			}
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule60 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			bool		result	= true;
+
+			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodFrequency")) {
+				XmlElement	convention	= XPath.Path (context, "rollConvention");
+				XmlElement	period		= XPath.Path (context, "period");
+
+				if ((convention == null) || (period == null) || !Equal (period, "T")) continue;
+
+				if (Equal (convention, "NONE")) continue;
+
+				errorHandler ("305", context,
+					"Calculation period frequency roll convention '" + ToToken (convention) +
+					"' is inconsistent with the calculation period '" + ToToken (period) + "'",
+					name, null);
+				
+				result = false;
 			}
 			return (result);
 		}
@@ -2433,6 +2458,18 @@ namespace HandCoded.FpML.Validation
 			if (name.Equals ("SUN")) return (true);
 
 			return (false);
+		}
+
+		/// <summary>
+		/// Determines if a string value contains a code that can be used as a
+		/// weekly roll convention.
+		/// </summary>
+		/// <param name="code">The code value to be tested.</param>
+		/// <returns><c>true</c> if the string matches a recognized weekly
+		/// roll convention.</returns>
+		private static bool IsWeeklyRollConvention (string code)
+		{
+			return (IsWeekDayName (code) || code.Equals ("NONE") || code.Equals ("SFE"));
 		}
 
 		/// <summary>
