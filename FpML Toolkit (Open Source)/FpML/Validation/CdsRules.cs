@@ -1153,7 +1153,17 @@ namespace HandCoded.FpML.Validation
 					if (!IsSingleName (context)) continue;
 
 					result &=
-						  Rule21 (name, context, XPath.Path (context, "cashSettlementTerms"), errorHandler)
+						  Rule21 (name, context, XPath.Path (context, "cashSettlementTerms", "settlementCurrency"), errorHandler)
+						& Rule21 (name, context, XPath.Path (context, "cashSettlementTerms", "valuationDate"), errorHandler)
+						& Rule21 (name, context, XPath.Path (context, "cashSettlementTerms", "valuationTime"), errorHandler)
+						& Rule21 (name, context, XPath.Path (context, "cashSettlementTerms", "quotationMethod"), errorHandler)
+						& Rule21 (name, context, XPath.Path (context, "cashSettlementTerms", "quotationAmount"), errorHandler)
+						& Rule21 (name, context, XPath.Path (context, "cashSettlementTerms", "minimumQuotationAmount"), errorHandler)
+						& Rule21 (name, context, XPath.Path (context, "cashSettlementTerms", "dealer"), errorHandler)
+						& Rule21 (name, context, XPath.Path (context, "cashSettlementTerms", "cashSettlementBusinessDays"), errorHandler)
+						& Rule21 (name, context, XPath.Path (context, "cashSettlementTerms", "accruedInterest"), errorHandler)
+						& Rule21 (name, context, XPath.Path (context, "cashSettlementTerms", "valuationMethod"), errorHandler)
+						& Rule21 (name, context, XPath.Path (context, "physicalSettlementTerms"), errorHandler)
 						& Rule21 (name, context, XPath.Path (context, "feeLeg", "periodicPayment", "fixedAmountCalculation", "calculationAmount"), errorHandler)
 						& Rule21 (name, context, XPath.Path (context, "feeLeg", "periodicPayment", "fixedAmountCalculation", "dayCountFraction"), errorHandler)
 						& Rule21 (name, context, XPath.Path (context, "protectionTerms", "obligations"), errorHandler)
