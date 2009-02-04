@@ -47,7 +47,7 @@
          <interestRate>0.04</interestRate>
          <margin>0.03</margin>
          <allInRate>0.07</allInRate>
-         <interestDayBasis>ACT/ACT</interestDayBasis>
+         <interestDayBasis>ACT/ACT.ISDA</interestDayBasis>
          <tenor>
             <periodMultiplier>2</periodMultiplier>
             <period>D</period>

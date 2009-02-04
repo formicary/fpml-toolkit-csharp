@@ -1,2 +1,2 @@
-Validate -schemaOnly files/examples/fpml5-0/confirmation/credit-derivatives/*.xml files/examples/fpml5-0/confirmation/equity-options/*.xml files/examples/fpml5-0/confirmation/equity-forwards/*.xml files/examples/fpml5-0/confirmation/equity-swaps/*.xml files/examples/fpml5-0/confirmation/variance-swaps/*.xml files/examples/fpml5-0/confirmation/fx-derivatives/*.xml files/examples/fpml5-0/confirmation/inflation-swaps/*.xml
+Validate -schemaOnly files/examples/fpml5-0
 pause

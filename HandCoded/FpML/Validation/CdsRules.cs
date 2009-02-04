@@ -699,13 +699,16 @@ namespace HandCoded.FpML.Validation
 			bool			result	= true;
 
 			foreach (XmlElement context in nodeIndex.GetElementsByName ("generalTerms")) {
-				if (NotEqual (context ["buyerPartyReference"].GetAttribute ("href"),
-							  context ["sellerPartyReference"].GetAttribute ("href")))
+                XmlElement  buyer   = context ["buyerPartyReference"];
+                XmlElement  seller  = context ["sellerPartyReference"];
+
+				if ((buyer == null) || (seller == null) ||
+                    NotEqual (buyer.GetAttribute ("href"), seller.GetAttribute ("href")))
 					continue;
 
 				errorHandler ("305", context,
 					"Buyer party reference is equal to seller party reference",
-					name, context ["sellerPartyReference"].GetAttribute ("href"));
+					name, seller.GetAttribute ("href"));
 
 				result = false;
 			}

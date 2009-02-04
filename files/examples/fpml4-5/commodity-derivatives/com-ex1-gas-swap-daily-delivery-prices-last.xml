@@ -72,7 +72,7 @@
                <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
             </calculationPeriodsSchedule>
             <commodity>
-               <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/commodity-reference-price">NATURAL GAS-HENRY HUB-NYMEX</instrumentId>
+               <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/commodity-reference-price-1-0">NATURAL GAS-HENRY HUB-NYMEX</instrumentId>
                <specifiedPrice>Settlement</specifiedPrice>
                <deliveryDates>FirstNearby</deliveryDates>
             </commodity>
@@ -87,7 +87,7 @@
                   <calculationPeriodsScheduleReference href="floatingLegCalculationPeriods"/>
                   <dayType>CommodityBusiness</dayType>
                   <dayDistribution>Last</dayDistribution>
-                  <businessCalendar>NYMEX</businessCalendar>
+                  <businessCalendar>NYMEX-NATURAL-GAS</businessCalendar>
                </pricingDates>
             </calculation>
             <relativePaymentDates>

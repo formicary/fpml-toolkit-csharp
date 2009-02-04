@@ -72,7 +72,7 @@
                <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
             </calculationPeriodsSchedule>
             <commodity>
-               <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2008/commodity-reference-price-1-0">NATURAL GAS-AECO C/NIT (US$/MMBTU)-CANADIAN GAS PRICE REPORTER</instrumentId>
+               <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/commodity-reference-price-1-0">NATURAL GAS-AECO C/NIT (US$/MMBTU)-CANADIAN GAS REPORTER</instrumentId>
                <specifiedPrice>MeanOfHighAndLow</specifiedPrice>
             </commodity>
             <notionalQuantity>

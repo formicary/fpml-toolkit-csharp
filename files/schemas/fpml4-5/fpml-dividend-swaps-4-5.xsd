@@ -14,16 +14,7 @@
     <xsd:complexContent>
       <xsd:extension base="DirectionalLegUnderlyer">
         <xsd:sequence>
-          <xsd:element name="declaredCashDividendPercentage" type="NonNegativeDecimal" minOccurs="0">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">Declared Cash Dividend Percentage.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
-          <xsd:element name="declaredCashEquivalentDividendPercentage" type="NonNegativeDecimal" minOccurs="0">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">Declared Cash Equivalent Dividend Percentage.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
+          <xsd:group ref="DeclaredCashAndCashEquivalentDividendPercentage" />
           <xsd:element name="dividendPeriod" type="DividendPeriodPayment" maxOccurs="unbounded">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">One to many time bounded dividend payment periods, each with a fixed strike and dividend payment date per period.</xsd:documentation>

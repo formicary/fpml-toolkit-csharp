@@ -1,2 +1,2 @@
-Validate files\examples\fpml1-0\*.xml
+Validate files\examples\fpml1-0
 pause

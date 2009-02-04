@@ -109,8 +109,7 @@
                         <businessCenter>GBLO</businessCenter>
                      </businessCenters>
                      <dateRelativeToPaymentDates>
-                        <paymentDatesReference href="PaymentDatesID"/>
-                        <paymentDatesReference href="PrincipalExchanges"/>
+                        <paymentDatesReference href="PaymentDatesID"/><!--violates rule ref-11--><!--paymentDatesReference href="PrincipalExchanges"/-->
                      </dateRelativeToPaymentDates>
                   </fxFixingDate>
                   <settlementRateOption>KRW.KFTC18/KRW02</settlementRateOption>

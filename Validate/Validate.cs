@@ -84,6 +84,7 @@ namespace Validate
 			XmlUtility.DefaultSchemaSet.Add (Releases.R4_3);
 			XmlUtility.DefaultSchemaSet.Add (Releases.R4_4);
 			XmlUtility.DefaultSchemaSet.Add (Releases.R4_5);
+			XmlUtility.DefaultSchemaSet.Add (Releases.R4_6);
 
 			XmlUtility.DefaultSchemaSet.Add (Releases.R5_0_PRETRADE);
 			XmlUtility.DefaultSchemaSet.Add (Releases.R5_0_CONFIRMATION);

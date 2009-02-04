@@ -43,7 +43,7 @@
                <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
             </calculationPeriodsSchedule>
             <commodity>
-               <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2008/commodity-reference-price-1-0">NATURAL GAS-HENRY HUB-NYMEX</instrumentId>
+               <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/commodity-reference-price-1-0">NATURAL GAS-HENRY HUB-NYMEX</instrumentId>
                <specifiedPrice>Settlement</specifiedPrice>
                <deliveryDates>FirstNearby</deliveryDates>
             </commodity>
@@ -58,7 +58,7 @@
                   <calculationPeriodsScheduleReference href="floatingLeg1CalculationPeriods"/>
                   <dayType>CommodityBusiness</dayType>
                   <dayDistribution>Last</dayDistribution>
-                  <businessCalendar>NYMEX</businessCalendar>
+                  <businessCalendar>NYMEX-NATURAL-GAS</businessCalendar>
                </pricingDates>
                <spread>
                   <currency>USD</currency>
@@ -81,7 +81,7 @@
             <receiverPartyReference href="partyA"/>
             <calculationPeriodsScheduleReference href="floatingLeg1CalculationPeriods"/>
             <commodity>
-               <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2008/commodity-reference-price-1-0">ELECTRICITY-MID-COLUMBIA FIRM (ON-PEAK)-DOW JONES POWER</instrumentId>
+               <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/commodity-reference-price-1-0">ELECTRICITY-MID-COLUMBIA FIRM (ON-PEAK)-DOW JONES POWER</instrumentId>
                <specifiedPrice>MeanOfHighAndLow</specifiedPrice>
                <settlementPeriod>
                   <duration>Hourly</duration>

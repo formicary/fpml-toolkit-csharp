@@ -78,7 +78,7 @@
                </interestLegPaymentDates><!-- end: Example use of suggested FpML change re roll convention in interestLeg -->
             </interestLegCalculationPeriodDates>
             <notional>
-               <amountRelativeTo href="equityNotionalAmount"/>
+               <relativeNotionalAmount href="equityNotionalAmount"/>
             </notional>
             <interestAmount>
                <paymentCurrency href="equityPaymentCurrency"/>
@@ -91,9 +91,6 @@
                      <periodMultiplier>1</periodMultiplier>
                      <period>M</period>
                   </indexTenor>
-                  <spreadSchedule>
-                     <initialValue>0.0</initialValue>
-                  </spreadSchedule>
                </floatingRateCalculation>
                <dayCountFraction>ACT/360</dayCountFraction>
             </interestCalculation>
@@ -191,8 +188,8 @@
                   </paymentDateFinal>
                </paymentDates>
             </rateOfReturn>
-            <notional id="equityNotionalAmount">
-               <notionalAmount>
+            <notional>
+               <notionalAmount id="equityNotionalAmount">
                   <currency>EUR</currency>
                   <amount>300000.0</amount>
                </notionalAmount>

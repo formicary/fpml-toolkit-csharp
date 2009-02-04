@@ -72,7 +72,7 @@
                <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
             </calculationPeriodsSchedule>
             <commodity>
-               <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2008/commodity-reference-price-1-0">ELECTRICITY-MID-COLUMBIA FIRM (ON-PEAK)-DOW JONES POWER</instrumentId>
+               <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/commodity-reference-price-1-0">ELECTRICITY-MID-COLUMBIA FIRM (ON-PEAK)-DOW JONES POWER</instrumentId>
                <specifiedPrice>Index</specifiedPrice>
                <settlementPeriod>
                   <duration>Hourly</duration>

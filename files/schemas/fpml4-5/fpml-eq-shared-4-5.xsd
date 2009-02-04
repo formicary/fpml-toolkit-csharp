@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2008/FpML-4-5" xmlns:fpml="http://www.fpml.org/2008/FpML-4-5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2008/FpML-4-5" version="$Revision: 4946 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2008/FpML-4-5" xmlns:fpml="http://www.fpml.org/2008/FpML-4-5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2008/FpML-4-5" version="$Revision: 5453 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-option-shared-4-5.xsd" />
   <xsd:complexType name="AdditionalDisruptionEvents">
     <xsd:annotation>
@@ -430,6 +430,123 @@
           <xsd:documentation xml:lang="en">A single Dividend Adjustment Period.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DividendConditions">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A type describing the conditions governing the payment of dividends to the receiver of the equity return. With the exception of the dividend payout ratio, which is defined for each of the underlying components.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="dividendReinvestment" type="xsd:boolean" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Boolean element that defines whether the dividend will be reinvested or not.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="dividendEntitlement" type="DividendEntitlementEnum" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Defines the date on which the receiver on the equity return is entitled to the dividend.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="dividendAmount" type="DividendAmountTypeEnum" minOccurs="0" />
+      <xsd:element name="dividendPaymentDate" type="DividendPaymentDate" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Specifies when the dividend will be paid to the receiver of the equity return. Has the meaning as defined in the ISDA 2002 Equity Derivatives Definitions. Is not applicable in the case of a dividend reinvestment election.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="dividendPeriodEffectiveDate" type="DateReference" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Dividend period has the meaning as defined in the ISDA 2002 Equity Derivatives Definitions. This element specifies the date on which the dividend period will commence.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="dividendPeriodEndDate" type="DateReference" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Dividend period has the meaning as defined in the ISDA 2002 Equity Derivatives Definitions. This element specifies the date on which the dividend period will end. It includes a boolean attribute for defining whether this end date is included or excluded from the dividend period.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <xsd:element name="dividendPeriod" type="DividendPeriodEnum">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines the First Period or the Second Period, as defined in the 2002 ISDA Equity Derivatives Definitions.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
+      <xsd:element name="extraOrdinaryDividends" type="PartyReference" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Reference to the party which determines if dividends are extraordinary in relation to normal levels.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="excessDividendAmount" type="DividendAmountTypeEnum" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Determination of Gross Cash Dividend per Share</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:choice minOccurs="0">
+        <xsd:element name="currency" type="Currency">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="determinationMethod" type="DeterminationMethod">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Specifies the method according to which an amount or a date is determined.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="currencyReference" type="IdentifiedCurrencyReference">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
+      <xsd:element name="paymentCurrency" type="PaymentCurrency" minOccurs="0" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="The model is wrong since it has an intradocument reference that is not clear. Current PaymentCurrency model and elements using this type are deprecated. Instead, the choice above between currency, determinationMethod, and currencyReference (of type CurrencyReference) should be used.">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">DEPRECATED. Currency in which the payment relating to the leg amount (equity amount or interest amount) or the dividend will be denominated.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="dividendFxTriggerDate" type="DividendPaymentDate" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Specifies the date on which the FX rate will be considered in the case of a Composite FX swap.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="interestAccrualsMethod" type="InterestAccrualsCompoundingMethod" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Defines the way in which interests are accrued: the applicable rate (fixed or floating reference) and the compounding method.</xsd:documentation>
+          <xsd:documentation xml:lang="en">FpML entity</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="numberOfIndexUnits" type="NonNegativeDecimal" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Defines the Number Of Index Units applicable to a Dividend.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:group ref="DeclaredCashAndCashEquivalentDividendPercentage" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DividendPaymentDate">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A type describing the date on which the dividend will be paid/received. This type is also used to specify the date on which the FX rate will be determined, when applicable.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:sequence>
+          <xsd:element name="dividendDateReference" type="DividendDateReferenceEnum">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Specification of the dividend date using an enumeration, with values such as the pay date, the ex date or the record date.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="paymentDateOffset" type="Offset" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Only to be used when SharePayment has been specified in the dividendDateReference element. The number of Currency Business Days following the day on which the Issuer of the Shares pays the relevant dividend to holders of record of the Shares.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <xsd:element name="adjustableDate" type="AdjustableDate">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">A date that shall be subject to adjustment if it would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="DividendPeriod" abstract="true">
@@ -1338,9 +1455,19 @@
       <xsd:documentation xml:lang="en">Specifies the notional of return type swap. When used in the equity leg, the definition will typically combine the actual amount (using the notional component defined by the FpML industry group) and the determination method. When used in the interest leg, the definition will typically point to the definition of the equity leg.</xsd:documentation>
     </xsd:annotation>
     <xsd:choice>
-      <xsd:element name="amountRelativeTo" type="AmountReference">
+      <xsd:element name="amountRelativeTo" type="AmountReference" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="amountRelativeTo should not be used to the return swap notional, use the relativeNotionalAmount or relativeDeterminationMethod.">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Reference to an amount defined elsewhere in this document.</xsd:documentation>
+          <xsd:documentation xml:lang="en">DEPRECATED This element will be removed in the next FpML major version. A reference to the return swap notional defined elsewhere in this document.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="relativeNotionalAmount" type="ReturnSwapNotionalAmountReference">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A reference to the return swap notional amount defined elsewhere in this document.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="relativeDeterminationMethod" type="DeterminationMethodReference">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A reference to the return swap notional determination method defined elsewhere in this document.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="determinationMethod" type="DeterminationMethod">
@@ -1348,7 +1475,7 @@
           <xsd:documentation xml:lang="en">Specifies the method according to which an amount or a date is determined.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="notionalAmount" type="Money">
+      <xsd:element name="notionalAmount" type="NotionalAmount">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The notional amount.</xsd:documentation>
         </xsd:annotation>
@@ -1479,6 +1606,23 @@
       <xsd:documentation xml:lang="en">DEPRECATED This element will be removed in the next FpML major version. Return Swap model should not be used for Variance Swaps, use the Variance Swap Product. The variance leg of the return swap.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
+  <xsd:group name="DeclaredCashAndCashEquivalentDividendPercentage">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en" />
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="declaredCashDividendPercentage" type="NonNegativeDecimal" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Declared Cash Dividend Percentage.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="declaredCashEquivalentDividendPercentage" type="NonNegativeDecimal" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Declared Cash Equivalent Dividend Percentage.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
   <xsd:group name="EquityUnderlyerProvisions.model">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A group containing Equity Underlyer provisions.</xsd:documentation>

@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2008/FpML-4-5" xmlns:fpml="http://www.fpml.org/2008/FpML-4-5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2008/FpML-4-5" version="$Revision: 4935 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2008/FpML-4-5" xmlns:fpml="http://www.fpml.org/2008/FpML-4-5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2008/FpML-4-5" version="$Revision: 5148 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-shared-4-5.xsd" />
   <xsd:complexType name="ActualPrice">
     <xsd:sequence>
@@ -1231,11 +1231,23 @@
         </xsd:annotation>
       </xsd:element>
       <xsd:sequence minOccurs="0">
-        <xsd:element name="deliveryDates" type="DeliveryDatesEnum">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">The Delivery Dates applicable for a Commodity Transaction that references a listed future.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
+        <xsd:choice>
+          <xsd:element name="deliveryDates" type="DeliveryDatesEnum">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The Delivery Date is a NearbyMonth, for use when the Commodity Transaction references Futures Contract.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="deliveryDate" type="AdjustableDate">
+            <xsd:annotation>
+              <xsd:documentation>The Delivery Date is a fixed, single day.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="deliveryDateYearMonth" type="xsd:gYearMonth">
+            <xsd:annotation>
+              <xsd:documentation>The Delivery Date is a fixed, single month.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:choice>
         <xsd:element name="deliveryDateRollConvention" type="Offset" minOccurs="0">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Specifies, for a Commodity Transaction that references a listed future via the deliveryDates element, the day on which the specified future will roll to the next nearby month when the referenced future expires. If the future will not roll at all - i.e. the price will be taken from the expiring contract, 0 should be specified here. If the future will roll to the next nearby on the last trading day - i.e. the price will be taken from the next nearby on the last trading day, then 1 should be specified and so on.</xsd:documentation>

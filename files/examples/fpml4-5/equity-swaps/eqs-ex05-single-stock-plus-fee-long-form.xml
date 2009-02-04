@@ -112,8 +112,8 @@
                   </paymentDateFinal>
                </paymentDates>
             </rateOfReturn>
-            <notional id="EquityNotionalAmount">
-               <determinationMethod>Number of Shares * Initial Price</determinationMethod>
+            <notional>
+               <determinationMethod id="EquityNotionalAmount">Number of Shares * Initial Price</determinationMethod>
             </notional>
             <amount>
                <paymentCurrency href="ReferenceCurrency"/>
@@ -178,7 +178,7 @@
                </interestLegPaymentDates>
             </interestLegCalculationPeriodDates>
             <notional>
-               <amountRelativeTo href="EquityNotionalAmount"/>
+               <relativeDeterminationMethod href="EquityNotionalAmount"/>
             </notional>
             <interestAmount>
                <paymentCurrency href="ReferenceCurrency"/>

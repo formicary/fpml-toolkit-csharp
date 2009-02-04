@@ -149,8 +149,8 @@
                   </paymentDateFinal>
                </paymentDates>
             </rateOfReturn>
-            <notional id="NotionalAmount">
-               <notionalAmount>
+            <notional>
+               <notionalAmount id="NotionalAmount">
                   <currency>USD</currency>
                   <amount>5591987.41</amount>
                </notionalAmount>
@@ -221,7 +221,7 @@
                </interestLegPaymentDates>
             </interestLegCalculationPeriodDates>
             <notional>
-               <amountRelativeTo href="NotionalAmount"/>
+               <relativeNotionalAmount href="NotionalAmount"/>
             </notional>
             <interestAmount>
                <paymentCurrency href="ReferenceCurrency"/>

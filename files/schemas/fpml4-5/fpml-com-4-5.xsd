@@ -101,7 +101,7 @@
           <xsd:documentation xml:lang="en">Specifies whether or not Written Confirmation applies to a Commodity Option Transaction.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="settlementCurrency" type="Currency">
+      <xsd:element name="settlementCurrency" type="IdentifiedCurrency">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The currency into which the Commodity Option Transaction will settle. If this is not the same as the currency in which the Commodity Reference Price is quoted, then an FX determination method should also be specified.</xsd:documentation>
         </xsd:annotation>
@@ -124,11 +124,23 @@
       <xsd:documentation xml:lang="en">The Fixed Price for a given Calculation Period during the life of the trade. There must be a Fixed Price step specified for each Calculation Period, regardless of whether the Fixed Price changes or remains the same between periods.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="fixedPriceStep" type="FixedPrice" maxOccurs="unbounded">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The Fixed Price for a given Calculation Period during the life of the trade. There must be a Fixed Price step specified for each Calculation Period, regardless of whether the Fixed Price changes or remains the same between periods.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
+      <xsd:choice>
+        <xsd:element name="fixedPriceStep" type="FixedPrice" maxOccurs="unbounded">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The Fixed Price for a given Calculation Period during the life of the trade. There must be a Fixed Price step specified for each Calculation Period, regardless of whether the Fixed Price changes or remains the same between periods.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="worldscaleRateStep" type="xsd:decimal" maxOccurs="unbounded">
+          <xsd:annotation>
+            <xsd:documentation>For a Wet Voyager Charter Freight Swap, the number of Worldscale Points for purposes of the calculation of a Fixed Amount for a given Calculation Period during the life of the trade. There must be Worldscale Rate Step specified for each Calculation Period, regardless of whether the Worldscale Rate Step changes or remains the same between periods.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="contractRateStep" type="NonNegativeMoney" maxOccurs="unbounded">
+          <xsd:annotation>
+            <xsd:documentation>For a DRY Voyage Charter or Time Charter Freight Swap, the price per relevant unit for pruposes of the calculation of a Fixed Amount for a given Calculation Period during the life of the trade. There must be Worldscale Rate Step specified for each Calculation Period, regardless of whether the Worldscale Rate Step changes or remains the same between periods.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
       <xsd:group ref="CommodityCalculationPeriodsPointer.model" />
     </xsd:sequence>
   </xsd:complexType>
@@ -157,6 +169,16 @@
           <xsd:documentation xml:lang="en">An alternative, or secondary, source for where the rate observation will occur. Will typically be either a page or a reference bank published rate.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
+      <xsd:element name="fxType" type="CommodityFxType" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A type to identify how the FX rate will be applied. This is intended to differentiate between the various methods for applying FX to the floating price such as a daily calculation, or averaging the FX and applying the average at the end of each CalculationPeriod.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="averagingMethod" type="AveragingMethodEnum" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The parties may specify a Method of Averaging when averaging of the FX rate is applicable.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
       <xsd:choice minOccurs="0">
         <xsd:element name="fixingTime" type="BusinessCenterTime">
           <xsd:annotation>
@@ -165,42 +187,30 @@
         </xsd:element>
         <xsd:sequence>
           <xsd:choice>
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">An Fx observation schedule may be specified as either a parameterised schedule reflecting the Calculation Periods on the trade, or else as a list of adjustable dates. In the case of specified observation dates, there must be a set of dates specified for each Calculation Period.</xsd:documentation>
-            </xsd:annotation>
             <xsd:element name="fxObservationDates" type="AdjustableDates" maxOccurs="unbounded">
               <xsd:annotation>
                 <xsd:documentation xml:lang="en">A list of the fx observation dates for a given Calculation Period.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
-            <xsd:element name="observationFrequency" type="CommodityFrequencyType" />
+            <xsd:sequence>
+              <xsd:sequence minOccurs="0">
+                <xsd:group ref="PricingDays.model">
+                  <xsd:annotation>
+                    <xsd:documentation xml:lang="en">The parties may specify the rules for FX observation when averaging of the FX rate is applicable.</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:group>
+                <xsd:group ref="LagOrReference.model" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:group ref="CommodityCalculationPeriodsPointer.model" />
+            </xsd:sequence>
           </xsd:choice>
           <xsd:element name="fixingTime" type="BusinessCenterTime" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">The time at which the spot currency exchange rate will be observed. It is specified as a time in a specific business center, e.g. 11:00am London time.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:group ref="CommodityCalculationPeriodsPointer.model" />
         </xsd:sequence>
       </xsd:choice>
-      <xsd:sequence>
-        <xsd:element name="fxType" type="CommodityFxType" minOccurs="0">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">A type to identify how the FX rate will be applied. This is intended to differentiate between the various methods for applying FX to the floating price such as a daily calculation, or averaging the FX and applying the average at the end of each CalculationPeriod.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-        <xsd:element name="averagingMethod" type="AveragingMethodEnum" minOccurs="0">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">The parties may specify a Method of Averaging when averaging of the FX rate is applicable.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-        <xsd:group ref="PricingDays.model" minOccurs="0">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">The parties may specify the rules for FX observation when averaging of the FX rate is applicable.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:group>
-      </xsd:sequence>
-      <xsd:group ref="LagOrReference.model" minOccurs="0" />
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="CommodityFxType">
@@ -209,7 +219,7 @@
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="Scheme">
-        <xsd:attribute name="commodityFxTypeScheme" type="xsd:anyURI" use="required" />
+        <xsd:attribute name="commodityFxTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/commodity-fx-type" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -308,6 +318,7 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="CommodityNotionalSchedule">
     <xsd:annotation>
@@ -321,6 +332,7 @@
       </xsd:element>
       <xsd:group ref="CommodityCalculationPeriodsPointer.model" />
     </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="CommodityOption">
     <xsd:annotation>
@@ -403,6 +415,7 @@
         </xsd:element>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="CommodityQuantityFrequency">
     <xsd:annotation>
@@ -431,6 +444,20 @@
         </xsd:annotation>
       </xsd:element>
       <xsd:group ref="BusinessCentersOrReference.model" minOccurs="0" />
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:ID" />
+  </xsd:complexType>
+  <xsd:complexType name="CommoditySpreadSchedule">
+    <xsd:annotation>
+      <xsd:documentation>The Spread per Calculation Period. There must be a Spread specified for each Calculation Period, regardless of whether the Spread changes or remains the same between periods.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="spreadStep" type="Money" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>The spread per Calculation Period. There must be a spread step specified for each Calculation Period, regardless of whether the spread changes or remains the same between periods.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:group ref="CommodityCalculationPeriodsPointer.model" />
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="CommodityStrikeSchedule">
@@ -463,7 +490,7 @@
               <xsd:documentation xml:lang="en">Specifies the termination date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the termination date of the other leg of the swap.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:element name="settlementCurrency" type="Currency">
+          <xsd:element name="settlementCurrency" type="IdentifiedCurrency">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">The currency into which the Commodity Swap Transaction will settle. If this is not the same as the currency in which the Commodity Reference Price is quoted on a given floating leg of the Commodity Swap Transaction, then an FX rate should also be specified for that leg.</xsd:documentation>
             </xsd:annotation>
@@ -507,6 +534,7 @@
       </xsd:element>
       <xsd:group ref="Price.model" />
     </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="FixedPriceLeg">
     <xsd:annotation>
@@ -518,19 +546,32 @@
           <xsd:group ref="PayerReceiver.model" />
           <xsd:group ref="CommodityCalculationPeriods.model" />
           <xsd:choice>
-            <xsd:element name="fixedPrice" type="FixedPrice">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Fixed price on which fixed payments are based.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:element>
             <xsd:element name="fixedPriceSchedule" type="CommodityFixedPriceSchedule">
               <xsd:annotation>
                 <xsd:documentation xml:lang="en">Allows the specification of a Fixed Price that varies over the life of the trade.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
+            <xsd:choice>
+              <xsd:element name="fixedPrice" type="FixedPrice">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">Fixed price on which fixed payments are based.</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element name="worldscaleRate" type="xsd:decimal">
+                <xsd:annotation>
+                  <xsd:documentation>For a WET Voyager Charter Commodity Swap, the number of Worldscale Points for purposes of the calculation of a Fixed Amount.</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element name="contractRate" type="NonNegativeMoney">
+                <xsd:annotation>
+                  <xsd:documentation>For a DRY Voyage Charter or Time Charter Commodity Swap, the price per relevant unit for pruposes of the calculation of a Fixed Amount.</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+            </xsd:choice>
           </xsd:choice>
           <xsd:group ref="CommodityNotionalQuantity.model" />
           <xsd:group ref="CommodityPaymentDates.model" />
+          <xsd:group ref="CommodityFreightFlatRate.model" minOccurs="0" />
         </xsd:sequence>
         <xsd:attribute name="id" type="xsd:ID" />
       </xsd:extension>
@@ -567,17 +608,11 @@
             <xsd:documentation xml:lang="en">The spread over or under the Commodity Reference Price for this leg of the trade. This element is intended to be used for basis trades.</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
-        <xsd:sequence>
+        <xsd:element name="spreadSchedule" type="CommoditySpreadSchedule" maxOccurs="unbounded">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">The spread per Calculation Period. There must be a spread step specified for each Calculation Period, regardless of whether the spread changes or remains the same between periods.</xsd:documentation>
+            <xsd:documentation xml:lang="en">The spread over or under the Commodity Reference Price for this leg of the trade for each Calculation Period. This element is intended to be used for basis trades.</xsd:documentation>
           </xsd:annotation>
-          <xsd:element name="spreadStep" type="Money" maxOccurs="unbounded">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">The spread over or under the Commodity Reference Price for this leg of the trade for a given Calculation Period.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
-          <xsd:group ref="CommodityCalculationPeriodsPointer.model" />
-        </xsd:sequence>
+        </xsd:element>
       </xsd:choice>
       <xsd:element name="fx" type="CommodityFx" minOccurs="0">
         <xsd:annotation>
@@ -607,20 +642,11 @@
             </xsd:annotation>
           </xsd:element>
           <xsd:group ref="CommodityPaymentDates.model" />
+          <xsd:group ref="CommodityFreightFlatRate.model" minOccurs="0" />
         </xsd:sequence>
         <xsd:attribute name="id" type="xsd:ID" />
       </xsd:extension>
     </xsd:complexContent>
-  </xsd:complexType>
-  <xsd:complexType name="MarketDisruptionEvent">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">A Market Disruption Event</xsd:documentation>
-    </xsd:annotation>
-    <xsd:simpleContent>
-      <xsd:extension base="Scheme">
-        <xsd:attribute name="commodityMarketDisruptionScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/commodity-market-disruption" />
-      </xsd:extension>
-    </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="Lag">
     <xsd:annotation>
@@ -649,6 +675,16 @@
         <xsd:attribute name="href" type="xsd:IDREF" use="required" />
       </xsd:extension>
     </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MarketDisruptionEvent">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A Market Disruption Event</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="Scheme">
+        <xsd:attribute name="commodityMarketDisruptionScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/commodity-market-disruption" />
+      </xsd:extension>
+    </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="SequencedDirsuptionFallback">
     <xsd:annotation>
@@ -786,6 +822,23 @@
       </xsd:group>
     </xsd:choice>
   </xsd:group>
+  <xsd:group name="CommodityFreightFlatRate.model">
+    <xsd:annotation>
+      <xsd:documentation>The Flat Rate, applicable to Wet Voyager Charter Freight Swaps.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="flatRate" type="FlatRateEnum">
+        <xsd:annotation>
+          <xsd:documentation>Whether the Flat Rate is the New Worldwide Tanker Nominal Freight Scale for the Freight Index Route taken at the Trade Date of the transaction or taken on each Pricing Date.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="flatRateAmount" type="NonNegativeMoney" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>If flatRate is set to "Fixed", the actual value of the Flat Rate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
   <xsd:group name="CommodityNotionalQuantity.model">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">The different options for specifying the NotionalQuantity. A flat notional for the term of the trade may be specified, or else the Notional Quantity per Calculation Period. In the latter case, there must be a notional quantity specified for each Calculation Period, regardless of whether the Notional Quantity changes or remains the same between periods.</xsd:documentation>
@@ -803,7 +856,7 @@
           </xsd:annotation>
         </xsd:element>
       </xsd:choice>
-      <xsd:element name="totalNotionalQuantity" type="xsd:decimal">
+      <xsd:element name="totalNotionalQuantity" type="xsd:decimal" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The Total Notional Quantity.</xsd:documentation>
         </xsd:annotation>

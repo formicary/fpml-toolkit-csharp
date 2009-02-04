@@ -5,22 +5,25 @@
 -->
 <FpML xmlns="http://www.fpml.org/2008/FpML-4-5" xmlns:fpml="http://www.fpml.org/2008/FpML-4-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4-5" xsi:type="InterestPaymentNotice" xsi:schemaLocation="http://www.fpml.org/2008/FpML-4-5 ../fpml-main-4-5.xsd http://www.w3.org/2000/09/xmldsig# ../xmldsig-core-schema.xsd">
    <header>
-      <messageId messageIdScheme="http://www.jpm.com/coding-scheme/messageId">mid001</messageId>
-      <sentBy partyIdScheme="http://www.jpm.com/coding-scheme/partyId">Alex Poretsky</sentBy>
-      <sendTo partyIdScheme="http://www.jpm.com/coding-scheme/partyId">Jeff Lender A</sendTo>
+      <conversationId conversationIdScheme="http://www.altova.com">cid001</conversationId>
+      <messageId messageIdScheme="http://www.altova.com">mid001</messageId>
+      <sentBy partyIdScheme="http://www.fpml.org/ext/iso9362">Alex Poretsky</sentBy>
+      <sendTo partyIdScheme="http://www.fpml.org/ext/iso9362">Jeff Lender A</sendTo>
+      <copyTo partyIdScheme="http://www.fpml.org/ext/iso9362">Jeff Lender A</copyTo>
       <creationTimestamp>2007-12-17T09:30:47-05:00</creationTimestamp>
+      <expiryTimestamp>2007-12-17T09:30:47-05:00</expiryTimestamp>
    </header>
    <noticeDate>2007-11-01</noticeDate>
    <agentBankPartyReference href="agentParty"/>
    <borrowerPartyReference href="borrowerParty"/>
    <lenderPartyReference href="lenderParty"/>
    <dealSummary id="ID04039GAD3">
-      <instrumentId instrumentIdScheme="http://www.jpm.com/coding-scheme/instrument-id">IDPROD001</instrumentId>
+      <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-CUSIP-1-0">IDPROD001</instrumentId>
       <description>2007 JEFF STUDER BORROWER NOTICE 10</description>
       <creditAgreementDate>2001-11-01</creditAgreementDate>
    </dealSummary>
    <facilitySummary id="ID17120RAB5">
-      <instrumentId instrumentIdScheme="http://www.jpm.com/coding-scheme/instrument-id">IDPROD001</instrumentId>
+      <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-CUSIP-1-0">IDPROD001</instrumentId>
       <description>JAS FPML EXAMPLE1 REVOLVING CREDIT</description>
       <originalCommitmentAmount>
          <currency>USD</currency>
@@ -29,80 +32,81 @@
    </facilitySummary>
    <facilityCommitmentPosition>
       <currentAmount>
-         <globalAmount id="ID000134">
+         <globalAmount>
             <currency>USD</currency>
             <amount>5277.78</amount>
          </globalAmount>
-         <shareAmount id="ID000135">
+         <shareAmount>
             <currency>USD</currency>
             <amount>2638.89</amount>
          </shareAmount>
       </currentAmount>
       <priorAmount>
-         <globalAmount id="ID000136">
+         <globalAmount>
             <currency>USD</currency>
             <amount>5277.78</amount>
          </globalAmount>
-         <shareAmount id="ID000137">
+         <shareAmount>
             <currency>USD</currency>
             <amount>2638.89</amount>
          </shareAmount>
       </priorAmount>
       <loanContractPosition>
          <loanContractSummary>
-            <identifier id="ID000138">
+            <identifier>
                <partyReference href="agentParty"/>
-               <contractId contractIdScheme="http://www.altova.com" id="ID000139">N/A</contractId>
+               <contractId contractIdScheme="http://www.jpm.com/contractId">N/A</contractId>
             </identifier>
-            <originalAmount id="ID000140">
-               <currency currencyScheme="http://www.jpm.com/currency">N/A</currency>
+            <originalAmount>
+               <currency>USD</currency>
                <amount>0.0</amount>
             </originalAmount>
             <maturityDate>2007-11-01</maturityDate>
          </loanContractSummary>
          <currentAmount>
-            <globalAmount id="ID000142">
+            <globalAmount>
                <currency>USD</currency>
                <amount>5277.78</amount>
             </globalAmount>
-            <shareAmount id="ID000143">
+            <shareAmount>
                <currency>USD</currency>
                <amount>2638.89</amount>
             </shareAmount>
          </currentAmount>
          <priorAmount>
-            <globalAmount id="ID000144">
-               <currency currencyScheme="http://www.jpm.com/currency">N/A</currency>
-               <amount>0.0</amount>
+            <globalAmount>
+               <currency>USD</currency>
+               <amount>1000</amount>
             </globalAmount>
-            <shareAmount id="ID000145">
-               <currency currencyScheme="http://www.jpm.com/currency">N/A</currency>
-               <amount>0.0</amount>
+            <shareAmount>
+               <currency>USD</currency>
+               <amount>500</amount>
             </shareAmount>
          </priorAmount>
       </loanContractPosition>
    </facilityCommitmentPosition>
-   <comments>Bank To Bank Info: Lender A Specific Remittance Instructions Reference: JAS FPML EXAMPLE1.</comments>
+   <comments>Bank To Bank Info: Lender A Specific Remittance Instructions Reference: JAS FPML
+		EXAMPLE1 </comments>
    <loanContractSummary>
-      <identifier id="ID000146">
+      <identifier>
          <partyReference href="agentParty"/>
-         <contractId contractIdScheme="http://www.jpm.com" id="ID000147">N/A</contractId>
+         <contractId contractIdScheme="http://www.jpm.com/contractId">78906543</contractId>
       </identifier>
-      <originalAmount id="ID000148">
-         <currency currencyScheme="http://www.jpm.com/currency">N/A</currency>
+      <originalAmount>
+         <currency>USD</currency>
          <amount>0.0</amount>
       </originalAmount>
-      <maturityDate>1967-08-13</maturityDate>
+      <maturityDate>2008-11-08</maturityDate>
    </loanContractSummary>
    <interestPayment>
       <calculationMethod>ProRataShare</calculationMethod>
       <paymentDate>2007-11-01</paymentDate>
       <amount>
-         <globalAmount id="ID000150">
+         <globalAmount>
             <currency>USD</currency>
             <amount>5277.78</amount>
          </globalAmount>
-         <shareAmount id="ID000151">
+         <shareAmount>
             <currency>USD</currency>
             <amount>2638.89</amount>
          </shareAmount>
@@ -110,33 +114,37 @@
    </interestPayment>
    <interestAccrualSchedule>
       <interestRatePeriod>
-         <rateFixingDate>1990-01-01</rateFixingDate>
-         <startDate>1990-01-01</startDate>
-         <endDate>1990-01-01</endDate>
-         <floatingRateIndex floatingRateIndexScheme="http://www.fpml.org/coding-scheme/floating-rate-index">N/A</floatingRateIndex>
-         <indexTenor id="ID000152">
-            <periodMultiplier>0</periodMultiplier>
-            <period>D</period>
-         </indexTenor>
+         <rateFixingDate>2007-10-30</rateFixingDate>
+         <startDate>2007-09-30</startDate>
+         <endDate>2007-10-30</endDate>
+         <floatingRateIndex>USD-LIBOR-BBA</floatingRateIndex>
+         <interestRate>0.0250</interestRate>
+         <margin>0.0535</margin>
+         <allInRate>0.0785</allInRate>
+         <interestDayBasis>ACT/360</interestDayBasis>
+         <tenor>
+            <periodMultiplier>1</periodMultiplier>
+            <period>M</period>
+         </tenor>
       </interestRatePeriod>
       <lenderLoanContractPeriod>
-         <startDate>1967-08-13</startDate>
-         <endDate>1967-08-13</endDate>
-         <shareCommitmentAmount id="ID000155">
-            <currency currencyScheme="http://www.jpm.com/currency">N/A</currency>
+         <startDate>2006-11-08</startDate>
+         <endDate>2008-11-08</endDate>
+         <shareCommitmentAmount>
+            <currency>USD</currency>
             <amount>0.0</amount>
          </shareCommitmentAmount>
          <shareLoanContractAmount id="ID000156">
-            <currency currencyScheme="http://www.jpm.com/currency">N/A</currency>
+            <currency>USD</currency>
             <amount>0.0</amount>
          </shareLoanContractAmount>
       </lenderLoanContractPeriod>
       <interestAccrualPeriod>
-         <startDate>1967-08-13</startDate>
-         <endDate>1967-08-13</endDate>
+         <startDate>2007-09-30</startDate>
+         <endDate>2007-10-30</endDate>
          <shareInterestAccrualAmount id="ID000158">
-            <currency currencyScheme="http://www.jpm.com/currency">N/A</currency>
-            <amount>0.0</amount>
+            <currency>USD</currency>
+            <amount>2638.89</amount>
          </shareInterestAccrualAmount>
       </interestAccrualPeriod>
    </interestAccrualSchedule>

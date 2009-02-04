@@ -7,6 +7,16 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2008/FpML-4-5" xmlns:fpml="http://www.fpml.org/2008/FpML-4-5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2008/FpML-4-5" version="$Revision: 2406 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-asset-4-5.xsd" />
   <xsd:include schemaLocation="fpml-msg-4-5.xsd" />
+  <xsd:complexType name="BorrowingOptionType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The type of funded product for which the margin is being amended.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="Scheme">
+        <xsd:attribute name="borrowingOptionTypeScheme" type="xsd:anyURI" use="required" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
   <xsd:complexType name="DealSummary">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">The reference to an agreement entered into between the borrower, the lenders, the agent, and other financial parties that describes the terms and conditions of the loan being made to the borrower and the obligations and requirements for the borrower, its related entities (if any), and the lenders. List of Ids should include at least CUSIP (if exists) and system Id of the system that generates the notice.</xsd:documentation>
@@ -81,7 +91,7 @@
           <xsd:documentation xml:lang="en">The amount of principal commitment currently allocated to the lender within the facility (this is after any associated events).</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="priorAmount" type="ParticipationAmount">
+      <xsd:element name="priorAmount" type="ParticipationAmount" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The amount of principal commitment that was allocated to the lender within the facility (this is prior to any associated events).</xsd:documentation>
         </xsd:annotation>
@@ -402,7 +412,43 @@
           <xsd:documentation xml:lang="en">The number of business days in the interest rate period.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
+      <xsd:element name="projectedInterestAmount" type="ParticipationAmount" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Projected amount of interest that will be paid by the Agent bank at the end of the interest period.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="LcAmendmentNotice">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Letter of Credit amendment notice.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="FacilityNotice">
+        <xsd:sequence>
+          <xsd:element name="effectiveDate" type="xsd:date">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Effective date of the amendment.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="priorLc" type="LetterOfCredit">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The letter of credit before the amendment.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="postLc" type="LetterOfCredit">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The letter of credit after the amendment.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The parties involved with the associated transaction.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="LcBalanceNotice">
     <xsd:annotation>
@@ -411,25 +457,41 @@
     <xsd:complexContent>
       <xsd:extension base="FacilityNotice">
         <xsd:sequence>
-          <xsd:element name="lcIdentifier" type="LcIdentifier" />
-          <xsd:element name="issuingBankPartyReference" type="PartyReference" />
-          <xsd:element name="effectiveDate" type="xsd:date" />
-          <xsd:element name="priorAmount" type="ParticipationAmount" />
-          <xsd:element name="currentAmount" type="ParticipationAmount" />
-        </xsd:sequence>
-      </xsd:extension>
-    </xsd:complexContent>
-  </xsd:complexType>
-  <xsd:complexType name="LcCancellationNotice">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">Letter of Credit cancellation notice.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:complexContent>
-      <xsd:extension base="FacilityNotice">
-        <xsd:sequence>
-          <xsd:element name="lcIdentifier" type="LcIdentifier" />
-          <xsd:element name="cancellationDate" type="xsd:date" />
-          <xsd:element name="currentAmount" type="ParticipationAmount" />
+          <xsd:element name="lcSummary" type="LcSummary">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A basic set of fields to identify an LC. Please note that the partyReference within the contract identifier should refer to the Issuing Bank.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="effectiveDate" type="xsd:date">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Effective date of the balance change.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="priorAmount" type="ParticipationAmount" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The global and lender share amount of the L/C before any associated balance change.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="balanceChangeAmount" type="ParticipationAmount">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The amount that the L/C has shifted by. Shown at both the global and share levels.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="currentAmount" type="ParticipationAmount">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The global and lender share amount of the L/C after any associated balance change.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="lcDrawFlag" type="xsd:boolean">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Set to false for a normal increase or decrease in the LC amount. An LC draw results in a reduction of the LC amount and signifies that a loan drawdown will take place in conjunction with this message.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The parties involved with the associated transaction.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -439,17 +501,21 @@
       <xsd:documentation xml:lang="en">Represents the evergreen option that is available within Letter of Credit contracts.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="extensionNoticePeriod" type="xsd:decimal" minOccurs="0" />
-      <xsd:element name="extensionPeriod" type="xsd:decimal" />
-      <xsd:element name="finalExpirationDate" type="xsd:date" />
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="LcIdentifier">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">A basic set of fields to identify an LC. Please note that the partyReference within the contract identifier should refer to the Issuing Bank.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element name="identifier" type="ContractIdentifier" maxOccurs="unbounded" />
+      <xsd:element name="extensionNoticePeriod" type="xsd:decimal" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The number of calendar days before the end of the LC that the borrower must state whether they would like to extend the LC.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="extensionPeriod" type="xsd:decimal">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The period over which an extension could take place.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="finalExpirationDate" type="xsd:date">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The final date on which the L/C will expire once it has been extended.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="LcIssuanceNotice">
@@ -460,6 +526,11 @@
       <xsd:extension base="FacilityNotice">
         <xsd:sequence>
           <xsd:element name="letterOfCredit" type="LetterOfCredit" />
+          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The parties involved with the associated transaction.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -469,10 +540,42 @@
       <xsd:documentation xml:lang="en">Represents outstanding letter of credit amounts on both global and lender position levels</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="lcIdentifier" type="LcIdentifier" />
+      <xsd:element name="lcSummary" type="LcSummary" />
       <xsd:element name="currentAmount" type="ParticipationAmount" />
-      <xsd:element name="priorAmount" type="ParticipationAmount" />
+      <xsd:element name="priorAmount" type="ParticipationAmount" minOccurs="0" />
     </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="LcSummary">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A basic set of fields to identify an LC. Please note that the partyReference within the contract identifier should refer to the Issuing Bank.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="identifier" type="ContractIdentifier" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="LcTerminationNotice">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Letter of Credit termination notice. L/C's can either expire or be cancelled; both of these scenarios would be captured by this notice.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="FacilityNotice">
+        <xsd:sequence>
+          <xsd:element name="lcSummary" type="LcSummary" />
+          <xsd:element name="effectiveDate" type="xsd:date" />
+          <xsd:element name="lcExpiryFlag" type="xsd:boolean">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Determines whether this event was created due to a natural expiration of the LC or an unscheduled cancellation.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="currentAmount" type="ParticipationAmount" minOccurs="0" />
+          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The parties involved with the associated transaction.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="LenderLoanContractPeriod">
     <xsd:annotation>
@@ -515,18 +618,41 @@
   </xsd:complexType>
   <xsd:complexType name="LetterOfCredit">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">An unfunded borrowing</xsd:documentation>
+      <xsd:documentation xml:lang="en">An unfunded borrowing in the form of a Letter of Credit.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="lcIdentifier" type="LcIdentifier" />
-      <xsd:element name="lcType" type="LcTypeEnum" />
-      <xsd:element name="lcPurpose" type="LcPurposeEnum" />
+      <xsd:element name="lcSummary" type="LcSummary">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A basic set of fields to identify an LC. Please note that the partyReference within the contract identifier should refer to the Issuing Bank.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="lcType" type="LcTypeEnum">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Defines the type of Letter of Credit that is issued.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="lcPurpose" type="LcPurposeEnum">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Defines the purpose of a Letter of Credit.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
       <xsd:element name="borrowerPartyReference" type="PartyReference">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">There could be multiple borrowers against a loan contract however the agents have been trying to promote the concept of an administrative borrower. Hence, only one being shown in the field list.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="beneficiaryPartyReference" type="PartyReference" />
+      <xsd:choice>
+        <xsd:element name="beneficiaryPartyReference" type="PartyReference">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">A party reference of the beneficiary.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="beneficiaryPartyName" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">A textual descriptor of the beneficiary.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
       <xsd:element name="originalAmount" type="Money">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Original amount associated with the LC.</xsd:documentation>
@@ -552,8 +678,11 @@
           <xsd:documentation xml:lang="en">Defines FX exchange rate when loan contract and facility currencies are different.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="evergreenOption" type="LcEvergreenOption" minOccurs="0" />
-      <xsd:element name="party" type="Party" minOccurs="3" maxOccurs="unbounded" />
+      <xsd:element name="evergreenOption" type="LcEvergreenOption" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">An option allowing the borrower to extend the tenor of the LC.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="LoanContract">
@@ -571,11 +700,18 @@
           <xsd:documentation xml:lang="en">A reference to the borrower against a loan contract.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="amount" type="Money">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The borrowing amount associated with the loan contract. The currency may or may not be the same as the facility currency.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
+      <xsd:choice>
+        <xsd:element name="amount" type="Money">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The global borrowing amount associated with the loan contract. The currency may or may not be the same as the facility currency.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="participationAmount" type="ParticipationAmount">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The borrowing amount associated with the loan contract, global and lender share. The currency may or may not be the same as the facility currency.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
       <xsd:element name="effectiveDate" type="xsd:date">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The effective date of the loan contract. This is the date on which the funds are passed to the borrower. It is an actual (adjusted) date.</xsd:documentation>
@@ -655,7 +791,7 @@
           <xsd:documentation xml:lang="en">The current outstanding loan contract amount represented on a global and lender share perspective (this is post to any associated events).</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="priorAmount" type="ParticipationAmount">
+      <xsd:element name="priorAmount" type="ParticipationAmount" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The previous outstanding loan contract amount represented on a global and lender share perspective (this is prior to any associated events).</xsd:documentation>
         </xsd:annotation>
@@ -694,14 +830,53 @@
           <xsd:documentation xml:lang="en">A structure that can me used to store multiple identifiers for the loan contract. Each identifier has associated with it a scheme definition to tell the recepient the 'type' of the id.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="originalAmount" type="Money" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The original amount associated with the loan contract in loan contract currency.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
+      <xsd:choice minOccurs="0">
+        <xsd:element name="originalAmount" type="Money">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The original amount associated with the loan contract in loan contract currency.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="participationAmount" type="ParticipationAmount">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Loan contract amount, global and lender share in loan currency.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
       <xsd:element name="maturityDate" type="xsd:date" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The maturity date of the loan contract. In the case of a PRIME-based loan, this field should be set to the maturity date of the facility.&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="MarginRateChange">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The amount by which the margin rate has changed within a facility.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="borrowingOptionType" type="BorrowingOptionType" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The type of funded product for which the margin is being amended.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="loanContractSummary" type="LoanContractSummary" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A basic set of fields used to uniquely identify the loan contract.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="effectiveDate" type="xsd:date">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The effective date of the pricing change.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="priorRate" type="xsd:decimal" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The margin rate prior to the repricing.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="postRate" type="xsd:decimal">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The margin rate after the repricing.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -749,11 +924,18 @@
     <xsd:complexContent>
       <xsd:extension base="FacilityNotice">
         <xsd:sequence>
-          <xsd:element name="loanContractSummary" type="LoanContractSummary" minOccurs="0">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">A basic set of fields used to uniquely identify the loan contract.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
+          <xsd:choice>
+            <xsd:element name="loanContractSummary" type="LoanContractSummary" minOccurs="0">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">A basic set of fields used to uniquely identify the loan contract.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="lcSummary" type="LcSummary" minOccurs="0">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">A basic set of fields used to uniquely identify a letter of credit.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:choice>
           <xsd:element name="feePayment" type="OneOffFeePayment">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">A representation of the one-off payment.</xsd:documentation>
@@ -795,6 +977,38 @@
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:complexType name="OnGoingFeeRateChange">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The amount by which a specific type of facility fee rate has changed within a facility.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="feeType" type="OnGoingFeeTypeEnum">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Describes the type of the on-going fee.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="lcSummary" type="LcSummary" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A basic set of fields to identify an LC. Please note that the partyReference within the contract identifier should refer to the Issuing Bank. This element is optional due to the fact that there may not be any outstanding L/C's within the given facility, in which case we can use this structure to publish the L/C price change.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="effectiveDate" type="xsd:date">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The effective date of the on-going fee pricing change.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="priorRate" type="xsd:decimal" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The on-going fee rate prior to the repricing.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="postRate" type="xsd:decimal">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The on-going fee rate after the repricing.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
   <xsd:complexType name="OnGoingFeeNotice">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">The agent bank will request that the borrower makes a fee payment in accordance with the credit agreement. The borrower will make a payment to the agent bank after which the agent bank will calculate each lender's fee amount.</xsd:documentation>
@@ -802,7 +1016,18 @@
     <xsd:complexContent>
       <xsd:extension base="FacilityNotice">
         <xsd:sequence>
-          <xsd:element name="lcIdentifier" type="LcIdentifier" minOccurs="0" />
+          <xsd:choice>
+            <xsd:element name="loanContractSummary" type="LoanContractSummary" minOccurs="0">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">A basic set of fields used to uniquely identify the loan contract.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="lcSummary" type="LcSummary" minOccurs="0">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">A basic set of fields used to uniquely identify a letter of credit.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:choice>
           <xsd:element name="feePayment" type="OnGoingFeePayment">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">A representation of the on-going fee payment.</xsd:documentation>
@@ -859,8 +1084,16 @@
       <xsd:documentation xml:lang="en">Generic type to represent amounts at the global (borrower's viewpoint) and the lender share (lender's viewpoint) levels.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="globalAmount" type="Money" minOccurs="0" />
-      <xsd:element name="shareAmount" type="Money" />
+      <xsd:element name="globalAmount" type="Money" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The global amount associated with either a business event or an asset balance amount.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="shareAmount" type="Money">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The lender's share amount associated with a business event or an asset balance amount.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="PikPeriod">
@@ -879,6 +1112,56 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PricingChangeNotice">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A notice used to notify changes in the pricing of a given facility.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="FacilityNotice">
+        <xsd:sequence>
+          <xsd:element name="pricingChangeReason" type="PricingChangeReason">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Denotes the reason a facility has had to be re-priced.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:choice>
+            <xsd:sequence>
+              <xsd:element name="marginRateChange" type="MarginRateChange" maxOccurs="unbounded">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">The amount by which the margin rate has changed within a facility.</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element name="onGoingFeeRateChange" type="OnGoingFeeRateChange" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en" />
+                </xsd:annotation>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:element name="onGoingFeeRateChange" type="OnGoingFeeRateChange" maxOccurs="unbounded">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en" />
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:choice>
+          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The parties involved with the associated transaction.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="PricingChangeReason">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A scheme which defines the reasons why a facility re-pricing has occurred.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="Scheme">
+        <xsd:attribute name="pricingChangeReasonScheme" type="xsd:anyURI" use="required" />
+      </xsd:extension>
+    </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="RatePeriod">
     <xsd:annotation>
@@ -937,23 +1220,43 @@
   </xsd:complexType>
   <xsd:complexType name="RolloverNotice">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Rollover notice.</xsd:documentation>
+      <xsd:documentation xml:lang="en">A rollover notice used for both simple as well as complex rollover situations.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="FacilityNotice">
         <xsd:sequence>
-          <xsd:element name="maturingLoanContracts" type="MaturingLoanContracts" />
-          <xsd:element name="newLoanContracts" type="NewLoanContracts" />
-          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded" />
+          <xsd:element name="maturingLoanContracts" type="MaturingLoanContracts">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A list of all contracts that are due to mature for the given rollover.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="newLoanContracts" type="NewLoanContracts">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A list of the new loan contracts to be created as a result of this rollover.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The parties involved with the associated transaction.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:group name="FacilityNoticeDetails.model">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A model which contains all fields required on the business header section of a facility notice.</xsd:documentation>
+    </xsd:annotation>
     <xsd:sequence>
       <xsd:element name="noticeDate" type="xsd:date">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The date on which the notice was generated.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="eventId" type="EventId" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The identifier that defines the business event which requires the creation of a notice.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="agentBankPartyReference" type="PartyReference" minOccurs="0">
