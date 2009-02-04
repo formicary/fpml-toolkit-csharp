@@ -1,16 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validate", "Validate\Validate.csproj", "{3A76F324-C71C-4EAE-99B5-14350107F011}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61} = {5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classify", "Classify\Classify.csproj", "{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61} = {5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}
-	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FpML Toolkit", "FpML Toolkit\FpML Toolkit.csproj", "{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandCoded", "HandCoded\HandCoded.csproj", "{B3022E16-39AC-48FC-ABAC-BA2B85FCB818}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +20,10 @@ Global
 		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7DA8D46-D1B7-49A3-BC90-0913A4718D2B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AE3E19A-FF22-4B53-BB6F-523ABFDEAF61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3022E16-39AC-48FC-ABAC-BA2B85FCB818}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3022E16-39AC-48FC-ABAC-BA2B85FCB818}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3022E16-39AC-48FC-ABAC-BA2B85FCB818}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3022E16-39AC-48FC-ABAC-BA2B85FCB818}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
