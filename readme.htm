@@ -9,12 +9,12 @@
 	</head>
 	<body>
 		<P><font size="6">Toolkit for FpML Processing<BR>
-        C# Open Source Release 1.2</font></P>
-		<p><font size="5">September, 2008</font></p>
-		<P><font size="5">Copyright (C),2006-2008 HandCoded Software Ltd.</font></P>
+        C# Open Source Release 1.3</font></P>
+		<p><font size="5">February, 2009</font></p>
+		<P><font size="5">Copyright (C),2006-2009 HandCoded Software Ltd.</font></P>
 		<p></p>
 		<h1>Introduction</h1>
-		<p>This document accompanies C# 1.2 release of the 'HandCoded Toolkit for FpML Processing'
+		<p>This document accompanies C# 1.3 release of the 'HandCoded Toolkit for FpML Processing'
             and describes the contents of the release area. The source code for this release
             is not included but is available from the SVN repository on SourceForge.</p>
 		<h2>License</h2>
@@ -33,7 +33,7 @@
             <li>license.txt<br />
                 <br />
                 A copy of the license terms under which the toolkit is distributed. </li>
-            <li>FpML Toolkit (Open Source).dll<br />
+            <li>HandCoded.dll<br />
                 <br />
                 This file contains all compiled C# class files for the toolkit. </li>
             <li>log4net.dll<br />
@@ -50,21 +50,21 @@
                 <br />
                 A command line based application that demonstrates the product classification components
                 of the toolkit.</li>
-            <li>Validate1-0.bat<br />
+            <li>Validate*.bat<br />
                 <br />
                 Running these files will execute a simple batch validation of a selection of FpML
-                examples. Examples prior to FpML 4.2 contain some mistakes and a few will output
-                error messages. </li>
+                examples. Some of the FpML examples published by ISDA contain mistakes and a few will output
+                error messages.</li>
             <li>files
                 <br />
                 <br />
                 Contains an XML catalog file (and its associated schema) used to resolve DTD system
-                identifiers and schema namespace URIs to physical file locations.
-                <ul class="L2">
+                identifiers/schema namespace URIs to physical file locations and the business rule
+                configuration file.<ul class="L2">
                     <li>schemas<br />
                         <br />
                         Contains a subdirectory for each version of the FpML as well as the schema for digital
-                        signatures and the HandCoded extensions for 'RejectedDocuments' </li>
+                        signatures. </li>
                     <li>data<br />
                         <br />
                         A set of XML data files containing the scheme code values defined by FpML for each
@@ -94,8 +94,7 @@
         <p>
             At the end of the run the program calculates the average processing &nbsp;time for
             each file and displays the number of rules tested against each file as shown below.</p>
-        <pre>
-&gt;&gt; files/examples/fpml4-0/ird_ex26_fxnotional_swap_with_cfs.xml<br />&gt;&gt; files/examples/fpml4-0/ird_ex27_inverse_floater.xml<br />&gt;&gt; files/examples/fpml4-0/ird_ex28_bullet_payments.xml<br />&gt;&gt; files/examples/fpml4-0/msg_ex01_request_confirmation.xml<br />&gt;&gt; files/examples/fpml4-0/msg_ex02_trade_confirmed.xml<br />&gt;&gt; files/examples/fpml4-0/msg_ex03_portfolio.xml<br />&gt;&gt; files/examples/fpml4-0/td_ex01_simple_term_deposit.xml<br />&gt;&gt; files/examples/fpml4-0/td_ex02_term_deposit_w_settlement_etc.xml<br />== Processed 91 files in 1391 milliseconds<br />== 65.42056074766356 files/sec checking 219 rules</pre>
+        <pre>&gt;&gt; files/examples/fpml4-0/ird_ex26_fxnotional_swap_with_cfs.xml<br />&gt;&gt; files/examples/fpml4-0/ird_ex27_inverse_floater.xml<br />&gt;&gt; files/examples/fpml4-0/ird_ex28_bullet_payments.xml<br />&gt;&gt; files/examples/fpml4-0/msg_ex01_request_confirmation.xml<br />&gt;&gt; files/examples/fpml4-0/msg_ex02_trade_confirmed.xml<br />&gt;&gt; files/examples/fpml4-0/msg_ex03_portfolio.xml<br />&gt;&gt; files/examples/fpml4-0/td_ex01_simple_term_deposit.xml<br />&gt;&gt; files/examples/fpml4-0/td_ex02_term_deposit_w_settlement_etc.xml<br />== Processed 91 files in 1391 milliseconds<br />== 65.42056074766356 files/sec checking 219 rules</pre>
         <p>
             The application responds to a number of command line options and can be configured
             to test the FpML defined rules (e.g. excludes HandCoded rules including scheme value
@@ -122,8 +121,13 @@
             Changes in 1.2:</p>
         <ul>
             <li>Support for FpML 4.5</li>
-            <li>xxx</li>
+            <li>Schema resolution via XML catalogs added.</li>
+            <li>Business rules become configurable without code modification.&nbsp;</li>
         </ul>
-        <p/>
+        <p>
+            Changes in 1.3:</p><ul>
+    <li>Support for FpML 4.6</li>
+    <li>Numerous little fixes</li>
+</ul>
 	</body>
 </html>
