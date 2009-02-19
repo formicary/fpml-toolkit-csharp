@@ -110,8 +110,13 @@ namespace HandCoded.Xml
 				return (context);
 			else if ((name.Length == 2) && name.Equals (".."))
 				return (context.ParentNode as XmlElement);
-			else
-				return ((context != null) ? context [name] as XmlElement : null);
+			else {
+                foreach (XmlNode node in context.ChildNodes) {
+                    if ((node is XmlElement) && (node as XmlElement).LocalName.Equals (name))
+                        return (node as XmlElement);
+                }
+                return (null);
+            }
 		}
 
 		/// <summary>
@@ -268,7 +273,6 @@ namespace HandCoded.Xml
 				else
 					return (MutableNodeList.EMPTY);
 			}
-
 			else
 				return ((context != null) ? context.GetElementsByTagName (name) : MutableNodeList.EMPTY);
 		}

@@ -957,7 +957,7 @@ namespace HandCoded.FpML
 
 		/// <summary>
 		/// A <see cref="SchemaRelease"/> instance containing the details for
-		/// FpML 4-5 recommendation.
+		/// FpML 4-6 recommendation.
 		/// </summary>
 		public static readonly SchemaRelease	R4_6
 			= new SchemaRelease (FPML, "4-6",
@@ -1400,6 +1400,7 @@ namespace HandCoded.FpML
 			R4_3.AddImport (HandCoded.DSig.Releases.R1_0);
 			R4_4.AddImport (HandCoded.DSig.Releases.R1_0);
 			R4_5.AddImport (HandCoded.DSig.Releases.R1_0);
+			R4_6.AddImport (HandCoded.DSig.Releases.R1_0);
 
 			R5_0_CONFIRMATION.AddImport (HandCoded.DSig.Releases.R1_0);
 			R5_0_PRETRADE.AddImport (HandCoded.DSig.Releases.R1_0);

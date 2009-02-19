@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2009 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -240,7 +240,10 @@ namespace Validate
 				}
 			}
 			else {
-				foreach (string file in Directory.GetFiles (path)) {
+                string directory = Path.GetDirectoryName (path);
+                string pattern = Path.GetFileName (path);
+
+				foreach (string file in Directory.GetFiles (directory, pattern)) {
 					FileInfo	info = new FileInfo (file);
 
 					if ((info.Attributes & FileAttributes.Hidden) == 0)
