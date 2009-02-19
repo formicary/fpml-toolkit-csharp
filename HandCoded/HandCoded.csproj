@@ -101,9 +101,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Acme\Releases.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Classification\AbstractCategory.cs">
       <SubType>Code</SubType>
     </Compile>
