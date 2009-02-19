@@ -111,9 +111,11 @@ namespace HandCoded.Xml
 			else if ((name.Length == 2) && name.Equals (".."))
 				return (context.ParentNode as XmlElement);
 			else {
-                foreach (XmlNode node in context.ChildNodes) {
-                    if ((node is XmlElement) && (node as XmlElement).LocalName.Equals (name))
-                        return (node as XmlElement);
+                if (context != null) {
+                    foreach (XmlNode node in context.ChildNodes) {
+                        if ((node is XmlElement) && (node as XmlElement).LocalName.Equals (name))
+                            return (node as XmlElement);
+                    }
                 }
                 return (null);
             }
