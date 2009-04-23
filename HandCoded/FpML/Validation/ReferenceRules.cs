@@ -399,7 +399,7 @@ namespace HandCoded.FpML.Validation
 		/// refers to a <b>PricingStructure</b>.
 		/// </summary>
 		public static readonly Rule	RULE32
-			= new ReferenceRule (Preconditions.R4_0__LATER, "ref-31",
+			= new ReferenceRule (Preconditions.R4_0__LATER, "ref-32",
 					"ProductReference", new String [] {
 						"premiumProductReference", "definition" },
 					"Product", new String [] {
