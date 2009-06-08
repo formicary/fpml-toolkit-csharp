@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2009 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,6 +12,8 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace HandCoded.Framework
@@ -62,6 +64,42 @@ namespace HandCoded.Framework
 			get {
 				return (arguments);
 			}
+		}
+
+		/// <summary>
+		/// Returns a list of all the assemblies that are referenced by the
+		/// executing application.
+		/// </summary>
+		/// <returns>A list of <cref class="Assembly"/> instances.</returns>
+		public static List<Assembly> GetAllAssemblies ()
+		{
+			if (assemblies == null) {
+				List<Assembly> result = new List<Assembly> ();
+
+				result.Add (Assembly.GetEntryAssembly ());
+				foreach (AssemblyName name in Assembly.GetEntryAssembly ().GetReferencedAssemblies ())
+					result.Add (Assembly.Load (name));
+
+				assemblies = result;
+			}
+			return (assemblies);
+		}
+
+		/// <summary>
+		/// Searches all of the assemblies that comprise the current application to
+		/// locate a <see cref="Type"/> instance for the indicated type name.
+		/// </summary>
+		/// <param name="name">The qualified name of the required type.</param>
+		/// <returns>The corresponding <see cref="Type"/> instance or <c>null</c> if the
+		/// type could not be found.</returns>
+		public static Type GetType (string name)
+		{
+			Type type			= null;
+			
+			foreach (Assembly assembly in GetAllAssemblies ())
+				if ((type = assembly.GetType (name)) != null) break;
+			
+			return (type);
 		}
 
 		/// <summary>
@@ -129,6 +167,11 @@ namespace HandCoded.Framework
 
 			return (builder.ToString ());
 		}
+
+		/// <summary>
+		/// The set of assemblies referenced by the current application.
+		/// </summary>
+		private static List<Assembly> assemblies = null;
 
 		/// <summary>
 		/// The one and only <b>Application</b> instance.

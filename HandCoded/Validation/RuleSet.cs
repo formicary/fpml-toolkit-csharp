@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2009 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -21,6 +21,7 @@ using System.Xml;
 
 using log4net;
 
+using HandCoded.Framework;
 using HandCoded.Xml;
 
 namespace HandCoded.Validation
@@ -232,7 +233,7 @@ namespace HandCoded.Validation
 
                             if (platform.Equals (".Net")) {
                                 try {
-                                    Type type = Type.GetType (implementation);
+									Type		type = Application.GetType (implementation);
 
 									if (type != null) {
 										// Access each member to ensure it has a chance to initialise
@@ -244,9 +245,10 @@ namespace HandCoded.Validation
 												}
 											}
 										}
+										break;
 									}
 									else
-	                                    logger.Error ("Could not find load rule class '" + implementation + "'");
+										logger.Error ("Could not find load rule class '" + implementation + "'");
                                 }
                                 catch (Exception error) {
                                     logger.Error ("Could not force load rule class '" + implementation + "'", error);
