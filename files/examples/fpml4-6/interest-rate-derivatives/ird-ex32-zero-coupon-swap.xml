@@ -68,7 +68,7 @@
                <calculationPeriodFrequency>
                   <periodMultiplier>1</periodMultiplier>
                   <period>Y</period>
-                  <rollConvention>NONE</rollConvention>
+                  <rollConvention>22</rollConvention>
                </calculationPeriodFrequency>
             </calculationPeriodDates>
             <paymentDates>

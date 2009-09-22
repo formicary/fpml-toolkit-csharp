@@ -97,8 +97,11 @@
                   <schedule>
                      <startDate>2002-03-29</startDate>
                      <endDate>2002-07-12</endDate>
-                     <frequency>1</frequency>
-                     <frequencyType>Day</frequencyType>
+                     <averagingPeriodFrequency>
+                        <periodMultiplier>1</periodMultiplier>
+                        <period>D</period>
+                        <rollConvention>NONE</rollConvention>
+                     </averagingPeriodFrequency>
                   </schedule>
                   <trigger>
                      <level>1606.346</level>

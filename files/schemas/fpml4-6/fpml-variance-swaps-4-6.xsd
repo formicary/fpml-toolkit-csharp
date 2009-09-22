@@ -42,11 +42,6 @@
     <xsd:complexContent>
       <xsd:extension base="OptionBase">
         <xsd:sequence>
-          <xsd:element name="numberOfOptions" type="NonNegativeDecimal">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">The number of options comprised in the variance option transaction.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
           <xsd:element name="equityPremium" type="EquityPremium">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">The variance option premium payable by the buyer to the seller.</xsd:documentation>

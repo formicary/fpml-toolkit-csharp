@@ -14,7 +14,7 @@
     <xsd:complexContent>
       <xsd:extension base="DirectionalLegUnderlyer">
         <xsd:sequence>
-          <xsd:group ref="DeclaredCashAndCashEquivalentDividendPercentage" />
+          <xsd:group ref="DeclaredCashAndCashEquivalentDividendPercentage.model" />
           <xsd:element name="dividendPeriod" type="DividendPeriodPayment" maxOccurs="unbounded">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">One to many time bounded dividend payment periods, each with a fixed strike and dividend payment date per period.</xsd:documentation>
@@ -86,18 +86,22 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Fixed payment amount within a Dividend Swap.</xsd:documentation>
     </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element name="paymentAmount" type="Money" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Payment amount, which is optional since the payment amount may be calculated using fixed strike and number of open units.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="paymentDate" type="RelativeDateOffset">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Payment date relative to another date.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
+    <xsd:complexContent>
+      <xsd:extension base="PaymentBase">
+        <xsd:sequence>
+          <xsd:element name="paymentAmount" type="Money" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Payment amount, which is optional since the payment amount may be calculated using fixed strike and number of open units.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="paymentDate" type="RelativeDateOffset">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Payment date relative to another date.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="FixedPaymentLeg">
     <xsd:annotation>

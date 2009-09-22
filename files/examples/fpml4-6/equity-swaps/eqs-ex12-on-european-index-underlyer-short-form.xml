@@ -64,7 +64,6 @@
                         <relativeDate>
                            <periodMultiplier>0</periodMultiplier>
                            <period>D</period>
-                           <dayType>CurrencyBusiness</dayType>
                            <businessDayConvention>NotApplicable</businessDayConvention>
                            <dateRelativeTo href="interestEffectiveDate"/>
                         </relativeDate>
@@ -73,7 +72,6 @@
                         <relativeDate>
                            <periodMultiplier>0</periodMultiplier>
                            <period>D</period>
-                           <dayType>CurrencyBusiness</dayType>
                            <businessDayConvention>NotApplicable</businessDayConvention>
                            <dateRelativeTo href="interestTerminationDate"/>
                         </relativeDate>
@@ -123,7 +121,7 @@
                   <dateAdjustments>
                      <businessDayConvention>FOLLOWING</businessDayConvention>
                      <businessCenters>
-                        <businessCenter>GER</businessCenter>
+                        <businessCenter>DEFR</businessCenter>
                      </businessCenters>
                   </dateAdjustments>
                </adjustableDate>
@@ -134,7 +132,7 @@
                   <dateAdjustments>
                      <businessDayConvention>FOLLOWING</businessDayConvention>
                      <businessCenters>
-                        <businessCenter>GER</businessCenter>
+                        <businessCenter>DEFR</businessCenter>
                      </businessCenters>
                   </dateAdjustments>
                </adjustableDate>
@@ -170,7 +168,6 @@
                               <relativeDate>
                                  <periodMultiplier>0</periodMultiplier>
                                  <period>D</period>
-                                 <dayType>ExchangeBusiness</dayType>
                                  <businessDayConvention>NotApplicable</businessDayConvention>
                                  <dateRelativeTo href="equityEffectiveDate"/>
                               </relativeDate>
@@ -179,7 +176,6 @@
                               <relativeDate>
                                  <periodMultiplier>0</periodMultiplier>
                                  <period>D</period>
-                                 <dayType>ExchangeBusiness</dayType>
                                  <businessDayConvention>NotApplicable</businessDayConvention>
                                  <dateRelativeTo href="finalValuationDate"/>
                               </relativeDate>
@@ -192,7 +188,7 @@
                            <calculationPeriodDatesAdjustments>
                               <businessDayConvention>FOLLOWING</businessDayConvention>
                               <businessCenters>
-                                 <businessCenter>GER</businessCenter>
+                                 <businessCenter>DEFR</businessCenter>
                               </businessCenters>
                            </calculationPeriodDatesAdjustments>
                         </periodicDates>
@@ -209,7 +205,7 @@
                            <dateAdjustments>
                               <businessDayConvention>FOLLOWING</businessDayConvention>
                               <businessCenters>
-                                 <businessCenter>GER</businessCenter>
+                                 <businessCenter>DEFR</businessCenter>
                               </businessCenters>
                            </dateAdjustments>
                         </adjustableDate>
@@ -269,8 +265,7 @@
                   <declaredCashEquivalentDividendPercentage>1</declaredCashEquivalentDividendPercentage>
                </dividendConditions>
             </return>
-            <notionalAdjustments>Standard</notionalAdjustments>
-            <typeOfIndexSwap>Accrual</typeOfIndexSwap>
+            <notionalAdjustments>Standard</notionalAdjustments><!--typeOfIndexSwap>Accrual</typeOfIndexSwap-->
          </returnLeg>
          <optionalEarlyTermination>true</optionalEarlyTermination>
          <breakFundingRecovery>true</breakFundingRecovery>

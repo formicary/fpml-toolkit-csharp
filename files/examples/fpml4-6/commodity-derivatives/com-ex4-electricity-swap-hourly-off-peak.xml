@@ -74,61 +74,6 @@
             <commodity>
                <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/commodity-reference-price-1-0">ELECTRICITY-MID-COLUMBIA FIRM (ON-PEAK)-DOW JONES POWER</instrumentId>
                <specifiedPrice>Index</specifiedPrice>
-               <settlementPeriod>
-                  <duration>Hourly</duration>
-                  <applicableDay>MON</applicableDay>
-                  <applicableDay>TUE</applicableDay>
-                  <applicableDay>WED</applicableDay>
-                  <applicableDay>THU</applicableDay>
-                  <applicableDay>FRI</applicableDay>
-                  <applicableDay>SAT</applicableDay>
-                  <includesHolidays>false</includesHolidays>
-                  <startTime>
-                     <hourMinuteTime>00:00:00</hourMinuteTime>
-                     <timeZone>PPT</timeZone>
-                     <businessCalendar>NERC</businessCalendar>
-                  </startTime>
-                  <endTime>
-                     <hourMinuteTime>06:00:00</hourMinuteTime>
-                     <timeZone>PPT</timeZone>
-                     <businessCalendar>NERC</businessCalendar>
-                  </endTime>
-               </settlementPeriod>
-               <settlementPeriod>
-                  <duration>Hourly</duration>
-                  <applicableDay>MON</applicableDay>
-                  <applicableDay>TUE</applicableDay>
-                  <applicableDay>WED</applicableDay>
-                  <applicableDay>THU</applicableDay>
-                  <applicableDay>FRI</applicableDay>
-                  <applicableDay>SAT</applicableDay>
-                  <includesHolidays>false</includesHolidays>
-                  <startTime>
-                     <hourMinuteTime>22:00:00</hourMinuteTime>
-                     <timeZone>PPT</timeZone>
-                     <businessCalendar>NERC</businessCalendar>
-                  </startTime>
-                  <endTime>
-                     <hourMinuteTime>00:00:00</hourMinuteTime>
-                     <timeZone>PPT</timeZone>
-                     <businessCalendar>NERC</businessCalendar>
-                  </endTime>
-               </settlementPeriod>
-               <settlementPeriod>
-                  <duration>Hourly</duration>
-                  <applicableDay>SUN</applicableDay>
-                  <includesHolidays>true</includesHolidays>
-                  <startTime>
-                     <hourMinuteTime>00:00:00</hourMinuteTime>
-                     <timeZone>PPT</timeZone>
-                     <businessCalendar>NERC</businessCalendar>
-                  </startTime>
-                  <endTime>
-                     <hourMinuteTime>00:00:00</hourMinuteTime>
-                     <timeZone>PPT</timeZone>
-                     <businessCalendar>NERC</businessCalendar>
-                  </endTime>
-               </settlementPeriod>
             </commodity>
             <notionalQuantity>
                <quantityUnit>MWH</quantityUnit>

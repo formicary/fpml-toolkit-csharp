@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-6" xmlns:fpml="http://www.fpml.org/2009/FpML-4-6" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-6" version="$Revision: 5468 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-6" xmlns:fpml="http://www.fpml.org/2009/FpML-4-6" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-6" version="$Revision: 6330 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-shared-4-6.xsd" />
   <xsd:complexType name="CutName">
     <xsd:annotation>
@@ -52,7 +52,11 @@
           <xsd:documentation xml:lang="en">Represents a standard expiry date as defined for an FX OTC option.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="expiryTime" type="BusinessCenterTime" />
+      <xsd:element name="expiryTime" type="BusinessCenterTime">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Time at which the option expires on the expiry date.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
       <xsd:element name="cutName" type="CutName" minOccurs="0" />
     </xsd:sequence>
   </xsd:complexType>

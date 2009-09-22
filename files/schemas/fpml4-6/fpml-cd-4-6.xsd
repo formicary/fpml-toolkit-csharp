@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-6" xmlns:fpml="http://www.fpml.org/2009/FpML-4-6" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-6" version="$Revision: 5468 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-6" xmlns:fpml="http://www.fpml.org/2009/FpML-4-6" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-6" version="$Revision: 6147 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-option-shared-4-6.xsd" />
   <xsd:complexType name="AdditionalFixedPayments">
     <xsd:sequence>
@@ -391,6 +391,16 @@
               <xsd:documentation xml:lang="en">Applicable to CDS on MBS to specify whether payment delays are applicable to the fixed Amount. RMBS typically have a payment delay of 5 days between the coupon date of the reference obligation and the payment date of the synthetic swap. CMBS do not, on the other hand, with both payment dates being on the 25th of each month.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
+          <xsd:element name="initialPoints" type="xsd:decimal" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">An optional element that contains the up-front points expressed as a percentage of the notional. An initialPoints value of 5% would be represented as 0.05. The initialPoints element is an alternative to marketFixedRate in quoting the traded level of a trade. When initialPoints is used, the traded level is the sum of fixedRate and initialPoints. The initialPoints is one of the items that are factored into the initialPayment calculation and is payable by the Buyer to the Seller. Note that initialPoints and marketFixedRate may both be present in the same document when both implied values are desired.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="quotationStyle" type="QuotationStyleEnum" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The type of quotation that was used between the trading desks. The purpose of this element is to indicate the actual quotation style that was used to quote this trade which may not be apparent when both marketFixedRate and initialPoints are included in the document. When quotationStyle is ‘PointsUpFront’, the initialPoints element should be populated. When quotationStyle is ‘TradedSpread’, the marketFixedRate element should be populated.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
         </xsd:sequence>
         <xsd:attribute name="id" type="xsd:ID" use="optional" />
       </xsd:extension>
@@ -622,24 +632,28 @@
     <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="InitialPayment">
-    <xsd:sequence>
-      <xsd:group ref="PayerReceiver.model" />
-      <xsd:element name="adjustablePaymentDate" type="xsd:date" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A fixed payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="adjustedPaymentDate" type="xsd:date" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="paymentAmount" type="Money">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A fixed payment amount.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
+    <xsd:complexContent>
+      <xsd:extension base="PaymentBase">
+        <xsd:sequence>
+          <xsd:group ref="PayerReceiver.model" />
+          <xsd:element name="adjustablePaymentDate" type="xsd:date" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A fixed payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="adjustedPaymentDate" type="xsd:date" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="paymentAmount" type="Money">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A fixed payment amount.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="InterestShortFall">
     <xsd:sequence>
@@ -809,50 +823,54 @@
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="PeriodicPayment">
-    <xsd:sequence>
-      <xsd:element name="paymentFrequency" type="Interval" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The time interval between regular fixed rate payer payment dates.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="firstPeriodStartDate" type="xsd:date" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The start date of the initial calculation period if such date is not equal to the trade’s effective date. It must only be specified if it is not equal to the effective date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement).</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="firstPaymentDate" type="xsd:date" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The first unadjusted fixed rate payer payment date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement). ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="lastRegularPaymentDate" type="xsd:date" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The last regular unadjusted fixed rate payer payment date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement). This element should only be included if there is a final payment stub, i.e. where the last regular unadjusted fixed rate payer payment date is not equal to the scheduled termination date. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="rollConvention" type="RollConventionEnum" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Used in conjunction with the effectiveDate, scheduledTerminationDate, firstPaymentDate, lastRegularPaymentDate and paymentFrequency to determine the regular fixed rate payer payment dates.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:choice>
-        <xsd:element name="fixedAmount" type="Money">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">A fixed payment amount. ISDA 2003 Term: Fixed Amount</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-        <xsd:element name="fixedAmountCalculation" type="FixedAmountCalculation">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">This element contains all the terms relevant to calculating a fixed amount where the fixed amount is calculated by reference to a per annum fixed rate. There is no corresponding ISDA 2003 Term. The equivalent is Sec 5.1 "Calculation of Fixed Amount" but this in itself is not a defined Term.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-      </xsd:choice>
-      <xsd:element name="adjustedPaymentDates" type="AdjustedPaymentDates" minOccurs="0" maxOccurs="unbounded">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">An optional cashflow-like structure allowing the equivalent representation of the periodic fixed payments in terms of a series of adjusted payment dates and amounts. This is intended to support application integration within an organisation and is not intended for use in inter-firm communication or confirmations. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
+    <xsd:complexContent>
+      <xsd:extension base="PaymentBase">
+        <xsd:sequence>
+          <xsd:element name="paymentFrequency" type="Interval" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The time interval between regular fixed rate payer payment dates.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="firstPeriodStartDate" type="xsd:date" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The start date of the initial calculation period if such date is not equal to the trade’s effective date. It must only be specified if it is not equal to the effective date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement).</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="firstPaymentDate" type="xsd:date" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The first unadjusted fixed rate payer payment date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement). ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="lastRegularPaymentDate" type="xsd:date" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The last regular unadjusted fixed rate payer payment date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement). This element should only be included if there is a final payment stub, i.e. where the last regular unadjusted fixed rate payer payment date is not equal to the scheduled termination date. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="rollConvention" type="RollConventionEnum" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Used in conjunction with the effectiveDate, scheduledTerminationDate, firstPaymentDate, lastRegularPaymentDate and paymentFrequency to determine the regular fixed rate payer payment dates.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:choice>
+            <xsd:element name="fixedAmount" type="Money">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">A fixed payment amount. ISDA 2003 Term: Fixed Amount</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="fixedAmountCalculation" type="FixedAmountCalculation">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">This element contains all the terms relevant to calculating a fixed amount where the fixed amount is calculated by reference to a per annum fixed rate. There is no corresponding ISDA 2003 Term. The equivalent is Sec 5.1 "Calculation of Fixed Amount" but this in itself is not a defined Term.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:choice>
+          <xsd:element name="adjustedPaymentDates" type="AdjustedPaymentDates" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">An optional cashflow-like structure allowing the equivalent representation of the periodic fixed payments in terms of a series of adjusted payment dates and amounts. This is intended to support application integration within an organisation and is not intended for use in inter-firm communication or confirmations. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="PhysicalSettlementPeriod">
     <xsd:choice>
@@ -1114,23 +1132,27 @@
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="SinglePayment">
-    <xsd:sequence>
-      <xsd:element name="adjustablePaymentDate" type="xsd:date">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A fixed amount payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="adjustedPaymentDate" type="xsd:date" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="fixedAmount" type="Money">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A fixed payment amount. ISDA 2003 Term: Fixed Amount</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
+    <xsd:complexContent>
+      <xsd:extension base="PaymentBase">
+        <xsd:sequence>
+          <xsd:element name="adjustablePaymentDate" type="xsd:date">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A fixed amount payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="adjustedPaymentDate" type="xsd:date" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="fixedAmount" type="Money">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A fixed payment amount. ISDA 2003 Term: Fixed Amount</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="SingleValuationDate">
     <xsd:sequence>

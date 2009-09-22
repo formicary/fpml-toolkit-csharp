@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-6" xmlns:fpml="http://www.fpml.org/2009/FpML-4-6" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-6" version="$Revision: 5471 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-6" xmlns:fpml="http://www.fpml.org/2009/FpML-4-6" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-6" version="$Revision: 6181 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-ird-4-6.xsd" />
   <xsd:include schemaLocation="fpml-eq-shared-4-6.xsd" />
   <xsd:complexType name="DeprecatedEquityLeg" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="It has been made more generic as ReturnLeg to cover return swap type products.">
@@ -134,6 +134,11 @@
         <xsd:sequence>
           <xsd:group ref="MutualOrOptionalEarlyTermination.model" minOccurs="0" />
           <xsd:group ref="EquityUnderlyerProvisions.model" minOccurs="0" />
+          <xsd:element name="extraordinaryEvents" type="ExtraordinaryEvents" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Where the underlying is shares, specifies events affecting the issuer of those shares that may require the terms of the transaction to be adjusted.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>

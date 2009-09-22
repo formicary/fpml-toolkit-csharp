@@ -8,7 +8,7 @@
       <conversationId conversationIdScheme="http://www.msdw.com/conversationId/OTC">EquityShareOption987</conversationId>
       <messageId messageIdScheme="http://www.msdw.com/messageId/OTC">EquityShareOption456a789b</messageId>
       <sentBy partyIdScheme="http://www.MsgParty.com/partyId">msdw</sentBy>
-      <creationTimestamp>2000-08-01T08:57:00Z</creationTimestamp>
+      <creationTimestamp>2001-08-01T08:57:00Z</creationTimestamp>
    </header>
    <trade>
       <tradeHeader>
@@ -57,9 +57,9 @@
                <latestExerciseTimeType>SpecificTime</latestExerciseTimeType>
                <equityExpirationTimeType>Close</equityExpirationTimeType>
                <equityMultipleExercise>
-                  <integralMultipleExercise>1</integralMultipleExercise>
-                  <minimumNumberOfOptions>150000</minimumNumberOfOptions>
-                  <maximumNumberOfOptions>150000</maximumNumberOfOptions>
+                  <integralMultipleExercise>2</integralMultipleExercise>
+                  <minimumNumberOfOptions>4</minimumNumberOfOptions>
+                  <maximumNumberOfOptions>75000</maximumNumberOfOptions>
                </equityMultipleExercise>
             </equityAmericanExercise>
             <automaticExercise>true</automaticExercise>

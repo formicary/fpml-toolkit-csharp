@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-6" xmlns:fpml="http://www.fpml.org/2009/FpML-4-6" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-6" version="$Revision: 5469 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-6" xmlns:fpml="http://www.fpml.org/2009/FpML-4-6" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-6" version="$Revision: 6347 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-shared-4-6.xsd" />
   <xsd:simpleType name="QueryParameterValue">
     <xsd:annotation>
@@ -593,44 +593,48 @@
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="PaymentDetail">
-    <xsd:sequence>
-      <xsd:choice minOccurs="0">
-        <xsd:element name="adjustablePaymentDate" type="AdjustableDate2" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="This structure doesn't provide the ability to provide a payment date relative to another date. The paymentDate element of type AdjustableOrRelativeDate should be used instead. In version 5.0 the date structures will be rationalized.">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">A fixed amount payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component. ISDA 2003 Term: Fixed Rate Payer Payment Date.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-        <xsd:element name="adjustedPaymentDate" type="xsd:date" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="In version 5.0 the date structures will be rationalized.">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-        <xsd:element name="paymentDate" type="AdjustableOrRelativeDate">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">Payment date.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-      </xsd:choice>
-      <xsd:choice>
-        <xsd:element name="paymentAmount" type="Money">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">A fixed payment amount.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
+    <xsd:complexContent>
+      <xsd:extension base="PaymentBase">
         <xsd:sequence>
-          <xsd:element name="paymentRule" type="PaymentRule">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">A type defining the calculation rule.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
-          <xsd:element name="paymentAmount" type="Money" minOccurs="0">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">A fixed payment amount.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
+          <xsd:choice minOccurs="0">
+            <xsd:element name="adjustablePaymentDate" type="AdjustableDate2" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="This structure doesn't provide the ability to provide a payment date relative to another date. The paymentDate element of type AdjustableOrRelativeDate should be used instead. In version 5.0 the date structures will be rationalized.">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">A fixed amount payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component. ISDA 2003 Term: Fixed Rate Payer Payment Date.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="adjustedPaymentDate" type="xsd:date" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="In version 5.0 the date structures will be rationalized.">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="paymentDate" type="AdjustableOrRelativeDate">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Payment date.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:choice>
+          <xsd:choice>
+            <xsd:element name="paymentAmount" type="Money">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">A fixed payment amount.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:sequence>
+              <xsd:element name="paymentRule" type="PaymentRule">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">A type defining the calculation rule.</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element name="paymentAmount" type="Money" minOccurs="0">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">A fixed payment amount.</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:choice>
         </xsd:sequence>
-      </xsd:choice>
-    </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="PaymentRule" abstract="true">
     <xsd:annotation>
@@ -1030,7 +1034,7 @@
         <xsd:documentation xml:lang="en">This optional attribute can be supplied by a message creator in an FpML instance to specify which build number of the schema was used to define the message when it was generated.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="actualBuild" fixed="1" type="xsd:positiveInteger">
+    <xsd:attribute name="actualBuild" fixed="6" type="xsd:positiveInteger">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">The specific build number of this schema version. This attribute is not included in an instance document. Instead, it is supplied by the XML parser when the document is validated against the FpML schema and indicates the build number of the schema file. Every time FpML publishes a change to the schema, validation rules, or examples within a version (e.g., version 4.2) the actual build number is incremented. If no changes have been made between releases within a version (i.e. from Trial Recommendation to Recommendation) the actual build number stays the same.</xsd:documentation>
       </xsd:annotation>
@@ -1102,7 +1106,7 @@
     <xsd:sequence>
       <xsd:element name="calculationAgent" type="CalculationAgent" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">The ISDA Calculation Agent responsible for performing duties associated with an optional early termination.</xsd:documentation>
+          <xsd:documentation xml:lang="en">The ISDA calculation agent responsible for performing duties as defined in the applicable product definitions.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="calculationAgentBusinessCenter" type="BusinessCenter" minOccurs="0">

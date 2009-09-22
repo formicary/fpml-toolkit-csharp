@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-6" xmlns:fpml="http://www.fpml.org/2009/FpML-4-6" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-6" version="$Revision: 5468 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-6" xmlns:fpml="http://www.fpml.org/2009/FpML-4-6" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-6" version="$Revision: 6147 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-shared-4-6.xsd" />
   <xsd:complexType name="ActualPrice">
     <xsd:sequence>
@@ -713,23 +713,27 @@
     <xsd:annotation>
       <xsd:documentation>A structure representing a pending dividend or coupon payment.</xsd:documentation>
     </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element name="paymentDate" type="xsd:date">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The date that the dividend or coupon is due.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="amount" type="Money">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The amount of the dividend or coupon payment. Value of dividends or coupon between ex and pay date. Stock: if we are between ex-date and pay-date and the dividend is payable under the swap, then this should be the ex-div amount * # of securities. Bond: regardless of where we are vis-a-vis resets: (coupon % * face of bonds on swap * (bond day count fraction using days last coupon pay date of the bond through today).</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="accruedInterest" type="Money" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Accrued interest on the dividend or coupon payment. When the TRS is structured to pay a dividend or coupon on reset after payable date, you may earn interest on these amounts. This field indicates the interest accrued on dividend/coupon from pay date to statement date. This will only apply to a handful of agreements where dividendss are held to the next reset AND you receive/pay interest on unpaid amounts.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
+    <xsd:complexContent>
+      <xsd:extension base="PaymentBase">
+        <xsd:sequence>
+          <xsd:element name="paymentDate" type="xsd:date">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The date that the dividend or coupon is due.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="amount" type="Money">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The amount of the dividend or coupon payment. Value of dividends or coupon between ex and pay date. Stock: if we are between ex-date and pay-date and the dividend is payable under the swap, then this should be the ex-div amount * # of securities. Bond: regardless of where we are vis-a-vis resets: (coupon % * face of bonds on swap * (bond day count fraction using days last coupon pay date of the bond through today).</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="accruedInterest" type="Money" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Accrued interest on the dividend or coupon payment. When the TRS is structured to pay a dividend or coupon on reset after payable date, you may earn interest on these amounts. This field indicates the interest accrued on dividend/coupon from pay date to statement date. This will only apply to a handful of agreements where dividendss are held to the next reset AND you receive/pay interest on unpaid amounts.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="Price">
     <xsd:annotation>
@@ -846,38 +850,6 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="SettlementPeriod">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">Specifies a Settlement Period associated with an Electricity Transaction for delivery on an Applicable Day or for a series of Applicable Days.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element name="duration" type="SettlementPeriodDurationEnum">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Specifies the Duration with respect to a Settlement Period.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="applicableDay" type="WeeklyRollConventionEnum" maxOccurs="7">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Specifies the Applicable Day with respect to a Settlement Period.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="includesHolidays" type="xsd:boolean">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">If this delivery schedule remains good even if the day(s) it relates to fall on a holiday, this element should be set to 'true'. On the other hand, if the delivery schedule is not valid for holidays, this element should be set to 'false'.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="startTime" type="CommodityBusinessCalendarTime">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Specifies the Start Time with respect to a Settlement Period.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="endTime" type="CommodityBusinessCalendarTime">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Specifies the End Time with respect to a Settlement Period.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
   <xsd:complexType name="SimpleCreditDefaultSwap">
     <xsd:complexContent>
       <xsd:extension base="UnderlyingAsset">
@@ -968,6 +940,16 @@
           <xsd:documentation xml:lang="en">The next upcoming coupon payment.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
+      <xsd:element name="averageDailyTradingVolume" type="AverageDailyTradingVolumeLimit" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The average amount of individual securities traded in a day or over a specified amount of time.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="depositoryReceipt" type="xsd:boolean" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A Depository Receipt is a negotiable certificate issued by a trust company or security depository. This element is used to represent whether a Depository Receipt is applicable or not to the underlyer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="TimeZone">
@@ -1048,6 +1030,11 @@
   <xsd:element name="cash" type="Cash" substitutionGroup="underlyingAsset">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Defines a simple underlying asset type that is a cash payment. Used for specifying discounting factors for future cash flows in the pricing and risk model.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="commodity" type="Commodity" substitutionGroup="underlyingAsset">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines the underlying asset when it is a commodity.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:element name="convertibleBond" type="ConvertibleBond" substitutionGroup="underlyingAsset">
@@ -1257,11 +1244,6 @@
       <xsd:element name="multiplier" type="PositiveDecimal" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Specifies the multiplier associated with a Transaction.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="settlementPeriod" type="SettlementPeriod" minOccurs="0" maxOccurs="unbounded">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Specifies the Settlement Periods associated with an Electricity Transaction.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>

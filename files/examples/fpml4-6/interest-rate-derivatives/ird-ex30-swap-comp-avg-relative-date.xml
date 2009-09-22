@@ -68,7 +68,7 @@
                <calculationPeriodFrequency>
                   <periodMultiplier>6</periodMultiplier>
                   <period>M</period>
-                  <rollConvention>NONE</rollConvention>
+                  <rollConvention>EOM</rollConvention>
                </calculationPeriodFrequency>
             </calculationPeriodDates>
             <paymentDates>
@@ -190,7 +190,7 @@
                <calculationPeriodFrequency>
                   <periodMultiplier>3</periodMultiplier>
                   <period>M</period>
-                  <rollConvention>NONE</rollConvention>
+                  <rollConvention>EOM</rollConvention>
                </calculationPeriodFrequency>
             </calculationPeriodDates>
             <paymentDates>

@@ -101,8 +101,11 @@
                   <schedule>
                      <startDate>2002-03-29</startDate>
                      <endDate>2002-07-12</endDate>
-                     <frequency>1</frequency>
-                     <frequencyType>Day</frequencyType>
+                     <averagingPeriodFrequency>
+                        <periodMultiplier>1</periodMultiplier>
+                        <period>D</period>
+                        <rollConvention>NONE</rollConvention>
+                     </averagingPeriodFrequency>
                   </schedule>
                   <trigger>
                      <level>1606.346</level>
@@ -121,8 +124,11 @@
                   <schedule>
                      <startDate>2002-07-26</startDate>
                      <endDate>2005-10-11</endDate>
-                     <frequency>1</frequency>
-                     <frequencyType>Business</frequencyType>
+                     <averagingPeriodFrequency>
+                        <periodMultiplier>1</periodMultiplier>
+                        <period>D</period>
+                        <rollConvention>NONE</rollConvention>
+                     </averagingPeriodFrequency>
                   </schedule>
                   <trigger>
                      <levelPercentage>1.50</levelPercentage>

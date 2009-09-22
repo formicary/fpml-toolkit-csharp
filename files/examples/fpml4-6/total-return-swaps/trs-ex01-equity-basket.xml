@@ -14,20 +14,20 @@
             <partyReference href="party2"/>
             <tradeId tradeIdScheme="http://www.hedgeco.com/swaps/trade-id">total-ret-swap-02</tradeId>
          </partyTradeIdentifier>
-         <tradeDate id="trs-eqbasket-TradeDate">2004-12-12+05:00</tradeDate>
+         <tradeDate id="r13">2004-12-12+05:00</tradeDate>
       </tradeHeader>
       <returnSwap>
-         <productType productTypeScheme="http://www.datastandardsworkinggroup.org/products-1-0">TRS-Equity-Basket-EarlyTerm</productType>
+         <productType>TotalReturnSwap</productType>
          <buyerPartyReference href="party2"/>
          <sellerPartyReference href="party1"/>
-         <returnLeg legIdentifier="trs-eqbasket-equityLeg">
+         <returnLeg legIdentifier="r1">
             <payerPartyReference href="party2"/>
             <receiverPartyReference href="party1"/>
             <paymentFrequency>
                <periodMultiplier>3</periodMultiplier>
                <period>M</period>
             </paymentFrequency>
-            <effectiveDate id="trs-eqbasket-EffectiveDate">
+            <effectiveDate id="r2">
                <adjustableDate>
                   <unadjustedDate>2004-12-14+05:00</unadjustedDate>
                   <dateAdjustments>
@@ -35,7 +35,7 @@
                   </dateAdjustments>
                </adjustableDate>
             </effectiveDate>
-            <terminationDate id="trs-eqbasket-TerminationDate">
+            <terminationDate id="r3">
                <adjustableDate>
                   <unadjustedDate>2004-12-14+05:00</unadjustedDate>
                   <dateAdjustments>
@@ -46,7 +46,7 @@
             <underlyer>
                <basket>
                   <openUnits>1</openUnits>
-                  <basketConstituent id="trs-eqbasket-underlyer1">
+                  <basketConstituent id="r4">
                      <equity>
                         <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-ISIN-1-0">ISIN_XXXX</instrumentId>
                         <description>Telecom Italia spa</description>
@@ -84,7 +84,7 @@
                         </quotationCharacteristics>
                      </underlyerPrice>
                   </basketConstituent>
-                  <basketConstituent id="trs-eqbasket-underlyer2">
+                  <basketConstituent id="r5">
                      <equity>
                         <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-ISIN-1-0">ISIN_YYYY</instrumentId>
                         <description>Nokya Oyj</description>
@@ -146,7 +146,7 @@
                   </commission>
                   <determinationMethod>PriceAtValuationTime</determinationMethod>
                   <valuationRules>
-                     <valuationDates id="trs-eqbasket-InterimValuationDate">
+                     <valuationDates id="r6">
                         <adjustableDates>
                            <unadjustedDate>2004-12-17+05:00</unadjustedDate>
                            <dateAdjustments>
@@ -165,7 +165,7 @@
                   </commission>
                   <determinationMethod>HedgeUnwind</determinationMethod>
                   <valuationRules>
-                     <valuationDate id="trs-eqbasket-FinalValuationDate">
+                     <valuationDate id="r7">
                         <adjustableDate>
                            <unadjustedDate>2006-01-17+05:00</unadjustedDate>
                            <dateAdjustments>
@@ -175,8 +175,8 @@
                      </valuationDate>
                   </valuationRules>
                </valuationPriceFinal>
-               <paymentDates id="trs-eqbasket-EquityPaymentDate">
-                  <paymentDatesInterim id="trs-eqbasket-InterimEquityPaymentDate">
+               <paymentDates id="r10">
+                  <paymentDatesInterim id="r11">
                      <adjustableDates>
                         <unadjustedDate>2004-12-14+05:00</unadjustedDate>
                         <unadjustedDate>2005-12-14+05:00</unadjustedDate>
@@ -190,7 +190,7 @@
                         </dateAdjustments>
                      </adjustableDates>
                   </paymentDatesInterim>
-                  <paymentDateFinal id="trs-eqbasket-FinalEquityPaymentDate">
+                  <paymentDateFinal id="r12">
                      <adjustableDate>
                         <unadjustedDate>2006-12-14+05:00</unadjustedDate>
                         <dateAdjustments>
@@ -204,14 +204,14 @@
                   </paymentDateFinal>
                </paymentDates>
             </rateOfReturn>
-            <notional id="trs-eqbasket-EquityNotionalAmount">
+            <notional id="r8">
                <notionalAmount>
                   <currency>EUR</currency>
                   <amount>19785157.16</amount>
                </notionalAmount>
             </notional>
             <amount>
-               <paymentCurrency id="trs-eqbasket-EquityPaymentCurrency">
+               <paymentCurrency id="r9">
                   <currency>USD</currency>
                </paymentCurrency>
                <referenceAmount>ISDA Standard</referenceAmount>
@@ -226,28 +226,28 @@
                   <dividendPaymentDate>
                      <dividendDateReference>EquityPaymentDate</dividendDateReference>
                   </dividendPaymentDate>
-                  <dividendPeriodEffectiveDate href="trs-eqbasket-TradeDate"/>
-                  <dividendPeriodEndDate href="trs-eqbasket-FinalValuationDate"/>
+                  <dividendPeriodEffectiveDate href="r13"/>
+                  <dividendPeriodEndDate href="r7"/>
                   <excessDividendAmount>PaidAmount</excessDividendAmount>
-                  <paymentCurrency id="trs-eqPaymentCurrency" href="trs-eqbasket-ReferenceCurrency"/>
+                  <paymentCurrency id="r14" href="r15"/>
                </dividendConditions>
             </return>
             <notionalAdjustments>Execution</notionalAdjustments>
             <fxFeature>
-               <referenceCurrency id="trs-eqbasket-ReferenceCurrency">EUR</referenceCurrency>
+               <referenceCurrency id="r15">EUR</referenceCurrency>
                <composite>
                   <determinationMethod>GoodFaith</determinationMethod>
                </composite>
             </fxFeature>
          </returnLeg>
-         <interestLeg legIdentifier="trs-eqbasket-interestLeg">
+         <interestLeg legIdentifier="r16">
             <payerPartyReference href="party1"/>
             <receiverPartyReference href="party2"/>
             <paymentFrequency>
                <periodMultiplier>3</periodMultiplier>
                <period>M</period>
             </paymentFrequency>
-            <interestLegCalculationPeriodDates id="trs-eqbasket-InterestLegPeriodDates">
+            <interestLegCalculationPeriodDates id="r120">
                <effectiveDate>
                   <adjustableDate>
                      <unadjustedDate>2004-12-14+05:00</unadjustedDate>
@@ -265,7 +265,7 @@
                   </adjustableDate>
                </terminationDate>
                <interestLegResetDates>
-                  <calculationPeriodDatesReference href="trs-eqbasket-InterestLegPeriodDates"/>
+                  <calculationPeriodDatesReference href="r120"/>
                   <resetRelativeTo>CalculationPeriodStartDate</resetRelativeTo>
                </interestLegResetDates>
                <interestLegPaymentDates>
@@ -290,7 +290,7 @@
                </notionalAmount>
             </notional>
             <interestAmount>
-               <paymentCurrency href="trs-eqbasket-ReferenceCurrency"/>
+               <paymentCurrency href="r15"/>
                <referenceAmount>Standard ISDA</referenceAmount>
             </interestAmount>
             <interestCalculation>

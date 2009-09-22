@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-6" xmlns:fpml="http://www.fpml.org/2009/FpML-4-6" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-6" version="$Revision: 5468 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-6" xmlns:fpml="http://www.fpml.org/2009/FpML-4-6" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-6" version="$Revision: 6329 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-enum-4-6.xsd" />
   <xsd:simpleType name="CorrelationValue">
     <xsd:annotation>
@@ -32,16 +32,6 @@
       <xsd:maxInclusive value="1" />
     </xsd:restriction>
   </xsd:simpleType>
-  <xsd:complexType name="AccountReference">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">Reference to an account.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:complexContent>
-      <xsd:extension base="Reference">
-        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="Account" />
-      </xsd:extension>
-    </xsd:complexContent>
-  </xsd:complexType>
   <xsd:simpleType name="PositiveDecimal">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A type defining a number specified as positive decimal greater than 0 exclusive.</xsd:documentation>
@@ -109,6 +99,16 @@
         </xsd:attribute>
       </xsd:extension>
     </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="AccountReference">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Reference to an account.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Reference">
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="Account" />
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="Address">
     <xsd:annotation>
@@ -412,6 +412,23 @@
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:complexType name="AverageDailyTradingVolumeLimit">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">To indicate the limitation percentage and limitation period.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="limitationPercentage" type="RestrictedPercentage">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Specifies the limitation percentage in Average Daily trading volume.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="limitationPeriod" type="xsd:nonNegativeInteger">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Specifies the limitation period for Average Daily trading volume in number of days.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
   <xsd:complexType name="Beneficiary">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A type defining the beneficiary of the funds.</xsd:documentation>
@@ -579,7 +596,7 @@
   </xsd:complexType>
   <xsd:complexType name="CalculationAgent">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type defining the ISDA calcuation agent responsible for performing duties as defined in the applicable product definitions.</xsd:documentation>
+      <xsd:documentation xml:lang="en">A type defining the ISDA calculation agent responsible for performing duties as defined in the applicable product definitions.</xsd:documentation>
     </xsd:annotation>
     <xsd:choice>
       <xsd:element name="calculationAgentPartyReference" type="PartyReference" maxOccurs="unbounded">
@@ -589,7 +606,7 @@
       </xsd:element>
       <xsd:element name="calculationAgentParty" type="CalculationAgentPartyEnum">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">The ISDA Calculation Agent where the actual party responsible for performing the duties associated with an optional early termination provision will be determined at exercise. For example, the Calculation Agent may be defined as being the Non-exercising Party.</xsd:documentation>
+          <xsd:documentation xml:lang="en">The ISDA calculation agent responsible for performing duties as defined in the applicable product definitions. For example, the Calculation Agent may be defined as being the Non-exercising Party.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:choice>
@@ -616,7 +633,7 @@
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="Scheme">
-        <xsd:attribute name="cashflowTypeScheme" default="http://www.fpml.org/coding-scheme/cashflow-type" type="xsd:anyURI" />
+        <xsd:attribute name="cashflowTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/cashflow-type" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -850,7 +867,7 @@
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="Scheme">
-        <xsd:attribute name="determinationMethodScheme" type="xsd:anyURI" />
+        <xsd:attribute name="determinationMethodScheme" type="xsd:anyURI" default="http://www.fpml.org/determination-method" />
         <xsd:attribute name="id" type="xsd:ID" />
       </xsd:extension>
     </xsd:simpleContent>
@@ -1488,18 +1505,7 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A type defining a time interval or offset, e.g. one day, three months. Used for specifying frequencies at which events occur, the tenor of a floating rate or an offset relative to another date.</xsd:documentation>
     </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element name="periodMultiplier" type="xsd:integer">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A time period multiplier, e.g. 1, 2 or 3 etc. A negative value can be used when specifying an offset relative to another date, e.g. -2 days. If the period value is T (Term) then periodMultiplier must contain the value 1.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="period" type="PeriodEnum">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A time period, e.g. a day, week, month, year or term of the stream. If the periodMultiplier value is 0 (zero) then period must contain the value D (day).</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
+    <xsd:group ref="Interval.model" />
     <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="Leg" abstract="true">
@@ -1625,7 +1631,19 @@
           <xsd:documentation xml:lang="en">The date that an annex to the master confirmation was executed between the parties.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
+      <xsd:element name="masterConfirmationAnnexType" type="MasterConfirmationAnnexType" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The type of master confirmation annex executed between the parties.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="MasterConfirmationAnnexType">
+    <xsd:simpleContent>
+      <xsd:extension base="Scheme">
+        <xsd:attribute name="masterConfirmationAnnexTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/master-confirmation-annex-type" />
+      </xsd:extension>
+    </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="MasterConfirmationType">
     <xsd:simpleContent>
@@ -1736,7 +1754,7 @@
       <xsd:documentation xml:lang="en">A complex type to specify non negative payments.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
-      <xsd:extension base="PaymentBase">
+      <xsd:extension base="PaymentBaseExtended">
         <xsd:sequence>
           <xsd:element name="paymentAmount" type="NonNegativeMoney">
             <xsd:annotation>
@@ -1790,6 +1808,19 @@
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="OffsetPrevailingTime">
+    <xsd:annotation>
+      <xsd:documentation>Allows the specification of a time that may be on a day prior or subsequent to the day in question. This type is intended for use with a day of the week (i.e. where no actual date is specified) as part of, for example, a period that runs from 23:00-07:00 on a series of days and where holidays on the actual days would affect the entire time period.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="time" type="PrevailingTime" />
+      <xsd:element name="offset" type="Offset" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>Indicates whether time applies to the actual day specified (in which case this element should be omitted) the day prior to that day (in which case periodMultiplier should be -1 and period should be Day) or the day subsequent to that day (in which case periodMultiplier should be 1 and period should be Day).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="PartialExercise">
     <xsd:annotation>
@@ -1871,49 +1902,53 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A type for defining payments</xsd:documentation>
     </xsd:annotation>
-    <xsd:sequence>
-      <xsd:group ref="PayerReceiver.model" />
-      <xsd:element name="paymentAmount" type="Money">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The currency amount of the payment.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="paymentDate" type="AdjustableDate" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The payment date. This date is subject to adjustment in accordance with any applicable business day convention.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="adjustedPaymentDate" type="IdentifiedDate" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but my be specified to allow the fee structure to also serve as a cashflow type component (all dates the the Cashflows type are adjusted payment dates).</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="paymentType" type="PaymentType" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A classification of the type of fee or additional payment, e.g. brokerage, upfront fee etc. FpML does not define domain values for this element.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="settlementInformation" type="SettlementInformation" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The information required to settle a currency payment that results from a trade.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="discountFactor" type="xsd:decimal" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The value representing the discount factor used to calculate the present value of the cash flow.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="presentValueAmount" type="Money" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The amount representing the present value of the forecast payment.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
-    <xsd:attribute name="href" type="xsd:IDREF" ecore:reference="PricingStructure">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Can be used to reference the yield curve used to estimate the discount factor</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
+    <xsd:complexContent>
+      <xsd:extension base="PaymentBase">
+        <xsd:sequence>
+          <xsd:group ref="PayerReceiver.model" />
+          <xsd:element name="paymentAmount" type="Money">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The currency amount of the payment.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="paymentDate" type="AdjustableDate" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The payment date. This date is subject to adjustment in accordance with any applicable business day convention.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="adjustedPaymentDate" type="IdentifiedDate" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but my be specified to allow the fee structure to also serve as a cashflow type component (all dates the the Cashflows type are adjusted payment dates).</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="paymentType" type="PaymentType" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A classification of the type of fee or additional payment, e.g. brokerage, upfront fee etc. FpML does not define domain values for this element.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="settlementInformation" type="SettlementInformation" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The information required to settle a currency payment that results from a trade.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="discountFactor" type="xsd:decimal" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The value representing the discount factor used to calculate the present value of the cash flow.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="presentValueAmount" type="Money" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The amount representing the present value of the forecast payment.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="href" type="xsd:IDREF" ecore:reference="PricingStructure">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Can be used to reference the yield curve used to estimate the discount factor</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="PaymentCurrency" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="The model is wrong since it has an intradocument reference that is not clear. Current PaymentCurrency model and elements using this type are deprecated. Instead, a choice between currency, determinationMethod, and currencyReference (of type CurrencyReference) are inserted at the same level as the elements using PaymentCurrency.">
     <xsd:annotation>
@@ -1938,14 +1973,34 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">An abstract base class for payment types.</xsd:documentation>
     </xsd:annotation>
-    <xsd:sequence>
-      <xsd:group ref="PayerReceiver.model" />
-      <xsd:element name="paymentDate" type="AdjustableOrRelativeDate">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The payment date, which can be expressed as either an adjustable or relative date.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:ID" />
+  </xsd:complexType>
+  <xsd:complexType name="PaymentBaseExtended" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Base type for payments starting with the 4-3 release, until we refactor the schema as part of the 5-0 release series.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="PaymentBase">
+        <xsd:sequence>
+          <xsd:group ref="PayerReceiver.model" />
+          <xsd:element name="paymentDate" type="AdjustableOrRelativeDate">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The payment date, which can be expressed as either an adjustable or relative date.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="PaymentReference">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Reference to a payment.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Reference">
+        <xsd:attribute name="href" type="xsd:IDREF" use="required" ecore:reference="PaymentBase" />
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="PaymentType">
     <xsd:simpleContent>
@@ -1991,7 +2046,7 @@
       <xsd:documentation xml:lang="en">A complex type to specify positive payments.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
-      <xsd:extension base="PaymentBase">
+      <xsd:extension base="PaymentBaseExtended">
         <xsd:sequence>
           <xsd:element name="paymentAmount" type="PositiveMoney">
             <xsd:annotation>
@@ -2001,6 +2056,23 @@
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="PrevailingTime">
+    <xsd:annotation>
+      <xsd:documentation>A type for defining a time with respect to a geographic location, for example 11:00 Phoenix, USA. This type should be used where a wider range of locations than those available as business centres is required.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="hourMinuteTime" type="HourMinuteTime">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A time specified in hh:mm:ss format where the second component must be '00', e.g. 11am would be represented as 11:00:00.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="location" type="TZLocation">
+        <xsd:annotation>
+          <xsd:documentation>The geographic location to which the hourMinuteTime applies. The time takes into account any current day light saving changes or other adjustments i.e. it is the prevaling time at the location.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="PricingStructure" abstract="true">
     <xsd:annotation>
@@ -2525,15 +2597,19 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A complex type to specified payments in a simpler fashion than the Payment type. This construct should be used from the version 4.3 onwards.</xsd:documentation>
     </xsd:annotation>
-    <xsd:sequence>
-      <xsd:group ref="PayerReceiver.model" />
-      <xsd:element name="paymentAmount" type="Money" />
-      <xsd:element name="paymentDate" type="AdjustableOrRelativeAndAdjustedDate">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The payment date. This date is subject to adjustment in accordance with any applicable business day convention.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
+    <xsd:complexContent>
+      <xsd:extension base="PaymentBase">
+        <xsd:sequence>
+          <xsd:group ref="PayerReceiver.model" />
+          <xsd:element name="paymentAmount" type="Money" />
+          <xsd:element name="paymentDate" type="AdjustableOrRelativeAndAdjustedDate">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The payment date. This date is subject to adjustment in accordance with any applicable business day convention.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="SplitSettlement">
     <xsd:annotation>
@@ -2706,6 +2782,16 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
+  <xsd:complexType name="TZLocation">
+    <xsd:annotation>
+      <xsd:documentation>A geophraphic location for the purposes of defining a prevailing time according to the tz database.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="Scheme">
+        <xsd:attribute name="tzLocationScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/external/tzdatabase" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
   <xsd:element name="americanExercise" type="AmericanExercise" substitutionGroup="exercise">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">The parameters for defining the exercise period for an American style option together with any rules governing the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fees.</xsd:documentation>
@@ -2761,6 +2847,20 @@
       <xsd:element name="indexTenor" type="Interval" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The ISDA Designated Maturity, i.e. the tenor of the floating rate.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="Interval.model">
+    <xsd:sequence>
+      <xsd:element name="periodMultiplier" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A time period multiplier, e.g. 1, 2 or 3 etc. A negative value can be used when specifying an offset relative to another date, e.g. -2 days. If the period value is T (Term) then periodMultiplier must contain the value 1.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="period" type="PeriodEnum">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">A time period, e.g. a day, week, month, year or term of the stream. If the periodMultiplier value is 0 (zero) then period must contain the value D (day).</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>

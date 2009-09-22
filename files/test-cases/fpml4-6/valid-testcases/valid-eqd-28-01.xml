@@ -56,10 +56,10 @@
                </latestExerciseTime>
                <latestExerciseTimeType>SpecificTime</latestExerciseTimeType>
                <equityExpirationTimeType>Close</equityExpirationTimeType>
-               <equityMultipleExercise>
+               <equityMultipleExercise><!--eqd-28 -  the minimum number of options (minimumNumberOfOptions) exercised must be a positive integer multiple of integral multiple exercise (integralMultipleExercise) -->
                   <integralMultipleExercise>1.5</integralMultipleExercise>
-                  <minimumNumberOfOptions>150000</minimumNumberOfOptions>
-                  <maximumNumberOfOptions>150000</maximumNumberOfOptions>
+                  <minimumNumberOfOptions>750</minimumNumberOfOptions>
+                  <maximumNumberOfOptions>750</maximumNumberOfOptions>
                </equityMultipleExercise>
             </equityAmericanExercise>
             <automaticExercise>true</automaticExercise>

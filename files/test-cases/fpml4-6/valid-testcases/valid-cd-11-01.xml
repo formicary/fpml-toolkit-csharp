@@ -57,7 +57,6 @@
                <allGuarantees>true</allGuarantees><!--Rule-->
                <referencePrice>1.0</referencePrice>
             </referenceInformation>
-            <additionalTerm>ISDA2003Credit60BusinessDaySettlementCap</additionalTerm>
          </generalTerms>
          <feeLeg>
             <periodicPayment>

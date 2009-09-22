@@ -83,26 +83,6 @@
             <commodity>
                <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/commodity-reference-price-1-0">ELECTRICITY-MID-COLUMBIA FIRM (ON-PEAK)-DOW JONES POWER</instrumentId>
                <specifiedPrice>MeanOfHighAndLow</specifiedPrice>
-               <settlementPeriod>
-                  <duration>Hourly</duration>
-                  <applicableDay>MON</applicableDay>
-                  <applicableDay>TUE</applicableDay>
-                  <applicableDay>WED</applicableDay>
-                  <applicableDay>THU</applicableDay>
-                  <applicableDay>FRI</applicableDay>
-                  <applicableDay>SAT</applicableDay>
-                  <includesHolidays>false</includesHolidays>
-                  <startTime>
-                     <hourMinuteTime>06:00:00</hourMinuteTime>
-                     <timeZone>EST</timeZone>
-                     <businessCalendar>NERC</businessCalendar>
-                  </startTime>
-                  <endTime>
-                     <hourMinuteTime>22:00:00</hourMinuteTime>
-                     <timeZone>EST</timeZone>
-                     <businessCalendar>NERC</businessCalendar>
-                  </endTime>
-               </settlementPeriod>
             </commodity>
             <notionalQuantity>
                <quantityUnit>MMBTU</quantityUnit>

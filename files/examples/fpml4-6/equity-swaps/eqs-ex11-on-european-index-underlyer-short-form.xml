@@ -158,8 +158,7 @@
                   <declaredCashDividendPercentage>.01</declaredCashDividendPercentage>
                </dividendConditions>
             </return><!--The notionalAdjustments element indicates that this is an execution-style swap -->
-            <notionalAdjustments>Execution</notionalAdjustments><!--EUR Index Swap - Specifies the type of index swap applicable. -->
-            <typeOfIndexSwap>Accrual</typeOfIndexSwap>
+            <notionalAdjustments>Execution</notionalAdjustments><!--EUR Index Swap - Specifies the type of index swap applicable. --><!--typeOfIndexSwap>Accrual</typeOfIndexSwap-->
          </returnLeg>
          <interestLeg>
             <payerPartyReference href="party2"/>

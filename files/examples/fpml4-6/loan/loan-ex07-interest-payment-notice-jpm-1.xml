@@ -113,7 +113,7 @@
    </interestPayment>
    <interestAccrualSchedule>
       <interestRatePeriod>
-         <rateFixingDate>2007-10-30</rateFixingDate>
+         <rateFixingDate>2007-09-30</rateFixingDate>
          <startDate>2007-09-30</startDate>
          <endDate>2007-10-30</endDate>
          <floatingRateIndex>USD-LIBOR-BBA</floatingRateIndex>

@@ -24,7 +24,7 @@
          <tradeDate id="TradeDate">2001-09-24-00:00</tradeDate>
       </tradeHeader>
       <returnSwap>
-         <productType>SingleStockExecutionSwap</productType>
+         <productType>EquitySwap</productType>
          <returnLeg>
             <payerPartyReference href="party1"/>
             <receiverPartyReference href="party2"/>

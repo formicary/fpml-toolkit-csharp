@@ -14,20 +14,20 @@
             <partyReference href="party2"/>
             <tradeId tradeIdScheme="http://www.hedgeco.com/swaps/trade-id">total-ret-swap-01</tradeId>
          </partyTradeIdentifier>
-         <tradeDate id="trs-eq1-TradeDate">2004-10-10+05:00</tradeDate>
+         <tradeDate id="d1">2004-10-10+05:00</tradeDate>
       </tradeHeader>
       <returnSwap>
-         <productType productTypeScheme="http://www.datastandardsworkinggroup.org/products-1-0">TRS-Equity-Single-EarlyTerm</productType>
+         <productType>TotalReturnSwap</productType>
          <buyerPartyReference href="party1"/>
          <sellerPartyReference href="party2"/>
-         <returnLeg legIdentifier="trs-eq1-equityLeg">
+         <returnLeg legIdentifier="l1">
             <payerPartyReference href="party1"/>
             <receiverPartyReference href="party2"/>
             <paymentFrequency>
                <periodMultiplier>3</periodMultiplier>
                <period>M</period>
             </paymentFrequency>
-            <effectiveDate id="trs-eq1-EffectiveDate">
+            <effectiveDate id="d2">
                <adjustableDate>
                   <unadjustedDate>2004-10-12+05:00</unadjustedDate>
                   <dateAdjustments>
@@ -35,7 +35,7 @@
                   </dateAdjustments>
                </adjustableDate>
             </effectiveDate>
-            <terminationDate id="trs-eq1-TerminationDate">
+            <terminationDate id="d3">
                <adjustableDate>
                   <unadjustedDate>2006-10-12+05:00</unadjustedDate>
                   <dateAdjustments>
@@ -45,7 +45,7 @@
             </terminationDate>
             <underlyer>
                <singleUnderlyer>
-                  <equity id="trs-eq1-equity-asset">
+                  <equity id="a3">
                      <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-CUSIP-1-0">SHPGY.O</instrumentId>
                      <description>Shire Pharmeceuticals Group - American Depositary Receipts</description>
                      <currency>EUR</currency>
@@ -115,7 +115,7 @@
                   </commission>
                   <determinationMethod>PriceAtValuationTime</determinationMethod>
                   <valuationRules>
-                     <valuationDates id="trs-eq1-InterimValuationDate">
+                     <valuationDates id="d4">
                         <adjustableDates>
                            <unadjustedDate>2004-10-12+05:00</unadjustedDate>
                            <unadjustedDate>2004-11-13+05:00</unadjustedDate>
@@ -144,7 +144,7 @@
                   </commission>
                   <determinationMethod>HedgeUnwind</determinationMethod>
                   <valuationRules>
-                     <valuationDate id="trs-eq1-FinalValuationDate">
+                     <valuationDate id="d5">
                         <adjustableDate>
                            <unadjustedDate>2005-09-24+05:00</unadjustedDate>
                            <dateAdjustments>
@@ -154,8 +154,8 @@
                      </valuationDate>
                   </valuationRules>
                </valuationPriceFinal>
-               <paymentDates id="trs-eq1-EquityPaymentDate">
-                  <paymentDatesInterim id="trs-eq1-InterimEquityPaymentDate">
+               <paymentDates id="d6">
+                  <paymentDatesInterim id="d7">
                      <adjustableDates>
                         <unadjustedDate>2004-10-14+05:00</unadjustedDate>
                         <unadjustedDate>2005-10-14+05:00</unadjustedDate>
@@ -169,7 +169,7 @@
                         </dateAdjustments>
                      </adjustableDates>
                   </paymentDatesInterim>
-                  <paymentDateFinal id="trs-eq1-FinalEquityPaymentDate">
+                  <paymentDateFinal id="d8">
                      <adjustableDate>
                         <unadjustedDate>2006-10-14+05:00</unadjustedDate>
                         <dateAdjustments>
@@ -183,14 +183,14 @@
                   </paymentDateFinal>
                </paymentDates>
             </rateOfReturn>
-            <notional id="trs-eq1-EquityNotionalAmount">
+            <notional id="b1">
                <notionalAmount>
                   <currency>USD</currency>
                   <amount>28469376</amount>
                </notionalAmount>
             </notional>
             <amount>
-               <paymentCurrency id="trs-eq1-EquityPaymentCurrency">
+               <paymentCurrency id="b2">
                   <currency>USD</currency>
                </paymentCurrency>
                <referenceAmount>ISDA Standard</referenceAmount>
@@ -205,8 +205,8 @@
                   <dividendPaymentDate>
                      <dividendDateReference>EquityPaymentDate</dividendDateReference>
                   </dividendPaymentDate>
-                  <dividendPeriodEffectiveDate href="trs-eq1-TradeDate"/>
-                  <dividendPeriodEndDate href="trs-eq1-TerminationDate"/>
+                  <dividendPeriodEffectiveDate href="d1"/>
+                  <dividendPeriodEndDate href="d3"/>
                   <extraOrdinaryDividends href="party1"/>
                   <excessDividendAmount>RecordAmount</excessDividendAmount>
                   <paymentCurrency>
@@ -216,14 +216,14 @@
             </return><!--The notionalAdjustments element indicates that this is an execution-style swap -->
             <notionalAdjustments>Execution</notionalAdjustments>
          </returnLeg>
-         <interestLeg legIdentifier="trs-eq1-interestLeg">
+         <interestLeg legIdentifier="l2">
             <payerPartyReference href="party2"/>
             <receiverPartyReference href="party1"/>
             <paymentFrequency>
                <periodMultiplier>3</periodMultiplier>
                <period>M</period>
             </paymentFrequency>
-            <interestLegCalculationPeriodDates id="trs-eq1-InterestLegPeriodDates">
+            <interestLegCalculationPeriodDates id="d10">
                <effectiveDate>
                   <adjustableDate>
                      <unadjustedDate>2004-10-12+05:00</unadjustedDate>
@@ -241,7 +241,7 @@
                   </adjustableDate>
                </terminationDate>
                <interestLegResetDates>
-                  <calculationPeriodDatesReference href="trs-eq1-InterestLegPeriodDates"/>
+                  <calculationPeriodDatesReference href="d10"/>
                   <resetRelativeTo>CalculationPeriodStartDate</resetRelativeTo>
                </interestLegResetDates>
                <interestLegPaymentDates>
@@ -266,7 +266,7 @@
                </notionalAmount>
             </notional>
             <interestAmount>
-               <paymentCurrency href="trs-eq1-EquityPaymentCurrency"/>
+               <paymentCurrency href="b2"/>
                <referenceAmount>Standard ISDA</referenceAmount>
             </interestAmount>
             <interestCalculation>

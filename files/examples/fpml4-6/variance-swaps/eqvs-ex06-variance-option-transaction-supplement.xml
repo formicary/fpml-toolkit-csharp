@@ -16,7 +16,6 @@
          <buyerPartyReference href="partyA"/>
          <sellerPartyReference href="partyB"/>
          <optionType>Call</optionType>
-         <numberOfOptions>100000</numberOfOptions>
          <equityPremium>
             <payerPartyReference href="partyA"/>
             <receiverPartyReference href="partyB"/>
@@ -113,7 +112,7 @@
       </varianceOptionTransactionSupplement>
       <documentation>
          <masterConfirmation>
-            <masterConfirmationType>2009VarianceOptionsEuropean</masterConfirmationType>
+            <masterConfirmationType>ISDA2007VarianceOptionEuropean</masterConfirmationType>
             <masterConfirmationDate>2009-01-07</masterConfirmationDate>
          </masterConfirmation>
       </documentation>

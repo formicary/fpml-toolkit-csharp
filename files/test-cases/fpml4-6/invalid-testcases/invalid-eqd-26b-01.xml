@@ -61,7 +61,6 @@
                <latestExerciseTimeType>Close</latestExerciseTimeType>
                <equityExpirationTimeType>Close</equityExpirationTimeType>
                <equityMultipleExercise>
-                  <integralMultipleExercise>1</integralMultipleExercise>
                   <minimumNumberOfOptions>1</minimumNumberOfOptions><!-- 500001 breaks rule eqd-26b since the maximumNumberOfOptions is greater than the numberOfOptions value -->
                   <maximumNumberOfOptions>500001</maximumNumberOfOptions>
                </equityMultipleExercise>

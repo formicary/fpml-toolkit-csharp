@@ -57,8 +57,7 @@
                <latestExerciseTimeType>SpecificTime</latestExerciseTimeType>
                <equityExpirationTimeType>Close</equityExpirationTimeType>
                <equityMultipleExercise>
-                  <integralMultipleExercise>1</integralMultipleExercise>
-                  <minimumNumberOfOptions>1</minimumNumberOfOptions>
+                  <minimumNumberOfOptions>1</minimumNumberOfOptions><!--eqd-26 - You cannot exercise more than the number of options you have. maximumNumberOfOptions <= numberOfOptions  -->
                   <maximumNumberOfOptions>150000</maximumNumberOfOptions>
                </equityMultipleExercise>
             </equityAmericanExercise>
@@ -112,7 +111,7 @@
          </extraordinaryEvents><!-- start of distinct -->
          <strike>
             <strikePrice>32.00</strikePrice>
-         </strike>
+         </strike><!--Rule eqd-26-->
          <numberOfOptions>150000</numberOfOptions>
          <optionEntitlement>1.00</optionEntitlement>
          <equityPremium>

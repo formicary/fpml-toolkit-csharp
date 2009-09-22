@@ -54,9 +54,9 @@
                <latestExerciseTimeType>Close</latestExerciseTimeType>
                <equityExpirationTimeType>Close</equityExpirationTimeType>
                <equityMultipleExercise><!--violate eqd-18, maximumNumberOfOptions * integralMultipleExercise =< numberOfOptions. -->
-                  <integralMultipleExercise>1.5</integralMultipleExercise>
+                  <integralMultipleExercise>1</integralMultipleExercise>
                   <minimumNumberOfOptions>6</minimumNumberOfOptions>
-                  <maximumNumberOfOptions>400000</maximumNumberOfOptions>
+                  <maximumNumberOfOptions>500001</maximumNumberOfOptions>
                </equityMultipleExercise>
             </equityBermudaExercise>
             <automaticExercise>true</automaticExercise>
