@@ -59,5 +59,15 @@ namespace HandCoded.FpML
 		{
 			return ("???");
 		}
+
+		/// <summary>
+		/// Returns a dummy value for the quanto currency basis.
+		/// </summary>
+		/// <param name="context">The <see cref="XmlElement"/> of the fxFeature</param>
+		/// <returns>The quanto currency basis.</returns>
+		public string GetQuantoBasis (XmlElement context)
+		{
+			return ("???");
+		}
 	}
 }

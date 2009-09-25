@@ -30,7 +30,7 @@
 	<uri name="http://www.w3.org/2000/09/xmldsig#" uri="schemas/dsig/xmldsig-core-schema.xsd"/>
 	
 	<!--
-	  == The XML Parser does resolve namespace URI through the catalog so
+	  == The XML Parser does not resolve namespace URIs through the catalog so
 	  == the utility function does it while constructing the schema collection.
 	  -->
 	<uri name="http://www.fpml.org/2003/FpML-4-0" uri="schemas/fpml4-0/fpml-main-4-0.xsd"/>
@@ -40,6 +40,7 @@
 	<uri name="http://www.fpml.org/2007/FpML-4-4" uri="schemas/fpml4-4/fpml-main-4-4.xsd"/>
 	<uri name="http://www.fpml.org/2008/FpML-4-5" uri="schemas/fpml4-5/fpml-main-4-5.xsd"/>
 	<uri name="http://www.fpml.org/2009/FpML-4-6" uri="schemas/fpml4-6/fpml-main-4-6.xsd"/>
+	<uri name="http://www.fpml.org/2009/FpML-4-7" uri="schemas/fpml4-7/fpml-main-4-7.xsd"/>
 
 	<!--
 	  == Experimental FpML 5.0 Working Draft

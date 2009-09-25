@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2009 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -95,7 +95,14 @@ namespace HandCoded.FpML.Validation
 		public static readonly Precondition	R4_6
 			= new VersionPrecondition (Releases.R4_6);
 
-		/// <summary>
+        /// <summary>
+        /// A <see cref="Precondition"/> instance that detects FpML 4-7 compatible
+        /// documents.
+        /// </summary>
+        public static readonly Precondition R4_7
+            = new VersionPrecondition (Releases.R4_7);
+
+        /// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML 5-0 confirmation
 		/// compatible documents.
 		/// </summary>
@@ -159,12 +166,19 @@ namespace HandCoded.FpML.Validation
 		public static readonly Precondition	R5_0__LATER
 			= R5_0;
 
-		/// <summary>
+        /// <summary>
+        /// A <see cref="Precondition"/> instance that detects FpML versions 4-7 and
+        /// later.
+        /// </summary>
+        public static readonly Precondition R4_7__LATER
+            = Precondition.Or (R4_7, R5_0__LATER);
+
+        /// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML versions 4-6 and
 		/// later.
 		/// </summary>
 		public static readonly Precondition	R4_6__LATER
-			= Precondition.Or (R4_6, R5_0__LATER);
+			= Precondition.Or (R4_6, R4_7__LATER);
 
 		/// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML versions 4-5 and

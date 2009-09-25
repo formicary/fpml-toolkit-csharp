@@ -625,6 +625,14 @@ namespace HandCoded.FpML
 				/// <param name="context">The <see cref="XmlElement"/> of the fxFeature</param>
 				/// <returns>The reference currency code value (e.g. GBP).</returns>
 				string GetQuantoCurrency2 (XmlElement context);
+
+				/// <summary>
+				/// Uses the context information provided to determine the quanto
+				/// currency basis or throws a <see cref="ConversionException"/>.
+				/// </summary>
+				/// <param name="context">The <see cref="XmlElement"/> of the fxFeature</param>
+				/// <returns>The quanto currency basis.</returns>
+				string GetQuantoBasis (XmlElement context);
 			}
 
 			/// <summary>
@@ -836,8 +844,6 @@ namespace HandCoded.FpML
 							else {
 								child = document.CreateElement ("quanto");
 
-								XmlComment	note	= document.CreateComment ("Note: Manual enrichment required here");
-
 								XmlElement	pair	= document.CreateElement ("quotedCurrencyPair");
 								XmlElement	ccy1	= document.CreateElement ("currency1");
 								XmlElement	ccy2	= document.CreateElement ("currency2");
@@ -848,11 +854,10 @@ namespace HandCoded.FpML
 								if (helper is IHelper) {
 									ccy1.InnerText = (helper as IHelper).GetQuantoCurrency1 (element);
 									ccy2.InnerText = (helper as IHelper).GetQuantoCurrency2 (element);
+									basis.InnerText = (helper as IHelper).GetQuantoBasis (element);
 								}
 								else
 									throw new ConversionException ("Cannot determine fxFeature quanto currencies");
-
-								basis.InnerText = "Currency1PerCurrency2";
 
 								pair.AppendChild (ccy1);
 								pair.AppendChild (ccy2);
@@ -866,7 +871,6 @@ namespace HandCoded.FpML
 								rate.AppendChild (pair);
 								rate.AppendChild (value);
 
-								child.AppendChild (note);
 								child.AppendChild (rate);
 
 								if ((target = element ["fxSource"]) != null)
