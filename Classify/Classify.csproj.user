@@ -21,7 +21,7 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Project</StartAction>
-    <StartArguments>..\..\..\files\examples\fpml4-2\interest-rate-derivatives\*.xml</StartArguments>
+    <StartArguments>..\..\..\files\examples\fpml5-0\confirmation</StartArguments>
     <StartPage>
     </StartPage>
     <StartProgram>
