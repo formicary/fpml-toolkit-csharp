@@ -150,7 +150,7 @@
                </initialPrice>
                <notionalReset>true</notionalReset>
                <valuationPriceInterim>
-                  <determinationMethod>PriceAtValuationTime</determinationMethod>
+                  <determinationMethod>ValuationTime</determinationMethod>
                   <valuationRules>
                      <valuationDates id="InterimValuationDate">
                         <adjustableDates>
@@ -230,7 +230,7 @@
             <fxFeature>
                <referenceCurrency id="ReferenceCurrency">EUR</referenceCurrency>
                <composite>
-                  <determinationMethod>GoodFaith</determinationMethod>
+                  <determinationMethod>CalculationAgent</determinationMethod>
                </composite>
             </fxFeature>
          </returnLeg>

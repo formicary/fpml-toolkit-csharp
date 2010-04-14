@@ -112,8 +112,10 @@
       </varianceOptionTransactionSupplement>
       <documentation>
          <masterConfirmation>
-            <masterConfirmationType>ISDA2007VarianceOptionEuropean</masterConfirmationType>
+            <masterConfirmationType>ISDA2007VarianceSwapEuropeanRev1</masterConfirmationType>
             <masterConfirmationDate>2009-01-07</masterConfirmationDate>
+            <masterConfirmationAnnexDate>2009-01-07</masterConfirmationAnnexDate>
+            <masterConfirmationAnnexType>ISDA2007VarianceOptionEuropean</masterConfirmationAnnexType>
          </masterConfirmation>
       </documentation>
    </trade>

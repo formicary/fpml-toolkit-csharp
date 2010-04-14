@@ -113,7 +113,7 @@
                      <commissionAmount>60</commissionAmount>
                      <commissionPerTrade>1234</commissionPerTrade>
                   </commission>
-                  <determinationMethod>PriceAtValuationTime</determinationMethod>
+                  <determinationMethod>ValuationTime</determinationMethod>
                   <valuationRules>
                      <valuationDates id="d4">
                         <adjustableDates>

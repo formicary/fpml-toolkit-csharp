@@ -128,7 +128,7 @@
             </underlyer>
             <rateOfReturn>
                <initialPrice>
-                  <determinationMethod>GoodFaith</determinationMethod>
+                  <determinationMethod>CalculationAgent</determinationMethod>
                   <valuationRules>
                      <valuationDate>
                         <relativeDateSequence>
@@ -149,7 +149,7 @@
                </initialPrice>
                <notionalReset>true</notionalReset>
                <valuationPriceInterim>
-                  <determinationMethod>PriceAtValuationTime</determinationMethod>
+                  <determinationMethod>ValuationTime</determinationMethod>
                   <valuationRules>
                      <valuationDates id="InterimValuationDates">
                         <adjustableDates>
@@ -241,7 +241,7 @@
             <fxFeature>
                <referenceCurrency id="ReferenceCurrency">EUR</referenceCurrency>
                <composite>
-                  <determinationMethod>GoodFaith</determinationMethod>
+                  <determinationMethod>CalculationAgent</determinationMethod>
                </composite>
             </fxFeature>
          </returnLeg>

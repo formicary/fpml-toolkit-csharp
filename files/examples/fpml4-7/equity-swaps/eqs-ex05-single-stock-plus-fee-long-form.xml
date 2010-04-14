@@ -63,7 +63,7 @@
                      <commissionDenomination>BPS</commissionDenomination>
                      <commissionAmount>30</commissionAmount>
                   </commission>
-                  <determinationMethod>Average price per share obtained by Party B on Trade Date by selling 18,388,000 shares in the market, net of commissions</determinationMethod>
+                  <determinationMethod determinationMethodScheme="http://www.abc.com/determination-method">Average price per share obtained by Party B on Trade Date by selling 18,388,000 shares in the market, net of commissions</determinationMethod>
                   <valuationRules>
                      <valuationDate id="InitialValuationDate">
                         <relativeDateSequence>
@@ -83,7 +83,7 @@
                      <commissionDenomination>BPS</commissionDenomination>
                      <commissionAmount>30</commissionAmount>
                   </commission>
-                  <determinationMethod>At the discretion of Party A, either (i) the amount received by Party A in selling 10,000,000 shares in the market (net of taxes and commissions), or (ii) the amount paid by Party B in buying 10,000,000 shares in the market (net of taxes and commissions)</determinationMethod>
+                  <determinationMethod determinationMethodScheme="http://www.abc.com/determination-method">At the discretion of Party A, either (i) the amount received by Party A in selling 10,000,000 shares in the market (net of taxes and commissions), or (ii) the amount paid by Party B in buying 10,000,000 shares in the market (net of taxes and commissions)</determinationMethod>
                   <valuationRules>
                      <valuationDate id="FinalValuationDate">
                         <adjustableDate>
@@ -113,7 +113,7 @@
                </paymentDates>
             </rateOfReturn>
             <notional>
-               <determinationMethod id="EquityNotionalAmount">Number of Shares * Initial Price</determinationMethod>
+               <determinationMethod determinationMethodScheme="http://www.abc.com/determination-method" id="EquityNotionalAmount">Number of Shares * Initial Price</determinationMethod>
             </notional>
             <amount>
                <paymentCurrency href="ReferenceCurrency"/>
@@ -138,7 +138,7 @@
             <fxFeature>
                <referenceCurrency id="ReferenceCurrency">USD</referenceCurrency>
                <composite>
-                  <determinationMethod>GoodFaith</determinationMethod>
+                  <determinationMethod>CalculationAgent</determinationMethod>
                </composite>
             </fxFeature>
          </returnLeg>

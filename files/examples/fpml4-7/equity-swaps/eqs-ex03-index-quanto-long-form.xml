@@ -95,7 +95,7 @@
                </initialPrice>
                <notionalReset>true</notionalReset>
                <valuationPriceInterim>
-                  <determinationMethod>PublishedIndexAtValuationTime</determinationMethod>
+                  <determinationMethod>ValuationTime</determinationMethod>
                   <valuationRules>
                      <valuationDates id="InterimValuationDate">
                         <adjustableDates>

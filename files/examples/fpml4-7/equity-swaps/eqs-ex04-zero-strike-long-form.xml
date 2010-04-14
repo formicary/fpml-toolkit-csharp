@@ -134,7 +134,7 @@
             <fxFeature>
                <referenceCurrency id="ReferenceCurrency">USD</referenceCurrency>
                <composite>
-                  <determinationMethod>GoodFaith</determinationMethod>
+                  <determinationMethod>CalculationAgent</determinationMethod>
                </composite>
             </fxFeature>
          </returnLeg>

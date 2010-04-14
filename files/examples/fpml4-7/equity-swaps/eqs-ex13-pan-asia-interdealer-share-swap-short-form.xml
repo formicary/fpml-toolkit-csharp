@@ -15,11 +15,11 @@
       <tradeHeader>
          <partyTradeIdentifier>
             <partyReference href="party1"/>
-            <tradeId tradeIdScheme="http://www.swapswire.com/spec/2001/trade-id-1-0">299442</tradeId>
+            <tradeId tradeIdScheme="http://www.partyA.com/trade-id-1-0">299442</tradeId>
          </partyTradeIdentifier>
          <partyTradeIdentifier>
             <partyReference href="party2"/>
-            <tradeId tradeIdScheme="http://www.swapswire.com/spec/2001/trade-id-1-0">299442</tradeId>
+            <tradeId tradeIdScheme="http://www.partyB.com/trade-id-1-0">299442</tradeId>
          </partyTradeIdentifier>
          <tradeDate>2009-09-01Z</tradeDate>
       </tradeHeader>
@@ -132,7 +132,7 @@
                   <dateAdjustments>
                      <businessDayConvention>FOLLOWING</businessDayConvention>
                      <businessCenters>
-                        <businessCenter>KSC</businessCenter>
+                        <businessCenter businessCenterScheme="http://www.example.com/exchange-holiday-calendars">KSC</businessCenter>
                      </businessCenters>
                   </dateAdjustments>
                </adjustableDate>
@@ -143,7 +143,7 @@
                   <dateAdjustments>
                      <businessDayConvention>FOLLOWING</businessDayConvention>
                      <businessCenters>
-                        <businessCenter>KSC</businessCenter>
+                        <businessCenter businessCenterScheme="http://www.example.com/exchange-holiday-calendars">KSC</businessCenter>
                      </businessCenters>
                   </dateAdjustments>
                </adjustableDate>
@@ -151,11 +151,11 @@
             <underlyer>
                <singleUnderlyer>
                   <equity>
-                     <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2003/instrument-id-Reuters-RIC-1-0">005430.KS</instrumentId>
-                     <instrumentId instrumentIdScheme="http://www.fpml.org/spec/2002/instrument-id-ISIN-1-0">KR7005430004</instrumentId>
+                     <instrumentId instrumentIdScheme="http://www.example.com/instrument-id-Reuters-RIC-1-0">005430.KS</instrumentId>
+                     <instrumentId instrumentIdScheme="http://www.example.com/instrument-id-ISIN-1-0">KR7005430004</instrumentId>
                      <description>KOREA AIR SVC ORDINARY</description>
                      <currency>KRW</currency>
-                     <exchangeId exchangeIdScheme="http://www.fpml.org/spec/2002/exchange-id-REC-1-0">KSC</exchangeId>
+                     <exchangeId exchangeIdScheme="http://www.example.com/exchange-id-REC-1-0">KSC</exchangeId>
                   </equity>
                   <openUnits>60000</openUnits>
                   <dividendPayout>
@@ -200,7 +200,7 @@
                            <calculationPeriodDatesAdjustments>
                               <businessDayConvention>FOLLOWING</businessDayConvention>
                               <businessCenters>
-                                 <businessCenter>KSC</businessCenter>
+                                 <businessCenter businessCenterScheme="http://www.example.com/exchange-holiday-calendars">KSC</businessCenter>
                               </businessCenters>
                            </calculationPeriodDatesAdjustments>
                         </periodicDates>
@@ -217,7 +217,7 @@
                            <dateAdjustments>
                               <businessDayConvention>FOLLOWING</businessDayConvention>
                               <businessCenters>
-                                 <businessCenter>KSC</businessCenter>
+                                 <businessCenter businessCenterScheme="http://www.example.com/exchange-holiday-calendars">KSC</businessCenter>
                               </businessCenters>
                            </dateAdjustments>
                         </adjustableDate>
@@ -286,7 +286,7 @@
                   <fxSpotRateSource>
                      <primaryRateSource>
                         <rateSource>Reuters</rateSource>
-                        <rateSourcePage rateSourcePageScheme="http://www.swapswire.com/spec/2006/rate-source-page-1-0">KRW=</rateSourcePage>
+                        <rateSourcePage rateSourcePageScheme="http://www.example.com/rate-source-page-1-0">KRW=</rateSourcePage>
                      </primaryRateSource>
                      <fixingTime>
                         <hourMinuteTime>14:45:00</hourMinuteTime>
@@ -310,6 +310,8 @@
          <masterConfirmation>
             <masterConfirmationType>ISDA2009EquityPanAsia</masterConfirmationType>
             <masterConfirmationDate>2009-09-01Z</masterConfirmationDate>
+            <masterConfirmationAnnexDate>2009-09-01Z</masterConfirmationAnnexDate>
+            <masterConfirmationAnnexType>ISDA2009ShareSwapPanAsia</masterConfirmationAnnexType>
          </masterConfirmation>
       </documentation>
    </trade>

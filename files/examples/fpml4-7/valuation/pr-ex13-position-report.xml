@@ -520,7 +520,7 @@
                            <commissionAmount>60</commissionAmount>
                            <commissionPerTrade>1234</commissionPerTrade>
                         </commission>
-                        <determinationMethod>PriceAtValuationTime</determinationMethod>
+                        <determinationMethod>ValuationTime</determinationMethod>
                         <valuationRules>
                            <valuationDates id="trs-eq1-InterimValuationDate">
                               <adjustableDates>
@@ -1016,7 +1016,7 @@
                            <commissionAmount>60</commissionAmount>
                            <commissionPerTrade>1234</commissionPerTrade>
                         </commission>
-                        <determinationMethod>PriceAtValuationTime</determinationMethod>
+                        <determinationMethod>ValuationTime</determinationMethod>
                         <valuationRules>
                            <valuationDates id="trs-eqbasket-InterimValuationDate">
                               <adjustableDates>
@@ -1108,7 +1108,7 @@
                   <fxFeature>
                      <referenceCurrency id="trs-eqbasket-ReferenceCurrency">EUR</referenceCurrency>
                      <composite>
-                        <determinationMethod>GoodFaith</determinationMethod>
+                        <determinationMethod>CalculationAgent</determinationMethod>
                      </composite>
                   </fxFeature>
                </returnLeg>
@@ -1480,7 +1480,7 @@
                            <commissionAmount>60</commissionAmount>
                            <commissionPerTrade>1234</commissionPerTrade>
                         </commission>
-                        <determinationMethod>GoodFaith</determinationMethod>
+                        <determinationMethod>CalculationAgent</determinationMethod>
                         <valuationRules>
                            <valuationDate id="trs-bond1-FinalValuationDate">
                               <adjustableDate>
@@ -1504,7 +1504,7 @@
                            <commissionAmount>60</commissionAmount>
                            <commissionPerTrade>1234</commissionPerTrade>
                         </commission>
-                        <determinationMethod>PriceAtValuationTime</determinationMethod>
+                        <determinationMethod>ValuationTime</determinationMethod>
                         <valuationRules>
                            <valuationDates id="trs-bond1-InterimValuationDates">
                               <adjustableDates>
@@ -1607,7 +1607,7 @@
                   <fxFeature>
                      <referenceCurrency id="trs-bond1-ReferenceCurrency">EUR</referenceCurrency>
                      <composite>
-                        <determinationMethod>GoodFaith</determinationMethod>
+                        <determinationMethod>CalculationAgent</determinationMethod>
                      </composite>
                   </fxFeature>
                </returnLeg>
@@ -2032,7 +2032,7 @@
                            <commissionAmount>60</commissionAmount>
                            <commissionPerTrade>1234</commissionPerTrade>
                         </commission>
-                        <determinationMethod>GoodFaith</determinationMethod>
+                        <determinationMethod>CalculationAgent</determinationMethod>
                         <valuationRules>
                            <valuationDate>
                               <adjustableDate>
@@ -2056,7 +2056,7 @@
                            <commissionAmount>60</commissionAmount>
                            <commissionPerTrade>1234</commissionPerTrade>
                         </commission>
-                        <determinationMethod>PriceAtValuationTime</determinationMethod>
+                        <determinationMethod>ValuationTime</determinationMethod>
                         <valuationRules>
                            <valuationDates id="trs-bondbasket-InterimValuationDates">
                               <adjustableDates>
@@ -2159,7 +2159,7 @@
                   <fxFeature>
                      <referenceCurrency id="trs-bondbasket-ReferenceCurrency">EUR</referenceCurrency>
                      <composite>
-                        <determinationMethod>GoodFaith</determinationMethod>
+                        <determinationMethod>CalculationAgent</determinationMethod>
                      </composite>
                   </fxFeature>
                </returnLeg>

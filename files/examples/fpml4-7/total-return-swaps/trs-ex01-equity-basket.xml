@@ -144,7 +144,7 @@
                      <commissionAmount>60</commissionAmount>
                      <commissionPerTrade>1234</commissionPerTrade>
                   </commission>
-                  <determinationMethod>PriceAtValuationTime</determinationMethod>
+                  <determinationMethod>ValuationTime</determinationMethod>
                   <valuationRules>
                      <valuationDates id="r6">
                         <adjustableDates>
@@ -236,7 +236,7 @@
             <fxFeature>
                <referenceCurrency id="r15">EUR</referenceCurrency>
                <composite>
-                  <determinationMethod>GoodFaith</determinationMethod>
+                  <determinationMethod>CalculationAgent</determinationMethod>
                </composite>
             </fxFeature>
          </returnLeg>
