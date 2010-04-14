@@ -45,9 +45,8 @@
 	<!--
 	  == Experimental FpML 5.0 Working Draft
 	  -->
-	<uri name="http://www.fpml.org/FpML-5-0/confirmation" uri="schemas/fpml5-0/confirmation/fpml-main-5-0.xsd"/>
-	<uri name="http://www.fpml.org/FpML-5-0/reporting" uri="schemas/fpml5-0/reporting/fpml-main-5-0.xsd"/>
-	<uri name="http://www.fpml.org/FpML-5-0/pretrade" uri="schemas/fpml5-0/pretrade/fpml-main-5-0.xsd"/>
+	<uri name="http://www.fpml.org/FpML-5/confirmation" uri="schemas/fpml5-0/confirmation/fpml-main-5-0.xsd"/>
+	<uri name="http://www.fpml.org/FpML-5/reporting" uri="schemas/fpml5-0/reporting/fpml-main-5-0.xsd"/>
 	
 	<!--
 	  == Standard extensions to FpML 4-2 for non-derivative products.
