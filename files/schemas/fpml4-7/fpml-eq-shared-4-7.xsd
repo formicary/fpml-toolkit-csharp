@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-7" xmlns:fpml="http://www.fpml.org/2009/FpML-4-7" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-7" version="$Revision: 6461 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-7" xmlns:fpml="http://www.fpml.org/2009/FpML-4-7" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-7" version="$Revision: 6951 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-option-shared-4-7.xsd" />
   <xsd:complexType name="AdditionalDisruptionEvents">
     <xsd:annotation>
@@ -221,6 +221,11 @@
       <xsd:element name="compoundingSpread" type="xsd:decimal" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Defines the spread to be used for compounding. This field should be used in scenarios where the interest payment is based on a compounding formula that uses a compounding spread in addition to the regular spread.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="compoundingDates" type="AdjustableRelativeOrPeriodicDates2" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Defines the compounding dates.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -1670,11 +1675,7 @@
       <xsd:documentation xml:lang="en">A group containing Equity Underlyer provisions.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="multipleExchangeIndexAnnexFallback" type="xsd:boolean" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Used for specifying whether additional annex terms for trades with underlyers that are listed on multiple exchanges, as defined in the European Master Confirmation, will apply.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
+      <xsd:group ref="IndexAnnexFallback.model" minOccurs="0" />
       <xsd:element name="localJurisdiction" type="Country" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable.</xsd:documentation>
@@ -1703,6 +1704,20 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
+  </xsd:group>
+  <xsd:group name="IndexAnnexFallback.model">
+    <xsd:choice>
+      <xsd:element name="multipleExchangeIndexAnnexFallback" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">For an index option transaction, a flag to indicate whether a relevant Multiple Exchange Index Annex is applicable to the transaction. This annex defines additional provisions which are applicable where an index is comprised of component securities that are traded on multiple exchanges.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="componentSecurityIndexAnnexFallback" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">For an index option transaction, a flag to indicate whether a relevant Component Security Index Annex is applicable to the transaction.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:choice>
   </xsd:group>
   <xsd:group name="MutualOrOptionalEarlyTermination.model">
     <xsd:choice>

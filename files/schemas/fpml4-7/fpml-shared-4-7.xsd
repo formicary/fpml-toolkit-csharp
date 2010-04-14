@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-7" xmlns:fpml="http://www.fpml.org/2009/FpML-4-7" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-7" version="$Revision: 6457 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-7" xmlns:fpml="http://www.fpml.org/2009/FpML-4-7" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-7" version="$Revision: 6942 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-enum-4-7.xsd" />
   <xsd:simpleType name="CorrelationValue">
     <xsd:annotation>
@@ -613,7 +613,7 @@
   </xsd:complexType>
   <xsd:complexType name="CalculationPeriodFrequency">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type defining the frequency at which calculation period end dates occur within the regular part of the calculation period schedule and thier roll date convention.</xsd:documentation>
+      <xsd:documentation xml:lang="en">A type defining the frequency at which calculation period end dates occur within the regular part of the calculation period schedule and thier roll date convention. In case the calculation frequency is of value T (term), the period is defined by the swap\swapStream\calculationPerioDates\effectiveDate and the swap\swapStream\calculationPerioDates\terminationDate.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="Frequency">
@@ -867,7 +867,7 @@
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="Scheme">
-        <xsd:attribute name="determinationMethodScheme" type="xsd:anyURI" default="http://www.fpml.org/determination-method" />
+        <xsd:attribute name="determinationMethodScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/determination-method" />
         <xsd:attribute name="id" type="xsd:ID" />
       </xsd:extension>
     </xsd:simpleContent>
@@ -1765,6 +1765,22 @@
       </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:complexType name="NonNegativeAmountSchedule">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A type defining a currency amount or a currency amount schedule.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="NonNegativeSchedule">
+        <xsd:sequence>
+          <xsd:element name="currency" type="Currency">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
   <xsd:complexType name="NonNegativeMoney">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A type defining a non negative money amount.</xsd:documentation>
@@ -1791,6 +1807,40 @@
           <xsd:element name="paymentAmount" type="NonNegativeMoney">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Non negative payment amount.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="NonNegativeSchedule">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A type defining a schedule of non-negative rates or amounts in terms of an initial value and then a series of step date and value pairs. On each step date the rate or amount changes to the new step value. The series of step date and value pairs are optional. If not specified, this implies that the initial value remains unchanged over time.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="initialValue" type="NonNegativeDecimal">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The non-negative initial rate or amount, as the case may be. An initial rate of 5% would be represented as 0.05.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="step" type="NonNegativeStep" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The schedule of step date and non-negative value pairs. On each step date the associated step value becomes effective. A list of steps may be ordered in the document by ascending step date. An FpML document containing an unordered list of steps is still regarded as a conformant document.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:ID" />
+  </xsd:complexType>
+  <xsd:complexType name="NonNegativeStep">
+    <xsd:annotation>
+      <xsd:documentation>A type defining a step date and non-negative step value pair. This step definitions are used to define varying rate or amount schedules, e.g. a notional amortization or a step-up coupon schedule.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="StepBase">
+        <xsd:sequence>
+          <xsd:element name="stepValue" type="NonNegativeDecimal">
+            <xsd:annotation>
+              <xsd:documentation>The non-negative rate or amount which becomes effective on the associated stepDate. A rate of 5% would be represented as 0.05.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
         </xsd:sequence>
@@ -2075,6 +2125,22 @@
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:complexType name="PositiveAmountSchedule">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A type defining a currency amount or a currency amount schedule.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="PositiveSchedule">
+        <xsd:sequence>
+          <xsd:element name="currency" type="Currency">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
   <xsd:complexType name="PositiveMoney">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A type defining a positive money amount</xsd:documentation>
@@ -2107,6 +2173,40 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
+  <xsd:complexType name="PositiveSchedule">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A type defining a schedule of strictly-postive rates or amounts in terms of an initial value and then a series of step date and value pairs. On each step date the rate or amount changes to the new step value. The series of step date and value pairs are optional. If not specified, this implies that the initial value remains unchanged over time.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="initialValue" type="PositiveDecimal">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The strictly-positive initial rate or amount, as the case may be. An initial rate of 5% would be represented as 0.05.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="step" type="PositiveStep" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The schedule of step date and strictly-positive value pairs. On each step date the associated step value becomes effective. A list of steps may be ordered in the document by ascending step date. An FpML document containing an unordered list of steps is still regarded as a conformant document.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:ID" />
+  </xsd:complexType>
+  <xsd:complexType name="PositiveStep">
+    <xsd:annotation>
+      <xsd:documentation>A type defining a step date and strictly-positive step value pair. This step definitions are used to define varying rate or amount schedules, e.g. a notional amortization or a step-up coupon schedule.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="StepBase">
+        <xsd:sequence>
+          <xsd:element name="stepValue" type="PositiveDecimal">
+            <xsd:annotation>
+              <xsd:documentation>The strictly positive rate or amount which becomes effective on the associated stepDate. A rate of 5% would be represented as 0.05.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
   <xsd:complexType name="PrevailingTime">
     <xsd:annotation>
       <xsd:documentation>A type for defining a time with respect to a geographic location, for example 11:00 Phoenix, USA. This type should be used where a wider range of locations than those available as business centres is required.</xsd:documentation>
@@ -2117,7 +2217,7 @@
           <xsd:documentation xml:lang="en">A time specified in hh:mm:ss format where the second component must be '00', e.g. 11am would be represented as 11:00:00.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="location" type="TZLocation">
+      <xsd:element name="location" type="TimezoneLocation">
         <xsd:annotation>
           <xsd:documentation>The geographic location to which the hourMinuteTime applies. The time takes into account any current day light saving changes or other adjustments i.e. it is the prevaling time at the location.</xsd:documentation>
         </xsd:annotation>
@@ -2403,7 +2503,7 @@
   </xsd:complexType>
   <xsd:complexType name="ResetFrequency">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A type defining the reset frequency. In the case of a weekly reset, also specifies the day of the week that the reset occurs. If the reset frequency is greater than the calculation period frequency the this implies that more or more reset dates is established for each calculation period and some form of rate averaginhg is applicable. The specific averaging method of calculation is specified in FloatingRateCalculation.</xsd:documentation>
+      <xsd:documentation xml:lang="en">A type defining the reset frequency. In the case of a weekly reset, also specifies the day of the week that the reset occurs. If the reset frequency is greater than the calculation period frequency the this implies that more or more reset dates is established for each calculation period and some form of rate averaginhg is applicable. The specific averaging method of calculation is specified in FloatingRateCalculation. In case the reset frequency is of value T (term), the period is defined by the swap\swapStream\calculationPerioDates\effectiveDate and the swap\swapStream\calculationPerioDates\terminationDate.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="Frequency">
@@ -2590,6 +2690,16 @@
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
+  <xsd:complexType name="SettlementPriceDefaultElection">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Coding scheme that specifies the settlement price default election.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="Scheme">
+        <xsd:attribute name="settlementPriceDefaultElectionScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/settlement-price-default-election" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
   <xsd:complexType name="SettlementPriceSource">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">The source from which the settlement price is to be obtained, e.g. a Reuters page, Prezzo di Riferimento, etc.</xsd:documentation>
@@ -2634,11 +2744,21 @@
               <xsd:documentation xml:lang="en">The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:element name="latestExerciseTime" type="BusinessCenterTime" minOccurs="0">
+          <xsd:choice minOccurs="0">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">For a Bermuda or American style option, the latest time on an exercise business day (excluding the expiration date) within the exercise period that notice can be given by the buyer to the seller or seller's agent. Notice of exercise given after this time will be deemed to have been given on the next exercise business day.</xsd:documentation>
+              <xsd:documentation xml:lang="en">Choice between latest exercise time expressed as literal time, or using a determination method.</xsd:documentation>
             </xsd:annotation>
-          </xsd:element>
+            <xsd:element name="latestExerciseTime" type="BusinessCenterTime">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">For a Bermuda or American style option, the latest time on an exercise business day (excluding the expiration date) within the exercise period that notice can be given by the buyer to the seller or seller's agent. Notice of exercise given after this time will be deemed to have been given on the next exercise business day.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="latestExerciseTimeDetermination" type="DeterminationMethod">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Latest exercise time determination method.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:choice>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -2719,15 +2839,26 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A type defining a step date and step value pair. This step definitions are used to define varying rate or amount schedules, e.g. a notional amortization or a step-up coupon schedule.</xsd:documentation>
     </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="StepBase">
+        <xsd:sequence>
+          <xsd:element name="stepValue" type="xsd:decimal">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The rate or amount which becomes effective on the associated stepDate. A rate of 5% would be represented as 0.05.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="StepBase" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A type defining a step date and step value pair. This step definitions are used to define varying rate or amount schedules, e.g. a notional amortization or a step-up coupon schedule.</xsd:documentation>
+    </xsd:annotation>
     <xsd:sequence>
       <xsd:element name="stepDate" type="xsd:date">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The date on which the associated stepValue becomes effective. This day may be subject to adjustment in accordance with a business day convention.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="stepValue" type="xsd:decimal">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The rate or amount which becomes effective on the associated stepDate. A rate of 5% would be represented as 0.05.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -2832,13 +2963,13 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="TZLocation">
+  <xsd:complexType name="TimezoneLocation">
     <xsd:annotation>
       <xsd:documentation>A geophraphic location for the purposes of defining a prevailing time according to the tz database.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="Scheme">
-        <xsd:attribute name="tzLocationScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/external/tzdatabase" />
+        <xsd:attribute name="timezoneLocationScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/external/tzdatabase" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>

@@ -4,7 +4,7 @@
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-7" xmlns:fpml="http://www.fpml.org/2009/FpML-4-7" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-7" version="$Revision: 6427 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/2009/FpML-4-7" xmlns:fpml="http://www.fpml.org/2009/FpML-4-7" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/2009/FpML-4-7" version="$Revision: 6590 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
   <xsd:include schemaLocation="fpml-asset-4-7.xsd" />
   <xsd:complexType name="BondReference">
     <xsd:annotation>
@@ -1087,7 +1087,7 @@
       <xsd:documentation xml:lang="en">An type defining the notional amount or notional amount schedule associated with a swap stream. The notional schedule will be captured explicitly, specifying the dates that the notional changes and the outstanding notional amount that applies from that date. A parametric representation of the rules defining the notional step schedule can optionally be included.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="notionalStepSchedule" type="AmountSchedule">
+      <xsd:element name="notionalStepSchedule" type="NonNegativeAmountSchedule">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The notional amount or notional amount schedule expressed as explicit outstanding notional amounts and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments.</xsd:documentation>
         </xsd:annotation>
@@ -1269,7 +1269,7 @@
       </xsd:choice>
       <xsd:element name="paymentFrequency" type="Frequency">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">The frequency at which regular payment dates occur. If the payment frequency is equal to the frequency defined in the calculation period dates component then one calculation period contributes to each payment amount. If the payment frequency is less frequent than the frequency defined in the calculation period dates component then more than one calculation period will contribute to the payment amount. A payment frequency more frequent than the calculation period frequency or one that is not a multiple of the calculation period frequency is invalid.</xsd:documentation>
+          <xsd:documentation xml:lang="en">The frequency at which regular payment dates occur. If the payment frequency is equal to the frequency defined in the calculation period dates component then one calculation period contributes to each payment amount. If the payment frequency is less frequent than the frequency defined in the calculation period dates component then more than one calculation period will contribute to the payment amount. A payment frequency more frequent than the calculation period frequency or one that is not a multiple of the calculation period frequency is invalid. If the payment frequency is of value T (term), the period is defined by the swap\swapStream\calculationPerioDates\effectiveDate and the swap\swapStream\calculationPerioDates\terminationDate.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="firstPaymentDate" type="xsd:date" minOccurs="0">

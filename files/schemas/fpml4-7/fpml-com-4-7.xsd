@@ -242,7 +242,7 @@
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="Scheme">
-        <xsd:attribute name="commodityCoalProductSource" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/commodity-coal-product-source" />
+        <xsd:attribute name="commodityCoalProductSourceScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/commodity-coal-product-source" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -271,7 +271,7 @@
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:extension base="Scheme">
-        <xsd:attribute name="commodityCoalProductTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/commodity-coal-quality-adjustments" />
+        <xsd:attribute name="commodityCoalQualityAdjustmentsScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/commodity-coal-quality-adjustments" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -371,7 +371,7 @@
   </xsd:complexType>
   <xsd:complexType name="CommodityCalculationPeriodsSchedule">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">A parametric representation of the Calculation Periods for on Asian option or a leg of a swap.</xsd:documentation>
+      <xsd:documentation xml:lang="en">A parametric representation of the Calculation Periods for on Asian option or a leg of a swap. In case the calculation frequency is of value T (term), the period is defined by the commoditySwap\effectiveDate and the commoditySwap\terminationDate.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="Frequency">
@@ -469,13 +469,14 @@
           </xsd:element>
           <xsd:choice>
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">This choice group is intended to allow legs based on different classes of commodity to be added to the shcema as this becomes necessary.</xsd:documentation>
+              <xsd:documentation xml:lang="en">This choice group is intended to allow legs based on different classes of commodity to be added to the schema as this becomes necessary.</xsd:documentation>
             </xsd:annotation>
             <xsd:element name="bullionPhysicalLeg" type="BullionPhysicalLeg">
               <xsd:annotation>
                 <xsd:documentation xml:lang="en">The physical leg of a Commodity Forward Transaction for which the underlyer is Bullion.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
+            <xsd:element ref="additionalCommodityForwardLeg" />
           </xsd:choice>
           <xsd:group ref="CommodityContent.model" minOccurs="0" />
         </xsd:sequence>
@@ -643,7 +644,7 @@
             <xsd:documentation xml:lang="en">To be used where disruption fallbacks are set out in the relevant Master Agreement governing the trade.</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
-        <xsd:element name="disruptionFallback" type="SequencedDirsuptionFallback" maxOccurs="unbounded" />
+        <xsd:element name="disruptionFallback" type="SequencedDisruptionFallback" maxOccurs="unbounded" />
       </xsd:choice>
       <xsd:element name="fallbackReferencePrice" type="Underlyer" minOccurs="0">
         <xsd:annotation>
@@ -1061,6 +1062,7 @@
                 <xsd:documentation xml:lang="en">Physically settled oil or refined products leg.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
+            <xsd:element ref="additionalCommoditySwapLeg" />
           </xsd:choice>
           <xsd:group ref="CommodityContent.model" minOccurs="0" />
         </xsd:sequence>
@@ -1874,7 +1876,7 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="SequencedDirsuptionFallback">
+  <xsd:complexType name="SequencedDisruptionFallback">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A Disruption Fallback with the sequence in which it should be applied relative to other Disruption Fallbacks.</xsd:documentation>
     </xsd:annotation>
@@ -1996,6 +1998,8 @@
     </xsd:sequence>
     <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
+  <xsd:element name="additionalCommodityForwardLeg" abstract="true" />
+  <xsd:element name="additionalCommoditySwapLeg" abstract="true" />
   <xsd:element name="commodityForward" type="CommodityForward" substitutionGroup="product">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Defines a commodity forward product.</xsd:documentation>
