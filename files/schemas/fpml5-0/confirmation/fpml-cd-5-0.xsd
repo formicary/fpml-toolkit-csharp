@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 
-== Copyright (c) 2002-2007. All rights reserved. 
+== Copyright (c) 2002-2010. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<!--View is confirmation-->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/FpML-5-0/confirmation" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/FpML-5-0/confirmation" version="$Revision: 884 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:fpml-annotation="http://www.fpml.org/annotation" targetNamespace="http://www.fpml.org/FpML-5/confirmation" ecore:documentRoot="FpML" ecore:nsPrefix="conf" ecore:package="org.fpml.confirmation" version="$Revision: 2350 $" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xsd:include schemaLocation="fpml-option-shared-5-0.xsd" />
   <xsd:complexType name="AdditionalFixedPayments">
     <xsd:sequence>
-      <xsd:element name="interestShortfallReimbursement" type="Empty" minOccurs="0">
+      <xsd:element name="interestShortfallReimbursement" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An additional Fixed Payment Event. Corresponds to the payment by or on behalf of the Issuer of an actual interest amount in respect to the reference obligation that is greater than the expected interest amount. ISDA 2003 Term: Interest Shortfall Reimbursement.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="principalShortfallReimbursement" type="Empty" minOccurs="0">
+      <xsd:element name="principalShortfallReimbursement" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An additional Fixed Payment Event. Corresponds to the payment by or on behalf of the Issuer of an actual principal amount in respect to the reference obligation that is greater than the expected principal amount. ISDA 2003 Term: Principal Shortfall Reimbursement.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="writedownReimbursement" type="Empty" minOccurs="0">
+      <xsd:element name="writedownReimbursement" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An Additional Fixed Payment. Corresponds to the payment by or on behalf of the issuer of an amount in respect to the reference obligation in reduction of the prior writedowns. ISDA 2003 Term: Writedown Reimbursement.</xsd:documentation>
         </xsd:annotation>
@@ -28,7 +27,7 @@
   </xsd:complexType>
   <xsd:complexType name="AdditionalTerm">
     <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
+      <xsd:extension base="Scheme">
         <xsd:attribute name="additionalTermScheme" type="xsd:anyURI" />
       </xsd:extension>
     </xsd:simpleContent>
@@ -135,11 +134,7 @@
               <xsd:documentation xml:lang="en">The number of business days used in the determination of the cash settlement payment date. If a cash settlement amount is specified, the cash settlement payment date will be this number of business days following the calculation of the final price. If a cash settlement amount is not specified, the cash settlement payment date will be this number of business days after all conditions to settlement are satisfied. ISDA 2003 Term: Cash Settlement Date</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:element name="cashSettlementAmount" type="Money" minOccurs="0">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">The amount paid by the seller to the buyer for cash settlement on the cash settlement date. If not otherwise specified, would typically be calculated as 100 (or the Reference Price) minus the price of the Reference Obligation (all expressed as a percentage) times Floating Rate Payer Calculation Amount. ISDA 2003 Term: Cash Settlement Amount</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
+          <xsd:group ref="FixedRecovery.model" minOccurs="0" />
           <xsd:element name="accruedInterest" type="xsd:boolean" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Indicates whether accrued interest is included (true) or not (false). For cash settlement this specifies whether quotations should be obtained inclusive or not of accrued interest. For physical settlement this specifies whether the buyer should deliver the obligation with an outstanding principal balance that includes or excludes accrued interest. ISDA 2003 Term: Include/Exclude Accrued Interest</xsd:documentation>
@@ -163,14 +158,12 @@
               <xsd:documentation xml:lang="en">This element contains all the data that appears in the section entitled "1. General Terms" in the 2003 ISDA Credit Derivatives Confirmation.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-<!--Has overrides-->
-          <xsd:element name="feeLeg" type="FeeLeg" minOccurs="1">
+          <xsd:element name="feeLeg" type="FeeLeg">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">This element contains all the terms relevant to defining the fixed amounts/payments per the applicable ISDA definitions.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-<!--Has overrides-->
-          <xsd:element name="protectionTerms" type="ProtectionTerms" maxOccurs="unbounded" minOccurs="1">
+          <xsd:element name="protectionTerms" type="ProtectionTerms" maxOccurs="unbounded">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">This element contains all the terms relevant to defining the applicable floating rate payer calculation amount, credit events and associated conditions to settlement, and reference obligations.</xsd:documentation>
             </xsd:annotation>
@@ -242,7 +235,7 @@
           <xsd:documentation xml:lang="en">Used in both obligations and deliverable obligations to represent a class or type of securities which apply. ISDA 2003 Term: Obligation Category/Deliverable Obligation Category</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="notSubordinated" type="Empty" minOccurs="0">
+      <xsd:element name="notSubordinated" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. An obligation that ranks at least equal with the most senior Reference Obligation in priority of payment or, if no Reference Obligation is specified in the related Confirmation, the obligations of the Reference Entity that are senior. ISDA 2003 Term: Not Subordinated</xsd:documentation>
         </xsd:annotation>
@@ -252,7 +245,7 @@
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. The currency or currencies in which an obligation or deliverable obligation must be payable. ISDA 2003 Term: Specified Currency</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="notSovereignLender" type="Empty" minOccurs="0">
+      <xsd:element name="notSovereignLender" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Any obligation that is not primarily (majority) owed to a Sovereign or Supranational Organization. ISDA 2003 Term: Not Sovereign Lender</xsd:documentation>
         </xsd:annotation>
@@ -262,22 +255,22 @@
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Any obligation that is payable in any currency other than the domestic currency. Domestic currency is either the currency so specified or, if no currency is specified, the currency of (a) the reference entity, if the reference entity is a sovereign, or (b) the jurisdiction in which the relevant reference entity is organised, if the reference entity is not a sovereign. ISDA 2003 Term: Not Domestic Currency</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="notDomesticLaw" type="Empty" minOccurs="0">
+      <xsd:element name="notDomesticLaw" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. If the reference entity is a Sovereign, this means any obligation that is not subject to the laws of the reference entity. If the reference entity is not a sovereign, this means any obligation that is not subject to the laws of the jurisdiction of the reference entity. ISDA 2003 Term: Not Domestic Law</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="listed" type="Empty" minOccurs="0">
+      <xsd:element name="listed" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Indicates whether or not the obligation is quoted, listed or ordinarily purchased and sold on an exchange. ISDA 2003 Term: Listed</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="notContingent" type="Empty" minOccurs="0">
+      <xsd:element name="notContingent" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">A deliverable obligation characteristic. In essence Not Contingent means the repayment of principal cannot be dependant on a formula/index, i.e. to prevent the risk of being delivered an instrument that may never pay any element of principal, and to ensure that the obligation is interest bearing (on a regular schedule). ISDA 2003 Term: Not Contingent</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="notDomesticIssuance" type="Empty" minOccurs="0">
+      <xsd:element name="notDomesticIssuance" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Any obligation other than an obligation that was intended to be offered for sale primarily in the domestic market of the relevant Reference Entity. This specifies that the obligation must be an internationally recognized bond. ISDA 2003 Term: Not Domestic Issuance</xsd:documentation>
         </xsd:annotation>
@@ -297,38 +290,38 @@
           <xsd:documentation xml:lang="en">A deliverable obligation characteristic. A loan with a participation agreement whereby the buyer is capable of creating, or procuring the creation of, a contractual right in favour of the seller that provides the seller with recourse to the participation seller for a specified share in any payments due under the relevant loan which are received by the participation seller. ISDA 2003 Term: Direct Loan Participation</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="transferable" type="Empty" minOccurs="0">
+      <xsd:element name="transferable" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">A deliverable obligation characteristic. An obligation that is transferable to institutional investors without any contractual, statutory or regulatory restrictions. ISDA 2003 Term: Transferable</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="maximumMaturity" type="Interval" minOccurs="0">
+      <xsd:element name="maximumMaturity" type="Period" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">A deliverable obligation characteristic. An obligation that has a remaining maturity from the Physical Settlement Date of not greater than the period specified. ISDA 2003 Term: Maximum Maturity</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="acceleratedOrMatured" type="Empty" minOccurs="0">
+      <xsd:element name="acceleratedOrMatured" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">A deliverable obligation characteristic. An obligation at time of default is due to mature and due to be repaid, or as a result of downgrade/bankruptcy is due to be repaid as a result of an acceleration clause. ISDA 2003 Term: Accelerated or Matured</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="notBearer" type="Empty" minOccurs="0">
+      <xsd:element name="notBearer" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">A deliverable obligation characteristic. Any obligation that is not a bearer instrument. This applies to Bonds only and is meant to avoid tax, fraud and security/delivery provisions that can potentially be associated with Bearer Bonds. ISDA 2003 Term: Not Bearer</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:choice minOccurs="0">
-        <xsd:element name="fullFaithAndCreditObLiability" type="Empty">
+        <xsd:element name="fullFaithAndCreditObLiability" type="xsd:boolean">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Defined in the ISDA published additional provisions for U.S. Municipal as Reference Entity. ISDA 2003 Term: Full Faith and Credit Obligation Liability</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
-        <xsd:element name="generalFundObligationLiability" type="Empty">
+        <xsd:element name="generalFundObligationLiability" type="xsd:boolean">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Defined in the ISDA published additional provisions for U.S. Municipal as Reference Entity. ISDA 2003 Term: General Fund Obligation Liability</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
-        <xsd:element name="revenueObligationLiability" type="Empty">
+        <xsd:element name="revenueObligationLiability" type="xsd:boolean">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Defined in the ISDA published additional provisions for U.S. Municipal as Reference Entity. ISDA 2003 Term: Revenue Obligation Liability</xsd:documentation>
           </xsd:annotation>
@@ -351,21 +344,13 @@
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
-  <xsd:complexType name="DeprecatedScheduledTerminationDate" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="The intent is to make the scheduledTerminationDate of type AdjustableDate2 and remove the adjustableDate node. The current container doesn't give any value since the choice with relative date was removed.">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">DEPRECATED</xsd:documentation>
-    </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element name="adjustableDate" type="AdjustableDate2" />
-    </xsd:sequence>
-  </xsd:complexType>
   <xsd:complexType name="EntityType">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Defines a coding scheme of the entity types defined in the ISDA First to Default documentation.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="entityTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/entity-type-1-0" />
+      <xsd:extension base="Scheme">
+        <xsd:attribute name="entityTypeScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/entity-type" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -396,6 +381,16 @@
           <xsd:element name="paymentDelay" type="xsd:boolean" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Applicable to CDS on MBS to specify whether payment delays are applicable to the fixed Amount. RMBS typically have a payment delay of 5 days between the coupon date of the reference obligation and the payment date of the synthetic swap. CMBS do not, on the other hand, with both payment dates being on the 25th of each month.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="initialPoints" type="xsd:decimal" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">An optional element that contains the up-front points expressed as a percentage of the notional. An initialPoints value of 5% would be represented as 0.05. The initialPoints element is an alternative to marketFixedRate in quoting the traded level of a trade. When initialPoints is used, the traded level is the sum of fixedRate and initialPoints. The initialPoints is one of the items that are factored into the initialPayment calculation and is payable by the Buyer to the Seller. Note that initialPoints and marketFixedRate may both be present in the same document when both implied values are desired.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="quotationStyle" type="QuotationStyleEnum" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The type of quotation that was used between the trading desks. The purpose of this element is to indicate the actual quotation style that was used to quote this trade which may not be apparent when both marketFixedRate and initialPoints are included in the document. When quotationStyle is ‘PointsUpFront’, the initialPoints element should be populated. When quotationStyle is ‘TradedSpread’, the marketFixedRate element should be populated.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
         </xsd:sequence>
@@ -440,7 +435,7 @@
   </xsd:complexType>
   <xsd:complexType name="FloatingAmountEvents">
     <xsd:sequence>
-      <xsd:element name="failureToPayPrincipal" type="Empty" minOccurs="0">
+      <xsd:element name="failureToPayPrincipal" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">A floating rate payment event. Corresponds to the failure by the Reference Entity to pay an expected principal amount or the payment of an actual principal amount that is less than the expected principal amount. ISDA 2003 Term: Failure to Pay Principal.</xsd:documentation>
         </xsd:annotation>
@@ -450,9 +445,14 @@
           <xsd:documentation xml:lang="en">A floating rate payment event. With respect to any Reference Obligation Payment Date, either (a) the non-payment of an Expected Interest Amount or (b) the payment of an Actual Interest Amount that is less than the Expected Interest Amount. ISDA 2003 Term: Interest Shortfall.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="writedown" type="Empty" minOccurs="0">
+      <xsd:element name="writedown" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">A floating rate payment event. Results from the fact that the underlyer writes down its outstanding principal amount. ISDA 2003 Term: Writedown.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="impliedWritedown" type="xsd:boolean" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>A floating rate payment event. Results from the fact that losses occur to the underlying instruments that do not result in reductions of the outstanding principal of the reference obligation.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="floatingAmountProvisions" type="FloatingAmountProvisions" minOccurs="0">
@@ -469,14 +469,14 @@
   </xsd:complexType>
   <xsd:complexType name="FloatingAmountProvisions">
     <xsd:sequence>
-      <xsd:element name="WACCapInterestProvision" type="Empty" minOccurs="0">
+      <xsd:element name="WACCapInterestProvision" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">As specified by the ISDA Supplement for use with trades on mortgage-backed securities, "WAC Cap" means a weighted average coupon or weighted average rate cap provision (however defined in the Underlying Instruments) of the Underlying Instruments that limits, increases or decreases the interest rate or interest entitlement, as set out in the Underlying Instruments on the Effective Date without regard to any subsequent amendment The presence of the element signifies that the provision is applicable. From a usage standpoint, this provision is typically applicable in the case of CMBS and not applicable in case of RMBS trades.</xsd:documentation>
+          <xsd:documentation xml:lang="en">As specified by the ISDA Supplement for use with trades on mortgage-backed securities, "WAC Cap" means a weighted average coupon or weighted average rate cap provision (however defined in the Underlying Instruments) of the Underlying Instruments that limits, increases or decreases the interest rate or interest entitlement, as set out in the Underlying Instruments on the Effective Date without regard to any subsequent amendment The presence of the element with value set to 'true' signifies that the provision is applicable. From a usage standpoint, this provision is typically applicable in the case of CMBS and not applicable in case of RMBS trades.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="stepUpProvision" type="Empty" minOccurs="0">
+      <xsd:element name="stepUpProvision" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">As specified by the ISDA Standard Terms Supplement for use with trades on mortgage-backed securities. The presence of the element signifies that the provision is applicable. If applicable, the applicable step-up terms are specified as part of that ISDA Standard Terms Supplement. From a usage standpoint, this provision is typically applicable in the case of RMBS and not applicable in case of CMBS trades.</xsd:documentation>
+          <xsd:documentation xml:lang="en">As specified by the ISDA Standard Terms Supplement for use with trades on mortgage-backed securities. The presence of the element with value set to 'true' signifies that the provision is applicable. If applicable, the applicable step-up terms are specified as part of that ISDA Standard Terms Supplement. From a usage standpoint, this provision is typically applicable in the case of RMBS and not applicable in case of CMBS trades.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -488,23 +488,16 @@
           <xsd:documentation xml:lang="en">The first day of the term of the trade. This day may be subject to adjustment in accordance with a business day convention. ISDA 2003 Term: Effective Date.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="scheduledTerminationDate" type="DeprecatedScheduledTerminationDate" minOccurs="0">
+      <xsd:element name="scheduledTerminationDate" type="AdjustableDate2" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">The scheduled date on which the credit protection will lapse. May be specified as an adjusting or non-adjusting date or alternatively as a period offset from the effective date. ISDA 2003 Term: Scheduled Termination Date. The construct has been adjusted as part of the 4.3 release to remove the choice with the relativeDate which was of type Interval. As part of the version5, the intent is to make the scheduleTerminationDate of type AdjustableDate2 and remove the adjustableDate node.</xsd:documentation>
+          <xsd:documentation xml:lang="en">The scheduled date on which the credit protection will lapse. May be specified as an adjusting or non-adjusting date or alternatively as a period offset from the effective date. ISDA 2003 Term: Scheduled Termination Date.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-<!--Has overrides-->
-      <xsd:element name="sellerPartyReference" type="PartyOrTradeSideReference" minOccurs="1">
+      <xsd:group ref="BuyerSeller.model">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">The seller of the credit protection. ISDA 2003 Term: Floating Rate Payer.</xsd:documentation>
+          <xsd:documentation xml:lang="en">The buyer of the credit protection (ISDA 2003 Term: Fixed Rate Payer) and the seller of the credit protection (ISDA 2003 Term: Floating Rate Payer).</xsd:documentation>
         </xsd:annotation>
-      </xsd:element>
-<!--Has overrides-->
-      <xsd:element name="buyerPartyReference" type="PartyOrTradeSideReference" minOccurs="1">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The buyer of the credit protection. ISDA 2003 Term: Fixed Rate Payer.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
+      </xsd:group>
       <xsd:element name="dateAdjustments" type="BusinessDayAdjustments" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">ISDA 2003 Terms: Business Day and Business Day Convention.</xsd:documentation>
@@ -532,35 +525,35 @@
           <xsd:documentation xml:lang="en">This element is used for representing information contained in the Additional Terms field of the 2003 Master Credit Derivatives confirm.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="substitution" type="Empty" minOccurs="0">
+      <xsd:element name="substitution" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Presence of this element indicates that substitution is applicable.</xsd:documentation>
+          <xsd:documentation xml:lang="en">Value of this element set to 'true' indicates that substitution is applicable.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="modifiedEquityDelivery" type="Empty" minOccurs="0">
+      <xsd:element name="modifiedEquityDelivery" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Presence of this element indicates that modified equity delivery is applicable.</xsd:documentation>
+          <xsd:documentation xml:lang="en">Value of this element set to 'true' indicates that modified equity delivery is applicable.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="IndexAnnexSource">
     <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="indexAnnexSourceScheme" default="http://www.fpml.org/coding-scheme/cdx-index-annex-source-1-0" type="xsd:anyURI" />
+      <xsd:extension base="Scheme">
+        <xsd:attribute name="indexAnnexSourceScheme" default="http://www.fpml.org/coding-scheme/cdx-index-annex-source" type="xsd:anyURI" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="IndexId">
     <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
+      <xsd:extension base="Scheme">
         <xsd:attribute name="indexIdScheme" type="xsd:anyURI" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="IndexName">
     <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
+      <xsd:extension base="Scheme">
         <xsd:attribute name="indexNameScheme" type="xsd:anyURI" />
       </xsd:extension>
     </xsd:simpleContent>
@@ -630,24 +623,28 @@
     <xsd:attribute name="id" type="xsd:ID" />
   </xsd:complexType>
   <xsd:complexType name="InitialPayment">
-    <xsd:sequence>
-      <xsd:group ref="PayerReceiver.model" />
-      <xsd:element name="adjustablePaymentDate" type="xsd:date" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A fixed payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="adjustedPaymentDate" type="xsd:date" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="paymentAmount" type="Money">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A fixed payment amount.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
+    <xsd:complexContent>
+      <xsd:extension base="PaymentBase">
+        <xsd:sequence>
+          <xsd:group ref="PayerReceiver.model" />
+          <xsd:element name="adjustablePaymentDate" type="xsd:date" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A fixed payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="adjustedPaymentDate" type="xsd:date" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="paymentAmount" type="Money">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A fixed payment amount.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="InterestShortFall">
     <xsd:sequence>
@@ -679,8 +676,8 @@
   </xsd:complexType>
   <xsd:complexType name="MatrixSource">
     <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="settledEntityMatrixSourceScheme" default="http://www.fpml.org/coding-scheme/settled-entity-matrix-source-1-0" type="xsd:anyURI" />
+      <xsd:extension base="Scheme">
+        <xsd:attribute name="settledEntityMatrixSourceScheme" default="http://www.fpml.org/coding-scheme/settled-entity-matrix-source" type="xsd:anyURI" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -704,6 +701,11 @@
   </xsd:complexType>
   <xsd:complexType name="NotDomesticCurrency">
     <xsd:sequence>
+      <xsd:element name="applicable" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Indicates whether the not domestic currency provision is applicable.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
       <xsd:element name="currency" type="Currency" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An explicit specification of the domestic currency.</xsd:documentation>
@@ -718,7 +720,7 @@
           <xsd:documentation xml:lang="en">Used in both obligations and deliverable obligations to represent a class or type of securities which apply. ISDA 2003 Term: Obligation Category/Deliverable Obligation Category</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="notSubordinated" type="Empty" minOccurs="0">
+      <xsd:element name="notSubordinated" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. An obligation that ranks at least equal with the most senior Reference Obligation in priority of payment or, if no Reference Obligation is specified in the related Confirmation, the obligations of the Reference Entity that are senior. ISDA 2003 Term: Not Subordinated</xsd:documentation>
         </xsd:annotation>
@@ -728,7 +730,7 @@
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. The currency or currencies in which an obligation or deliverable obligation must be payable. ISDA 2003 Term: Specified Currency</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="notSovereignLender" type="Empty" minOccurs="0">
+      <xsd:element name="notSovereignLender" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Any obligation that is not primarily (majority) owed to a Sovereign or Supranational Organization. ISDA 2003 Term: Not Sovereign Lender</xsd:documentation>
         </xsd:annotation>
@@ -738,39 +740,39 @@
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Any obligation that is payable in any currency other than the domestic currency. Domestic currency is either the currency so specified or, if no currency is specified, the currency of (a) the reference entity, if the reference entity is a sovereign, or (b) the jurisdiction in which the relevant reference entity is organised, if the reference entity is not a sovereign. ISDA 2003 Term: Not Domestic Currency</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="notDomesticLaw" type="Empty" minOccurs="0">
+      <xsd:element name="notDomesticLaw" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. If the reference entity is a Sovereign, this means any obligation that is not subject to the laws of the reference entity. If the reference entity is not a sovereign, this means any obligation that is not subject to the laws of the jurisdiction of the reference entity. ISDA 2003 Term: Not Domestic Law</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="listed" type="Empty" minOccurs="0">
+      <xsd:element name="listed" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Indicates whether or not the obligation is quoted, listed or ordinarily purchased and sold on an exchange. ISDA 2003 Term: Listed</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="notDomesticIssuance" type="Empty" minOccurs="0">
+      <xsd:element name="notDomesticIssuance" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Any obligation other than an obligation that was intended to be offered for sale primarily in the domestic market of the relevant Reference Entity. This specifies that the obligation must be an internationally recognized bond. ISDA 2003 Term: Not Domestic Issuance</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:choice minOccurs="0">
-        <xsd:element name="fullFaithAndCreditObLiability" type="Empty">
+        <xsd:element name="fullFaithAndCreditObLiability" type="xsd:boolean">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Defined in the ISDA published additional provisions for U.S. Municipal as Reference Entity. ISDA 2003 Term: Full Faith and Credit Obligation Liability</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
-        <xsd:element name="generalFundObligationLiability" type="Empty">
+        <xsd:element name="generalFundObligationLiability" type="xsd:boolean">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Defined in the ISDA published additional provisions for U.S. Municipal as Reference Entity. ISDA 2003 Term: General Fund Obligation Liability</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
-        <xsd:element name="revenueObligationLiability" type="Empty">
+        <xsd:element name="revenueObligationLiability" type="xsd:boolean">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Defined in the ISDA published additional provisions for U.S. Municipal as Reference Entity. ISDA 2003 Term: Revenue Obligation Liability</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
       </xsd:choice>
-      <xsd:element name="notContingent" type="Empty" minOccurs="0">
+      <xsd:element name="notContingent" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">NOTE: Only allowed as an obligation charcteristic under ISDA Credit 1999. In essence Not Contingent means the repayment of principal cannot be dependant on a formula/index, i.e. to prevent the risk of being delivered an instrument that may never pay any element of principal, and to ensure that the obligation is interest bearing (on a regular schedule). ISDA 2003 Term: Not Contingent</xsd:documentation>
         </xsd:annotation>
@@ -787,14 +789,34 @@
       </xsd:element>
       <xsd:element name="designatedPriority" type="Lien" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Applies to Loan CDS, to indicate what lien level is appropriate for a deliverable obligation. Example: a 2nd lien Loan CDS would imply that the deliverable obligations are 1st or 2nd lien loans.</xsd:documentation>
+          <xsd:documentation xml:lang="en">Applies to Loan CDS, to indicate what lien level is appropriate for a deliverable obligation. Applies to European Loan CDS, to indicate the Ranking of the obligation. Example: a 2nd lien Loan CDS would imply that the deliverable obligations are 1st or 2nd lien loans.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="cashSettlementOnly" type="xsd:boolean" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Defined in the ISDA published Standard Terms Supplement for use with CDS Transactions on Leveraged Loans. ISDA 2003 Term: Cash Settlement Only.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="deliveryOfCommitments" type="xsd:boolean" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Defined in the ISDA published Standard Terms Supplement for use with CDS Transactions on Leveraged Loans. ISDA 2003 Term: Delivery of Commitments.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="continuity" type="xsd:boolean" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">An obligation and deliverable obligation characteristic. Defined in the ISDA published Standard Terms Supplement for use with CDS Transactions on Leveraged Loans. ISDA 2003 Term: Continuity.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="PCDeliverableObligationCharac">
     <xsd:sequence>
-      <xsd:element name="partialCashSettlement" type="Empty" minOccurs="0">
+      <xsd:element name="applicable" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Indicates whether the provision is applicable.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="partialCashSettlement" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Specifies whether either 'Partial Cash Settlement of Assignable Loans', 'Partial Cash Settlement of Consent Required Loans' or 'Partial Cash Settlement of Participations' is applicable. If this element is specified and Assignable Loan is a Deliverable Obligation Chracteristic, any Assignable Loan that is deliverable, but where a non-receipt of Consent by the Physical Settlement Date has occurred, the Loan can be cash settled rather than physically delivered. If this element is specified and Consent Required Loan is a Deliverable Obligation Characterisitc, any Consent Required Loan that is deliverable, but where a non-receipt of Consent by the Physical Settlement Date has occurred, the Loan can be cash settled rather than physically delivered. If this element is specified and Direct Loan Participation is a Deliverable Obligation Characterisitic, any Participation that is deliverable, but where this participation has not been effected (has not come into effect) by the Physical Settlement Date, the participation can be cash settled rather than physically delivered.</xsd:documentation>
         </xsd:annotation>
@@ -802,54 +824,58 @@
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="PeriodicPayment">
-    <xsd:sequence>
-      <xsd:element name="paymentFrequency" type="Interval" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The time interval between regular fixed rate payer payment dates.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="firstPeriodStartDate" type="xsd:date" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The start date of the initial calculation period if such date is not equal to the trade’s effective date. It must only be specified if it is not equal to the effective date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement).</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="firstPaymentDate" type="xsd:date" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The first unadjusted fixed rate payer payment date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement). ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="lastRegularPaymentDate" type="xsd:date" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The last regular unadjusted fixed rate payer payment date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement). This element should only be included if there is a final payment stub, i.e. where the last regular unadjusted fixed rate payer payment date is not equal to the scheduled termination date. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="rollConvention" type="RollConventionEnum" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Used in conjunction with the effectiveDate, scheduledTerminationDate, firstPaymentDate, lastRegularPaymentDate and paymentFrequency to determine the regular fixed rate payer payment dates.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:choice>
-        <xsd:element name="fixedAmount" type="Money">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">A fixed payment amount. ISDA 2003 Term: Fixed Amount</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-        <xsd:element name="fixedAmountCalculation" type="FixedAmountCalculation">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">This element contains all the terms relevant to calculating a fixed amount where the fixed amount is calculated by reference to a per annum fixed rate. There is no corresponding ISDA 2003 Term. The equivalent is Sec 5.1 "Calculation of Fixed Amount" but this in itself is not a defined Term.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-      </xsd:choice>
-      <xsd:element name="adjustedPaymentDates" type="AdjustedPaymentDates" minOccurs="0" maxOccurs="unbounded">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">An optional cashflow-like structure allowing the equivalent representation of the periodic fixed payments in terms of a series of adjusted payment dates and amounts. This is intended to support application integration within an organisation and is not intended for use in inter-firm communication or confirmations. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
+    <xsd:complexContent>
+      <xsd:extension base="PaymentBase">
+        <xsd:sequence>
+          <xsd:element name="paymentFrequency" type="Period" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The time interval between regular fixed rate payer payment dates.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="firstPeriodStartDate" type="xsd:date" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The start date of the initial calculation period if such date is not equal to the trade’s effective date. It must only be specified if it is not equal to the effective date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement).</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="firstPaymentDate" type="xsd:date" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The first unadjusted fixed rate payer payment date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement). ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="lastRegularPaymentDate" type="xsd:date" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The last regular unadjusted fixed rate payer payment date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement). This element should only be included if there is a final payment stub, i.e. where the last regular unadjusted fixed rate payer payment date is not equal to the scheduled termination date. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="rollConvention" type="RollConventionEnum" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Used in conjunction with the effectiveDate, scheduledTerminationDate, firstPaymentDate, lastRegularPaymentDate and paymentFrequency to determine the regular fixed rate payer payment dates.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:choice>
+            <xsd:element name="fixedAmount" type="Money">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">A fixed payment amount. ISDA 2003 Term: Fixed Amount</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="fixedAmountCalculation" type="FixedAmountCalculation">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">This element contains all the terms relevant to calculating a fixed amount where the fixed amount is calculated by reference to a per annum fixed rate. There is no corresponding ISDA 2003 Term. The equivalent is Sec 5.1 "Calculation of Fixed Amount" but this in itself is not a defined Term.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:choice>
+          <xsd:element name="adjustedPaymentDates" type="AdjustedPaymentDates" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">An optional cashflow-like structure allowing the equivalent representation of the periodic fixed payments in terms of a series of adjusted payment dates and amounts. This is intended to support application integration within an organisation and is not intended for use in inter-firm communication or confirmations. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="PhysicalSettlementPeriod">
     <xsd:choice>
-      <xsd:element name="businessDaysNotSpecified" type="Empty">
+      <xsd:element name="businessDaysNotSpecified" type="xsd:boolean">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">An explicit indication that a number of business days are not specified and therefore ISDA fallback provisions should apply.</xsd:documentation>
         </xsd:annotation>
@@ -882,12 +908,12 @@
           </xsd:element>
           <xsd:element name="escrow" type="xsd:boolean" minOccurs="0">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">If this element is specified, indicates that physical settlement must take place through the use of an escrow agent. (For Canadian counterparties this is always "Not Applicable". ISDA 2003 Term: Escrow</xsd:documentation>
+              <xsd:documentation xml:lang="en">If this element is specified and set to 'true', indicates that physical settlement must take place through the use of an escrow agent. (For Canadian counterparties this is always "Not Applicable". ISDA 2003 Term: Escrow.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
           <xsd:element name="sixtyBusinessDaySettlementCap" type="xsd:boolean" minOccurs="0">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">If this element is specified, for a transaction documented under the 2003 ISDA Credit Derivatives Definitions, has the effect of incorporating the language set forth below into the confirmation. The section references are to the 2003 ISDA Credit Derivatives Definitions. Notwithstanding Section 1.7 or any provisions of Sections 9.9 or 9.10 to the contrary, but without prejudice to Section 9.3 and (where applicable) Sections 9.4, 9.5 and 9.6, if the Termination Date has not occurred on or prior to the date that is 60 Business Days following the Physical Settlement Date, such 60th Business Day shall be deemed to be the Termination Date with respect to this Transaction except in relation to any portion of the Transaction (an "Affected Portion") in respect of which: (1) a valid notice of Buy-in Price has been delivered that is effective fewer than three Business Days prior to such 60th Business Day, in which case the Termination Date for that Affected Portion shall be the third Business Day following the date on which such notice is effective; or (2) Buyer has purchased but not Delivered Deliverable Obligations validly specified by Seller pursuant to Section 9.10(b), in which case the Termination Date for that Affected Portion shall be the tenth Business Day following the date on which Seller validly specified such Deliverable Obligations to Buyer.</xsd:documentation>
+              <xsd:documentation xml:lang="en">If this element is specified and set to 'true', for a transaction documented under the 2003 ISDA Credit Derivatives Definitions, has the effect of incorporating the language set forth below into the confirmation. The section references are to the 2003 ISDA Credit Derivatives Definitions. Notwithstanding Section 1.7 or any provisions of Sections 9.9 or 9.10 to the contrary, but without prejudice to Section 9.3 and (where applicable) Sections 9.4, 9.5 and 9.6, if the Termination Date has not occurred on or prior to the date that is 60 Business Days following the Physical Settlement Date, such 60th Business Day shall be deemed to be the Termination Date with respect to this Transaction except in relation to any portion of the Transaction (an "Affected Portion") in respect of which: (1) a valid notice of Buy-in Price has been delivered that is effective fewer than three Business Days prior to such 60th Business Day, in which case the Termination Date for that Affected Portion shall be the third Business Day following the date on which such notice is effective; or (2) Buyer has purchased but not Delivered Deliverable Obligations validly specified by Seller pursuant to Section 9.10(b), in which case the Termination Date for that Affected Portion shall be the tenth Business Day following the date on which Seller validly specified such Deliverable Obligations to Buyer.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
         </xsd:sequence>
@@ -942,12 +968,12 @@
             <xsd:documentation xml:lang="en">The Reference Obligation is a financial instrument that is either issued or guaranteed by the reference entity. It serves to clarify the precise reference entity protection is being offered upon, and its legal position with regard to other related firms (parents/subsidiaries). Furthermore the Reference Obligation is ALWAYS deliverable and establishes the Pari Passu ranking (as the deliverable bonds must rank equal to the reference obligation). ISDA 2003 Term: Reference Obligation</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
-        <xsd:element name="noReferenceObligation" type="Empty">
+        <xsd:element name="noReferenceObligation" type="xsd:boolean">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Used to indicate that there is no Reference Obligation associated with this Credit Default Swap and that there will never be one.</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
-        <xsd:element name="unknownReferenceObligation" type="Empty">
+        <xsd:element name="unknownReferenceObligation" type="xsd:boolean">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Used to indicate that the Reference obligation associated with the Credit Default Swap is currently not known. This is not valid for Legal Confirmation purposes, but is valid for earlier stages in the trade life cycle (e.g. Broker Confirmation).</xsd:documentation>
           </xsd:annotation>
@@ -963,9 +989,9 @@
           <xsd:documentation xml:lang="en">Used to determine (a) for physically settled trades, the Physical Settlement Amount, which equals the Floating Rate Payer Calculation Amount times the Reference Price and (b) for cash settled trades, the Cash Settlement Amount, which equals the greater of (i) the difference between the Reference Price and the Final Price and (ii) zero. ISDA 2003 Term: Reference Price</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="referencePolicy" type="Empty" minOccurs="0">
+      <xsd:element name="referencePolicy" type="xsd:boolean" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">Applicable to the transactions on mortgage-backed security, which can make use of a reference policy. Presence of the element indicates that the reference policy is applicable; absence implies that it is not.</xsd:documentation>
+          <xsd:documentation xml:lang="en">Applicable to the transactions on mortgage-backed security, which can make use of a reference policy. Presence of the element with value set to 'true' indicates that the reference policy is applicable; absence implies that it is not.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="securedList" type="xsd:boolean" minOccurs="0">
@@ -1022,7 +1048,7 @@
             <xsd:documentation xml:lang="en">The Reference Obligation is a financial instrument that is either issued or guaranteed by the reference entity. It serves to clarify the precise reference entity protection is being offered upon, and its legal position with regard to other related firms (parents/subsidiaries). Furthermore the Reference Obligation is ALWAYS deliverable and establishes the Pari Passu ranking (as the deliverable bonds must rank equal to the reference obligation). ISDA 2003 Term: Reference Obligation</xsd:documentation>
           </xsd:annotation>
         </xsd:element>
-        <xsd:element name="noReferenceObligation" type="Empty">
+        <xsd:element name="noReferenceObligation" type="xsd:boolean">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Used to indicate that there is no Reference Obligation associated with this Credit Default Swap and that there will never be one.</xsd:documentation>
           </xsd:annotation>
@@ -1069,7 +1095,7 @@
   <xsd:complexType name="ScheduledTerminationDate">
     <xsd:choice>
       <xsd:element name="adjustableDate" type="AdjustableDate2" />
-      <xsd:element name="relativeDate" type="Interval" />
+      <xsd:element name="relativeDate" type="Period" />
     </xsd:choice>
   </xsd:complexType>
   <xsd:complexType name="SettledEntityMatrix">
@@ -1107,23 +1133,27 @@
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="SinglePayment">
-    <xsd:sequence>
-      <xsd:element name="adjustablePaymentDate" type="xsd:date">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A fixed amount payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="adjustedPaymentDate" type="xsd:date" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="fixedAmount" type="Money">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A fixed payment amount. ISDA 2003 Term: Fixed Amount</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
+    <xsd:complexContent>
+      <xsd:extension base="PaymentBase">
+        <xsd:sequence>
+          <xsd:element name="adjustablePaymentDate" type="xsd:date">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A fixed amount payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component. ISDA 2003 Term: Fixed Rate Payer Payment Date</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="adjustedPaymentDate" type="xsd:date" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="fixedAmount" type="Money">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">A fixed payment amount. ISDA 2003 Term: Fixed Amount</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="SingleValuationDate">
     <xsd:sequence>
@@ -1136,6 +1166,11 @@
   </xsd:complexType>
   <xsd:complexType name="SpecifiedCurrency">
     <xsd:sequence>
+      <xsd:element name="applicable" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Indicates whether the specified currency provision is applicable.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
       <xsd:element name="currency" type="Currency" minOccurs="0" maxOccurs="unbounded">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
@@ -1189,5 +1224,19 @@
       <xsd:documentation xml:lang="en">An option on a credit default swap.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
+  <xsd:group name="FixedRecovery.model">
+    <xsd:choice>
+      <xsd:element name="cashSettlementAmount" type="Money">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The amount paid by the seller to the buyer for cash settlement on the cash settlement date. If not otherwise specified, would typically be calculated as 100 (or the Reference Price) minus the price of the Reference Obligation (all expressed as a percentage) times Floating Rate Payer Calculation Amount. ISDA 2003 Term: Cash Settlement Amount.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="recoveryFactor" type="RestrictedPercentage">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Used for fixed recovery, specifies the recovery level, determined at contract inception, to be applied on a default. Used to calculate the amount paid by the seller to the buyer for cash settlement on the cash settlement date. Amount calculation is (1 minus the Recovery Factor) multiplied by the Floating Rate Payer Calculation Amount. The currency will be derived from the Floating Rate Payer Calculation Amount.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:choice>
+  </xsd:group>
 </xsd:schema>
 

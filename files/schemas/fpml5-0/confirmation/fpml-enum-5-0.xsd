@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 
-== Copyright (c) 2002-2006. All rights reserved. 
+== Copyright (c) 2002-2010. All rights reserved. 
 == Financial Products Markup Language is subject to the FpML public license. 
 == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<!--View is confirmation-->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/FpML-5-0/confirmation" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:fpml-annotation="http://www.fpml.org/annotation" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/FpML-5-0/confirmation" version="$Revision: 884 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:fpml-annotation="http://www.fpml.org/annotation" targetNamespace="http://www.fpml.org/FpML-5/confirmation" ecore:documentRoot="FpML" ecore:nsPrefix="conf" ecore:package="org.fpml.confirmation" version="$Revision: 2586 $" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xsd:simpleType name="AveragingInOutEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The type of averaging used in an Asian option.</xsd:documentation>
-      <xsd:documentation source="http://www.FpML.org" xml:lang="de">Art der Durchschnittsberechnung.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:token">
       <xsd:enumeration value="In">
@@ -46,6 +44,55 @@
       </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
+  <xsd:simpleType name="BreakageCostEnum">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">When breakage cost is applicable, defines who is calculating it.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="AgentBank">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Breakage cost is calculated by the agent bank.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Lender">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Breakage cost is calculated by the lender.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="BullionTypeEnum">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines which type of bullion is applicable for a Bullion Transaction.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Gold">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Gold. Quality as per the Good Delivery Rules issued by the London Bullion Market Association.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Palladium">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Palladium. Quality as per the Good Delivery Rules issued by the London Platinum and Palladium Market.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Platinum">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Palladium. Quality as per the Good Delivery Rules issued by the London Platinum and Palladium Market.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Silver">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Silver. Quality as per the Good Delivery Rules issued by the London Bullion Market Association.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="RhodiumSponge">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Quality as per the Good Delivery Rules for Rhodium (Sponge).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
   <xsd:simpleType name="BusinessDayConventionEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The convention for adjusting any relevant date if it would otherwise fall on a day that is not a valid business day. Note that FRN is included here as a type of business day convention although it does not strictly fall within ISDA's definition of a Business Day Convention and does not conform to the simple definition given above.</xsd:documentation>
@@ -76,6 +123,11 @@
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">The non-business date will be adjusted to the first preceding day that is a business day unless that day falls in the previous calendar month, in which case that date will be the first following day that us a business day.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
+      <xsd:enumeration value="NEAREST">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The non-business date will be adjusted to the nearest day that is a business day - i.e. if the non-business day falls on any day other than a Sunday or a Monday, it will be the first preceding day that is a business day, and will be the first following business day if it falls on a Sunday or a Monday.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
       <xsd:enumeration value="NONE">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">The date will not be adjusted if it falls on a day that is not a business day.</xsd:documentation>
@@ -84,6 +136,23 @@
       <xsd:enumeration value="NotApplicable">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">The date adjustments conventions are defined elsewhere, so it is not required to specify them here.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CashPhysicalEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">Shows how the transaction is to be settled when it is exercised.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Cash">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The intrinsic value of the option will be delivered by way of a cash settlement amount determined, (i) by reference to the differential between the strike price and the settlement price; or (ii) in accordance with a bilateral agreement between the parties</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Physical">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The securities underlying the transaction will be delivered by (i) in the case of a call, the seller to the buyer, or (ii) in the case of a put, the buyer to the seller versus a settlement amount equivalent to the strike price per share</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>
@@ -106,6 +175,11 @@
       <xsd:enumeration value="AsSpecifiedInMasterAgreement">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Calculation Agent is determined by reference to the relevant master agreement.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="AsSpecifiedInStandardTermsSupplement">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Calculation Agent is determined by reference to the relevant standard terms supplement.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>
@@ -137,6 +211,39 @@
       </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
+  <xsd:simpleType name="CommodityBullionSettlementDisruptionEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">The consequences of Bullion Settlement Disruption Events.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Negotiation">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Negotiation will apply in the event of Bullion Settlement Disruption as per Section 10.5.(d) of the 2005 Commodity Definitions.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Cancellation and Payment">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Cancellation and Payment will apply in the event of Bullion Settlement Disruption as per Section 10.5.(d) of the 2005 Commodity Definitions.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CommodityDayTypeEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">A day type classification used in counting the number of days between two dates for a commodity transaction.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:union memberTypes="DayTypeEnum">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:token">
+          <xsd:enumeration value="GasFlow">
+            <xsd:annotation>
+              <xsd:documentation source="http://www.FpML.org" xml:lang="en">When calculating the number of days between two dates the count includes only gas flow days (dates on which gas is delivered).</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:union>
+  </xsd:simpleType>
   <xsd:simpleType name="CompoundingMethodEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The compounding calculation method</xsd:documentation>
@@ -157,6 +264,75 @@
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Straight compounding. Compounding includes the spread.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
+      <xsd:enumeration value="SpreadExclusive">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Spread Exclusive compounding.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ConditionsPrecedentEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">Defines whether conditions precedent have been met in a given syndicated loan deal.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Yes">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Conditions precedent have been met.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="No">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Conditions precedent have not been met.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Waived">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The requirement for conditions precedent were waived.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="DayOfWeekEnum">
+    <xsd:annotation>
+      <xsd:documentation>A day of the seven-day week.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="MON">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Monday</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TUE">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Tuesday</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="WED">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Wednesday</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="THU">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Thursday</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FRI">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Friday</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SAT">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Saturday</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SUN">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Sunday</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
   <xsd:simpleType name="DayTypeEnum">
@@ -174,6 +350,11 @@
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">When calculating the number of days between two dates the count includes all calendar days.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
+      <xsd:enumeration value="CommodityBusiness">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">When calculating the number of days between two dates the count includes only commodity business days.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
       <xsd:enumeration value="CurrencyBusiness">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">When calculating the number of days between two dates the count includes only currency business days.</xsd:documentation>
@@ -189,6 +370,54 @@
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">When calculating the number of days between two dates the count includes only scheduled trading days.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="DeliveryDatesEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">In respect of a Transaction and a Commodity Reference Price, the relevant date or month for delivery of the underlying Commodity.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="CalculationPeriod">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Delivery Date of the underlying Commodity shall be the month of expiration of the futures contract that corresponds to the month and year of the Calculation Period. e.g. The JAN 09 contract when pricing in January '09 (In the case of contracts like Brent crude, this will mean that the contract expired in DEC 08.)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FirstNearby">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Delivery Date of the underlying Commodity shall be the month of expiration of the First Nearby Month futures contract.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SecondNearby">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Delivery Date of the underlying Commodity shall be the month of expiration of the Second Nearby Month futures contract.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ThirdNearby">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Delivery Date of the underlying Commodity shall be the month of expiration of the Third Nearby Month futures contract.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SixthNearby">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Delivery Date of the underlying Commodity shall be the month of expiration of the Sixth Nearby Month futures contract.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TwelfthNearby">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Delivery Date of the underlying Commodity shall be the month of expiration of the Twelfth Nearby Month futures contract.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Spot">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Delivery Date of the underlying Commodity shall be the spot date.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="DeliveryTypeEnum">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Firm" />
+      <xsd:enumeration value="Interruptible" />
     </xsd:restriction>
   </xsd:simpleType>
   <xsd:simpleType name="DifferenceSeverityEnum">
@@ -228,6 +457,14 @@
       </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
+  <xsd:simpleType name="DisruptionFallbacksEnum">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The specification of how disruption fallbacks will be represented.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="AsSpecifiedInMasterAgreement" />
+    </xsd:restriction>
+  </xsd:simpleType>
   <xsd:simpleType name="DividendAmountTypeEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">Refers to one on the 3 Amounts</xsd:documentation>
@@ -251,6 +488,23 @@
       <xsd:enumeration value="AsSpecifiedInMasterConfirmation">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Amount is determined as provided in the relevant Master Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="DividendCompositionEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">Defines how the composition of dividends is to be determined.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="EquityAmountReceiverElection">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Equity Amount Receiver determines the composition of dividends (subject to conditions).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CalculationAgentElection">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Calculation Agent determines the composition of dividends (subject to conditions).</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>
@@ -315,6 +569,31 @@
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Total of dividends which go ex, paid on next following Payment Date, which is immediately following the Dividend Period during which the Shares commence trading ex-dividend on the Exchange, or where the date on which the Shares commence trading ex-dividend is a Payment Date, such Payment Date.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
+      <xsd:enumeration value="SharePayment">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">If "Dividend Payment Date(s)" is specified in the Transaction Supplement as "Share Payment", then the Dividend Payment Date in respect of a Dividend Amount shall fall on a date on or before the date that is two (or any other number that is specified in the Transaction Supplement) Currency Business Days following the day on which the Issuer of the Shares pays the relevant dividend to holders of record of the Shares</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CashSettlementPaymentDate">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">If "Dividend Payment Date(s)" is specified in the Transaction Supplement as "Cash Settlement Payment Date", then the Dividend Payment Date in respect of a Dividend Amount shall be the Cash Settlement Payment Date relating to the end of the Dividend Period during which the Shares commenced trading "ex" the relevant dividend on the Exchange</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FloatingAmountPaymentDate">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">If "Dividend Payment Date(s)" is specified in the Transaction Supplement as "Floating Amount Payment Date", then the Dividend Payment Date in respect of a Dividend Amount shall be the first Payment Date falling at least one Settlement Cycle after the date that the Shares have commenced trading "ex" the relevant dividend on the Exchange.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CashSettlePaymentDateExDiv">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">If "Dividend Payment Date(s)" is specified in the Transaction Supplement as "Cash Settlement Payment Date – Ex Dividend", then the Dividend Payment Date in respect of a Dividend Amount shall be the Cash Settlement Payment Date relating to the end of the Dividend Period during which the Shares commenced trading “ex” the relevant dividend on the Exchange.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CashSettlePaymentDateIssuerPayment">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">If "Dividend Payment Date(s)" is specified in the Transaction Supplement as "Cash Settlement Payment Date – Issuer Payment", then the Dividend Payment Date in respect of a Dividend Amount shall be the Cash Settlement Payment Date relating to the end of the Dividend Period during which the issuer pays the relevant dividend to a holder of record provided that in the case where the Equity Amount Payer is the party specified to be the sole Hedging Party and the Hedging Party has not received the Dividend Amount by such date, then the date falling a number of Currency Business Days as specified in the Cash Settlement Payment Date after actual receipt by the Hedging Party of the Received Ex Amount or Paid Ex Amount (as applicable).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
   <xsd:simpleType name="DividendEntitlementEnum">
@@ -351,6 +630,52 @@
       </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
+  <xsd:simpleType name="DrawdownEventTypeEnum">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">When breakage cost is applicable, defines who is calculating it.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NewDrawdownEvent">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Event triggered by the borrower requesting a new loan contract against an existing facility with the agent bank. The agent will receive the borrower notice, calculate the amount of principal due from each lender based on their respective share of the underlying commitment and send loan contract notices to the lenders.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="RateSetEvent">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This is a notice that defines when the actual underlying base rate is set for the loan contract period.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FxRateSetEvent">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This is a notice that defines when the exchange rate is set for the loan contract period. Applicable only for multicurrency loan contracts.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ElectricityProductTypeEnum">
+    <xsd:annotation>
+      <xsd:documentation>The type of electricity product.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Electricity" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="EquityOptionTypeEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">Specifies an additional Forward type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:union memberTypes="PutCallEnum">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:token">
+          <xsd:enumeration value="Forward" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="The optionType is to be used if the underlyer does not carry any mention of the resulting trade direction.">
+            <xsd:annotation>
+              <xsd:documentation source="http://www.FpML.org" xml:lang="en">DEPRECATED value which will be removed in FpML-5-0 onwards A forward contract is an agreement to buy or sell the underlying asset at a certain future time for a certain price.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:union>
+  </xsd:simpleType>
   <xsd:simpleType name="ExerciseStyleEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The specification of how an OTC option will be exercised.</xsd:documentation>
@@ -369,6 +694,55 @@
       <xsd:enumeration value="European">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Option can only be exercised on the expiry date.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="FeeElectionEnum">
+    <xsd:annotation>
+      <xsd:documentation>Defines the fee type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="FlatFee">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The product of (i) the Break Fee Rate multiplied by (ii) the Equity Notional Amount corresponding to the Early Termination Portion.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="AmortizedFee">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The product of (i) the Break Fee Rate multiplied by (ii) the Equity Notional Amount corresponding to the Early Termination Portion multiplied by (iii) the number of days from the Early Termination Date to the later of the Termination Date or the Cash Settlement Payment Date corresponding to the latest Valuation Date.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FundingFee">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The product of (i) the Equity Notional Amount corresponding to the Early Termination Portion multiplied by (ii) the Break Funding Rate multiplied by (iii) the number of days from the Early Termination Date to the next scheduled Reset Date divided by (iv) a number equivalent to the denominator of the Day Count Fraction applicable to the Floating Rate Option.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FlatFeeAndFundingFee">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Both Flat Fee and Funding Fee are applicable.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="AmortizedFeeAndFundingFee">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Amortized Fee and Funding Fee are applicable.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="FlatRateEnum">
+    <xsd:annotation>
+      <xsd:documentation>The method by which the Flat Rate is calculated for a commodity freight transaction.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Fixed">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Flat Rate will be the New Worldwide Tanker Nominal Freight Scale for the Freight Index Route for the Trade Date for the transaction.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Floating">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Flat Rate for each Pricing Date will be the New Worldwide Tanker Nominal Freight Scale for the Freight Index Route for the Pricing Date..</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>
@@ -398,7 +772,6 @@
   <xsd:simpleType name="FrequencyTypeEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The schedule frequency type</xsd:documentation>
-      <xsd:documentation source="http://www.FpML.org" xml:lang="de">Art der Zahlungsfrequenz laut Zeitplan.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:token">
       <xsd:enumeration value="Day">
@@ -440,6 +813,14 @@
       </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
+  <xsd:simpleType name="GasProductTypeEnum">
+    <xsd:annotation>
+      <xsd:documentation>The type of gas product.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NaturalGas" />
+    </xsd:restriction>
+  </xsd:simpleType>
   <xsd:simpleType name="IndexEventConsequenceEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The specification of the consequences of Index Events.</xsd:documentation>
@@ -460,6 +841,50 @@
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Cancellation and Payment</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
+      <xsd:enumeration value="RelatedExchange">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Related Exchange Adjustment</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="InterestCalculationMethodEnum">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">&gt;Defines whether agent bank is making an interest payment based on the lender pro-rata share at the end of the period or based on the lender position throughout the period. Agent Banks decide which way to calculate the interest for a deal.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="ProRataShare">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Agent bank is making an interest payment based on the lender pro-rata share.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FacilityPosition">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Agent bank is making an interest payment based on the lender position throughout the period.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="InterestPaidWithRepaymentEnum">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">&gt;Defines the options of paying interest with repayment.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="NoInterest">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Interest is not payed with repayment.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PayedOnShareAmount">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Interest is payed with repayment. Interest accrual amount is based on lender loan contract share amount.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PayedOnRepaymentAmount">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Interest is payed with repayment. Interest accrual amount is based on lender share repayment amount.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
   <xsd:simpleType name="InterestShortfallCapEnum">
@@ -471,6 +896,51 @@
       <xsd:enumeration value="Variable" />
     </xsd:restriction>
   </xsd:simpleType>
+  <xsd:simpleType name="InterpolationPeriodEnum">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines applicable periods for interpolation.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Initial">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Interpolation is applicable to the initial period only.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InitialAndFinal">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Interpolation is applicable to the initial and final periods only.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Final">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Interpolation is applicable to the final period only.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="AnyPeriod">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Interpolation is applicable to any non-standard period.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="LcPurposeEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">Defines the purpose of a Letter of Credit.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Financial" />
+      <xsd:enumeration value="Performance" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="LcTypeEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">Defines the type of a Letter of Credit.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Standby" />
+      <xsd:enumeration value="Commercial" />
+    </xsd:restriction>
+  </xsd:simpleType>
   <xsd:simpleType name="LengthUnitEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">Used for indicating the length unit in the Resource type.</xsd:documentation>
@@ -478,6 +948,50 @@
     <xsd:restriction base="xsd:token">
       <xsd:enumeration value="Pages" />
       <xsd:enumeration value="TimeUnit" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="LoanRepaymentConfirmEnum">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines whether the lender is accepting in full, partially accepting or denying repayment.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="AcceptInFull">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Lender is accepting the repayment in full.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PartiallyAccept">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Lender is partially accepting the repayment.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Deny">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Lender is denying the repayment.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="MarketDisruptionEventsEnum">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The specification of how market disruption events will be represented.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Applicable">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Market Disruption Events are applicable.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="NotApplicable">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Market Disruption Events are not applicable.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="AsSpecifiedInMasterAgreement">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Market Disruption Event(s) are determined by reference to the relevant master agreement.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
   <xsd:simpleType name="MethodOfAdjustmentEnum">
@@ -527,6 +1041,23 @@
       <xsd:enumeration value="ZeroInterestRateMethod">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Zero Interest Rate Method. Per 2000 ISDA Definitions, Section 6.4. Negative Interest Rates, paragraphs (d) and (e).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="NonCashDividendTreatmentEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">Defines treatment of non-cash dividends.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="PotentialAdjustmentEvent">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The treatment of any non-cash dividend shall be determined in accordance with the Potential Adjustment Event provisions.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CashEquivalent">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Any non-cash dividend shall be treated as a Declared Cash Equivalent Dividend.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>
@@ -590,42 +1121,100 @@
       </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
-  <xsd:simpleType name="OptionTypeEnum">
+  <xsd:simpleType name="OneOffFeeTypeEnum">
     <xsd:annotation>
-      <xsd:documentation source="http://www.FpML.org" xml:lang="en">Specifies whether the option is a call or a put.</xsd:documentation>
+      <xsd:documentation xml:lang="en">The list of oneOff fee types associated with a facility.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:token">
-      <xsd:enumeration value="Call">
+      <xsd:enumeration value="AmendmentFee">
         <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">A call option gives the holder the right to buy the underlying asset by a certain date for a certain price.</xsd:documentation>
+          <xsd:documentation xml:lang="en">A fee charged to the borrower for an amendment being made to the originally agreed credit agreement. The fee is based on a rate (as stated in the agreement) applied to the current commitment level.Calculated as a percentage of the unutilized portion of the facility.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
-      <xsd:enumeration value="Forward" fpml-annotation:deprecated="true" fpml-annotation:deprecatedReason="The optionType is to be used if the underlyer does not carry any mention of the resulting trade direction.">
+      <xsd:enumeration value="AssignmentFee">
         <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">DEPRECATED value which will be removed in FpML-5-0 onwards A forward contract is an agreement to buy or sell the underlying asset at a certain future time for a certain price.</xsd:documentation>
+          <xsd:documentation xml:lang="en">Calculated as a percentage of the unutilized portion of the facility.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
-      <xsd:enumeration value="Put">
+      <xsd:enumeration value="FacilityExtensionFee">
         <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">A put option gives the holder the right to sell the underlying asset by a certain date for a certain price.</xsd:documentation>
+          <xsd:documentation xml:lang="en">This fee represents any fee paid by the borrower to the syndicate lenders for extending an existing facility.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
-      <xsd:enumeration value="Payer">
+      <xsd:enumeration value="FundingFee">
         <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">A payer option</xsd:documentation>
+          <xsd:documentation xml:lang="en">Fee associated with the funding requirements for given facility.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
-      <xsd:enumeration value="Receiver">
+      <xsd:enumeration value="BreakageFee">
         <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">A receiver option</xsd:documentation>
+          <xsd:documentation xml:lang="en">Calculated as the cost of breaking financing on a loan contract which is repaid early.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
-      <xsd:enumeration value="Straddle">
+      <xsd:enumeration value="UpfrontFee">
         <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">A straddle strategy.</xsd:documentation>
+          <xsd:documentation xml:lang="en">This fee is also known as Participation Fee, Arrangement Fee etc. This fee represents compensation to the members of the lending syndicate (and sometimes to institutional investors as well) in return for their commitment of capital.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="WaiverFee">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This fee represents any fee paid by the borrower to the syndicate lenders / agent bank for accepting /processing waiver request. Waiver request is sent by the borrower to obtain approval from the syndicate lenders for any of their requirement, which is outside the terms of the agreement.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="OnGoingFeeTypeEnum">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The list of accruing fee types associated with a facility.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="CommitmentFee">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Calculated as a percentage of the unutilized portion of the facility.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UtilizationFee">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Calculated as a percentage of the utilized portion of the facility. This fee type is subject to banding rules – different portions of the utilization amount may be subject to different percentages.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FacilityFee">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Calculated as a percentage of the global commitment amount of a facility.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="LetterOfCreditFee">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">An on-going fee charged for the issuance of a letter of credit to a named beneficiary, on behalf of the borrower against a facility. The fee calculation is based on the percentage of the notional value of the letter of credit.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="OptionTypeEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">Specifies the type of the option.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:union memberTypes="PutCallEnum">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:token">
+          <xsd:enumeration value="Payer">
+            <xsd:annotation>
+              <xsd:documentation source="http://www.FpML.org" xml:lang="en">A payer option</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="Receiver">
+            <xsd:annotation>
+              <xsd:documentation source="http://www.FpML.org" xml:lang="en">A receiver option</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="Straddle">
+            <xsd:annotation>
+              <xsd:documentation source="http://www.FpML.org" xml:lang="en">A straddle strategy.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:union>
   </xsd:simpleType>
   <xsd:simpleType name="PayerReceiverEnum">
     <xsd:annotation>
@@ -676,9 +1265,19 @@
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Payments will occur relative to the last day of each calculation period.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
+      <xsd:enumeration value="LastPricingDate">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Payments will occur relative to the last Pricing Date of each Calculation Period.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
       <xsd:enumeration value="ResetDate">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Payments will occur relative to the reset date.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ValuationDate">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Payments will occur relative to the valuation date.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>
@@ -708,12 +1307,23 @@
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">Year.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
-      <xsd:enumeration value="T">
-        <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Term.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
     </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PeriodExtendedEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">The specification of a time period containing additional values such as Term.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:union memberTypes="PeriodEnum">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:token">
+          <xsd:enumeration value="T">
+            <xsd:annotation>
+              <xsd:documentation source="http://www.FpML.org" xml:lang="en">Term. The period commencing on the effective date and ending on the termination date. The T period always appears in association with periodMultiplier = 1, and the notation is intended for use in contexts where the interval thus qualified (e.g. accrual period, payment period, reset period, ...) spans the entire term of the trade.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:union>
   </xsd:simpleType>
   <xsd:simpleType name="PremiumQuoteBasisEnum">
     <xsd:annotation>
@@ -791,6 +1401,23 @@
       </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
+  <xsd:simpleType name="PutCallEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">Specifies whether the option is a call or a put.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Put">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">A put option gives the holder the right to sell the underlying asset by a certain date for a certain price.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Call">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">A call option gives the holder the right to buy the underlying asset by a certain date for a certain price.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
   <xsd:simpleType name="QuotationRateTypeEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The specification of the type of quotation rate to be obtained from each cash settlement reference bank.</xsd:documentation>
@@ -840,6 +1467,23 @@
       </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
+  <xsd:simpleType name="QuotationStyleEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">Indicates the actual quotation style of of PointsUpFront or TradedSpread that was used to quote this trade.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="PointsUpFront">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">When quotation style is "PointsUpFront", the initialPoints element of the feeLeg should be populated.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="TradedSpread">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">When quotation style is "TradedSpread", the marketFixedRate element of the feeLeg should be populated.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
   <xsd:simpleType name="QuoteBasisEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">How an exchange rate is quoted.</xsd:documentation>
@@ -874,21 +1518,19 @@
       </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
-<!--Change-->
-<!-- AP 09 feb 2007 added for citadel -->
   <xsd:simpleType name="RealisedVarianceMethodEnum">
     <xsd:annotation>
-      <xsd:documentation source="http://www.FpML.org" xml:lang="en">The contract specifies whether which price must satisfy the boundary condition</xsd:documentation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">The contract specifies whether which price must satisfy the boundary condition.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:token">
       <xsd:enumeration value="Previous">
         <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">For a return on day T, the observed price on T-1 must be in range</xsd:documentation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">For a return on day T, the observed price on T-1 must be in range.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
       <xsd:enumeration value="Last">
         <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">For a return on day T, the observed price on T must be in range</xsd:documentation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">For a return on day T, the observed price on T must be in range.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
       <xsd:enumeration value="Both">
@@ -898,7 +1540,6 @@
       </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
-<!--End Change-->
   <xsd:simpleType name="ResetRelativeToEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The specification of whether resets occur relative to the first or last day of a calculation period.</xsd:documentation>
@@ -1197,27 +1838,48 @@
       </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
+  <xsd:simpleType name="SettlementPeriodDurationEnum">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines the Settlement Period Duration for an Electricity Transaction.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="2Hours">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Two-hourly duration applies.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="1Hour">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Hourly duration applies.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30Minutes">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Half-hourly duration applies.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="15Minutes">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Quarter-hourly duration applies.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
   <xsd:simpleType name="SettlementTypeEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">Shows how the transaction is to be settled when it is exercised.</xsd:documentation>
     </xsd:annotation>
-    <xsd:restriction base="xsd:token">
-      <xsd:enumeration value="Cash">
-        <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The intrinsic value of the option will be delivered by way of a cash settlement amount determined, (i) by reference to the differential between the strike price and the settlement price; or (ii) in accordance with a bilateral agreement between the parties</xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
-      <xsd:enumeration value="Election">
-        <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Allow Election of either Cash or Physical settlement</xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
-      <xsd:enumeration value="Physical">
-        <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The securities underlying the transaction will be delivered by (i) in the case of a call, the seller to the buyer, or (ii) in the case of a put, the buyer to the seller versus a settlement amount equivalent to the strike price per share</xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
-    </xsd:restriction>
+    <xsd:union memberTypes="CashPhysicalEnum">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:token">
+          <xsd:enumeration value="Election">
+            <xsd:annotation>
+              <xsd:documentation source="http://www.FpML.org" xml:lang="en">Allow Election of either Cash or Physical settlement</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:union>
   </xsd:simpleType>
   <xsd:simpleType name="ShareExtraordinaryEventEnum">
     <xsd:annotation>
@@ -1284,6 +1946,88 @@
       <xsd:enumeration value="BaseCurrencyPerCurrency2">
         <xsd:annotation>
           <xsd:documentation source="http://www.FpML.org" xml:lang="en">The amount of the baseCurrency for one unit of exchangedCurrency2.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SpecifiedPriceEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">The Specified Price in respect of a Transaction and a Commodity Reference Price.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Afternoon">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Afternoon fixing reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Ask">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Ask price reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Bid">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Bid price reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Closing">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Closing price reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="High">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the High price reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Index">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Index price reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MeanOfBidAndAsk">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Average of the Bid and Ask prices reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Low">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Low price reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MeanOfHighAndLow">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Average of the High and Low prices reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Morning">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Morning fixing reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Official">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Official price reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Opening">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Opening price reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="OSP">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Official Settlement Price reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Settlement">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Settlement price reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Spot">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Specified Price shall be the Spot price reported in or by the relevant Price Source as specified in the relevant Confirmation.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
     </xsd:restriction>
@@ -1413,6 +2157,55 @@
       </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
+  <xsd:simpleType name="TriggerTimeTypeEnum">
+    <xsd:annotation>
+      <xsd:documentation source="http://www.FpML.org" xml:lang="en">The time of day which would be considered for valuing the knock event.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Closing">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The close of trading on a day would be considered for valuation.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Anytime">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">At any time during the Knock Determination period (continuous barrier).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TriggerTypeEnum">
+    <xsd:annotation>
+      <xsd:documentation>The specification of whether an option would trigger or expire depending upon whether the spot rate is above or below the barrier rate.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="EqualOrLess">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The underlyer price must be equal to or less than the Trigger level.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="EqualOrGreater">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The underlyer price must be equal to or greater than the Trigger level.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Equal">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The underlyer price must be equal to the Trigger level.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Less">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The underlyer price must be less than the Trigger level.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Greater">
+        <xsd:annotation>
+          <xsd:documentation source="http://www.FpML.org" xml:lang="en">The underlyer price must be greater than the Trigger level.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
   <xsd:simpleType name="TouchConditionEnum">
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The specification of, for American-style digitals, whether the trigger level must be touched or not touched.</xsd:documentation>
@@ -1466,43 +2259,17 @@
     <xsd:annotation>
       <xsd:documentation source="http://www.FpML.org" xml:lang="en">The specification of a weekly roll day.</xsd:documentation>
     </xsd:annotation>
-    <xsd:restriction base="xsd:token">
-      <xsd:enumeration value="MON">
-        <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Monday</xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
-      <xsd:enumeration value="TUE">
-        <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Tuesday</xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
-      <xsd:enumeration value="WED">
-        <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Wednesday</xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
-      <xsd:enumeration value="THU">
-        <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Thursday</xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
-      <xsd:enumeration value="FRI">
-        <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Friday</xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
-      <xsd:enumeration value="SAT">
-        <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Saturday</xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
-      <xsd:enumeration value="SUN">
-        <xsd:annotation>
-          <xsd:documentation source="http://www.FpML.org" xml:lang="en">Sunday</xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
-    </xsd:restriction>
+    <xsd:union memberTypes="DayOfWeekEnum">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:token">
+          <xsd:enumeration value="TBILL">
+            <xsd:annotation>
+              <xsd:documentation source="http://www.publicdebt.treas.gov" xml:lang="en">13-week and 26-week U.S. Treasury Bill Auction Dates. Each Monday except for U.S. (New York) holidays when it will occur on a Tuesday.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:union>
   </xsd:simpleType>
 </xsd:schema>
 

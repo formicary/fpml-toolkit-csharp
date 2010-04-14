@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 
-        == Copyright (c) 2002-2007. All rights reserved. 
+        == Copyright (c) 2002-2010. All rights reserved. 
         == Financial Products Markup Language is subject to the FpML public license. 
         == A copy of this license is available at http://www.fpml.org/license/license.html
 -->
-<!--View is reporting-->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fpml.org/FpML-5-0/reporting" xmlns:fpml="http://www.fpml.org/2007/FpML-4-3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="fpml" ecore:package="org.fpml" ecore:documentRoot="FpML" targetNamespace="http://www.fpml.org/FpML-5-0/reporting" version="$Revision: 884 $" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns="http://www.fpml.org/FpML-5/reporting" xmlns:fpml-annotation="http://www.fpml.org/annotation" targetNamespace="http://www.fpml.org/FpML-5/reporting" ecore:documentRoot="FpML" ecore:nsPrefix="rpt" ecore:package="org.fpml.reporting" version="$Revision: 2709 $" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xsd:include schemaLocation="fpml-reporting-5-0.xsd" />
   <xsd:complexType name="AllegedCashflow">
     <xsd:sequence>
@@ -42,11 +41,7 @@
               <xsd:documentation xml:lang="en">A unique identifier assigned by matching service to each set of matched cashflows.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
+          <xsd:group ref="PartiesAndAccounts.model" />
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -151,7 +146,7 @@
       <xsd:documentation xml:lang="en">Details of the computation of a computed rate or price used to calculate the amount of a cashflow component. This computed rate or price may include averaging and/or various types of rate treatment rules. The details include all of the observations, the calculation parameters, and the resulting value.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="observationReference" type="CashflowObservationReference" maxOccurs="unbounded">
+      <xsd:element name="observationReference" type="CashflowObservationReference" maxOccurs="unbounded" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Reference to the observation details of a particular rate observation.</xsd:documentation>
         </xsd:annotation>
@@ -194,47 +189,13 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="CashflowId">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">An identifier used to identify a single component cashflow.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="cashflowIdScheme" type="xsd:anyURI" />
-      </xsd:extension>
-    </xsd:simpleContent>
-  </xsd:complexType>
-  <xsd:complexType name="CashflowNotional">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">The notional/principal value/quantity/volume used to compute the cashflow.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:sequence>
-      <xsd:choice>
-        <xsd:element name="currency" type="Currency">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">The currency in which an amount is denominated.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-        <xsd:element name="units" type="xsd:normalizedString">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">The units in which an amount (not monetary) is denominated.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-      </xsd:choice>
-      <xsd:element name="amount" type="xsd:decimal">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">The quantity of notional (in currency or other units).</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
-    <xsd:attribute name="id" type="xsd:ID" />
-  </xsd:complexType>
+<!--move to valuation-->
   <xsd:complexType name="CashflowObservation">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">An observation of a rate or a price of an underlyer used in the computation of a cash flow amount.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="underlyerReference" type="TradeUnderlyerReference">
+      <xsd:element name="underlyerReference" type="TradeUnderlyerReference" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The underlyer whose rate or price is observed. Reference to an underlyer defined within the calculationElements structure.</xsd:documentation>
         </xsd:annotation>
@@ -244,7 +205,7 @@
           <xsd:documentation xml:lang="en">In cases where the underlying index is observed by observing the value of a specific security different from the index (typically a futures price), the specific security whose price was observed. For example, the underlying index might be NYMEX Crude Oil, and the underlying asset whose price is observed on a particular day might be CLU7. The index is specified via the underlyerReference, while the specific asset is specified via the underlyingAsset.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="observationDate" type="xsd:date">
+      <xsd:element name="observationDate" type="xsd:date" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The date when the rate is observed. Corresponds to adjustedFixingDate on the Interest Rate Derivatives subschema.</xsd:documentation>
         </xsd:annotation>
@@ -288,36 +249,11 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="GrossCashflow">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">A payment component owed from one party to the other for the cash flow date. This payment component should by of only a single type, e.g. a fee or a cashflow from a cashflow stream.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:sequence>
-      <xsd:sequence minOccurs="0">
-        <xsd:element name="cashflowId" type="CashflowId">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">Unique identifier for a cash flow.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-        <xsd:group ref="PayerReceiver.model" />
-        <xsd:element name="cashflowAmount" type="Money">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">Cash flow amount in a given currency to be paid/received.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:element>
-      </xsd:sequence>
-      <xsd:element name="cashflowType" type="CashflowType" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Defines the type of cash flow. For instance, a type of fee, premium, principal exchange, leg fee.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
   <xsd:complexType name="InitialPortfolioDefinition">
     <xsd:complexContent>
       <xsd:extension base="PortfolioDefinition">
         <xsd:sequence>
-          <xsd:element name="newPortfolioDefinition" type="xsd:boolean">
+          <xsd:element name="newPortfolioDefinition" type="xsd:boolean" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Indicates whether it's a definition of a new portfolio (true) or an update to an existing one (false).</xsd:documentation>
             </xsd:annotation>
@@ -326,22 +262,12 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="MatchId">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">An identifier used to identify matched cashflows.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="matchIdScheme" type="xsd:anyURI" />
-      </xsd:extension>
-    </xsd:simpleContent>
-  </xsd:complexType>
   <xsd:complexType name="PaymentId">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">An identifier used to identify a matchable payment.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
+      <xsd:extension base="Scheme">
         <xsd:attribute name="paymentIdScheme" type="xsd:anyURI" />
       </xsd:extension>
     </xsd:simpleContent>
@@ -351,13 +277,13 @@
       <xsd:documentation xml:lang="en">A global type describing the payment exposed to the matching process, along with its gross component(s) and calculation details.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="identifier" type="PaymentId">
+      <xsd:element name="identifier" type="PaymentId" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Unique identifier assigned by either party or matching service, as agreed, to a payment.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:group ref="PayerReceiver.model" />
-      <xsd:element name="paymentAmount" type="Money">
+      <xsd:element name="paymentAmount" type="Money" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Payment amount in a given currency to be paid/received.</xsd:documentation>
         </xsd:annotation>
@@ -374,22 +300,22 @@
       <xsd:documentation xml:lang="en">The set of elements that identify a portfolio.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="portfolioName" type="xsd:normalizedString" />
-      <xsd:element name="asOfDate" type="xsd:date" />
-      <xsd:element name="definingParty" type="PartyReference" />
+      <xsd:element name="portfolioName" type="xsd:normalizedString" minOccurs="0" />
+      <xsd:element name="asOfDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="definingParty" type="PartyReference" minOccurs="0" />
       <xsd:element name="matchingParty" type="PartyReference" minOccurs="0" />
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="PositionMatchResult">
     <xsd:sequence>
-      <xsd:element name="status" type="PositionMatchStatus">
+      <xsd:element name="status" type="EventStatus" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Reconciliation status of the position.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:choice>
         <xsd:sequence>
-          <xsd:element name="assertedPosition" type="AssertedPosition">
+          <xsd:element name="assertedPosition" type="AssertedPosition" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Position asserted by one of the parties.</xsd:documentation>
             </xsd:annotation>
@@ -400,7 +326,7 @@
             </xsd:annotation>
           </xsd:element>
         </xsd:sequence>
-        <xsd:element name="allegedPosition" type="AssertedPosition">
+        <xsd:element name="allegedPosition" type="AssertedPosition" minOccurs="0">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Position asserted by the "other side's" party.</xsd:documentation>
           </xsd:annotation>
@@ -408,30 +334,11 @@
       </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
-  <xsd:complexType name="PositionMatchStatus">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">A coding scheme used to describe the matching status of a position.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="positionStatusScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/position-status-1-0" />
-      </xsd:extension>
-    </xsd:simpleContent>
-  </xsd:complexType>
   <xsd:complexType name="PositionProposedMatch">
     <xsd:sequence>
       <xsd:group ref="PositionIdAndVersion.model" />
       <xsd:group ref="PositionWithoutId.model" minOccurs="0" />
-      <xsd:element name="matchId" type="MatchId" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A unique identifier assigned by the matching service to each set of matched positions.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="difference" type="TradeDifference" minOccurs="0" maxOccurs="unbounded">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A type used to record the details of a difference between two sides of a position.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
+      <xsd:group ref="ProposedMatch.model" />
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="PositionReference">
@@ -446,17 +353,17 @@
     <xsd:complexContent>
       <xsd:extension base="ResponseMessage">
         <xsd:sequence>
-          <xsd:element name="portfolio" type="PortfolioDefinition">
+          <xsd:element name="portfolio" type="PortfolioDefinition" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Contains the portfolio definition.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
           <xsd:choice minOccurs="0" maxOccurs="unbounded">
-            <xsd:element name="definedPosition" type="PositionReference" />
-            <xsd:element name="removedPosition" type="PositionReference" />
-            <xsd:element name="unprocessedPosition" type="UnprocessedPosition" />
+            <xsd:element name="definedPosition" type="PositionReference" minOccurs="0" />
+            <xsd:element name="removedPosition" type="PositionReference" minOccurs="0" />
+            <xsd:element name="unprocessedPosition" type="UnprocessedPosition" minOccurs="0" />
           </xsd:choice>
-          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded" />
+          <xsd:group ref="PartiesAndAccounts.model" />
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -468,12 +375,12 @@
     <xsd:complexContent>
       <xsd:extension base="RequestMessage">
         <xsd:sequence>
-          <xsd:element name="portfolio" type="InitialPortfolioDefinition">
+          <xsd:element name="portfolio" type="InitialPortfolioDefinition" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Contains the portfolio definition.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:element name="submissionsComplete" type="xsd:boolean">
+          <xsd:element name="submissionsComplete" type="xsd:boolean" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Indicates whether all portfolio updates have been submitted for this as-of date</xsd:documentation>
             </xsd:annotation>
@@ -507,27 +414,30 @@
               </xsd:element>
             </xsd:choice>
           </xsd:choice>
-          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded" />
+          <xsd:group ref="PartiesAndAccounts.model" />
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="PositionsMatchResults">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Reports the results of the portfolio reconciliation operation. It states the matching results for multiple positions, supporting the match, mismatched, unmatched and alleged position results.</xsd:documentation>
+    </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="ResponseMessage">
         <xsd:sequence>
-          <xsd:element name="portfolio" type="PortfolioDefinition">
+          <xsd:element name="portfolio" type="PortfolioDefinition" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Contains the portfolio definition.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:element name="positionMatchResult" type="PositionMatchResult" maxOccurs="unbounded" />
-          <xsd:element name="matchCompleted" type="xsd:boolean">
+          <xsd:element name="positionMatchResult" type="PositionMatchResult" maxOccurs="unbounded" minOccurs="0" />
+          <xsd:element name="matchCompleted" type="xsd:boolean" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Flag indicating whether the Matching Service has finished sending all matching results.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded" />
+          <xsd:group ref="PartiesAndAccounts.model" />
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -545,18 +455,18 @@
             </xsd:annotation>
           </xsd:element>
           <xsd:choice>
-            <xsd:element name="portfolioName" type="xsd:normalizedString">
+            <xsd:element name="portfolioName" type="xsd:normalizedString" minOccurs="0">
               <xsd:annotation>
                 <xsd:documentation xml:lang="en">The name of the portfolio that is requested.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
-            <xsd:element name="requestedPositions" type="RequestedPositions">
+            <xsd:element name="requestedPositions" type="RequestedPositions" minOccurs="0">
               <xsd:annotation>
                 <xsd:documentation xml:lang="en">The name of the data set (portfolio, product type, etc.) that this request corresponds to. Describes the desired report.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:choice>
-          <xsd:element name="party" type="Party" minOccurs="0" maxOccurs="unbounded" />
+          <xsd:group ref="PartiesAndAccounts.model" />
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -585,11 +495,7 @@
               <xsd:documentation xml:lang="en">A unique identifier assigned by either party, or matching service, as agreed, to each set of matched cashflows.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
+          <xsd:group ref="PartiesAndAccounts.model" />
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -599,7 +505,7 @@
       <xsd:documentation xml:lang="en">An identifier used to identify the collection of cashflows for a particular trade on a particular day.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
+      <xsd:extension base="Scheme">
         <xsd:attribute name="tradeCashflowsIdScheme" type="xsd:anyURI" />
       </xsd:extension>
     </xsd:simpleContent>
@@ -611,14 +517,14 @@
     <xsd:complexContent>
       <xsd:extension base="ResponseMessage">
         <xsd:sequence>
-          <xsd:element name="status" type="TradeCashflowsStatus">
+          <xsd:element name="status" type="EventStatus" minOccurs="0">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">Reconciliation status of the set of cashflows.</xsd:documentation>
             </xsd:annotation>
           </xsd:element>
           <xsd:choice>
             <xsd:sequence>
-              <xsd:element name="assertedCashflow" type="AssertedCashflow">
+              <xsd:element name="assertedCashflow" type="AssertedCashflow" minOccurs="0">
                 <xsd:annotation>
                   <xsd:documentation xml:lang="en">Cashflow (or set of cashflows for cross-currency swap) asserted by one of the parties.</xsd:documentation>
                 </xsd:annotation>
@@ -629,17 +535,13 @@
                 </xsd:annotation>
               </xsd:element>
             </xsd:sequence>
-            <xsd:element name="allegedCashflow" type="AllegedCashflow">
+            <xsd:element name="allegedCashflow" type="AllegedCashflow" minOccurs="0">
               <xsd:annotation>
                 <xsd:documentation xml:lang="en">Cashflow (or set of cashflows for cross-currency swap) asserted by the "other side's" party.</xsd:documentation>
               </xsd:annotation>
             </xsd:element>
           </xsd:choice>
-          <xsd:element name="party" type="Party" minOccurs="2" maxOccurs="unbounded">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">One party element for each of the principal parties and any other party that is referenced.</xsd:documentation>
-            </xsd:annotation>
-          </xsd:element>
+          <xsd:group ref="PartiesAndAccounts.model" />
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -650,53 +552,42 @@
     </xsd:annotation>
     <xsd:sequence>
       <xsd:group ref="IdAndTradeCashflows.model" />
-      <xsd:element name="matchId" type="MatchId">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A unique identifier assigned by the matching service to each set of matched cashflows.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="difference" type="TradeDifference" minOccurs="0" maxOccurs="unbounded">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A type used to record the details of a difference between two sides of a payment.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
+      <xsd:group ref="ProposedMatch.model" />
     </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="TradeCashflowsStatus">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">An coding scheme used to describe the matching status of a TradeCashFlows element.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:simpleContent>
-      <xsd:extension base="xsd:normalizedString">
-        <xsd:attribute name="tradeCashflowsStatusScheme" type="xsd:anyURI" default="http://www.fpml.org/coding-scheme/trade-cashflows-status-1-0" />
-      </xsd:extension>
-    </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="TradeDetails">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Summary trade economic details used to help identify a trade where no shared trade ID is available.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="tradeDate" type="IdentifiedDate">
+      <xsd:element name="tradeDate" type="IdentifiedDate" minOccurs="0">
         <xsd:annotation>
-          <xsd:documentation xml:lang="en">The trade date.</xsd:documentation>
+          <xsd:documentation xml:lang="en">The trade date. This is the date the trade was originally executed. In the case of a novation, the novated part of the trade should be reported (by both the remaining party and the transferee) using a trade date corresponding to the date the novation was agreed. The remaining part of a trade should be reported (by both the transferor and the remaining party) using a trade date corresponding to the original execution date.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="effectiveDate" type="AdjustableDate2">
+      <xsd:element name="clearedDate" type="IdentifiedDate" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">If the trade was cleared (novated) through a central counterparty clearing service, this represents the date the trade was cleared (transferred to the central counterparty).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="effectiveDate" type="AdjustableDate2" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The earliest of all the effective dates of all constituent streams.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="terminationDate" type="AdjustableDate2">
+      <xsd:element name="terminationDate" type="AdjustableDate2" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The latest of all of the termination dates of the constituent streams.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="productType" type="ProductType" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">A classification of the type of product. FpML does not define domain values for this element.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
+      <xsd:group ref="Product.model" />
+<!--
+                        <xsd:element name="productType" type="ProductType" minOccurs="0">
+                                <xsd:annotation>
+                                        <xsd:documentation xml:lang="en">A classification of the type of product. FpML does not define domain values for this element.</xsd:documentation>
+                                </xsd:annotation>
+                        </xsd:element>
+-->
       <xsd:element name="underlyer" type="TradeUnderlyer" minOccurs="0" maxOccurs="unbounded">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The set of underlyers to the trade that can be used in computing the trade's cashflows. If this information is needed to identify the trade, all of the trade's underlyers should be specified, whether or not they figure into the cashflow calculation. Otherwise, only those underlyers used to compute this particular cashflow need be supplied.</xsd:documentation>
@@ -714,7 +605,7 @@
       <xsd:documentation xml:lang="en">Data elements that can be used to identify the trade for which cashflows are being communicated. This includes both explicit trade identifiers and summary economic details.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="partyTradeIdentifier" type="PartyTradeIdentifier" maxOccurs="unbounded">
+      <xsd:element name="partyTradeIdentifier" type="PartyTradeIdentifier" maxOccurs="unbounded" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Structure defining one or more trade identifiers allocated to the trade by a party. It is expected that for external communication of trade there will be only one tradeId sent in the document per party.</xsd:documentation>
         </xsd:annotation>
@@ -731,22 +622,22 @@
       <xsd:documentation xml:lang="en">The underlying asset/index/reference price etc. whose rate/price may be observed to compute the value of the cashflow. It can be an index, fixed rate, listed security, quoted currency pair, or a reference entity (for credit derivatives).</xsd:documentation>
     </xsd:annotation>
     <xsd:choice>
-      <xsd:element name="floatingRate" type="FloatingRate">
+      <xsd:element name="floatingRate" type="FloatingRate" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">A floating rate.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="fixedRate" type="Schedule">
+      <xsd:element name="fixedRate" type="Schedule" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The fixed rate or fixed rate schedule expressed as explicit fixed rates and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element ref="underlyingAsset">
+      <xsd:element ref="underlyingAsset" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Define the underlying asset when it is a listed security.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="referenceEntity" type="LegalEntity">
+      <xsd:element name="referenceEntity" type="LegalEntity" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The corporate or sovereign entity on which you are buying or selling protection and any successor that assumes all or substantially all of its contractual and other obligations. It is vital to use the correct legal name of the entity and to be careful not to choose a subsidiary if you really want to trade protection on a parent company. Please note, Reference Entities cannot be senior or subordinated. It is the obligations of the Reference Entities that can be senior or subordinated. ISDA 2003 Term: Reference Entity</xsd:documentation>
         </xsd:annotation>
@@ -766,12 +657,12 @@
   </xsd:complexType>
   <xsd:complexType name="UnderlyerReferenceUnits">
     <xsd:sequence>
-      <xsd:element name="underlyerReference" type="TradeUnderlyerReference">
+      <xsd:element name="underlyerReference" type="TradeUnderlyerReference" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Reference to the underlyer defined within the calculationElements structure.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="quantity" type="xsd:decimal">
+      <xsd:element name="quantity" type="xsd:decimal" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Amount of units.</xsd:documentation>
         </xsd:annotation>
@@ -795,7 +686,7 @@
   </xsd:group>
   <xsd:group name="IdAndTradeCashflows.model">
     <xsd:sequence>
-      <xsd:element name="tradeCashflowsId" type="TradeCashflowsId">
+      <xsd:element name="tradeCashflowsId" type="TradeCashflowsId" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Unique identifier assigned by either party to a set of cashflows.</xsd:documentation>
         </xsd:annotation>
@@ -813,7 +704,7 @@
           <xsd:documentation xml:lang="en">Information about the roles of the parties with respect to reporting the positions.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="constituent" type="PositionConstituent">
+      <xsd:element name="constituent" type="PositionConstituent" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The components that create this position.</xsd:documentation>
         </xsd:annotation>
@@ -835,17 +726,17 @@
       <xsd:documentation xml:lang="en">A group describing the cashflows owing on a particular adjustedPaymentDate for a specific trade.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element name="tradeIdentifyingItems" type="TradeIdentifyingItems">
+      <xsd:element name="tradeIdentifyingItems" type="TradeIdentifyingItems" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Structure that holds reference to the trade through the tradeId and optionally some trade-specific elements for identifying the trade in the case of trades that have not been negotiated through electronic platforms and for which the counterparty's trade ID has not been captured.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="adjustedPaymentDate" type="xsd:date">
+      <xsd:element name="adjustedPaymentDate" type="xsd:date" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">The adjusted date in which the payments are being paid/received.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="payment" type="PaymentMatching" maxOccurs="unbounded">
+      <xsd:element name="payment" type="PaymentMatching" maxOccurs="unbounded" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Specifies the payment that is exposed to the matching process. Usually there will be a single payment but for cross-currency swaps a different payment per currency shall be provided.</xsd:documentation>
         </xsd:annotation>
@@ -859,14 +750,18 @@
           <xsd:documentation xml:lang="en">The date and time at which the set of cashflows was defined.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="tradeCashflowsId" type="TradeCashflowsId">
+      <xsd:element name="reportContents" type="ReportContents" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The specific characteristics included in the report.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tradeCashflowsId" type="TradeCashflowsId" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Unique identifier assigned by the party asserting the set of cashflows to be reconciled.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
   </xsd:group>
-<!-- Root Elements for messages -->
   <xsd:annotation>
     <xsd:documentation xml:lang="en">Reconciliation messages.</xsd:documentation>
   </xsd:annotation>
