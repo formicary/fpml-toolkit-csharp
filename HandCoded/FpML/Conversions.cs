@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2009 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -1326,7 +1326,137 @@ namespace HandCoded.FpML
             }
         }
 
-		/// <summary>
+        /// <summary>
+        /// The <b>R4_5__R4_6</b> class implements a conversion from FpML 4-5
+        /// to FpML 4-5.
+        /// </summary>
+        public class R4_5__R4_6 : HandCoded.Meta.DirectConversion
+        {
+            /// <summary>
+            /// Constructs a <b>R4_5__TR4_6</b> instance.
+            /// </summary>
+            public R4_5__R4_6 ()
+                : base (Releases.R4_5, Releases.R4_6)
+            {
+            }
+
+            /// <summary>
+            /// Applies the <b>Conversion</b> to a <see cref="XmlDocument"/> instance
+            /// to create a new <see cref="XmlDocument"/>.
+            /// </summary>
+            /// <param name="source">The <see cref="XmlDocument"/> to be converted.</param>
+            /// <param name="helper">A <see cref="IHelper"/> used to guide conversion.</param>
+            /// <returns>A new <see cref="XmlDocument"/> containing the transformed data.</returns>
+            public override XmlDocument Convert (XmlDocument source, HandCoded.Meta.IHelper helper)
+            {
+                XmlDocument target = TargetRelease.NewInstance ("FpML");
+                XmlElement oldRoot = source.DocumentElement;
+                XmlElement newRoot = target.DocumentElement;
+
+                // Transfer the attributes
+                newRoot.SetAttribute ("xsi:type", oldRoot.GetAttribute ("xsi:type"));
+
+                // Recursively copy the child node across
+                foreach (XmlNode node in oldRoot.ChildNodes)
+                    Transcribe (node, target, newRoot);
+
+                return (target);
+            }
+
+            private void Transcribe (XmlNode context, XmlDocument document, XmlNode parent)
+            {
+                switch (context.NodeType) {
+                case XmlNodeType.Element: {
+                        XmlElement element = context as XmlElement;
+                        XmlElement clone;
+
+                        clone = document.CreateElement (element.LocalName);
+
+                        parent.AppendChild (clone);
+
+                        foreach (XmlAttribute attr in element.Attributes)
+                            clone.SetAttribute (attr.Name, attr.Value);
+
+                        // Recursively copy the child node across
+                        foreach (XmlNode node in element.ChildNodes)
+                            Transcribe (node, document, clone);
+
+                        break;
+                    }
+
+                default:
+                    parent.AppendChild (document.ImportNode (context, false));
+                    break;
+                }
+            }
+        }
+
+                /// <summary>
+        /// The <b>R4_6__R4_7</b> class implements a conversion from FpML 4-6
+        /// to FpML 4-7.
+        /// </summary>
+        public class R4_6__R4_7 : HandCoded.Meta.DirectConversion
+        {
+            /// <summary>
+            /// Constructs a <b>R4_6__TR4_7</b> instance.
+            /// </summary>
+            public R4_6__R4_7 ()
+                : base (Releases.R4_6, Releases.R4_7)
+            {
+            }
+
+            /// <summary>
+            /// Applies the <b>Conversion</b> to a <see cref="XmlDocument"/> instance
+            /// to create a new <see cref="XmlDocument"/>.
+            /// </summary>
+            /// <param name="source">The <see cref="XmlDocument"/> to be converted.</param>
+            /// <param name="helper">A <see cref="IHelper"/> used to guide conversion.</param>
+            /// <returns>A new <see cref="XmlDocument"/> containing the transformed data.</returns>
+            public override XmlDocument Convert (XmlDocument source, HandCoded.Meta.IHelper helper)
+            {
+                XmlDocument target = TargetRelease.NewInstance ("FpML");
+                XmlElement oldRoot = source.DocumentElement;
+                XmlElement newRoot = target.DocumentElement;
+
+                // Transfer the attributes
+                newRoot.SetAttribute ("xsi:type", oldRoot.GetAttribute ("xsi:type"));
+
+                // Recursively copy the child node across
+                foreach (XmlNode node in oldRoot.ChildNodes)
+                    Transcribe (node, target, newRoot);
+
+                return (target);
+            }
+
+            private void Transcribe (XmlNode context, XmlDocument document, XmlNode parent)
+            {
+                switch (context.NodeType) {
+                case XmlNodeType.Element: {
+                        XmlElement element = context as XmlElement;
+                        XmlElement clone;
+
+                        clone = document.CreateElement (element.LocalName);
+
+                        parent.AppendChild (clone);
+
+                        foreach (XmlAttribute attr in element.Attributes)
+                            clone.SetAttribute (attr.Name, attr.Value);
+
+                        // Recursively copy the child node across
+                        foreach (XmlNode node in element.ChildNodes)
+                            Transcribe (node, document, clone);
+
+                        break;
+                    }
+
+                default:
+                    parent.AppendChild (document.ImportNode (context, false));
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
 		/// Ensures no instances can be constructed.
 		/// </summary>
 		private Conversions()

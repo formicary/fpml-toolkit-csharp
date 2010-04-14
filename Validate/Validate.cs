@@ -1,4 +1,4 @@
-// Copyright (C),2005-2009 HandCoded Software Ltd.
+// Copyright (C),2005-2010 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -87,7 +87,7 @@ namespace Validate
 			XmlUtility.DefaultSchemaSet.Add (Releases.R4_6);
             XmlUtility.DefaultSchemaSet.Add (Releases.R4_7);
 
-			XmlUtility.DefaultSchemaSet.Add (Releases.R5_0_PRETRADE);
+//			XmlUtility.DefaultSchemaSet.Add (Releases.R5_0_PRETRADE);
 			XmlUtility.DefaultSchemaSet.Add (Releases.R5_0_CONFIRMATION);
 			XmlUtility.DefaultSchemaSet.Add (Releases.R5_0_REPORTING);
 
