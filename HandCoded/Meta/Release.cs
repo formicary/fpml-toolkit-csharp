@@ -115,6 +115,15 @@ namespace HandCoded.Meta
 			return (false);
 		}
 
+        /// <summary>
+        /// Returns the specification name and version of this <b>Release</b>.
+        /// </summary>
+        /// <returns>A formatted string value.</returns>
+        public override string ToString ()
+        {
+            return (specification.Name + " " + version);
+        }
+
 		/// <summary>
 		/// Constructs a <b>Release</b> instance and associates it with the
 		/// indicated <see cref="Specification"/>.

@@ -23,6 +23,12 @@
 	<public publicId="-//FpML//DTD Financial product Markup Language 2-0//EN" uri="schemas/fpml2-0/fpml-dtd-2-0-2003-05-05.dtd"/>
 	<public publicId="-//FpML//DTD Financial product Markup Language 3-0//EN" uri="schemas/fpml3-0/fpml-dtd-main-3-0.dtd"/>
 	
+	<!-- FpML 3.0 was split into a number of sub-DTDs -->
+	<system systemId="fpml-dtd-ird-3-0.dtd" uri="schemas/fpml3-0/fpml-dtd-ird-3-0.dtd"/>
+	<system systemId="fpml-dtd-fx-3-0.dtd" uri="schemas/fpml3-0/fpml-dtd-fx-3-0.dtd"/>
+	<system systemId="fpml-dtd-eqd-3-0.dtd" uri="schemas/fpml3-0/fpml-dtd-eqd-3-0.dtd"/>
+	<system systemId="fpml-dtd-shared-3-0.dtd" uri="schemas/fpml3-0/fpml-dtd-shared-3-0.dtd"/>
+	
 	<!--
 	  == Since the introduction of messaging in FpML 4-0 the W3C digital
 	  == signature schema is a required component.

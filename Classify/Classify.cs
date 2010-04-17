@@ -19,6 +19,7 @@ using System.Xml;
 using HandCoded.Classification;
 using HandCoded.FpML;
 using HandCoded.Framework;
+using HandCoded.Meta;
 using HandCoded.Xml;
 
 using log4net;
@@ -94,7 +95,12 @@ namespace Classify
 					document = XmlUtility.NonValidatingParse (stream);
 					nodeIndex = new NodeIndex (document);
 
-					System.Console.WriteLine (filename + ":");
+					System.Console.WriteLine (">> " + filename);
+
+				    Release release = Specification.ReleaseForDocument (document);
+				
+				    if (release != null) System.Console.WriteLine ("= " + release);
+
 					DoClassify (nodeIndex.GetElementsByName ("trade"), "Trade");
 					DoClassify (nodeIndex.GetElementsByName ("contract"), "Contract");
 			
@@ -171,7 +177,7 @@ namespace Classify
 			foreach (XmlElement element in list) {
 				Category	category = ProductType.Classify (element);
 
-				System.Console.Write ("> " + container + "(");
+				System.Console.Write (": " + container + "(");
 				System.Console.Write ((category != null) ? category.ToString () : "UNKNOWN");
 				System.Console.WriteLine (")");
 			}
