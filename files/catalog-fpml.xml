@@ -47,6 +47,7 @@
 	<uri name="http://www.fpml.org/2008/FpML-4-5" uri="schemas/fpml4-5/fpml-main-4-5.xsd"/>
 	<uri name="http://www.fpml.org/2009/FpML-4-6" uri="schemas/fpml4-6/fpml-main-4-6.xsd"/>
 	<uri name="http://www.fpml.org/2009/FpML-4-7" uri="schemas/fpml4-7/fpml-main-4-7.xsd"/>
+	<uri name="http://www.fpml.org/2010/FpML-4-8" uri="schemas/fpml4-8/fpml-main-4-8.xsd"/>
 
 	<!--
 	  == Experimental FpML 5.0 Working Draft

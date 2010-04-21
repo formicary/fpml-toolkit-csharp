@@ -103,6 +103,13 @@ namespace HandCoded.FpML.Validation
             = new VersionPrecondition (Releases.R4_7);
 
         /// <summary>
+        /// A <see cref="Precondition"/> instance that detects FpML 4-8 compatible
+        /// documents.
+        /// </summary>
+        public static readonly Precondition R4_8
+            = new VersionPrecondition (Releases.R4_8);
+
+        /// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML 5-0 confirmation
 		/// compatible documents.
 		/// </summary>
@@ -168,11 +175,18 @@ namespace HandCoded.FpML.Validation
 			= R5_0;
 
         /// <summary>
+        /// A <see cref="Precondition"/> instance that detects FpML versions 4-8 and
+        /// later.
+        /// </summary>
+        public static readonly Precondition R4_8__LATER
+            = Precondition.Or (R4_8, R5_0__LATER);
+
+        /// <summary>
         /// A <see cref="Precondition"/> instance that detects FpML versions 4-7 and
         /// later.
         /// </summary>
         public static readonly Precondition R4_7__LATER
-            = Precondition.Or (R4_7, R5_0__LATER);
+            = Precondition.Or (R4_7, R4_8__LATER);
 
         /// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML versions 4-6 and
@@ -231,7 +245,7 @@ namespace HandCoded.FpML.Validation
 			= Precondition.Or (R3_0, R4_0__LATER);
 
 		/// <summary>
-		/// A <see cref="Precondition"/> instance that detects FpML version 3-0 and
+		/// A <see cref="Precondition"/> instance that detects FpML version 2-0 and
 		/// later.
 		/// </summary>
 		public static readonly Precondition	R2_0__LATER
