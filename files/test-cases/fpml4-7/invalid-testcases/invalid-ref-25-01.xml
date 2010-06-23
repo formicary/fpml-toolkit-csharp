@@ -228,7 +228,8 @@
                <partyReference href="party2"/>
                <tradeId tradeIdScheme="http://www.swapswire.com/spec/2001/trade-id-1-0">30002</tradeId>
             </allocationTradeId>
-            <accountReference href="ACC3"/>
+            <!-- AJ Changed ACC3 to party3 -->
+            <accountReference href="party3"/>
             <allocatedFraction>0.60</allocatedFraction>
             <collateral>
                <independentAmount>
