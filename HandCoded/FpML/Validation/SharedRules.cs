@@ -339,15 +339,17 @@ namespace HandCoded.FpML.Validation
 			bool		result = true;
 
 			foreach (XmlElement context in list) {
-				if (NotEqual (context.GetAttribute ("href"), context.ParentNode ["receiverPartyReference"].GetAttribute ("href")))
-					continue;
+                XmlElement  receiver = context.ParentNode ["receiverPartyReference"];
+                
+				if (receiver == null) continue;
+                
+                if (Equal (context.GetAttribute ("href"), receiver.GetAttribute ("href"))) {
+				    errorHandler ("305", context.ParentNode,
+					    "payer and receiver party references must be different",
+					    name, context.GetAttribute ("href"));
 
-				errorHandler ("305", context.ParentNode,
-					"Payer-receiver party references are equal: " +
-					context.GetAttribute ("href"),
-					name, context.GetAttribute ("href"));
-
-				result = false;
+				    result = false;
+                }
 			}
 			return (result);
 		}

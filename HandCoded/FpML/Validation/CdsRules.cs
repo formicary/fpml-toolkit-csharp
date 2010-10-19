@@ -61,15 +61,31 @@ namespace HandCoded.FpML.Validation
 		/// A <see cref="Rule"/> that ensures contracts referencing ISDA 1999 definitions
 		/// do not use ISDA 2003 supplements.
 		/// </summary>
+        /// <remarks>Removed.</remarks>
 		public static readonly Rule	RULE03
 			= new DelegatedRule (Preconditions.R4_0__LATER, "cd-3", new RuleDelegate (Rule03));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures contracts referencing ISDA 1999 definitions
+		/// do not use ISDA 2003 supplements.
+		/// </summary>
+		public static readonly Rule	RULE03B
+			= new DelegatedRule (Preconditions.R4_0__LATER, "cd-3b", new RuleDelegate (Rule03b));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures contracts referencing ISDA 2003 definitions
 		/// do not use ISDA 1999 supplements.
 		/// </summary>
+        /// <remarks>Removed.</remarks>
 		public static readonly Rule	RULE04
 			= new DelegatedRule (Preconditions.R4_0__LATER, "cd-4", new RuleDelegate (Rule04));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures contracts referencing ISDA 2003 definitions
+		/// do not use ISDA 1999 supplements.
+		/// </summary>
+		public static readonly Rule	RULE04B
+			= new DelegatedRule (Preconditions.R4_0__LATER, "cd-4b", new RuleDelegate (Rule04b));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures if scheduledTerminationDate/adjustableDate
@@ -623,16 +639,47 @@ namespace HandCoded.FpML.Validation
 			bool		result = true;
 
 			foreach (XmlElement context in list) {
-				if (IsIsda1999 (context)) {
-					XmlNode	supplement = XPath.Path (context, "documentation", "contractualSupplement");
-					if ((supplement == null) || !supplement.InnerText.Trim ().StartsWith ("ISDA2003Credit"))
-						continue;
+                if (!Exists (XPath.Path (context, "creditDefaultSwap"))) continue;
+                if (!IsIsda1999 (context)) continue;
+                
+                foreach (XmlNode supplement in XPath.Paths (context, "documentation", "contractualSupplement")) {
+					if (supplement.InnerText.Trim ().StartsWith ("ISDA2003Credit")) {
+					    errorHandler ("305", context,
+						    "The contractualSupplement name may not begin with ISDA2003Credit",
+						    name, supplement.InnerText);
 
-					errorHandler ("305", context,
-						"Illegal contract supplement for ISDA 1999 credit derivative",
-						name, supplement.InnerText);
+					    result = false;
+                    }
+				}
+			}
+			return (result);
+		}
 
-					result = false;
+		// --------------------------------------------------------------------
+
+		private static bool Rule03b (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			return (
+				  Rule03b (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule03b (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule03b (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool		result = true;
+
+			foreach (XmlElement context in list) {
+                if (!Exists (XPath.Path (context, "creditDefaultSwap"))) continue;
+                if (!IsIsda1999 (context)) continue;
+
+                foreach (XmlNode type in XPath.Paths (context, "documentation", "contractualTermsSupplement", "type")) {
+			        if (type.InnerText.Trim ().StartsWith ("ISDA2003Credit")) {
+					    errorHandler ("305", context,
+						    "The contractualTermsSupplement/type may not begin with ISDA2003Credit",
+						    name, type.InnerText);
+
+					    result = false;
+                    }
 				}
 			}
 			return (result);
@@ -644,7 +691,7 @@ namespace HandCoded.FpML.Validation
 		{
 			return (
 				  Rule04 (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
-				& Rule04 (name, nodeIndex.GetElementsByName ("trade"), errorHandler));
+				& Rule04 (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
 		}
 
 		private static bool Rule04 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -652,22 +699,53 @@ namespace HandCoded.FpML.Validation
 			bool		result = true;
 
 			foreach (XmlElement context in list) {
-				if (IsIsda2003 (context)) {
-					XmlNode	supplement = XPath.Path (context, "documentation", "contractualSupplement");
-					if ((supplement == null) || !supplement.InnerText.Trim ().StartsWith ("ISDA1999Credit"))
-						continue;
+                if (!Exists (XPath.Path (context, "creditDefaultSwap"))) continue;
+				if (!IsIsda2003 (context)) continue;
+                
+                foreach (XmlNode supplement in XPath.Paths (context, "documentation", "contractualSupplement")) {
+					if (supplement.InnerText.Trim ().StartsWith ("ISDA1999Credit")) {
+					    errorHandler ("305", context,
+						    "The contractualSupplement name may not begin with ISDA1999Credit",
+						    name, supplement.InnerText);
 
-					errorHandler ("305", context,
-						"Illegal contract supplement for ISDA 2003 credit derivative",
-						name, supplement.InnerText);
-
-					result = false;
+					    result = false;
+                    }
 				}
 			}
 			return (result);
 		}
 
 		// --------------------------------------------------------------------
+
+		private static bool Rule04b (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			return (
+				  Rule04b (name, nodeIndex.GetElementsByName ("trade"), errorHandler)
+				& Rule04b (name, nodeIndex.GetElementsByName ("contract"), errorHandler));
+		}
+
+		private static bool Rule04b (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool		result = true;
+
+			foreach (XmlElement context in list) {
+                if (!Exists (XPath.Path (context, "creditDefaultSwap"))) continue;
+                if (!IsIsda2003 (context)) continue;
+                
+                foreach (XmlNode type in XPath.Paths (context, "documentation", "contractualTermsSupplement", "type")) {
+					if (type.InnerText.Trim ().StartsWith ("ISDA1999Credit")) {
+					    errorHandler ("305", context,
+						    "The contractualTermSupplement/type name may not begin with ISDA1999Credit",
+						    name, type.InnerText);
+
+					    result = false;
+                    }
+				}
+			}
+			return (result);
+		}
+
+        // --------------------------------------------------------------------
 
 		private static bool Rule05 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
