@@ -21,14 +21,15 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Project</StartAction>
-    <StartArguments>files\examples\fpml4-8</StartArguments>
+    <StartArguments>-schemaOnly ..\..\..\files\examples\fpml4-8</StartArguments>
     <StartPage>
     </StartPage>
     <StartProgram>
     </StartProgram>
     <StartURL>
     </StartURL>
-    <StartWorkingDirectory>C:\HandCoded\C#\Open Source\FpML Toolkit (Open Source)\</StartWorkingDirectory>
+    <StartWorkingDirectory>
+    </StartWorkingDirectory>
     <StartWithIE>true</StartWithIE>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">

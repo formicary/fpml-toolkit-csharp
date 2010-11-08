@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2010 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -117,7 +117,22 @@ namespace HandCoded.Meta
 			return (document);
 		}
 
-		/// <summary>
+        /// <summary>
+        /// Create a new <see cref="XmlDocument"/> instance which will hold a fragment
+        /// of a document based on the grammar represented by this release.
+        /// </summary>
+		/// <param name="rootElement">The name of the root element.</param>
+		/// <returns>A new <see cref="XmlDocument"/> instance.</returns>
+        public override XmlDocument NewFragment (string rootElement)
+        {
+			XmlDocument		document = new XmlDocument ();
+
+			document.AppendChild (document.CreateElement (rootElement));
+
+			return (document);
+        }
+
+        /// <summary>
 		/// The public name for the DTD.
 		/// </summary>
 		private readonly string		publicId;

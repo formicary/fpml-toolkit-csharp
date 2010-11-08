@@ -21,6 +21,7 @@ using System.Xml.Schema;
 using HandCoded.FpML;
 using HandCoded.FpML.Validation;
 using HandCoded.Framework;
+using HandCoded.Meta;
 using HandCoded.Validation;
 using HandCoded.Xml;
 using HandCoded.Xml.Resolver;
@@ -78,22 +79,13 @@ namespace Validate
 					ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.XmlCatalog"]));
 
 			// Activate the FpML Schemas
-			XmlUtility.DefaultSchemaSet.Add (Releases.R4_0);
-			XmlUtility.DefaultSchemaSet.Add (Releases.R4_1);
-			XmlUtility.DefaultSchemaSet.Add (Releases.R4_2);
-			XmlUtility.DefaultSchemaSet.Add (Releases.R4_3);
-			XmlUtility.DefaultSchemaSet.Add (Releases.R4_4);
-			XmlUtility.DefaultSchemaSet.Add (Releases.R4_5);
-			XmlUtility.DefaultSchemaSet.Add (Releases.R4_6);
-            XmlUtility.DefaultSchemaSet.Add (Releases.R4_7);
-            XmlUtility.DefaultSchemaSet.Add (Releases.R4_8);
+		    foreach (Release release in Releases.FPML.Releases) {
+			    if (release is SchemaRelease)
+				    XmlUtility.DefaultSchemaSet.Add (release as SchemaRelease);	
+		    }
 
-//			XmlUtility.DefaultSchemaSet.Add (Releases.R5_0_PRETRADE);
-			XmlUtility.DefaultSchemaSet.Add (Releases.R5_0_CONFIRMATION);
-			XmlUtility.DefaultSchemaSet.Add (Releases.R5_0_REPORTING);
-
-			XmlUtility.DefaultSchemaSet.XmlSchemaSet.Compile ();
-		}
+		    XmlUtility.DefaultSchemaSet.XmlSchemaSet.Compile ();
+	    }
 
 		/// <summary>
 		/// Perform the file processing while timing the operation.
@@ -112,7 +104,7 @@ namespace Validate
 						location = location.Parent;
 						target = target.Substring (3);
 					}
-					FindFiles (files, Path.Combine (location.ToString (), target));
+					FindFiles (files, Path.Combine (location.FullName, target));
 				}
 			}
 			catch (Exception) {

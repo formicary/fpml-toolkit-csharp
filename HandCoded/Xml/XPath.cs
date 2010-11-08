@@ -253,30 +253,33 @@ namespace HandCoded.Xml
 		/// child elements.</returns>
 		public static XmlNodeList Paths (XmlElement context, string name)
 		{
-			if (name.Equals ("*"))
-				return ((context != null) ? DOM.GetChildElements (context) : MutableNodeList.EMPTY);
-			else if (name.Equals (".")) {
-				if (context != null) {
-					MutableNodeList	list = new MutableNodeList ();
+            if (context != null) {
+			    if (name.Equals ("*"))
+				    return ((context != null) ? DOM.GetChildElements (context) : MutableNodeList.EMPTY);
+			    else if (name.Equals (".")) {
+				    if (context != null) {
+					    MutableNodeList	list = new MutableNodeList ();
 
-					list.Add (context);
-					return (list);
-				}
-				else
-					return (MutableNodeList.EMPTY);
-			}
-			else if (name.Equals ("..")) {
-				if ((context != null) && (context.ParentNode != null)) {
-					MutableNodeList	list = new MutableNodeList ();
+					    list.Add (context);
+					    return (list);
+				    }
+				    else
+					    return (MutableNodeList.EMPTY);
+			    }
+			    else if (name.Equals ("..")) {
+				    if ((context != null) && (context.ParentNode != null)) {
+					    MutableNodeList	list = new MutableNodeList ();
 
-					list.Add (context.ParentNode);
-					return (list);
-				}
-				else
-					return (MutableNodeList.EMPTY);
-			}
-			else
-				return ((context != null) ? context.GetElementsByTagName (name) : MutableNodeList.EMPTY);
+					    list.Add (context.ParentNode);
+					    return (list);
+				    }
+				    else
+					    return (MutableNodeList.EMPTY);
+			    }
+			    
+				return (DOM.GetElementsByLocalName (context, name));
+            }
+            return (MutableNodeList.EMPTY);
 		}
 
 		/// <summary>

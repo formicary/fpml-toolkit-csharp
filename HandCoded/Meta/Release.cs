@@ -100,7 +100,15 @@ namespace HandCoded.Meta
 		/// <returns>A new <see cref="XmlDocument"/> instance.</returns>
 		public abstract XmlDocument NewInstance (String rootElement);
 
-		/// <summary>
+        /// <summary>
+        /// Create a new <see cref="XmlDocument"/> instance which will hold a fragment
+        /// of a document based on the grammar represented by this release.
+        /// </summary>
+		/// <param name="rootElement">The name of the root element.</param>
+		/// <returns>A new <see cref="XmlDocument"/> instance.</returns>
+        public abstract XmlDocument NewFragment (string rootElement);
+
+        /// <summary>
 		/// Determines if the indicated root element name is one accepted by this
 		/// <b>Release</b>.
 		/// </summary>

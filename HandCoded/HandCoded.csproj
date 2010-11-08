@@ -89,6 +89,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FpML\Meta\FpMLDTDReleaseLoader.cs" />
+    <Compile Include="FpML\Meta\FpMLSchemaReleaseLoader.cs" />
+    <Compile Include="FpML\Util\Version.cs" />
     <Compile Include="FpML\Validation\BusinessProcessRules.cs" />
     <Compile Include="FpML\Validation\FpMLRuleSet.cs" />
     <Compile Include="FpML\Validation\FxRules.cs" />
@@ -96,7 +99,11 @@
     <Compile Include="FpML\Validation\PricingAndRiskRules.cs" />
     <Compile Include="FpML\Validation\ReferenceRule.cs" />
     <Compile Include="FpML\Validation\ReferenceRules.cs" />
+    <Compile Include="FpML\Validation\VersionRangePrecondition.cs" />
+    <Compile Include="Meta\DefaultDTDReleaseLoader.cs" />
+    <Compile Include="Meta\DefaultSchemaReleaseLoader.cs" />
     <Compile Include="Meta\InstanceInitialiser.cs" />
+    <Compile Include="Meta\IReleaseLoader.cs" />
     <Compile Include="Meta\SchemaRecogniser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

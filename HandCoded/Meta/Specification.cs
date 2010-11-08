@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2010 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -13,8 +13,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Text;
 using System.Xml;
+
+using HandCoded.Xml;
+
+using log4net;
 
 namespace HandCoded.Meta
 {
@@ -28,7 +34,7 @@ namespace HandCoded.Meta
 		/// Constructs a <b>Specification</b> with the given name.
 		/// </summary>
 		/// <param name="name">The unique name for the <b>Specification</b>.</param>
-		public Specification (String name)
+		public Specification (string name)
 		{
 			extent.Add (this.name = name, this);
 		}
@@ -40,9 +46,9 @@ namespace HandCoded.Meta
 		/// <param name="name">The target <b>Specification</b> name.</param>
 		/// <returns>The <b>Specification</b> instance corresponding to the
 		/// name or <c>null</c> if it is not recognized.</returns>
-		public static Specification ForName (String name)
+		public static Specification ForName (string name)
 		{
-			return (extent [name] as Specification);
+            return (extent [name]);
 		}
 
 		/// <summary>
@@ -80,7 +86,7 @@ namespace HandCoded.Meta
 		/// <summary>
 		/// Contains the unique name of this <b>Specification</b>.
 		/// </summary>
-		public String Name {
+		public string Name {
 			get {
 				return (name);
 			}
@@ -92,7 +98,7 @@ namespace HandCoded.Meta
 		/// </summary>
 		public IEnumerable<Release> Releases {
 			get {
-				return (releases.Values);
+				return (releases);
 			}
 		}
 
@@ -117,7 +123,7 @@ namespace HandCoded.Meta
 		/// could not be found.</returns>
 		public Release GetReleaseForDocument (XmlDocument document)
 		{
-			foreach (Release release in releases.Values) {
+			foreach (Release release in releases) {
 				if (release.IsInstance (document)) return (release);
 			}
 			return (null);
@@ -127,12 +133,37 @@ namespace HandCoded.Meta
 		/// Attempts to locate a <see cref="Release"/> associated with this
 		/// <b>Specification</b> with the indicated version identifier.
 		/// </summary>
-		/// <param name="version">The target version identifier</param>
+		/// <param name="version">The target version identifier.</param>
 		/// <returns>The corresponding <see cref="Release"/> instance or <c>null</c>
 		/// if none exists.</returns>
-		public Release GetReleaseForVersion (String version)
+		public Release GetReleaseForVersion (string version)
 		{
-		    return (releases [version] as Release);
+            foreach (Release release in releases)
+                if (release.Version.Equals (version)) return (release);
+
+		    return (null);
+		}
+
+		/// <summary>
+		/// Attempts to locate a <see cref="SchemaRelease"/> associated with this
+		/// <b>Specification</b> with the indicated version identifier and
+        /// namespace URI.
+		/// </summary>
+		/// <param name="version">The target version identifier.</param>
+        /// <param name="namespaceUri">The target namespace URI.</param>
+		/// <returns>The corresponding <see cref="SchemaRelease"/> instance or <c>null</c>
+		/// if none exists.</returns>
+		public SchemaRelease GetReleaseForVersionAndNamespace (string version, string namespaceUri)
+		{
+            foreach (Release release in releases) {
+                if (release is SchemaRelease) {
+                    SchemaRelease schemaRelease = release as SchemaRelease;
+                    if (schemaRelease.Version.Equals (version) &&
+                        schemaRelease.NamespaceUri.Equals (namespaceUri)) return (schemaRelease);
+                }
+            }
+
+		    return (null);
 		}
 
 		/// <summary>
@@ -147,7 +178,7 @@ namespace HandCoded.Meta
 			if (release.Specification != this)
 				throw new ArgumentException ("The provided release is for a different specification", "release");
 
-			releases [release.Version] = release;
+			releases.Add (release);
 		}
 
 		/// <summary>
@@ -162,7 +193,7 @@ namespace HandCoded.Meta
 			if (release.Specification != this)
 				throw new ArgumentException ("The provided release is for a different specification", "release");
 
-			releases.Remove (release.Version);
+			releases.Remove (release);
 		}
 
 		/// <summary>
@@ -184,6 +215,12 @@ namespace HandCoded.Meta
 		}
 
 		/// <summary>
+		/// A <see cref="ILog"/> instance used to report run-time problems.
+		/// </summary>
+		private static ILog			log
+			= LogManager.GetLogger (typeof (Specification));
+
+        /// <summary>
 		/// The extent set of all <b>Specification</b> instances.
 		/// </summary>
 		private static Dictionary<string, Specification> extent
@@ -192,14 +229,75 @@ namespace HandCoded.Meta
 		/// <summary>
 		/// The unique name of this <b>Specification</b>.
 		/// </summary>
-		private readonly String		name;
+		private readonly string		name;
 
 		/// <summary>
 		/// The set of <see cref="Release"/> instances associated with this
 		/// <b>Specification</b>.
 		/// </summary>
-		private Dictionary<string, Release> releases
-            = new Dictionary<string, Release> ();
+		private List<Release> releases
+            = new List<Release> ();
+
+        /// <summary>
+        /// If the releases file defines a custom class loader to be used the process
+        /// the data block identified by the context element then return its name,
+        /// otherwise return the indicated default class name.
+        /// </summary>
+        /// <param name="context">The context <see cref="XmlElement"/>.</param>
+        /// <param name="defaultClass">The name of the default class loader if not overridden.</param>
+        /// <returns>The name of the class loader to be instantiated.</returns>
+	    private static string GetClassLoader (XmlElement context, string defaultClass)
+	    {
+		    foreach (XmlElement element in XPath.Paths (context, "classLoader")) {
+			    string platform = DOM.GetAttribute (element, "platform");
+    			
+			    if ((platform != null) && platform.Equals (".Net"))
+				    return (DOM.GetAttribute (element, "class"));
+		    }
+		    return (defaultClass);
+	    }
+
+        /// <summary>
+        /// Creates an <see cref="IReleaseLoader"/> that can process a DTD meta
+        /// definition.
+        /// </summary>
+        /// <param name="context">The context <see cref="XmlElement"/>.</param>
+        /// <returns>An instance of the <see cref="IReleaseLoader"/> interface.</returns>
+	    private static IReleaseLoader GetDtdReleaseLoader (XmlElement context)
+	    {
+		    string targetName = GetClassLoader (context, "HandCoded.Meta.DefaultDTDReleaseLoader");
+    		
+		    try {
+                Type targetClass = Type.GetType (targetName);
+    		
+			    return (targetClass.GetConstructor (Type.EmptyTypes).Invoke (null) as IReleaseLoader); 
+		    }
+		    catch (Exception error) {
+			    log.Fatal ("Failed to get class loader type: " + targetName, error);
+			    throw error;
+		    }
+	    }
+
+        /// <summary>
+        /// Creates an <see cref="IReleaseLoader"/> that can process a schema meta
+        /// definition.
+        /// </summary>
+        /// <param name="context">The context <see cref="XmlElement"/>.</param>
+        /// <returns>An instance of the <see cref="IReleaseLoader"/> interface.</returns>
+	    private static IReleaseLoader GetSchemaReleaseLoader (XmlElement context)
+	    {
+		    string targetName = GetClassLoader (context, "HandCoded.Meta.DefaultSchemaReleaseLoader");
+    		
+		    try {
+                Type targetClass = Type.GetType (targetName);
+    		
+			    return (targetClass.GetConstructor (Type.EmptyTypes).Invoke (null) as IReleaseLoader); 
+		    }
+		    catch (Exception error) {
+			    log.Fatal ("Failed to get class loader type: " + targetName, error);
+			    throw error;
+		    }
+	    }
 
 		/// <summary>
 		/// Produces a debugging string describing the state of the instance.
@@ -214,7 +312,7 @@ namespace HandCoded.Meta
 
 			bool first = true;
 
-			foreach (Release release in releases.Values) {
+			foreach (Release release in releases) {
 				if (!first) buffer.Append (',');
 
 				buffer.Append ('\"');
@@ -226,5 +324,43 @@ namespace HandCoded.Meta
 
 			return (buffer.ToString ());
 		}
+
+        /// <summary>
+        /// Bootstrap the entire collection of specifications by processing the
+	    /// contents of the 'files/releases.xml' file.
+        /// </summary>
+        static Specification ()
+        {
+            Dictionary<string, SchemaRelease>   loadedSchemas
+                = new Dictionary<string,SchemaRelease> ();
+
+    		log.Debug ("Bootstrapping Specifications");
+
+		    try {
+                FileStream  stream = new FileStream (
+                    ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.Releases"],
+                    FileMode.Open);
+
+			    XmlDocument document = XmlUtility.NonValidatingParse (stream);
+    				
+			    foreach (XmlElement context in XPath.Paths (document.DocumentElement, "specification")) {
+				    XmlElement name = XPath.Path (context, "name");
+    				
+				    Specification specification = new Specification (Types.ToToken (name));
+    				
+				    foreach (XmlElement node in XPath.Paths (context, "dtdRelease"))
+					    GetDtdReleaseLoader (node).LoadData (specification, node, loadedSchemas);
+    				
+				    foreach (XmlElement node in XPath.Paths (context, "schemaRelease"))
+					    GetSchemaReleaseLoader (node).LoadData (specification, node, loadedSchemas);
+			    }
+                stream.Close ();
+		    }
+		    catch (Exception error) {
+			    log.Fatal ("Unable to load specifications", error);
+		    }
+
+            log.Debug ("Completed");
+        }
 	}
 }

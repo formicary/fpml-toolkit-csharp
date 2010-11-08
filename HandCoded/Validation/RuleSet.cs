@@ -1,4 +1,4 @@
-// Copyright (C),2005-2009 HandCoded Software Ltd.
+// Copyright (C),2005-2010 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -233,7 +233,7 @@ namespace HandCoded.Validation
 
                             if (platform.Equals (".Net")) {
                                 try {
-									Type		type = Application.GetType (implementation);
+									Type		type = Type.GetType (implementation);
 
 									if (type != null) {
 										// Access each member to ensure it has a chance to initialise

@@ -1,108 +1,116 @@
-<html>
-	<head>
-		<title>HandCoded Toolkit for FpML Processing - Release Notes</title>
-		<meta http-equiv="Content-Language" content="en-gb">
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-		<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
-		<meta name="ProgId" content="FrontPage.Editor.Document">
-		<link rel="StyleSheet" href="manual/styles.css" type="text/css">
-	</head>
-	<body>
-		<P><font size="6">Toolkit for FpML Processing<BR>
-        C# Open Source Release 1.4</font></P>
-		<p><font size="5">April, 2010</font></p>
-		<P><font size="5">Copyright (C),2006-2010 HandCoded Software Ltd.<br />
-            All rights reserved.</font></P>
-		<p></p>
-		<h1>Introduction</h1>
-		<p>This document accompanies C# 1.4 release of the 'HandCoded Toolkit for FpML Processing'
-            and describes the contents of the release area. The source code for this release
-            is not included but is available from the SVN repository on SourceForge.</p>
-		<h2>License</h2>
-		<p>This toolkit is distributed under the terms if the 'Open Source License 
-			"OSL"&nbsp; Version 3.0'. A full copy of the license terms is included in the 
-			repository (click <a href="license.txt" target="_blank">here</a> to access) and 
-			must be distributed along with this file if you distribute this code to other 
-			parties.</p>
-		<H2>Directory Structure</H2>
-        <p>
-            The ZIP file that contained this release expands into a number of files and sub-directories.
-            The following briefly describes the purpose of each.
-        </p>
-        <ul class="L1">
-            <li>readme.html (The file you are reading) </li>
-            <li>license.txt<br />
-                <br />
-                A copy of the license terms under which the toolkit is distributed. </li>
-            <li>HandCoded.dll<br />
-                <br />
-                This file contains all compiled C# class files for the toolkit. </li>
-            <li>log4net.dll<br />
-                nunit.framework.dll<br />
-                <br />
-                Open Source libraries referenced by the Toolkit.</li>
-            <li>Validate.exe<br />
-                Validate.exe.config<br />
-                <br />
-                A command line based application that demonstrates the validation components of
-                the toolkit.</li>
-            <li>Classify.exe<br />
-                Classify.exe.config<br />
-                <br />
-                A command line based application that demonstrates the product classification components
-                of the toolkit.</li>
-            <li>Validate*.bat<br />
-                <br />
-                Running these files will execute a simple batch validation of a selection of FpML
-                examples. Some of the FpML examples published by ISDA contain mistakes and a few will output
-                error messages.</li>
-            <li>Classify*.bat<br />
-                <br />
-                Running these files will execute a simple program that uses the classification tools
-                within the toolkit to identifty the financial product within the example files.
-            </li>
-            <li>files
-                <br />
-                <br />
-                Contains an XML catalog file (and its associated schema) used to resolve DTD system
-                identifiers/schema namespace URIs to physical file locations and the business rule
-                configuration file.<ul class="L2">
-                    <li>schemas<br />
-                        <br />
-                        Contains a subdirectory for each version of the FpML as well as the schema for digital
-                        signatures. </li>
-                    <li>data<br />
-                        <br />
-                        A set of XML data files containing the scheme code values defined by FpML for each
-                        release and a set of additional definitions for currency and country codes. </li>
-                    <li>examples<br />
-                        <br />
-                        A copy of the FpML example file for each schema release. Some may contain mistakes
-                        as many have not been properly validated. </li>
-                    <li>test-cases<br />
-                        <br />
-                        A copy of the FpML validation test files for both valid and invalid case. It is
-                        important to note some valid test cases still generate errors, just not the one
-                        they are supposed to test.</li>
-                </ul>
-            </li>
-        </ul>
-        <h2>
-            Example Applications</h2>
-        <p>
-            The toolkit is accompanied by some simple test scripts that demonstrates its functionality
-            and performance.</p>
-        <h3>
-            Validation</h3>
-        <p>
-            The validation scripts (e.g. Validate1-0.bat, etc.) use a simple application (implemented
-            as the class demo.com.handcoded.fpml.Validate) to process one or more XML files.
-            Running one of the example batch files will process a small selection of
-            FpML examples displaying the results to the screen.</p>
-        <p>
-            At the end of the run the program calculates the average processing &nbsp;time for
-            each file and displays the number of rules tested against each file as shown below.</p>
-        <pre>&gt;&gt; files/examples/fpml4-0/ird_ex26_fxnotional_swap_with_cfs.xml
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>HandCoded Toolkit for FpML Processing - Release Notes</title>
+    <meta http-equiv="Content-Language" content="en-gb" />
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0" />
+    <meta name="ProgId" content="FrontPage.Editor.Document" />
+    <link rel="StyleSheet" href="manual/styles.css" type="text/css" />
+</head>
+<body>
+    <p>
+        <font size="6">Toolkit for FpML Processing<br>
+            C# Open Source Release 1.5</font></p>
+    <p>
+        <font size="5">November, 2010</font></p>
+    <p>
+        <font size="5">Copyright (C),2006-2010 HandCoded Software Ltd.<br />
+            All rights reserved.</font></p>
+    <p>
+    </p>
+    <h1>
+        Introduction</h1>
+    <p>
+        This document accompanies C# 1.5 release of the 'HandCoded Toolkit for FpML Processing'
+        and describes the contents of the release area. The source code for this release
+        is not included but is available from the SVN repository on SourceForge.</p>
+    <h2>
+        License</h2>
+    <p>
+        This toolkit is distributed under the terms if the 'Open Source License "OSL"&nbsp;
+        Version 3.0'. A full copy of the license terms is included in the repository (click
+        <a href="license.txt" target="_blank">here</a> to access) and must be distributed
+        along with this file if you distribute this code to other parties.</p>
+    <h2>
+        Directory Structure</h2>
+    <p>
+        The ZIP file that contained this release expands into a number of files and sub-directories.
+        The following briefly describes the purpose of each.
+    </p>
+    <ul class="L1">
+        <li>readme.html (The file you are reading) </li>
+        <li>license.txt<br />
+            <br />
+            A copy of the license terms under which the toolkit is distributed. </li>
+        <li>HandCoded.dll<br />
+            <br />
+            This file contains all compiled C# class files for the toolkit. </li>
+        <li>log4net.dll<br />
+            nunit.framework.dll<br />
+            <br />
+            Open Source libraries referenced by the Toolkit.</li>
+        <li>Validate.exe<br />
+            Validate.exe.config<br />
+            <br />
+            A command line based application that demonstrates the validation components of
+            the toolkit.</li>
+        <li>Classify.exe<br />
+            Classify.exe.config<br />
+            <br />
+            A command line based application that demonstrates the product classification components
+            of the toolkit.</li>
+        <li>Validate*.bat<br />
+            <br />
+            Running these files will execute a simple batch validation of a selection of FpML
+            examples. Some of the FpML examples published by ISDA contain mistakes and a few
+            will output error messages.</li>
+        <li>Classify*.bat<br />
+            <br />
+            Running these files will execute a simple program that uses the classification tools
+            within the toolkit to identifty the financial product within the example files.
+        </li>
+        <li>files
+            <br />
+            <br />
+            Contains an XML catalog file (and its associated schema) used to resolve DTD system
+            identifiers/schema namespace URIs to physical file locations and the business rule
+            configuration file.<ul class="L2">
+                <li>schemas<br />
+                    <br />
+                    Contains a subdirectory for each version of the FpML as well as the schema for digital
+                    signatures. </li>
+                <li>data<br />
+                    <br />
+                    A set of XML data files containing the scheme code values defined by FpML for each
+                    release and a set of additional definitions for currency and country codes. </li>
+                <li>examples<br />
+                    <br />
+                    A copy of the FpML example file for each schema release. Some may contain mistakes
+                    as many have not been properly validated. </li>
+                <li>test-cases<br />
+                    <br />
+                    A copy of the FpML validation test files for both valid and invalid case. It is
+                    important to note some valid test cases still generate errors, just not the one
+                    they are supposed to test.</li>
+            </ul>
+        </li>
+    </ul>
+    <h2>
+        Example Applications</h2>
+    <p>
+        The toolkit is accompanied by some simple test scripts that demonstrates its functionality
+        and performance.</p>
+    <h3>
+        Validation</h3>
+    <p>
+        The validation scripts (e.g. Validate1-0.bat, etc.) use a simple application (implemented
+        as the class demo.com.handcoded.fpml.Validate) to process one or more XML files.
+        Running one of the example batch files will process a small selection of FpML examples
+        displaying the results to the screen.</p>
+    <p>
+        At the end of the run the program calculates the average processing &nbsp;time for
+        each file and displays the number of rules tested against each file as shown below.</p>
+    <pre>&gt;&gt; files/examples/fpml4-0/ird_ex26_fxnotional_swap_with_cfs.xml
 &gt;&gt; files/examples/fpml4-0/ird_ex27_inverse_floater.xml
 &gt;&gt; files/examples/fpml4-0/ird_ex28_bullet_payments.xml
 &gt;&gt; files/examples/fpml4-0/msg_ex01_request_confirmation.xml
@@ -112,19 +120,19 @@
 &gt;&gt; files/examples/fpml4-0/td_ex02_term_deposit_w_settlement_etc.xml
 == Processed 91 files in 1391 milliseconds
 == 65.42056074766356 files/sec checking 219 rules</pre>
-        <p>
-            The application responds to a number of command line options and can be configured
-            to test the FpML defined rules (e.g. excludes HandCoded rules including scheme value
-            checking) or to use a more streamlined XML parsing technique that only supports
-            schema based instances from FpML 4.0 or later. The default configuration is to process
-            both DTD and schema based instances which is less efficient.</p>
-        <h3>
-            Classification</h3>
-        <p>
-            The classification scripts (e.g. Classify1-0.bat, etc.) execute a simple application
-            that uses the toolkit to determine the type of financial product used within a trade
-            or contract.</p>
-        <pre>&gt;&gt; files\examples\fpml1-0\FRAExample8.xml:
+    <p>
+        The application responds to a number of command line options and can be configured
+        to test the FpML defined rules (e.g. excludes HandCoded rules including scheme value
+        checking) or to use a more streamlined XML parsing technique that only supports
+        schema based instances from FpML 4.0 or later. The default configuration is to process
+        both DTD and schema based instances which is less efficient.</p>
+    <h3>
+        Classification</h3>
+    <p>
+        The classification scripts (e.g. Classify1-0.bat, etc.) execute a simple application
+        that uses the toolkit to determine the type of financial product used within a trade
+        or contract.</p>
+    <pre>&gt;&gt; files\examples\fpml1-0\FRAExample8.xml:
 = FpML 1-0
 : Trade(FORWARD RATE AGREEMENT)
 &gt;&gt; files\examples\fpml1-0\IRSExample1.xml:
@@ -148,37 +156,46 @@
 &gt;&gt; files\examples\fpml1-0\IRSExample7.xml: 
 = FpML 1-0 
 : Trade(INTEREST RATE SWAP)</pre>
-        <p>
-            Futures releases will add further demonstration applications.</p>
-        <h2>
-            Support</h2>
-        <p>
-            If you find a problem using toolkit then please use the forum and bug reporting
-            facilities on the <a href="http://sourceforge.net/projects/fpml-toolkit">SourceForge
-                project</a> site to record the issue.</p>
-        <h2>
-            Change History</h2>
-        <p>
-            Changes in 1.1:</p>
-        <ul>
-            <li>Support for FpML 4.3, 4.4 and working drafts of 5.0</li>
-            <li>Toolkit supports full ISO date/time/dateTime types with timezone offsets. </li>
-        </ul>
-        <p>
-            Changes in 1.2:</p>
-        <ul>
-            <li>Support for FpML 4.5</li>
-            <li>Schema resolution via XML catalogs added.</li>
-            <li>Business rules become configurable without code modification.&nbsp;</li>
-        </ul>
-        <p>
-            Changes in 1.3:</p><ul>
-    <li>Support for FpML 4.6</li>
-    <li>Numerous little fixes</li>
-        </ul>
-        <p>
-            Changes in 1.4:<ul>
-                <li>Support for FpML 4.7 and 5.0 LCWD</li>
-        </ul>
-	</body>
+    <p>
+        Futures releases will add further demonstration applications.</p>
+    <h2>
+        Support</h2>
+    <p>
+        If you find a problem using toolkit then please use the forum and bug reporting
+        facilities on the <a href="http://sourceforge.net/projects/fpml-toolkit">SourceForge
+            project</a> site to record the issue.</p>
+    <h2>
+        Change History</h2>
+    <p>
+        Changes in 1.1:</p>
+    <ul>
+        <li>Support for FpML 4.3, 4.4 and working drafts of 5.0</li>
+        <li>Toolkit supports full ISO date/time/dateTime types with timezone offsets. </li>
+    </ul>
+    <p>
+        Changes in 1.2:</p>
+    <ul>
+        <li>Support for FpML 4.5</li>
+        <li>Schema resolution via XML catalogs added.</li>
+        <li>Business rules become configurable without code modification.</li>
+    </ul>
+    <p>
+        Changes in 1.3:</p>
+    <ul>
+        <li>Support for FpML 4.6</li>
+        <li>Numerous little fixes</li>
+    </ul>
+    <p>
+        Changes in 1.4:</p>
+    <ul>
+        <li>Support for FpML 4.7 and 5.0</li>
+    </ul>
+    <p>
+        Changes in 1.5:</p>
+    <ul>
+        <li>Support for FpML 4.8, 4.9 and 5.1</li>
+        <li>Release meta data has been moved from C# code into an XML data file</li>
+        <li>The Java and C# rule sets have been resynchronised.</li>
+    </ul>
+</body>
 </html>

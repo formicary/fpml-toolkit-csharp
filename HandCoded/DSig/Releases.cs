@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2010 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -28,16 +28,14 @@ namespace HandCoded.DSig
 		/// specification as a whole.
 		/// </summary>
 		public static readonly Specification DSIG
-			= new Specification ("DSig");
+			= Specification.ForName ("DSig");
 	
 		/// <summary>
 		/// A <see cref="SchemaRelease"/> instance containing the details for the
 		/// DSIG recommendation.
 		/// </summary>
 		public static readonly SchemaRelease R1_0
-			= new SchemaRelease (DSIG, "1-0",
-				"http://www.w3.org/2000/09/xmldsig#", "xmldsig-core-schema.xsd",
-				"dsig", null, "");
+			= DSIG.GetReleaseForVersion ("1-0") as SchemaRelease;
 	
 		/// <summary>
 		/// Ensures that no instances can be constructed.

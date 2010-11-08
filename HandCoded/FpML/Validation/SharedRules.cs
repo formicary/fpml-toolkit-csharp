@@ -187,6 +187,11 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule01 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
+            if (nodeIndex.HasTypeInformation) {
+	            String ns = nodeIndex.Document.DocumentElement.NamespaceURI;
+	            return (Rule01 (name, nodeIndex.GetElementsByType (ns, "BusinessDayAdjustments"), errorHandler));					
+            }
+					
 			return (
 				Rule01 (name, nodeIndex.GetElementsByName ("dateAdjustments"), errorHandler)
 			  & Rule01 (name, nodeIndex.GetElementsByName ("calculationPeriodDatesAdjustments"), errorHandler)

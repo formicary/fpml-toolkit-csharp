@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2010 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -47,6 +47,7 @@ namespace HandCoded.Xml
 		/// context element.
 		/// </summary>
 		/// <param name="name">The name of the new <see cref="XmlElement"/>.</param>
+        /// <returns>The <see cref="XmlElement"/> of the new element.</returns>
 		public virtual XmlElement AppendElement (string name)
 		{
 			return (AppendElement (null, name));
@@ -58,6 +59,7 @@ namespace HandCoded.Xml
 		/// </summary>
 		/// <param name="uri">The namespace URI or <c>null</c> if none.</param>
 		/// <param name="name">The name of the new <see cref="XmlElement"/>.</param>
+        /// <returns>The <see cref="XmlElement"/> of the new element.</returns>
 		public XmlElement AppendElement (string uri, string name)
 		{
 			XmlElement	element = document.CreateElement (name, uri);
@@ -133,9 +135,10 @@ namespace HandCoded.Xml
 		/// </summary>
 		/// <param name="name">The name of the new <see cref="XmlElement"/>.</param>
 		/// <param name="text">The value of the contained <see cref="XmlText"/> node.</param>
-		public virtual void AppendElementAndText (string name, string text)
+        /// <returns>The <see cref="XmlElement"/> of the new element.</returns>
+		public virtual XmlElement AppendElementAndText (string name, string text)
 		{
-			AppendElementAndText (null, name, text);
+			return (AppendElementAndText (null, name, text));
 		}
 
 		/// <summary>
@@ -145,11 +148,25 @@ namespace HandCoded.Xml
 		/// <param name="uri">The namespace URI of the new element or <c>null</c>.</param>
 		/// <param name="name">The name of the new <see cref="XmlElement"/>.</param>
 		/// <param name="text">The value of the contained <see cref="XmlText"/> node.</param>
-		public void AppendElementAndText (string uri, string name, string text)
+        /// <returns>The <see cref="XmlElement"/> of the new element.</returns>
+		public XmlElement AppendElementAndText (string uri, string name, string text)
 		{
-			AppendElement (uri, name);
+			XmlElement  result;
+            
+            result = AppendElement (uri, name);
 			AppendText (text);
 			CloseElement ();
+            return (result);
 		}
+
+        /// <summary>
+        /// Appends a copy of the document fragment at the end of the element
+        /// referenced by the context node.
+        /// </summary>
+        /// <param name="fragment">The <see cref="XmlDocument"/> containing the fragment.</param>
+        public void AppendDocument (XmlDocument fragment)
+        {
+            context.AppendChild (fragment.DocumentElement.CloneNode (true));
+        }
 	}
 }
