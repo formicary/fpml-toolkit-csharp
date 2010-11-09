@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2010 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -128,24 +128,48 @@ namespace HandCoded.FpML.Validation
 		/// buyerPartyReference/@href instances.
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
-		public static readonly Rule	RULE12
-			= new DelegatedRule ("shared-12", new RuleDelegate (Rule12));
+		public static readonly Rule	RULE12A
+			= new DelegatedRule (Preconditions.R1_0__R2_0, "shared-12a", new RuleDelegate (Rule12A));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures the referential integrity of
+		/// buyerPartyReference/@href instances.
+		/// </summary>
+		/// <remarks>Applies to all FpML releases.</remarks>
+		public static readonly Rule	RULE12B
+			= new DelegatedRule (Preconditions.R3_0__LATER, "shared-12b", new RuleDelegate (Rule12B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the referential integrity of
 		/// sellerPartyReference/@href instances.
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
-		public static readonly Rule	RULE13
-			= new DelegatedRule ("shared-13", new RuleDelegate (Rule13));
+		public static readonly Rule	RULE13A
+			= new DelegatedRule (Preconditions.R1_0__R2_0, "shared-13a", new RuleDelegate (Rule13A));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures the referential integrity of
+		/// sellerPartyReference/@href instances.
+		/// </summary>
+		/// <remarks>Applies to all FpML releases.</remarks>
+		public static readonly Rule	RULE13B
+			= new DelegatedRule (Preconditions.R3_0__LATER, "shared-13b", new RuleDelegate (Rule13B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the referential integrity of
 		/// calculationAgentPartyReference/@href instances.
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
-		public static readonly Rule	RULE14
-			= new DelegatedRule ("shared-14", new RuleDelegate (Rule14));
+		public static readonly Rule	RULE14A
+			= new DelegatedRule (Preconditions.R1_0__R2_0, "shared-14a", new RuleDelegate (Rule14A));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures the referential integrity of
+		/// calculationAgentPartyReference/@href instances.
+		/// </summary>
+		/// <remarks>Applies to all FpML releases.</remarks>
+		public static readonly Rule	RULE14B
+			= new DelegatedRule (Preconditions.R3_0__LATER, "shared-14b", new RuleDelegate (Rule14B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures that period multiplier is 'D' if the
@@ -550,20 +574,52 @@ namespace HandCoded.FpML.Validation
 
 		//---------------------------------------------------------------------
 
-		private static bool Rule12 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule12A (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule12 (name, nodeIndex.GetElementsByName ("buyerPartyReference"), errorHandler, nodeIndex));
+			return (Rule12A (name, nodeIndex.GetElementsByName ("buyerPartyReference"), errorHandler, nodeIndex));
 		}
 
-		private static bool Rule12 (string name, XmlNodeList list, ValidationErrorHandler errorHandler, NodeIndex nodeIndex)
+		private static bool Rule12A (string name, XmlNodeList list, ValidationErrorHandler errorHandler, NodeIndex nodeIndex)
 		{
 			bool		result = true;
 
 			foreach (XmlElement context in list) {
 				string		href	 = context.GetAttribute ("href");
 
-				if (href.StartsWith ("#")) href = href.Substring (1);
+				if ((href == null) || (href.Length < 2) || (href [0] != '#')) {
+					errorHandler ("305", context,
+						"The @href attribute is not a valid XPointer",
+						name, href);
+					result = false;
+					continue;
+				}
 
+				XmlElement	referred = nodeIndex.GetElementById (href.Substring (1));
+
+				if ((referred != null) && (referred.LocalName.Equals ("party") || referred.LocalName.Equals ("tradeSide"))) continue;
+
+				errorHandler ("305", context,
+					"Buyer party reference '" + context.GetAttribute ("href") +
+					"' does not match a party defined in the document.",
+					name, context.GetAttribute ("href"));
+
+				result = false;
+			}
+			return (result);
+		}
+		//---------------------------------------------------------------------
+
+		private static bool Rule12B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			return (Rule12B (name, nodeIndex.GetElementsByName ("buyerPartyReference"), errorHandler, nodeIndex));
+		}
+
+		private static bool Rule12B (string name, XmlNodeList list, ValidationErrorHandler errorHandler, NodeIndex nodeIndex)
+		{
+			bool		result = true;
+
+			foreach (XmlElement context in list) {
+				string		href	 = context.GetAttribute ("href");
 				XmlElement	referred = nodeIndex.GetElementById (href);
 
 				if ((referred != null) && (referred.LocalName.Equals ("party") || referred.LocalName.Equals ("tradeSide"))) continue;
@@ -580,20 +636,53 @@ namespace HandCoded.FpML.Validation
 
 		//---------------------------------------------------------------------
 
-		private static bool Rule13 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule13A (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule13 (name, nodeIndex.GetElementsByName ("sellerPartyReference"), errorHandler, nodeIndex));
+			return (Rule13A (name, nodeIndex.GetElementsByName ("sellerPartyReference"), errorHandler, nodeIndex));
 		}
 
-		private static bool Rule13 (string name, XmlNodeList list, ValidationErrorHandler errorHandler, NodeIndex nodeIndex)
+		private static bool Rule13A (string name, XmlNodeList list, ValidationErrorHandler errorHandler, NodeIndex nodeIndex)
 		{
 			bool		result = true;
 
 			foreach (XmlElement context in list) {
 				string		href	 = context.GetAttribute ("href");
 
-				if (href.StartsWith ("#")) href = href.Substring (1);
+				if ((href == null) || (href.Length < 2) || (href [0] != '#')) {
+					errorHandler ("305", context,
+						"The @href attribute is not a valid XPointer",
+						name, href);
+					result = false;
+					continue;
+				}
 
+				XmlElement	referred = nodeIndex.GetElementById (href.Substring (1));
+
+				if ((referred != null) && (referred.LocalName.Equals ("party") || referred.LocalName.Equals ("tradeSide"))) continue;
+
+				errorHandler ("305", context,
+					"Seller party reference '" + context.GetAttribute ("href") +
+					"' does not match a party defined in the document.",
+					name, context.GetAttribute ("href"));
+
+				result = false;
+			}
+			return (result);
+		}
+
+		//---------------------------------------------------------------------
+
+		private static bool Rule13B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			return (Rule13B (name, nodeIndex.GetElementsByName ("sellerPartyReference"), errorHandler, nodeIndex));
+		}
+
+		private static bool Rule13B (string name, XmlNodeList list, ValidationErrorHandler errorHandler, NodeIndex nodeIndex)
+		{
+			bool		result = true;
+
+			foreach (XmlElement context in list) {
+				string		href	 = context.GetAttribute ("href");
 				XmlElement	referred = nodeIndex.GetElementById (href);
 
 				if ((referred != null) && (referred.LocalName.Equals ("party") || referred.LocalName.Equals ("tradeSide"))) continue;
@@ -610,20 +699,53 @@ namespace HandCoded.FpML.Validation
 
 		//---------------------------------------------------------------------
 
-		private static bool Rule14 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule14A (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule14 (name, nodeIndex.GetElementsByName ("calculationAgentPartyReference"), errorHandler, nodeIndex));
+			return (Rule14A (name, nodeIndex.GetElementsByName ("calculationAgentPartyReference"), errorHandler, nodeIndex));
 		}
 
-		private static bool Rule14 (string name, XmlNodeList list, ValidationErrorHandler errorHandler, NodeIndex nodeIndex)
+		private static bool Rule14A (string name, XmlNodeList list, ValidationErrorHandler errorHandler, NodeIndex nodeIndex)
 		{
 			bool		result = true;
 
 			foreach (XmlElement context in list) {
 				string		href	 = context.GetAttribute ("href");
 
-				if (href.StartsWith ("#")) href = href.Substring (1);
+				if ((href == null) || (href.Length < 2) || (href [0] != '#')) {
+					errorHandler ("305", context,
+						"The @href attribute is not a valid XPointer",
+						name, href);
+					result = false;
+					continue;
+				}
 
+				XmlElement	referred = nodeIndex.GetElementById (href.Substring (1));
+
+				if ((referred != null) && referred.LocalName.Equals ("party")) continue;
+
+				errorHandler ("305", context,
+					"Calculation agent party reference '" + context.GetAttribute ("href") +
+					"' does not match a party defined in the document.",
+					name, context.GetAttribute ("href"));
+
+				result = false;
+			}
+			return (result);
+		}
+
+		//---------------------------------------------------------------------
+
+		private static bool Rule14B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			return (Rule14B (name, nodeIndex.GetElementsByName ("calculationAgentPartyReference"), errorHandler, nodeIndex));
+		}
+
+		private static bool Rule14B (string name, XmlNodeList list, ValidationErrorHandler errorHandler, NodeIndex nodeIndex)
+		{
+			bool		result = true;
+
+			foreach (XmlElement context in list) {
+				string		href	 = context.GetAttribute ("href");
 				XmlElement	referred = nodeIndex.GetElementById (href);
 
 				if ((referred != null) && referred.LocalName.Equals ("party")) continue;

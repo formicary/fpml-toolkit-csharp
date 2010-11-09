@@ -228,23 +228,24 @@ namespace HandCoded.FpML.Validation
 			= new SchemeRule (Preconditions.R2_0__R3_0, "scheme-23", "quotationRateType", "quotationRateTypeScheme");
 
 		// FpML 3.0 ------------------------------------------------------------
-
+		
 		/// <summary>
 		/// Rule 24: The value of any <b>clearanceSystem</b> element must be valid
 		/// within the domain defined by its <b>clearanceSystemScheme</b> attribute.
 		/// </summary>
-		/// <remarks>Applies to FpML 3-0 and later.</remarks>
+		/// <remarks>Applies to FpML 3-0 and 4-1 or later.</remarks>
 		public static readonly Rule	RULE24A
-			= new SchemeRule (Preconditions.R3_0__R4_0, "scheme-24a", "clearanceSystem", "clearanceSystemScheme");
+			= new SchemeRule (Precondition.Or (Preconditions.R3_0__LATER, Preconditions.R4_1__LATER),
+                    "scheme-24a", "clearanceSystem", "clearanceSystemScheme");
 		
 		/// <summary>
 		/// Rule 24: The value of any <b>clearanceSystem</b> element must be valid
-		/// within the domain defined by its <b>clearanceSystemScheme</b> attribute.
+		/// within the domain defined by its <b>clearanceSystemIdScheme</b> attribute.
 		/// </summary>
-		/// <remarks>Applies to FpML 3-0 and later.</remarks>
+		/// <remarks>Applies to FpML 4-0 only.</remarks>
 		public static readonly Rule	RULE24B
-			= new SchemeRule (Preconditions.R3_0__LATER, "scheme-24b", "clearanceSystem", "clearanceSystemScheme");
-		
+			= new SchemeRule (Preconditions.R4_0, "scheme-24b", "clearanceSystem", "clearanceSystemIdScheme");
+
 		/// <summary>
 		/// Rule 25: The value of any <b>contractualDefinitions</b> element must
 		/// be valid within the domain defined by its <b>@contractualDefinitionsScheme</b>

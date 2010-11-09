@@ -34,6 +34,44 @@ namespace HandCoded.FpML.Validation
 			}
 		}
 
+        /// <summary>
+        /// A <see cref="Rule"/> that ensures The @href attribute on a firstPeriodStartDate
+	    /// must match the @id attribute of an element of type Party.
+        /// </summary>
+        /// <remarks>Applies to FpML 4.1 and later.</remarks>
+        public static readonly Rule	RULE02
+		    = new DelegatedRule (Preconditions.R4_1__LATER, "bp-2", new RuleDelegate (Rule02));
+
+        //----------------------------------------------------------------------
+
+		private static bool Rule02 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			return (Rule02 (name, nodeIndex, XPath.Paths (nodeIndex.GetElementsByName ("novation"), ".."), errorHandler));
+		}
+		
+		private static bool Rule02 (string name, NodeIndex nodeIndex, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool		result 	= true;
+			
+			foreach (XmlElement context in list) {
+				XmlElement	    startDate	= XPath.Path (context, "novation", "firstPeriodStartDate");
+				XmlAttribute	href;
+				
+				if ((startDate == null) || (href = startDate.GetAttributeNode ("href"))== null) continue;
+				
+				XmlElement		target	= nodeIndex.GetElementById (href.Value);
+					
+				if ((target == null) || !target.LocalName.Equals("party")) {
+					errorHandler ("305", context,
+						"The @href attribute on the firstPeriodStartDate must reference a party",
+						name, href.Value);
+					
+					result = false;
+				}
+			}
+			return (result);
+		}
+
 		/// <summary>
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>
 		/// instances.

@@ -37,16 +37,35 @@ namespace HandCoded.FpML.Validation
 		/// <param name="contextElements">An array of potential context element names.</param>
 		/// <param name="targetType">The schema type for the target element.</param>
 		/// <param name="targetElements">An array of potential target element names.</param>
+        /// <param name="referenceAttribute">The name of the attribute containing the reference.</param>
 		public ReferenceRule (Precondition precondition, string name,
 			string contextType, string [] contextElements,
-			string targetType, string [] targetElements)
+			string targetType, string [] targetElements,
+            string referenceAttribute)
 				: base (precondition, name)
 		{
 			this.contextType 		= contextType;
 			this.contextElements 	= contextElements;
 			this.targetType			= targetType;
 			this.targetElements 	= targetElements;
+            this.referenceAttribute = referenceAttribute;
 		}
+
+		/// <summary>
+		/// Construct a <b>ReferenceRule</b> instance that will locate
+		/// context and target elements based on the data provided.
+		/// </summary>
+		/// <param name="precondition">A <see cref="Precondition"/> instance.</param>
+		/// <param name="name">The unique name for the rule.</param>
+		/// <param name="contextType">The schema type for the context element.</param>
+		/// <param name="contextElements">An array of potential context element names.</param>
+		/// <param name="targetType">The schema type for the target element.</param>
+		/// <param name="targetElements">An array of potential target element names.</param>
+        public ReferenceRule (Precondition precondition, string name,
+			string contextType, string [] contextElements,
+			string targetType, string [] targetElements)
+            : this (precondition, name, contextType, contextElements, targetType, targetElements, "href")
+        { }
 
 		/// <summary>
 		/// Validates all the elements registered at construction using the
@@ -84,7 +103,7 @@ namespace HandCoded.FpML.Validation
 			bool		result = true;
 			
 			foreach (XmlElement context in contexts) {
-				XmlAttribute	href	= context.GetAttributeNode ("href");
+				XmlAttribute	href	= context.GetAttributeNode (referenceAttribute);
 				
 				if (href == null) continue;
 				
@@ -134,5 +153,11 @@ namespace HandCoded.FpML.Validation
 		/// Contains an array of potential target element names.
 		/// </summary>
 		private readonly string []	targetElements;
-	}
+	
+        /// <summary>
+        /// Contains the name of the attribute used to create the reference.
+	    /// Normally this is 'href' but a few rules use special names.
+        /// </summary>
+	    private readonly string	    referenceAttribute;
+    }
 }

@@ -267,6 +267,22 @@ namespace HandCoded.FpML.Validation
 					"PricingParameterDerivative", new String [] {
 						"partialDerivative" });
 
+        /// <summary>
+        /// A <b>Rule</b> that ensures a <b>PricingParameterDerivativeReference</b> correctly
+	    /// refers to a <b>PricingParameterDerivative</b>.
+        /// </summary>
+        /// <remarks>Applies to FpML 4.0 and later.</remarks>
+	    public static readonly Rule	RULE22
+		    = new ReferenceRule (Preconditions.R4_0__LATER, "ref-22",
+				    "Valuation", new String [] {
+					    "valuation", "assetValuation", "associatedValue",
+					    "assetQuote", "pricingStructureValuation", "creditCurveValuation",
+					    "defaultProbabilityCurve", "fxCurveValuation",
+					    "volatilityMatrixValuation", "yieldCurveValuation" },
+				    "ValuationScenario", new String [] {
+					    "valuationScenario" },
+				    "definitionRef");
+		
 		/// <summary>
 		/// A <b>Rule</b> that ensures a <b>ValuationReference</b> correctly
 		/// refers to a <b>Valuation</b>.
