@@ -117,6 +117,13 @@ namespace HandCoded.FpML.Validation
             = new VersionPrecondition (Releases.R4_9);
 
         /// <summary>
+        /// A <see cref="Precondition"/> instance that detects any FpML 4-x compatible
+	    /// document.
+        /// </summary>
+	    public static readonly Precondition R4_X
+		    = new VersionRangePrecondition (Releases.R4_0, Releases.R4_9);
+
+       /// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML 5-0 confirmation
 		/// compatible documents.
 		/// </summary>

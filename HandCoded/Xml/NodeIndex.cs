@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2010 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -157,6 +157,17 @@ namespace HandCoded.Xml
 		}
 
 		/// <summary>
+		/// Creates a (possibly empty) <see cref="XmlNodeList"/> containing all the
+		/// attribute nodes identified by the given name string.
+		/// </summary>
+		/// <param name="name">The name of the required elements.</param>
+		/// <returns>A <see cref="XmlNodeList"/> of corresponding nodes.</returns>
+		public XmlNodeList GetAttributesByName (string name)
+		{
+            return (attributesByName.ContainsKey (name) ? attributesByName [name] : MutableNodeList.EMPTY);
+		}
+
+		/// <summary>
 		/// The <see cref="XmlDocument"/> instance that was indexed.
 		/// </summary>
 		private XmlDocument			document;
@@ -195,6 +206,13 @@ namespace HandCoded.Xml
         /// </summary>
 		private Dictionary<string, List<XmlSchemaType>>	compatibleTypes
             = new Dictionary<string, List<XmlSchemaType>> ();
+
+		/// <summary>
+        /// A collection containing <see cref="MutableNodeList"/> instances
+		/// indexed by attribute name.
+		/// </summary>
+		private Dictionary<string, MutableNodeList>	attributesByName
+            = new Dictionary<string, MutableNodeList> ();
 
 		/// <summary>
 		/// Recursively walks a DOM tree creating an index of the elements by
@@ -248,6 +266,15 @@ namespace HandCoded.Xml
 						XmlAttribute	id	  = (node as XmlElement).GetAttributeNode ("id");
 
 						if (id != null) elementsById [id.Value] = node as XmlElement;
+
+                        foreach (XmlAttribute attr in (node as XmlElement).Attributes) {
+                            if (!attributesByName.ContainsKey (attr.Name))
+                                attributesByName.Add (attr.Name, list = new MutableNodeList ());
+                            else
+                                list = attributesByName [attr.Name];
+
+                            list.Add (attr);
+                        }
 
 						foreach (XmlNode child in (node as XmlElement).ChildNodes)
 							if (child.NodeType == XmlNodeType.Element)

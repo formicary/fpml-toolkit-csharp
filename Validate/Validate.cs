@@ -58,6 +58,16 @@ namespace Validate
 		{
 			base.StartUp ();
 
+		    // Initialise the default catalog
+		    string		catalogPath = ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.XmlCatalog"];
+
+		    if (catalogOption.Present) {
+			    if (catalogOption.Value != null)
+				    catalogPath = catalogOption.Value;
+			    else
+				    log.Error ("Missing argument for -catalog option");
+		    }
+
 			if (repeatOption.Present) {
 				repeat = Int32.Parse (repeatOption.Value);
 				if (repeat <= 0) {
@@ -74,9 +84,14 @@ namespace Validate
 				Environment.Exit (1);
 			}
 
-			XmlUtility.DefaultCatalog = CatalogManager.Find (
-				Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
-					ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.XmlCatalog"]));
+            try {
+			    XmlUtility.DefaultCatalog = CatalogManager.Find (
+				    Path.Combine (AppDomain.CurrentDomain.BaseDirectory, catalogPath));
+            }
+            catch (Exception error) {
+                log.Error ("Failed to parse XML catalog", error);
+				Environment.Exit (1);
+            }
 
 			// Activate the FpML Schemas
 		    foreach (Release release in Releases.FPML.Releases) {
@@ -180,17 +195,23 @@ namespace Validate
 			= new Option ("-random", "Pick files at random for processing");
 
 		/// <summary>
-		/// The <see cref="Option"/> instance used to detwct <b>-strict</b>.
+		/// The <see cref="Option"/> instance used to detect <b>-strict</b>.
 		/// </summary>
 		private Option			strictOption
 			= new Option ("-strict", "Use only FpML defined rules (no extensions)");
 		
 		/// <summary>
-		/// The <see cref="Option"/> instance used to detwct <b>-schemaOnly</b>.
+		/// The <see cref="Option"/> instance used to detect <b>-schemaOnly</b>.
 		/// </summary>
 		private Option			schemaOnlyOption
 			= new Option ("-schemaOnly", "Only support XML Schema based documents");
 		
+		/// <summary>
+		/// The <see cref="Option"/> instance used to detect <b>-catalog</b>.
+		/// </summary>
+	    private Option			catalogOption
+		    = new Option ("-catalog", "Use url to create an XML catalog for parsing", "url");
+
 		/// <summary>
 		/// A counter for the number of time to reprocess the files. 
 		/// </summary>
