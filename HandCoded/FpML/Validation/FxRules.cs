@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2010 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -40,20 +40,41 @@ namespace HandCoded.FpML.Validation
 			}
 		}
 
-		/// <summary>
+        /// <summary>
+        /// A <see cref="Precondition"/> instance that detect documents that could
+	    /// contains old style FX products.
+        /// </summary>
+	    public static readonly Precondition OLD_FX
+		    = Precondition.Or (Preconditions.R3_0, Preconditions.R4_X);
+
+        /// <summary>
+        /// A <see cref="Precondition"/> instance that detect documents that could
+        /// contains new style FX products.
+        /// </summary>
+	    public static readonly Precondition NEW_FX
+		    = Preconditions.R5_1__LATER;
+
+	    /// <summary>
+	    /// A <see cref="Precondition"/> instance that detect documents that could
+        /// contains FX products.
+	    /// </summary>
+	    public static readonly Precondition ANY_FX
+		    = Precondition.Or (OLD_FX, NEW_FX);
+        
+        /// <summary>
 	    /// A <see cref="Rule"/> that ensures that the rate is positive.
 		/// </summary>
-        /// <remarks>Applies to FpML 3.0 and later.</remarks>
+        /// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE01
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-1", new RuleDelegate (Rule01));
+			= new DelegatedRule (OLD_FX, "fx-1", new RuleDelegate (Rule01));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures that if forwardPoints exists then
 		/// spotRate should also exist.
 		/// </summary>
-		/// <remarks>Applies to FpML 3.0 and later.</remarks>
+		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE02
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-2", new RuleDelegate (Rule02));
+			= new DelegatedRule (OLD_FX, "fx-2", new RuleDelegate (Rule02));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures that if both forwardPoints and spotRate
@@ -61,46 +82,54 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE03
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-3", new RuleDelegate (Rule03));
+			= new DelegatedRule (ANY_FX, "fx-3", new RuleDelegate (Rule03));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures sideRates/baseCurrency must be neither
 		/// quotedCurrencyPair/currency1 nor quotedCurrencyPair/currency2.
 		/// </summary>
-		/// <remarks>Applies to FpML 3.0 and later.</remarks>
+		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE04
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-4", new RuleDelegate (Rule04));
+			= new DelegatedRule (OLD_FX, "fx-4", new RuleDelegate (Rule04));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures sideRates/currency1SideRate/currency
 		/// must be the same as quotedCurrencyPair/currency1.
 		/// </summary>
-		/// <remarks>Applies to FpML 3.0 and later.</remarks>
+		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE05
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-5", new RuleDelegate (Rule05));
+			= new DelegatedRule (OLD_FX, "fx-5", new RuleDelegate (Rule05));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures sideRates/currency2SideRate/currency
 		/// must be the same as quotedCurrencyPair/currency2.
 		/// </summary>
-		/// <remarks>Applies to FpML 3.0 and later.</remarks>
+		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE06
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-6", new RuleDelegate (Rule06));
+			= new DelegatedRule (OLD_FX, "fx-6", new RuleDelegate (Rule06));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures triggerRate is positive.
 		/// </summary>
-		/// <remarks>Applies to FpML 3.0 and later.</remarks>
+		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE07
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-7", new RuleDelegate (Rule07));
+			= new DelegatedRule (OLD_FX, "fx-7", new RuleDelegate (Rule07));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures if observationStartDate and observationEndDate
 		/// both exist then observationStartDate &lt;= observationEndDate.
 		/// </summary>
-		/// <remarks>Applies to FpML 3.0 and later.</remarks>
-		public static readonly Rule	RULE08
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-8", new RuleDelegate (Rule08));
+		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
+		public static readonly Rule	RULE08_A
+			= new DelegatedRule (OLD_FX, "fx-8[A]", new RuleDelegate (Rule08_A));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures if observationStartDate and observationEndDate
+		/// both exist then observationStartDate &lt;= observationEndDate.
+		/// </summary>
+		/// <remarks>Applies to FpML 5.1 and later.</remarks>
+		public static readonly Rule	RULE08_B
+			= new DelegatedRule (NEW_FX, "fx-8[B]", new RuleDelegate (Rule08_B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures if observationStartDate and observationEndDate
@@ -122,9 +151,16 @@ namespace HandCoded.FpML.Validation
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures each observationDate is unique.
 		/// </summary>
-		/// <remarks>Applies to FpML 3.0 and later.</remarks>
-		public static readonly Rule	RULE11
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-11", new RuleDelegate (Rule11));
+		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
+		public static readonly Rule	RULE11_A
+			= new DelegatedRule (OLD_FX, "fx-11[A]", new RuleDelegate (Rule11_A));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures each observationDate is unique.
+		/// </summary>
+		/// <remarks>Applies to FpML 5.1 and later.</remarks>
+		public static readonly Rule	RULE11_B
+			= new DelegatedRule (NEW_FX, "fx-11[B]", new RuleDelegate (Rule11_B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that each observationDate matches one defined
@@ -137,17 +173,32 @@ namespace HandCoded.FpML.Validation
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures each observationDate is unique.
 		/// </summary>
-		/// <remarks>Applies to FpML 3.0 and later.</remarks>
-		public static readonly Rule	RULE13
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-13", new RuleDelegate (Rule13));
+		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
+		public static readonly Rule	RULE13_A
+			= new DelegatedRule (OLD_FX, "fx-13[A]", new RuleDelegate (Rule13_A));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures each observationDate is unique.
+		/// </summary>
+		/// <remarks>Applies to FpML 5.1 and later.</remarks>
+		public static readonly Rule	RULE13_B
+			= new DelegatedRule (NEW_FX, "fx-13[B]", new RuleDelegate (Rule13_B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures if observationStartDate and observationEndDate
 		/// both exist then observationStartDate &lt;= observationEndDate.
 		/// </summary>
-		/// <remarks>Applies to FpML 3.0 and later.</remarks>
-		public static readonly Rule	RULE14
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-14", new RuleDelegate (Rule14));
+		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
+		public static readonly Rule	RULE14_A
+			= new DelegatedRule (OLD_FX, "fx-14[A]", new RuleDelegate (Rule14_A));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures if observationStartDate and observationEndDate
+		/// both exist then observationStartDate &lt;= observationEndDate.
+		/// </summary>
+		/// <remarks>Applies to FpML 5.1 and later.</remarks>
+		public static readonly Rule	RULE14_B
+			= new DelegatedRule (NEW_FX, "fx-14[B]", new RuleDelegate (Rule14_B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures spotRate is positive if it exists.
@@ -665,18 +716,51 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule08 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule08_A (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			if (nodeIndex.HasTypeInformation) 
 				return (
-					  Rule08 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FXAmericanTrigger"), errorHandler)
-					& Rule08 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxAmericanTrigger"), errorHandler));					
+					  Rule08_A (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FXAmericanTrigger"), errorHandler)
+					& Rule08_A (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxAmericanTrigger"), errorHandler));					
 				
 			return (
-				  Rule08 (name, nodeIndex.GetElementsByName ("fxAmericanTrigger"), errorHandler));
+				  Rule08_A (name, nodeIndex.GetElementsByName ("fxAmericanTrigger"), errorHandler));
 		}
 		
-		private static bool Rule08 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		private static bool Rule08_A (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool		result	= true;
+			
+			foreach (XmlElement context in list) {
+				XmlElement	start	= XPath.Path (context, "observationStartDate");
+				XmlElement	end		= XPath.Path (context, "observationEndDate");
+				
+				if ((start == null) || (end == null) || 
+					LessOrEqual (ToDate (start), ToDate (end))) continue;
+									
+				errorHandler ("305", context,
+						"The observationStartDate must not be after the observationEndDate",
+						name, null);
+				
+				result = false;
+			}
+			
+			return (result);
+		}
+			
+		// --------------------------------------------------------------------
+
+		private static bool Rule08_B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			if (nodeIndex.HasTypeInformation) 
+				return (
+					  Rule08_B (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxTouch"), errorHandler));					
+				
+			return (
+				  Rule08_B (name, nodeIndex.GetElementsByName ("touch"), errorHandler));
+		}
+		
+		private static bool Rule08_B (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
 		{
 			bool		result	= true;
 			
@@ -768,23 +852,64 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule11 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule11_A (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			if (nodeIndex.HasTypeInformation) 
 				return (
-					  Rule11 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FXAverageRateOption"), errorHandler)
-					& Rule11 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxAverageRateOption"), errorHandler));					
+					  Rule11_A (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FXAverageRateOption"), errorHandler)
+					& Rule11_A (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxAverageRateOption"), errorHandler));					
 				
 			return (
-				  Rule11 (name, nodeIndex.GetElementsByName ("fxAverageRateOption"), errorHandler));
+				  Rule11_A (name, nodeIndex.GetElementsByName ("fxAverageRateOption"), errorHandler));
 		}
 		
-		private static bool Rule11 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		private static bool Rule11_A (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
 		{
 			bool		result	= true;
 			
 			foreach (XmlElement context in list) {
 				XmlNodeList	nodes	= XPath.Paths (context, "observedRates", "observationDate");
+				
+				int			limit	= nodes.Count;
+				Date []		dates	= new Date [limit];
+				
+				for (int count = 0; count < limit; ++count)
+					dates [count] = ToDate (nodes [count]);					
+				
+				for (int outer = 0; outer < (limit - 1); ++outer) {
+					for (int inner = outer + 1; inner < limit; ++inner) {
+						if (Equal (dates [outer], dates [inner]))
+							errorHandler ("305", nodes [inner],
+									"Duplicate observation date",
+									name, ToToken (nodes [inner]));
+						
+						result = false;
+					}
+				}
+				dates = null;
+			}
+			
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule11_B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			if (nodeIndex.HasTypeInformation) 
+				return (
+					  Rule11_B (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxAsianFeature"), errorHandler));					
+				
+			return (
+				  Rule11_B (name, nodeIndex.GetElementsByName ("asian"), errorHandler));
+		}
+		
+		private static bool Rule11_B (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool		result	= true;
+			
+			foreach (XmlElement context in list) {
+				XmlNodeList	nodes	= XPath.Paths (context, "observedRate", "date");
 				
 				int			limit	= nodes.Count;
 				Date []		dates	= new Date [limit];
@@ -870,18 +995,18 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule13 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule13_A (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			if (nodeIndex.HasTypeInformation) 
 				return (
-					  Rule13 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FXAverageRateOption"), errorHandler)
-					& Rule13 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxAverageRateOption"), errorHandler));					
+					  Rule13_A (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FXAverageRateOption"), errorHandler)
+					& Rule13_A (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxAverageRateOption"), errorHandler));					
 				
 			return (
-				  Rule13 (name, nodeIndex.GetElementsByName ("fxAverageRateOption"), errorHandler));
+				  Rule13_A (name, nodeIndex.GetElementsByName ("fxAverageRateOption"), errorHandler));
 		}
 		
-		private static bool Rule13 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		private static bool Rule13_A (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
 		{
 			bool		result	= true;
 			
@@ -926,18 +1051,106 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule14 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule13_B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			if (nodeIndex.HasTypeInformation) 
 				return (
-					  Rule14 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FXBarrier"), errorHandler)
-					& Rule14 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxBarrier"), errorHandler));					
+					  Rule13_B (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxAsianFeature"), errorHandler));					
 				
 			return (
-				  Rule14 (name, nodeIndex.GetElementsByName ("fxBarrier"), errorHandler));
+				  Rule13_B (name, nodeIndex.GetElementsByName ("asian"), errorHandler));
 		}
 		
-		private static bool Rule14 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		private static bool Rule13_B (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool		result	= true;
+			
+			foreach (XmlElement context in list) {
+				XmlNodeList	schedule	= XPath.Paths (context, "averageRateObservationDate", "date");
+				int			limit		= (schedule != null) ? schedule.Count : 0;
+				
+				if (limit == 0) continue;
+				
+				Date []		dates	= new Date [limit];
+				
+				for (int count = 0; count < limit; ++count)
+					dates [count] = ToDate (schedule [count]);					
+				
+				XmlNodeList	nodes	= XPath.Paths (context, "observedRate", "date");
+									
+				foreach (XmlElement observed in nodes) {
+					Date		date 	 = ToDate (observed);
+					
+					bool		found = false;
+					for (int match = 0; match < dates.Length; ++match) {
+						if (Equal (date, dates [match])) {
+							found = true;
+							break;
+						}
+					}
+					
+					if (!found) {
+						errorHandler ("305", observed,
+								"Observation date '" + ToToken (observed) +
+								"' does not match with a defined observationDate.",
+								name, ToToken (observed));
+						
+						result = false;
+					}
+				}
+				dates = null;
+			}
+			
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule14_A (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			if (nodeIndex.HasTypeInformation) 
+				return (
+					  Rule14_A (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FXBarrier"), errorHandler)
+					& Rule14_A (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxBarrier"), errorHandler));					
+				
+			return (
+				  Rule14_A (name, nodeIndex.GetElementsByName ("fxBarrier"), errorHandler));
+		}
+		
+		private static bool Rule14_A (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool		result	= true;
+			
+			foreach (XmlElement context in list) {
+				XmlElement	start	= XPath.Path (context, "observationStartDate");
+				XmlElement	end		= XPath.Path (context, "observationEndDate");
+				
+				if ((start == null) || (end == null) || 
+					LessOrEqual (ToDate (start), ToDate (end))) continue;
+									
+				errorHandler ("305", context,
+						"The observationStartDate must not be after the observationEndDate",
+						name, null);
+				
+				result = false;
+			}
+			
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule14_B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			if (nodeIndex.HasTypeInformation) 
+				return (
+					  Rule14_B (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxBarrierFeature"), errorHandler));					
+				
+			return (
+				  Rule14_B (name, nodeIndex.GetElementsByName ("barrier"), errorHandler));
+		}
+		
+		private static bool Rule14_B (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
 		{
 			bool		result	= true;
 			
