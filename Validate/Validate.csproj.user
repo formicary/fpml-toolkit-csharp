@@ -21,7 +21,7 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Project</StartAction>
-    <StartArguments>-schemaOnly ..\..\..\files\examples\fpml4-8</StartArguments>
+    <StartArguments>-schemaOnly ..\..\..\files\examples\fpml5-1\confirmation</StartArguments>
     <StartPage>
     </StartPage>
     <StartProgram>

@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -57,9 +57,14 @@ namespace HandCoded.Meta
 		/// <param name="targetRelease">The <see cerf="Release"/> to convert to.</param>
 		protected DirectConversion (Release sourceRelease, Release targetRelease)
 		{
-			(this.sourceRelease = sourceRelease).AddSourceConversion (this);
-			(this.targetRelease = targetRelease).AddTargetConversion (this);
-		}
+		    this.sourceRelease = sourceRelease;
+		    this.targetRelease = targetRelease;
+    		
+		    if ((sourceRelease != null) && (targetRelease != null)) {
+			    sourceRelease.AddSourceConversion (this);
+			    targetRelease.AddTargetConversion (this);
+		    }
+        }
 
 		/// <summary>
 		/// Returns a count of the number of stages in the conversion.

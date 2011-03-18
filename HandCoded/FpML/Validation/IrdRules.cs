@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -2435,9 +2435,12 @@ namespace HandCoded.FpML.Validation
 		/// <returns><c>true</c> if the string just contains digits.</returns>
 		private static bool IsNumber (string value)
 		{
-			foreach (char ch in value)
-				if (!((ch >= '0') && (ch <= '9'))) return (false);
-			return (value.Length > 0);
+            if (value != null) {
+			    foreach (char ch in value)
+				    if (!((ch >= '0') && (ch <= '9'))) return (false);
+			    return (value.Length > 0);
+            }
+            return (false);
 		}
 
 		/// <summary>

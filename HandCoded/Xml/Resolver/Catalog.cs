@@ -74,7 +74,7 @@ namespace HandCoded.Xml.Resolver
 		public override Object GetEntity (Uri absoluteUri, string role, Type ofObjectToReturn)
 		{
 //			Console.Error.WriteLine ("!! absoluteUri=" + absoluteUri);
-			return (File.Open (absoluteUri.LocalPath, FileMode.Open));
+			return (File.Open (absoluteUri.LocalPath.Replace ("%23", "#"), FileMode.Open));
 		}
 
 		/// <summary>
