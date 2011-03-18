@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -364,7 +364,12 @@ namespace HandCoded.Finance
 		/// <c>false</c> otherwise.</returns>
 		public bool Equals (Date other)
 		{
-			return (ToDateTime ().Equals (other.ToDateTime ()));
+            if ((timeZone == null) && (other.timeZone == null))
+                return (dateValue.Equals (other.dateValue));
+            else if ((timeZone != null) && (other.timeZone != null) && timeZone.Equals (other.timeZone))
+                return (dateValue.Equals (other.dateValue));
+            else
+			    return (ToDateTime ().Equals (other.ToDateTime ()));
 		}
 
 		/// <summary>
@@ -386,7 +391,12 @@ namespace HandCoded.Finance
 		/// <returns>An integer value indicating the relative ordering.</returns>
 		public int CompareTo (Date other)
 		{
-			return (ToDateTime ().CompareTo (other.ToDateTime ()));
+            if ((timeZone == null) && (other.timeZone == null))
+                return (dateValue.CompareTo (other.dateValue));
+            else if ((timeZone != null) && (other.timeZone != null) && timeZone.Equals (other.timeZone))
+                return (dateValue.CompareTo (other.dateValue));
+            else
+			    return (ToDateTime ().CompareTo (other.ToDateTime ()));
 		}
 
 		/// <summary>
