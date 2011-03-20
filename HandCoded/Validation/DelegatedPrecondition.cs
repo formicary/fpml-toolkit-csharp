@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,6 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
+using System.Collections.Generic;
 using System.Xml;
 
 using HandCoded.Xml;
@@ -22,7 +23,7 @@ namespace HandCoded.Validation
 	/// The <b>PreconditionDelegate</b> delegate is used to access a function
 	/// that will carry out a specific evaluation.
 	/// </summary>
-	public delegate bool PreconditionDelegate (NodeIndex nodeIndex);
+	public delegate bool PreconditionDelegate (NodeIndex nodeIndex, Dictionary<Precondition, bool> cache);
 
 	/// <summary>
 	/// The <b>DelegatedPrecondition</b> class provides an implementation of the
@@ -45,11 +46,12 @@ namespace HandCoded.Validation
 		/// indicated <see cref="NodeIndex"/>.
 		/// </summary>
 		/// <param name="nodeIndex">The <see cref="NodeIndex"/> of a <see cref="XmlDocument"/>.</param>
+        /// <param name="cache">A cache of previously evaluated precondition results.</param>
 		/// <returns>A <c>bool</c> value indicating the applicability of this
 		/// <b>Precondition</b> to the <see cref="XmlDocument"/>.</returns>
-		public override bool Evaluate (NodeIndex nodeIndex)
+		public override bool Evaluate (NodeIndex nodeIndex, Dictionary<Precondition, Boolean> cache)
 		{
-			return (function (nodeIndex));
+			return (function (nodeIndex, cache));
 		}
 
 		/// <summary>

@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -61,7 +61,7 @@ namespace HandCoded.Validation
 		/// <returns><c>true</c> if the <b>Rule</b> applies, <c>false</c> otherwise.</returns>
 		public bool AppliesTo (NodeIndex nodeIndex)
 		{
-			return (precondition.Evaluate (nodeIndex));
+			return (precondition.Evaluate (nodeIndex, new Dictionary<Precondition,bool> ()));
 		}
 
 		/// <summary>

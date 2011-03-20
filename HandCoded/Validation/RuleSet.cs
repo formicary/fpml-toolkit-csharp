@@ -1,4 +1,4 @@
-// Copyright (C),2005-2010 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -160,7 +160,7 @@ namespace HandCoded.Validation
 		protected override bool Validate (NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			bool		result = true;
-			Hashtable	cache  = new Hashtable ();
+			Dictionary<Precondition,bool> cache = new Dictionary<Precondition, bool> ();
 
 			foreach (Rule rule in rules.Values) {
 				Precondition		condition = rule.Precondition;
@@ -168,11 +168,11 @@ namespace HandCoded.Validation
 
 				// Determine if the precondition has be evaluated before 
 				if (!cache.ContainsKey (condition)) {
-					applies = condition.Evaluate (nodeIndex);
-					cache [condition] = applies ? trueObject : falseObject;
+					applies = condition.Evaluate (nodeIndex, cache);
+					cache [condition] = applies;
 				}
 				else
-					applies = (cache [condition] == trueObject);
+					applies = cache [condition];
 
 				if (applies) result &= rule.PerformValidation (nodeIndex, errorHandler);
 			}
@@ -184,16 +184,6 @@ namespace HandCoded.Validation
 		/// </summary>
 		private static ILog			logger
 			= LogManager.GetLogger (typeof (RuleSet));
-
-		/// <summary>
-		/// A static object used to represent a true outcome.
-		/// </summary>
-		private static readonly	object	trueObject	= new object ();
-
-		/// <summary>
-		/// A static object used to represent a false outcome.
-		/// </summary>
-		private static readonly object	falseObject	= new object ();
 
         /// <summary>
         /// The set of all named <c>RuleSet</c> instances.

@@ -1,4 +1,4 @@
-// Copyright (C),2005-2010 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -11,6 +11,7 @@
 // LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
@@ -48,20 +49,21 @@ namespace HandCoded.FpML.Validation
 		/// indicated <see cref="NodeIndex"/>.
 		/// </summary>
 		/// <param name="nodeIndex">The <see cref="NodeIndex"/> of a <see cref="XmlDocument"/></param>
+        /// <param name="cache">A cache of previously evaluated precondition results.</param>
 		/// <returns>A <see cref="bool"/> value indicating the applicability of this
 		/// <see cref="Precondition"/> to the <see cref="XmlDocument"/>.</returns>
- 	    public override bool Evaluate (NodeIndex nodeIndex)
+ 	    public override bool Evaluate (NodeIndex nodeIndex, Dictionary<Precondition, bool> cache)
 	    {
-		    Version             version;
+		    HandCoded.FpML.Util.Version version;
     		
 		    // Find the document version
 		    XmlNodeList list = nodeIndex.GetElementsByName ("FpML");
 		    if (list.Count > 0)
-			    version = new Version (((XmlElement) list [0]).GetAttribute ("version"));
+			    version = new HandCoded.FpML.Util.Version (((XmlElement) list [0]).GetAttribute ("version"));
 		    else {
 			    list = nodeIndex.GetAttributesByName ("fpmlVersion");
 			    if (list.Count > 0)
-				    version = new Version (((XmlAttribute) list [0]).Value);
+				    version = new HandCoded.FpML.Util.Version (((XmlAttribute) list [0]).Value);
 			    else
 				    return (false);
 		    }

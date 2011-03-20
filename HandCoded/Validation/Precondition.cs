@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,6 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
+using System.Collections.Generic;
 using System.Xml;
 
 using HandCoded.Xml;
@@ -74,9 +75,10 @@ namespace HandCoded.Validation
 		/// indicated <see cref="NodeIndex"/>.
 		/// </summary>
 		/// <param name="nodeIndex">The <see cref="NodeIndex"/> of a <see cref="XmlDocument"/>.</param>
+        /// <param name="cache">A cache of previously evaluated precondition results.</param>
 		/// <returns>A <c>bool</c> value indicating the applicability of this
 		/// <b>Precondition</b> to the <see cref="XmlDocument"/>.</returns>
-		public abstract bool Evaluate (NodeIndex nodeIndex);
+		public abstract bool Evaluate (NodeIndex nodeIndex, Dictionary<Precondition, bool> cache);
 
 		/// <summary>
 		/// The <b>UnaryPrecondition</b> class holds the reference to the
@@ -147,11 +149,19 @@ namespace HandCoded.Validation
 			/// indicated <see cref="NodeIndex"/>.
 			/// </summary>
 			/// <param name="nodeIndex">The <see cref="NodeIndex"/> of a <see cref="XmlDocument"/>.</param>
+            /// <param name="cache">A cache of previously evaluated precondition results.</param>
 			/// <returns>A <c>bool</c> value indicating the applicability of this
 			/// <b>Precondition</b> to the <see cref="XmlDocument"/>.</returns>
-			public override bool Evaluate (NodeIndex nodeIndex)
+			public override bool Evaluate (NodeIndex nodeIndex, Dictionary<Precondition, bool> cache)
 			{
-				return (!pre.Evaluate (nodeIndex));
+                bool    preValue;
+
+                if (!cache.ContainsKey (pre))
+                    cache [pre] = (preValue = pre.Evaluate (nodeIndex, cache));
+                else
+                    preValue = cache [pre];
+
+				return (!preValue);
 			}
 
 			/// <summary>
@@ -187,11 +197,29 @@ namespace HandCoded.Validation
 			/// indicated <see cref="NodeIndex"/>.
 			/// </summary>
 			/// <param name="nodeIndex">The <see cref="NodeIndex"/> of a <see cref="XmlDocument"/>.</param>
+            /// <param name="cache">A cache of previously evaluated precondition results.</param>
 			/// <returns>A <c>bool</c> value indicating the applicability of this
 			/// <b>Precondition</b> to the <see cref="XmlDocument"/>.</returns>
-			public override bool Evaluate (NodeIndex nodeIndex)
+			public override bool Evaluate (NodeIndex nodeIndex, Dictionary<Precondition, bool> cache)
 			{
-				return (lhs.Evaluate (nodeIndex) && rhs.Evaluate (nodeIndex));
+                bool    lhsValue;
+                bool    rhsValue;
+
+                if (!cache.ContainsKey (lhs))
+                    cache [lhs] = (lhsValue = lhs.Evaluate (nodeIndex, cache));
+                else
+                    lhsValue = cache [lhs];
+
+                if (!lhsValue) return (false);
+
+                if (!cache.ContainsKey (rhs))
+                    cache [rhs] = (rhsValue = rhs.Evaluate (nodeIndex, cache));
+                else
+                    rhsValue = cache [rhs];
+
+                if (!rhsValue) return (false);
+
+				return (true);
 			}
 
 			/// <summary>
@@ -227,11 +255,29 @@ namespace HandCoded.Validation
 			/// indicated <see cref="NodeIndex"/>.
 			/// </summary>
 			/// <param name="nodeIndex">The <see cref="NodeIndex"/> of a <see cref="XmlDocument"/>.</param>
+            /// <param name="cache">A cache of previously evaluated precondition results.</param>
 			/// <returns>A <c>bool</c> value indicating the applicability of this
 			/// <b>Precondition</b> to the <see cref="XmlDocument"/>.</returns>
-			public override bool Evaluate (NodeIndex nodeIndex)
+			public override bool Evaluate (NodeIndex nodeIndex, Dictionary<Precondition, bool> cache)
 			{
-				return (lhs.Evaluate (nodeIndex) || rhs.Evaluate (nodeIndex));
+                bool    lhsValue;
+                bool    rhsValue;
+
+                if (!cache.ContainsKey (lhs))
+                    cache [lhs] = (lhsValue = lhs.Evaluate (nodeIndex, cache));
+                else
+                    lhsValue = cache [lhs];
+
+                if (lhsValue) return (true);
+
+                if (!cache.ContainsKey (rhs))
+                    cache [rhs] = (rhsValue = rhs.Evaluate (nodeIndex, cache));
+                else
+                    rhsValue = cache [rhs];
+
+                if (rhsValue) return (true);
+
+				return (false);
 			}
 
 			/// <summary>
@@ -263,9 +309,10 @@ namespace HandCoded.Validation
 			/// indicated <see cref="NodeIndex"/>.
 			/// </summary>
 			/// <param name="nodeIndex">The <see cref="NodeIndex"/> of a <see cref="XmlDocument"/>.</param>
+            /// <param name="cache">A cache of previously evaluated precondition results.</param>
 			/// <returns>A <c>bool</c> value indicating the applicability of this
 			/// <b>Precondition</b> to the <see cref="XmlDocument"/>.</returns>
-			public override bool Evaluate (NodeIndex nodeIndex)
+			public override bool Evaluate (NodeIndex nodeIndex, Dictionary<Precondition, bool> cache)
 			{
 				return (true);
 			}
@@ -293,9 +340,10 @@ namespace HandCoded.Validation
 			/// indicated <see cref="NodeIndex"/>.
 			/// </summary>
 			/// <param name="nodeIndex">The <see cref="NodeIndex"/> of a <see cref="XmlDocument"/>.</param>
+            /// <param name="cache">A cache of previously evaluated precondition results.</param>
 			/// <returns>A <c>bool</c> value indicating the applicability of this
 			/// <b>Precondition</b> to the <see cref="XmlDocument"/>.</returns>
-			public override bool Evaluate (NodeIndex nodeIndex)
+			public override bool Evaluate (NodeIndex nodeIndex, Dictionary<Precondition, bool> cache)
 			{
 				return (false);
 			}

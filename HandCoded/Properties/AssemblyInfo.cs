@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("Open Source Version")]
 [assembly: AssemblyCompany("HandCoded Software Ltd")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("(C)2005-2009 HandCoded Software Ltd.")]
+[assembly: AssemblyCopyright("(C)2005-2011 HandCoded Software Ltd.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 
@@ -40,7 +40,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion ("1.4.*")]
+[assembly: AssemblyVersion ("1.6.*")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 

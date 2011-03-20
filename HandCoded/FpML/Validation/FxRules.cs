@@ -40,33 +40,43 @@ namespace HandCoded.FpML.Validation
 			}
 		}
 
-        /// <summary>
-        /// A <see cref="Precondition"/> instance that detect documents that could
-	    /// contains old style FX products.
-        /// </summary>
-	    public static readonly Precondition OLD_FX
-		    = Precondition.Or (Preconditions.R3_0, Preconditions.R4_X);
+ 	    private static readonly Precondition	FX_PRODUCT
+		    = new ContentPrecondition (
+				new string [] { "fxSingleLeg", "fxSwap", "fxSimpleOption",
+						"fxAverageRateOption", "fxBarrierOption", "fxDigitalOption",
+						"termDeposit" },
+				new string [] { "FxSingleLeg", "FXSingleLeg", "FxSwap", "FXSwap",
+						"FxSimpleOption", "FXSimpleOption", "FxOption",
+						"FxAveragerateOption", "FXAverageRateOption",
+						"FxBarrierOption", "FXBarrierOption",
+						"FxDigitalOption", "FXDigitalOption", "TermDeposit" }
+				);
 
-        /// <summary>
-        /// A <see cref="Precondition"/> instance that detect documents that could
-        /// contains new style FX products.
-        /// </summary>
-	    public static readonly Precondition NEW_FX
-		    = Preconditions.R5_1__LATER;
-
-	    /// <summary>
-	    /// A <see cref="Precondition"/> instance that detect documents that could
-        /// contains FX products.
-	    /// </summary>
-	    public static readonly Precondition ANY_FX
-		    = Precondition.Or (OLD_FX, NEW_FX);
+	    private static readonly Precondition 	R3_0__LATER
+		    = Precondition.And (FX_PRODUCT, Preconditions.R3_0__LATER);
+	
+	    private static readonly Precondition 	R4_0__LATER
+		    = Precondition.And (FX_PRODUCT, Preconditions.R4_0__LATER);
+	
+	    private static readonly Precondition 	R4_2__LATER
+		    = Precondition.And (FX_PRODUCT, Preconditions.R4_2__LATER);
+    	
+	    private static readonly Precondition 	R3_0__R4_X
+		    = Precondition.And (FX_PRODUCT,
+				    Precondition.Or (Preconditions.R3_0, Preconditions.R4_X));
+    	
+	    private static readonly Precondition 	R4_0__R4_X
+		    = Precondition.And (FX_PRODUCT, Preconditions.R4_X);
+    	
+	    private static readonly Precondition 	R5_1__LATER
+		    = Precondition.And (FX_PRODUCT, Preconditions.R5_1__LATER);
         
         /// <summary>
 	    /// A <see cref="Rule"/> that ensures that the rate is positive.
 		/// </summary>
         /// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE01
-			= new DelegatedRule (OLD_FX, "fx-1", new RuleDelegate (Rule01));
+			= new DelegatedRule (R3_0__R4_X, "fx-1", new RuleDelegate (Rule01));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures that if forwardPoints exists then
@@ -74,7 +84,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE02
-			= new DelegatedRule (OLD_FX, "fx-2", new RuleDelegate (Rule02));
+			= new DelegatedRule (R3_0__R4_X, "fx-2", new RuleDelegate (Rule02));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures that if both forwardPoints and spotRate
@@ -82,7 +92,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE03
-			= new DelegatedRule (ANY_FX, "fx-3", new RuleDelegate (Rule03));
+			= new DelegatedRule (R3_0__LATER, "fx-3", new RuleDelegate (Rule03));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures sideRates/baseCurrency must be neither
@@ -90,7 +100,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE04
-			= new DelegatedRule (OLD_FX, "fx-4", new RuleDelegate (Rule04));
+			= new DelegatedRule (R3_0__R4_X, "fx-4", new RuleDelegate (Rule04));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures sideRates/currency1SideRate/currency
@@ -98,7 +108,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE05
-			= new DelegatedRule (OLD_FX, "fx-5", new RuleDelegate (Rule05));
+			= new DelegatedRule (R3_0__R4_X, "fx-5", new RuleDelegate (Rule05));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures sideRates/currency2SideRate/currency
@@ -106,14 +116,14 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE06
-			= new DelegatedRule (OLD_FX, "fx-6", new RuleDelegate (Rule06));
+			= new DelegatedRule (R3_0__R4_X, "fx-6", new RuleDelegate (Rule06));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures triggerRate is positive.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE07
-			= new DelegatedRule (OLD_FX, "fx-7", new RuleDelegate (Rule07));
+			= new DelegatedRule (R3_0__R4_X, "fx-7", new RuleDelegate (Rule07));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures if observationStartDate and observationEndDate
@@ -121,7 +131,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE08_A
-			= new DelegatedRule (OLD_FX, "fx-8[A]", new RuleDelegate (Rule08_A));
+			= new DelegatedRule (R3_0__R4_X, "fx-8[A]", new RuleDelegate (Rule08_A));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures if observationStartDate and observationEndDate
@@ -129,7 +139,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 5.1 and later.</remarks>
 		public static readonly Rule	RULE08_B
-			= new DelegatedRule (NEW_FX, "fx-8[B]", new RuleDelegate (Rule08_B));
+			= new DelegatedRule (R5_1__LATER, "fx-8[B]", new RuleDelegate (Rule08_B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures if observationStartDate and observationEndDate
@@ -137,7 +147,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE09
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-9", new RuleDelegate (Rule09));
+			= new DelegatedRule (R3_0__LATER, "fx-9", new RuleDelegate (Rule09));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the observation period defined by
@@ -146,21 +156,21 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE10
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-10", new RuleDelegate (Rule10));
+			= new DelegatedRule (R3_0__LATER, "fx-10", new RuleDelegate (Rule10));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures each observationDate is unique.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE11_A
-			= new DelegatedRule (OLD_FX, "fx-11[A]", new RuleDelegate (Rule11_A));
+			= new DelegatedRule (R3_0__R4_X, "fx-11[A]", new RuleDelegate (Rule11_A));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures each observationDate is unique.
 		/// </summary>
 		/// <remarks>Applies to FpML 5.1 and later.</remarks>
 		public static readonly Rule	RULE11_B
-			= new DelegatedRule (NEW_FX, "fx-11[B]", new RuleDelegate (Rule11_B));
+			= new DelegatedRule (R5_1__LATER, "fx-11[B]", new RuleDelegate (Rule11_B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that each observationDate matches one defined
@@ -168,21 +178,21 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE12
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-12", new RuleDelegate (Rule12));
+			= new DelegatedRule (R3_0__LATER, "fx-12", new RuleDelegate (Rule12));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures each observationDate is unique.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE13_A
-			= new DelegatedRule (OLD_FX, "fx-13[A]", new RuleDelegate (Rule13_A));
+			= new DelegatedRule (R3_0__R4_X, "fx-13[A]", new RuleDelegate (Rule13_A));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures each observationDate is unique.
 		/// </summary>
 		/// <remarks>Applies to FpML 5.1 and later.</remarks>
 		public static readonly Rule	RULE13_B
-			= new DelegatedRule (NEW_FX, "fx-13[B]", new RuleDelegate (Rule13_B));
+			= new DelegatedRule (R5_1__LATER, "fx-13[B]", new RuleDelegate (Rule13_B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures if observationStartDate and observationEndDate
@@ -190,7 +200,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 up to 5.0.</remarks>
 		public static readonly Rule	RULE14_A
-			= new DelegatedRule (OLD_FX, "fx-14[A]", new RuleDelegate (Rule14_A));
+			= new DelegatedRule (R3_0__R4_X, "fx-14[A]", new RuleDelegate (Rule14_A));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures if observationStartDate and observationEndDate
@@ -198,49 +208,49 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 5.1 and later.</remarks>
 		public static readonly Rule	RULE14_B
-			= new DelegatedRule (NEW_FX, "fx-14[B]", new RuleDelegate (Rule14_B));
+			= new DelegatedRule (R5_1__LATER, "fx-14[B]", new RuleDelegate (Rule14_B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures spotRate is positive if it exists.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE15
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-15", new RuleDelegate (Rule15));
+			= new DelegatedRule (R3_0__LATER, "fx-15", new RuleDelegate (Rule15));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures spotRate is positive if it exists.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE16
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-16", new RuleDelegate (Rule16));
+			= new DelegatedRule (R3_0__LATER, "fx-16", new RuleDelegate (Rule16));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures triggerRate is positive.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE17
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-17", new RuleDelegate (Rule17));
+			= new DelegatedRule (R3_0__LATER, "fx-17", new RuleDelegate (Rule17));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures payer and reciever of an FxLeg are correct.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE18
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-18", new RuleDelegate (Rule18));
+			= new DelegatedRule (R3_0__LATER, "fx-18", new RuleDelegate (Rule18));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures exchanged currencies in an FxLeg are different.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE19
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-19", new RuleDelegate (Rule19));
+			= new DelegatedRule (R3_0__LATER, "fx-19", new RuleDelegate (Rule19));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures split settlement dates are different.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE20
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-20", new RuleDelegate (Rule20));
+			= new DelegatedRule (R3_0__LATER, "fx-20", new RuleDelegate (Rule20));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures non-deliverable forwards contains
@@ -248,35 +258,35 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE21
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-21", new RuleDelegate (Rule21));
+			= new DelegatedRule (R3_0__LATER, "fx-21", new RuleDelegate (Rule21));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures buyer, seller, payer and reciever are correct.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE22
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-22", new RuleDelegate (Rule22));
+			= new DelegatedRule (R3_0__LATER, "fx-22", new RuleDelegate (Rule22));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the put and call currencies are different.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE23
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-23", new RuleDelegate (Rule23));
+			= new DelegatedRule (R3_0__LATER, "fx-23", new RuleDelegate (Rule23));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures rate is positive.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE24
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-24", new RuleDelegate (Rule24));
+			= new DelegatedRule (R3_0__LATER, "fx-24", new RuleDelegate (Rule24));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures two or more legs are present.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE25
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-25", new RuleDelegate (Rule25));
+			= new DelegatedRule (R3_0__LATER, "fx-25", new RuleDelegate (Rule25));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures if two legs are present they must have
@@ -284,21 +294,21 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE26
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-26", new RuleDelegate (Rule26));
+			= new DelegatedRule (R3_0__LATER, "fx-26", new RuleDelegate (Rule26));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures two different currencies are specified.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE27
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-27", new RuleDelegate (Rule27));
+			= new DelegatedRule (R3_0__LATER, "fx-27", new RuleDelegate (Rule27));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures triggerRate is positive.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE28
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-28", new RuleDelegate (Rule28));
+			= new DelegatedRule (R3_0__LATER, "fx-28", new RuleDelegate (Rule28));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures that if forwardPoints exists then
@@ -306,7 +316,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE29
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-29", new RuleDelegate (Rule29));
+			= new DelegatedRule (R3_0__LATER, "fx-29", new RuleDelegate (Rule29));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures that if both forwardPoints and spotRate
@@ -314,7 +324,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE30
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-30", new RuleDelegate (Rule30));
+			= new DelegatedRule (R3_0__LATER, "fx-30", new RuleDelegate (Rule30));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures that side rates are obtained relative
@@ -322,7 +332,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE31
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-31", new RuleDelegate (Rule31));
+			= new DelegatedRule (R3_0__LATER, "fx-31", new RuleDelegate (Rule31));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the initial payer and reciever
@@ -330,84 +340,84 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE32
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-32", new RuleDelegate (Rule32));
+			= new DelegatedRule (R3_0__LATER, "fx-32", new RuleDelegate (Rule32));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the maturity date is after the start date.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE33
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-33", new RuleDelegate (Rule33));
+			= new DelegatedRule (R3_0__LATER, "fx-33", new RuleDelegate (Rule33));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the principal amount is positive.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE34
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-34", new RuleDelegate (Rule34));
+			= new DelegatedRule (R3_0__LATER, "fx-34", new RuleDelegate (Rule34));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the fixed rate is positive.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE35
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-35", new RuleDelegate (Rule35));
+			= new DelegatedRule (R3_0__LATER, "fx-35", new RuleDelegate (Rule35));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures expiry date is after trade date.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE36
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-36", new RuleDelegate (Rule36));
+			= new DelegatedRule (R3_0__LATER, "fx-36", new RuleDelegate (Rule36));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures expiry date is after contract trade date.
 		/// </summary>
 		/// <remarks>Applies to FpML 4.2 and later.</remarks>
 		public static readonly Rule RULE36B
-			= new DelegatedRule (Preconditions.R4_2__LATER, "fx-36b", new RuleDelegate (Rule36B));
+			= new DelegatedRule (R4_2__LATER, "fx-36b", new RuleDelegate (Rule36B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures expiry date is after trade date.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE37
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-37", new RuleDelegate (Rule37));
+			= new DelegatedRule (R3_0__LATER, "fx-37", new RuleDelegate (Rule37));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures expiry date is after contract trade date.
 		/// </summary>
 		/// <remarks>Applies to FpML 4.2 and later.</remarks>
 		public static readonly Rule RULE37B
-			= new DelegatedRule (Preconditions.R4_2__LATER, "fx-37b", new RuleDelegate (Rule37B));
+			= new DelegatedRule (R4_2__LATER, "fx-37b", new RuleDelegate (Rule37B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures expiry date is after trade date.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE38
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-38", new RuleDelegate (Rule38));
+			= new DelegatedRule (R3_0__LATER, "fx-38", new RuleDelegate (Rule38));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures expiry date is after contract trade date.
 		/// </summary>
 		/// <remarks>Applies to FpML 4.2 and later.</remarks>
 		public static readonly Rule RULE38B
-			= new DelegatedRule (Preconditions.R4_2__LATER, "fx-38b", new RuleDelegate (Rule38B));
+			= new DelegatedRule (R4_2__LATER, "fx-38b", new RuleDelegate (Rule38B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures value date is after trade date.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE39
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-39", new RuleDelegate (Rule39));
+			= new DelegatedRule (R3_0__LATER, "fx-39", new RuleDelegate (Rule39));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures value date is after contract trade date.
 		/// </summary>
 		/// <remarks>Applies to FpML 4.2 and later.</remarks>
 		public static readonly Rule RULE39B
-			= new DelegatedRule (Preconditions.R4_2__LATER, "fx-39b", new RuleDelegate (Rule39B));
+			= new DelegatedRule (R4_2__LATER, "fx-39b", new RuleDelegate (Rule39B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that all FX swap value dates are after the
@@ -415,7 +425,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE40
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-40", new RuleDelegate (Rule40));
+			= new DelegatedRule (R3_0__LATER, "fx-40", new RuleDelegate (Rule40));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that all FX swap value dates are after the
@@ -423,14 +433,14 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 4.2 and later.</remarks>
 		public static readonly Rule RULE40B
-			= new DelegatedRule (Preconditions.R4_2__LATER, "fx-40b", new RuleDelegate (Rule40B));
+			= new DelegatedRule (R4_2__LATER, "fx-40b", new RuleDelegate (Rule40B));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures triggerRate is positive.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE41
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-41", new RuleDelegate (Rule41));
+			= new DelegatedRule (R3_0__LATER, "fx-41", new RuleDelegate (Rule41));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures each averageRateObservationDate/observationDate
@@ -438,28 +448,28 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE42
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-42", new RuleDelegate (Rule42));
+			= new DelegatedRule (R3_0__LATER, "fx-42", new RuleDelegate (Rule42));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the put and call currencies are different.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE43
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-43", new RuleDelegate (Rule43));
+			= new DelegatedRule (R3_0__LATER, "fx-43", new RuleDelegate (Rule43));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures buyer, seller, payer and reciever are correct.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE44
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-44", new RuleDelegate (Rule44));
+			= new DelegatedRule (R3_0__LATER, "fx-44", new RuleDelegate (Rule44));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures buyer, seller, payer and reciever are correct.
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE45
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-45", new RuleDelegate (Rule45));
+			= new DelegatedRule (R3_0__LATER, "fx-45", new RuleDelegate (Rule45));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the side rates definition for currency1
@@ -467,14 +477,14 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE46
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-46", new RuleDelegate (Rule46));
+			= new DelegatedRule (R3_0__LATER, "fx-46", new RuleDelegate (Rule46));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that
 		/// </summary>
 		/// <remarks>Applies to FpML 3.0 and later.</remarks>
 		public static readonly Rule	RULE47
-			= new DelegatedRule (Preconditions.R3_0__LATER, "fx-47", new RuleDelegate (Rule47));
+			= new DelegatedRule (R3_0__LATER, "fx-47", new RuleDelegate (Rule47));
 
 		/// <summary>
 		/// The <see cref="RuleSet"/> used to hold the <see cref="Rule"/>

@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -12,6 +12,7 @@
 // OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 
 using System;
+using System.Collections.Generic;
 using System.Xml;
 
 using HandCoded.Meta;
@@ -40,10 +41,11 @@ namespace HandCoded.FpML.Validation
 		/// Evaluates this <see cref="Precondition"/> against the contents of the
 		/// indicated <see cref="NodeIndex"/>.
 		/// </summary>
-		/// <param name="nodeIndex">The <see cref="NodeIndex"/> of a <see cref="XmlDocument"/></param>
+		/// <param name="nodeIndex">The <see cref="NodeIndex"/> of a <see cref="XmlDocument"/>.</param>
+        /// <param name="cache">A cache of previously evaluated precondition results.</param>
 		/// <returns>A <see cref="bool"/> value indicating the applicability of this
 		/// <see cref="Precondition"/> to the <see cref="XmlDocument"/>.</returns>
-		public override bool Evaluate (NodeIndex nodeIndex)
+		public override bool Evaluate (NodeIndex nodeIndex, Dictionary<Precondition, bool> cache)
 		{
 			foreach (string rootElement in release.RootElements) {
 				XmlNodeList list = nodeIndex.GetElementsByName (rootElement);

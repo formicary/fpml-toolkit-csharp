@@ -97,6 +97,7 @@
     <Compile Include="FpML\Validation\FxRules.cs" />
     <Compile Include="FpML\Validation\LoanRules.cs" />
     <Compile Include="FpML\Validation\PricingAndRiskRules.cs" />
+    <Compile Include="FpML\Validation\ContentPrecondition.cs" />
     <Compile Include="FpML\Validation\ReferenceRule.cs" />
     <Compile Include="FpML\Validation\ReferenceRules.cs" />
     <Compile Include="FpML\Validation\VersionRangePrecondition.cs" />
@@ -227,9 +228,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FpML\Validation\DataTypeRules.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FpML\Validation\ElementPrecondition.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FpML\Validation\EqdRules.cs">
