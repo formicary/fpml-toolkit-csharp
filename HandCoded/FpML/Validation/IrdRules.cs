@@ -36,48 +36,66 @@ namespace HandCoded.FpML.Validation
 			}
 		}
 
-		/// <summary>
+        /// <summary>
+        /// A <see cref="Precondition"/> instance that detect documents containing
+        /// at least one interest rate stream.
+        /// </summary>
+        private static readonly Precondition INTEREST_RATE_STREAM
+            = new ContentPrecondition (
+                new string [] { "swapStream", "capFloorStream" },
+                new string [] { "InterestRateStream" });
+
+        /// <summary>
+        /// A <see cref="Precondition"/> instance that detect documents containing
+        /// at least one set of calculation period dates.
+        /// </summary>
+        private static readonly Precondition CALCULATION_PERIOD_DATES
+            = new ContentPrecondition (
+                new string [] { "calculationPeriodDates" },
+                new string [] { "CalculationPeriodDates" });
+
+        /// <summary>
 		/// A <see cref="Rule"/> that ensures reset dates are present for
 		/// floating rate interest streams.
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE01
-			= new DelegatedRule ("ird-1", new RuleDelegate (Rule01));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-1", new RuleDelegate (Rule01));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures payment frequency is a multiple
 		/// of the calculation frequency.
 		/// </summary>
 		public static readonly Rule	RULE02
-			= new DelegatedRule ("ird-2", new RuleDelegate (Rule02));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-2", new RuleDelegate (Rule02));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the first payment date matches
 		/// a calculation date.
 		/// </summary>
 		public static readonly Rule	RULE03
-			= new DelegatedRule ("ird-3", new RuleDelegate (Rule03));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-3", new RuleDelegate (Rule03));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the last regular payment date
 		/// matchs a calculation date.
 		/// </summary>
 		public static readonly Rule	RULE04
-			= new DelegatedRule ("ird-4", new RuleDelegate (Rule04));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-4", new RuleDelegate (Rule04));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures calculation frequency is a
 		/// multiple of the reset frequency.
 		/// </summary>
 		public static readonly Rule	RULE05
-			= new DelegatedRule ("ird-5", new RuleDelegate (Rule05));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-5", new RuleDelegate (Rule05));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the first payment date is
 		/// after the effective date.
 		/// </summary>
 		public static readonly Rule	RULE06
-			= new DelegatedRule ("ird-6", new RuleDelegate (Rule06));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-6", new RuleDelegate (Rule06));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures compounding method is present
@@ -85,7 +103,7 @@ namespace HandCoded.FpML.Validation
 		/// frequency.
 		/// </summary>
 		public static readonly Rule	RULE07
-			= new DelegatedRule ("ird-7", new RuleDelegate (Rule07));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-7", new RuleDelegate (Rule07));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the payer and receiver are not
@@ -93,14 +111,14 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Duplicated by one of the shared rules.</remarks>
 		public static readonly Rule	RULE08
-			= new DelegatedRule ("ird-8", new RuleDelegate (Rule08));
+            = new DelegatedRule(INTEREST_RATE_STREAM, "ird-8", new RuleDelegate (Rule08));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures compounding method is present
 		/// only when reset dates are defined.
 		/// </summary>
 		public static readonly Rule	RULE09
-			= new DelegatedRule ("ird-9", new RuleDelegate (Rule09));
+            = new DelegatedRule(INTEREST_RATE_STREAM, "ird-9", new RuleDelegate (Rule09));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the calculation period start
@@ -108,7 +126,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE10
-			= new DelegatedRule ("ird-10", new RuleDelegate (Rule10));
+			= new DelegatedRule (CALCULATION_PERIOD_DATES, "ird-10", new RuleDelegate (Rule10));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the calculation period end
@@ -116,7 +134,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE11
-			= new DelegatedRule ("ird-11", new RuleDelegate (Rule11));
+			= new DelegatedRule (CALCULATION_PERIOD_DATES, "ird-11", new RuleDelegate (Rule11));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the calculation period divides
@@ -124,7 +142,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE12
-			= new DelegatedRule ("ird-12", new RuleDelegate (Rule12));
+			= new DelegatedRule (CALCULATION_PERIOD_DATES, "ird-12", new RuleDelegate (Rule12));
 
 		// Rule 13 was unlucky for some.
 
@@ -134,15 +152,15 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE14
-			= new DelegatedRule ("ird-14", new RuleDelegate (Rule14));
+			= new DelegatedRule (CALCULATION_PERIOD_DATES, "ird-14", new RuleDelegate (Rule14));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the unadjusted termination date
 		/// is after the unadjusted first period date.
 		/// </summary>
-		/// <remarks>Applies to all FpML releases.</remarks>
+		/// <remarks>Applies to all FpML releases. (REMOVED)</remarks>
 		public static readonly Rule	RULE15
-			= new DelegatedRule ("ird-15", new RuleDelegate (Rule15));
+			= new DelegatedRule (CALCULATION_PERIOD_DATES, "ird-15", new RuleDelegate (Rule15));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the unadjusted termination date
@@ -150,7 +168,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE16
-			= new DelegatedRule ("ird-16", new RuleDelegate (Rule16));
+			= new DelegatedRule (CALCULATION_PERIOD_DATES, "ird-16", new RuleDelegate (Rule16));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the unadjusted termination date
@@ -158,7 +176,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE17
-			= new DelegatedRule ("ird-17", new RuleDelegate (Rule17));
+			= new DelegatedRule (CALCULATION_PERIOD_DATES, "ird-17", new RuleDelegate (Rule17));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the unadjusted last regular period
@@ -166,15 +184,15 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE18
-			= new DelegatedRule ("ird-18", new RuleDelegate (Rule18));
+			= new DelegatedRule (CALCULATION_PERIOD_DATES, "ird-18", new RuleDelegate (Rule18));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the unadjusted last regular period
 		/// end date is after the unadjusted first period start date.
 		/// </summary>
-		/// <remarks>Applies to all FpML releases.</remarks>
+		/// <remarks>Applies to all FpML releases. (REMOVED)</remarks>
 		public static readonly Rule	RULE19
-			= new DelegatedRule ("ird-19", new RuleDelegate (Rule19));
+			= new DelegatedRule (CALCULATION_PERIOD_DATES, "ird-19", new RuleDelegate (Rule19));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the unadjusted last regular period
@@ -182,7 +200,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE20
-			= new DelegatedRule ("ird-20", new RuleDelegate (Rule20));
+			= new DelegatedRule (CALCULATION_PERIOD_DATES, "ird-20", new RuleDelegate (Rule20));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the unadjusted first period state
@@ -190,7 +208,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE21
-			= new DelegatedRule ("ird-21", new RuleDelegate (Rule21));
+			= new DelegatedRule (CALCULATION_PERIOD_DATES, "ird-21", new RuleDelegate (Rule21));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the unadjusted first period start
@@ -198,7 +216,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE22
-			= new DelegatedRule ("ird-22", new RuleDelegate (Rule22));
+			= new DelegatedRule (CALCULATION_PERIOD_DATES, "ird-22", new RuleDelegate (Rule22));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the initial stub is only present
@@ -421,7 +439,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE50
-			= new DelegatedRule ("ird-50", new RuleDelegate (Rule50));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-50", new RuleDelegate (Rule50));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the step dates are valid
@@ -429,7 +447,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE51
-			= new DelegatedRule ("ird-51", new RuleDelegate (Rule51));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-51", new RuleDelegate (Rule51));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the step dates are valid
@@ -437,7 +455,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE52
-			= new DelegatedRule ("ird-52", new RuleDelegate (Rule52));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-52", new RuleDelegate (Rule52));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the step dates are valid
@@ -445,7 +463,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE53
-			= new DelegatedRule ("ird-53", new RuleDelegate (Rule53));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-53", new RuleDelegate (Rule53));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the step dates are valid
@@ -453,7 +471,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE54
-			= new DelegatedRule ("ird-54", new RuleDelegate (Rule54));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-54", new RuleDelegate (Rule54));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the calculation period dates
@@ -496,7 +514,7 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE59
-			= new DelegatedRule ("ird-59", new RuleDelegate (Rule59));
+			= new DelegatedRule (INTEREST_RATE_STREAM, "ird-59", new RuleDelegate (Rule59));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures when the calculation period is "1T"
@@ -529,7 +547,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule01 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (
+            if (nodeIndex.HasTypeInformation)
+                return (Rule01 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "InterestRateStream"), errorHandler));
+
+            return (
 				  Rule01 (name, nodeIndex.GetElementsByName ("swapStream"), errorHandler)
 				& Rule01 (name, nodeIndex.GetElementsByName ("capFloorStream"), errorHandler));
 		}
@@ -548,7 +569,7 @@ namespace HandCoded.FpML.Validation
 
 				errorHandler ("305", context,
 					"resetDates must be present if and only if a floatingRateCalculation " +
-					"element is present in calculationPeriodAmount",
+					"or inflationRateCalculation element is present in calculationPeriodAmount",
 					name, null);
 
 				result = false;
@@ -560,7 +581,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule02 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (
+            if (nodeIndex.HasTypeInformation)
+                return (Rule01(name, nodeIndex.GetElementsByType(DetermineNamespace(nodeIndex), "InterestRateStream"), errorHandler));
+
+            return (
 				  Rule02 (name, nodeIndex.GetElementsByName ("swapStream"), errorHandler)
 				& Rule02 (name, nodeIndex.GetElementsByName ("capFloorStream"), errorHandler));
 		}
@@ -597,7 +621,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule03 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (
+            if (nodeIndex.HasTypeInformation)
+                return (Rule01(name, nodeIndex.GetElementsByType(DetermineNamespace(nodeIndex), "InterestRateStream"), errorHandler));
+
+            return (
 				  Rule03 (name, nodeIndex.GetElementsByName ("swapStream"), errorHandler)
 				& Rule03 (name, nodeIndex.GetElementsByName ("capFloorStream"), errorHandler));
 		}
@@ -640,7 +667,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule04 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (
+            if (nodeIndex.HasTypeInformation)
+                return (Rule01(name, nodeIndex.GetElementsByType(DetermineNamespace(nodeIndex), "InterestRateStream"), errorHandler));
+
+            return (
 				  Rule04 (name, nodeIndex.GetElementsByName ("swapStream"), errorHandler)
 				& Rule04 (name, nodeIndex.GetElementsByName ("capFloorStream"), errorHandler));
 		}
@@ -683,7 +713,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule05 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (
+            if (nodeIndex.HasTypeInformation)
+                return (Rule01(name, nodeIndex.GetElementsByType(DetermineNamespace(nodeIndex), "InterestRateStream"), errorHandler));
+
+            return (
 				  Rule05 (name, nodeIndex.GetElementsByName ("swapStream"), errorHandler)
 				& Rule05 (name, nodeIndex.GetElementsByName ("capFloorStream"), errorHandler));
 		}
@@ -721,7 +754,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule06 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (
+            if (nodeIndex.HasTypeInformation)
+                return (Rule01(name, nodeIndex.GetElementsByType(DetermineNamespace(nodeIndex), "InterestRateStream"), errorHandler));
+
+            return (
 				  Rule06 (name, nodeIndex.GetElementsByName ("swapStream"), errorHandler)
 				& Rule06 (name, nodeIndex.GetElementsByName ("capFloorStream"), errorHandler));
 		}
@@ -753,7 +789,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule07 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (
+            if (nodeIndex.HasTypeInformation)
+                return (Rule01(name, nodeIndex.GetElementsByType(DetermineNamespace(nodeIndex), "InterestRateStream"), errorHandler));
+
+            return (
 				  Rule07 (name, nodeIndex.GetElementsByName ("swapStream"), errorHandler)
 				& Rule07 (name, nodeIndex.GetElementsByName ("capFloorStream"), errorHandler));
 		}
@@ -796,7 +835,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule08 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (
+            if (nodeIndex.HasTypeInformation)
+                return (Rule01(name, nodeIndex.GetElementsByType(DetermineNamespace(nodeIndex), "InterestRateStream"), errorHandler));
+
+            return (
 				  Rule08 (name, nodeIndex.GetElementsByName ("swapStream"), errorHandler)
 				& Rule08 (name, nodeIndex.GetElementsByName ("capFloorStream"), errorHandler));
 		}
@@ -826,7 +868,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule09 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (
+            if (nodeIndex.HasTypeInformation)
+                return (Rule01(name, nodeIndex.GetElementsByType(DetermineNamespace(nodeIndex), "InterestRateStream"), errorHandler));
+
+            return (
 				  Rule09 (name, nodeIndex.GetElementsByName ("swapStream"), errorHandler)
 				& Rule09 (name, nodeIndex.GetElementsByName ("capFloorStream"), errorHandler));
 		}
@@ -853,11 +898,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule10 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        private static bool Rule10(string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule10 (name, nodeIndex.GetElementsByType (DetermineNamespace(nodeIndex), "CalculationPeriodDates"), errorHandler));
+
+            return (
+                  Rule10 (name, nodeIndex.GetElementsByName("calculationPeriodDates"), errorHandler));
+        }
+
+		private static bool Rule10 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
 		{
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
+			foreach (XmlElement context in list) {
 				XmlElement rollConvention	= XPath.Path (context, "calculationPeriodFrequency", "rollConvention");
 				
 				if (!IsNumber (ToToken (rollConvention))) continue;
@@ -887,11 +941,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule11 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule11(string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule11 (name, nodeIndex.GetElementsByType(DetermineNamespace(nodeIndex), "CalculationPeriodDates"), errorHandler));
+
+            return (
+                  Rule11 (name, nodeIndex.GetElementsByName("calculationPeriodDates"), errorHandler));
+        }
+
+        private static bool Rule11 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
+			foreach (XmlElement context in list) {
 				XmlElement	rollConvention	= XPath.Path (context, "calculationPeriodFrequency", "rollConvention");
 
                 if (!IsNumber (ToToken (rollConvention)))
@@ -922,11 +985,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule12 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule12 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule12 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "CalculationPeriodDates"), errorHandler));
+
+            return (
+                  Rule12 (name, nodeIndex.GetElementsByName ("calculationPeriodDates"), errorHandler));
+        }
+
+        private static bool Rule12 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
+			foreach (XmlElement context in list) {
 				XmlElement		start	= XPath.Path (context, "firstRegularPeriodStartDate");
 				XmlElement		end		= XPath.Path (context, "lastRegularPeriodEndDate");
 				XmlElement		period	= XPath.Path (context, "calculationPeriodFrequency");
@@ -956,11 +1028,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule14 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule14 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule14 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "CalculationPeriodDates"), errorHandler));
+
+            return (
+                  Rule14 (name, nodeIndex.GetElementsByName ("calculationPeriodDates"), errorHandler));
+        }
+
+        private static bool Rule14 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
+			foreach (XmlElement context in list) {
 				XmlElement		termination	= XPath.Path (context, "terminationDate", "unadjustedDate");
 				XmlElement		effective	= XPath.Path (context, "effectiveDate", "unadjustedDate");
 
@@ -979,11 +1060,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule15 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule15 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule15 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "CalculationPeriodDates"), errorHandler));
+
+            return (
+                  Rule15 (name, nodeIndex.GetElementsByName ("calculationPeriodDates"), errorHandler));
+        }
+
+        private static bool Rule15 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
+			foreach (XmlElement context in list) {
 				XmlElement		termination	= XPath.Path (context, "terminationDate", "unadjustedDate");
 				XmlElement		periodStart	= XPath.Path (context, "firstPeriodStartDate", "unadjustedDate");
 
@@ -1002,11 +1092,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule16 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule16 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule16 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "CalculationPeriodDates"), errorHandler));
+
+            return (
+                  Rule16 (name, nodeIndex.GetElementsByName ("calculationPeriodDates"), errorHandler));
+        }
+
+        private static bool Rule16 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
+			foreach (XmlElement context in list) {
 				XmlElement		termination	= XPath.Path (context, "terminationDate", "unadjustedDate");
 				XmlElement		periodStart	= XPath.Path (context, "firstRegularPeriodStartDate");
 
@@ -1025,11 +1124,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule17 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule17 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule17 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "CalculationPeriodDates"), errorHandler));
+
+            return (
+                  Rule17 (name, nodeIndex.GetElementsByName ("calculationPeriodDates"), errorHandler));
+        }
+
+        private static bool Rule17 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
+			foreach (XmlElement context in list) {
 				XmlElement		termination	= XPath.Path (context, "terminationDate", "unadjustedDate");
 				XmlElement		periodEnd	= XPath.Path (context, "lastRegularPeriodEndDate");
 
@@ -1048,11 +1156,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule18 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule18 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule18 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "CalculationPeriodDates"), errorHandler));
+
+            return (
+                  Rule18 (name, nodeIndex.GetElementsByName ("calculationPeriodDates"), errorHandler));
+        }
+
+        private static bool Rule18 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
+			foreach (XmlElement context in list) {
 				XmlElement		periodEnd	= XPath.Path (context, "lastRegularPeriodEndDate");
 				XmlElement		periodStart	= XPath.Path (context, "firstRegularPeriodStartDate");
 
@@ -1071,11 +1188,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule19 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule19 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule19 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "CalculationPeriodDates"), errorHandler));
+
+            return (
+                  Rule19 (name, nodeIndex.GetElementsByName ("calculationPeriodDates"), errorHandler));
+        }
+
+        private static bool Rule19 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
+			foreach (XmlElement context in list) {
 				XmlElement		periodEnd	= XPath.Path (context, "lastRegularPeriodEndDate");
 				XmlElement		periodStart	= XPath.Path (context, "firstPeriodStartDate", "unadjustedDate");
 
@@ -1094,11 +1220,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule20 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule20 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule20 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "CalculationPeriodDates"), errorHandler));
+
+            return (
+                  Rule20 (name, nodeIndex.GetElementsByName ("calculationPeriodDates"), errorHandler));
+        }
+
+        private static bool Rule20 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
+			foreach (XmlElement context in list) {
 				XmlElement	last	  = XPath.Path (context, "lastRegularPeriodEndDate");
 				XmlElement	effective = XPath.Path (context, "effectiveDate", "unadjustedDate");
 
@@ -1117,11 +1252,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule21 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule21 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule21 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "CalculationPeriodDates"), errorHandler));
+
+            return (
+                  Rule21 (name, nodeIndex.GetElementsByName ("calculationPeriodDates"), errorHandler));
+        }
+
+        private static bool Rule21 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
+			foreach (XmlElement context in list) {
 				XmlElement	first	  = XPath.Path (context, "firstPeriodStartDate", "unadjustedDate");
 				XmlElement	effective = XPath.Path (context, "effectiveDate", "unadjustedDate");
 
@@ -1140,11 +1284,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule22 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule22 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule22 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "CalculationPeriodDates"), errorHandler));
+
+            return (
+                  Rule22 (name, nodeIndex.GetElementsByName ("calculationPeriodDates"), errorHandler));
+        }
+
+        private static bool Rule22 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("calculationPeriodDates")) {
+			foreach (XmlElement context in list) {
 				XmlElement	first	= XPath.Path (context, "firstPeriodStartDate", "unadjustedDate");
 				XmlElement	regular = XPath.Path (context, "firstRegularPeriodStartDate");
 
