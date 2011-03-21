@@ -55,6 +55,15 @@ namespace HandCoded.FpML.Validation
                 new string [] { "CalculationPeriodDates" });
 
         /// <summary>
+        /// A <see cref="Precondition"/> instance that detect documents containing
+        /// at least one early termination event.
+        /// </summary>
+        private static readonly Precondition EARLY_TERMINATION_EVENT
+            = new ContentPrecondition (
+                new string [] { "earlyTerminationEvent" },
+                new string [] { "EarlyTerminationEvent" });
+
+        /// <summary>
 		/// A <see cref="Rule"/> that ensures reset dates are present for
 		/// floating rate interest streams.
 		/// </summary>
@@ -1316,11 +1325,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule23 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule23 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule23 (name, nodeIndex, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "StubCalculationPeriodAmount"), errorHandler));
+
+            return (
+                  Rule23 (name, nodeIndex, nodeIndex.GetElementsByName ("stubCalculationPeriodAmount"), errorHandler));
+        }
+
+        private static bool Rule23 (string name, NodeIndex nodeIndex, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("stubCalculationPeriodAmount")) {
+			foreach (XmlElement context in list) {
 				XmlElement	datesRef	= XPath.Path (context, "calculationPeriodDatesReference");
 
 				if (datesRef == null) continue;
@@ -1353,11 +1371,20 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule24 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule24 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule24 (name, nodeIndex, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "StubCalculationPeriodAmount"), errorHandler));
+
+            return (
+                  Rule24 (name, nodeIndex, nodeIndex.GetElementsByName ("stubCalculationPeriodAmount"), errorHandler));
+        }
+
+        private static bool Rule24 (string name, NodeIndex nodeIndex, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("stubCalculationPeriodAmount")) {
+			foreach (XmlElement context in list) {
 				XmlElement	datesRef	= XPath.Path (context, "calculationPeriodDatesReference");
 
 				if (datesRef == null) continue;
@@ -1428,8 +1455,17 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule26 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
-		{
+        private static bool Rule26 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            if (nodeIndex.HasTypeInformation)
+                return (Rule26 (name, nodeIndex, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "BusinessCentersReference"), errorHandler));
+
+            return (
+                  Rule26 (name, nodeIndex, nodeIndex.GetElementsByName ("businessCentersReference"), errorHandler));
+        }
+
+        private static bool Rule26 (string name, NodeIndex nodeIndex, XmlNodeList list, ValidationErrorHandler errorHandler)
+        {
 			bool	result = true;
 
 			foreach (XmlElement context in nodeIndex.GetElementsByName ("businessCentersReference")) {
@@ -1456,7 +1492,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule27 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule27 (name, nodeIndex.GetElementsByName ("mandatoryEarlyTermination"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule27 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "MandatoryEarlyTermination"), errorHandler));
+
+            return (Rule27 (name, nodeIndex.GetElementsByName ("mandatoryEarlyTermination"), errorHandler));
 		}
 
 		private static bool Rule27 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1482,7 +1521,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule28a (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule28a (name, nodeIndex.GetElementsByName ("mandatoryEarlyTermination"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule28a (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "MandatoryEarlyTermination"), errorHandler));
+
+            return (Rule28a (name, nodeIndex.GetElementsByName ("mandatoryEarlyTermination"), errorHandler));
 		}
 
 		private static bool Rule28a (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1517,7 +1559,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule28b (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule28b (name, nodeIndex.GetElementsByName ("mandatoryEarlyTermination"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule28b (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "MandatoryEarlyTermination"), errorHandler));
+
+            return (Rule28b (name, nodeIndex.GetElementsByName ("mandatoryEarlyTermination"), errorHandler));
 		}
 
 		private static bool Rule28b (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1549,7 +1594,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule29 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule29 (name, nodeIndex.GetElementsByName ("calculation"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule29 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "Calculation"), errorHandler));
+
+            return (Rule29 (name, nodeIndex.GetElementsByName ("calculation"), errorHandler));
 		}
 
 		private static bool Rule29 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1582,7 +1630,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule30 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule30 (name, nodeIndex.GetElementsByName ("calculationPeriod"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule31 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "CalculationPeriod"), errorHandler));
+
+            return (Rule30 (name, nodeIndex.GetElementsByName ("calculationPeriod"), errorHandler));
 		}
 
 		private static bool Rule30 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1612,7 +1663,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule31 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule31 (name, nodeIndex.GetElementsByName ("calculationPeriod"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule31 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "CalculationPeriod"), errorHandler));
+
+            return (Rule31 (name, nodeIndex.GetElementsByName ("calculationPeriod"), errorHandler));
 		}
 
 		private static bool Rule31 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1642,7 +1696,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule32 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule32 (name, nodeIndex.GetElementsByName ("discounting"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule32 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "Discounting"), errorHandler));
+
+            return (Rule32 (name, nodeIndex.GetElementsByName ("discounting"), errorHandler));
 		}
 
 		private static bool Rule32 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1671,7 +1728,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule33 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule33 (name, nodeIndex.GetElementsByName ("fra"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule33 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "Fra"), errorHandler));
+
+            return (Rule33 (name, nodeIndex.GetElementsByName ("fra"), errorHandler));
 		}
 
 		private static bool Rule33 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1699,7 +1759,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule34 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule34 (name, nodeIndex.GetElementsByName ("paymentCalculationPeriod"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule34 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "PaymentCalculationPeriod"), errorHandler));
+
+            return (Rule34 (name, nodeIndex.GetElementsByName ("paymentCalculationPeriod"), errorHandler));
 		}
 
 		private static bool Rule34 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1729,7 +1792,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule35 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule35 (name, nodeIndex.GetElementsByName ("paymentDates"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule35 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "PaymentDates"), errorHandler));
+
+            return (Rule35 (name, nodeIndex.GetElementsByName ("paymentDates"), errorHandler));
 		}
 
 		private static bool Rule35 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1757,7 +1823,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule36 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule36 (name, nodeIndex.GetElementsByName ("paymentDates"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule36 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "PaymentDates"), errorHandler));
+
+            return (Rule36 (name, nodeIndex.GetElementsByName ("paymentDates"), errorHandler));
 		}
 
 		private static bool Rule36 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1790,7 +1859,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule38 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule38 (name, nodeIndex.GetElementsByName ("stubCalculationPeriodAmount"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule38 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "StubCalculationPeriodAmount"), errorHandler));
+
+            return (Rule38 (name, nodeIndex.GetElementsByName ("stubCalculationPeriodAmount"), errorHandler));
 		}
 
 		private static bool Rule38 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1820,7 +1892,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule39 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule39 (name, nodeIndex.GetElementsByName ("earlyTerminationEvent"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule39 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "EarlyTerminationEvent"), errorHandler));
+
+            return (Rule39 (name, nodeIndex.GetElementsByName ("earlyTerminationEvent"), errorHandler));
 		}
 
 		private static bool Rule39 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1848,7 +1923,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule40 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule40 (name, nodeIndex.GetElementsByName ("earlyTerminationEvent"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule40 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "EarlyTerminationEvent"), errorHandler));
+
+            return (Rule40 (name, nodeIndex.GetElementsByName ("earlyTerminationEvent"), errorHandler));
 		}
 
 		private static bool Rule40 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -1877,7 +1955,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule41 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule41 (name, nodeIndex.GetElementsByName ("earlyTerminationEvent"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule41 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "EarlyTerminationEvent"), errorHandler));
+
+            return (Rule41 (name, nodeIndex.GetElementsByName ("earlyTerminationEvent"), errorHandler));
 		}
 
 		private static bool Rule41 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
