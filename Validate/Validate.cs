@@ -1,4 +1,4 @@
-// Copyright (C),2005-2010 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -84,6 +84,11 @@ namespace Validate
 				Environment.Exit (1);
 			}
 
+		    if (reportOption.Present) {
+			    Console.WriteLine ("<?xml version=\"1.0\"?>");
+                Console.WriteLine ("<report>");			
+		    }
+
             try {
 			    XmlUtility.DefaultCatalog = CatalogManager.Find (
 				    Path.Combine (AppDomain.CurrentDomain.BaseDirectory, catalogPath));
@@ -101,6 +106,19 @@ namespace Validate
 
 		    XmlUtility.DefaultSchemaSet.XmlSchemaSet.Compile ();
 	    }
+
+        /// <summary>
+        /// Completes any close down actions.
+        /// </summary>
+        protected override void CleanUp ()
+        {
+            base.CleanUp ();
+
+            if (reportOption.Present) {
+                Console.WriteLine ("</report>");
+            }
+
+        }
 
 		/// <summary>
 		/// Perform the file processing while timing the operation.
@@ -139,7 +157,10 @@ namespace Validate
 					for (int index = 0; index < files.Count; ++index) {
 						int		which = random ? rng.Next (files.Count) : index;
 
-						Console.WriteLine (">> " + (files [which] as FileInfo).Name);
+					    if (reportOption.Present)
+                            Console.WriteLine ("\t<file name=\"" + (files [which] as FileInfo).Name + "\">");
+					    else
+                            Console.WriteLine (">> " + (files [which] as FileInfo).Name);
 
 						FileStream	stream	= File.OpenRead ((files [which] as FileInfo).FullName);
 
@@ -148,17 +169,28 @@ namespace Validate
 								new ValidationErrorHandler (SemanticError));
 				
 						stream.Close ();
-						++count;
+
+                        if (reportOption.Present)
+                            Console.WriteLine ("\t</file>");
+
+                        ++count;
 					}
 				}
 
 				DateTime		end		= DateTime.Now;
 				TimeSpan		span	= end.Subtract (start);
 
-				Console.WriteLine ("== Processed " + count + " files in "
-					+ span.TotalMilliseconds + " milliseconds");
-				Console.WriteLine ("== " + ((1000.0 * count) / span.TotalMilliseconds)
-					+ " files/sec checking " + rules.Size + " rules");
+                if (reportOption.Present)
+                    Console.WriteLine ("\t<statistics count=\"" + count
+                            + "\" time=\"" + span.TotalMilliseconds
+                            + "\" rate=\"" + ((1000.0 * count) / span.TotalMilliseconds)
+                            + "\" rules=\"" + rules.Size + "\"/>");
+                else {
+                    Console.WriteLine ("== Processed " + count + " files in "
+                        + span.TotalMilliseconds + " milliseconds");
+                    Console.WriteLine ("== " + ((1000.0 * count) / span.TotalMilliseconds)
+                        + " files/sec checking " + rules.Size + " rules");
+                }
 			}
 			catch (Exception error) {
 				log.Fatal ("Unexpected exception during processing", error);
@@ -212,6 +244,12 @@ namespace Validate
 	    private Option			catalogOption
 		    = new Option ("-catalog", "Use url to create an XML catalog for parsing", "url");
 
+        /// <summary>
+        /// The <see cref="Option"/> instance use to detect <b>-report</b>
+        /// </summary>
+	    private Option			reportOption
+		    = new Option ("-report", "Generate an XML report of the results");
+    	
 		/// <summary>
 		/// A counter for the number of time to reprocess the files. 
 		/// </summary>
@@ -287,10 +325,18 @@ namespace Validate
 		/// <param name="data">Any additional data.</param>
 		private void SemanticError (string code, XmlNode context, string description, string rule, string data)
 		{
-			if (data != null)
-				Console.WriteLine (rule + " " + XPath.ForNode (context) + " " + description + " [" + data + "]");
-			else
-				Console.WriteLine (rule + " " + XPath.ForNode (context) + " " + description);
+			if (reportOption.Present) {
+                Console.WriteLine ("\t\t<validationError rule=\"" + rule
+						+ "\" context=\"" + XPath.ForNode (context)
+						+ "\"" + ((data != null) ? (" additionalData=\"" + data + "\"") : "")
+						+ ">" + description + "</validationError>");
+			}
+			else {
+			    if (data != null)
+				    Console.WriteLine (rule + " " + XPath.ForNode (context) + " " + description + " [" + data + "]");
+			    else
+				    Console.WriteLine (rule + " " + XPath.ForNode (context) + " " + description);
+            }
 		}
 	}
 }
