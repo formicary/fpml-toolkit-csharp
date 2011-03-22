@@ -692,8 +692,8 @@ namespace HandCoded.FpML.Validation
 				if (!IsParametric (context)) continue;
 
 				XmlElement paymentDate = XPath.Path (context, "paymentDates", "lastRegularPaymentDate");
-				XmlElement	startDate = XPath.Path (context, "calculationPeriodDates", "firstRegularPeriodStartDate", "unadjustedDate");
-				XmlElement	endDate	= XPath.Path (context, "calculationPeriodDates", "lastRegularPeriodStartDate", "unadjustedDate");
+				XmlElement	startDate = XPath.Path (context, "calculationPeriodDates", "firstRegularPeriodStartDate");
+				XmlElement	endDate	= XPath.Path (context, "calculationPeriodDates", "lastRegularPeriodEndDate");
 
 				if (!Exists (startDate))
 					startDate = XPath.Path (context, "calculationPeriodDates", "effectiveDate", "unadjustedDate");
@@ -969,7 +969,7 @@ namespace HandCoded.FpML.Validation
                 if (!IsNumber (ToToken (rollConvention)))
                     continue;
 				
-				XmlElement	endDate = XPath.Path (context, "firstRegularPeriodEndDate");
+				XmlElement	endDate = XPath.Path (context, "lastRegularPeriodEndDate");
 				if (!Exists (endDate))
 					endDate = XPath.Path (context, "terminationDate", "unadjustedDate");
 				
@@ -1806,7 +1806,7 @@ namespace HandCoded.FpML.Validation
 				XmlElement	firstDate	= XPath.Path (context, "firstPaymentDate");
 				XmlElement	lastDate	= XPath.Path (context, "lastRegularPaymentDate");
 
-				if ((firstDate == null) || (lastDate == null) || Less (firstDate, lastDate))
+				if ((firstDate == null) || (lastDate == null) || Less (ToDate (firstDate), ToDate (lastDate)))
 					continue;
 
 				errorHandler ("305", context,
@@ -2446,7 +2446,7 @@ namespace HandCoded.FpML.Validation
 		{
 			bool		result	= true;
 
-			foreach (XmlElement context in nodeIndex.GetElementsByName ("knownAmounSchedule")) {
+			foreach (XmlElement context in nodeIndex.GetElementsByName ("knownAmountSchedule")) {
 				XmlNodeList	dates		= XPath.Paths (context, "step", "stepDate");
 				XmlElement	calculation	= XPath.Path (context, "..", "..", "calculationPeriodDates");
 
