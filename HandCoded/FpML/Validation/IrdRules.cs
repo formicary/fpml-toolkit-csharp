@@ -272,16 +272,16 @@ namespace HandCoded.FpML.Validation
 		/// references the early termination date.
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
-		public static readonly Rule	RULE28A
-			= new DelegatedRule (Preconditions.R1_0__R3_0, "ird-28a", new RuleDelegate (Rule28a));
+		public static readonly Rule	RULE28_XLINK
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "ird-28[XLINK]", new RuleDelegate (Rule28_XLINK));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the cash settlement payment date
 		/// references the early termination date.
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
-		public static readonly Rule	RULE28B
-			= new DelegatedRule (Preconditions.R4_0__LATER, "ird-28b", new RuleDelegate (Rule28b));
+		public static readonly Rule	RULE28
+			= new DelegatedRule (Preconditions.R4_0__LATER, "ird-28", new RuleDelegate (Rule28));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures that floating rate calculations
@@ -407,26 +407,34 @@ namespace HandCoded.FpML.Validation
 		/// date is relative to the cash settlement payment date. 
 		/// </summary>
 		/// <remarks>Applies to all FpML 1.0, 2.0 and 3.0.</remarks>
-		public static readonly Rule	RULE46A
-			= new DelegatedRule (Preconditions.R1_0__R3_0, "ird-46a", new RuleDelegate (Rule46A));
+		public static readonly Rule	RULE46_XLINK
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "ird-46[XLINK]", new RuleDelegate (Rule46_XLINK));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the cash settlement valuation
 		/// date is relative to the cash settlement payment date. 
 		/// </summary>
 		/// <remarks>Applies to all FpML 4.0 and later.</remarks>
-		public static readonly Rule	RULE46B
-			= new DelegatedRule (Preconditions.R4_0__LATER, "ird-46b", new RuleDelegate (Rule46B));
+		public static readonly Rule	RULE46
+			= new DelegatedRule (Preconditions.R4_0__LATER, "ird-46", new RuleDelegate (Rule46));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the cash settlement payment 
 		/// date for an early termination is relative to an exercise definition.
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
-		public static readonly Rule	RULE47
-			= new DelegatedRule ("ird-47", new RuleDelegate (Rule47));
+		public static readonly Rule	RULE47_XLINK
+			= new DelegatedRule (Preconditions.R1_0__R3_0, "ird-47[XLINK]", new RuleDelegate (Rule47_XLINK));
 
-		/// <summary>
+        /// <summary>
+        /// A <see cref="Rule"/> that ensures the cash settlement payment 
+        /// date for an early termination is relative to an exercise definition.
+        /// </summary>
+        /// <remarks>Applies to all FpML releases.</remarks>
+        public static readonly Rule	RULE47
+			= new DelegatedRule (Preconditions.R4_0__LATER, "ird-47", new RuleDelegate (Rule47));
+
+        /// <summary>
 		/// A <see cref="Rule"/> that ensures the cash settlement payment 
 		/// date for a swaption is relative to an exercise definition.
 		/// </summary>
@@ -1519,15 +1527,12 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule28a (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule28_XLINK (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-            if (nodeIndex.HasTypeInformation)
-                return (Rule28a (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "MandatoryEarlyTermination"), errorHandler));
-
-            return (Rule28a (name, nodeIndex.GetElementsByName ("mandatoryEarlyTermination"), errorHandler));
+            return (Rule28_XLINK (name, nodeIndex.GetElementsByName ("mandatoryEarlyTermination"), errorHandler));
 		}
 
-		private static bool Rule28a (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		private static bool Rule28_XLINK (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
 		{
 			bool		result	= true;
 
@@ -1557,15 +1562,15 @@ namespace HandCoded.FpML.Validation
 		}
 		// --------------------------------------------------------------------
 
-		private static bool Rule28b (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule28 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
             if (nodeIndex.HasTypeInformation)
-                return (Rule28b (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "MandatoryEarlyTermination"), errorHandler));
+                return (Rule28 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "MandatoryEarlyTermination"), errorHandler));
 
-            return (Rule28b (name, nodeIndex.GetElementsByName ("mandatoryEarlyTermination"), errorHandler));
+            return (Rule28 (name, nodeIndex.GetElementsByName ("mandatoryEarlyTermination"), errorHandler));
 		}
 
-		private static bool Rule28b (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		private static bool Rule28 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
 		{
 			bool		result	= true;
 
@@ -1987,7 +1992,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule42 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule42 (name, nodeIndex.GetElementsByName ("extensionEvent"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule42 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "ExtensionEvent"), errorHandler));
+
+            return (Rule42 (name, nodeIndex.GetElementsByName ("extensionEvent"), errorHandler));
 		}
 	
 		private static bool Rule42 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -2015,7 +2023,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule43 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule43 (name, nodeIndex.GetElementsByName ("fxLinkedNotionalAmount"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule43 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "FxLinkedNotionalAmount"), errorHandler));
+
+            return (Rule43 (name, nodeIndex.GetElementsByName ("fxLinkedNotionalAmount"), errorHandler));
 		}
 
 		private static bool Rule43 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -2038,7 +2049,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule44 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule44 (name, nodeIndex.GetElementsByName ("mandatoryEarlyTerminationAdjustedDates"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule44 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "MandatoryEarlyTerminationAdjustedDates"), errorHandler));
+
+            return (Rule44 (name, nodeIndex.GetElementsByName ("mandatoryEarlyTerminationAdjustedDates"), errorHandler));
 		}
 
 		private static bool Rule44 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -2070,12 +2084,12 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule46A (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule46_XLINK (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule46A (name, nodeIndex.GetElementsByName ("optionalEarlyTermination"), errorHandler));
+			return (Rule46_XLINK (name, nodeIndex.GetElementsByName ("optionalEarlyTermination"), errorHandler));
 		}
 
-		private static bool Rule46A (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		private static bool Rule46_XLINK (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
 		{
 			bool		result	= true;
 
@@ -2106,12 +2120,15 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		private static bool Rule46B (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule46 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule46B (name, nodeIndex.GetElementsByName ("optionalEarlyTermination"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule46 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "OptionalEarlyTermination"), errorHandler));
+
+            return (Rule46 (name, nodeIndex.GetElementsByName ("optionalEarlyTermination"), errorHandler));
 		}
 
-		private static bool Rule46B (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		private static bool Rule46 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
 		{
 			bool		result	= true;
 
@@ -2123,10 +2140,6 @@ namespace HandCoded.FpML.Validation
 
 				string		href	= reference.GetAttribute ("href");
 				string		id		= definition.GetAttribute ("id");
-
-				// Remove leading # from XPointer type references
-				if ((href != null) && (href.Length > 0) && (href [0] == '#'))
-					href = href.Substring (1);
 
 				if ((href != null) && (id != null) && Equal (href, id))
 					continue;
@@ -2141,11 +2154,58 @@ namespace HandCoded.FpML.Validation
 			return (result);
 		}
 
-		// --------------------------------------------------------------------
+        // --------------------------------------------------------------------
+
+        private static bool Rule47_XLINK (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+        {
+            return (Rule47_XLINK (name, nodeIndex.GetElementsByName ("optionalEarlyTermination"), errorHandler));
+        }
+
+        private static bool Rule47_XLINK (string name, XmlNodeList nodeList, ValidationErrorHandler errorHandler)
+        {
+            bool		result	= true;
+
+            foreach (XmlElement context in nodeList) {
+                XmlElement		reference	= XPath.Path (context, "cashSettlement", "cashSettlementPaymentDate", "relativeDate", "dateRelativeTo");
+                XmlElement		exercise	= XPath.Path (context, "americanExercise");
+
+                if (exercise == null) {
+                    exercise = XPath.Path (context, "bermudaExercise");
+                    if (exercise == null)
+                        exercise = XPath.Path (context, "europeanExercise");
+                }
+
+                if ((reference == null) || (exercise == null))
+                    continue;
+
+                string		href	= reference.GetAttribute ("href");
+                string		id		= exercise.GetAttribute ("id");
+
+                // Remove leading # from XPointer type references
+                if ((href != null) && (href.Length > 0) && (href [0] == '#'))
+                    href = href.Substring (1);
+
+                if ((href != null) && (id != null) && Equal (href, id))
+                    continue;
+
+                errorHandler ("305", context,
+                    "dateRelativeTo element in cash settlement payment date must " +
+					"be relative to the exercise structure",
+                    name, reference.GetAttribute ("href"));
+
+                result = false;
+            }
+            return (result);
+        }
+
+        // --------------------------------------------------------------------
 
 		private static bool Rule47 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule47 (name, nodeIndex.GetElementsByName ("optionalEarlyTermination"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule47 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "OptionalEarlyTermination"), errorHandler));
+
+            return (Rule47 (name, nodeIndex.GetElementsByName ("optionalEarlyTermination"), errorHandler));
 		}
 
 		private static bool Rule47 (string name, XmlNodeList nodeList, ValidationErrorHandler errorHandler)
@@ -2167,10 +2227,6 @@ namespace HandCoded.FpML.Validation
 				string		href	= reference.GetAttribute ("href");
 				string		id		= exercise.GetAttribute ("id");
 
-				// Remove leading # from XPointer type references
-				if ((href != null) && (href.Length > 0) && (href [0] == '#'))
-					href = href.Substring (1);
-
 				if ((href != null) && (id != null) && Equal (href, id))
 					continue;
 
@@ -2188,7 +2244,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule48 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule48 (name, nodeIndex.GetElementsByName ("swaption"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule48 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "Swaption"), errorHandler));
+
+            return (Rule48 (name, nodeIndex.GetElementsByName ("swaption"), errorHandler));
 		}
 
 		private static bool Rule48 (string name, XmlNodeList nodeList, ValidationErrorHandler errorHandler)
@@ -2231,7 +2290,10 @@ namespace HandCoded.FpML.Validation
 
 		private static bool Rule49 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
-			return (Rule49 (name, nodeIndex.GetElementsByName ("resetFrequency"), errorHandler));
+            if (nodeIndex.HasTypeInformation)
+                return (Rule47 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "ResetFrequency"), errorHandler));
+
+            return (Rule49 (name, nodeIndex.GetElementsByName ("resetFrequency"), errorHandler));
 		}
 
 		private static bool Rule49 (string name, XmlNodeList nodeList, ValidationErrorHandler errorHandler)
