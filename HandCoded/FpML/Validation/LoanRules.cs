@@ -112,7 +112,7 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		public static bool Rule02 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule02 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			if (nodeIndex.HasTypeInformation) 
 				return (
@@ -147,7 +147,7 @@ namespace HandCoded.FpML.Validation
 	
 		// --------------------------------------------------------------------
 
-		public static bool Rule03 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule03 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			if (nodeIndex.HasTypeInformation) 
 				return (
@@ -190,7 +190,7 @@ namespace HandCoded.FpML.Validation
 	
 		// --------------------------------------------------------------------
 
-		public static bool Rule04 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule04 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			if (nodeIndex.HasTypeInformation) 
 				return (
@@ -228,7 +228,7 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
-		public static bool Rule05 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule05 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			if (nodeIndex.HasTypeInformation) 
 				return (
@@ -269,7 +269,7 @@ namespace HandCoded.FpML.Validation
 	
 		// --------------------------------------------------------------------
 
-		public static bool Rule10 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		private static bool Rule10 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			if (nodeIndex.HasTypeInformation) 
 				return (

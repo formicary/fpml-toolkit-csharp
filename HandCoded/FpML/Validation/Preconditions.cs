@@ -1,4 +1,4 @@
-// Copyright (C),2005-2010 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -192,6 +192,19 @@ namespace HandCoded.FpML.Validation
 		/// </summary>
 		public static readonly Precondition	R3_0__R4_0
 			= new VersionRangePrecondition (Releases.R3_0, Releases.R4_0);
+
+		/// <summary>
+		/// A <see cref="Precondition"/> instance that detects FpML version 3-0 or
+		/// 4-*.
+		/// </summary>
+		public static readonly Precondition	R3_0__R4_X
+			= new VersionRangePrecondition (Releases.R3_0, Releases.R4_9);
+
+		/// <summary>
+		/// A <see cref="Precondition"/> instance that detects FpML version 4-*.
+		/// </summary>
+		public static readonly Precondition	R4_0__R4_X
+			= new VersionRangePrecondition (Releases.R4_0, Releases.R4_9);
 
 		/// <summary>
 		/// A <see cref="Precondition"/> instance that detects FpML versions 5-1 and
