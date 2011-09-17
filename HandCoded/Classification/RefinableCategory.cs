@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -25,29 +25,32 @@ namespace HandCoded.Classification
 		/// <summary>
 		/// Construct a <b>RefinableCategory</b> with the given name.
 		/// </summary>
+        /// <param name="classification">The owning <see cref="Classification"/>.</param>
 		/// <param name="name">The name of this <b>RefinableCategory</b>.</param>
-		protected RefinableCategory (string name)
-			: base (name)
+		protected RefinableCategory (Classification classification, string name)
+			: base (classification, name)
 		{ }
 
 		/// <summary>
 		/// Construct a <b>RefinableCategory</b> that is a sub-classification of another
 		/// <see cref="Category"/>.
 		/// </summary>
+        /// <param name="classification">The owning <see cref="Classification"/>.</param>
 		/// <param name="name">The name of this <b>RefinableCategory</b>.</param>
 		/// <param name="parent">The parent <see cref="Category"/>.</param>
-		protected RefinableCategory (string name, Category parent)
-			: base (name, parent)
+		protected RefinableCategory (Classification classification, string name, Category parent)
+			: base (classification, name, parent)
 		{ }
 
 		/// <summary>
 		/// Construct a <b>RefinableCategory</b> that is a sub-classification of other
 		/// <see cref="Category"/> instances.
 		/// </summary>
+        /// <param name="classification">The owning <see cref="Classification"/>.</param>
 		/// <param name="name">The name of this <b>RefinableCategory</b>.</param>
 		/// <param name="parents">The parent <see cref="Category"/> instances.</param>
-		protected RefinableCategory (string name, Category [] parents)
-			: base (name, parents)
+		protected RefinableCategory (Classification classification, string name, Category [] parents)
+			: base (classification, name, parents)
 		{ }
 
 		/// <summary>

@@ -89,6 +89,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acme\Releases.cs" />
+    <Compile Include="Classification\Classification.cs" />
+    <Compile Include="Classification\Xml\ClassificationLoader.cs" />
+    <Compile Include="Classification\Xml\ExprNode.cs" />
+    <Compile Include="Classification\Xml\IfNode.cs" />
+    <Compile Include="Classification\Xml\InterpretedRefinableCategory.cs" />
+    <Compile Include="Classification\Xml\RangeNode.cs" />
+    <Compile Include="Classification\Xml\ReleaseNode.cs" />
+    <Compile Include="Classification\Xml\XPathNode.cs" />
+    <Compile Include="FpML\Classification\FpMLTaxonomy.cs" />
+    <Compile Include="FpML\Classification\ISDATaxonomy.cs" />
     <Compile Include="FpML\Meta\FpMLDTDReleaseLoader.cs" />
     <Compile Include="FpML\Meta\FpMLSchemaReleaseLoader.cs" />
     <Compile Include="FpML\Util\Version.cs" />
@@ -189,9 +200,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FpML\Meta\SchemeDefaults.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="FpML\ProductType.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FpML\Releases.cs">

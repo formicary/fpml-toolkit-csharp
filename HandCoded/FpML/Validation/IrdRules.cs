@@ -248,8 +248,16 @@ namespace HandCoded.FpML.Validation
 		/// the initial value is non-zero.
 		/// </summary>
 		/// <remarks>Applies to all FpML releases.</remarks>
+		public static readonly Rule	RULE25_OLD
+			= new DelegatedRule (Preconditions.R1_0__R4_6, "ird-25[OLD]", new RuleDelegate (Rule25_OLD));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures that if not steps are present
+		/// the initial value is non-zero.
+		/// </summary>
+		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE25
-			= new DelegatedRule ("ird-25", new RuleDelegate (Rule25));
+			= new DelegatedRule (Preconditions.R4_7__LATER, "ird-25", new RuleDelegate (Rule25));
 
 		/// <summary>
 		/// A <see cref="Rule"/> that ensures the business centers reference
@@ -540,6 +548,14 @@ namespace HandCoded.FpML.Validation
 		/// <remarks>Applies to all FpML releases.</remarks>
 		public static readonly Rule	RULE60
 			= new DelegatedRule ("ird-60", new RuleDelegate (Rule60));
+
+		/// <summary>
+		/// A <see cref="Rule"/> that ensures that if not steps are present
+		/// the initial value is non-zero.
+		/// </summary>
+		/// <remarks>Applies to FpML 4.7 and later.</remarks>
+		public static readonly Rule	RULE61
+			= new DelegatedRule (Preconditions.R4_7__LATER, "ird-61", new RuleDelegate (Rule61));
 
 		// --------------------------------------------------------------------
 
@@ -1423,6 +1439,46 @@ namespace HandCoded.FpML.Validation
 
 		// --------------------------------------------------------------------
 
+		private static bool Rule25_OLD (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			if (nodeIndex.HasTypeInformation) 
+				return (Rule25_OLD (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "Schedule"), errorHandler));					
+
+			return (
+				  Rule25_OLD (name, nodeIndex.GetElementsByName ("feeRateSchedule"), errorHandler)
+				& Rule25_OLD (name, nodeIndex.GetElementsByName ("floatingRateMultiplierSchedule"), errorHandler)
+				& Rule25_OLD (name, nodeIndex.GetElementsByName ("spreadSchedule"), errorHandler)
+				& Rule25_OLD (name, nodeIndex.GetElementsByName ("fixedRateSchedule"), errorHandler)
+				& Rule25_OLD (name, nodeIndex.GetElementsByName ("capRateSchedule"), errorHandler)
+				& Rule25_OLD (name, nodeIndex.GetElementsByName ("floorRateSchedule"), errorHandler)
+				& Rule25_OLD (name, nodeIndex.GetElementsByName ("feeAmountSchedule"), errorHandler)
+				& Rule25_OLD (name, nodeIndex.GetElementsByName ("knownAmountSchedule"), errorHandler)
+				& Rule25_OLD (name, nodeIndex.GetElementsByName ("notionalStepSchedule"), errorHandler));
+		}
+
+		private static bool Rule25_OLD (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool		result	= true;
+	
+			foreach (XmlElement context in list) {
+				if (Implies (
+						Not (Exists (XPath.Path (context, "step"))),
+						NotEqual (
+							XPath.Path (context, "initialValue"),
+							0.0M))) continue;
+
+				errorHandler ("305", context,
+					"An non-zero initial value must be provided when there are no steps " +
+					"in the schedule",
+					name, null);
+
+				result = false;
+			}
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
 		private static bool Rule25 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
 		{
 			if (nodeIndex.HasTypeInformation) 
@@ -1436,8 +1492,7 @@ namespace HandCoded.FpML.Validation
 				& Rule25 (name, nodeIndex.GetElementsByName ("capRateSchedule"), errorHandler)
 				& Rule25 (name, nodeIndex.GetElementsByName ("floorRateSchedule"), errorHandler)
 				& Rule25 (name, nodeIndex.GetElementsByName ("feeAmountSchedule"), errorHandler)
-				& Rule25 (name, nodeIndex.GetElementsByName ("knownAmountSchedule"), errorHandler)
-				& Rule25 (name, nodeIndex.GetElementsByName ("notionalStepSchedule"), errorHandler));
+				& Rule25 (name, nodeIndex.GetElementsByName ("knownAmountSchedule"), errorHandler));
 		}
 
 		private static bool Rule25 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
@@ -2707,6 +2762,38 @@ namespace HandCoded.FpML.Validation
 					"' is inconsistent with the calculation period '" + ToToken (period) + "'",
 					name, null);
 				
+				result = false;
+			}
+			return (result);
+		}
+
+		// --------------------------------------------------------------------
+
+		private static bool Rule61 (string name, NodeIndex nodeIndex, ValidationErrorHandler errorHandler)
+		{
+			if (nodeIndex.HasTypeInformation) 
+				return (Rule61 (name, nodeIndex.GetElementsByType (DetermineNamespace (nodeIndex), "NonNegativeSchedule"), errorHandler));					
+
+			return (
+				  Rule61 (name, nodeIndex.GetElementsByName ("notionalStepSchedule"), errorHandler));
+		}
+
+		private static bool Rule61 (string name, XmlNodeList list, ValidationErrorHandler errorHandler)
+		{
+			bool		result	= true;
+	
+			foreach (XmlElement context in list) {
+				if (Implies (
+						Not (Exists (XPath.Path (context, "step"))),
+						NotEqual (
+							XPath.Path (context, "initialValue"),
+							0.0M))) continue;
+
+				errorHandler ("305", context,
+					"An non-zero initial value must be provided when there are no steps " +
+					"in the schedule",
+					name, null);
+
 				result = false;
 			}
 			return (result);

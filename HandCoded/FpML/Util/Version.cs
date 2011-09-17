@@ -1,4 +1,4 @@
-// Copyright (C),2005-2010 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -43,13 +43,20 @@ namespace HandCoded.FpML.Util
         }
 
         /// <summary>
-        /// Constructs a <b>Version</b> instance from a 'major-minor' format
-	    /// string value.
+        /// Parse the FpML version number given as an argument and return a
+        /// corresponding <b>Version</b> instance. A hash table is used to
+        /// lookup previously converted strings.
         /// </summary>
         /// <param name="version">The version number string.</param>
-        public Version (string version)
-            : this (version.Split ('-'))
-        { }
+        /// <returns>A <b>Version</b> instance containing the decoded major and
+        /// minor values.</returns>
+        public static Version Parse (string version)
+	    {
+		    if (!extent.ContainsKey (version))
+			    extent [version] = new Version (version);
+    		
+		    return (extent [version]);
+	    }
 
 		/// <summary>
 		/// Determines if this <b>Version</b> instance and another hold the same
@@ -127,6 +134,12 @@ namespace HandCoded.FpML.Util
         }
 
         /// <summary>
+        /// The extent set of all <b>Version</b> instances.
+        /// </summary>
+        private static Dictionary<string, Version>  extent
+            = new Dictionary<string, Version> ();
+
+        /// <summary>
         /// The major component of the version number.
         /// </summary>
 	    private readonly int		major;
@@ -135,6 +148,15 @@ namespace HandCoded.FpML.Util
     	/// The minor component of the version number.
     	/// </summary>
 	    private readonly int		minor;
+
+        /// <summary>
+        /// Constructs a <b>Version</b> instance from a 'major-minor' format
+	    /// string value.
+        /// </summary>
+        /// <param name="version">The version number string.</param>
+        private Version (string version)
+            : this (version.Split ('-'))
+        { }
 
         /// <summary>
         /// Constructs a <b>Version</b> instance from an array of two

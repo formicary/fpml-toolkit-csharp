@@ -21,7 +21,7 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Project</StartAction>
-    <StartArguments>..\..\..\files\examples\fpml5-0\confirmation</StartArguments>
+    <StartArguments>-isda ..\..\..\files\examples\fpml5-2\confirmation\products\interest-rate-derivatives</StartArguments>
     <StartPage>
     </StartPage>
     <StartProgram>

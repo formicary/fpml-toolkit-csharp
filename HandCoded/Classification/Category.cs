@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -115,20 +115,24 @@ namespace HandCoded.Classification
 		/// <summary>
 		/// Construct a <b>Category</b> with the given name.
 		/// </summary>
+        /// <param name="classification">The owning <see cref="Classification"/>.</param>
 		/// <param name="name">The name of this <b>Category</b>.</param>
-		protected Category (string name)
+		protected Category (Classification classification, string name)
 		{
-			this.name	  = name;
+			this.name = name;
+
+            classification.Add (this);
 		}
 
 		/// <summary>
 		/// Construct a <b>Category</b> that is a sub-classification of another
 		/// <b>Category</b>.
 		/// </summary>
+        /// <param name="classification">The owning <see cref="Classification"/>.</param>
 		/// <param name="name">The name of this <b>Category</b>.</param>
 		/// <param name="parent">The parent <b>Category</b>.</param>
-		protected Category (string name, Category parent)
-			: this (name)
+		protected Category (Classification classification, string name, Category parent)
+			: this (classification, name)
 		{
 			this.superCategories.Add (parent);
 			parent.subCategories.Add (this);
@@ -138,10 +142,11 @@ namespace HandCoded.Classification
 		/// Construct a <b>Category</b> that is a sub-classification of other
 		/// <b>Category</b> instances.
 		/// </summary>
+        /// <param name="classification">The owning <see cref="Classification"/>.</param>
 		/// <param name="name">The name of this <b>Category</b>.</param>
 		/// <param name="parents">The parent <b>Category</b> instances.</param>
-		protected Category (string name, Category [] parents)
-			: this (name)
+		protected Category (Classification classification, string name, Category [] parents)
+			: this (classification, name)
 		{
 			foreach (Category parent in parents) {
 				this.superCategories.Add (parent);

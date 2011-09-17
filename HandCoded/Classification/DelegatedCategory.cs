@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -30,10 +30,11 @@ namespace HandCoded.Classification
 		/// <summary>
 		/// Construct a <b>DelegatedCategory</b> with the given name.
 		/// </summary>
+        /// <param name="classification">The owning <see cref="Classification"/>.</param>
 		/// <param name="name">The name of this <b>DelegatedCategory</b>.</param>
 		/// <param name="function">The delegate to use for classification.</param>
-		public DelegatedCategory (string name, CategoryDelegate function)
-			: base (name)
+		public DelegatedCategory (Classification classification, string name, CategoryDelegate function)
+			: base (classification, name)
 		{
 			this.function = function;
 		}
@@ -42,11 +43,12 @@ namespace HandCoded.Classification
 		/// Construct a <b>DelegatedCategory</b> that is a sub-classification
 		/// of another <see cref="Category"/>.
 		/// </summary>
+        /// <param name="classification">The owning <see cref="Classification"/>.</param>
 		/// <param name="name">The name of this <b>DelegatedCategory</b>.</param>
 		/// <param name="parent">The parent <see cref="Category"/>.</param>
 		/// <param name="function">The delegate to use for classification.</param>
-		public DelegatedCategory (string name, Category parent, CategoryDelegate function)
-			: base (name, parent)
+		public DelegatedCategory (Classification classification, string name, Category parent, CategoryDelegate function)
+			: base (classification, name, parent)
 		{
 			this.function = function;
 		}
@@ -55,11 +57,12 @@ namespace HandCoded.Classification
 		/// Construct a <b>DelegatedCategory</b> that is a sub-classification
 		/// of other <see cref="Category"/> instances.
 		/// </summary>
+        /// <param name="classification">The owning <see cref="Classification"/>.</param>
 		/// <param name="name">The name of this <b>DelegatedCategory</b>.</param>
 		/// <param name="parents">The parent <see cref="Category"/> instances.</param>
 		/// <param name="function">The delegate to use for classification.</param>
-		public DelegatedCategory (string name, Category [] parents, CategoryDelegate function)
-			: base (name, parents)
+		public DelegatedCategory (Classification classification, string name, Category [] parents, CategoryDelegate function)
+			: base (classification, name, parents)
 		{
 			this.function = function;
 		}

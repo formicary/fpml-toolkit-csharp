@@ -171,6 +171,38 @@ namespace HandCoded.FpML
 			= FPML.GetReleaseForVersionAndNamespace ("5-1", "http://www.fpml.org/FpML-5/reporting")
                 as SchemaRelease;
 
+        /// <summary>
+		/// A <see cref="SchemaRelease"/> instance containing the details for
+		/// FpML 5-1 confirmation view recommendation.
+		/// </summary>
+		public static readonly SchemaRelease	R5_2_CONFIRMATION
+			= FPML.GetReleaseForVersionAndNamespace ("5-2", "http://www.fpml.org/FpML-5/confirmation")
+                as SchemaRelease;
+
+        /// <summary>
+		/// A <see cref="SchemaRelease"/> instance containing the details for
+		/// FpML 5-1 record keeeping view recommendation.
+		/// </summary>
+		public static readonly SchemaRelease	R5_2_RECORDKEEPING
+			= FPML.GetReleaseForVersionAndNamespace ("5-2", "http://www.fpml.org/FpML-5/recordkeeping")
+                as SchemaRelease;
+
+		/// <summary>
+		/// A <see cref="SchemaRelease"/> instance containing the details for
+		/// FpML 5-1 reporting view recommendation.
+		/// </summary>
+		public static readonly SchemaRelease	R5_2_REPORTING
+			= FPML.GetReleaseForVersionAndNamespace ("5-2", "http://www.fpml.org/FpML-5/reporting")
+                as SchemaRelease;
+
+        /// <summary>
+		/// A <see cref="SchemaRelease"/> instance containing the details for
+		/// FpML 5-1 transparency view recommendation.
+		/// </summary>
+		public static readonly SchemaRelease	R5_2_TRANSPARENCY
+			= FPML.GetReleaseForVersionAndNamespace ("5-2", "http://www.fpml.org/FpML-5/transparency")
+                as SchemaRelease;
+
 		/// <summary>
 		/// The FpML 1.0 to 2.0 <see cref="HandCoded.Meta.Conversion"/> instance.
 		/// </summary>

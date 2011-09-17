@@ -39,9 +39,9 @@ namespace HandCoded.FpML.Validation
         public VersionRangePrecondition (Release minimum, Release maximum)
         {
  		    minimumVersion = ((this.minimum = minimum) != null)
-			    ? new HandCoded.FpML.Util.Version (minimum.Version) : null;
+			    ? FpML.Util.Version.Parse (minimum.Version) : null;
 		    maximumVersion = ((this.maximum = maximum) != null)
-			    ? new HandCoded.FpML.Util.Version (maximum.Version) : null;
+			    ? FpML.Util.Version.Parse (maximum.Version) : null;
         }
 
 		/// <summary>
@@ -59,11 +59,11 @@ namespace HandCoded.FpML.Validation
 		    // Find the document version
 		    XmlNodeList list = nodeIndex.GetElementsByName ("FpML");
 		    if (list.Count > 0)
-			    version = new HandCoded.FpML.Util.Version (((XmlElement) list [0]).GetAttribute ("version"));
+			    version = FpML.Util.Version.Parse (((XmlElement) list [0]).GetAttribute ("version"));
 		    else {
 			    list = nodeIndex.GetAttributesByName ("fpmlVersion");
 			    if (list.Count > 0)
-				    version = new HandCoded.FpML.Util.Version (((XmlAttribute) list [0]).Value);
+				    version = FpML.Util.Version.Parse (((XmlAttribute) list [0]).Value);
 			    else
 				    return (false);
 		    }

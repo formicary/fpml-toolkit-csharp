@@ -130,14 +130,14 @@ namespace Validate
 
 			try {
 				for (int index = 0; index < Arguments.Length; ++index) {
-					DirectoryInfo	location = directory;
+					String	        location = directory.ToString ();
 					string			target	 = Arguments [index];
 
 					while (target.StartsWith (@"..\")) {
-						location = location.Parent;
+                        location = location.Substring (0, location.LastIndexOf (Path.DirectorySeparatorChar));
 						target = target.Substring (3);
 					}
-					FindFiles (files, Path.Combine (location.FullName, target));
+					FindFiles (files, Path.Combine (location, target));
 				}
 			}
 			catch (Exception) {

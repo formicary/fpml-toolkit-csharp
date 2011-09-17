@@ -1,4 +1,4 @@
-// Copyright (C),2005-2007 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -18,6 +18,7 @@ using System.Xml;
 
 using HandCoded.Classification;
 using HandCoded.FpML;
+using HandCoded.FpML.Classification;
 using HandCoded.Framework;
 using HandCoded.Meta;
 using HandCoded.Xml;
@@ -54,6 +55,16 @@ namespace Classify
 		{
 			base.StartUp ();
 
+		    if (Arguments.Length == 0) {
+			    log.Fatal ("No files are present on the command line");
+				Environment.Exit (1);
+		    }
+		
+		    if (isdaOption.Present)
+			    taxonomy = ISDATaxonomy.ISDA;
+		    else
+			    taxonomy = FpMLTaxonomy.FPML;
+		
 			XmlUtility.DefaultSchemaSet.XmlSchemaSet.Compile ();
 		}
 
@@ -67,14 +78,14 @@ namespace Classify
 
 			try {
 				for (int index = 0; index < Arguments.Length; ++index) {
-					DirectoryInfo	location = directory;
+					String	        location = directory.ToString ();
 					string			target	 = Arguments [index];
 
 					while (target.StartsWith (@"..\")) {
-						location = location.Parent;
+                        location = location.Substring (0, location.LastIndexOf (Path.DirectorySeparatorChar));
 						target = target.Substring (3);
 					}
-					FindFiles (files, Path.Combine (location.ToString (), target));
+					FindFiles (files, Path.Combine (location, target));
 				}
 			}
 			catch (Exception) {
@@ -99,7 +110,16 @@ namespace Classify
 
 				    Release release = Specification.ReleaseForDocument (document);
 				
-				    if (release != null) System.Console.WriteLine ("= " + release);
+				    if (release != null) {
+                        if (release is DTDRelease)
+                            System.Console.WriteLine ("= " + release
+                                + " {" + (release as DTDRelease).PublicId + "}");
+                        else if (release is SchemaRelease)
+                            System.Console.WriteLine ("= " + release
+                                + " {" + (release as SchemaRelease).NamespaceUri + "}");
+                        else
+                            System.Console.WriteLine ("= " + release);
+                    }
 
 					DoClassify (nodeIndex.GetElementsByName ("trade"), "Trade");
 					DoClassify (nodeIndex.GetElementsByName ("contract"), "Contract");
@@ -129,7 +149,18 @@ namespace Classify
 		private static ILog		log
 			= LogManager.GetLogger (typeof (Classify));
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private Category        taxonomy;
+
 		/// <summary>
+		/// A command line option that allows the default taxonomy to be overridden.
+		/// </summary>
+		private Option				isdaOption
+			= new Option ("-isda", "Use the ISDA taxonomy");
+
+        /// <summary>
 		/// Constructs a <b>Classify</b> instance.
 		/// </summary>
 		private Classify ()
@@ -175,7 +206,7 @@ namespace Classify
 		private void DoClassify (XmlNodeList list, string container)
 		{
 			foreach (XmlElement element in list) {
-				Category	category = ProductType.Classify (element);
+				Category	category = taxonomy.Classify (element);
 
 				System.Console.Write (": " + container + "(");
 				System.Console.Write ((category != null) ? category.ToString () : "UNKNOWN");
