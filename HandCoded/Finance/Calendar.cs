@@ -1,4 +1,4 @@
-// Copyright (C),2005-2008 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -14,6 +14,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Xml;
 
 using log4net;
@@ -230,7 +231,9 @@ namespace HandCoded.Finance
 			log.Debug ("Bootstrapping");
 
 			try {
-				ParseCalendars (ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.StandardCalendars"]);
+				ParseCalendars (
+                    Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
+                        ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.StandardCalendars"]));
 			}
 			catch (Exception error) {
 				log.Fatal ("Unable to load standard calendar definitions", error);

@@ -1,4 +1,4 @@
-// Copyright (C),2005-2010 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -84,11 +84,11 @@ namespace HandCoded.FpML.Meta
         /// <returns>A populated <see cref="SchemeCollection"/> instance.</returns>
 	    private SchemeCollection GetSchemeCollection (XmlElement context)
 	    {
-            string baseDirectory = ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.BaseDirectory"];
 		    SchemeCollection schemes = new SchemeCollection ();
     		
 		    foreach (XmlElement node in XPath.Paths (context, "schemes"))
-			    schemes.Parse (Path.Combine (baseDirectory, Types.ToToken (node)));
+			    schemes.Parse (
+                    Path.Combine (AppDomain.CurrentDomain.BaseDirectory, Types.ToToken (node)));
     		
 		    return (schemes);
 	    }

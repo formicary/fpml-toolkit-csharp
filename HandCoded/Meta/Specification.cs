@@ -1,4 +1,4 @@
-// Copyright (C),2005-2010 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -338,7 +338,8 @@ namespace HandCoded.Meta
 
 		    try {
                 FileStream  stream = new FileStream (
-                    ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.Releases"],
+                    Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
+                        ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.Releases"]),
                     FileMode.Open);
 
 			    XmlDocument document = XmlUtility.NonValidatingParse (stream);
