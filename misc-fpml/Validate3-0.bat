@@ -1,2 +1,2 @@
-Validate files\examples\fpml3-0
+Validate files-fpml\examples\fpml3-0
 pause

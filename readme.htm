@@ -10,9 +10,9 @@
 <body>
     <p>
         <font size="6">Toolkit for FpML Processing<br>
-            C# Open Source Release 1.5.1</font></p>
+            C# Open Source Release 1.6</font></p>
     <p>
-        <font size="5">March, 2011</font></p>
+        <font size="5">October, 2011</font></p>
     <p>
         <font size="5">Copyright (C),2006-2011 HandCoded Software Ltd.<br />
             All rights reserved.</font></p>
@@ -21,7 +21,7 @@
     <h1>
         Introduction</h1>
     <p>
-        This document accompanies C# 1.5.1 release of the 'HandCoded Toolkit for FpML Processing'
+        This document accompanies C# 1.6 release of the 'HandCoded Toolkit for FpML Processing'
         and describes the contents of the release area. The source code for this release
         is not included but is available from the SVN repository on SourceForge.</p>
     <h2>
@@ -54,23 +54,12 @@
             <br />
             A command line based application that demonstrates the validation components of
             the toolkit.</li>
-        <li>Classify.exe<br />
-            Classify.exe.config<br />
-            <br />
-            A command line based application that demonstrates the product classification components
-            of the toolkit.</li>
         <li>Validate*.bat<br />
             <br />
             Running these files will execute a simple batch validation of a selection of FpML
             examples. Some of the FpML examples published by ISDA contain mistakes and a few
             will output error messages.</li>
-        <li>Classify*.bat<br />
-            <br />
-            Running these files will execute a simple program that uses the classification tools
-            within the toolkit to identifty the financial product within the example files.
-        </li>
-        <li>files
-            <br />
+        <li>files-core &amp; files-fpml
             <br />
             Contains an XML catalog file (and its associated schema) used to resolve DTD system
             identifiers/schema namespace URIs to physical file locations and the business rule
@@ -126,36 +115,6 @@
         checking) or to use a more streamlined XML parsing technique that only supports
         schema based instances from FpML 4.0 or later. The default configuration is to process
         both DTD and schema based instances which is less efficient.</p>
-    <h3>
-        Classification</h3>
-    <p>
-        The classification scripts (e.g. Classify1-0.bat, etc.) execute a simple application
-        that uses the toolkit to determine the type of financial product used within a trade
-        or contract.</p>
-    <pre>&gt;&gt; files\examples\fpml1-0\FRAExample8.xml:
-= FpML 1-0
-: Trade(FORWARD RATE AGREEMENT)
-&gt;&gt; files\examples\fpml1-0\IRSExample1.xml:
-= FpML 1-0
-: Trade(INTEREST RATE SWAP)
-&gt;&gt; files\examples\fpml1-0\IRSExample2.xml: 
-= FpML 1-0 
-: Trade(INTEREST RATE SWAP) 
-&gt;&gt; files\examples\fpml1-0\IRSExample3.xml: 
-= FpML 1-0 
-: Trade(INTEREST RATE SWAP) 
-&gt;&gt; files\examples\fpml1-0\IRSExample4.xml: 
-= FpML 1-0 
-: Trade(INTEREST RATE SWAP) 
-&gt;&gt; files\examples\fpml1-0\IRSExample5.xml: 
-= FpML 1-0 
-: Trade(INTEREST RATE SWAP) 
-&gt;&gt; files\examples\fpml1-0\IRSExample6.xml: 
-= FpML 1-0 
-: Trade(CROSS CURRENCY SWAP) 
-&gt;&gt; files\examples\fpml1-0\IRSExample7.xml: 
-= FpML 1-0 
-: Trade(INTEREST RATE SWAP)</pre>
     <p>
         Futures releases will add further demonstration applications.</p>
     <h2>
@@ -196,6 +155,12 @@
         <li>Support for FpML 4.8, 4.9 and 5.1</li>
         <li>Release meta data has been moved from C# code into an XML data file</li>
         <li>The Java and C# rule sets have been partially resynchronised.</li>
+    </ul>
+    <p>
+        Changes in 1.6:</p>
+    <ul>
+        <li>Support for FpML 5.2</li>
+        <li>The file directory area has been restructured.</li>
     </ul>
 </body>
 </html>

@@ -1,2 +1,2 @@
-Validate -schemaOnly files/examples/fpml4-5
+Validate -schemaOnly files-fpml/examples/fpml4-5
 pause
