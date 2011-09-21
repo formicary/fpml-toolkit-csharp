@@ -3,7 +3,8 @@
     <LastOpenVersion>7.10.3077</LastOpenVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ReferencePath>C:\HandCoded\C#\Open Source\FpML Toolkit\log4net\1.0\debug\;C:\HandCoded\C#\Open Source\log4net\1.0\debug\</ReferencePath>
+    <ReferencePath>
+    </ReferencePath>
     <CopyProjectDestinationFolder>
     </CopyProjectDestinationFolder>
     <CopyProjectUncPath>
@@ -21,7 +22,7 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Project</StartAction>
-    <StartArguments>-schemaOnly ..\..\..\files\examples\fpml4-9</StartArguments>
+    <StartArguments>-schemaOnly ..\..\..\files-fpml\examples\fpml4-9</StartArguments>
     <StartPage>
     </StartPage>
     <StartProgram>
@@ -41,7 +42,7 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Project</StartAction>
-    <StartArguments>files\examples\fpml1-0</StartArguments>
+    <StartArguments>files-fpml\examples\fpml1-0</StartArguments>
     <StartPage>
     </StartPage>
     <StartProgram>

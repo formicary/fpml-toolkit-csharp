@@ -90,16 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acme\Releases.cs" />
-    <Compile Include="Classification\Classification.cs" />
-    <Compile Include="Classification\Xml\ClassificationLoader.cs" />
-    <Compile Include="Classification\Xml\ExprNode.cs" />
-    <Compile Include="Classification\Xml\IfNode.cs" />
-    <Compile Include="Classification\Xml\InterpretedRefinableCategory.cs" />
-    <Compile Include="Classification\Xml\RangeNode.cs" />
-    <Compile Include="Classification\Xml\ReleaseNode.cs" />
-    <Compile Include="Classification\Xml\XPathNode.cs" />
-    <Compile Include="FpML\Classification\FpMLTaxonomy.cs" />
-    <Compile Include="FpML\Classification\ISDATaxonomy.cs" />
     <Compile Include="FpML\Meta\FpMLDTDReleaseLoader.cs" />
     <Compile Include="FpML\Meta\FpMLSchemaReleaseLoader.cs" />
     <Compile Include="FpML\Util\Version.cs" />
@@ -118,21 +108,6 @@
     <Compile Include="Meta\IReleaseLoader.cs" />
     <Compile Include="Meta\SchemaRecogniser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Classification\AbstractCategory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Classification\Category.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Classification\DelegatedCategory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Classification\DelegatedRefinableCategory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Classification\RefinableCategory.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DSig\Releases.cs">

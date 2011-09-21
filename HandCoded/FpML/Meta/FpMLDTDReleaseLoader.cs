@@ -19,6 +19,7 @@ using System.Text;
 using System.Xml;
 
 using HandCoded.FpML.Schemes;
+using HandCoded.Framework;
 using HandCoded.Xml;
 
 namespace HandCoded.FpML.Meta
@@ -87,8 +88,7 @@ namespace HandCoded.FpML.Meta
 		    SchemeCollection schemes = new SchemeCollection ();
     		
 		    foreach (XmlElement node in XPath.Paths (context, "schemes"))
-			    schemes.Parse (
-                    Path.Combine (AppDomain.CurrentDomain.BaseDirectory, Types.ToToken (node)));
+			    schemes.Parse (Application.PathTo (Types.ToToken (node)));
     		
 		    return (schemes);
 	    }

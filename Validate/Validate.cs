@@ -90,8 +90,7 @@ namespace Validate
 		    }
 
             try {
-			    XmlUtility.DefaultCatalog = CatalogManager.Find (
-				    Path.Combine (AppDomain.CurrentDomain.BaseDirectory, catalogPath));
+			    XmlUtility.DefaultCatalog = CatalogManager.Find (PathTo (catalogPath));
             }
             catch (Exception error) {
                 log.Error ("Failed to parse XML catalog", error);

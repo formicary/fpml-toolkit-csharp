@@ -18,6 +18,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
+using HandCoded.Framework;
 using HandCoded.Xml;
 
 using log4net;
@@ -338,7 +339,7 @@ namespace HandCoded.Meta
 
 		    try {
                 FileStream  stream = new FileStream (
-                    Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
+                    Application.PathTo (
                         ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.Releases"]),
                     FileMode.Open);
 

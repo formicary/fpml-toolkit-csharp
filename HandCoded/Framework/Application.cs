@@ -1,4 +1,4 @@
-// Copyright (C),2005-2009 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -13,6 +13,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Reflection;
 using System.Text;
 
@@ -33,6 +35,27 @@ namespace HandCoded.Framework
 				return (application);
 			}
 		}
+
+        /// <summary>
+        /// Contains the path to the application data directory.
+        /// </summary>
+        public static string DataDirectory {
+            get {
+                return (Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
+                            ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.DataDirectory"]));
+            }
+        }
+
+        /// <summary>
+        /// Derives the path to the indicated location relative to the applications
+        /// data directory.
+        /// </summary>
+        /// <param name="where">The target location.</param>
+        /// <returns>The resolved path to the target location.</returns>
+        public static string PathTo (string where)
+        {
+            return (Path.Combine (DataDirectory, where));
+        }
 
 		/// <summary>
 		/// Causes the <b>Application</b> to process it's command line arguments

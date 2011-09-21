@@ -17,6 +17,8 @@ using System.Configuration;
 using System.IO;
 using System.Xml;
 
+using HandCoded.Framework;
+
 using log4net;
 
 namespace HandCoded.Finance
@@ -231,9 +233,8 @@ namespace HandCoded.Finance
 			log.Debug ("Bootstrapping");
 
 			try {
-				ParseCalendars (
-                    Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
-                        ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.StandardCalendars"]));
+				ParseCalendars (Application.PathTo (
+                    ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.StandardCalendars"]));
 			}
 			catch (Exception error) {
 				log.Fatal ("Unable to load standard calendar definitions", error);
