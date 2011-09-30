@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 //
 [assembly: AssemblyTitle("HandCoded Toolkit for FpML Processing")]
-[assembly: AssemblyDescription("FpML Processing Component Classes")]
-[assembly: AssemblyConfiguration("Open Source Version")]
+[assembly: AssemblyDescription("Open Source Component Classes")]
+[assembly: AssemblyConfiguration("Open Source Components")]
 [assembly: AssemblyCompany("HandCoded Software Ltd")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("(C)2005-2011 HandCoded Software Ltd.")]
