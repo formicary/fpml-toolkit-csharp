@@ -1,4 +1,4 @@
-// Copyright (C),2005-2010 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -173,7 +173,7 @@ namespace HandCoded.FpML
 
         /// <summary>
 		/// A <see cref="SchemaRelease"/> instance containing the details for
-		/// FpML 5-1 confirmation view recommendation.
+		/// FpML 5-2 confirmation view recommendation.
 		/// </summary>
 		public static readonly SchemaRelease	R5_2_CONFIRMATION
 			= FPML.GetReleaseForVersionAndNamespace ("5-2", "http://www.fpml.org/FpML-5/confirmation")
@@ -181,7 +181,7 @@ namespace HandCoded.FpML
 
         /// <summary>
 		/// A <see cref="SchemaRelease"/> instance containing the details for
-		/// FpML 5-1 record keeeping view recommendation.
+		/// FpML 5-2 record keeeping view recommendation.
 		/// </summary>
 		public static readonly SchemaRelease	R5_2_RECORDKEEPING
 			= FPML.GetReleaseForVersionAndNamespace ("5-2", "http://www.fpml.org/FpML-5/recordkeeping")
@@ -189,7 +189,7 @@ namespace HandCoded.FpML
 
 		/// <summary>
 		/// A <see cref="SchemaRelease"/> instance containing the details for
-		/// FpML 5-1 reporting view recommendation.
+		/// FpML 5-2 reporting view recommendation.
 		/// </summary>
 		public static readonly SchemaRelease	R5_2_REPORTING
 			= FPML.GetReleaseForVersionAndNamespace ("5-2", "http://www.fpml.org/FpML-5/reporting")
@@ -197,10 +197,42 @@ namespace HandCoded.FpML
 
         /// <summary>
 		/// A <see cref="SchemaRelease"/> instance containing the details for
-		/// FpML 5-1 transparency view recommendation.
+		/// FpML 5-2 transparency view recommendation.
 		/// </summary>
 		public static readonly SchemaRelease	R5_2_TRANSPARENCY
 			= FPML.GetReleaseForVersionAndNamespace ("5-2", "http://www.fpml.org/FpML-5/transparency")
+                as SchemaRelease;
+
+        /// <summary>
+		/// A <see cref="SchemaRelease"/> instance containing the details for
+		/// FpML 5-3 confirmation view recommendation.
+		/// </summary>
+		public static readonly SchemaRelease	R5_3_CONFIRMATION
+			= FPML.GetReleaseForVersionAndNamespace ("5-3", "http://www.fpml.org/FpML-5/confirmation")
+                as SchemaRelease;
+
+        /// <summary>
+		/// A <see cref="SchemaRelease"/> instance containing the details for
+		/// FpML 5-3 record keeeping view recommendation.
+		/// </summary>
+		public static readonly SchemaRelease	R5_3_RECORDKEEPING
+			= FPML.GetReleaseForVersionAndNamespace ("5-3", "http://www.fpml.org/FpML-5/recordkeeping")
+                as SchemaRelease;
+
+		/// <summary>
+		/// A <see cref="SchemaRelease"/> instance containing the details for
+		/// FpML 5-3 reporting view recommendation.
+		/// </summary>
+		public static readonly SchemaRelease	R5_3_REPORTING
+			= FPML.GetReleaseForVersionAndNamespace ("5-3", "http://www.fpml.org/FpML-5/reporting")
+                as SchemaRelease;
+
+        /// <summary>
+		/// A <see cref="SchemaRelease"/> instance containing the details for
+		/// FpML 5-3 transparency view recommendation.
+		/// </summary>
+		public static readonly SchemaRelease	R5_3_TRANSPARENCY
+			= FPML.GetReleaseForVersionAndNamespace ("5-3", "http://www.fpml.org/FpML-5/transparency")
                 as SchemaRelease;
 
 		/// <summary>
