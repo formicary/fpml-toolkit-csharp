@@ -54,7 +54,12 @@ namespace HandCoded.Xml.Resolver
 		{
 			this.url = url;
 
-			if (url.StartsWith ("file:///")) url = url.Substring (8);
+			if (url.StartsWith ("file:")) {
+                if (url.StartsWith ("file:///"))
+                    url = url.Substring (8);
+                else
+                    url = url.Substring (5);
+            }
 
 			definition = new CatalogEntry (prefer,
 				(xmlbase != null) ? xmlbase : Path.GetDirectoryName (Path.GetFullPath (url)));
