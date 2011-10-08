@@ -41,8 +41,12 @@ namespace HandCoded.Framework
         /// </summary>
         public static string DataDirectory {
             get {
-                return (Path.Combine (AppDomain.CurrentDomain.BaseDirectory,
-                            ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.DataDirectory"]));
+                string dataDirectory = ConfigurationManager.AppSettings ["HandCoded.FpML Toolkit.DataDirectory"];
+
+                if (dataDirectory.Equals ("."))
+                    return (AppDomain.CurrentDomain.BaseDirectory);
+                else
+                    return (Path.Combine (AppDomain.CurrentDomain.BaseDirectory, dataDirectory));
             }
         }
 
