@@ -78,6 +78,26 @@ namespace HandCoded.Xml
 				}
 			}
 		}
+
+		/// <summary>
+		/// Produces a debugging string describing the object.
+		/// </summary>
+		/// <returns>The debugging information string.</returns>
+        public override string ToString ()
+        {
+            StringBuilder   builder = new StringBuilder ();
+
+            foreach (XmlSchema schema in schemaSet.Schemas ()) {
+                if (builder.Length > 0) builder.Append (",");
+
+                builder.Append ("[");
+                builder.Append (schema.TargetNamespace);
+                builder.Append (" - ");
+                builder.Append (schema.SourceUri);
+                builder.Append ("]");
+            }
+            return ("{" + builder.ToString () + "}");
+        } 
 			
 		/**
 		 * A <CODE>Logger</CODE> instance used to report serious errors.
