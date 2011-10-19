@@ -362,6 +362,7 @@
     <Compile Include="Xml\XPath.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Xsl\Transformation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
