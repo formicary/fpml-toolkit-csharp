@@ -18,6 +18,7 @@ using System.Xml;
 using System.Xml.Xsl;
 
 using HandCoded.Framework;
+using HandCoded.Xml;
 
 namespace HandCoded.Xsl
 {
@@ -35,7 +36,10 @@ namespace HandCoded.Xsl
         /// <param name="filename">The XSL filename.</param>
         public Transformation (string filename)
         {
-            transformer.Load (Application.PathTo (filename));
+            XsltSettings settings = new XsltSettings();
+            settings.EnableScript = true;
+
+            transformer.Load (Application.PathTo (filename), settings, null);
         }
 
         /// <summary>
@@ -47,15 +51,55 @@ namespace HandCoded.Xsl
 	    ///	XSL transformation.</returns>
         public XmlDocument Transform (XmlNode node)
         {
+            if (node.NodeType != XmlNodeType.Document)
+                node = CreateFragment (node);
+
             lock (transformer) {
-                return (new XmlDocument ().Load (transformer.Transform (node, null)));
+                XmlDocument document    = new XmlDocument ();
+
+                using (XmlWriter writer = document.CreateNavigator ().AppendChild ()) {
+                    transformer.Transform (node, null, writer);
+                }
+                return (document);
             }
         }
 
         /// <summary>
-        /// The underlying <see cref="XslTransform"/> that will be applied to
+        /// The underlying <see cref="XslCompiledTransform"/> that will be applied to
 	    /// a DOM instance.
         /// </summary>
-        private XslTransform    transformer = new XslTransform (); 
+        private XslCompiledTransform    transformer = new XslCompiledTransform ();
+
+        private XmlDocument CreateFragment (XmlNode node)
+        {
+            XmlDocument     document = new XmlDocument ();
+
+            document.AppendChild (CloneNode (document, node));
+            return (document);
+        }
+
+        private XmlNode CloneNode (XmlDocument document, XmlNode node)
+        {
+            if (node.NodeType == XmlNodeType.Element) {
+                XmlElement  source = (XmlElement) node;
+                XmlElement  target = document.CreateElement (source.Name, source.NamespaceURI);
+ 
+                foreach (XmlAttribute attr in source.Attributes)
+                    target.SetAttribute (attr.Name, attr.NamespaceURI, attr.Value);
+
+                foreach (XmlNode child in source.ChildNodes) {
+                    XmlNode copy = CloneNode (document, child);
+                    if (copy != null) target.AppendChild (copy);
+                }
+                return (target);
+            }
+            else if (node.NodeType == XmlNodeType.Text) {
+                return (document.CreateTextNode (((XmlText) node).Value));
+            }
+            else if (node.NodeType == XmlNodeType.CDATA) {
+                return (document.CreateCDataSection (((XmlCDataSection) node).Value));
+            }
+            return (null);
+        }
     }
 }
