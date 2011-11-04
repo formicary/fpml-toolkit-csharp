@@ -70,6 +70,11 @@ namespace HandCoded.Xsl
         /// </summary>
         private XslCompiledTransform    transformer = new XslCompiledTransform ();
 
+        /// <summary>
+        /// Copies the <see cref="XmlNode"/> into a new <see cref="XmlDocument"/>.
+        /// </summary>
+        /// <param name="node">The <see cref="XmlNode"/> to be copied.</param>
+        /// <returns>A copy of the code within a new <see cref="XmlDocument"/>.</returns>
         private XmlDocument CreateFragment (XmlNode node)
         {
             XmlDocument     document = new XmlDocument ();
@@ -78,6 +83,13 @@ namespace HandCoded.Xsl
             return (document);
         }
 
+        /// <summary>
+        /// Makes copy of the indicated <see cref="XmlNode"/> and its child
+        /// nodes.
+        /// </summary>
+        /// <param name="document">The new <see cref="XmlDocument"/>.</param>
+        /// <param name="node">The <see cref="XmlNode"/> being cloned.</param>
+        /// <returns>A deep copy of the original <see cref="XmlNode"/>.</returns>
         private XmlNode CloneNode (XmlDocument document, XmlNode node)
         {
             if (node.NodeType == XmlNodeType.Element) {
