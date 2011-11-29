@@ -296,6 +296,39 @@ namespace HandCoded.FpML
             = new Conversions.R4_6__R4_7 ();
 
         /// <summary>
+        /// The FpML 4.7 to 4.8 <see cref="HandCoded.Meta.Conversion"/> instance.
+        /// </summary>
+        private static readonly HandCoded.Meta.Conversion R4_7__R4_8
+            = new Conversions.R4_7__R4_8 ();
+
+        /// <summary>
+        /// The FpML 4.8 to 4.9 <see cref="HandCoded.Meta.Conversion"/> instance.
+        /// </summary>
+        private static readonly HandCoded.Meta.Conversion R4_8__R4_9
+            = new Conversions.R4_8__R4_9 ();
+
+        /// <summary>
+        /// The FpML 5.0 to 5.1 confirmation view <see cref="HandCoded.Meta.Conversion"/>
+        /// instance.
+        /// </summary>
+        private static readonly HandCoded.Meta.Conversion R5_0__R5_1_CONFIRMATION
+            = new Conversions.R5_0__R5_1_CONFIRMATION ();
+
+        /// <summary>
+        /// The FpML 5.0 to 5.1 confirmation view <see cref="HandCoded.Meta.Conversion"/>
+        /// instance.
+        /// </summary>
+        private static readonly HandCoded.Meta.Conversion R5_1__R5_2_CONFIRMATION
+            = new Conversions.R5_1__R5_2_CONFIRMATION ();
+
+        /// <summary>
+        /// The FpML 5.0 to 5.1 confirmation view <see cref="HandCoded.Meta.Conversion"/>
+        /// instance.
+        /// </summary>
+        private static readonly HandCoded.Meta.Conversion R5_2__R5_3_CONFIRMATION
+            = new Conversions.R5_2__R5_3_CONFIRMATION ();
+
+        /// <summary>
 		/// <see cref="ILog"/> instance used to record problems.
 		/// </summary>
 		private static ILog			log

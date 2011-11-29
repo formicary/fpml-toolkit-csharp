@@ -1,4 +1,4 @@
-// Copyright (C),2005-2006 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -437,6 +437,74 @@ namespace HandCoded.Xml
 		{
 			return (Paths (Paths (Paths (Paths (Paths (Paths (Paths (Paths (context, name1), name2), name3), name4), name5), name6), name7), name8));
 		}
+
+		//---------------------------------------------------------------------------
+
+        /// <summary>
+        /// Determines of the context <see cref="XmlAttribute"/> matches the indicated
+        /// named attribute.
+        /// </summary>
+        /// <param name="context">The context <see cref="XmlAttribute"/>.</param>
+        /// <param name="attrName">The target attribute name.</param>
+        /// <returns></returns>
+        public static bool Match (XmlAttribute context, string attrName)
+        {
+	        return (context.LocalName.Equals (attrName));
+        }
+
+        /// <summary>
+        /// Determines of the context <see cref="XmlAttribute"/> matches the indicated
+        /// named attribute and parent element name.
+        /// </summary>
+        /// <param name="context">The context <see cref="XmlAttribute"/>.</param>
+        /// <param name="name1">The name of the parent element.</param>
+        /// <param name="attrName">The target attribute name.</param>
+        /// <returns></returns>
+        public static bool Match (XmlAttribute context, string name1, string attrName)
+        {
+	        return (Match (context, attrName) && Match (context.OwnerElement, name1));
+        }
+
+        /// <summary>
+        /// Determines of the context <see cref="XmlAttribute"/> matches the indicated
+        /// named attribute and ancestor element names.
+        /// </summary>
+        /// <param name="context">The context <see cref="XmlAttribute"/>.</param>
+        /// <param name="name1">The name of the grand-parent element.</param>
+        /// <param name="name2">The name of the parent element.</param>
+        /// <param name="attrName">The target attribute name.</param>
+        /// <returns></returns>
+        public static bool Match (XmlAttribute context, string name1, string name2, string attrName)
+        {
+	        return (Match (context, attrName) && Match (context.OwnerElement, name1, name2));
+        }
+
+        /// <summary>
+        /// Determines of the context <see cref="XmlElement"/> matches the indicated
+        /// element name.
+        /// </summary>
+        /// <param name="context">The context <see cref="XmlElement"/>.</param>
+        /// <param name="name1">The target element name.</param>
+        /// <returns></returns>
+	    public static bool Match (XmlElement context, string name1)
+	    {
+		    return (context.LocalName.Equals (name1));
+	    }
+
+        /// <summary>
+        /// Determines of the context <see cref="XmlElement"/> matches the indicated
+        /// element and parent.
+        /// </summary>
+        /// <param name="context">The context <see cref="XmlElement"/>.</param>
+        /// <param name="name1">The parent element name.</param>
+        /// <param name="name2">The target element name.</param>
+        /// <returns></returns>
+	    public static bool Match (XmlElement context, string name1, string name2)
+	    {
+		    return (Match (context, name2) && Match ((XmlElement) context.ParentNode, name1));
+	    }
+
+		//---------------------------------------------------------------------------
 
 		/// <summary>
 		/// Ensures no instances can be constructed.

@@ -1,4 +1,4 @@
-// Copyright (C),2005-2010 HandCoded Software Ltd.
+// Copyright (C),2005-2011 HandCoded Software Ltd.
 // All rights reserved.
 //
 // This software is licensed in accordance with the terms of the 'Open Source
@@ -1485,6 +1485,254 @@ namespace HandCoded.FpML
 
                 // Transfer the attributes
                 newRoot.SetAttribute ("xsi:type", oldRoot.GetAttribute ("xsi:type"));
+
+                // Recursively copy the child node across
+                foreach (XmlNode node in oldRoot.ChildNodes)
+                    Transcribe (node, target, newRoot);
+
+                return (target);
+            }
+
+            private void Transcribe (XmlNode context, XmlDocument document, XmlNode parent)
+            {
+                switch (context.NodeType) {
+                case XmlNodeType.Element: {
+                        XmlElement element = context as XmlElement;
+                        XmlElement clone;
+
+                        clone = document.CreateElement (element.LocalName);
+
+                        parent.AppendChild (clone);
+
+                        foreach (XmlAttribute attr in element.Attributes)
+                            clone.SetAttribute (attr.Name, attr.Value);
+
+                        // Recursively copy the child node across
+                        foreach (XmlNode node in element.ChildNodes)
+                            Transcribe (node, document, clone);
+
+                        break;
+                    }
+
+                default:
+                    parent.AppendChild (document.ImportNode (context, false));
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The <b>R4_8__R4_9</b> class implements a conversion from FpML 4-8
+        /// to FpML 4-9.
+        /// </summary>
+        public class R4_8__R4_9 : HandCoded.Meta.DirectConversion
+        {
+            /// <summary>
+            /// Constructs a <b>R4_8__TR4_9</b> instance.
+            /// </summary>
+            public R4_8__R4_9 ()
+                : base (Releases.R4_8, Releases.R4_9)
+            {
+            }
+
+            /// <summary>
+            /// Applies the <b>Conversion</b> to a <see cref="XmlDocument"/> instance
+            /// to create a new <see cref="XmlDocument"/>.
+            /// </summary>
+            /// <param name="source">The <see cref="XmlDocument"/> to be converted.</param>
+            /// <param name="helper">A <see cref="IHelper"/> used to guide conversion.</param>
+            /// <returns>A new <see cref="XmlDocument"/> containing the transformed data.</returns>
+            public override XmlDocument Convert (XmlDocument source, HandCoded.Meta.IHelper helper)
+            {
+                XmlDocument target = TargetRelease.NewInstance ("FpML");
+                XmlElement oldRoot = source.DocumentElement;
+                XmlElement newRoot = target.DocumentElement;
+
+                // Transfer the attributes
+                newRoot.SetAttribute ("xsi:type", oldRoot.GetAttribute ("xsi:type"));
+
+                // Recursively copy the child node across
+                foreach (XmlNode node in oldRoot.ChildNodes)
+                    Transcribe (node, target, newRoot);
+
+                return (target);
+            }
+
+            private void Transcribe (XmlNode context, XmlDocument document, XmlNode parent)
+            {
+                switch (context.NodeType) {
+                case XmlNodeType.Element: {
+                        XmlElement element = context as XmlElement;
+                        XmlElement clone;
+
+                        clone = document.CreateElement (element.LocalName);
+
+                        parent.AppendChild (clone);
+
+                        foreach (XmlAttribute attr in element.Attributes)
+                            clone.SetAttribute (attr.Name, attr.Value);
+
+                        // Recursively copy the child node across
+                        foreach (XmlNode node in element.ChildNodes)
+                            Transcribe (node, document, clone);
+
+                        break;
+                    }
+
+                default:
+                    parent.AppendChild (document.ImportNode (context, false));
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The <b>R5_0__R5_1_CONFIRMATION</b> class implements a conversion from
+        /// FpML 5-0 to FpML 5-1 for the conformation view.
+        /// </summary>
+        public class R5_0__R5_1_CONFIRMATION : HandCoded.Meta.DirectConversion
+        {
+            /// <summary>
+            /// Constructs a <b>R5_0__R5_1_CONFIRMATION</b> instance.
+            /// </summary>
+            public R5_0__R5_1_CONFIRMATION ()
+                : base (Releases.R5_0_CONFIRMATION, Releases.R5_1_CONFIRMATION)
+            { }
+
+            /// <summary>
+            /// Applies the <b>Conversion</b> to a <see cref="XmlDocument"/> instance
+            /// to create a new <see cref="XmlDocument"/>.
+            /// </summary>
+            /// <param name="source">The <see cref="XmlDocument"/> to be converted.</param>
+            /// <param name="helper">A <see cref="IHelper"/> used to guide conversion.</param>
+            /// <returns>A new <see cref="XmlDocument"/> containing the transformed data.</returns>
+            public override XmlDocument Convert (XmlDocument source, HandCoded.Meta.IHelper helper)
+            {
+                XmlElement oldRoot = source.DocumentElement;
+                XmlDocument target = TargetRelease.NewInstance (oldRoot.LocalName);
+                XmlElement newRoot = target.DocumentElement;
+
+                // Recursively copy the child node across
+                foreach (XmlNode node in oldRoot.ChildNodes)
+                    Transcribe (node, target, newRoot);
+
+                return (target);
+            }
+
+            private void Transcribe (XmlNode context, XmlDocument document, XmlNode parent)
+            {
+                switch (context.NodeType) {
+                case XmlNodeType.Element: {
+                        XmlElement element = context as XmlElement;
+                        XmlElement clone;
+
+                        clone = document.CreateElement (element.LocalName);
+
+                        parent.AppendChild (clone);
+
+                        foreach (XmlAttribute attr in element.Attributes)
+                            clone.SetAttribute (attr.Name, attr.Value);
+
+                        // Recursively copy the child node across
+                        foreach (XmlNode node in element.ChildNodes)
+                            Transcribe (node, document, clone);
+
+                        break;
+                    }
+
+                default:
+                    parent.AppendChild (document.ImportNode (context, false));
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The <b>R5_1__R5_2_CONFIRMATION</b> class implements a conversion from
+        /// FpML 5-1 to FpML 5-2 for the conformation view.
+        /// </summary>
+        public class R5_1__R5_2_CONFIRMATION : HandCoded.Meta.DirectConversion
+        {
+            /// <summary>
+            /// Constructs a <b>R5_1__R5_2_CONFIRMATION</b> instance.
+            /// </summary>
+            public R5_1__R5_2_CONFIRMATION ()
+                : base (Releases.R5_1_CONFIRMATION, Releases.R5_2_CONFIRMATION)
+            { }
+
+            /// <summary>
+            /// Applies the <b>Conversion</b> to a <see cref="XmlDocument"/> instance
+            /// to create a new <see cref="XmlDocument"/>.
+            /// </summary>
+            /// <param name="source">The <see cref="XmlDocument"/> to be converted.</param>
+            /// <param name="helper">A <see cref="IHelper"/> used to guide conversion.</param>
+            /// <returns>A new <see cref="XmlDocument"/> containing the transformed data.</returns>
+            public override XmlDocument Convert (XmlDocument source, HandCoded.Meta.IHelper helper)
+            {
+                XmlElement oldRoot = source.DocumentElement;
+                XmlDocument target = TargetRelease.NewInstance (oldRoot.LocalName);
+                XmlElement newRoot = target.DocumentElement;
+
+                // Recursively copy the child node across
+                foreach (XmlNode node in oldRoot.ChildNodes)
+                    Transcribe (node, target, newRoot);
+
+                return (target);
+            }
+
+            private void Transcribe (XmlNode context, XmlDocument document, XmlNode parent)
+            {
+                switch (context.NodeType) {
+                case XmlNodeType.Element: {
+                        XmlElement element = context as XmlElement;
+                        XmlElement clone;
+
+                        clone = document.CreateElement (element.LocalName);
+
+                        parent.AppendChild (clone);
+
+                        foreach (XmlAttribute attr in element.Attributes)
+                            clone.SetAttribute (attr.Name, attr.Value);
+
+                        // Recursively copy the child node across
+                        foreach (XmlNode node in element.ChildNodes)
+                            Transcribe (node, document, clone);
+
+                        break;
+                    }
+
+                default:
+                    parent.AppendChild (document.ImportNode (context, false));
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The <b>R5_2__R5_3_CONFIRMATION</b> class implements a conversion from
+        /// FpML 5-2 to FpML 5-3 for the conformation view.
+        /// </summary>
+        public class R5_2__R5_3_CONFIRMATION : HandCoded.Meta.DirectConversion
+        {
+            /// <summary>
+            /// Constructs a <b>R5_2__R5_3_CONFIRMATION</b> instance.
+            /// </summary>
+            public R5_2__R5_3_CONFIRMATION ()
+                : base (Releases.R5_2_CONFIRMATION, Releases.R5_3_CONFIRMATION)
+            { }
+
+            /// <summary>
+            /// Applies the <b>Conversion</b> to a <see cref="XmlDocument"/> instance
+            /// to create a new <see cref="XmlDocument"/>.
+            /// </summary>
+            /// <param name="source">The <see cref="XmlDocument"/> to be converted.</param>
+            /// <param name="helper">A <see cref="IHelper"/> used to guide conversion.</param>
+            /// <returns>A new <see cref="XmlDocument"/> containing the transformed data.</returns>
+            public override XmlDocument Convert (XmlDocument source, HandCoded.Meta.IHelper helper)
+            {
+                XmlElement oldRoot = source.DocumentElement;
+                XmlDocument target = TargetRelease.NewInstance (oldRoot.LocalName);
+                XmlElement newRoot = target.DocumentElement;
 
                 // Recursively copy the child node across
                 foreach (XmlNode node in oldRoot.ChildNodes)
